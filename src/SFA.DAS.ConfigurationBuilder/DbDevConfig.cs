@@ -36,5 +36,6 @@
         public string ApprenticeshipsDbName { get; set; }
         public string RofjaaDbName { get; set; }
         public string AANDbName { get; set; }
+        public string CanAccDbName { get; set; }
     }
 }

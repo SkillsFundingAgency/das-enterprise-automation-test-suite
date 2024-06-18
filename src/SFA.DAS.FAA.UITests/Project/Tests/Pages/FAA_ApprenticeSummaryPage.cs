@@ -28,7 +28,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         public FAA_ApprenticeSummaryPage(ScenarioContext context) : base(context)
         {
-            if (!objectContext.IsRAAV1()) { VerifyEmployerDetails(); }
+            VerifyEmployerDetails();
         }
 
         public FAA_YourApplicationPage View()
@@ -43,16 +43,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ApplicationFormPage(context);
         }
 
-        private void VerifyEmployerDetails()
-        {
-            var empName = objectContext.GetEmployerNameAsShownInTheAdvert();
-            VerifyElement(EmployerName, empName);
-            VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
-        }
-
         public void VerifyNewDates()
         {
-
             DateTime Date = faaDataHelper.NewVacancyClosing;
             string actualClosingDate = Date.ToString("dd MMM yyyy");
 
@@ -77,6 +69,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             pageInteractionHelper.VerifyText(ApplyButton, "Apply for apprenticeship");
             return this;
+        }
+
+        private void VerifyEmployerDetails()
+        {
+            var empName = objectContext.GetEmployerNameAsShownInTheAdvert();
+            VerifyElement(EmployerName, empName);
+            VerifyElement(EmployerNameInAboutTheEmployerSection, empName);
         }
     }
 }

@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.MongoDb.DataGenerat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataGenerator", "DataGenerator", "{6CBA241C-2191-4B98-9FBD-E493554506AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RAA-V1.UITests", "SFA.DAS.RAA-V1.UITests\SFA.DAS.RAA-V1.UITests.csproj", "{AC429705-0AFC-4514-B95D-26132F808BD2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.SupportConsole.UITests", "SFA.DAS.SupportConsole.UITests\SFA.DAS.SupportConsole.UITests.csproj", "{A5DE60F5-1566-4A97-AF3A-A67B55492545}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAT.UITests", "SFA.DAS.FAT.UITests\SFA.DAS.FAT.UITests.csproj", "{E31E62F5-B3E6-4680-9B83-403C2D6446C4}"
@@ -65,6 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RoatpAdmin.UITests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E0426D3-BE06-45D9-AE74-262AE19F53A0}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 		Parellel.runsettings = Parellel.runsettings
 	EndProjectSection
 EndProject
@@ -145,7 +144,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EarlyConnect.APITes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SmokeTest", "SmokeTest", "{E6EFFBAD-598C-40B1-87C8-C9350158A15F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Live.SmokeTests", "SFA.DAS.Live.SmokeTests\SFA.DAS.Live.SmokeTests.csproj", "{6FFE7153-443E-46CB-8297-96DD97F60163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Live.SmokeTests", "SFA.DAS.Live.SmokeTests\SFA.DAS.Live.SmokeTests.csproj", "{6FFE7153-443E-46CB-8297-96DD97F60163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.FAAV2.UITests", "SFA.DAS.FAAV2.UITests\SFA.DAS.FAAV2.UITests.csproj", "{EE6379DC-72A6-4EDA-A804-1653BD634F76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -184,12 +185,6 @@ Global
 		{AB621F7D-E209-4F98-B4E7-2A155C23A216}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{AB621F7D-E209-4F98-B4E7-2A155C23A216}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB621F7D-E209-4F98-B4E7-2A155C23A216}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC429705-0AFC-4514-B95D-26132F808BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC429705-0AFC-4514-B95D-26132F808BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC429705-0AFC-4514-B95D-26132F808BD2}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC429705-0AFC-4514-B95D-26132F808BD2}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{AC429705-0AFC-4514-B95D-26132F808BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC429705-0AFC-4514-B95D-26132F808BD2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5DE60F5-1566-4A97-AF3A-A67B55492545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5DE60F5-1566-4A97-AF3A-A67B55492545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5DE60F5-1566-4A97-AF3A-A67B55492545}.Development|Any CPU.ActiveCfg = Debug|Any CPU
@@ -514,6 +509,12 @@ Global
 		{6FFE7153-443E-46CB-8297-96DD97F60163}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{6FFE7153-443E-46CB-8297-96DD97F60163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FFE7153-443E-46CB-8297-96DD97F60163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6379DC-72A6-4EDA-A804-1653BD634F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6379DC-72A6-4EDA-A804-1653BD634F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6379DC-72A6-4EDA-A804-1653BD634F76}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6379DC-72A6-4EDA-A804-1653BD634F76}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{EE6379DC-72A6-4EDA-A804-1653BD634F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6379DC-72A6-4EDA-A804-1653BD634F76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

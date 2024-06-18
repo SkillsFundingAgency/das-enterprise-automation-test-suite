@@ -325,7 +325,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var oneMonthOldStartDate = DateTime.UtcNow.AddMonths(-1);
 
             var previousApprenticeshipCohortReference = _objectContext.GetCohortReference();
-            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenitceship(previousApprenticeshipCohortReference);
+            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenticeship(previousApprenticeshipCohortReference);
             _objectContext.UpdateCohortReference(draftApprenticeshipCohortRef);
 
             new ProviderApprenticeRequestsPage(_context, true)
@@ -377,7 +377,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenProivderNavigatesToApproveCohortPage()
         {
             var previousApprenticeshipCohortReference = _objectContext.GetCohortReference();
-            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenitceship(previousApprenticeshipCohortReference);
+            var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenticeship(previousApprenticeshipCohortReference);
             _cohortReferenceHelper.UpdateCohortReference(draftApprenticeshipCohortRef);
 
             new ProviderApprenticeRequestsPage(_context, true)

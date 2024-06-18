@@ -18,11 +18,17 @@ public abstract class StubSignInBasePage : VerifyBasePage
 
     public StubSignInBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
-    protected void EnterLoginDetailsAndClickSignIn(string email, string userref)
+    protected void EnterLoginDetails(string email, string userref)
     {
         formCompletionHelper.EnterText(IdInput, userref);
         formCompletionHelper.EnterText(EmailInput, email);
-        formCompletionHelper.ClickElement(SignInButton);
     }
 
+    protected void ClickSignIn() => formCompletionHelper.ClickElement(SignInButton);
+
+    protected void EnterLoginDetailsAndClickSignIn(string email, string userref)
+    {
+        EnterLoginDetails(email, userref);
+        ClickSignIn();
+    }
 }
