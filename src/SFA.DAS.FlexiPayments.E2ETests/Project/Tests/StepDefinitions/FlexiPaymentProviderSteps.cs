@@ -22,7 +22,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private ProviderApprenticeDetailsPage _providerApprenticeDetailsPage;
         private ChangePriceNegotiationAmountsPage _changePriceNegotiationAmountPage;
         private ChangeTrainingStartDatePage _changeTrainingStartDatePage;
-        private ChangeOfPriceViewChangeRequestPage _viewChangeRequestPage;
+        private ChangeOfPriceViewChangeRequestPage _viewPriceChangeRequestPage;
+        private ViewChangeOfStartDate _viewChangeOfStartDateRequestPage;
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper = context.GetValue<ApprenticeCourseDataHelper>();
         private ApprenticeDataHelper _apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
         private decimal newTrainingPrice;
@@ -115,6 +116,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ProviderProceedsToCreateAChangeOfPriceRequestForFlexiPaymentsPilotLearner()=> _providerApprenticeDetailsPage.ClickChangePriceLink();
 
         [When(@"Provider proceeds to create a Change of Start Date request for flexi payments pilot learner")]
+        [Then(@"Provider proceeds to create a Change of Start Date request for flexi payments pilot learner")]
         public void ProviderProceedsToCreateAChangeOfStartDateRequestForFlexiPaymentsPilotLearner() => _providerApprenticeDetailsPage.ClickChangeStartDateLink();
 
 
@@ -132,14 +134,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
         }
 
+        [When(@"Provider successfully creates a Change of Start Date request")]
         [Then(@"Provider successfully creates a Change of Start Date request")]
         public void ThenProviderSuccessfullyCreatesAChangeOfStartDateRequest()
         {
-            new ChangeTrainingStartDatePage(context).EnterValidChangeOfPriceDetails(DateTime.Today.Date, context.ScenarioInfo.Title)
+            new ChangeTrainingStartDatePage(context).EnterValidChangeOfStartDateDetails(DateTime.Today.Date, context.ScenarioInfo.Title)
+                .SelectUseSuggestedPlannedEndDateAndContinue()
+                .ClickSendButton()
                 .ValidateChangeOfStartDateRequestRaisedSuccessfully();
         }
-
-
 
         [When(@"Provider creates a Change of Price request where Training Price for the apprenticeship is reduced by (.*)")]
         public void ProviderCreatesAChangeOfPriceRequestWhereTotalPriceForTheApprenticeshipIsReducedBy(int priceReduction)
@@ -199,14 +202,32 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             var totalPrice = newTrainingPrice + Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice);
 
-            _viewChangeRequestPage = new ChangeOfPriceViewChangeRequestPage(context).VerifyPendingEmployerReviewTagIsDisplayed()
+            _viewPriceChangeRequestPage = new ChangeOfPriceViewChangeRequestPage(context).VerifyPendingEmployerReviewTagIsDisplayed()
                 .ValidateRequestedValues(newTrainingPrice, Convert.ToDecimal(_apprenticeDataHelper.EndpointAssessmentPrice), totalPrice, DateTime.Now, context.ScenarioInfo.Title);          
         }
+
+        [Then(@"Provider is able to view details of change of Start Date request")]
+        public void ThenProviderIsAbleToViewDetailsOfChangeOfStartDateRequest()
+        {
+            _providerApprenticeDetailsPage.ClickViewPendingStartDateLink();
+
+            _viewChangeOfStartDateRequestPage = new ViewChangeOfStartDate(context).VerifyPendingEmployerReviewTagIsDisplayed()
+                .ValidateRequestedValues(DateTime.Today.Date, context.ScenarioInfo.Title);
+        }
+
+        [Then(@"Provider can successfully cancel the change of Start Date request")]
+        public void ThenProviderCanSuccessfullyCancelTheChangeOfStartDateRequest()
+        {
+            _viewChangeOfStartDateRequestPage.SelectCancelTheRequestRadioButtonAndContinue()
+                .ValidateChangeOfStartDateRequestCancelledSuccessfully();
+        }
+
+
 
         [Then(@"Provider can successfully cancel the change of price request")]
         public void ThenProviderCanSuccessfullyCancelTheChangeOfPriceRequest()
         {
-            _viewChangeRequestPage.SelectCancelTheRequestRadioButtonAndContinue()
+            _viewPriceChangeRequestPage.SelectCancelTheRequestRadioButtonAndContinue()
                 .ValidateChangeOfPriceRequestCancelledSuccessfully();
         }
 
@@ -234,6 +255,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _changeTrainingStartDatePage.ConfirmDefaultValidationErrorMessagesDisplayed();
         }
 
+        [Then(@"validate Actual training start date cannot be before the Earliest start date for the standard")]
+        public void ThenValidateActualTrainingStartDateCannotBeBeforeTheEarliestStartDateForTheStandard()
+        {
+            _changeTrainingStartDatePage.ValidateStandardVersionStartDateErrorMessage(new DateTime(2015,1,1));
+        }
 
         [Then(@"validate Training Price and EPA price must be between (.*) and (.*)")]
         public void ValidateTrainingPriceAndEPAPriceMustBeBetweenValues(int min, int max)

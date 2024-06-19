@@ -14,7 +14,13 @@ Scenario: FLP_UI_Validations_04 Change Of Start Date Journey
 	When Provider proceeds to create a Change of Start Date request for flexi payments pilot learner
 	And Provider submits change of start date form without changing input fields
 	Then all default change of start date validation errors are displayed to the Provider
+	And validate Actual training start date cannot be before the Earliest start date for the standard
+	And Provider successfully creates a Change of Start Date request
+	And Provider is able to view details of change of Start Date request
+	And Provider can successfully cancel the change of Start Date request
+	And Provider proceeds to create a Change of Start Date request for flexi payments pilot learner
 	And Provider successfully creates a Change of Start Date request
 	And Employer searches for learner on Manage your apprentices page
 	And Employer is able to view the pending Change of Start Date request
-	And Employer can view the details of the Change of Start Date request 
+	And Employer can view the details of the Change of Start Date request
+	And Employer is able to successfully reject the Change of Start Date request

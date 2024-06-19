@@ -5,7 +5,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class Pledge100PercentMatchPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
-        protected override string PageTitle => "Approve or delay applications for 100% match";
+        protected override string PageTitle => "Do you want to approve 100% matches immediately?";
 
         protected override By ContinueButton => By.CssSelector("#pledge-criteria-continue");
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private void SelectMatchChoice(bool immediateMatch)
         {
-            string radioOption = immediateMatch ? "Approve immediately, no delay" : "I want to do my own checks; I understand I have up to 6 weeks to complete them";
+            string radioOption = immediateMatch ? "Yes, automatically approve 100% matches immediately" : "No, I would like 6 weeks to approve or reject 100% matches. If I do not take any action in 6 weeks, they will be approved automatically";
 
             formCompletionHelper.SelectRadioOptionByText(radioOption);
 

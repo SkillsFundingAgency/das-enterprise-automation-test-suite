@@ -47,7 +47,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
 
         public ChangePriceNegotiationAmountsPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
-        public ChangeOfPriceCheckYourChangesPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason, bool isAutoApprove = false)
+        public CheckYourChangesBeforeSendingToEmployerPage EnterValidChangeOfPriceDetails(string trainingPrice, string epaPrice, DateTime effectiveFrom, string reason, bool isAutoApprove = false)
         {
             formCompletionHelper.EnterText(TrainingPrice, trainingPrice);
             formCompletionHelper.EnterText(EndpointAssessmentPrice, epaPrice);
@@ -57,7 +57,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             formCompletionHelper.EnterText(ReasonPriceChange, reason);
 
             formCompletionHelper.Click(ContinueButton);
-            return new ChangeOfPriceCheckYourChangesPage(context, isAutoApprove);
+            return new CheckYourChangesBeforeSendingToEmployerPage(context, isAutoApprove);
         }
 
         public ChangePriceNegotiationAmountsPage ClickContinueButtonWithValidationErrors()
