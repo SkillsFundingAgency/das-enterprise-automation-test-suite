@@ -21,10 +21,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             ClosingDate(rAAV2DataHelper.VacancyClosing);
             StartDate(rAAV2DataHelper.VacancyStart);
             Continue();
-
-            var expectedUrl = IsTraineeship ? "work-experience" : "duration";
-
-            pageInteractionHelper.WaitforURLToChange(expectedUrl);
+            pageInteractionHelper.WaitforURLToChange("duration");
 
         }
     }

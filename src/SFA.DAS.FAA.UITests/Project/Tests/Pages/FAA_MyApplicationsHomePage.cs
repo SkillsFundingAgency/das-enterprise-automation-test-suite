@@ -10,8 +10,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private static By FindAnApprenticeshipLink => By.LinkText("Find an apprenticeship");
 
-        private static By FindTraineeshipLink => By.Id("find-traineeship-link");
-
         private static By NotificationText => By.ClassName("info-summary");
 
         private static By DismissNotification => By.LinkText("Dismiss this message");
@@ -36,12 +34,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(FindAnApprenticeshipLink);
             return new FAA_ApprenticeSearchPage(context);
-        }
-
-        public FAA_TraineeshipSearchPage FindATraineeship()
-        {
-            formCompletionHelper.Click(FindTraineeshipLink);
-            return new FAA_TraineeshipSearchPage(context);
         }
 
         public FAA_SettingsPage GoToSettings()
