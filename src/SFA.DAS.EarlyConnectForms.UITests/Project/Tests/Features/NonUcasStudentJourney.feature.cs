@@ -35,7 +35,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project/Tests/Features", "NonUcasStudentJourney", "As a user I want to be able to fill online form for student interest in appretish" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "NonUcasStudentJourney", "As a user I want to be able to fill online form for student interest in appretish" +
                     "ip \r\nso that my data will be available for futher progress ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -74,13 +74,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Non Ucas Student journey")]
-        [NUnit.Framework.CategoryAttribute("ec-v1")]
-        [NUnit.Framework.CategoryAttribute("earlyconnect-ui")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.TestCaseAttribute("E37000051", null)]
-        public void VerifyNonUcasStudentJourney(string lepCode, string[] exampleTags)
+        public virtual void VerifyNonUcasStudentJourney(string lepCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "ec-v1",
@@ -112,9 +106,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Ucas Student journey")]
-        [NUnit.Framework.TestCaseAttribute("E37000051", null)]
-        public void VerifyUcasStudentJourney(string lepCode, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Verify Non Ucas Student journey: E37000051")]
+        [NUnit.Framework.CategoryAttribute("ec-v1")]
+        [NUnit.Framework.CategoryAttribute("earlyconnect-ui")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void VerifyNonUcasStudentJourney_E37000051()
+        {
+#line 8
+this.VerifyNonUcasStudentJourney("E37000051", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void VerifyUcasStudentJourney(string lepCode, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -138,6 +141,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Ucas Student journey: E37000051")]
+        public void VerifyUcasStudentJourney_E37000051()
+        {
+#line 15
+this.VerifyUcasStudentJourney("E37000051", ((string[])(null)));
+#line hidden
         }
     }
 }
