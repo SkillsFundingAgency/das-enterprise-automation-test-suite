@@ -74,19 +74,21 @@ namespace SFA.DAS.EPAO.UITests.Project.Tests.Features.Apply
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPAO_AP_02 - Create Account")]
+        [NUnit.Framework.DescriptionAttribute("EPAO_AP_02 - Create Account (THIS IS NOT NEEDED AT THE MOMENT DUE TO GOV SIGNIN)")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("epao")]
         [NUnit.Framework.CategoryAttribute("epaoapply")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void EPAO_AP_02_CreateAccount()
+        public void EPAO_AP_02_CreateAccountTHISISNOTNEEDEDATTHEMOMENTDUETOGOVSIGNIN()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "epao",
                     "epaoapply",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_02 - Create Account", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPAO_AP_02 - Create Account (THIS IS NOT NEEDED AT THE MOMENT DUE TO GOV SIGNIN)", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,10 +98,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.When("the Apply User initiates Create Account journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("the Apply User is able to Create an Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

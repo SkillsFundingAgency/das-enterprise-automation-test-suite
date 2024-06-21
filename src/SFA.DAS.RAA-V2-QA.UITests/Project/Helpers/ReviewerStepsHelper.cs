@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
@@ -40,5 +41,5 @@ public class ReviewerStepsHelper(ScenarioContext context)
 
     private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
 
-    private static void RAAV2QASignOut(VerifyDetailsBasePage basePage) => basePage.RAAV2QASignOut();
+    private ASVacancyQaLandingPage RAAV2QASignOut(VerifyDetailsBasePage basePage) { basePage.RAAV2QASignOut(); return new ASVacancyQaLandingPage(context); }
 }
