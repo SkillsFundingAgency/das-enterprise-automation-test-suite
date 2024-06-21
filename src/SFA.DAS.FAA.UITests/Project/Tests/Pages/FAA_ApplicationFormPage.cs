@@ -138,12 +138,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             return new FAA_ApprenticeshipApplicationSubmittedPage(context);
         }
 
-        public FAA_TraineeshipApplicationSubmittedPage SubmitTraineeshipApplication()
-        {
-            formCompletionHelper.ClickButtonByText("Submit application", "Save and continue");
-            return new FAA_TraineeshipApplicationSubmittedPage(context);
-        }
-
         public FAA_MyApplicationsHomePage ClickSave()
         {
             formCompletionHelper.Click(Save);

@@ -39,10 +39,8 @@ namespace SFA.DAS.RAA.DataGenerator
         public string CandidateFullName => $"{CandidateFirstName} {CandidateLastName}";
 
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
-        public string TraineeshipVacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} traineeship";
 
         public static string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
-        public static string SectorName => "Care services";
 
         public static string EmployerAddress => AvailableAddress.RandomOrDefault();
 
