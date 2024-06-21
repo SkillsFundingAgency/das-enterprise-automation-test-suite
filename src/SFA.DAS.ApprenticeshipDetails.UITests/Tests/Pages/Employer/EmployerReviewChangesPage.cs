@@ -13,6 +13,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
         private static By RejectChangesRadioOption => By.Id("option-no");
         private static By RejectReasonInputField => By.Id("rejectReason");
         private static By TrainingStartDateNewValue => By.Id("TrainingStartDate-NewValue");
+        private static By TrainingEndDateNewValue => By.Id("PlannedEndDate-NewValue");
 
         public EmployerReviewChangesPage ValidateChangeOfPriceRequestedValues(decimal totalPrice, DateTime effectiveFromDate, string reason)
         {
@@ -25,11 +26,12 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
             return this;
         }
 
-        public EmployerReviewChangesPage ValidateChangeOfStartDateRequestedValues(DateTime newTrainingStartDate, string reason)
+        public EmployerReviewChangesPage ValidateChangeOfStartDateRequestedValues(DateTime newTrainingStartDate, DateTime newTrainingEndDate, string reason)
         {
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(newTrainingStartDate.ToString("dd MMMM yyyy"), pageInteractionHelper.GetText(TrainingStartDateNewValue), "Effective From Date mismatch");
+                Assert.AreEqual(newTrainingStartDate.ToString("dd MMMM yyyy"), pageInteractionHelper.GetText(TrainingStartDateNewValue), "New Training Start Date mismatch");
+                Assert.AreEqual(newTrainingEndDate.ToString("dd MMMM yyyy"), pageInteractionHelper.GetText(TrainingEndDateNewValue), "New Training End Date mismatch");
                 Assert.AreEqual(reason, pageInteractionHelper.GetText(ReasonForChangeValue), "Requested reason mismatch");
             });
             return this;

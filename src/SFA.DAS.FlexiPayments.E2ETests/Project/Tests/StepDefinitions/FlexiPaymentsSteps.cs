@@ -261,7 +261,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _apprenticeDetailsPage.ClickReviewStartDateChangeLink();
 
-            _employerReviewChangesPage = new EmployerReviewChangesPage(_context).ValidateChangeOfStartDateRequestedValues(DateTime.Now, _context.ScenarioInfo.Title);
+            _employerReviewChangesPage = new EmployerReviewChangesPage(_context).ValidateChangeOfStartDateRequestedValues(DateTime.Now, DateTime.Now.AddMonths(12), _context.ScenarioInfo.Title);
         }
 
         [Then(@"Employer is able to successfully reject the Change of Price request")]
