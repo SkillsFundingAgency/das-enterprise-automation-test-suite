@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
@@ -34,8 +33,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         private void ChangeVacancyTitle()
         {
-            var title = rAAV2DataHelper.VacancyTitle;
-            formCompletionHelper.EnterText(Title, title);
+            formCompletionHelper.EnterText(Title, rAAV2DataHelper.VacancyTitle);
             Continue();
         }
     }

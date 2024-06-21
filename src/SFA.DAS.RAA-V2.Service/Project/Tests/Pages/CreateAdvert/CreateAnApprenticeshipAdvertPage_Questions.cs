@@ -14,7 +14,7 @@
         private string Employmentdetails => "2. Employment details";
         private string Employmentdetails_1 => isRaaV2Employer ? "Closing and start dates" : "Closing and start dates";
 
-        private string Skillsandqualifications => (isRaaV2Employer ? "3. Requirements and prospects" : "3. Skills and qualifications");
+        private string Skillsandqualifications => isRaaV2Employer ? "3. Requirements and prospects" : "3. Skills and qualifications";
         private static string Skillsandqualifications_1 => "Skills";
 
         private static string Abouttheemployer => "4. About the employer";
@@ -23,7 +23,7 @@
         private static string Application => "5. Application";
         private static string Application_1 => "Questions for applicants";
 
-        private string Checkandsubmityouradvert => (isRaaV2Employer ? "6. Check and submit your advert" : "6. Check and submit your vacancy");
+        private string Checkandsubmityouradvert => isRaaV2Employer ? "6. Check and submit your advert" : "6. Check and submit your vacancy";
         private string Checkandsubmityouradvert_1 => isRaaV2Employer ? "Check your answers and submit your advert" : "Check your answers and submit your vacancy";
         #endregion
     }

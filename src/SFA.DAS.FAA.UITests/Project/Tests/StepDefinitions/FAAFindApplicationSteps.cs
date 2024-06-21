@@ -23,9 +23,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(true, _apprenticeSearchResultspage.FoundVacancies(), $"No apprenticeship found within '{distance}' of '{postCode}'");
         }
 
-        [Given(@"an applicant is on the Find an Traineeship Page")]
-        [When(@"an applicant is on the Find an Traineeship Page")]
-       
         [Then(@"the Sort results is changed by closing date and distance is not displayed on the vacancies")]
         public void ThenTheSortResultsIsChangedByClosingDateAndDistanceIsJotDisplayedOnTheVacancies() => _faaStepsHelper.CheckNationWideVacancies();
     }

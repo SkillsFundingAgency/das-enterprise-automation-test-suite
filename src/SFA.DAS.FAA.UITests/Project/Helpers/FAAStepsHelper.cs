@@ -3,6 +3,7 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -10,9 +11,11 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
 {
     public class FAAStepsHelper(ScenarioContext context)
     {
+        private readonly RestartWebDriverHelper _helper = new(context);
         private readonly TabHelper _tabHelper = context.Get<TabHelper>();
         private readonly FAADataHelper _faaDataHelper = context.Get<FAADataHelper>();
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private const string _applicationName = "FindApprenticeship";
         private readonly string _faaBaseUrl = UrlConfig.FAA_BaseUrl;
         private readonly string _faa_SearchApprenticeshipUrl = UrlConfig.FAA_SearchApprenticeshipUrl;
 
@@ -91,8 +94,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
         {
             var applicationFormPage = isSearchByCategory ? SearchByCategory().Apply() : SearchByReferenceNumber().Apply();
 
-            if (_objectContext.IsApprenticeshipVacancyType())
-            {
                 applicationFormPage.EnterEducation();
                 applicationFormPage.EnterStartedYear();
                 applicationFormPage.EnterFinishedYear();
@@ -106,14 +107,6 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
                 applicationFormPage.ClickSaveAndContinue();
                 applicationFormPage.SelectAcceptSubmit();
                 applicationFormPage.SubmitApprenticeshipApplication();
-            }
-            else
-            {
-                applicationFormPage.EnterWorkExperience(workExperience);
-                applicationFormPage.EnterTrainingCourse(trainingCourse);
-                applicationFormPage.EnterQualificationdetails(qualificationdetails);
-                applicationFormPage.AnswerAdditionalQuestions();
-            }
         }
 
         public void CheckNationWideVacancies()
@@ -137,10 +130,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers
             GoToSettingsPage().ChangePhoneNumberSettings().EnterVerificationCode().VerifySuccessfulVerificationText();
         }
 
-        private FAA_ApprenticeSummaryPage SearchByReferenceNumber()
-        {
-                return FindAnApprenticeship().SearchByReferenceNumber();
-        }
+        private FAA_ApprenticeSummaryPage SearchByReferenceNumber() => FindAnApprenticeship().SearchByReferenceNumber();
 
         private FAA_MyApplicationsHomePage OpenFAAHomePageinNewtab()
         {

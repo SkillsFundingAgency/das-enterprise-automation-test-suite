@@ -33,7 +33,6 @@ namespace SFA.DAS.RAA.DataGenerator.Project
                 objectContext.Get(FAALastname));
         }
 
-        public static bool IsApprenticeshipVacancyType(this ObjectContext objectContext) => objectContext.KeyExists<bool>(VacancyType);
         public static void SetVacancyReference(this ObjectContext objectContext, string value) => objectContext.Set(VacancyReference, value);
         public static string GetVacancyReference(this ObjectContext objectContext) => objectContext.Get(VacancyReference);
         public static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Set(EmployerName, value);
