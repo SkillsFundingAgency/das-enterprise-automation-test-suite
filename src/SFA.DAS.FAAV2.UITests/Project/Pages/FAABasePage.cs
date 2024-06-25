@@ -20,7 +20,7 @@ public abstract class FAABasePage : VerifyBasePage
     {
         var vacancyRef = objectContext.GetVacancyReference();
 
-        var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"vacancies/VAC{vacancyRef}");
+        var uri = new Uri(new Uri(UrlConfig.FAAV2_BaseUrl), $"vacancies/VAC{vacancyRef}");
 
         tabHelper.GoToUrl(uri.AbsoluteUri);
 }
@@ -28,7 +28,7 @@ public abstract class FAABasePage : VerifyBasePage
 
 public class FAASignedOutLandingpage(ScenarioContext context) : FAALandingPage(context)
 {
-    private static By SignIn => By.CssSelector("a[href*='/Service/signin?']");
+    private static By SignIn => By.CssSelector("a[href*='signin?']");
 
     public StubSignInFAAPage GoToSignInPage()
     {

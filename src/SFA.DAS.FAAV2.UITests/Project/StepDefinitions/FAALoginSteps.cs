@@ -3,10 +3,9 @@
     [Binding]
     public class FAALoginSteps(ScenarioContext context)
     {
-        [Then(@"the candidate can login")]
-        public void ThenTheCandidateCanLogin()
+        [Then(@"the candidate can login in to faav2")]
+        public void TheCandidateCanLoginInToFaav()
         {
-
             new FAAStepsHelper(context).GoToFAAHomePage();
         }
     }

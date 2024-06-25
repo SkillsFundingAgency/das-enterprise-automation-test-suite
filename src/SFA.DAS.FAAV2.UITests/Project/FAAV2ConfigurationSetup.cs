@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project;
+﻿using SFA.DAS.RAA.DataGenerator.Project.Config;
+
+namespace SFA.DAS.EPAO.UITests.Project;
 
 [Binding]
 public class FAAV2ConfigurationSetup(ScenarioContext context)
@@ -12,5 +14,9 @@ public class FAAV2ConfigurationSetup(ScenarioContext context)
         [
             configSection.GetConfigSection<FAAApplyUser>()
         ]);
+
+        var faaUser = context.GetUser<FAAApplyUser>();
+
+        context.SetFAAConfig(new FAAConfig {FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName });
     }
 }
