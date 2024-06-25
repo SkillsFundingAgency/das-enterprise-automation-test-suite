@@ -3,9 +3,9 @@
     [Binding]
     public class FAAApplySteps(ScenarioContext context)
     {
-        //private readonly FAAStepsHelper _faaStepsHelper = new(context);
+        private readonly FAAStepsHelper _faaStepsHelper = new(context);
 
-        //[Then(@"the Applicant can apply for a Vacancy in FAA")]
-        //public void TheApplicantCanApplyForAVacancyInFAA() => _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
+        [Then(@"the Applicant can apply for a Vacancy in FAA")]
+        public void TheApplicantCanApplyForAVacancyInFAA() => _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
     }
 }

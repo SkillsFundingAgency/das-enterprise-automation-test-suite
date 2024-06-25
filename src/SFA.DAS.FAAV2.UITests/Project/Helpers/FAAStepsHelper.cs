@@ -6,7 +6,7 @@ public class FAAStepsHelper(ScenarioContext context)
     private readonly TabHelper _tabHelper = context.Get<TabHelper>();
     private readonly FAADataHelper _faaDataHelper = context.Get<FAADataHelper>();
     private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
-    private readonly string _faaBaseUrl = UrlConfig.FAAV2_BaseUrl;
+    private readonly string _faaBaseUrl = UrlConfig.FAAV2_AppSearch;
 
     public FAASearchApprenticeLandingPage GoToFAAHomePage()
     {
@@ -16,6 +16,27 @@ public class FAAStepsHelper(ScenarioContext context)
 
         return new FAASearchApprenticeLandingPage(context);
     }
+
+
+    public void ApplyForAVacancy(string qualificationdetails, string workExperience, string trainingCourse)
+    {
+        var applicationFormPage = GoToFAAHomePage().SearchByReferenceNumber().Apply();
+    }
+
+    //    applicationFormPage.EnterEducation();
+    //    applicationFormPage.EnterStartedYear();
+    //    applicationFormPage.EnterFinishedYear();
+    //    applicationFormPage.EnterQualificationdetails(qualificationdetails);
+    //    applicationFormPage.EnterWorkExperience(workExperience);
+    //    applicationFormPage.EnterTrainingCourse(trainingCourse);
+    //    applicationFormPage.AnswerAdditionalQuestions();
+    //    applicationFormPage.EnterStrengths();
+    //    applicationFormPage.EnterSkills();
+    //    applicationFormPage.EnterHobbiesAndInterests();
+    //    applicationFormPage.ClickSaveAndContinue();
+    //    applicationFormPage.SelectAcceptSubmit();
+    //    applicationFormPage.SubmitApprenticeshipApplication();
+    //}
 
     //public string GetApplicationStatus()
     //{

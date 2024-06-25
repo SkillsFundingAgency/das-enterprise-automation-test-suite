@@ -1,5 +1,4 @@
 ﻿
-
 namespace SFA.DAS.FAAV2.UITests.Project.Pages;
 
 public abstract class FAABasePage : VerifyBasePage
@@ -12,7 +11,9 @@ public abstract class FAABasePage : VerifyBasePage
     protected FAABasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
         vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
+
         faaDataHelper = context.Get<FAADataHelper>();
+
         if (verifyPage) VerifyPage();
     }
 
@@ -20,7 +21,7 @@ public abstract class FAABasePage : VerifyBasePage
     {
         var vacancyRef = objectContext.GetVacancyReference();
 
-        var uri = new Uri(new Uri(UrlConfig.FAAV2_BaseUrl), $"vacancies/VAC{vacancyRef}");
+        var uri = new Uri(new Uri(UrlConfig.FAAV2_Vacancy), $"/VAC{vacancyRef}");
 
         tabHelper.GoToUrl(uri.AbsoluteUri);
 }
