@@ -48,24 +48,13 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .EnterProviderContactDetails(optionalFields)
                 .SelectApplicationMethod_Provider(isApplicationMethodFAA);
         }
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
         {
             return createAdvertPage
             .EnterAdditionalQuestionsForApplicants()
             .CompleteAllAdditionalQuestionsForApplicants();
         }
-
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
-            string employername)
-        {
-            return createAdvertPage
-                .EmployerName()
-                .ChooseEmployerNameForEmployerJourney(employername)
-                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
-                .EnterProviderContactDetailsTraineeship(optionalFields)
-                .BackToTaskList();
-        }
-
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
             createAdvertPage
@@ -87,11 +76,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .SubmitExtraInformationAboutPay()
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
-        }
-
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
-        {
-            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
@@ -118,9 +102,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
 
             return createAdvertPage;
         }
-
-        //private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
-        //    _isMultiOrg ? advertTitlePage.EnterAdvertTitleMultiOrg().SelectOrganisationMultiOrg() : advertTitlePage.EnterVacancyTitle();
 
         private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
              advertTitlePage.EnterVacancyTitle();
