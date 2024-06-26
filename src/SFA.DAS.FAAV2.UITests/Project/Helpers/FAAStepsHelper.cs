@@ -17,6 +17,15 @@ public class FAAStepsHelper(ScenarioContext context)
         return new FAASearchApprenticeLandingPage(context);
     }
 
+    public void VerifyApplicationStatus(bool IsSucessful)
+    {
+        var page = GoToFAAHomePage().GoToApplications();
+         
+        if (IsSucessful) page.OpenSuccessfulApplicationPage().ViewApplication();
+
+        else page.OpenUnSuccessfulApplicationPage().ViewApplication();
+    }
+
     public FAA_ApplicationOverviewPage ApplyForAVacancy()
     {
         var applicationFormPage = GoToFAAHomePage().SearchByReferenceNumber().Apply();

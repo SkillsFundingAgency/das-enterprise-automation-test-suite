@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class ProviderAreYouSureYouBasePage : Raav2BasePage
     {
-        private static By ConfirmButton => By.CssSelector("input[value='Confirm'][class='govuk-button']");
+        private static By ConfirmButton => By.CssSelector("input.govuk-button[value='Continue']");
 
         private readonly string _status;
 

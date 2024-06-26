@@ -6,6 +6,7 @@
         private readonly FAAStepsHelper _faaStepsHelper = new(context);
 
         [When(@"the Applicant can apply for a Vacancy in FAA")]
+        [Then(@"the Applicant can apply for a Vacancy in FAA")]
         public void TheApplicantCanApplyForAVacancyInFAA() => _faaStepsHelper.ApplyForAVacancy().PreviewApplication().SubmitApplication();
     }
 }

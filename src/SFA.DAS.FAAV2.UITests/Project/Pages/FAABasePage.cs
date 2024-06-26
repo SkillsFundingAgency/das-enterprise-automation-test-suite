@@ -54,7 +54,6 @@ public class FAASignedOutLandingpage(ScenarioContext context) : FAALandingPage(c
     }
 }
 
-
 public abstract class FAALandingPage(ScenarioContext context) : FAABasePage(context)
 {
     protected override string PageTitle => "Search apprenticeships";
@@ -103,8 +102,50 @@ public class FAASignedInLandingBasePage(ScenarioContext context) : FAALandingPag
 
     private static By SearchHeader => By.CssSelector("[id='service-header__nav'] a[href='/search-results']");
 
-    private static By ApplicaitonsHeader => By.CssSelector("[id='service-header__nav'] a[href='/applications']");
+    private static By ApplicationsHeader => By.CssSelector("[id='service-header__nav'] a[href='/applications']");
+
+    public FAA_ApplicationsPage GoToApplications()
+    {
+        formCompletionHelper.Click(ApplicationsHeader);
+
+        return new (context);
+    }
 }
+
+
+public class FAA_ApplicationsPage(ScenarioContext context) : FAABasePage(context)
+{
+    protected override string PageTitle => "Your applications";
+
+    private static By SuccessfulLink => By.CssSelector("a[href='/applications?tab=Successful']");
+
+    private static By UnsuccessfulLink => By.CssSelector("a[href='/applications?tab=Unsuccessful']");
+
+    private static By SearchResultItem => By.CssSelector(".das-search-results__list-item");
+
+    private static By ViewApplicationLink => By.CssSelector("a[href*='view']");
+
+    public FAA_SuccessfulApplicationPage OpenSuccessfulApplicationPage()
+    {
+        formCompletionHelper.Click(SuccessfulLink);
+
+        return new(context);
+    }
+
+    public FAA_UnSuccessfulApplicationPage OpenUnSuccessfulApplicationPage()
+    {
+        formCompletionHelper.Click(UnsuccessfulLink);
+
+        return new(context);
+    }
+
+    public void ViewApplication()
+    {
+        pageInteractionHelper.FindElements(SearchResultItem).Single(x => x.Text.ContainsCompareCaseInsensitive(vacancyTitleDataHelper.VacancyTitle)).FindElement(ViewApplicationLink).Click();
+
+    }
+}
+
 
 public class FAASearchApprenticeLandingPage(ScenarioContext context) : FAASignedInLandingBasePage(context)
 {
@@ -125,15 +166,46 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 
     private static By ApplyButton => By.CssSelector("[id='main-content'] button.govuk-button");
 
+    private static By ViewSubmittedApplicationLink => By.CssSelector("a[href*='Submitted']");
+
+
     public FAA_ApplicationOverviewPage Apply()
     {
         formCompletionHelper.Click(ApplyButton);
         return new FAA_ApplicationOverviewPage(context);
     }
 
+    public FAA_SubmittedApplicationPage ViewSubmittedApplications()
+    {
+        formCompletionHelper.Click(ViewSubmittedApplicationLink);
+        return new FAA_SubmittedApplicationPage(context);
+    }
+
+
     public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()
     {
         pageInteractionHelper.VerifyText(ApplyButton, "Continue your application");
         return this;
     }
+}
+
+public class FAA_SubmittedApplicationPage(ScenarioContext context) : FAA_ApplicationsPage(context)
+{
+    protected override By PageHeader => By.CssSelector(".govuk-heading-m");
+
+    protected override string PageTitle => "Submitted";
+}
+
+public class FAA_SuccessfulApplicationPage(ScenarioContext context) : FAA_ApplicationsPage(context)
+{
+    protected override By PageHeader => By.CssSelector(".govuk-heading-m");
+
+    protected override string PageTitle => "Successful";
+}
+
+public class FAA_UnSuccessfulApplicationPage(ScenarioContext context) : FAA_ApplicationsPage(context)
+{
+    protected override By PageHeader => By.CssSelector(".govuk-heading-m");
+
+    protected override string PageTitle => "Unsuccessful";
 }
