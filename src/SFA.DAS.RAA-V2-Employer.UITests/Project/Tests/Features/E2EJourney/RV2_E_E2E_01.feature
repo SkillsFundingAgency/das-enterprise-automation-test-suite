@@ -10,5 +10,5 @@ Scenario: RV2_E_E2E_01 - Create an advert with registered name, Approve, Apply a
 	Given the Employer creates an advert by using a registered name
 	And the Reviewer Approves the vacancy
 	When the Applicant can apply for a Vacancy in FAA
-	#Then Employer can make the application successful
+	Then Employer can make the application successful
 	#And the status of the Application is shown as 'successful' in FAA 

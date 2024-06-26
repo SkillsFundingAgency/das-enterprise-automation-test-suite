@@ -5,14 +5,19 @@ public abstract class FAABasePage : VerifyBasePage
 {
     #region Helpers and Context
     protected readonly FAADataHelper faaDataHelper;
+    protected readonly AdvertDataHelper advertDataHelper;
     protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
     #endregion
+
+    protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
     protected FAABasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
         vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
 
         faaDataHelper = context.Get<FAADataHelper>();
+
+        advertDataHelper = context.GetValue<AdvertDataHelper>();
 
         if (verifyPage) VerifyPage();
     }
@@ -109,10 +114,10 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 
     private static By ApplyButton => By.CssSelector("[id='main-content'] button.govuk-button");
 
-    public FAA_ApplicationPage Apply()
+    public FAA_ApplicationOverviewPage Apply()
     {
         formCompletionHelper.Click(ApplyButton);
-        return new FAA_ApplicationPage(context);
+        return new FAA_ApplicationOverviewPage(context);
     }
 
     public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()
@@ -120,31 +125,4 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
         pageInteractionHelper.VerifyText(ApplyButton, "Continue your application");
         return this;
     }
-}
-
-public partial class FAA_ApplicationPage(ScenarioContext context) : FAABasePage(context)
-{
-    protected override string PageTitle => $"Apply for {vacancyTitleDataHelper.VacancyTitle}";
-
-}
-
-public partial class FAA_ApplicationPage : FAABasePage
-{
-    #region Questions
-    private static string EducationHistory => "Education history";
-    private static string EducationHistory_1 => "School, college and university qualifications";
-    private static string EducationHistory_2 => "Training courses";
-
-    private static string WorkHistory => "Work history";
-    private static string WorkHistory_1 => "Jobs";
-    private static string WorkHistory_2 => "Volunteering and work experience";
-    
-    private static string ApplicationQuestions => "Application questions";
-    private static string ApplicationQuestions_1 => "What are your skills and strengths?";
-    private static string ApplicationQuestions_2 => "What interests you about this apprenticeship?";
-
-    private static string InterviewAdjustments => "Interview adjustments";
-    private static string InterviewAdjustments_1 => "Application permissions and checks";
-
-    #endregion
 }

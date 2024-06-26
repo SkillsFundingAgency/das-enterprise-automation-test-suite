@@ -27,8 +27,8 @@ namespace SFA.DAS.RAA.DataGenerator
             Strengths = RandomDataGenerator.GenerateRandomAlphabeticString(99);
             Skills = RandomDataGenerator.GenerateRandomAlphabeticString(99);
             HobbiesAndInterests = RandomDataGenerator.GenerateRandomAlphabeticString(99);
-            AdditionalQuestions1 = RandomDataGenerator.GenerateRandomAlphabeticString(59);
-            AdditionalQuestions2 = RandomDataGenerator.GenerateRandomAlphabeticString(59);
+            AdditionalQuestions1Answer = RandomDataGenerator.GenerateRandomAlphabeticString(59);
+            AdditionalQuestions2Answer = RandomDataGenerator.GenerateRandomAlphabeticString(59);
             InterviewSupport = RandomDataGenerator.GenerateRandomAlphabeticString(22);
             FirstName = RandomDataGenerator.GenerateRandomAlphabeticString(5);
             NewFirstName = RandomDataGenerator.GenerateRandomAlphabeticString(5);
@@ -94,9 +94,9 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string HobbiesAndInterests { get; }
 
-        public string AdditionalQuestions1 { get; }
+        public string AdditionalQuestions1Answer { get; }
 
-        public string AdditionalQuestions2 { get; }
+        public string AdditionalQuestions2Answer { get; }
 
         public string InterviewSupport { get; }
 

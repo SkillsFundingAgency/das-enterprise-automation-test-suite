@@ -20,8 +20,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         private void EnterAdditionalQuestions()
         {
-            formCompletionHelper.EnterText(AdditionalQuestion1Selector, RAA.DataGenerator.RAAV2DataHelper.RandomQuestionString(20));
-            formCompletionHelper.EnterText(AdditionalQuestion2Selector, RAA.DataGenerator.RAAV2DataHelper.RandomQuestionString(20));
+            formCompletionHelper.EnterText(AdditionalQuestion1Selector, advertDataHelper.AdditionalQuestion1);
+            formCompletionHelper.EnterText(AdditionalQuestion2Selector, advertDataHelper.AdditionalQuestion2);
         }
     }
 }

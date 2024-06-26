@@ -20,6 +20,8 @@ namespace SFA.DAS.RAA_V2.Service.Project
 
             context.Set(new RAAV2DataHelper(fAAConfig, vacancyTitleDatahelper));
 
+            context.Set(new AdvertDataHelper());
+
             var dbConfig = context.Get<DbConfig>();
 
             var objectContext = context.Get<ObjectContext>();

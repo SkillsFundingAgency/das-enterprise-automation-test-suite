@@ -122,10 +122,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
         public void AnswerAdditionalQuestions()
         {
             if (pageInteractionHelper.IsElementDisplayed(FirstQuestion))
-                formCompletionHelper.EnterText(FirstQuestion, faaDataHelper.AdditionalQuestions1);
+                formCompletionHelper.EnterText(FirstQuestion, faaDataHelper.AdditionalQuestions1Answer);
 
             if (pageInteractionHelper.IsElementDisplayed(SecondQuestion))
-                formCompletionHelper.EnterText(SecondQuestion, faaDataHelper.AdditionalQuestions1);
+                formCompletionHelper.EnterText(SecondQuestion, faaDataHelper.AdditionalQuestions1Answer);
         }
 
         public void ClickSaveAndContinue() => formCompletionHelper.Click(SaveAndContinue);
