@@ -18,11 +18,4 @@ public class SchoolCollegeAndUniversityQualificationsPage(ScenarioContext contex
         return new(context);
     }
 
-    public FAA_ApplicationOverviewPage SelectSectionCompleted()
-    {
-        SelectRadioOptionByForAttribute("IsSectionCompleted");
-        Continue();
-        return new(context);
-    }
-
 }

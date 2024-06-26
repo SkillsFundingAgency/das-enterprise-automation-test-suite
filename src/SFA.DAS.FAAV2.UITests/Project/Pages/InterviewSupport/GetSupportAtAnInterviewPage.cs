@@ -4,10 +4,5 @@ public class GetSupportAtAnInterviewPage(ScenarioContext context) : FAABasePage(
 {
     protected override string PageTitle => "Get support at an interview";
 
-    public FAA_ApplicationOverviewPage SelectSectionCompleted()
-    {
-        SelectRadioOptionByForAttribute("IsSectionCompleted");
-        Continue();
-        return new(context);
-    }
+    protected override By SubmitSectionButton => By.CssSelector("button.govuk-button[type='submit']");
 }

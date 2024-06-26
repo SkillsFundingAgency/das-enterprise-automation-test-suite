@@ -10,10 +10,6 @@ public class WhatInterestsYouAboutTThisApprenticeshipPage(ScenarioContext contex
     {
         formCompletionHelper.EnterText(AnswerText, faaDataHelper.HobbiesAndInterests);
 
-        SelectRadioOptionByForAttribute("IsSectionCompleted");
-
-        Continue();
-
-        return new(context);
+        return SelectSectionCompleted();
     }
 }

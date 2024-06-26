@@ -11,6 +11,8 @@ public abstract class FAABasePage : VerifyBasePage
 
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
+    protected virtual By SubmitSectionButton => By.CssSelector("button.govuk-button[id='submit-button']");
+
     protected FAABasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
         vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
@@ -22,14 +24,23 @@ public abstract class FAABasePage : VerifyBasePage
         if (verifyPage) VerifyPage();
     }
 
+    public FAA_ApplicationOverviewPage SelectSectionCompleted()
+    {
+        SelectRadioOptionByForAttribute("IsSectionCompleted");
+
+        formCompletionHelper.Click(SubmitSectionButton);
+
+        return new(context);
+    }
+
     protected void SearchVacancyInFAA()
     {
         var vacancyRef = objectContext.GetVacancyReference();
 
-        var uri = new Uri(new Uri(UrlConfig.FAAV2_Vacancy), $"/VAC{vacancyRef}");
+        var uri = new Uri(new Uri(UrlConfig.FAAV2_BaseUrl), $"apprenticeship/VAC{vacancyRef}");
 
         tabHelper.GoToUrl(uri.AbsoluteUri);
-}
+    }
 }
 
 public class FAASignedOutLandingpage(ScenarioContext context) : FAALandingPage(context)

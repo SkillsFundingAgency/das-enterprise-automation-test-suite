@@ -4,6 +4,8 @@ public class TrainingCoursePage(ScenarioContext context) : FAABasePage(context)
 {
     protected override string PageTitle => "Training courses";
 
+    protected override By SubmitSectionButton => By.CssSelector("button.govuk-button[type='submit']");
+
     public AddATrainingCoursePage SelectYesAndContinue()
     {
         SelectRadioOptionByForAttribute("DoYouWantToAddAnyTrainingCourses");
@@ -18,10 +20,12 @@ public class TrainingCoursePage(ScenarioContext context) : FAABasePage(context)
         return new(context);
     }
 
-    public FAA_ApplicationOverviewPage SelectSectionCompleted()
+    public new FAA_ApplicationOverviewPage SelectSectionCompleted()
     {
-        SelectRadioOptionByForAttribute("IsSectionCompleted");
-        Continue();
+        SelectRadioOptionByForAttribute("IsSectionComplete");
+
+        formCompletionHelper.Click(SubmitSectionButton);
+
         return new(context);
     }
 }

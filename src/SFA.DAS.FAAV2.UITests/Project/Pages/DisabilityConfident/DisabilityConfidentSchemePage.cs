@@ -4,6 +4,8 @@ public class DisabilityConfidentSchemePage(ScenarioContext context) : FAABasePag
 {
     protected override string PageTitle => "Disability Confident scheme";
 
+    protected override By SubmitSectionButton => By.CssSelector("button.govuk-button[type='submit']");
+
     public DisabilityConfidentSchemePage SelectYesAndContinue()
     {
         SelectRadioOptionByForAttribute("ApplyUnderDisabilityConfidentScheme");
@@ -14,13 +16,6 @@ public class DisabilityConfidentSchemePage(ScenarioContext context) : FAABasePag
     public DisabilityConfidentSchemePage SelectNoAndContinue()
     {
         SelectRadioOptionByForAttribute("ApplyUnderDisabilityConfidentScheme-No");
-        Continue();
-        return new(context);
-    }
-
-    public FAA_ApplicationOverviewPage SelectSectionCompleted()
-    {
-        SelectRadioOptionByForAttribute("IsSectionCompleted");
         Continue();
         return new(context);
     }

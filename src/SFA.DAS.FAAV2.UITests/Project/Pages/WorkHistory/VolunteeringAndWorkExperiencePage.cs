@@ -4,6 +4,8 @@ public class VolunteeringAndWorkExperiencePage(ScenarioContext context) : FAABas
 {
     protected override string PageTitle => "Volunteering and work experience";
 
+    protected override By SubmitSectionButton => By.CssSelector("button.govuk-button[type='submit']");
+
     public AddVolunteeringOrWorkExperiencePage SelectYesAndContinue()
     {
         SelectRadioOptionByForAttribute("DoYouWantToAddAnyVolunteeringOrWorkExperience");
@@ -17,15 +19,4 @@ public class VolunteeringAndWorkExperiencePage(ScenarioContext context) : FAABas
         Continue();
         return new(context);
     }
-
-    public FAA_ApplicationOverviewPage SelectSectionCompleted()
-    {
-        SelectRadioOptionByForAttribute("IsSectionCompleted");
-        Continue();
-        return new(context);
-    }
 }
-
-
-
-

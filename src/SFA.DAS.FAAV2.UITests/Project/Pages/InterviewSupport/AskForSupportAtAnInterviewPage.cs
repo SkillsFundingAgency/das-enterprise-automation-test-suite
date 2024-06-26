@@ -6,6 +6,8 @@ public class AskForSupportAtAnInterviewPage(ScenarioContext context) : FAABasePa
 
     private static By InterviewAdjustmentsDescription => By.CssSelector("#InterviewAdjustmentsDescription");
 
+    protected override By ContinueButton => By.CssSelector("button.govuk-button[type='submit']");
+
     public GetSupportAtAnInterviewPage SelectYesAndContinue()
     {
         SelectRadioOptionByForAttribute("DoYouWantInterviewAdjustments");

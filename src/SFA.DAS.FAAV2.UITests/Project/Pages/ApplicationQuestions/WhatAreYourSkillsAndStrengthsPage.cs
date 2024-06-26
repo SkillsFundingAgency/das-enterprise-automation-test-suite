@@ -4,15 +4,22 @@ public class WhatAreYourSkillsAndStrengthsPage(ScenarioContext context) : FAABas
 {
     protected override string PageTitle => "What are your skills and strengths?";
 
+    protected override By SubmitSectionButton => By.CssSelector("button.govuk-button[type='submit']");
+
     private static By SkillsAndStrengths => By.CssSelector("#SkillsAndStrengths");
 
     public FAA_ApplicationOverviewPage SelectYesAndCompleteSection()
     {
         formCompletionHelper.EnterText(SkillsAndStrengths, faaDataHelper.Strengths);
 
-        SelectRadioOptionByForAttribute("IsSectionCompleted");
+        return SelectSectionCompleted();
+    }
 
-        Continue();
+    public new FAA_ApplicationOverviewPage SelectSectionCompleted()
+    {
+        SelectRadioOptionByForAttribute("IsSectionComplete");
+
+        formCompletionHelper.Click(SubmitSectionButton);
 
         return new(context);
     }

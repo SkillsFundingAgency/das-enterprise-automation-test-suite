@@ -18,11 +18,9 @@ public static class UrlConfig
     public static string EmployerApprenticeshipService_BaseUrl => $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/";
     public static string FAA_BaseUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}.findapprenticeship.service.gov.uk/";
 
-    private static string FAAV2_BaseUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}-findapprenticeship.apprenticeships.education.gov.uk/";
+    public static string FAAV2_BaseUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}-findapprenticeship.apprenticeships.education.gov.uk/";
 
     public static string FAAV2_AppSearch => $"{FAAV2_BaseUrl}apprenticeshipsearch";
-
-    public static string FAAV2_Vacancy => $"{FAAV2_BaseUrl}apprenticeship";
 
     public static string FAA_SearchApprenticeshipUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}.findapprenticeship.service.gov.uk/apprenticeshipsearch";
     public static string FATV2_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";

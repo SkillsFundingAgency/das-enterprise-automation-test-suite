@@ -10,6 +10,8 @@ public class CheckYourApplicationBeforeSubmittingPage(ScenarioContext context) :
 {
     protected override string PageTitle => "Check your application before submitting";
 
+    protected override By ContinueButton => By.CssSelector("button.govuk-button[data-module='govuk-button']");
+
     public ApplicationSubmittedPage SubmitApplication()
     {
         SelectCheckBoxByText("I understand that I won't be able to make any changes after I submit my application");
@@ -38,7 +40,7 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
 
     protected override By TaskName => By.CssSelector(".govuk-task-list__name-and-hint > .govuk-link");
 
-    protected override By TaskStatus => By.CssSelector(".govuk-task-list__status > .govuk-tag");
+    protected override By TaskStatus => By.CssSelector(".govuk-task-list__status");
 
     private static By PreviewApplicaitonSelector => By.CssSelector("a.govuk-button[href*='preview']");
 
@@ -131,21 +133,29 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
 
     private void NavigateToTask(string sectionName, string taskName) => NavigateToTask(sectionName, taskName, 0, null);
 
-    public FAA_ApplicationOverviewPage VerifyWorkHistory_1() => Verify_Section1(WorkHistory_1, "Complete");
-    public FAA_ApplicationOverviewPage VerifyWorkHistory_2() => Verify_Section1(WorkHistory_2, "Complete");
-
     public FAA_ApplicationOverviewPage VerifyEducationHistory_1() => Verify_Section1(EducationHistory_1, "Complete");
     public FAA_ApplicationOverviewPage VerifyEducationHistory_2() => Verify_Section1(EducationHistory_2, "Complete");
 
-    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_1() => Verify_Section1(ApplicationQuestions_1, "Complete");
-    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_2() => Verify_Section1(ApplicationQuestions_2, "Complete");
-    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_3() => Verify_Section1(advertDataHelper.AdditionalQuestion1, "Complete");
-    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_4() => Verify_Section1(advertDataHelper.AdditionalQuestion2, "Complete");
+    public FAA_ApplicationOverviewPage VerifyWorkHistory_1() => Verify_Section2(WorkHistory_1, "Complete");
+    public FAA_ApplicationOverviewPage VerifyWorkHistory_2() => Verify_Section2(WorkHistory_2, "Complete");
 
-    public FAA_ApplicationOverviewPage VerifyInterviewAadjustments_1() => Verify_Section1(InterviewAdjustments_1, "Complete");
-    public FAA_ApplicationOverviewPage VerifyDisabilityConfidence_1() => Verify_Section1(DisabilityConfidence_1, "Complete");
+    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_1() => Verify_Section3(ApplicationQuestions_1, "Complete");
+    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_2() => Verify_Section3(ApplicationQuestions_2, "Complete");
+    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_3() => Verify_Section3(advertDataHelper.AdditionalQuestion1, "Complete");
+    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_4() => Verify_Section3(advertDataHelper.AdditionalQuestion2, "Complete");
+
+    public FAA_ApplicationOverviewPage VerifyInterviewAadjustments_1() => Verify_Section4(InterviewAdjustments_1, "Complete");
+    public FAA_ApplicationOverviewPage VerifyDisabilityConfidence_1() => Verify_Section5(DisabilityConfidence_1, "Complete");
 
     private FAA_ApplicationOverviewPage Verify_Section1(string taskName, string status) => VerifySections(EducationHistoryFirstQuestion, taskName, status);
+
+    private FAA_ApplicationOverviewPage Verify_Section2(string taskName, string status) => VerifySections(WorkHistoryFirstQuestion, taskName, status);
+
+    private FAA_ApplicationOverviewPage Verify_Section3(string taskName, string status) => VerifySections(ApplicationQuestionsFirstQuestion, taskName, status);
+
+    private FAA_ApplicationOverviewPage Verify_Section4(string taskName, string status) => VerifySections(InterviewAdjustmentsFirstQuestion, taskName, status);
+
+    private FAA_ApplicationOverviewPage Verify_Section5(string taskName, string status) => VerifySections(DisabilityConfidenceFirstQuestion, taskName, status);
 
     private FAA_ApplicationOverviewPage VerifySections(string sectionName, string taskName, string status, int index = 0)
     {
@@ -154,3 +164,4 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
     }
 
 }
+
