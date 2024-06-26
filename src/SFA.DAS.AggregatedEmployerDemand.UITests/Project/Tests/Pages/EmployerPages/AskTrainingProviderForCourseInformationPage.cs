@@ -1,8 +1,8 @@
 ﻿namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 
-public class ShareYourInterestWithTrainingProvidersPage(ScenarioContext context) : AedBasePage(context)
+public class AskTrainingProviderForCourseInformationPage(ScenarioContext context) : AedBasePage(context)
 {
-    protected override string PageTitle => "Share your interest with training providers";
+    protected override string PageTitle => "Ask if training providers can run this course";
 
     protected override bool TakeFullScreenShot => false;
 

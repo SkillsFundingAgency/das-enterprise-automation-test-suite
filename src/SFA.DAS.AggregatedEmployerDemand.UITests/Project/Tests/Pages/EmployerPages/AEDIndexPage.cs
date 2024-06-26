@@ -5,18 +5,18 @@ public class AedIndexPage(ScenarioContext context) : AedBasePage(context)
     protected override string PageTitle => "";
 
     #region Locators
-    private static By GetHelpWithFindingATrainingProviderLink => By.LinkText("Share your interest");
-    private static By ShareInterestButton => By.LinkText("Share interest");
+    private static By GetHelpWithFindingATrainingProviderLink => By.LinkText("Ask if training providers can run this course");
+    private static By AskCourseInformation => By.LinkText("Ask if training providers can run this course");
 
     #endregion
 
-    public ShareYourInterestWithTrainingProvidersPage ClickGetHelpWithFindingATrainingProviderLink() => GotoShareYourInterestWithTrainingProvidersPage(GetHelpWithFindingATrainingProviderLink);
+    public AskTrainingProviderForCourseInformationPage ClickGetHelpWithFindingATrainingProviderLink() => GotoShareYourInterestWithTrainingProvidersPage(GetHelpWithFindingATrainingProviderLink);
 
-    public ShareYourInterestWithTrainingProvidersPage ClickShareInterestButton() => GotoShareYourInterestWithTrainingProvidersPage(ShareInterestButton);
+    public AskTrainingProviderForCourseInformationPage ClickShareInterestButton() => GotoShareYourInterestWithTrainingProvidersPage(AskCourseInformation);
 
-    private ShareYourInterestWithTrainingProvidersPage GotoShareYourInterestWithTrainingProvidersPage(By by)
+    private AskTrainingProviderForCourseInformationPage GotoShareYourInterestWithTrainingProvidersPage(By by)
     {
         formCompletionHelper.Click(by);
-        return new ShareYourInterestWithTrainingProvidersPage(context);
+        return new AskTrainingProviderForCourseInformationPage(context);
     }
 }

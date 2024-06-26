@@ -53,5 +53,5 @@ public class AedStepsHelper
 
     private AedIndexPage GoToAedIndexPage() => new(_context);
 
-    private static GetHelpWithFindingATrainingProviderPage ClickStartNow(ShareYourInterestWithTrainingProvidersPage page) => page.ClickStartNow();
+    private static GetHelpWithFindingATrainingProviderPage ClickStartNow(AskTrainingProviderForCourseInformationPage page) => page.ClickStartNow();
 }
