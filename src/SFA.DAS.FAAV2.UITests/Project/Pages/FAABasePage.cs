@@ -1,4 +1,6 @@
 ﻿
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
+
 namespace SFA.DAS.FAAV2.UITests.Project.Pages;
 
 public abstract class FAABasePage : VerifyBasePage
@@ -43,20 +45,31 @@ public abstract class FAABasePage : VerifyBasePage
     }
 }
 
-public class FAASignedOutLandingpage(ScenarioContext context) : FAALandingPage(context)
+public class CheckFAASignedOutLandingPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
 {
+    protected override string PageTitle => FAASignedOutLandingpage.FAASignedOutPageTitle;
+
+    protected override By Identifier => FAASignedOutLandingpage.FAASignedOutPageHeader;
+}
+
+public class FAASignedOutLandingpage(ScenarioContext context) : FAABasePage(context)
+{
+    protected override By PageHeader => FAASignedOutPageHeader;
+
+    protected override string PageTitle => FAASignedOutPageTitle;
+
+    public static string FAASignedOutPageTitle => "Sign in";
+
+    public static By FAASignedOutPageHeader => By.CssSelector(".govuk-header");
+
     private static By SignIn => By.CssSelector("a[href*='signin?']");
 
     public StubSignInFAAPage GoToSignInPage()
     {
         formCompletionHelper.Click(SignIn);
+
         return new StubSignInFAAPage(context);
     }
-}
-
-public abstract class FAALandingPage(ScenarioContext context) : FAABasePage(context)
-{
-    protected override string PageTitle => "Search apprenticeships";
 }
 
 public class StubSignInFAAPage(ScenarioContext context) : StubSignInBasePage(context)
@@ -88,7 +101,6 @@ public class StubSignInFAAPage(ScenarioContext context) : StubSignInBasePage(con
 
 public class StubYouHaveSignedInFAAPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : StubYouHaveSignedInBasePage(context, username, idOrUserRef, newUser)
 {
-
     protected override By MainContent => By.CssSelector("[id='estimate-start-transfer']");
 
     protected override By ContinueButton => By.CssSelector("[id='estimate-start-transfer'] a.govuk-button");
@@ -96,9 +108,11 @@ public class StubYouHaveSignedInFAAPage(ScenarioContext context, string username
     public new void Continue() => base.Continue();
 }
 
-public class FAASignedInLandingBasePage(ScenarioContext context) : FAALandingPage(context)
+public class FAASignedInLandingBasePage(ScenarioContext context) : FAABasePage(context)
 {
-    private static By SignOut => By.CssSelector("a[href*='/Service/signout']");
+    protected override By PageHeader => By.CssSelector(".one-login-header");
+
+    protected override string PageTitle => "Sign out";
 
     private static By SearchHeader => By.CssSelector("[id='service-header__nav'] a[href='/search-results']");
 
@@ -111,7 +125,6 @@ public class FAASignedInLandingBasePage(ScenarioContext context) : FAALandingPag
         return new (context);
     }
 }
-
 
 public class FAA_ApplicationsPage(ScenarioContext context) : FAABasePage(context)
 {
@@ -142,13 +155,15 @@ public class FAA_ApplicationsPage(ScenarioContext context) : FAABasePage(context
     public void ViewApplication()
     {
         pageInteractionHelper.FindElements(SearchResultItem).Single(x => x.Text.ContainsCompareCaseInsensitive(vacancyTitleDataHelper.VacancyTitle)).FindElement(ViewApplicationLink).Click();
-
     }
 }
 
-
 public class FAASearchApprenticeLandingPage(ScenarioContext context) : FAASignedInLandingBasePage(context)
 {
+    protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
+    protected override string PageTitle => "Search apprenticeships";
+
     public FAA_ApprenticeSummaryPage SearchByReferenceNumber()
     {
         SearchVacancyInFAA();

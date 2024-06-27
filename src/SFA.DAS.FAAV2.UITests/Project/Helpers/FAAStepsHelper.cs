@@ -12,7 +12,10 @@ public class FAAStepsHelper(ScenarioContext context)
     {
         _tabHelper.OpenInNewTab(_faaBaseUrl);
 
-        new FAASignedOutLandingpage(context).GoToSignInPage().SubmitValidUserDetails(context.GetUser<FAAApplyUser>()).Continue();
+        if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
+        {
+            new FAASignedOutLandingpage(context).GoToSignInPage().SubmitValidUserDetails(context.GetUser<FAAApplyUser>()).Continue();
+        }
 
         return new FAASearchApprenticeLandingPage(context);
     }
@@ -28,7 +31,7 @@ public class FAAStepsHelper(ScenarioContext context)
 
     public FAA_ApplicationOverviewPage ApplyForAVacancy()
     {
-        var applicationFormPage = GoToFAAHomePage().SearchByReferenceNumber().Apply();
+        var applicationFormPage = GoToFAAHomePageAndApply();
 
         applicationFormPage = applicationFormPage.Access_Section1_1SchoolCollegeQualifications().SelectSectionCompleted().VerifyEducationHistory_1();
 
@@ -53,10 +56,12 @@ public class FAAStepsHelper(ScenarioContext context)
         return applicationFormPage;
     }
 
+    private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
+
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
-        var applicationFormPage = GoToFAAHomePage().SearchByReferenceNumber().Apply();
+        var applicationFormPage = GoToFAAHomePageAndApply();
 
         if (qualificationdetails)
         {
