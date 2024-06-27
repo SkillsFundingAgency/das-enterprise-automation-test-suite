@@ -13,7 +13,8 @@ public class ProviderSummaryPage(ScenarioContext context) : FATV2BasePage(contex
 
     private static By TrainingOptions => By.XPath("(//h2['.govuk-heading-m'])[8]");
 
-    private static string TrainingOptionsText => "PLUMPTON COLLEGE’s training options";
+    private string TrainingOptionsText => $"{objectContext.GetProviderName()}’s training options";
+
 
     #endregion
 
