@@ -102,8 +102,8 @@ public class FATV2Steps
     [Then(@"the User is able to select the Provider for the chosen training")]
     public void ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining() => _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
 
-    [Then(@"'(.*)' message is displayed")]
-    public void ThenMessageIsDisplayed(string errorMessage) => Assert.IsTrue(_providerSummaryPage.VerifyNoTrainingProviderAtLocationErrorText(), errorMessage);
+    [Then(@"training options displayed")]
+    public void ThenTrainingOptionsDisplayed() => _providerSummaryPage.VerifyTrainingOptionsDisplayed();
 
     [Then(@"user is able to navigate to homepage using the breadcrumbs")]
     public void ThenUserIsAbleToNavigateToHomepageUsingTheBreadcrumbs() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
