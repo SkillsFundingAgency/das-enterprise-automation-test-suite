@@ -9,34 +9,45 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 
         protected override string PageTitle => "Your vacancies";
 
-        private static By Applicant => By.CssSelector("tbody tr:nth-child(1) td:nth-child(1)");
-        private static By ShareMultipleApplicationsWithEmployerLink => By.CssSelector("#main-content > div:nth-child(7) > p:nth-child(1) > a");
-        private static By MakeMultipleApplicationsUnsuccessfulLink => By.CssSelector("#main-content > div:nth-child(7) > p:nth-child(2) > a");
+        private static By Applications => By.CssSelector("a.govuk-link[href*='applications']");
+
         public ManageApplicantPage NavigateToManageApplicant()
         {
-            GoToVacancyManagePage();
-            formCompletionHelper.Click(Applicant);
+            GoToVacancyManageApplicantsPage($"{rAAV2DataHelper.CandidateFullName}");
+
             return new ManageApplicantPage(context);
         }
+
         public ViewVacancyPage NavigateToViewAdvertPage()
         {
             GoToVacancyManagePage();
+
             string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
+
             formCompletionHelper.ClickLinkByText(linkTest);
 
             return new ViewVacancyPage(context);
         }
+
         public ManageShareApplicationsPage NavigateToManageApplicants()
         {
-            GoToVacancyManagePage();
-            formCompletionHelper.Click(ShareMultipleApplicationsWithEmployerLink);
+            GoToVacancyManageApplicantsPage("Share multiple applications with employer");
+
             return new ManageShareApplicationsPage(context);
         }
+
         public ManageMultiApplicationsUnsuccessfulPage NavigateToManageAllApplicants()
         {
-            GoToVacancyManagePage();
-            formCompletionHelper.Click(MakeMultipleApplicationsUnsuccessfulLink);
+            GoToVacancyManageApplicantsPage("Make multiple applications unsuccessful");
+
             return new ManageMultiApplicationsUnsuccessfulPage(context);
+        }
+
+        private void GoToVacancyManageApplicantsPage(string linkText)
+        {
+            GoToVacancyManagePage();
+
+            formCompletionHelper.ClickLinkByText(Applications, linkText);
         }
     }
 }

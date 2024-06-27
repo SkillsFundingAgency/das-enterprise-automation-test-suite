@@ -10,7 +10,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-m");
 
-        protected override string PageTitle => isRaaV2Employer ? "Personal details" : "Contact Details";
+        protected override string PageTitle => "Personal details";
 
         private static By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
 
