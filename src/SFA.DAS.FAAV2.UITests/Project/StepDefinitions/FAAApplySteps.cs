@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
+﻿namespace SFA.DAS.FAAV2.UITests.Project.StepDefinitions
 {
     [Binding]
     public class FAAApplySteps(ScenarioContext context)

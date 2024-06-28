@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA.DataGenerator
     {
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
-        public RAAV2DataHelper(FAAConfig faaConfig, VacancyTitleDatahelper vacancyTitleDatahelper)
+        public RAAV2DataHelper(FAAUserConfig faaConfig, VacancyTitleDatahelper vacancyTitleDatahelper)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
             CandidateFirstName = faaConfig.FAAFirstName;

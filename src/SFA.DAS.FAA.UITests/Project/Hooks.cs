@@ -31,7 +31,7 @@ namespace SFA.DAS.FAA.UITests.Project
         public void LoginWithNewAccount()
         {
             var fAAnewcreds = context.Get<FAADataHelper>();
-            var fAAConfig = context.GetFAAConfig<FAAConfig>();
+            var fAAConfig = context.GetFAAConfig<FAAUserConfig>();
 
             if (context.ScenarioInfo.Tags.Contains("faaloginwithnewcredentials"))
                 _objectContext.SetFAALogin(fAAnewcreds.EmailId, fAAnewcreds.Password, fAAnewcreds.FirstName, fAAnewcreds.LastName);

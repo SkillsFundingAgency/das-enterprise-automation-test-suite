@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.RAA.DataGenerator.Project.Config
 {
-    public class FAAConfig
+    public class FAAUserConfig
     {
         public string FAAUserName { get; set; }
         public string FAAPassword { get; set; }

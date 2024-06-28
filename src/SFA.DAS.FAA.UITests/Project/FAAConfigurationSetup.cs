@@ -11,6 +11,6 @@ namespace SFA.DAS.FAA.UITests.Project
         private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
-        public void SetUpTestProjectConfiguration() => context.SetFAAConfig(_configSection.GetConfigSection<FAAConfig>());
+        public void SetUpTestProjectConfiguration() => context.SetFAAConfig(_configSection.GetConfigSection<FAAUserConfig>());
     }
 }
