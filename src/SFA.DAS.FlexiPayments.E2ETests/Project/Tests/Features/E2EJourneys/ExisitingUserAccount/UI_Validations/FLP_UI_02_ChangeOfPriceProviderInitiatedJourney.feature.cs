@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table26.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "true"});
 #line 10
  testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
-                        " data", ((string)(null)), table26, "Given ");
+                        " data", ((string)(null)), table25, "Given ");
 #line hidden
 #line 13
     testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
