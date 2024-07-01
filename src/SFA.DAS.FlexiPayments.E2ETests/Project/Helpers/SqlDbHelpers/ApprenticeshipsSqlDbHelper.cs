@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using System;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
@@ -57,6 +58,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             var data = GetData(query);
 
             return (data[0], data[1]);
+        }
+
+        public bool GetProviderPaymentStatus (string uln)
+        {
+            string query = $"SELECT top (1) Unfrozen FROM [dbo].[FreezeRequest] fr " +
+                $" JOIN [dbo].[Apprenticeship] apprn ON fr.ApprenticeshipKey = apprn.[Key] " +
+                $" WHERE Uln = '{uln}' order by FrozenDateTime desc";
+
+            waitForResults = true;
+
+            var data = GetData(query);
+
+            return Convert.ToBoolean(data[0]);
         }
     }
 }

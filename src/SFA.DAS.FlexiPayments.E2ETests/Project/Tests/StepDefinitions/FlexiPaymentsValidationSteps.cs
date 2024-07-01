@@ -197,6 +197,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             Assert.That(actualStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedStartDate), "Incorrect Actual Start Date found in Apprenticeship table, Apprenticeships db");
         }
 
+        [Then(@"provider payment status is successfully updated to (Active|Inactive) in apprenticeships db")]
+        public void ThenProviderPaymentStatusIsSuccessfullyUpdatedToInactiveInApprenticeshipsDb(string paymentFreezeStatus)
+        {
+            bool dbPaymentUnfreezeStatus = _apprenticeshipsSqlDbHelper.GetProviderPaymentStatus(GetApprenticeULN(1));
+
+            bool expectedStatus = paymentFreezeStatus == "Active" ? true : false;
+
+            Assert.AreEqual(expectedStatus, dbPaymentUnfreezeStatus, "Incorrect Provider Payment status found!");
+        }
 
         [Then(@"validate earnings are not generated for the learners")]
         public void ValidateEarningsAreNotGeneratedForTheLearners(Table table)
