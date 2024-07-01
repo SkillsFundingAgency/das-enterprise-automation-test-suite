@@ -10,7 +10,7 @@ public class FAAStepsHelper(ScenarioContext context)
 
     public FAASearchApprenticeLandingPage GoToFAAHomePage()
     {
-        _tabHelper.OpenInNewTab(_faaBaseUrl);
+        _tabHelper.GoToUrl(_faaBaseUrl);
 
         if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
         {
