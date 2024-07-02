@@ -10,11 +10,15 @@ public class ProviderSummaryPage(ScenarioContext context) : FATV2BasePage(contex
     private static By LocationTextBox => By.Id("search-location");
     private static By ViewOtherTrainingProvidersButton => By.Id("btn-view-providers");
     private static By BackToTrainingProviders => By.Id("providers-breadcrumb");
-    private static By NoProviderAtLocationErrorText => By.Id("course_provider_not_available");
+
+    private static By TrainingOptions => By.XPath("(//h2['.govuk-heading-m'])[8]");
+
+    private string TrainingOptionsText => $"{objectContext.GetProviderName()}’s training options";
+
 
     #endregion
 
-    public bool VerifyNoTrainingProviderAtLocationErrorText() => pageInteractionHelper.IsElementDisplayed(NoProviderAtLocationErrorText);
+    public void VerifyTrainingOptionsDisplayed() => pageInteractionHelper.VerifyText(TrainingOptions, TrainingOptionsText);
 
     public ProviderSummaryPage EnterPostCodeAndSearch(string location)
     {
