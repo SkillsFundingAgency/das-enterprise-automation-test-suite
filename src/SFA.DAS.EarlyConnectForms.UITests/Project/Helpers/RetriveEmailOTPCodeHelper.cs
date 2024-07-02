@@ -19,14 +19,10 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
                
             };
             var email = mailosaur.Messages.Get(serverId, criteria);
-
-          //  Console.WriteLine("Subject: " + email.Html.Codes.Count); 
             Console.WriteLine(email.Html.Codes[0].Value);
-
             AuthCodes = email.Html.Codes[0].Value;
 
         }
-
         public string AuthCodes { get; set; }
       
     }
