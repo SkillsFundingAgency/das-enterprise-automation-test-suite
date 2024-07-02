@@ -1,22 +1,21 @@
-﻿namespace SFA.DAS.FAAV2.UITests.Project
+﻿namespace SFA.DAS.FAAV2.UITests.Project;
+
+[Binding]
+public class Hooks(ScenarioContext context)
 {
-    [Binding]
-    public class Hooks(ScenarioContext context)
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+
+    [BeforeScenario(Order = 32)]
+    public void SetUpHelpers()
     {
-        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        bool isCloneVacancy = context.ScenarioInfo.Tags.Contains("clonevacancy");
 
-        [BeforeScenario(Order = 32)]
-        public void SetUpHelpers()
-        {
-            bool isCloneVacancy = context.ScenarioInfo.Tags.Contains("clonevacancy");
+        var pageInteractionHelper = context.Get<PageInteractionHelper>();
 
-            var pageInteractionHelper = context.Get<PageInteractionHelper>();
+        context.Set(new VacancyTitleDatahelper(isCloneVacancy));
 
-            context.Set(new VacancyTitleDatahelper(isCloneVacancy));
+        context.Set(new FAADataHelper());
 
-            context.Set(new FAADataHelper());
-
-            context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext));
-        }
+        context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext));
     }
 }
