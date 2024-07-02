@@ -117,11 +117,12 @@ this.VerifyNonUcasStudentJourney("E37000051", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyUcasStudentJourney(string lepCode, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Ucas Student journey")]
+        public void VerifyUcasStudentJourney()
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("lepCode", lepCode);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Ucas Student journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 15
 this.ScenarioInitialize(scenarioInfo);
@@ -141,15 +142,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             }
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify Ucas Student journey: E37000051")]
-        public void VerifyUcasStudentJourney_E37000051()
-        {
-#line 15
-this.VerifyUcasStudentJourney("E37000051", ((string[])(null)));
-#line hidden
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         [Given(@"I am on the landing page for a region '([^']*)'")]
         public void GivenIAmOnTheLandingPageForARegion(string lepCode)
         {
-           
+
         }
 
         [Given(@"I am on the landing page for a region")]
@@ -28,6 +28,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         {
             _stepsHelper.GoToCheckEmailCodePage();
             _stepsHelper.GoToCheckEmailCodePage1();
+            _stepsHelper.GoToCheckEmailCodePage2();
         }
     }
 }

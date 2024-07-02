@@ -14,9 +14,9 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 
         private static By CloseCookieButton => By.CssSelector("#btn-hide-cookie-banner");
 
-        protected static By getAnAdvisorInLancashire => By.CssSelector("li:nth-child(2) a:nth-child(1)");
-        protected static By getAnAdvisorInGreaterLondon => By.CssSelector("li:nth-child(2) a:nth-child(1)");
-        protected static By getAnAdvisorInNorthEast => By.CssSelector("li:nth-child(3) a:nth-child(1)");
+        protected static By GetAnAdvisorInLancashire => By.CssSelector("li:nth-child(2) a:nth-child(1)");
+        protected static By GetAnAdvisorInGreaterLondon => By.CssSelector("li:nth-child(2) a:nth-child(1)");
+        protected static By GetAnAdvisorInNorthEast => By.CssSelector("li:nth-child(3) a:nth-child(1)");
 
         public EarlyConnectHomePage AcceptCookieAndAlert()
         {
@@ -30,7 +30,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 
         public EarlyConnectHomePage SelectNorthEast()
         {
-            formCompletionHelper.Click(getAnAdvisorInNorthEast);
+            formCompletionHelper.Click(GetAnAdvisorInNorthEast);
             return new EarlyConnectHomePage(context);
         }
     }

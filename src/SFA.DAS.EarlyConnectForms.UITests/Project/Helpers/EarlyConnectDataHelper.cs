@@ -9,7 +9,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             Firstname = RandomDataGenerator.GenerateRandomAlphabeticString(6);
             Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);
             FullName = $"{Firstname} {Lastname}";
-            Email = $"{Firstname}.{Lastname}@example.com";
+            Email = $"{Firstname}.{Lastname}@szs3qaml.mailosaur.net";
         }
         public string FullName { get; }
 

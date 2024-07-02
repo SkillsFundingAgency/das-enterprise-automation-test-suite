@@ -9,6 +9,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
     {
         #region Helpers and Context
         protected readonly EarlyConnectDataHelper earlyConnectDataHelper;
+        protected readonly RetriveEmailOTPCodeHelper retriveEmailOTPCodeHelper;
         #endregion
         public EarlyConnectBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
