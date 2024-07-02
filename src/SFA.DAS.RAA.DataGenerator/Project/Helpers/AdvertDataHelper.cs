@@ -9,6 +9,7 @@ namespace SFA.DAS.RAA.DataGenerator
             AdditionalQuestion1 = RandomQuestionString(20);
             AdditionalQuestion2 = RandomQuestionString(20);
         }
+
         public string AdditionalQuestion1 { get; }
 
         public string AdditionalQuestion2 { get; }

@@ -1,5 +1,4 @@
-﻿
-using SFA.DAS.UI.Framework.TestSupport.CheckPage;
+﻿using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 
 namespace SFA.DAS.FAAV2.UITests.Project.Pages;
 

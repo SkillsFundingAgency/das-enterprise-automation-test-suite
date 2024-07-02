@@ -14,7 +14,7 @@
 
             context.Set(new VacancyTitleDatahelper(isCloneVacancy));
 
-            context.Set(new FAADataHelper(context.Get<MailosaurUser>()));
+            context.Set(new FAADataHelper());
 
             context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext));
         }

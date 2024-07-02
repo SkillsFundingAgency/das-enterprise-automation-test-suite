@@ -1,5 +1,4 @@
-﻿
-namespace SFA.DAS.FAAV2.UITests.Project.Helpers;
+﻿namespace SFA.DAS.FAAV2.UITests.Project.Helpers;
 
 public class FAAStepsHelper(ScenarioContext context)
 {
