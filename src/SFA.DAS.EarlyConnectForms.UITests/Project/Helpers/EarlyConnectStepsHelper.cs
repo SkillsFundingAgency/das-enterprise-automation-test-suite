@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using static SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages.ConfirmSurveySentPage;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
 {
@@ -76,7 +77,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new SupportPage(context).SelectAnySupportThatAppliesToYou();
         }
-        public CheckYourAnswerPage GoToCheckYourAnswerPage()
+        public ApplicantSurveySummitedPage GoToCheckYourAnswerPage()
         {
             return new CheckYourAnswerPage(context).AcceptAndSubmitForm();
         }
