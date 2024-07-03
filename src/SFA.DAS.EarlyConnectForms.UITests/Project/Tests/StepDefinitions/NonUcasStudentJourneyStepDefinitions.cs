@@ -38,6 +38,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         public void GivenIAnswerTheTriageQuestionsRelatedToMe()
         {
             _stepsHelper.GoToAreasOfWorkInterestPage();
+            _stepsHelper.GoToNameOfSchoolCollegePage();
         }
 
     }

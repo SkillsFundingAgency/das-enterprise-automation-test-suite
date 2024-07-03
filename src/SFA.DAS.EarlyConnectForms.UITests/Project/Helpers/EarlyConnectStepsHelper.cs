@@ -49,9 +49,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             return new TelephonePage(context).EnterValidTelephoneNumber();
         }
 
-        public AreasOfWorkInterestPage GoToAreasOfWorkInterestPage()
+        public SchoolCollegePage GoToAreasOfWorkInterestPage()
         {
             return new AreasOfWorkInterestPage(context).SelectAnyAreaInterestToYou();
+        }
+
+        public SchoolCollegePage GoToNameOfSchoolCollegePage()
+        {
+            return new SchoolCollegePage(context).EnterValidSchoolOrCollegeName();
         }
 
     }

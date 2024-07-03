@@ -9,12 +9,12 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By AgricultureCheckBox => By.CssSelector("#sector-1");
         private static By BusinessSalesLegalCheckBox => By.CssSelector("#sector-2");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
-        public AreasOfWorkInterestPage SelectAnyAreaInterestToYou()
+        public SchoolCollegePage SelectAnyAreaInterestToYou()
         {
             formCompletionHelper.SelectCheckbox(AgricultureCheckBox);
             formCompletionHelper.SelectCheckbox(BusinessSalesLegalCheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new AreasOfWorkInterestPage(context);
+            return new SchoolCollegePage(context);
         }
     }
 }
