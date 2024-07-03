@@ -27,12 +27,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By DeliveryModel => By.Id("apprentice-deliverymodel");
         private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
         private static By ChangePriceLink => By.Id("linkChangePrice");
+        private static By ChangeStartDateLink => By.Id("linkChangeStartDate");
         private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
+        private static By ChangeOfStartDateRequestSentBanner => By.Id("change-of-startdate-request-sent-banner");
         private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
+        private static By ChangeOfStartDateRequestSentBannerMessage => By.CssSelector("#change-of-startdate-request-sent-banner h3");
+        private static By ViewDateChangeYouHaveRequestLinkBanner => By.Id("linkViewPendingStartDateBanner");
+        private static By ViewPendingStartDateLink => By.Id("linkViewPendingStartDate");
+        private static By ChangeOfStartDatePendingRequestTag => By.CssSelector("#pendingStartDateChangeSection strong.govuk-tag.govuk-tag--yellow");
         private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price changes you've requested\")]");
         private static By ViewPriceChangesLink => By.Id("linkViewPendingPrice");
         private static By PriceChangeCancelledBanner => By.Id("price-change-cancelled-banner");
+        private static By StartDateChangeCancelledBanner => By.Id("startdate-change-cancelled-banner");
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#price-change-cancelled-banner h3");
+        private static By StartDateChangeCancelBannerMessage => By.CssSelector("#startdate-change-cancelled-banner h3");
         private static By PriceChangePendingBanner => By.CssSelector("div[aria-labelledby='govuk-notification-banner-title']");
         private static By PriceChangeApprovedBanner => By.Id("change-of-price-approved-banner");
         private static By PriceChangeRejectedBanner => By.Id("change-of-price-rejected-banner");
@@ -150,7 +158,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
 
+        public void ClickChangeStartDateLink() => formCompletionHelper.Click(ChangeStartDateLink);
+
         public void ClickViewPriceChangesRequestedLink() => formCompletionHelper.Click(ViewPriceChangesLink);
+
+        public void ClickViewPendingStartDateLink() => formCompletionHelper.Click(ViewPendingStartDateLink);
 
         public void ValidateChangeOfPriceRequestRaisedSuccessfully()
         {
@@ -164,6 +176,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             );
         }
 
+        public void ValidateChangeOfStartDateRequestRaisedSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateRequestSentBanner), "Change of Start Date Request Sent banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(ChangeOfStartDateRequestSentBannerMessage), Is.EqualTo("Request to change the training date sent to employer"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewDateChangeYouHaveRequestLinkBanner), "Request to change the training date sent to employer heading not displayed in the banner");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request banner for Change of Start Date not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPendingStartDateLink), "View request link for Change of Start Date not displayed");
+            }
+            );
+        }
+
         public void ValidateChangeOfPriceRequestCancelledSuccessfully()
         {
             Assert.Multiple(() =>
@@ -171,6 +196,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.That(pageInteractionHelper.IsElementDisplayed(PriceChangeCancelledBanner), "Price Change Cancelled banner not displayed");
                 Assert.That(pageInteractionHelper.GetText(PriceChangeCancelBannerMessage), Is.EqualTo("Your request to change the price has been cancelled"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangePriceLink), "Price change link not displayed");
+            }
+           );
+        }
+
+        public void ValidateChangeOfStartDateRequestCancelledSuccessfully()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(pageInteractionHelper.IsElementDisplayed(StartDateChangeCancelledBanner), "Start Date Change Cancelled banner not displayed");
+                Assert.That(pageInteractionHelper.GetText(StartDateChangeCancelBannerMessage), Is.EqualTo("Your request to change the start date has been cancelled"));
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeStartDateLink), "Start Date change link not displayed");
             }
            );
         }

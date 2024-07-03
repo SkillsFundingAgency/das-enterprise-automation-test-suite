@@ -5,6 +5,19 @@ namespace SFA.DAS.FrameworkHelpers
 {
     public static partial class StringExtension
     {
+        public static string Mask(this string text)
+        {
+            int p = (text.Length / 4);
+
+            var reminder = text[p..];
+
+            var replacement = string.Empty;
+
+            for (int i = 0; i < reminder.Length; i++) replacement += "*";
+
+            return text[..p].Insert(p, replacement);
+        }
+
         public static bool ContainsCompareCaseInsensitive(this string text, string value,
             StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
         {

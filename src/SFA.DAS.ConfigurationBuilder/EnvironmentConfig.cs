@@ -17,6 +17,8 @@ namespace SFA.DAS.ConfigurationBuilder
 
         public static bool IsDemoEnvironment => EnvironmentName.CompareToIgnoreCase("demo");
 
+        public static bool IsLiveEnvironment => EnvironmentName.CompareToIgnoreCase("live");
+
         public static string ReplaceEnvironmentName(string x) => EnvironmentNameRegex().Replace(x, EnvironmentName.ToLower());
 
         [GeneratedRegex("{environmentname}")]

@@ -13,10 +13,14 @@ public class IFrameHelper(IWebDriver webDriver)
 
     public void SwitchToDefaultContent() => webDriver.SwitchTo().DefaultContent();
 
-    public void SwitchFrameAndAction(Action action)
+    public void SwitchFrameAndAction(Action action, By by)
     {
-        SwitchToFrame();
+        if (by == null) SwitchToFrame(); else SwitchToFrame(by);
+
         action.Invoke();
+
         SwitchToDefaultContent();
     }
+
+    public void SwitchFrameAndAction(Action action) => SwitchFrameAndAction(action, null);
 }

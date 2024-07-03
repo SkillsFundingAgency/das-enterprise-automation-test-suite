@@ -55,9 +55,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [Then(@"the Vacancy is not found on FAA")]
         public void ThenTheVacancyIsIsNotFoundOnFAA() => _faaStepsHelper.FindAnApprenticeship().SearchClosedVacancy();
 
-        [Then(@"the Trainneship Vacancy dates is changed in FAA")]
-        public void ThenTheTrainneshipVacancyDatesIsChangedInFAA() => _faaStepsHelper.FindATraineeship().SearchByReferenceNumber().VerifyNewDates();
-
         [When(@"Applicant Deletes the FAA Account")]
         public void WhenApplicantDeletesTheFAAAccount()
         {
@@ -70,9 +67,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 
         [When(@"the Candidate changes Personal Settings")]
         public void WhenTheCandidateChangesPersonalSettings() => _faaStepsHelper.ChangePersonalSettings();
-
-        [Then(@"the Traineeship Vacancy is not found on FAA")]
-        public void ThenTheTraineeshipVacancyIsNotFoundOnFAA() => _faaStepsHelper.FindATraineeship().SearchClosedVacancy();
 
         [Then(@"Candidate is able to delete draft application")]
         public void ThenCandidateIsAbleToDeleteDraftApplication() => _faaStepsHelper.ConfirmDraftVacancyDeletion();

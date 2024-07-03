@@ -25,9 +25,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the employer filters by '(.*)'")]
         [When(@"the employer filters by '(.*)'")]
-        public void TheEmployerFiltersBy(string filterselection) => _manageYourApprenticesPage.Filter(filterselection);
+        public void TheEmployerFiltersBy(string filterselection) => _manageYourApprenticesPage.Filter("selectedStatus", filterselection);
 
         [Then(@"the employer is presented with first page with filters applied")]
         public void TheEmployerIsPresentedWithFirstPageWithFiltersApplied() => Assert.IsTrue(_manageYourApprenticesPage.DownloadFilteredDataLinkIsDisplayed(), "Download filtered data");
+
+        [Then("Employer is able to download the results in a csv file")]
+        public void ThenEmployerCanDownloadResultsInCSVFile()
+        {
+            _manageYourApprenticesPage.Filter("selectedApprenticeConfirmation", "Confirmed");
+            _manageYourApprenticesPage.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
+        }
+
+        [Then("Employer can confirm number of rows in Apprentices csv file")]
+        public void ThenEmployerConfirmsNumberOfRowsInApprenticeCSV()
+        {
+            _manageYourApprenticesPage.DoesDownloadFileExistAndValidateRowCount();
+        }
     }
 }

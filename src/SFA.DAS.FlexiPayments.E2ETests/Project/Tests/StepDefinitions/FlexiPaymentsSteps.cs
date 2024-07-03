@@ -1,12 +1,9 @@
-﻿using Polly;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
-using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider;
+﻿using SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.FrameworkHelpers;
@@ -34,6 +31,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private ApprenticeCourseDataHelper _apprenticeCourseDataHelper;
         private EmployerChangeTheTotalPricePage _employerChangeTheTotalPricePage;
         private EmployerChangeOfPriceViewChangeRequestPage _viewChangeRequestPage;
+        private EmployerReviewChangesPage _employerReviewChangesPage;
         private decimal newTotalPrice;
 
         public FlexiPaymentsSteps(ScenarioContext context)
@@ -49,26 +47,27 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
         }
 
-        [Given(@"fully approved apprentices with the below data")]
-        public void GivenFullyApprovedApprenticesWithTheBelowData(Table table)
+        [Given(@"(Levy|NonLevy) Employer and Pilot provider have a fully approved apprentices with the below data")]
+        public void FullyApprovedApprenticesWithTheBelowData(string employerType, Table table)
         {
-            _existingAccountSteps.GivenTheEmployerLoginsUsingExistingAccount("Levy");
+            _existingAccountSteps.GivenTheEmployerLoginsUsingExistingAccount(employerType);
 
-            _employerStepsHelper.EmployerAddApprentice(readApprenticeDataHelper.ReadApprenticeData(table));
+            if (employerType == "Levy")
+                _employerStepsHelper.EmployerAddApprentice(readApprenticeDataHelper.ReadApprenticeData(table));
+            else
+                EmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(table);
 
             _employerStepsHelper.EmployerFirstApproveCohortAndNotifyProvider();
 
             _flexiPaymentProviderSteps.GivenProviderLogsInToReviewTheCohort();
 
-            int i = 1;
+            sbyte i = 1;
 
             foreach (var row in table.Rows)
             {
                 var inputData = row.CreateInstance<FlexiPaymentsInputDataModel>();
-
                 ProviderAddsUln(inputData.PilotStatus, i++);
             }
-
             _flexiPaymentProviderSteps.ThenProviderApprovesTheCohort();
         }
 
@@ -112,7 +111,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
 
         [Given(@"the Employer uses the reservation to create and approve apprentices with the following details")]
-        public void WhenTheEmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(readApprenticeDataHelper.ReadApprenticeData(table), false);
+        public void EmployerUsesTheReservationToCreateAndApproveApprenticesWithTheFollowingDetails(Table table) => _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(readApprenticeDataHelper.ReadApprenticeData(table), false);
 
         [When(@"Employer searches learner (.*) on Manage your apprentices page")]
         public void WhenEmployerSearchesLearnerOnManageYourApprenticesPage(int learnerNumber)
@@ -128,10 +127,21 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             EmployerSearchesLearnerOnManageYourApprenticesPage();
             EmployerCanViewTheDetailsOfTheChangeOfPriceRequest();
 
-            new EmployerChangeOfPriceReviewChangesPage(_context)
+            new EmployerReviewChangesPage(_context)
                 .SelectApproveChangesRadioButtonAndSend()
                 .ValidatePriceChangeApprovedBannerDisplayed();
         }
+
+        [Then(@"Employer can review the Change of Start Date request and approve it")]
+        public void ThenEmployerCanReviewTheChangeOfStartDateRequestAndApproveIt()
+        {
+            EmployerSearchesLearnerOnManageYourApprenticesPage();
+            EmployerCanViewTheDetailsOfTheChangeOfStartDateRequest();
+
+            _employerReviewChangesPage.SelectApproveChangesRadioButtonAndSend()
+                .ValidateChangeOfStartDateApprovedBannerDisplayed();
+        }
+
 
         [Given(@"Employer searches for the learner on Manage your apprentice page")]
         public void EmployerSearchesForTheLearnerOnManageYourApprenticePage()
@@ -234,30 +244,40 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer searches for learner on Manage your apprentices page")]
-        public void EmployerSearchesLearnerOnManageYourApprenticesPage()
-        {
-            _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
-        }
+        public void EmployerSearchesLearnerOnManageYourApprenticesPage() => _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
 
         [Then(@"Employer is able to view the pending Change of Price request")]
-        public void EmployerIsAbleToViewThePendingChangeOfPriceRequest()
-        {
-            _apprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
-        }
+        public void EmployerIsAbleToViewThePendingChangeOfPriceRequest() => _apprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
+
+        [Then(@"Employer is able to view the pending Change of Start Date request")]
+        public void EmployerIsAbleToViewThePendingChangeOfStartDateRequest() => _apprenticeDetailsPage.ValidateStartDateChangePendingBannerDisplayed();
 
         [Then(@"Employer can view the details of the Change of Price request")]
-        public void EmployerCanViewTheDetailsOfTheChangeOfPriceRequest()
+        public void EmployerCanViewTheDetailsOfTheChangeOfPriceRequest() => _apprenticeDetailsPage.ClickReviewPriceChangeLink();
+
+        [Then(@"Employer can view the details of the Change of Start Date request")]
+        public void EmployerCanViewTheDetailsOfTheChangeOfStartDateRequest()
         {
-            _apprenticeDetailsPage.ClickReviewPriceChangeLink();
+            _apprenticeDetailsPage.ClickReviewStartDateChangeLink();
+
+            _employerReviewChangesPage = new EmployerReviewChangesPage(_context).ValidateChangeOfStartDateRequestedValues(DateTime.Now, _context.ScenarioInfo.Title);
         }
 
         [Then(@"Employer is able to successfully reject the Change of Price request")]
-        public void ThenEmployerIsAbleToSuccessfullyRejectTheChangeOfPriceRequest()
+        public void EmployerRejectsChangeOfPriceRequest()
         {
-            new EmployerChangeOfPriceReviewChangesPage(_context)
-                .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title)
+            new EmployerReviewChangesPage(_context)
+                .SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title + " - Reject")
                 .ValidatePriceChangeRejectedBannerDisplayed();
         }
+
+        [Then(@"Employer is able to successfully reject the Change of Start Date request")]
+        public void EmployerRejectsChangeOfStartDateRequest()
+        {
+            _employerReviewChangesPage.SelectRejectChangesRadioButtonAndSend(_context.ScenarioInfo.Title + " - Reject")
+                .ValidateChangeOfStartDateRejectedBannerDisplayed();
+        }
+
 
         [Then(@"Employer (can|cannot) make changes to fully approved learner (.*)")]
         public void ThenEmployerCannotMakeChangesToFullyApprovedLearner(string action, int learnerNumber)
