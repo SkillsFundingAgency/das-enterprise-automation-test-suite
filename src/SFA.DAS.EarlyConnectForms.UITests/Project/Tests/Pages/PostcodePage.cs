@@ -8,11 +8,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override string PageTitle => "What is your home postcode?";
         private static By PostcodeField => By.CssSelector("#postalCode");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
-        public PostcodePage EnterValidPostcode()
+        public TelephonePage EnterValidPostcode()
         {
             formCompletionHelper.SendKeys(PostcodeField, "GU10 0HU");
             formCompletionHelper.ClickElement(ContinueButton);
-            return new PostcodePage(context);
+            return new TelephonePage(context);
         }
     }
 }

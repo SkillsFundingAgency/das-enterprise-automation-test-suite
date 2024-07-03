@@ -31,6 +31,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToWhatYourNamePage();
             _stepsHelper.GoToWhatIsYourDateOfBirthPage();
             _stepsHelper.GoToPostCodePage();
+            _stepsHelper.GoToWhatYourTelephonePage();
 
         }
     }
