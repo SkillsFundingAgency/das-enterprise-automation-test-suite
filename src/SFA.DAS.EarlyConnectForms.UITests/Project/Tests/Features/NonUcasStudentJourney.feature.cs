@@ -143,6 +143,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 18
  testRunner.And("I answer the triage questions related to me", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 19
+ testRunner.When("I check my answers, accept and submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

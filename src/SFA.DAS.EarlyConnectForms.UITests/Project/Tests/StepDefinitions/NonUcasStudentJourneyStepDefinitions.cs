@@ -45,5 +45,12 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToSupportPage();
         }
 
+        [When(@"I check my answers, accept and submit")]
+        public void WhenICheckMyAnswersAcceptAndSubmit()
+        {
+            _stepsHelper.GoToCheckYourAnswerPage();
+        }
+
+
     }
 }

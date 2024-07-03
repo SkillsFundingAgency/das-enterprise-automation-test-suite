@@ -72,9 +72,13 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new AreaOfEnglandPage(context).SelectYesForTheRightApprenticeship();
         }
-        public SupportPage GoToSupportPage()
+        public CheckYourAnswerPage GoToSupportPage()
         {
             return new SupportPage(context).SelectAnySupportThatAppliesToYou();
+        }
+        public CheckYourAnswerPage GoToCheckYourAnswerPage()
+        {
+            return new CheckYourAnswerPage(context).AcceptAndSubmitForm();
         }
     }
 }
