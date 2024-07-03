@@ -10,19 +10,19 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By Level3CheckBox => By.CssSelector("label[for='Question_Answers_1__IsSelected']");
         private static By NotSureCheckBox => By.CssSelector("label[for='Question_Answers_4__IsSelected']");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
-        public ApprenticeshipsLevelPage SelectAnyApprenticeshipLevelInterestToYou()
+        public HaveYouAppliedPage SelectAnyApprenticeshipLevelInterestToYou()
         {
             formCompletionHelper.SelectCheckbox(Level2Checbox);
             formCompletionHelper.SelectCheckbox(Level3CheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new ApprenticeshipsLevelPage(context);
+            return new HaveYouAppliedPage(context);
         }
 
-        public ApprenticeshipsLevelPage SelectNotSure()
+        public HaveYouAppliedPage SelectNotSure()
         {
             formCompletionHelper.SelectCheckbox(NotSureCheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new ApprenticeshipsLevelPage(context);
+            return new HaveYouAppliedPage(context);
         }
     }
 }

@@ -58,9 +58,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new SchoolCollegePage(context).EnterValidSchoolOrCollegeName();
         }
-        public ApprenticeshipsLevelPage GoToApprencticeshipLevelPage()
+        public HaveYouAppliedPage GoToApprencticeshipLevelPage()
         {
             return new ApprenticeshipsLevelPage(context).SelectAnyApprenticeshipLevelInterestToYou();
+        }
+
+        public HaveYouAppliedPage GoToHaveYouAppliedPage()
+        {
+            return new HaveYouAppliedPage(context).SelectAnyPastApplications();
         }
     }
 }
