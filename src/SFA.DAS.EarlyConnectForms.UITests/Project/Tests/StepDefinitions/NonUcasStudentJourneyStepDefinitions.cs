@@ -42,6 +42,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToApprencticeshipLevelPage();
             _stepsHelper.GoToHaveYouAppliedPage();
             _stepsHelper.GoToAreaOfEnglandPage();
+            _stepsHelper.GoToSupportPage();
         }
 
     }

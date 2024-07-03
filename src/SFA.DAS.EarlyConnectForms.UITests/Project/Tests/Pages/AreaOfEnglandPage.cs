@@ -9,18 +9,18 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By YesRadioButton => By.CssSelector("label[for='answer-9']");
         private static By NoRadioButton => By.CssSelector("label[for='answer-10']");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
-        public AreaOfEnglandPage SelectYesForTheRightApprenticeship()
+        public SupportPage SelectYesForTheRightApprenticeship()
         {
             formCompletionHelper.SelectCheckbox(YesRadioButton);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new AreaOfEnglandPage(context);
+            return new SupportPage(context);
         }
 
-        public AreaOfEnglandPage SelectNo()
+        public SupportPage SelectNo()
         {
             formCompletionHelper.SelectCheckbox(NoRadioButton);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new AreaOfEnglandPage(context);
+            return new SupportPage(context);
         }
     }
 }
