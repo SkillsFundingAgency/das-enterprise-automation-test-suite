@@ -29,9 +29,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             return new EmailAuthCodePage(context).EnterValidAuthCode();
         }
 
-        public WhatsYourNamePage GoToCheckEmailCodePage2()
+        public DateOfBirthPage GoToCheckEmailCodePage2()
         {
             return new WhatsYourNamePage(context).EnterFirstAndLastNames();
+        }
+
+        public DateOfBirthPage GoToWhatIsYourDateOfBirthPage()
+        {
+            return new DateOfBirthPage(context).EnterValidDateOfBirth();
         }
 
     }

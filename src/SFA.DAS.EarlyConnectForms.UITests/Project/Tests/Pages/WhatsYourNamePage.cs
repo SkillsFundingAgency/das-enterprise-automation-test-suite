@@ -10,12 +10,12 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By LastNameTextField => By.CssSelector("#LastName");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
 
-        public WhatsYourNamePage EnterFirstAndLastNames()
+        public DateOfBirthPage EnterFirstAndLastNames()
         {
             formCompletionHelper.EnterText(FirstNameTextField, earlyConnectDataHelper.Firstname);
             formCompletionHelper.EnterText(LastNameTextField, earlyConnectDataHelper.Lastname);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new WhatsYourNamePage(context);
+            return new DateOfBirthPage(context);
         }
     }
 

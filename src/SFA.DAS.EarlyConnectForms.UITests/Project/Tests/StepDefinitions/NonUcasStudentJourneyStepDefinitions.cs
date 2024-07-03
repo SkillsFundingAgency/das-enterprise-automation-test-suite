@@ -29,6 +29,9 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToCheckEmailCodePage();
             _stepsHelper.GoToCheckEmailCodePage1();
             _stepsHelper.GoToCheckEmailCodePage2();
+            _stepsHelper.GoToWhatIsYourDateOfBirthPage();
+            
+
         }
     }
 }
