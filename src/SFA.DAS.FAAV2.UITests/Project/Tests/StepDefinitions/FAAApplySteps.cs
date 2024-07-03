@@ -9,19 +9,32 @@ public class FAAApplySteps(ScenarioContext context)
 
     [When(@"the Applicant can apply for a Vacancy in FAA")]
     [Then(@"the Applicant can apply for a Vacancy in FAA")]
-    public void TheApplicantCanApplyForAVacancyInFAA() => _faaStepsHelper.ApplyForAVacancy().PreviewApplication().SubmitApplication();
+    public void TheApplicantCanApplyForAVacancyInFAA() => ApplyForAVacancy(false);
 
     [Then(@"the candidate can apply for their first vacancy")]
-    public void TheCandidateCanApplyForTheirFirstVacancy()
+    public void TheCandidateCanApplyForTheirFirstVacancy() => SetVacancyDetailsAndApplyForAVacancy(true);
+
+    [Then(@"the candidate can apply for vacancy")]
+    public void ThenTheCandidateCanApplyForVacancy() => SetVacancyDetailsAndApplyForAVacancy(false);
+
+    private void SetVacancyDetailsAndApplyForAVacancy(bool firstVacancy)
     {
-        context.Get<ObjectContext>().SetVacancyReference("1000080193");
+        context.Get<ObjectContext>().SetVacancyReference("1000079780");
 
-        context.Get<VacancyTitleDatahelper>().SetVacancyTitile("AcRsHeLnlP_18Jun2024_00091162670");
+        context.Get<VacancyTitleDatahelper>().SetVacancyTitile("AmcqCwjaNa_22May2024_00261048235");
 
-        context.Get<AdvertDataHelper>().SetAdditionalQuestion1("bqnySaUYoTEUfWUpXYHI");
+        context.Get<AdvertDataHelper>().SetAdditionalQuestion1("rWmVeUPzTPZtbnzLVGnP");
 
-        context.Get<AdvertDataHelper>().SetAdditionalQuestion2("dbUbKXYufFtHaJFUsWJe");
+        context.Get<AdvertDataHelper>().SetAdditionalQuestion2("kZmZPiuBqqoYSdxSLYvX");
 
-        _faaStepsHelper.ApplyForFirstVacancy(true, true, true, true, true, true).PreviewApplication().SubmitApplication();
+        ApplyForAVacancy(firstVacancy);
     }
+
+    private void ApplyForAVacancy(bool firstVacancy)
+    {
+        var page = firstVacancy ? _faaStepsHelper.ApplyForFirstVacancy(true, true, true, true, true, true) : _faaStepsHelper.ApplyForAVacancy();
+        
+        page.PreviewApplication().SubmitApplication();
+    }
+
 }

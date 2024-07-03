@@ -34,13 +34,34 @@ public abstract class FAABasePage : VerifyBasePage
         return new(context);
     }
 
-    protected void SearchVacancyInFAA()
+    protected void GoToVacancyInFAA()
     {
         var vacancyRef = objectContext.GetVacancyReference();
 
         var uri = new Uri(new Uri(UrlConfig.FAAV2_BaseUrl), $"apprenticeship/VAC{vacancyRef}");
 
         tabHelper.GoToUrl(uri.AbsoluteUri);
+    }
+
+    protected FAASearchResultPage SearchUsingVacancyTitle()
+    {
+        var uri = new Uri(new Uri(UrlConfig.FAAV2_BaseUrl), $"apprenticeships?SearchTerm={vacancyTitleDataHelper.VacancyTitle}");
+
+        tabHelper.GoToUrl(uri.AbsoluteUri);
+
+        return new(context);
+    }
+}
+
+public class FAASearchResultPage : FAASignedInLandingBasePage
+{
+    protected override By PageHeader => By.CssSelector(".das-search-results__link");
+
+    protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
+
+    public FAASearchResultPage(ScenarioContext context) : base(context, false)
+    {
+        VerifyPage(RefreshPage);     
     }
 }
 
@@ -107,7 +128,7 @@ public class StubYouHaveSignedInFAAPage(ScenarioContext context, string username
     public new void Continue() => base.Continue();
 }
 
-public class FAASignedInLandingBasePage(ScenarioContext context) : FAABasePage(context)
+public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage = true) : FAABasePage(context, verifyPage)
 {
     protected override By PageHeader => By.CssSelector(".one-login-header");
 
@@ -133,7 +154,10 @@ public class FAASignedInLandingBasePage(ScenarioContext context) : FAABasePage(c
 
     public FAA_ApprenticeSummaryPage SearchByReferenceNumber()
     {
-        SearchVacancyInFAA();
+        SearchUsingVacancyTitle();
+
+        GoToVacancyInFAA();
+
         return new FAA_ApprenticeSummaryPage(context);
     }
 }
@@ -175,8 +199,6 @@ public class FAASearchApprenticeLandingPage(ScenarioContext context) : FAASigned
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
     protected override string PageTitle => "Search apprenticeships";
-
-
 }
 
 public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(context)
@@ -191,7 +213,6 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 
     private static By ViewSubmittedApplicationLink => By.CssSelector("a[href*='Submitted']");
 
-
     public FAA_ApplicationOverviewPage Apply()
     {
         formCompletionHelper.Click(ApplyButton);
@@ -203,7 +224,6 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
         formCompletionHelper.Click(ViewSubmittedApplicationLink);
         return new FAA_SubmittedApplicationPage(context);
     }
-
 
     public FAA_ApprenticeSummaryPage ConfirmDraftVacancyDeletion()
     {

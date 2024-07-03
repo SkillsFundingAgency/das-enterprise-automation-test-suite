@@ -20,22 +20,22 @@ namespace SFA.DAS.FAAV2.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FAA_TestDataPrep_ApplyFirstVacancy")]
-    public partial class FAA_TestDataPrep_ApplyFirstVacancyFeature
+    [NUnit.Framework.DescriptionAttribute("FAA_TestDataPrep_ApplyVacancy")]
+    public partial class FAA_TestDataPrep_ApplyVacancyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FAA_TestDataPrep_ApplyFirstVacancy.feature"
+#line 1 "FAA_TestDataPrep_ApplyVacancy.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "FAA_TestDataPrep_ApplyFirstVacancy", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "FAA_TestDataPrep_ApplyVacancy", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -99,6 +99,37 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 7
  testRunner.And("the candidate can apply for their first vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("FAA_TestDataPrep_ApplyForVacancy")]
+        [NUnit.Framework.CategoryAttribute("faav2")]
+        [NUnit.Framework.CategoryAttribute("faaapplytestdataprep")]
+        public void FAA_TestDataPrep_ApplyForVacancy()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "faav2",
+                    "faaapplytestdataprep"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_TestDataPrep_ApplyForVacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 12
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 13
+ testRunner.Then("the candidate can login in to faav2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.And("the candidate can apply for vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
