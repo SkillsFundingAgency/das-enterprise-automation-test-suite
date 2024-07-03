@@ -10,19 +10,19 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By UniversityCheckBox => By.CssSelector("label[for='Question_Answers_1__IsSelected']");
         private static By NoneAboveCheckBox => By.CssSelector("label[for='Question_Answers_2__IsSelected']");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
-        public HaveYouAppliedPage SelectAnyPastApplications()
+        public AreaOfEnglandPage SelectAnyPastApplications()
         {
             formCompletionHelper.SelectCheckbox(ApprenticeshipCheckBox);
             formCompletionHelper.SelectCheckbox(UniversityCheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new HaveYouAppliedPage(context);
+            return new AreaOfEnglandPage(context);
         }
 
-        public HaveYouAppliedPage SelectNoneAbove()
+        public AreaOfEnglandPage SelectNoneAbove()
         {
             formCompletionHelper.SelectCheckbox(NoneAboveCheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new HaveYouAppliedPage(context);
+            return new AreaOfEnglandPage(context);
         }
     }
 }
