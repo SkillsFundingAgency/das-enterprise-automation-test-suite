@@ -26,9 +26,9 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         [Given(@"I enter valid details")]
         public void GivenIEnterValidDetails()
         {
-            _stepsHelper.GoToCheckEmailCodePage();
-            _stepsHelper.GoToCheckEmailCodePage1();
-            _stepsHelper.GoToCheckEmailCodePage2();
+            _stepsHelper.GoToAddUniqueEmailAddressPage();
+            _stepsHelper.GoToCheckEmailAuthCodePage();
+            _stepsHelper.GoToWhatYourNamePage();
             _stepsHelper.GoToWhatIsYourDateOfBirthPage();
             _stepsHelper.GoToPostCodePage();
 

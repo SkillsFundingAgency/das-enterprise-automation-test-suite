@@ -20,16 +20,16 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             return new GetApprenticeshipAdviserPage(context).GoToEmailAddressPage();
         }
 
-        public EmailAuthCodePage GoToCheckEmailCodePage()
+        public EmailAuthCodePage GoToAddUniqueEmailAddressPage()
         {
             return  new EmailAddressPage(context).EnterNewEmailAddress();
         }
-        public WhatsYourNamePage GoToCheckEmailCodePage1()
+        public WhatsYourNamePage GoToCheckEmailAuthCodePage()
         {
             return new EmailAuthCodePage(context).EnterValidAuthCode();
         }
 
-        public DateOfBirthPage GoToCheckEmailCodePage2()
+        public DateOfBirthPage GoToWhatYourNamePage()
         {
             return new WhatsYourNamePage(context).EnterFirstAndLastNames();
         }
