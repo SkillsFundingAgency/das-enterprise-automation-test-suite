@@ -11,6 +11,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private By PledgeSelector => By.CssSelector($"a[href='pledges/{GetPledgeId()}/applications']");
         private static By ActiveStatusSelector => By.TagName("govuk-tag govuk-tag--dark-blue");
         private static By ClosedStatusSelector => By.TagName("govuk-tag govuk-tag--grey");
+        private static By NextPageLink => By.XPath("//a[contains(text(),'Next')]");
 
         public TransferPledgePage GoToTransferPledgePage()
         {
@@ -34,7 +35,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new MyTransferPledgesPage(context);
         }
 
-        public void VerifyPledge() => VerifyElement(PledgeSelector);
+        public void VerifyPledge()
+        {
+            while (pageInteractionHelper.IsElementDisplayed(NextPageLink))
+            {
+                try
+                {
+                    VerifyElement(PledgeSelector);
+                }
+                catch (System.Exception)
+                {
+                    formCompletionHelper.ClickElement(NextPageLink);
+                }
+            }
+            VerifyElement(PledgeSelector);
+
+        } 
 
     }
 }
