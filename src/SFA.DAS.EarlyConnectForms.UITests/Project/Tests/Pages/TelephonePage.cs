@@ -8,11 +8,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override string PageTitle => "What's your telephone number? (optional)";
         private static By TelephoneField => By.CssSelector("#telephone");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
-        public TelephonePage EnterValidTelephoneNumber()
+        public AreasOfWorkInterestPage EnterValidTelephoneNumber()
         {
             formCompletionHelper.SendKeys(TelephoneField, "01423554896");
             formCompletionHelper.ClickElement(ContinueButton);
-            return new TelephonePage(context);
+            return new AreasOfWorkInterestPage(context);
         }
     }
 }

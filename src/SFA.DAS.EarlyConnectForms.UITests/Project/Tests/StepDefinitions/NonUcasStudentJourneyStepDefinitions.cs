@@ -32,7 +32,13 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToWhatIsYourDateOfBirthPage();
             _stepsHelper.GoToPostCodePage();
             _stepsHelper.GoToWhatYourTelephonePage();
-
         }
+
+        [Given(@"I answer the triage questions related to me")]
+        public void GivenIAnswerTheTriageQuestionsRelatedToMe()
+        {
+            _stepsHelper.GoToAreasOfWorkInterestPage();
+        }
+
     }
 }

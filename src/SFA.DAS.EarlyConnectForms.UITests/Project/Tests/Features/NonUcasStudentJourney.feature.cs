@@ -140,6 +140,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 17
  testRunner.And("I enter valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 18
+ testRunner.And("I answer the triage questions related to me", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

@@ -44,9 +44,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             return new PostcodePage(context).EnterValidPostcode();
         }
 
-        public TelephonePage GoToWhatYourTelephonePage()
+        public AreasOfWorkInterestPage GoToWhatYourTelephonePage()
         {
             return new TelephonePage(context).EnterValidTelephoneNumber();
+        }
+
+        public AreasOfWorkInterestPage GoToAreasOfWorkInterestPage()
+        {
+            return new AreasOfWorkInterestPage(context).SelectAnyAreaInterestToYou();
         }
 
     }
