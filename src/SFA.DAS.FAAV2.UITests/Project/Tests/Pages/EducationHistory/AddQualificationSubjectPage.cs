@@ -6,11 +6,11 @@ public class AddQualificationSubjectPage : FAABasePage
 
     private readonly string _pageTitle;
 
-    private static By Subject => By.CssSelector("#Subjects[0].Name");
+    private static By Subject => By.CssSelector("[id='Subjects[0].Name']");
 
-    private static By Grade => By.CssSelector("#Subjects[0].Grade");
+    private static By Grade => By.CssSelector("[id='Subjects[0].Grade']");
 
-    private static By SubjectLevel => By.CssSelector("#Subjects[0].Level");
+    private static By SubjectLevel => By.CssSelector("[id='Subjects[0].Level']");
 
     public AddQualificationSubjectPage(ScenarioContext context, string qualification) : base(context, false)
     {

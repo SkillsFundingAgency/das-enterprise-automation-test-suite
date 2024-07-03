@@ -5,6 +5,7 @@
 @v2_e2e
 @v2p_e2e
 @regression
+@faav2migrationtests
 Scenario: RV2_P_E2E_01 - Create vacancy with registered name, Approve, Apply and make Application Successful
 	Given the Provider creates a vacancy by using a registered name
 	And the Reviewer Approves the vacancy

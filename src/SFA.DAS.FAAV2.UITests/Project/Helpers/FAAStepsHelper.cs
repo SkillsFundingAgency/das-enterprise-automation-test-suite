@@ -9,7 +9,7 @@ public class FAAStepsHelper(ScenarioContext context)
     private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
     private readonly string _faaBaseUrl = UrlConfig.FAAV2_AppSearch;
 
-    public FAASearchApprenticeLandingPage GoToFAAHomePage()
+    public FAASignedInLandingBasePage GoToFAAHomePage()
     {
         _tabHelper.GoToUrl(_faaBaseUrl);
 
@@ -18,7 +18,7 @@ public class FAAStepsHelper(ScenarioContext context)
             new FAASignedOutLandingpage(context).GoToSignInPage().SubmitValidUserDetails(context.GetUser<FAAApplyUser>()).Continue();
         }
 
-        return new FAASearchApprenticeLandingPage(context);
+        return new FAASignedInLandingBasePage(context);
     }
 
     public void VerifyApplicationStatus(bool IsSucessful)

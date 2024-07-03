@@ -8,8 +8,12 @@ public class WhatIsYourMostRecentQualificationPage(ScenarioContext context) : FA
     {
         var randomOption = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels).Take(5).ToList());
 
+        string qualification = randomOption.Text;
+
         formCompletionHelper.ClickElement(() => randomOption);
+
         Continue();
-        return new(context, randomOption.Text);
+
+        return new(context, qualification);
     }
 }
