@@ -34,9 +34,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             return new WhatsYourNamePage(context).EnterFirstAndLastNames();
         }
 
-        public DateOfBirthPage GoToWhatIsYourDateOfBirthPage()
+        public PostcodePage GoToWhatIsYourDateOfBirthPage()
         {
             return new DateOfBirthPage(context).EnterValidDateOfBirth();
+        }
+
+        public PostcodePage GoToPostCodePage()
+        {
+            return new PostcodePage(context).EnterValidPostcode();
         }
 
     }

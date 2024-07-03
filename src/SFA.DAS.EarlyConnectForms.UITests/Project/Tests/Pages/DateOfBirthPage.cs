@@ -13,13 +13,13 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By MonthInputField => By.CssSelector("#Month");
         private static By YearInputField => By.CssSelector("#Year");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
-        public DateOfBirthPage EnterValidDateOfBirth()
+        public PostcodePage EnterValidDateOfBirth()
         {
             formCompletionHelper.EnterText(DayInputField, earlyConnectDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(MonthInputField, earlyConnectDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(YearInputField, earlyConnectDataHelper.DateOfBirthYear);
             formCompletionHelper.ClickElement(ContinueButton);
-            return new DateOfBirthPage(context);
+            return new PostcodePage(context);
         }
     }
 }
