@@ -3,8 +3,8 @@ As a provider want to be be able to select single applicant and share with emplo
 
 @raa
 @raaprovider
-@v2_e2e
-@v2p_e2e
+@raae2e
+@raaprovidere2e
 @regression
 Scenario: RAA_P_E2E_S01 - Create vacancy with registered name, Approve, Apply and share single Application
 	Given the Provider creates a vacancy by using a registered name

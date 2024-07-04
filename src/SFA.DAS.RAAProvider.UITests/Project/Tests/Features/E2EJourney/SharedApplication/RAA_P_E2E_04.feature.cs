@@ -79,16 +79,16 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.E2EJourney.SharedAp
             "tiple Application")]
         [NUnit.Framework.CategoryAttribute("raa")]
         [NUnit.Framework.CategoryAttribute("raaprovider")]
-        [NUnit.Framework.CategoryAttribute("v2_e2e")]
-        [NUnit.Framework.CategoryAttribute("v2p_e2e")]
+        [NUnit.Framework.CategoryAttribute("raae2e")]
+        [NUnit.Framework.CategoryAttribute("raaprovidere2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void RAA_P_E2E_S02_CreateVacancyWithRegisteredNameApproveApplyAndShareMultipleApplication()
         {
             string[] tagsOfScenario = new string[] {
                     "raa",
                     "raaprovider",
-                    "v2_e2e",
-                    "v2p_e2e",
+                    "raae2e",
+                    "raaprovidere2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_P_E2E_S02 - Create vacancy with registered name, Approve, Apply and share mul" +

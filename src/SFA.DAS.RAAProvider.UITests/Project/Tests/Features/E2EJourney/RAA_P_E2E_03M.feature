@@ -2,8 +2,8 @@
 
 @raa
 @raaprovider
-@v2_e2e
-@v2p_e2e
+@raae2e
+@raaprovidere2e
 @regression
 Scenario: RAA_P_E2E_03M - Create vacancy by entering data for Optional fields, Approve, Apply and make Multiply Applications Unsuccessful
 	Given the Provider creates a vacancy by entering all the Optional fields

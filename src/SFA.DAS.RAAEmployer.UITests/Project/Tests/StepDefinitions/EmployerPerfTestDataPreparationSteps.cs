@@ -26,15 +26,15 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer '([^']*)' grants permission to a provider")]
         public void GivenTheEmployerGrantsPermissionToAProvider(string email, Table table)
         {
-            new EmployerPortalLoginHelper(context).Login(GetRaav2EmployerUser(email), true);
+            new EmployerPortalLoginHelper(context).Login(GetRaaEmployerUser(email), true);
 
             foreach (var row in table.Rows) new EmployerPermissionsStepsHelper(context).SetRecruitApprenticesPermission(row[0], row[1]);
         }
 
         private EmployerCreateAdvertPrefStepsHelper GetEmployerCreateAdvertPrefStepsHelper(string email)
-            => new(context, GetRaav2EmployerUser(email));
+            => new(context, GetRaaEmployerUser(email));
 
-        private RAAEmployerUser GetRaav2EmployerUser(string email)
+        private RAAEmployerUser GetRaaEmployerUser(string email)
         {
             var legalEntities = context.GetAccountLegalEntities([email]);
 

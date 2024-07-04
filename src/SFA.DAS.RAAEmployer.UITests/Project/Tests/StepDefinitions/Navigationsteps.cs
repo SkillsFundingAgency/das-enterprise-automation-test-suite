@@ -9,17 +9,17 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
     public class Navigationsteps
     {
         private readonly ScenarioContext _context;
-        private readonly RAAEmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
+        private readonly RAAEmployerLoginStepsHelper _rAAEmployerLoginHelper;
 
         public Navigationsteps(ScenarioContext context)
         {
             _context = context;
-            _rAAV2EmployerLoginHelper = new RAAEmployerLoginStepsHelper(_context);
+            _rAAEmployerLoginHelper = new RAAEmployerLoginStepsHelper(_context);
         }
 
         [Given(@"the Employer navigates to 'Recruit' Page")]
         [When(@"the Employer navigates to 'Recruit' Page")]
-        public void WhenTheEmployerNavigatesToPage() => _rAAV2EmployerLoginHelper.GoToRecruitmentHomePage();
+        public void WhenTheEmployerNavigatesToPage() => _rAAEmployerLoginHelper.GoToRecruitmentHomePage();
 
         [Then(@"the employer can navigate to finance page")]
         public void ThenTheEmployerCanNavigateToFinancePage()

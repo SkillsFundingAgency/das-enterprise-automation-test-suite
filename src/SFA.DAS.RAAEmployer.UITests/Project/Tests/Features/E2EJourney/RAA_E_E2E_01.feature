@@ -2,8 +2,8 @@
 
 @raa
 @raaemployer
-@v2_e2e
-@v2e_e2e
+@raae2e
+@raaemployere2e
 @regression
 Scenario: RAA_E_E2E_01 - Create an advert with registered name, Approve, Apply and make Application Successful
 	Given the Employer creates an advert by using a registered name

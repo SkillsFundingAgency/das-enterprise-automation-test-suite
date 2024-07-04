@@ -4,8 +4,8 @@ As a provider want to be be able to select by multiple applicant link and share 
 
 @raa
 @raaprovider
-@v2_e2e
-@v2p_e2e
+@raae2e
+@raaprovidere2e
 @regression
 Scenario: RAA_P_E2E_S02 - Create vacancy with registered name, Approve, Apply and share multiple Application
 	Given the Provider creates a vacancy by using a registered name

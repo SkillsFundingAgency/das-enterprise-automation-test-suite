@@ -12,7 +12,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
     {
         #region Helpers and Context
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-        private readonly RAADataHelper _raaV2DataHelper = context.Get<RAADataHelper>();
+        private readonly RAADataHelper _raaDataHelper = context.Get<RAADataHelper>();
         #endregion
 
         internal const string DraftStatus = "Draft";
@@ -64,7 +64,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
 
         public RecruitmentDynamicHomePage ConfirmLiveVacancyDetails(string status)
         {
-            ConfirmVacancyDetails(status, _raaV2DataHelper.VacancyClosing);
+            ConfirmVacancyDetails(status, _raaDataHelper.VacancyClosing);
             return ConfirmAddApprenticeDeatilsButton();
         }
 

@@ -2,8 +2,8 @@
 
 @raa
 @raaprovider
-@v2_e2e
-@v2p_e2e
+@raae2e
+@raaprovidere2e
 @regression
 Scenario: RAA_P_E2E_04 - Create vacancy by entering data for Optional fields, Approve, Apply and mark Application as Interviewing with Employer
 	Given the Provider creates a vacancy by entering all the Optional fields

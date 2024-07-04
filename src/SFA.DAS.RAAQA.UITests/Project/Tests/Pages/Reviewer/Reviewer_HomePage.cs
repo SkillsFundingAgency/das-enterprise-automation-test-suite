@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 {
-    public class Reviewer_HomePage(ScenarioContext context) : RAAV2QABasePage(context)
+    public class Reviewer_HomePage(ScenarioContext context) : RAAQABasePage(context)
     {
         protected override By PageHeader => ReviewVacancyButton;
 

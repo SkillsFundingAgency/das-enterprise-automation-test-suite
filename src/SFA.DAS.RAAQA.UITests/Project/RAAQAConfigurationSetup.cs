@@ -7,9 +7,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAAQA.UITests.Project
 {
     [Binding]
-    public class RAAV2QAConfigurationSetup(ScenarioContext context)
+    public class RAAQAConfigurationSetup(ScenarioContext context)
     {
         [BeforeScenario(Order = 2)]
-        public void SetUpRAAV2QAProjectConfiguration() => context.SetNonEasLoginUser(SetDfeAdminCredsHelper.SetDfeAdminCreds(context.Get<FrameworkList<DfeAdminUsers>>(), new VacancyQaUser()));
+        public void SetUpRAAQAProjectConfiguration() => context.SetNonEasLoginUser(SetDfeAdminCredsHelper.SetDfeAdminCreds(context.Get<FrameworkList<DfeAdminUsers>>(), new VacancyQaUser()));
     }
 }

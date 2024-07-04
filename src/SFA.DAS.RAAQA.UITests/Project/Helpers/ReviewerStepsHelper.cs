@@ -15,17 +15,17 @@ public class ReviewerStepsHelper(ScenarioContext context)
     public Reviewer_HomePage GoToReviewerHomePage(bool restart)
     {
         var applicationName = "Reviewer";
-        var raav2qaBaseUrl = UrlConfig.RAAV2QA_BaseUrl;
+        var raaqaBaseUrl = UrlConfig.RAAQA_BaseUrl;
 
         if (restart)
         {
-            new RestartWebDriverHelper(context).RestartWebDriver(raav2qaBaseUrl, applicationName);
+            new RestartWebDriverHelper(context).RestartWebDriver(raaqaBaseUrl, applicationName);
         }
         else
         {
             context.Get<ObjectContext>().SetCurrentApplicationName(applicationName);
 
-            context.Get<TabHelper>().OpenInNewTab(raav2qaBaseUrl);
+            context.Get<TabHelper>().OpenInNewTab(raaqaBaseUrl);
         }
 
         new DfeAdminLoginStepsHelper(context).CheckAndLoginToASVacancyQa();
@@ -33,13 +33,13 @@ public class ReviewerStepsHelper(ScenarioContext context)
         return new Reviewer_HomePage(context);
     }
 
-    public void VerifyEmployerNameAndApprove(bool restart) => RAAV2QASignOut(ReviewVacancy(restart).VerifyEmployerName().Approve());
+    public void VerifyEmployerNameAndApprove(bool restart) => RAAQASignOut(ReviewVacancy(restart).VerifyEmployerName().Approve());
 
-    public void Refer(bool restart) => RAAV2QASignOut(ReviewVacancy(restart).ReferTitle());
+    public void Refer(bool restart) => RAAQASignOut(ReviewVacancy(restart).ReferTitle());
 
-    public void VerifyDisabilityConfidenceAndApprove(bool restart) => RAAV2QASignOut(ReviewVacancy(restart).VerifyDisabilityConfident().Approve());
+    public void VerifyDisabilityConfidenceAndApprove(bool restart) => RAAQASignOut(ReviewVacancy(restart).VerifyDisabilityConfident().Approve());
 
     private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
 
-    private ASVacancyQaLandingPage RAAV2QASignOut(VerifyDetailsBasePage basePage) { basePage.RAAQASignOut(); return new ASVacancyQaLandingPage(context); }
+    private ASVacancyQaLandingPage RAAQASignOut(VerifyDetailsBasePage basePage) { basePage.RAAQASignOut(); return new ASVacancyQaLandingPage(context); }
 }

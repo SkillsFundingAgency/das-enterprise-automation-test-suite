@@ -78,16 +78,16 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.E2EJourney
             "lication Successful")]
         [NUnit.Framework.CategoryAttribute("raa")]
         [NUnit.Framework.CategoryAttribute("raaemployer")]
-        [NUnit.Framework.CategoryAttribute("v2_e2e")]
-        [NUnit.Framework.CategoryAttribute("v2e_e2e")]
+        [NUnit.Framework.CategoryAttribute("raae2e")]
+        [NUnit.Framework.CategoryAttribute("raaemployere2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void RAA_E_E2E_01_CreateAnAdvertWithRegisteredNameApproveApplyAndMakeApplicationSuccessful()
         {
             string[] tagsOfScenario = new string[] {
                     "raa",
                     "raaemployer",
-                    "v2_e2e",
-                    "v2e_e2e",
+                    "raae2e",
+                    "raaemployere2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_E_E2E_01 - Create an advert with registered name, Approve, Apply and make App" +
