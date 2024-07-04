@@ -9,12 +9,6 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
     {
         private readonly EarlyConnectStepsHelper _stepsHelper = new(context);
 
-        [Given(@"I am on the landing page for a region '([^']*)'")]
-        public void GivenIAmOnTheLandingPageForARegion(string lepCode)
-        {
-
-        }
-
         [Given(@"I am on the landing page for a region")]
         public void GivenIAmOnTheLandingPageForARegion()
         {
@@ -45,7 +39,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToSupportPage();
         }
 
-        [When(@"I check my answers, accept and submit")]
+        [Then(@"I check my answers, accept and submit")]
         public void WhenICheckMyAnswersAcceptAndSubmit()
         {
             _stepsHelper.GoToCheckYourAnswerPage();

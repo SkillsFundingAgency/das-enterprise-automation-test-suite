@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
@@ -12,6 +13,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
         public WhatsYourNamePage EnterValidAuthCode()
         {
+            Thread.Sleep(20000);
             formCompletionHelper.EnterText(EmailAuthCodeField, retriveEmailOTPCodeHelper.AuthCodes);
             formCompletionHelper.ClickElement(ContinueButton);
             return new WhatsYourNamePage(context);
