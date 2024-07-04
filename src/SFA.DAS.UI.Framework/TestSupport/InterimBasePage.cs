@@ -22,10 +22,19 @@ public abstract class InterimBasePage(ScenarioContext context) : BasePage(contex
 
     protected void VerifySectionStatus(string sectionName, string status, Action retryAction) => VerifyElement(() => GetSectionElement(sectionName).FindElement(TaskSection), status, retryAction);
 
-    protected void VerifySectionTaskStatus(string sectionName, string taskName, string status, int index, Action retryAction) =>
+    protected void VerifySectionTaskStatus(string sectionName, string taskName, string status, int index, Action retryAction) 
+    {
         VerifyElement(GetTaskStatusElement(sectionName, taskName, index), status, retryAction);
 
-    protected void NavigateToTask(string sectionName, string taskName, int index, Action retryAction) => formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), retryAction);
+        objectContext.SetDebugInformation($"verified status is '{status}' for task - '{taskName}', section '{sectionName}' ");
+    }
+
+    protected void NavigateToTask(string sectionName, string taskName, int index, Action retryAction)
+    {
+        formCompletionHelper.ClickElement(GetTaskLinkElement(sectionName, taskName, index), retryAction);
+
+        objectContext.SetDebugInformation($"Clicked task - '{taskName}' under section '{sectionName}'");
+    }
 
     private Func<IWebElement> GetTaskLinkElement(string sectionName, string taskName, int index) => GetTaskElement(sectionName, taskName, TaskName, index);
 

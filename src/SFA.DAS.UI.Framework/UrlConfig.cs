@@ -20,6 +20,8 @@ public static class UrlConfig
 
     public static string FAAV2_BaseUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}-findapprenticeship.apprenticeships.education.gov.uk/";
 
+    public static string FAAV2_AppSearch => $"{FAAV2_BaseUrl}apprenticeshipsearch";
+
     public static string FAA_SearchApprenticeshipUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}.findapprenticeship.service.gov.uk/apprenticeshipsearch";
     public static string FATV2_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
     public static string FAT_BaseUrl => EnvironmentConfig.IsPPEnvironment ? "https://pp-findapprenticeshiptraining-v1.apprenticeships.education.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}-fatweb.apprenticeships.education.gov.uk/";
@@ -48,3 +50,4 @@ public static class UrlConfig
     public static string Apprentice_BaseUrl => $"https://confirm.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/apprenticeships";
     public static string TransferMacthingApplyUrl(string pledgeId) => $"https://transfers.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/opportunities/{pledgeId}";
 }
+
