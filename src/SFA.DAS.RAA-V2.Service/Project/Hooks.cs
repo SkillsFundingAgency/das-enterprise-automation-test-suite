@@ -16,9 +16,11 @@ namespace SFA.DAS.RAA_V2.Service.Project
         {
             var vacancyTitleDatahelper = context.Get<VacancyTitleDatahelper>();
 
-            var fAAConfig = context.GetFAAConfig<FAAConfig>();
+            var fAAConfig = context.GetFAAConfig<FAAUserConfig>();
 
             context.Set(new RAAV2DataHelper(fAAConfig, vacancyTitleDatahelper));
+
+            context.Set(new AdvertDataHelper());
 
             var dbConfig = context.Get<DbConfig>();
 

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 
 namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
@@ -13,15 +14,25 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants()
         {
             EnterAdditionalQuestions();
+
             Continue();
 
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
+        public CheckYourAnswersPage UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage()
+        {
+            EnterAdditionalQuestions();
+
+            Continue();
+
+            return new CheckYourAnswersPage(context);
+        }
+
         private void EnterAdditionalQuestions()
         {
-            formCompletionHelper.EnterText(AdditionalQuestion1Selector, RAA.DataGenerator.RAAV2DataHelper.RandomQuestionString(20));
-            formCompletionHelper.EnterText(AdditionalQuestion2Selector, RAA.DataGenerator.RAAV2DataHelper.RandomQuestionString(20));
+            formCompletionHelper.EnterText(AdditionalQuestion1Selector, advertDataHelper.AdditionalQuestion1);
+            formCompletionHelper.EnterText(AdditionalQuestion2Selector, advertDataHelper.AdditionalQuestion2);
         }
     }
 }
