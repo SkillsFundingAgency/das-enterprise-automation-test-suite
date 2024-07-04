@@ -75,16 +75,14 @@ namespace SFA.DAS.FAAV2.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAA_TestDataPrep_ApplyFirstVacancy")]
-        [NUnit.Framework.CategoryAttribute("faav2")]
         [NUnit.Framework.CategoryAttribute("faaapplytestdataprep")]
         public void FAA_TestDataPrep_ApplyFirstVacancy()
         {
             string[] tagsOfScenario = new string[] {
-                    "faav2",
                     "faaapplytestdataprep"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_TestDataPrep_ApplyFirstVacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,10 +92,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 5
  testRunner.Then("the candidate can login in to faav2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 7
+#line 6
  testRunner.And("the candidate can apply for their first vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -106,16 +104,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAA_TestDataPrep_ApplyForVacancy")]
-        [NUnit.Framework.CategoryAttribute("faav2")]
         [NUnit.Framework.CategoryAttribute("faaapplytestdataprep")]
         public void FAA_TestDataPrep_ApplyForVacancy()
         {
             string[] tagsOfScenario = new string[] {
-                    "faav2",
                     "faaapplytestdataprep"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_TestDataPrep_ApplyForVacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 12
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -125,10 +121,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 13
+#line 11
  testRunner.Then("the candidate can login in to faav2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
+#line 12
  testRunner.And("the candidate can apply for vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

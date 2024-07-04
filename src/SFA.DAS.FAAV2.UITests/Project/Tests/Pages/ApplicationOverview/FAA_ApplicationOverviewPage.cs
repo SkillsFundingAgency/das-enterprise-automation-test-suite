@@ -5,33 +5,7 @@ using SFA.DAS.FAAV2.UITests.Project.Tests.Pages.EducationHistory;
 using SFA.DAS.FAAV2.UITests.Project.Tests.Pages.InterviewSupport;
 using SFA.DAS.FAAV2.UITests.Project.Tests.Pages.WorkHistory;
 
-namespace SFA.DAS.FAAV2.UITests.Project.Pages;
-
-public class CheckYourApplicationBeforeSubmittingPage(ScenarioContext context) : FAABasePage(context)
-{
-    protected override string PageTitle => "Check your application before submitting";
-
-    protected override By ContinueButton => By.CssSelector("button.govuk-button[data-module='govuk-button']");
-
-    public ApplicationSubmittedPage SubmitApplication()
-    {
-        SelectCheckBoxByText("I understand that I won't be able to make any changes after I submit my application");
-
-        Continue();
-
-        return new(context);
-    }
-}
-
-
-public class ApplicationSubmittedPage(ScenarioContext context) : FAABasePage(context)
-{
-    protected override string PageTitle => "Application submitted";
-
-    protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
-}
-
-
+namespace SFA.DAS.FAAV2.UITests.Project.Pages.ApplicationOverview;
 
 public partial class FAA_ApplicationOverviewPage : FAABasePage
 {
