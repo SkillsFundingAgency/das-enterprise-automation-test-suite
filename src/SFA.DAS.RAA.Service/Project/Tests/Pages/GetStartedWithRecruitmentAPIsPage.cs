@@ -1,0 +1,18 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.RAA.Service.Project.Tests.Pages
+{
+    public class GetStartedWithRecruitmentAPIsPage(ScenarioContext context) : Raav2BasePage(context)
+    {
+        protected override string PageTitle => "Get started with the recruitment APIs";
+
+        private readonly By APIKeysHereLink = By.LinkText("API keys here");
+
+        public ApiListPage ClickAPIKeysHereLink()
+        {
+            formCompletionHelper.Click(APIKeysHereLink);
+            return new ApiListPage(context);
+        }
+    }
+}

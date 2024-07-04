@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.RAA_V2.Service.Project.Helpers;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.RAA.Service.Project.Helpers;
+using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 

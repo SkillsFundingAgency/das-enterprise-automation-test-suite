@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;

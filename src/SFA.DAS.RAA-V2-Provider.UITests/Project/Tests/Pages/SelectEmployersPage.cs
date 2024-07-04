@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.RAA_V2.Service.Project.Helpers;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages;
+using SFA.DAS.RAA.Service.Project.Helpers;
+using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
