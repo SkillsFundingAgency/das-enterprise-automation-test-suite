@@ -13,7 +13,6 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages
 
         protected static By ChooseFileSelector => By.ClassName("govuk-file-upload");
 
-
         protected RoatpBasePage(ScenarioContext context) : base(context) { }
 
         protected void ChooseFile()

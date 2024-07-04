@@ -8,9 +8,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public class ManageApplicantPage(ScenarioContext context) : Raav2BasePage(context)
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-l");
-
-        protected override string PageTitle => isRaaV2Employer ? "About you" : "Contact Details";
+        protected override string PageTitle => rAAV2DataHelper.CandidateFullName;
 
         private static By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
 

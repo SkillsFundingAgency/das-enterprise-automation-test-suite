@@ -12,6 +12,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         protected readonly VacancyReferenceHelper vacancyReferenceHelper;
         protected readonly RAAV2DataHelper rAAV2DataHelper;
+
+        protected readonly AdvertDataHelper advertDataHelper;
         protected readonly bool isRaaV2Employer;
 
         protected override By ContinueButton => By.CssSelector(".save-button");
@@ -31,6 +33,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             vacancyReferenceHelper = context.GetValue<VacancyReferenceHelper>();
             vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
             rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();
+            advertDataHelper = context.GetValue<AdvertDataHelper>();
 
             if (verifypage) VerifyPage();
         }

@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA.DataGenerator
     {
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
-        public RAAV2DataHelper(FAAConfig faaConfig, VacancyTitleDatahelper vacancyTitleDatahelper)
+        public RAAV2DataHelper(FAAUserConfig faaConfig, VacancyTitleDatahelper vacancyTitleDatahelper)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
             CandidateFirstName = faaConfig.FAAFirstName;
@@ -108,8 +108,8 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private static string WebsiteUrl(string url) => $"www.{url}.com";
 
-        private static List<string> AvailableProviders => new() { "BALTIC TRAINING SERVICES LIMITED 10019026" };
+        private static List<string> AvailableProviders => ["BALTIC TRAINING SERVICES LIMITED 10019026"];
 
-        private static List<string> AvailableAddress => new() { "CV33", "CV35", "SM3", "SW11" };
+        private static List<string> AvailableAddress => ["CV33", "CV35", "SM3", "SW11"];
     }
 }

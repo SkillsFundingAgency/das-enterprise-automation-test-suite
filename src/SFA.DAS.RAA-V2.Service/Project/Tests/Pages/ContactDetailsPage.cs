@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
-using SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert;
 using TechTalk.SpecFlow;
 
 
@@ -24,13 +23,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
             EnterProviderDetails(optionalFields);
 
             return GoToApplicationProcessPage();
-        }
-
-        public CheckYourAnswersPage EnterProviderContactDetailsTraineeship(bool optionalFields)
-        {
-            EnterProviderDetails(optionalFields);
-
-            return GoToCheckYourAnswersPage();
         }
 
         public ApplicationProcessPage EnterContactDetailsAndGoToApplicationProcessPage(bool optionalFields)
@@ -64,12 +56,6 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         {
             Continue();
             return new ApplicationProcessPage(context);
-        }
-
-        private CheckYourAnswersPage GoToCheckYourAnswersPage()
-        {
-            Continue();
-            return new CheckYourAnswersPage(context);
         }
 
         private By ContactName() => isRaaV2Employer ? EmployerContactName : ProviderContactName;

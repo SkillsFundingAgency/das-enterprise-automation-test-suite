@@ -48,6 +48,7 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .EnterProviderContactDetails(optionalFields)
                 .SelectApplicationMethod_Provider(isApplicationMethodFAA);
         }
+
         protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
         {
             return createAdvertPage
@@ -55,22 +56,11 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
             .CompleteAllAdditionalQuestionsForApplicants();
         }
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployerTraineeship(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage,
-            string employername)
-        {
-            return createAdvertPage
-                .EmployerName()
-                .ChooseEmployerNameForEmployerJourney(employername)
-                .EnterEmployerDescriptionAndGoToContactDetailsPage(optionalFields)
-                .EnterProviderContactDetailsTraineeship(optionalFields)
-                .BackToTaskList();
-        }
-
-
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
             createAdvertPage
             .Skills()
             .SelectSkillAndGoToQualificationsPage()
+            .SelectYesToAddQualification()
             .EnterQualifications()
             .ConfirmQualificationsAndGoToFutureProspectsPage()
             .EnterFutureProspect()
@@ -88,18 +78,14 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
                 .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
         }
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateNewTraineeshipVacancy()
-        {
-            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
-        }
-
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
         {
             return EnterVacancyTitle(NavigateToAdvertTitle(createAdvertPage))
                 .EnterTrainingTitle()
                 .ConfirmTrainingAndContinueToSummaryPage()
                 .EnterShortDescription()
-                .EnterTasksAndTrainingDetails();
+                .EnterShortDescriptionOfWhatApprenticeWillDo()
+                .EnterAllDescription();
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertOrVacancy()
@@ -118,6 +104,6 @@ namespace SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers
         }
 
         private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
-            _isMultiOrg ? advertTitlePage.EnterAdvertTitleMultiOrg().SelectOrganisationMultiOrg() : advertTitlePage.EnterVacancyTitle();
+             advertTitlePage.EnterVacancyTitle();
     }
 }
