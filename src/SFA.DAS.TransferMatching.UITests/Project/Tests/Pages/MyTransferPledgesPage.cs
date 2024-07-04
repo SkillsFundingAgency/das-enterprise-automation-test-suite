@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using Polly.CircuitBreaker;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -12,6 +14,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private static By ActiveStatusSelector => By.TagName("govuk-tag govuk-tag--dark-blue");
         private static By ClosedStatusSelector => By.TagName("govuk-tag govuk-tag--grey");
         private static By NextPageLink => By.XPath("//a[contains(text(),'Next')]");
+        private static By StatusColumn => By.ClassName("govuk-tag");
 
         public TransferPledgePage GoToTransferPledgePage()
         {
@@ -24,33 +27,28 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CreatePledgesSelector);
             return new PledgeAndTransferYourLevyFundsPage(context);
         }
-        public MyTransferPledgesPage ConfirmCloseStatus()
+
+        public MyTransferPledgesPage ConfirmStatus(string expectedStatus)
         {
-            pageInteractionHelper.IsElementDisplayed(ClosedStatusSelector);
-            return new MyTransferPledgesPage(context);
-        }
-        public MyTransferPledgesPage ConfirmActiveStatus()
-        {
-            pageInteractionHelper.IsElementDisplayed(ActiveStatusSelector);
+            VerifyPledge();
+            var actualStatus = tableRowHelper.GetColumn(GetPledgeId(), StatusColumn).Text;
+            Assert.That(actualStatus, Is.EqualTo(expectedStatus));
             return new MyTransferPledgesPage(context);
         }
 
         public void VerifyPledge()
-        {
+        {            
             while (pageInteractionHelper.IsElementDisplayed(NextPageLink))
             {
-                try
-                {
-                    VerifyElement(PledgeSelector);
-                }
-                catch (System.Exception)
-                {
+                if (pageInteractionHelper.IsElementDisplayed(PledgeSelector))
+                    break;
+                else
                     formCompletionHelper.ClickElement(NextPageLink);
-                }
             }
-            VerifyElement(PledgeSelector);
 
+            VerifyElement(PledgeSelector);
         } 
+
 
     }
 }
