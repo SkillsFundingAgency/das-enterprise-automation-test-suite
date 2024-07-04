@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.RAA.Service.Project.Helpers
 {
-    public static class RAAV2Const
+    public static class RAAConst
     {
         public const string NationalMinWages = "National Minimum Wage";
         public const string SetAsCompetitive = "Set As Competitive";

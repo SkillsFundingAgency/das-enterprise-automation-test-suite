@@ -4,7 +4,7 @@ using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderDoYouWantToShareAnA
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ManageShareApplicationsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ManageShareApplicationsPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Share Applications";
         private static By SaveContinue => By.CssSelector("#applications-to-share-action");

@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace SFA.DAS.RAA.DataGenerator
 {
-    public class RAAV2DataHelper
+    public class RAADataHelper
     {
         private readonly VacancyTitleDatahelper _vacancyTitleDatahelper;
 
-        public RAAV2DataHelper(FAAUserConfig faaConfig, VacancyTitleDatahelper vacancyTitleDatahelper)
+        public RAADataHelper(FAAUserConfig faaConfig, VacancyTitleDatahelper vacancyTitleDatahelper)
         {
             _vacancyTitleDatahelper = vacancyTitleDatahelper;
             CandidateFirstName = faaConfig.FAAFirstName;

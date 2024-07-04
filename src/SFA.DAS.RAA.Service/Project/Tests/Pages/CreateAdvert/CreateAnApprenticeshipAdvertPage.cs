@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public partial class CreateAnApprenticeshipAdvertOrVacancyPage(ScenarioContext context) : Raav2BasePage(context)
+    public partial class CreateAnApprenticeshipAdvertOrVacancyPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "Create an apprenticeship advert" : "Create an apprenticeship vacancy";
+        protected override string PageTitle => isRaaEmployer ? "Create an apprenticeship advert" : "Create an apprenticeship vacancy";
 
         protected override By TaskName => By.CssSelector(".das-task-list__item .govuk-link");
 

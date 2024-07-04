@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ConfirmApprenticeshipTrainingPage : Raav2BasePage
+    public class ConfirmApprenticeshipTrainingPage : RaaBasePage
     {
         protected override string PageTitle => "Confirm apprenticeship training";
 

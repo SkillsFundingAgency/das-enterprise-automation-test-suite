@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ConfirmApplicantSuccessStatusPage : Raav2BasePage
+    public class ConfirmApplicantSuccessStatusPage : RaaBasePage
     {
-        protected override string PageTitle => $"Are you sure you want to make {rAAV2DataHelper.CandidateFullName}'s application {_message}";
+        protected override string PageTitle => $"Are you sure you want to make {rAADataHelper.CandidateFullName}'s application {_message}";
 
         protected override By ContinueButton => By.CssSelector("input[type='submit'][value='Continue']");
 

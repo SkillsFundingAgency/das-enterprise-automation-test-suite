@@ -4,13 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class DeleteVacancyQuestionPage : Raav2BasePage
+    public class DeleteVacancyQuestionPage : RaaBasePage
     {
-        protected override string PageTitle => rAAV2DataHelper.VacancyTitle;
+        protected override string PageTitle => rAADataHelper.VacancyTitle;
 
         protected override string AccessibilityPageTitle => "Delete vacancy page";
 
-        private string SubTitle => isRaaV2Employer ? "Are you sure you want to delete this advert?" : "Are you sure you want to delete the vacancy?";
+        private string SubTitle => isRaaEmployer ? "Are you sure you want to delete this advert?" : "Are you sure you want to delete the vacancy?";
 
         private static By SubHeader => By.CssSelector(".govuk-heading-l");
 

@@ -2,7 +2,7 @@
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ConfirmQualificationsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ConfirmQualificationsPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Qualifications";
 

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class SummaryOfTheApprenticeshipPage(ScenarioContext context) : Raav2BasePage(context)
+    public class SummaryOfTheApprenticeshipPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Summary of the apprenticeship";
 
@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public WhatWillTheApprenticeDoAtWorkPage EnterShortDescription()
         {
-            formCompletionHelper.EnterText(ShortDescSelector, RAA.DataGenerator.RAAV2DataHelper.RandomAlphabeticString(60));
+            formCompletionHelper.EnterText(ShortDescSelector, RAA.DataGenerator.RAADataHelper.RandomAlphabeticString(60));
             Continue();
             return new WhatWillTheApprenticeDoAtWorkPage(context);
         }

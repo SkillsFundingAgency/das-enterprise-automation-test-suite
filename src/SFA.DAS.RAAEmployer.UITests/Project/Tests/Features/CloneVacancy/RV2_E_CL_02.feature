@@ -1,10 +1,10 @@
-﻿Feature: RV2_E_CL_02
+﻿Feature: RAA_E_CL_02
 
-@raa-v2
-@raa-v2e
+@raa
+@raaemployer
 @clonevacancy
 @regression
-Scenario: RV2_E_CL_02 - Clone an advert, Approve, Apply and make Application Unsuccessful
+Scenario: RAA_E_CL_02 - Clone an advert, Approve, Apply and make Application Unsuccessful
 	Given the Employer clones and creates an advert
 	And the Reviewer Approves the vacancy
 	When the Applicant can apply for a Vacancy in FAA

@@ -1,9 +1,9 @@
-﻿Feature: RV2_E_AV_02
+﻿Feature: RAA_E_AV_02
 
-@raa-v2
-@raa-v2e
+@raa
+@raaemployer
 @regression
-Scenario: RV2_E_AV_02 - Create advert with different work location, Approve, Apply
+Scenario: RAA_E_AV_02 - Create advert with different work location, Approve, Apply
 	Given the Employer creates an advert by selecting different work location
 	When the Reviewer Approves the vacancy
 	Then the Applicant can apply for a Vacancy in FAA

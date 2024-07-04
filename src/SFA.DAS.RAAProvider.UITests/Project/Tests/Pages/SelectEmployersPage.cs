@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 {
-    public class SelectEmployersPage(ScenarioContext context) : Raav2BasePage(context)
+    public class SelectEmployersPage(ScenarioContext context) : RaaBasePage(context)
     {
 
         private List<(string hashedid, string value)> values = [];

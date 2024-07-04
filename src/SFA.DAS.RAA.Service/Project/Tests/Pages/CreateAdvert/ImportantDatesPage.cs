@@ -4,7 +4,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
     public class ImportantDatesPage(ScenarioContext context) : VacancyDatesBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "Closing and start date" : "Closing and start dates";
+        protected override string PageTitle => isRaaEmployer ? "Closing and start date" : "Closing and start dates";
 
         public DurationPage EnterImportantDates()
         {
@@ -18,8 +18,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         }
         private void EnterDates()
         {
-            ClosingDate(rAAV2DataHelper.VacancyClosing);
-            StartDate(rAAV2DataHelper.VacancyStart);
+            ClosingDate(rAADataHelper.VacancyClosing);
+            StartDate(rAADataHelper.VacancyStart);
             Continue();
             pageInteractionHelper.WaitforURLToChange("duration");
 

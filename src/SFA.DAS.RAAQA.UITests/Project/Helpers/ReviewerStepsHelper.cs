@@ -41,5 +41,5 @@ public class ReviewerStepsHelper(ScenarioContext context)
 
     private Reviewer_VacancyPreviewPage ReviewVacancy(bool restart) => GoToReviewerHomePage(restart).ReviewVacancy();
 
-    private ASVacancyQaLandingPage RAAV2QASignOut(VerifyDetailsBasePage basePage) { basePage.RAAV2QASignOut(); return new ASVacancyQaLandingPage(context); }
+    private ASVacancyQaLandingPage RAAV2QASignOut(VerifyDetailsBasePage basePage) { basePage.RAAQASignOut(); return new ASVacancyQaLandingPage(context); }
 }

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class GetStartedWithRecruitmentAPIsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class GetStartedWithRecruitmentAPIsPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Get started with the recruitment APIs";
 

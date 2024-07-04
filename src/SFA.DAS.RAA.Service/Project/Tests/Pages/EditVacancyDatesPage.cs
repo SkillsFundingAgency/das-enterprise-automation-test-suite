@@ -4,12 +4,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public class EditVacancyDatesPage(ScenarioContext context) : VacancyDatesBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "Edit advert dates" : "Edit vacancy dates";
+        protected override string PageTitle => isRaaEmployer ? "Edit advert dates" : "Edit vacancy dates";
 
         public EmployerVacancySearchResultPage EnterVacancyDates()
         {
-            ClosingDate(rAAV2DataHelper.EditedVacancyClosing);
-            StartDate(rAAV2DataHelper.EditedVacancyStart);
+            ClosingDate(rAADataHelper.EditedVacancyClosing);
+            StartDate(rAADataHelper.EditedVacancyStart);
             Continue();
             return new EmployerVacancySearchResultPage(context);
         }
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         public EditVacancyPage EnterPossibleStartDate()
         {
             // Vacancy dates are edited.
-            StartDate(rAAV2DataHelper.EditedVacancyStart);
+            StartDate(rAADataHelper.EditedVacancyStart);
             formCompletionHelper.ClickLinkByText("Cancel");
             return new EditVacancyPage(context);
         }

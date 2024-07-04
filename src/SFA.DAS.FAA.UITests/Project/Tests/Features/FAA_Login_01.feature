@@ -1,5 +1,5 @@
 ﻿Feature: FAALoginUsingRegisteredEmail
 
-@faav2
+@faa
 Scenario: FAALoginUsingRegisteredEmail
-	Then the candidate can login in to faav2
+	Then the candidate can login in to faa

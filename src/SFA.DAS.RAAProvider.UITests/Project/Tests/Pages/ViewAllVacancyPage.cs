@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 {
-    public class ViewAllVacancyPage(ScenarioContext context) : Raav2BasePage(context, true)
+    public class ViewAllVacancyPage(ScenarioContext context) : RaaBasePage(context, true)
     {
         protected override string PageTitle => "Your vacancies";
 

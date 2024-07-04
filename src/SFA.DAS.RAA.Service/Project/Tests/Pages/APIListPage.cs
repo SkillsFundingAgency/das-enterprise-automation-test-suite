@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ApiListPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ApiListPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "API list";
 

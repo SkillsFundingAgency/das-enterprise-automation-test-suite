@@ -31,10 +31,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         {
             return wageType switch
             {
-                RAAV2Const.NationalMinWages => RAAV2DataHelper.NationalMinimumWage,
-                RAAV2Const.FixedWageType => RAAV2DataHelper.FixedWageForApprentices,
-                RAAV2Const.SetAsCompetitive => RAAV2DataHelper.SetAsCompetitive,
-                _ => RAAV2DataHelper.NationalMinimumWageForApprentices,
+                RAAConst.NationalMinWages => RAADataHelper.NationalMinimumWage,
+                RAAConst.FixedWageType => RAADataHelper.FixedWageForApprentices,
+                RAAConst.SetAsCompetitive => RAADataHelper.SetAsCompetitive,
+                _ => RAADataHelper.NationalMinimumWageForApprentices,
             };
         }
 

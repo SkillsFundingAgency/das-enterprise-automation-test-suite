@@ -4,7 +4,7 @@ using SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class AdditionalQuestionsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class AdditionalQuestionsPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Do you have any questions you would like to ask applicants? (optional)";
 

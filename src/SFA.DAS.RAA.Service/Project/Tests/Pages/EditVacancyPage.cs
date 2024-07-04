@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class EditVacancyPage(ScenarioContext context) : Raav2BasePage(context)
+    public class EditVacancyPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Edit advert dates";
 

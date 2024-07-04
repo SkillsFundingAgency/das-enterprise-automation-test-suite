@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class CloseVacancyPage(ScenarioContext context) : Raav2BasePage(context)
+    public class CloseVacancyPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "Are you sure you want to close this advert on Find an apprenticeship?" : "Are you sure you want to close this vacancy on Find an apprenticeship?";
+        protected override string PageTitle => isRaaEmployer ? "Are you sure you want to close this advert on Find an apprenticeship?" : "Are you sure you want to close this vacancy on Find an apprenticeship?";
 
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
 

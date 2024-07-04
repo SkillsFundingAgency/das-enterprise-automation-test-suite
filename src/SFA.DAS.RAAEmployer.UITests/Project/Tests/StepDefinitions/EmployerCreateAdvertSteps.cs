@@ -17,7 +17,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         {
             _employerCreateVacancyStepsHelper.optionalFields = true;
 
-            _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.Anonymous);
+            _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.Anonymous);
         }
 
         [When(@"the Employer creates first submitted advert")]
@@ -36,15 +36,15 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         public void TheEmployerClonesAndCreatesAnAdvert() => _employerCreateVacancyStepsHelper.CloneAnAdvert();
 
         [Given(@"the Employer creates an advert by selecting different work location")]
-        public void TheEmployerCreatesAnAdvertBySelectingDifferentWorkLocation() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.LegalEntityName, false);
+        public void TheEmployerCreatesAnAdvertBySelectingDifferentWorkLocation() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.LegalEntityName, false);
 
         [Given(@"the Employer creates an anonymous advert")]
-        public void TheEmployerCreatesAnAnonymousAdvert() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.Anonymous);
+        public void TheEmployerCreatesAnAnonymousAdvert() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.Anonymous);
 
         [Given(@"the Employer creates an advert by using a registered name")]
         public void TheEmployerCreatesAnanAdvertByUsingARegisteredName() => _employerCreateVacancyStepsHelper.CreateANewAdvert();
 
         [Given(@"the Employer creates an advert by using a trading name")]
-        public void TheEmployerCreatesAnAdvertByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAV2Const.ExistingTradingName);
+        public void TheEmployerCreatesAnAdvertByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.ExistingTradingName);
     }
 }

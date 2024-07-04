@@ -6,18 +6,18 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RAAEmployer.UITests.Project
 {
     [Binding]
-    public class RAAV2EmployerConfigurationSetup(ScenarioContext context)
+    public class RAAEmployerConfigurationSetup(ScenarioContext context)
     {
         private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
         [BeforeScenario(Order = 2)]
-        public void SetUpRAAV2EmployerProjectConfiguration()
+        public void SetUpRAAEmployerProjectConfiguration()
         {
             context.SetEasLoginUser(
             [
-                _configSection.GetConfigSection<RAAV2EmployerUser>(),
+                _configSection.GetConfigSection<RAAEmployerUser>(),
 
-                _configSection.GetConfigSection<RAAV2EmployerProviderPermissionUser>()
+                _configSection.GetConfigSection<RAAEmployerProviderPermissionUser>()
             ]);
         }
     }

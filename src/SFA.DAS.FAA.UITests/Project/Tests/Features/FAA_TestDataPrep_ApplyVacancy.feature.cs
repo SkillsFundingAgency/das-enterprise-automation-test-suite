@@ -93,7 +93,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Then("the candidate can login in to faav2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the candidate can login in to faa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 6
  testRunner.And("the candidate can apply for their first vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -122,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 11
- testRunner.Then("the candidate can login in to faav2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the candidate can login in to faa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.And("the candidate can apply for vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

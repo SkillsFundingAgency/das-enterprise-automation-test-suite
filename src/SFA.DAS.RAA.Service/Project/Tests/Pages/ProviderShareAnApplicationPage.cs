@@ -4,7 +4,7 @@ using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderShareApplicationNot
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class ProviderDoYouWantToShareAnApplicationBasePage : Raav2BasePage
+    public abstract class ProviderDoYouWantToShareAnApplicationBasePage : RaaBasePage
     {
         protected override string PageTitle => "Share an application";
         private static By ConfirmButton => By.CssSelector("#share-applications-confirm");

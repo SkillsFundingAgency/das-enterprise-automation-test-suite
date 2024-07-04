@@ -20,8 +20,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.CreateVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_P_CV_01")]
-    public partial class RV2_P_CV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RAA_P_CV_01")]
+    public partial class RAA_P_CV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.CreateVacancy
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/CreateVacancy", "RV2_P_CV_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/CreateVacancy", "RAA_P_CV_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.CreateVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_P_CV_01 - Create anonymous vacancy through \'View all your vacancies\' page")]
-        [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2p")]
+        [NUnit.Framework.DescriptionAttribute("RAA_P_CV_01 - Create anonymous vacancy through \'View all your vacancies\' page")]
+        [NUnit.Framework.CategoryAttribute("raa")]
+        [NUnit.Framework.CategoryAttribute("raaprovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_P_CV_01_CreateAnonymousVacancyThroughViewAllYourVacanciesPage()
+        public void RAA_P_CV_01_CreateAnonymousVacancyThroughViewAllYourVacanciesPage()
         {
             string[] tagsOfScenario = new string[] {
-                    "raa-v2",
-                    "raa-v2p",
+                    "raa",
+                    "raaprovider",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_CV_01 - Create anonymous vacancy through \'View all your vacancies\' page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_P_CV_01 - Create anonymous vacancy through \'View all your vacancies\' page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

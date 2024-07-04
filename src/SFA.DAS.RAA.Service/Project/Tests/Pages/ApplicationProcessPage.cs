@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ApplicationProcessPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ApplicationProcessPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "How would you like to receive applications?";
 
@@ -24,8 +24,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         private void ApplicationMethodExternal()
         {
             SelectRadioOptionByForAttribute("application-method-external");
-            formCompletionHelper.EnterText(ApplicationUrl, rAAV2DataHelper.EmployerWebsiteUrl);
-            formCompletionHelper.EnterText(ApplicationInstructions, rAAV2DataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(ApplicationUrl, rAADataHelper.EmployerWebsiteUrl);
+            formCompletionHelper.EnterText(ApplicationInstructions, rAADataHelper.OptionalMessage);
 
         }
 

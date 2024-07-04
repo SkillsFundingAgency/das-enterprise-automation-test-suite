@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ConfirmTrainingProviderPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ConfirmTrainingProviderPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Confirm the training provider";
 

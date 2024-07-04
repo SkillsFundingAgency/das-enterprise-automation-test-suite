@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class ProviderMakeApplicationsUnsuccessfulBasePage : Raav2BasePage
+    public abstract class ProviderMakeApplicationsUnsuccessfulBasePage : RaaBasePage
     {
         protected override string PageTitle => $"Make application unsuccessful";
         protected override string AccessibilityPageTitle => "Make application unsuccessful";

@@ -1,11 +1,11 @@
-﻿Feature: RV2_E_DHLV_01	
+﻿Feature: RAA_E_DHLV_01	
 	As a Non Levy Employer, I want to add a vacancy after reserves funding from dynamic homepage
 	
-@raa-v2
-@raa-v2e
+@raa
+@raaemployer
 @regression
 @addnonlevyfunds
-Scenario: RV2_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	and close vacancy
+Scenario: RAA_E_DHLV_01 Employer creates vacancy from dynamic homepage journey and approve	and close vacancy
 	Given The User creates NonLevyEmployer account and sign an agreement
 	And the employer reserves funding from the dynamic home page
 	And the employer continue to add advert in the Recruitment

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ReferVacancyPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ReferVacancyPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-error-summary__title");
 

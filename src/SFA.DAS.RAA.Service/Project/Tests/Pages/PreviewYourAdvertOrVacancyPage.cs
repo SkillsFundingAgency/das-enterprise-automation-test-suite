@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class PreviewYourAdvertOrVacancyPage(ScenarioContext context) : Raav2BasePage(context)
+    public class PreviewYourAdvertOrVacancyPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "Preview your advert" : "Preview your vacancy";
+        protected override string PageTitle => isRaaEmployer ? "Preview your advert" : "Preview your vacancy";
 
         protected override bool TakeFullScreenShot => false;
 
@@ -103,7 +103,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             return new VacancyPreviewPart2WithErrorsPage(context);
         }
 
-        private By ContactDetails() => isRaaV2Employer ? EmployerContactDetails : ProviderContactDetails;
+        private By ContactDetails() => isRaaEmployer ? EmployerContactDetails : ProviderContactDetails;
 
         public ApplicationProcessPage UpdateApplicationProcess()
         {

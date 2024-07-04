@@ -4,7 +4,7 @@ using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderMakeApplicationsUns
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ProviderGiveFeedbackToMutlipleApplicants(ScenarioContext context) : Raav2BasePage(context)
+    public class ProviderGiveFeedbackToMutlipleApplicants(ScenarioContext context) : RaaBasePage(context)
     {
         private static By ConfirmButton => By.CssSelector("input[value='Confirm'][class='govuk-button']");
         protected override string PageTitle => $"Give feedback to the unsuccessful applicant";
@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public ProviderAreYouSureMultiUnSuccessfulPage FeedbackForMultipleUnsuccessful()
         {
-            var messsage = rAAV2DataHelper.OptionalMessage;
+            var messsage = rAADataHelper.OptionalMessage;
             formCompletionHelper.EnterText(MultipleCandidateFeedback, messsage);
             formCompletionHelper.Click(ConfirmButton);
             return new ProviderAreYouSureMultiUnSuccessfulPage(context, messsage);

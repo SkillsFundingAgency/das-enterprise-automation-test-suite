@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class AddAQualificationPage(ScenarioContext context) : Raav2BasePage(context)
+    public class AddAQualificationPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Add a qualification";
         private static By QualificationType => By.Name("QualificationType");
@@ -16,8 +16,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         public ConfirmQualificationsPage EnterQualifications()
         {
             formCompletionHelper.SelectFromDropDownByText(QualificationType, "A Level");
-            formCompletionHelper.EnterText(Subject, rAAV2DataHelper.DesiredQualificationsSubject);
-            formCompletionHelper.EnterText(Grade, RAA.DataGenerator.RAAV2DataHelper.DesiredQualificationsGrade);
+            formCompletionHelper.EnterText(Subject, rAADataHelper.DesiredQualificationsSubject);
+            formCompletionHelper.EnterText(Grade, RAA.DataGenerator.RAADataHelper.DesiredQualificationsGrade);
             formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioLabels)));
             Continue();
             return new ConfirmQualificationsPage(context);

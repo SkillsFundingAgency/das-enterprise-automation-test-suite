@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class VerifyDetailsBasePage(ScenarioContext context, bool verifypage = true) : Raav2BasePage(context, verifypage)
+    public abstract class VerifyDetailsBasePage(ScenarioContext context, bool verifypage = true) : RaaBasePage(context, verifypage)
     {
         protected virtual By EmployerName { get; }
 
@@ -21,6 +21,6 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         protected void VerifyDisabilityConfident() => VerifyElement(DisabilityConfident);
 
-        public void RAAV2QASignOut() => formCompletionHelper.ClickElement(By.CssSelector("#navigation a[data-automation='sign-out']"));
+        public void RAAQASignOut() => formCompletionHelper.ClickElement(By.CssSelector("#navigation a[data-automation='sign-out']"));
     }
 }

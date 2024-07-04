@@ -20,8 +20,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.E2EJourney
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_02")]
-    public partial class RV2_P_E2E_02Feature
+    [NUnit.Framework.DescriptionAttribute("RAA_P_E2E_02")]
+    public partial class RAA_P_E2E_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.E2EJourney
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourney", "RV2_P_E2E_02", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourney", "RAA_P_E2E_02", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,23 +74,23 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.E2EJourney
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
+        [NUnit.Framework.DescriptionAttribute("RAA_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
             "y and make Application Unsuccessful")]
-        [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2p")]
+        [NUnit.Framework.CategoryAttribute("raa")]
+        [NUnit.Framework.CategoryAttribute("raaprovider")]
         [NUnit.Framework.CategoryAttribute("v2_e2e")]
         [NUnit.Framework.CategoryAttribute("v2p_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_P_E2E_02_CreateVacancyByEnteringDataForOptionalFieldsApproveApplyAndMakeApplicationUnsuccessful()
+        public void RAA_P_E2E_02_CreateVacancyByEnteringDataForOptionalFieldsApproveApplyAndMakeApplicationUnsuccessful()
         {
             string[] tagsOfScenario = new string[] {
-                    "raa-v2",
-                    "raa-v2p",
+                    "raa",
+                    "raaprovider",
                     "v2_e2e",
                     "v2p_e2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
                     "y and make Application Unsuccessful", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);

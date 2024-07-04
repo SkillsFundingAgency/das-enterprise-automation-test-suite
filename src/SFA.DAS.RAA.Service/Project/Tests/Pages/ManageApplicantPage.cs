@@ -6,9 +6,9 @@ using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderDoYouWantToShareAnA
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ManageApplicantPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ManageApplicantPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => rAAV2DataHelper.CandidateFullName;
+        protected override string PageTitle => rAADataHelper.CandidateFullName;
 
         private static By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
 
@@ -48,7 +48,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public ConfirmApplicantUnsuccessfulPage MakeApplicantUnsucessful()
         {
-            OutcomeUnsuccessful(() => formCompletionHelper.EnterText(CandidateFeedback, rAAV2DataHelper.OptionalMessage));
+            OutcomeUnsuccessful(() => formCompletionHelper.EnterText(CandidateFeedback, rAADataHelper.OptionalMessage));
             return new ConfirmApplicantUnsuccessfulPage(context);
         }
 

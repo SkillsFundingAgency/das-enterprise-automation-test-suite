@@ -1,10 +1,10 @@
-﻿Feature: RV2_E_OV_01
+﻿Feature: RAA_E_OV_01
 
-@raa-v2
-@raa-v2e
+@raa
+@raaemployer
 @offlinevacancy
 @regression
-Scenario: RV2_E_OV_01 - Creates offline advert with disability confidence and Reviewer approves	
+Scenario: RAA_E_OV_01 - Creates offline advert with disability confidence and Reviewer approves	
 	Given the Employer creates an offline advert with disability confidence
 	Then the Reviewer verifies disability confident and approves the vacancy
 

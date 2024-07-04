@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class VacancySearchResultPage(ScenarioContext context) : Raav2BasePage(context)
+    public abstract class VacancySearchResultPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected static By Filter => By.CssSelector("#Filter");
 

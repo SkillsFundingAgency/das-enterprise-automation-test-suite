@@ -6,7 +6,7 @@ public class FAAStepsHelper(ScenarioContext context)
 {
     public FAASignedInLandingBasePage GoToFAAHomePage()
     {
-        context.Get<TabHelper>().GoToUrl(UrlConfig.FAAV2_AppSearch);
+        context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
 
         if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
         {

@@ -75,11 +75,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FAALoginUsingRegisteredEmail")]
-        [NUnit.Framework.CategoryAttribute("faav2")]
+        [NUnit.Framework.CategoryAttribute("faa")]
         public void FAALoginUsingRegisteredEmail()
         {
             string[] tagsOfScenario = new string[] {
-                    "faav2"};
+                    "faa"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAALoginUsingRegisteredEmail", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
@@ -93,7 +93,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Then("the candidate can login in to faav2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the candidate can login in to faa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

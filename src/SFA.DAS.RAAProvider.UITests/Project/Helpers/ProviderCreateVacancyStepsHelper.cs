@@ -22,7 +22,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         public VacancyReferencePage CreateANewVacancyForRandomEmployer() => CreateANewVacancy(true);
 
-        public VacancyReferencePage CreateAnonymousVacancy() => CreateANewVacancy(RAAV2Const.Anonymous);
+        public VacancyReferencePage CreateAnonymousVacancy() => CreateANewVacancy(RAAConst.Anonymous);
 
         public VacancyReferencePage CreateOfflineVacancy() => CreateANewVacancy(false);
 
@@ -32,7 +32,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         private VacancyReferencePage CreateANewVacancy(bool isApplicationMethodFAA) => CreateANewVacancy(string.Empty, isApplicationMethodFAA);
 
-        private VacancyReferencePage CreateANewVacancy(string employername, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(employername, true, RAAV2Const.NationalMinWages, isApplicationMethodFAA);
+        private VacancyReferencePage CreateANewVacancy(string employername, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(employername, true, RAAConst.NationalMinWages, isApplicationMethodFAA);
 
         private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, string wageType, bool isApplicationMethodFAA)
         {

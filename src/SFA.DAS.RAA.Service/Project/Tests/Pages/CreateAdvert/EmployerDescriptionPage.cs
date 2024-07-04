@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class EmployerDescriptionPage(ScenarioContext context) : Raav2BasePage(context)
+    public class EmployerDescriptionPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => $"Information about {objectContext.GetEmployerName()}";
 
@@ -19,8 +19,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         public PreviewYourAdvertOrVacancyPage EnterEmployerDescription()
         {
-            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
-            formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
+            formCompletionHelper.EnterText(EmployerDescription, rAADataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerWebsiteUrl, rAADataHelper.EmployerWebsiteUrl);
             Continue();
             return new PreviewYourAdvertOrVacancyPage(context);
         }
@@ -39,11 +39,11 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         private void EnterDetails(bool optionalFields)
         {
-            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerDescription, rAADataHelper.EmployerDescription);
             if (optionalFields)
             {
-                formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
-                if (!isRaaV2Employer)
+                formCompletionHelper.EnterText(EmployerWebsiteUrl, rAADataHelper.EmployerWebsiteUrl);
+                if (!isRaaEmployer)
                     formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
             }
 
@@ -51,11 +51,11 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         }
         public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool _, bool optionalFields)
         {
-            formCompletionHelper.EnterText(EmployerDescription, rAAV2DataHelper.EmployerDescription);
+            formCompletionHelper.EnterText(EmployerDescription, rAADataHelper.EmployerDescription);
             if (optionalFields)
             {
-                formCompletionHelper.EnterText(EmployerWebsiteUrl, rAAV2DataHelper.EmployerWebsiteUrl);
-                if (!isRaaV2Employer) formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
+                formCompletionHelper.EnterText(EmployerWebsiteUrl, rAADataHelper.EmployerWebsiteUrl);
+                if (!isRaaEmployer) formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(IsDisabilityConfident));
             }
             else
             {

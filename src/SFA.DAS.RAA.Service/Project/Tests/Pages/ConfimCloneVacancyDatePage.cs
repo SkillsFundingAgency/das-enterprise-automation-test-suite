@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ConfimCloneVacancyDatePage : Raav2BasePage
+    public class ConfimCloneVacancyDatePage : RaaBasePage
     {
         protected override string PageTitle => "Advert succesfully cloned";
 

@@ -1,8 +1,8 @@
-﻿Feature: RV2_E_DV_02
+﻿Feature: RAA_E_DV_02
 
-@raa-v2	
-@raa-v2e
+@raa	
+@raaemployer
 @regression
-Scenario: RV2_E_DV_02 - Resume Create Vacancy from Draft status
+Scenario: RAA_E_DV_02 - Resume Create Vacancy from Draft status
 Given the Employer creates Draft advert
 Then the Employer can open the draft and submits the advert

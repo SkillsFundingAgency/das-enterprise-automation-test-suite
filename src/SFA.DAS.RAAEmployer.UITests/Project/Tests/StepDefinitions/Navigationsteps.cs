@@ -9,12 +9,12 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
     public class Navigationsteps
     {
         private readonly ScenarioContext _context;
-        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
+        private readonly RAAEmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
 
         public Navigationsteps(ScenarioContext context)
         {
             _context = context;
-            _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(_context);
+            _rAAV2EmployerLoginHelper = new RAAEmployerLoginStepsHelper(_context);
         }
 
         [Given(@"the Employer navigates to 'Recruit' Page")]

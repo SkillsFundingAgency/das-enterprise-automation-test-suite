@@ -34,11 +34,11 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         private EmployerCreateAdvertPrefStepsHelper GetEmployerCreateAdvertPrefStepsHelper(string email)
             => new(context, GetRaav2EmployerUser(email));
 
-        private RAAV2EmployerUser GetRaav2EmployerUser(string email)
+        private RAAEmployerUser GetRaav2EmployerUser(string email)
         {
             var legalEntities = context.GetAccountLegalEntities([email]);
 
-            return new RAAV2EmployerUser { Username = email, IdOrUserRef = legalEntities[0].idOrUserRef, LegalEntities = legalEntities[0].listoflegalEntities };
+            return new RAAEmployerUser { Username = email, IdOrUserRef = legalEntities[0].idOrUserRef, LegalEntities = legalEntities[0].listoflegalEntities };
         }
     }
 }

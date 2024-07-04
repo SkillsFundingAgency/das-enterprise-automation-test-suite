@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ExtraInformationAboutPayPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ExtraInformationAboutPayPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Extra information about pay";
 
@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         public SubmitNoOfPositionsPage SubmitExtraInformationAboutPay()
         {
-            formCompletionHelper.EnterText(ExtraPayInformation, rAAV2DataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(ExtraPayInformation, rAADataHelper.OptionalMessage);
 
             Continue();
 

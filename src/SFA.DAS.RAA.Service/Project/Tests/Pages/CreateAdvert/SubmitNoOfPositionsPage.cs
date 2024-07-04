@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class SubmitNoOfPositionsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class SubmitNoOfPositionsPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "How many positions are there for this apprenticeship?" : "How many positions are available?";
+        protected override string PageTitle => isRaaEmployer ? "How many positions are there for this apprenticeship?" : "How many positions are available?";
 
         private static By NumberOfPositions => By.CssSelector("#NumberOfPositions");
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         public void EnterNumberOfPositionsAndContinue(string urltext)
         {
-            formCompletionHelper.EnterText(NumberOfPositions, RAA.DataGenerator.RAAV2DataHelper.NumberOfVacancy);
+            formCompletionHelper.EnterText(NumberOfPositions, RAA.DataGenerator.RAADataHelper.NumberOfVacancy);
             Continue();
             pageInteractionHelper.WaitforURLToChange(urltext);
         }

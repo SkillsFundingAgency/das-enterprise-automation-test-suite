@@ -19,7 +19,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
+        private readonly RAAEmployerLoginStepsHelper _rAAV2EmployerLoginHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private EasAccountUser _loginUser;
         private ProviderVacancySearchResultPage _resultPage;
@@ -30,13 +30,13 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(context);
             _providerStepsHelper = new ProviderStepsHelper(context);
-            _rAAV2EmployerLoginHelper = new RAAV2EmployerLoginStepsHelper(_context);
+            _rAAV2EmployerLoginHelper = new RAAEmployerLoginStepsHelper(_context);
         }
 
         [Given(@"the Employer grants permission to the provider to create advert with review option")]
         public void GivenTheEmployerGrantsPermissionToTheProviderToCreateAdvertWithReviewOption()
         {
-            _loginUser = _context.GetUser<RAAV2EmployerProviderPermissionUser>();
+            _loginUser = _context.GetUser<RAAEmployerProviderPermissionUser>();
 
             var homePage = _rAAV2EmployerLoginHelper.GoToHomePage(_loginUser);
 

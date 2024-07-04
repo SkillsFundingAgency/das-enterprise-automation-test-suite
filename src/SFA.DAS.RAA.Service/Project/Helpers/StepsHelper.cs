@@ -34,8 +34,8 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
         {
             return employername switch
             {
-                RAAV2Const.ExistingTradingName => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseExistingTradingName(),
-                RAAV2Const.Anonymous => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseAnonymous(),
+                RAAConst.ExistingTradingName => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseExistingTradingName(),
+                RAAConst.Anonymous => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseAnonymous(),
                 _ => whichEmployerNameDoYouWantOnYourAdvertPage.ChooseRegisteredName(),
             };
             ;

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class ProviderAreYouSureYouBasePage : Raav2BasePage
+    public abstract class ProviderAreYouSureYouBasePage : RaaBasePage
     {
         private static By ConfirmButton => By.CssSelector("input.govuk-button[value='Confirm']");
 
@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             VerifyPage();
         }
 
-        protected override string PageTitle => $"Are you sure you want to make {rAAV2DataHelper.CandidateFullName}'s application {_status}?";
+        protected override string PageTitle => $"Are you sure you want to make {rAADataHelper.CandidateFullName}'s application {_status}?";
 
         protected override string AccessibilityPageTitle => "Are you sure you want to make candidate application page";
 

@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
 {
-    public class RAAV2EmployerLoginStepsHelper(ScenarioContext context)
+    public class RAAEmployerLoginStepsHelper(ScenarioContext context)
     {
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper = new(context);
 
@@ -16,7 +16,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
 
         internal HomePage GoToHomePage(EasAccountUser loginUser) => _homePageStepsHelper.Login(loginUser);
 
-        internal CreateAnAdvertHomePage GoToCreateAnAdvertHomePage(RAAV2EmployerUser user)
+        internal CreateAnAdvertHomePage GoToCreateAnAdvertHomePage(RAAEmployerUser user)
         {
             GoToHomePage(user);
 
@@ -25,14 +25,14 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
             return new CreateAnAdvertHomePage(context);
         }
 
-        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage(RAAV2EmployerUser user)
+        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage(RAAEmployerUser user)
         {
             GoToHomePage(user);
 
             return NavigateToRecruitmentHomePage();
         }
 
-        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(context.GetUser<RAAV2EmployerUser>());
+        internal YourApprenticeshipAdvertsHomePage GoToRecruitmentHomePage() => GoToRecruitmentHomePage(context.GetUser<RAAEmployerUser>());
 
         internal YourApprenticeshipAdvertsHomePage NavigateToRecruitmentHomePage() => new(context, true);
     }

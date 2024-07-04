@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class AreYouSureYouWantToRenewThisAPIKeyPage(ScenarioContext context) : Raav2BasePage(context)
+    public class AreYouSureYouWantToRenewThisAPIKeyPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Are you sure you want to renew this API key?";
 

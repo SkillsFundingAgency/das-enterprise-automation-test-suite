@@ -12,7 +12,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
     {
         #region Helpers and Context
         private readonly VacancyTitleDatahelper _vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
-        private readonly RAAV2DataHelper _raaV2DataHelper = context.Get<RAAV2DataHelper>();
+        private readonly RAADataHelper _raaV2DataHelper = context.Get<RAADataHelper>();
         #endregion
 
         internal const string DraftStatus = "Draft";

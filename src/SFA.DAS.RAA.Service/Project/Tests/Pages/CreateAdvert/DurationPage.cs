@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class DurationPage(ScenarioContext context) : Raav2BasePage(context)
+    public class DurationPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Duration and working hours";
 
@@ -17,8 +17,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         public WageTypePage EnterDuration()
         {
             pageInteractionHelper.WaitforURLToChange("/duration/");
-            EnterDurationAndWorkingWeek(RAAV2DataHelper.Duration);
-            formCompletionHelper.EnterText(WeeklyHours, RAAV2DataHelper.WeeklyHours);
+            EnterDurationAndWorkingWeek(RAADataHelper.Duration);
+            formCompletionHelper.EnterText(WeeklyHours, RAADataHelper.WeeklyHours);
             Continue();
             pageInteractionHelper.WaitforURLToChange("wage");
             return new WageTypePage(context);
@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         public SubmitNoOfPositionsPage EnterTraineeshipDuration()
         {
             pageInteractionHelper.WaitforURLToChange("/duration/");
-            EnterDurationAndWorkingWeek(RAAV2DataHelper.TraineeshipDuration);
+            EnterDurationAndWorkingWeek(RAADataHelper.TraineeshipDuration);
             Continue();
             pageInteractionHelper.WaitforURLToChange("number-of-positions");
             return new SubmitNoOfPositionsPage(context);
@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         private void EnterDurationAndWorkingWeek(string duration)
         {
             formCompletionHelper.EnterText(Duration, duration);
-            formCompletionHelper.EnterText(WorkingWeekDescription, rAAV2DataHelper.WorkkingWeek);
+            formCompletionHelper.EnterText(WorkingWeekDescription, rAADataHelper.WorkkingWeek);
         }
     }
 }

@@ -20,8 +20,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_Faa_ApplyAdvert")]
-    public partial class RV2_Faa_ApplyAdvertFeature
+    [NUnit.Framework.DescriptionAttribute("RAA_Faa_ApplyAdvert")]
+    public partial class RAA_Faa_ApplyAdvertFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RV2_Faa_ApplyAdvert", "\tAs a applicant, apply for raav2 advert ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RAA_Faa_ApplyAdvert", "\tAs a applicant, apply for raav2 advert ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV2_Faa_ApplyAdvertPerfTestDataPreparation(string advertrefnum, string adverttitle, string[] exampleTags)
+        public virtual void RAA_Faa_ApplyAdvertPerfTestDataPreparation(string advertrefnum, string adverttitle, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "perftest",
@@ -86,7 +86,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("advertrefnum", advertrefnum);
             argumentsOfScenario.Add("adverttitle", adverttitle);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_Faa_ApplyAdvert Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_Faa_ApplyAdvert Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,13 +105,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_Faa_ApplyAdvert Perf test data preparation: To Be declared")]
+        [NUnit.Framework.DescriptionAttribute("RAA_Faa_ApplyAdvert Perf test data preparation: To Be declared")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public void RV2_Faa_ApplyAdvertPerfTestDataPreparation_ToBeDeclared()
+        public void RAA_Faa_ApplyAdvertPerfTestDataPreparation_ToBeDeclared()
         {
 #line 7
-this.RV2_Faa_ApplyAdvertPerfTestDataPreparation("To Be declared", "To Be declared", ((string[])(null)));
+this.RAA_Faa_ApplyAdvertPerfTestDataPreparation("To Be declared", "To Be declared", ((string[])(null)));
 #line hidden
         }
     }

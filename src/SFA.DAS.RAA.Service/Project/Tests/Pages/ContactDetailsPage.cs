@@ -6,9 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ContactDetailsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ContactDetailsPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
+        protected override string PageTitle => isRaaEmployer ? $"Contact details for {objectContext.GetEmployerName()} (optional)" : "Do you want to add your contact details?";
 
         protected static By EmployerContactName => By.CssSelector("#EmployerContactName");
         protected static By EmployerContactEmail => By.CssSelector("#EmployerContactEmail");
@@ -47,9 +47,9 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         private void EnterContactDetails()
         {
-            formCompletionHelper.EnterText(ContactName(), rAAV2DataHelper.ContactName);
-            formCompletionHelper.EnterText(ContactEmail(), rAAV2DataHelper.Email);
-            formCompletionHelper.EnterText(ContactPhone(), RAAV2DataHelper.ContactNumber);
+            formCompletionHelper.EnterText(ContactName(), rAADataHelper.ContactName);
+            formCompletionHelper.EnterText(ContactEmail(), rAADataHelper.Email);
+            formCompletionHelper.EnterText(ContactPhone(), RAADataHelper.ContactNumber);
         }
 
         private ApplicationProcessPage GoToApplicationProcessPage()
@@ -58,8 +58,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             return new ApplicationProcessPage(context);
         }
 
-        private By ContactName() => isRaaV2Employer ? EmployerContactName : ProviderContactName;
-        private By ContactEmail() => isRaaV2Employer ? EmployerContactEmail : ProviderContactEmail;
-        private By ContactPhone() => isRaaV2Employer ? EmployerContactPhone : ProviderContactPhone;
+        private By ContactName() => isRaaEmployer ? EmployerContactName : ProviderContactName;
+        private By ContactEmail() => isRaaEmployer ? EmployerContactEmail : ProviderContactEmail;
+        private By ContactPhone() => isRaaEmployer ? EmployerContactPhone : ProviderContactPhone;
     }
 }

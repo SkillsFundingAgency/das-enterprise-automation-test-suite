@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ApprenticeshipTrainingPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ApprenticeshipTrainingPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "What training course will the apprentice take?";
 
@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         private void EnterTrainingTitleAction()
         {
-            formCompletionHelper.EnterText(ProgrammeId, RAAV2DataHelper.TrainingTitle);
+            formCompletionHelper.EnterText(ProgrammeId, RAADataHelper.TrainingTitle);
 
             formCompletionHelper.Click(PageHeader);
 

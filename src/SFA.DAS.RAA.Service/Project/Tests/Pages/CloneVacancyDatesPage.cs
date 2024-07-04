@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class CloneVacancyDatesPage(ScenarioContext context) : Raav2BasePage(context)
+    public class CloneVacancyDatesPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Does the new advert have the same closing date and start date?";
 

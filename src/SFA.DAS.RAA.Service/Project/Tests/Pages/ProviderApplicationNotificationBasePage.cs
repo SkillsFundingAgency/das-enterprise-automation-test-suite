@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class ProviderApplicationNotificationBasePage : Raav2BasePage
+    public abstract class ProviderApplicationNotificationBasePage : RaaBasePage
     {
         protected static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             VerifyPage();
         }
 
-        protected override string PageTitle => $"{rAAV2DataHelper.CandidateFullName}'s application made {_status}.";
+        protected override string PageTitle => $"{rAADataHelper.CandidateFullName}'s application made {_status}.";
 
         protected override string AccessibilityPageTitle => "Candidate application made page";
     }

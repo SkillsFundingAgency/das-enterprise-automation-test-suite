@@ -20,8 +20,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.Navigation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_Nav_01")]
-    public partial class RV2_Nav_01Feature
+    [NUnit.Framework.DescriptionAttribute("RAA_Nav_01")]
+    public partial class RAA_Nav_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.Navigation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Navigation", "RV2_Nav_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Navigation", "RAA_Nav_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.Navigation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_Nav_01_Navigate to EAS sub sites from Recruit Page")]
+        [NUnit.Framework.DescriptionAttribute("RAA_Nav_01_Navigate to EAS sub sites from Recruit Page")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("raa-v2")]
-        public void RV2_Nav_01_NavigateToEASSubSitesFromRecruitPage()
+        [NUnit.Framework.CategoryAttribute("raa")]
+        public void RAA_Nav_01_NavigateToEASSubSitesFromRecruitPage()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
-                    "raa-v2"};
+                    "raa"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_Nav_01_Navigate to EAS sub sites from Recruit Page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_Nav_01_Navigate to EAS sub sites from Recruit Page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

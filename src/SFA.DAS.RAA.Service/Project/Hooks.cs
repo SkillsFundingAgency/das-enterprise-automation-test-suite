@@ -18,7 +18,7 @@ namespace SFA.DAS.RAA.Service.Project
 
             var fAAConfig = context.GetFAAConfig<FAAUserConfig>();
 
-            context.Set(new RAAV2DataHelper(fAAConfig, vacancyTitleDatahelper));
+            context.Set(new RAADataHelper(fAAConfig, vacancyTitleDatahelper));
 
             context.Set(new AdvertDataHelper());
 
@@ -28,7 +28,7 @@ namespace SFA.DAS.RAA.Service.Project
 
             context.Set(new ProviderCreateVacancySqlDbHelper(objectContext, dbConfig));
 
-            context.Set(new RAAV2ProviderPermissionsSqlDbHelper(objectContext, dbConfig));
+            context.Set(new RAAProviderPermissionsSqlDbHelper(objectContext, dbConfig));
         }
     }
 }

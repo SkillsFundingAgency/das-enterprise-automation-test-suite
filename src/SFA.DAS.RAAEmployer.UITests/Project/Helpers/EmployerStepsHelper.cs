@@ -6,12 +6,12 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
 {
     public class EmployerStepsHelper(ScenarioContext context)
     {
-        private readonly RAAV2EmployerLoginStepsHelper _rAAV2EmployerLoginHelper = new(context);
+        private readonly RAAEmployerLoginStepsHelper _rAAEmployerLoginHelper = new(context);
         internal EmployerVacancySearchResultPage YourAdvert()
         {
-            _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
+            _rAAEmployerLoginHelper.GotoEmployerHomePage();
 
-            return _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchYourAdverts();
+            return _rAAEmployerLoginHelper.NavigateToRecruitmentHomePage().SearchYourAdverts();
         }
 
         internal void EditVacancyDates() => SearchVacancyByVacancyReferenceInNewTab().GoToVacancyManagePage().EditAdvert().EnterVacancyDates();
@@ -28,11 +28,11 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
 
         private EmployerVacancySearchResultPage SearchVacancyByVacancyReferenceInNewTab()
         {
-            _rAAV2EmployerLoginHelper.GotoEmployerHomePage();
+            _rAAEmployerLoginHelper.GotoEmployerHomePage();
 
             return SearchVacancyByVacancyReference();
         }
 
-        private EmployerVacancySearchResultPage SearchVacancyByVacancyReference() => _rAAV2EmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
+        private EmployerVacancySearchResultPage SearchVacancyByVacancyReference() => _rAAEmployerLoginHelper.NavigateToRecruitmentHomePage().SearchAdvertByReferenceNumber();
     }
 }

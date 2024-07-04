@@ -20,8 +20,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.RecruitmentAPIs
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_P_RA_03")]
-    public partial class RV2_P_RA_03Feature
+    [NUnit.Framework.DescriptionAttribute("RAA_P_RA_03")]
+    public partial class RAA_P_RA_03Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.RecruitmentAPIs
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/RecruitmentAPIs", "RV2_P_RA_03", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/RecruitmentAPIs", "RAA_P_RA_03", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,20 +74,20 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.RecruitmentAPIs
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_P_RA_03 - Provider Renew Employer Display API Key")]
-        [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2p")]
+        [NUnit.Framework.DescriptionAttribute("RAA_P_RA_03 - Provider Renew Employer Display API Key")]
+        [NUnit.Framework.CategoryAttribute("raa")]
+        [NUnit.Framework.CategoryAttribute("raaprovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("recruitmentapikey")]
-        public void RV2_P_RA_03_ProviderRenewEmployerDisplayAPIKey()
+        public void RAA_P_RA_03_ProviderRenewEmployerDisplayAPIKey()
         {
             string[] tagsOfScenario = new string[] {
-                    "raa-v2",
-                    "raa-v2p",
+                    "raa",
+                    "raaprovider",
                     "regression",
                     "recruitmentapikey"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_RA_03 - Provider Renew Employer Display API Key", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_P_RA_03 - Provider Renew Employer Display API Key", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

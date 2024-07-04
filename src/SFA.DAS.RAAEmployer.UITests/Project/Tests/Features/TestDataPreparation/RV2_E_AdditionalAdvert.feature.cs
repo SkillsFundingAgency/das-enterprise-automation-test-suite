@@ -20,8 +20,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_AdditionalAdvert")]
-    public partial class RV2_E_AdditionalAdvertFeature
+    [NUnit.Framework.DescriptionAttribute("RAA_E_AdditionalAdvert")]
+    public partial class RAA_E_AdditionalAdvertFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RV2_E_AdditionalAdvert", "\tAs a Levy Employer, Create additional Advert", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RAA_E_AdditionalAdvert", "\tAs a Levy Employer, Create additional Advert", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV2_E_AdditionalAdvertAndApprovePerfTestDataPreparation(string employeremail, string[] exampleTags)
+        public virtual void RAA_E_AdditionalAdvertAndApprovePerfTestDataPreparation(string employeremail, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "perftest",
@@ -85,7 +85,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("employeremail", employeremail);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_AdditionalAdvert and Approve Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_E_AdditionalAdvert and Approve Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,13 +107,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_AdditionalAdvert and Approve Perf test data preparation: To Be declared")]
+        [NUnit.Framework.DescriptionAttribute("RAA_E_AdditionalAdvert and Approve Perf test data preparation: To Be declared")]
         [NUnit.Framework.CategoryAttribute("perftest")]
         [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public void RV2_E_AdditionalAdvertAndApprovePerfTestDataPreparation_ToBeDeclared()
+        public void RAA_E_AdditionalAdvertAndApprovePerfTestDataPreparation_ToBeDeclared()
         {
 #line 7
-this.RV2_E_AdditionalAdvertAndApprovePerfTestDataPreparation("To Be declared", ((string[])(null)));
+this.RAA_E_AdditionalAdvertAndApprovePerfTestDataPreparation("To Be declared", ((string[])(null)));
 #line hidden
         }
     }

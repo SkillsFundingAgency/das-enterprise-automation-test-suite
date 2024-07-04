@@ -3,12 +3,12 @@
 namespace SFA.DAS.FAA.UITests.Project;
 
 [Binding]
-public class FAAV2ConfigurationSetup(ScenarioContext context)
+public class FAAConfigurationSetup(ScenarioContext context)
 {
     private const string FAAApplyUsersConfig = "FAAApplyUsersConfig";
 
     [BeforeScenario(Order = 2)]
-    public void SetUpFAAV2Configuration()
+    public void SetUpFAAConfiguration()
     {
         var listOfFAAApplyUsers = new MultiConfigurationSetupHelper(context).SetMultiConfiguration<FAAApplyUsers>(FAAApplyUsersConfig);
 

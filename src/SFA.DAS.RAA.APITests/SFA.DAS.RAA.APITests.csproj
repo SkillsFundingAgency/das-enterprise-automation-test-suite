@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>SFA.DAS.RAA_V2.APITests</RootNamespace>
+    <RootNamespace>SFA.DAS.RAA.APITests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -33,7 +33,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
-    <None Update="SFA.DAS.RAA_V2.APITests.json">
+    <None Update="SFA.DAS.RAA.APITests.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="specflow.json">

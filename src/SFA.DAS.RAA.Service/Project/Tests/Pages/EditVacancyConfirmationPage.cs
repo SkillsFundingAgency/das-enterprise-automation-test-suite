@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class EditVacancyConfirmationPage : Raav2BasePage
+    public class EditVacancyConfirmationPage : RaaBasePage
     {
-        protected override string PageTitle => $"The vacancy dates for “{rAAV2DataHelper.VacancyTitle}” have been updated.";
+        protected override string PageTitle => $"The vacancy dates for “{rAADataHelper.VacancyTitle}” have been updated.";
 
         protected override string AccessibilityPageTitle => "The vacancy dates for vacancy title have been updated";
 

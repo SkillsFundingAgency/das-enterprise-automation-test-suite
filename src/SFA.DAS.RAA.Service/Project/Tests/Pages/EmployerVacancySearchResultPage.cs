@@ -37,7 +37,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         public ViewVacancyPage NavigateToViewAdvertPage()
         {
             GoToVacancyManagePage();
-            string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
+            string linkTest = isRaaEmployer ? "View advert" : "View vacancy";
             formCompletionHelper.ClickLinkByText(linkTest);
 
             return new ViewVacancyPage(context);

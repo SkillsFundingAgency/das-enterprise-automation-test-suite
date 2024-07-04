@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class VacancyDatesBasePage(ScenarioContext context) : Raav2BasePage(context)
+    public abstract class VacancyDatesBasePage(ScenarioContext context) : RaaBasePage(context)
     {
         protected static By ClosingDay => By.Id("ClosingDay");
         protected static By ClosingMonth => By.Id("ClosingMonth");

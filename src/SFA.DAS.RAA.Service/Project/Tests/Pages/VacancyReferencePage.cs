@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class VacancyReferencePage(ScenarioContext context) : Raav2BasePage(context)
+    public class VacancyReferencePage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override By PageHeader => VacancyReferenceNumber;
 

@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class DescriptionPage(ScenarioContext context) : Raav2BasePage(context)
+    public class DescriptionPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "How the apprentice will train";
 
@@ -14,9 +14,9 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         public PreviewYourAdvertOrVacancyPage EnterDescription()
         {
-            javaScriptHelper.SwitchFrameAndEnterText(VacancyDescription, IframeBody, rAAV2DataHelper.VacancyShortDescription);
-            javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAAV2DataHelper.TrainingDetails);
-            javaScriptHelper.SwitchFrameAndEnterText(OutcomeDescription, IframeBody, rAAV2DataHelper.VacancyOutcome);
+            javaScriptHelper.SwitchFrameAndEnterText(VacancyDescription, IframeBody, rAADataHelper.VacancyShortDescription);
+            javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAADataHelper.TrainingDetails);
+            javaScriptHelper.SwitchFrameAndEnterText(OutcomeDescription, IframeBody, rAADataHelper.VacancyOutcome);
             Continue();
             return new PreviewYourAdvertOrVacancyPage(context);
         }
@@ -45,12 +45,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         private void EnterVacancyAndTrainingDetails()
         {
-            javaScriptHelper.SwitchFrameAndEnterText(VacancyDescription, IframeBody, rAAV2DataHelper.VacancyShortDescription);
-            javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAAV2DataHelper.TrainingDetails);
+            javaScriptHelper.SwitchFrameAndEnterText(VacancyDescription, IframeBody, rAADataHelper.VacancyShortDescription);
+            javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAADataHelper.TrainingDetails);
         }
         private void EnterTrainingDetails()
         {
-            javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAAV2DataHelper.TrainingDetails);
+            javaScriptHelper.SwitchFrameAndEnterText(TrainingDescription, IframeBody, rAADataHelper.TrainingDetails);
         }
     }
 }

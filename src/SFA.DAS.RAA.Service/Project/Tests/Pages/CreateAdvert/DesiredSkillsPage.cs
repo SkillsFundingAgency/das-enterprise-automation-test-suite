@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class DesiredSkillsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class DesiredSkillsPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "What skills and personal qualities do applicants need to have?";
 

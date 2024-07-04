@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public abstract class BaseVacancyTitlePage(ScenarioContext context) : Raav2BasePage(context)
+    public abstract class BaseVacancyTitlePage(ScenarioContext context) : RaaBasePage(context)
     {
         private static By Title => By.CssSelector("#Title");
 
@@ -33,7 +33,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         private void ChangeVacancyTitle()
         {
-            formCompletionHelper.EnterText(Title, rAAV2DataHelper.VacancyTitle);
+            formCompletionHelper.EnterText(Title, rAADataHelper.VacancyTitle);
             Continue();
         }
     }

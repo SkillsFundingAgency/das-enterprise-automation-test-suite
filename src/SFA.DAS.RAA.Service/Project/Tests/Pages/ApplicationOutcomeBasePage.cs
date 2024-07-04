@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class ApplicationOutcomeBasePage : Raav2BasePage
+    public abstract class ApplicationOutcomeBasePage : RaaBasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-notification-banner__heading");
 

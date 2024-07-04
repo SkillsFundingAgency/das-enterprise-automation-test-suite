@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SFA.DAS.RAA.Service.Project.Helpers
 {
-    public class RAAV2ProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.PermissionsDbConnectionString)
+    public class RAAProviderPermissionsSqlDbHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.PermissionsDbConnectionString)
     {
         public int GetNoOfValidOrganisations(string hashedid)
         {

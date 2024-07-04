@@ -4,6 +4,6 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
     public class WhatDoYouWantToCallThisAdvertPage(ScenarioContext context) : BaseVacancyTitlePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "What do you want to call this advert?" : "What do you want to call this vacancy?";
+        protected override string PageTitle => isRaaEmployer ? "What do you want to call this advert?" : "What do you want to call this vacancy?";
     }
 }

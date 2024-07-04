@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public ManageApplicantPage NavigateToManageApplicant()
         {
-            GoToVacancyManageApplicantsPage($"{rAAV2DataHelper.CandidateFullName}");
+            GoToVacancyManageApplicantsPage($"{rAADataHelper.CandidateFullName}");
 
             return new ManageApplicantPage(context);
         }
@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         {
             GoToVacancyManagePage();
 
-            string linkTest = isRaaV2Employer ? "View advert" : "View vacancy";
+            string linkTest = isRaaEmployer ? "View advert" : "View vacancy";
 
             formCompletionHelper.ClickLinkByText(linkTest);
 

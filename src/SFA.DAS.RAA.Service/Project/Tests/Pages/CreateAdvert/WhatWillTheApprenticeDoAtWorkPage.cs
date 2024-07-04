@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class WhatWillTheApprenticeDoAtWorkPage(ScenarioContext context) : Raav2BasePage(context)
+    public class WhatWillTheApprenticeDoAtWorkPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "What will the apprentice do at work?";
 
@@ -14,7 +14,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         public DescriptionPage EnterShortDescriptionOfWhatApprenticeWillDo()
         {
-            javaScriptHelper.SwitchFrameAndEnterText(ApprenticeWorkSelector, IframeBody, rAAV2DataHelper.VacancyShortDescription);
+            javaScriptHelper.SwitchFrameAndEnterText(ApprenticeWorkSelector, IframeBody, rAADataHelper.VacancyShortDescription);
             Continue();
             return new DescriptionPage(context);
         }

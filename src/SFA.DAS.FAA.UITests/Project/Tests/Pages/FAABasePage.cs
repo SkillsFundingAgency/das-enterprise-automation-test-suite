@@ -36,14 +36,14 @@ public abstract class FAABasePage : VerifyBasePage
     {
         var vacancyRef = objectContext.GetVacancyReference();
 
-        var uri = new Uri(new Uri(UrlConfig.FAAV2_BaseUrl), $"apprenticeship/VAC{vacancyRef}");
+        var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"apprenticeship/VAC{vacancyRef}");
 
         tabHelper.GoToUrl(uri.AbsoluteUri);
     }
 
     protected FAASearchResultPage SearchUsingVacancyTitle()
     {
-        var uri = new Uri(new Uri(UrlConfig.FAAV2_BaseUrl), $"apprenticeships?SearchTerm={vacancyTitleDataHelper.VacancyTitle}");
+        var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"apprenticeships?SearchTerm={vacancyTitleDataHelper.VacancyTitle}");
 
         tabHelper.GoToUrl(uri.AbsoluteUri);
 

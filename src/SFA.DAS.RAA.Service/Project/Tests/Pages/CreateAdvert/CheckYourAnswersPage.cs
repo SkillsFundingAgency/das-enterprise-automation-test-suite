@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class CheckYourAnswersPage(ScenarioContext context) : Raav2BasePage(context)
+    public class CheckYourAnswersPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => isRaaV2Employer ? "Check your answers" : "Check your answers before submitting your vacancy";
+        protected override string PageTitle => isRaaEmployer ? "Check your answers" : "Check your answers before submitting your vacancy";
 
         private static By BackToTaskSelector => By.CssSelector("[data-automation='link-back']");
 

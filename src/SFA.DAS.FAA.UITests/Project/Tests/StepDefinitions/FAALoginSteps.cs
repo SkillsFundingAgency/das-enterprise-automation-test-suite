@@ -3,7 +3,7 @@
 [Binding]
 public class FAALoginSteps(ScenarioContext context)
 {
-    [Then(@"the candidate can login in to faav2")]
+    [Then(@"the candidate can login in to faa")]
     public void TheCandidateCanLoginInToFaav()
     {
         new FAAStepsHelper(context).GoToFAAHomePage();

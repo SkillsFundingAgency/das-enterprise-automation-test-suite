@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class ConfirmApplicantStatusBasePage : Raav2BasePage
+    public abstract class ConfirmApplicantStatusBasePage : RaaBasePage
     {
         protected override string PageTitle => $"Are you sure you want to tell this applicant that they {_message}";
 

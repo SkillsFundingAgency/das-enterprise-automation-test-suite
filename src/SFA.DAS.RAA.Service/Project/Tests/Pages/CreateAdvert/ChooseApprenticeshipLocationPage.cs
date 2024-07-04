@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class ChooseApprenticeshipLocationPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ChooseApprenticeshipLocationPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Where will the apprentice work?";
 
@@ -37,7 +37,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         private void DifferentLocation()
         {
             SelectRadioOptionByForAttribute("other-location");
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(Postcode, $"{RAAV2DataHelper.EmployerAddress} "); return pageInteractionHelper.FindElement(MenuItems); });
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(Postcode, $"{RAADataHelper.EmployerAddress} "); return pageInteractionHelper.FindElement(MenuItems); });
         }
     }
 }

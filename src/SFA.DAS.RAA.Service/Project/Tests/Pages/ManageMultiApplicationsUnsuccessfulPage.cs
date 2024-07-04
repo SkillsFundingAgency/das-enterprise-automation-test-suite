@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class ManageMultiApplicationsUnsuccessfulPage(ScenarioContext context) : Raav2BasePage(context)
+    public class ManageMultiApplicationsUnsuccessfulPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Make multiple applications unsuccessful";
         private static By SaveContinue => By.CssSelector("#applicationsToUnsuccessful-action");

@@ -20,8 +20,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.OfflineVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_E_OV_01")]
-    public partial class RV2_E_OV_01Feature
+    [NUnit.Framework.DescriptionAttribute("RAA_E_OV_01")]
+    public partial class RAA_E_OV_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.OfflineVacancy
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OfflineVacancy", "RV2_E_OV_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/OfflineVacancy", "RAA_E_OV_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,21 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.OfflineVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_E_OV_01 - Creates offline advert with disability confidence and Reviewer appr" +
+        [NUnit.Framework.DescriptionAttribute("RAA_E_OV_01 - Creates offline advert with disability confidence and Reviewer appr" +
             "oves")]
-        [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2e")]
+        [NUnit.Framework.CategoryAttribute("raa")]
+        [NUnit.Framework.CategoryAttribute("raaemployer")]
         [NUnit.Framework.CategoryAttribute("offlinevacancy")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_E_OV_01_CreatesOfflineAdvertWithDisabilityConfidenceAndReviewerApproves()
+        public void RAA_E_OV_01_CreatesOfflineAdvertWithDisabilityConfidenceAndReviewerApproves()
         {
             string[] tagsOfScenario = new string[] {
-                    "raa-v2",
-                    "raa-v2e",
+                    "raa",
+                    "raaemployer",
                     "offlinevacancy",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_E_OV_01 - Creates offline advert with disability confidence and Reviewer appr" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_E_OV_01 - Creates offline advert with disability confidence and Reviewer appr" +
                     "oves", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);

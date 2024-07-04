@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAA_V2.APITests.Project.Tests.Features
+namespace SFA.DAS.RAA.APITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -73,12 +73,12 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RV2_API_01_OuterApiGetEmployerAccountLegalEntities_(string testCaseId, string method, string endpoint, string responseStatus, string[] exampleTags)
+        public virtual void RAA_API_01_OuterApiGetEmployerAccountLegalEntities_(string testCaseId, string method, string endpoint, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
                     "regression",
-                    "raav2api"};
+                    "raaapi"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -89,7 +89,7 @@ namespace SFA.DAS.RAA_V2.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Method", method);
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_API_01_OuterApiGetEmployerAccountLegalEntities_", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_API_01_OuterApiGetEmployerAccountLegalEntities_", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -117,26 +117,26 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_API_01_OuterApiGetEmployerAccountLegalEntities_: 001")]
+        [NUnit.Framework.DescriptionAttribute("RAA_API_01_OuterApiGetEmployerAccountLegalEntities_: 001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("raav2api")]
-        public void RV2_API_01_OuterApiGetEmployerAccountLegalEntities__001()
+        [NUnit.Framework.CategoryAttribute("raaapi")]
+        public void RAA_API_01_OuterApiGetEmployerAccountLegalEntities__001()
         {
 #line 6
-this.RV2_API_01_OuterApiGetEmployerAccountLegalEntities_("001", "GET", "/employeraccounts/{hashedAccountId}/legalentities", "OK", ((string[])(null)));
+this.RAA_API_01_OuterApiGetEmployerAccountLegalEntities_("001", "GET", "/employeraccounts/{hashedAccountId}/legalentities", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_API_01_OuterApiGetEmployerAccountLegalEntities_: 002")]
+        [NUnit.Framework.DescriptionAttribute("RAA_API_01_OuterApiGetEmployerAccountLegalEntities_: 002")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("raav2api")]
-        public void RV2_API_01_OuterApiGetEmployerAccountLegalEntities__002()
+        [NUnit.Framework.CategoryAttribute("raaapi")]
+        public void RAA_API_01_OuterApiGetEmployerAccountLegalEntities__002()
         {
 #line 6
-this.RV2_API_01_OuterApiGetEmployerAccountLegalEntities_("002", "GET", "/employeraccounts/{hashedAccountId}/legalentities", "OK", ((string[])(null)));
+this.RAA_API_01_OuterApiGetEmployerAccountLegalEntities_("002", "GET", "/employeraccounts/{hashedAccountId}/legalentities", "OK", ((string[])(null)));
 #line hidden
         }
     }

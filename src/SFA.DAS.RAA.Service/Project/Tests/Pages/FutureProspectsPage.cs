@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public class FutureProspectsPage(ScenarioContext context) : Raav2BasePage(context)
+    public class FutureProspectsPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "What is the expected career progression after this apprenticeship?";
 
@@ -12,7 +12,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public ThingsToConsiderPage EnterFutureProspect()
         {
-            javaScriptHelper.SwitchFrameAndEnterText(FutureProspect, IframeBody, rAAV2DataHelper.VacancyOutcome);
+            javaScriptHelper.SwitchFrameAndEnterText(FutureProspect, IframeBody, rAADataHelper.VacancyOutcome);
             Continue();
             return new ThingsToConsiderPage(context);
         }

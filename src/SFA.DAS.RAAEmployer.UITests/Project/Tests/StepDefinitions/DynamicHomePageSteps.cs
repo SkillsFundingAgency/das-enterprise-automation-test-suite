@@ -32,7 +32,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     break;
 
                 case RecruitmentDynamicHomePage.PendingReviewStatus:
-                    _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyDetails(status, context.Get<RAAV2DataHelper>().VacancyClosing);
+                    _dynamicHomePage = new RecruitmentDynamicHomePage(context, true).ConfirmVacancyDetails(status, context.Get<RAADataHelper>().VacancyClosing);
                     break;
 
                 case RecruitmentDynamicHomePage.LiveStatus:

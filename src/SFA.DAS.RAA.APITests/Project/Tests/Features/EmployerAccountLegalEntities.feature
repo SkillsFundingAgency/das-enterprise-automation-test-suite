@@ -2,8 +2,8 @@
 
 @api
 @regression
-@raav2api
-Scenario Outline: RV2_API_01_OuterApiGetEmployerAccountLegalEntities_
+@raaapi
+Scenario Outline: RAA_API_01_OuterApiGetEmployerAccountLegalEntities_
 	Given user prepares request with Employer HashedID
 	When the user sends <Method> request to <Endpoint>
 	Then a <ResponseStatus> response is received

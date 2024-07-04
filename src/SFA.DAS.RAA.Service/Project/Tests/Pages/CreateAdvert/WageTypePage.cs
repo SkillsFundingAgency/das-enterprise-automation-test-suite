@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
-    public class WageTypePage(ScenarioContext context) : Raav2BasePage(context)
+    public class WageTypePage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "How much will the apprentice be paid?";
 
@@ -32,10 +32,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         }
         private void ChooseWage(string wageType)
         {
-            if (wageType == RAAV2Const.NationalMinWages) EnterNationalMinWages();
+            if (wageType == RAAConst.NationalMinWages) EnterNationalMinWages();
 
-            else if (wageType == RAAV2Const.FixedWageType) EnterFixedWageType();
-            else if (wageType == RAAV2Const.SetAsCompetitive)
+            else if (wageType == RAAConst.FixedWageType) EnterFixedWageType();
+            else if (wageType == RAAConst.SetAsCompetitive)
             {
                 EnterSetAsCompetitive();
                 ExtraInformationAboutWage();
@@ -78,7 +78,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         }
         private PreviewYourVacancyPage ContinueToPreviewYourVacancyPage()
         {
-            formCompletionHelper.EnterText(WageAdditionalInformation, rAAV2DataHelper.OptionalMessage);
+            formCompletionHelper.EnterText(WageAdditionalInformation, rAADataHelper.OptionalMessage);
             Continue();
             pageInteractionHelper.WaitforURLToChange("part1-complete");
             return new PreviewYourVacancyPage(context);
@@ -96,7 +96,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
             SelectRadioOptionByForAttribute("wage-type-fixed");
             Continue();
 
-            formCompletionHelper.EnterText(FixedWageYearlyAmount, RAAV2DataHelper.FixedWageYearlyAmount);
+            formCompletionHelper.EnterText(FixedWageYearlyAmount, RAADataHelper.FixedWageYearlyAmount);
         }
 
         private static By SelectYesRadioButton => By.CssSelector("#competitive-salary-type-national-minimum-wage-or-above");

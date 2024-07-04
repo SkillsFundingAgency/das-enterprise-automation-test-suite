@@ -7,14 +7,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
-    public abstract class Raav2BasePage : VerifyBasePage
+    public abstract class RaaBasePage : VerifyBasePage
     {
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         protected readonly VacancyReferenceHelper vacancyReferenceHelper;
-        protected readonly RAAV2DataHelper rAAV2DataHelper;
+        protected readonly RAADataHelper rAADataHelper;
 
         protected readonly AdvertDataHelper advertDataHelper;
-        protected readonly bool isRaaV2Employer;
+        protected readonly bool isRaaEmployer;
 
         protected override By ContinueButton => By.CssSelector(".save-button");
 
@@ -27,12 +27,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         protected static By MultipleCandidateFeedback => By.CssSelector("#provider-multiple-candidate-feedback");
         protected static By CandidateFeedback => By.CssSelector("#CandidateFeedback");
 
-        public Raav2BasePage(ScenarioContext context, bool verifypage = true) : base(context)
+        public RaaBasePage(ScenarioContext context, bool verifypage = true) : base(context)
         {
-            isRaaV2Employer = tags.Contains("raa-v2e");
+            isRaaEmployer = tags.Contains("raaemployer");
             vacancyReferenceHelper = context.GetValue<VacancyReferenceHelper>();
             vacancyTitleDataHelper = context.GetValue<VacancyTitleDatahelper>();
-            rAAV2DataHelper = context.GetValue<RAAV2DataHelper>();
+            rAADataHelper = context.GetValue<RAADataHelper>();
             advertDataHelper = context.GetValue<AdvertDataHelper>();
 
             if (verifypage) VerifyPage();
@@ -42,7 +42,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         protected void VerifyPanelTitle(string text) => pageInteractionHelper.VerifyText(PanelTitle, text);
 
-        protected new Raav2BasePage SelectRadioOptionByForAttribute(string value)
+        protected new RaaBasePage SelectRadioOptionByForAttribute(string value)
         {
             base.SelectRadioOptionByForAttribute(value);
             return this;

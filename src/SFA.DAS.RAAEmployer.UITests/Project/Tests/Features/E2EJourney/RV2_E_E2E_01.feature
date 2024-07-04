@@ -1,11 +1,11 @@
-﻿Feature: RV2_E_E2E_01
+﻿Feature: RAA_E_E2E_01
 
-@raa-v2
-@raa-v2e
+@raa
+@raaemployer
 @v2_e2e
 @v2e_e2e
 @regression
-Scenario: RV2_E_E2E_01 - Create an advert with registered name, Approve, Apply and make Application Successful
+Scenario: RAA_E_E2E_01 - Create an advert with registered name, Approve, Apply and make Application Successful
 	Given the Employer creates an advert by using a registered name
 	And the Reviewer Approves the vacancy
 	When the Applicant can apply for a Vacancy in FAA
