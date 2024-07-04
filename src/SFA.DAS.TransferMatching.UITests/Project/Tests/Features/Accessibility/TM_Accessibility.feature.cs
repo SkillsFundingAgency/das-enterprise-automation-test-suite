@@ -21,16 +21,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features.Accessibility
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("TM_Accessibility")]
-    [NUnit.Framework.CategoryAttribute("accessibility")]
-    [NUnit.Framework.CategoryAttribute("transfermatching")]
     public partial class TM_AccessibilityFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "accessibility",
-                "transfermatching"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "TM_Accessibility.feature"
 #line hidden
@@ -79,9 +75,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features.Accessibility
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("TM_ACC_01 Create Apply Approve and Accept transfer pledge - Add apprentice")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
         public void TM_ACC_01CreateApplyApproveAndAcceptTransferPledge_AddApprentice()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_ACC_01 Create Apply Approve and Accept transfer pledge - Add apprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5

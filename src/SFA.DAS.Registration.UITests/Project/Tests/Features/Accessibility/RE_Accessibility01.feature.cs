@@ -21,16 +21,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Accessibility
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("RE_E2E_ACC_Accessibility01")]
-    [NUnit.Framework.CategoryAttribute("accessibility")]
-    [NUnit.Framework.CategoryAttribute("registration")]
     public partial class RE_E2E_ACC_Accessibility01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "accessibility",
-                "registration"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "RE_Accessibility01.feature"
 #line hidden
@@ -81,14 +77,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.Accessibility
         [NUnit.Framework.DescriptionAttribute("RE_E2E_ACC_01 Provider Lead Registration")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         [NUnit.Framework.CategoryAttribute("providerleadregistration")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("registration")]
         public void RE_E2E_ACC_01ProviderLeadRegistration()
         {
             string[] tagsOfScenario = new string[] {
                     "addnonlevyfunds",
-                    "providerleadregistration"};
+                    "providerleadregistration",
+                    "accessibility",
+                    "registration"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_E2E_ACC_01 Provider Lead Registration", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,28 +98,28 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("the provider invites an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("the invited employer status is \"Account creation not started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
+#line 12
  testRunner.When("the employer sets up the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 12
+#line 13
  testRunner.Then("the invited employer status is \"Account creation started\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
  testRunner.When("the employer adds PAYE from TaskList Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 15
  testRunner.Then("the invited employer status is \"PAYE scheme added\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 16
  testRunner.When("the employer signs the agreement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
+#line 17
  testRunner.Then("the invited employer status is \"Legal agreement accepted\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

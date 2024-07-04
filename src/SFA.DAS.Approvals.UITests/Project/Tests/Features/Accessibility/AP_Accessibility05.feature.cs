@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibility
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Accessibility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -21,16 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_Accessibility05")]
-    [NUnit.Framework.CategoryAttribute("accessibility")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_E2E_ACC_Accessibility05Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "accessibility",
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_Accessibility05.feature"
 #line hidden
@@ -39,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/Accessibility", "AP_E2E_ACC_Accessibility05", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "AP_E2E_ACC_Accessibility05", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -82,12 +78,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         [NUnit.Framework.CategoryAttribute("ignoreindemo")]
         [NUnit.Framework.CategoryAttribute("ignoreintest")]
         [NUnit.Framework.CategoryAttribute("ignoreintest2")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         public void AP_E2E_ACC_05PublicSectorReporting()
         {
             string[] tagsOfScenario = new string[] {
                     "ignoreindemo",
                     "ignoreintest",
-                    "ignoreintest2"};
+                    "ignoreintest2",
+                    "accessibility",
+                    "approvals"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_05 PublicSectorReporting", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9

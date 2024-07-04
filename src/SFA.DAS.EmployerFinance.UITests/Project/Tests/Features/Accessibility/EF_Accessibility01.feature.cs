@@ -21,16 +21,12 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.Accessibility
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("EF_Accessibility01")]
-    [NUnit.Framework.CategoryAttribute("accessibility")]
-    [NUnit.Framework.CategoryAttribute("employerfinance")]
     public partial class EF_Accessibility01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "accessibility",
-                "employerfinance"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "EF_Accessibility01.feature"
 #line hidden
@@ -79,12 +75,16 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Features.Accessibility
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EF_ACC_01 - Verify Finance pages navigation for Existing Levy Employer")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("employerfinance")]
         public void EF_ACC_01_VerifyFinancePagesNavigationForExistingLevyEmployer()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "employerfinance"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EF_ACC_01 - Verify Finance pages navigation for Existing Levy Employer", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,13 +94,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.When("the Employer navigates to \'Finance\' Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("Employer is able to navigate to \'View transactions\', \'Download transactions\', \'Fu" +
                         "nding projection\' and \'Transfers\' pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

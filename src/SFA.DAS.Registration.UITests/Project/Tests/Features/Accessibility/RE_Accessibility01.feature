@@ -1,10 +1,11 @@
-﻿@accessibility
-@registration
+﻿
 Feature: RE_E2E_ACC_Accessibility01
 Navigation journey through EAS and PAS 
  
 @addnonlevyfunds
 @providerleadregistration
+@accessibility
+@registration
 Scenario: RE_E2E_ACC_01 Provider Lead Registration
 	Given the provider invites an employer
 	Then the invited employer status is "Account creation not started"

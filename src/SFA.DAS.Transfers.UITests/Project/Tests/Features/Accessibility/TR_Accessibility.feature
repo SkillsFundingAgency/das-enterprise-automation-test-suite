@@ -1,11 +1,10 @@
-﻿@accessibility
-@transfers
-Feature: TR_ACC_Accessibility
+﻿Feature: TR_ACC_Accessibility
 
 @liveapprentice
 @addtransferslevyfunds
 @addsecondlevyfunds
-
+@accessibility
+@transfers
 Scenario: TR_ACC_01 Transfers - Creating a Cohort and Approve by all 3 parties
 	Given We have two Employer accounts
 	And First is a Sender connected to Second as a Receiver

@@ -1,8 +1,8 @@
-﻿@accessibility
-@approvals
-Feature: AP_E2E_ACC_Accessibility01
+﻿Feature: AP_E2E_ACC_Accessibility01
 Navigation journey through EAS and PAS 
 
+@accessibility
+@approvals
 @approvalsnavigation
 Scenario: AP_E2E_ACC_01_Navigate to EAS sub sites from Apprentice Page
 	Given the Employer logins using existing Levy Account

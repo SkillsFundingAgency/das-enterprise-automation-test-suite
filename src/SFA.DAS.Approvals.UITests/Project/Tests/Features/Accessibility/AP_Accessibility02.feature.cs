@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibility
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Accessibility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -21,16 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_Accessibility02")]
-    [NUnit.Framework.CategoryAttribute("accessibility")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_E2E_ACC_Accessibility02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "accessibility",
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_Accessibility02.feature"
 #line hidden
@@ -39,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/Accessibility", "AP_E2E_ACC_Accessibility02", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "AP_E2E_ACC_Accessibility02", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,11 +76,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_02_1 Create Employer send an approved cohort then provider approves th" +
             "e cohort")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         public void AP_E2E_ACC_02_1CreateEmployerSendAnApprovedCohortThenProviderApprovesTheCohort()
         {
             string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals",
                     "addlevyfunds",
                     "e2escenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -124,12 +124,16 @@ testRunner.Given("The User creates LevyEmployer account and sign an agreement", 
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_02_2 Employer searches for apprentices")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         public void AP_E2E_ACC_02_2EmployerSearchesForApprentices()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_02_2 Employer searches for apprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 17
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -139,13 +143,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 18
+#line 19
  testRunner.Given("An employer has navigated to Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 19
+#line 20
  testRunner.When("the employer filters by \'Live\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 20
+#line 21
  testRunner.Then("the employer is presented with first page with filters applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -155,13 +159,17 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_02_3 Employer requests change to dob and reference After ILR match and" +
             " Provider approves")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         public void AP_E2E_ACC_02_3EmployerRequestsChangeToDobAndReferenceAfterILRMatchAndProviderApproves()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_02_3 Employer requests change to dob and reference After ILR match and" +
                     " Provider approves", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 23
+#line 25
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -171,13 +179,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 24
+#line 26
  testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 25
+#line 27
  testRunner.When("the Employer edits Dob and Reference and confirm the changes after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
+#line 28
  testRunner.Then("the provider can review and approve the changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

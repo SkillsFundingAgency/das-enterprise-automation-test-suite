@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibility
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Accessibility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -21,16 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_Accessibility04")]
-    [NUnit.Framework.CategoryAttribute("accessibility")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_E2E_ACC_Accessibility04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "accessibility",
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_Accessibility04.feature"
 #line hidden
@@ -39,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/Accessibility", "AP_E2E_ACC_Accessibility04", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "AP_E2E_ACC_Accessibility04", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,11 +76,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_04_1 Provider makes reservation adds edits and deletes apprentice for " +
             "non-levy employer")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
         [NUnit.Framework.CategoryAttribute("nonlevyproviderscenarios")]
         public void AP_E2E_ACC_04_1ProviderMakesReservationAddsEditsAndDeletesApprenticeForNon_LevyEmployer()
         {
             string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals",
                     "provideraddapprentice",
                     "nonlevyproviderscenarios"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -121,14 +121,18 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_04_2 Provider Selects Filter And Pagination")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
         public void AP_E2E_ACC_04_2ProviderSelectsFilterAndPagination()
         {
             string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals",
                     "provideraddapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_04_2 Provider Selects Filter And Pagination", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 16
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -138,13 +142,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 17
+#line 19
  testRunner.Given("A Provider has navigated to Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 18
+#line 20
  testRunner.When("the provider filters by \'Live\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 21
  testRunner.Then("the provider is presented with first page with no filters applied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -154,15 +158,19 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_04_3 Provider adds apprentices and views cohort details when the cohor" +
             "t is with the employer")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("provideraddapprentice")]
         public void AP_E2E_ACC_04_3ProviderAddsApprenticesAndViewsCohortDetailsWhenTheCohortIsWithTheEmployer()
         {
             string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals",
                     "provideraddapprentice"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_04_3 Provider adds apprentices and views cohort details when the cohor" +
                     "t is with the employer", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -172,19 +180,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 28
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 29
  testRunner.When("the Employer create a cohort and send to provider to add apprentices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 25
+#line 30
  testRunner.And("the provider adds 2 apprentices approves them and sends to employer to approve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 26
+#line 31
  testRunner.Then("Provider is able to view the cohort with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 27
+#line 32
  testRunner.And("Provider is able to view all apprentice details when the cohort with employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -193,14 +201,18 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_04_04_Limiting Standards In Edit Cohort")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("limitingstandards")]
         public void AP_E2E_ACC_04_04_LimitingStandardsInEditCohort()
         {
             string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals",
                     "limitingstandards"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_04_04_Limiting Standards In Edit Cohort", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 30
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -210,16 +222,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 31
+#line 39
 testRunner.Given("provider does not offer Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 32
+#line 40
 testRunner.And("provider receives a apprentice request that contains Standard-X", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 33
+#line 41
 testRunner.When("provider opens apprentice requests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 34
+#line 42
 testRunner.Then("provider see warning messages in approve apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

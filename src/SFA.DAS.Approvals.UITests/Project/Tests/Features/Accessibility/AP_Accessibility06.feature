@@ -1,8 +1,9 @@
-﻿@accessibility
-@registration
-Feature: AP_E2E_ACC_Accessibility06
+﻿Feature: AP_E2E_ACC_Accessibility06
 Navigation journey through EAS and PAS 
 
+
+@accessibility
+@approvals
 @addnonlevyfunds
 Scenario: AP_E2E_ACC_06_Verify adding a Team member as viewer
 	When an Employer Account with Company Type Org is created and agreement is Signed

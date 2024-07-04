@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibility
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Accessibility
 {
     using TechTalk.SpecFlow;
     using System;
@@ -21,16 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_Accessibility06")]
-    [NUnit.Framework.CategoryAttribute("accessibility")]
-    [NUnit.Framework.CategoryAttribute("registration")]
     public partial class AP_E2E_ACC_Accessibility06Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "accessibility",
-                "registration"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_Accessibility06.feature"
 #line hidden
@@ -39,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/Accessibility", "AP_E2E_ACC_Accessibility06", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "AP_E2E_ACC_Accessibility06", "Navigation journey through EAS and PAS ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,14 +75,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.E2EJourneys.Accessibi
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_E2E_ACC_06_Verify adding a Team member as viewer")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
         public void AP_E2E_ACC_06_VerifyAddingATeamMemberAsViewer()
         {
             string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "approvals",
                     "addnonlevyfunds"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_E2E_ACC_06_Verify adding a Team member as viewer", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,26 +96,26 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.When("an Employer Account with Company Type Org is created and agreement is Signed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("Employer is able to invite a team member with Viewer access", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("Employer is able to resend an invite", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 12
  testRunner.And("Employer is able abort cancelling during cancelling an invite", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
  testRunner.And("Employer is able to cancel an invite", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 14
  testRunner.And("the invited team member is able to accept the invite and login to the Employer ac" +
                         "count", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 15
  testRunner.And("Employer is able to Remove the team member from the account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

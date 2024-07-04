@@ -1,7 +1,7 @@
-﻿@accessibility
-@transfermatching
-Feature: TM_Accessibility
+﻿Feature: TM_Accessibility
 
+@accessibility
+@transfermatching
 Scenario: TM_ACC_01 Create Apply Approve and Accept transfer pledge - Add apprentice
 	Given the levy employer logins using existing transfer matching account
 	And the levy employer can create pledge using default criteria
