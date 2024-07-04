@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAAQA.UITests.Project.Tests.Features
+namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.E2EJourney
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_R_01")]
-    public partial class RV2_R_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_02")]
+    public partial class RV2_P_E2E_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RV2_R_01.feature"
+#line 1 "RV2_P_E2E_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "RV2_R_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourney", "RV2_P_E2E_02", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,25 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_R_01 - Reviewer approves next available vacancy on the dashboard")]
+        [NUnit.Framework.DescriptionAttribute("RV2_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
+            "y and make Application Unsuccessful")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2qa")]
+        [NUnit.Framework.CategoryAttribute("raa-v2p")]
+        [NUnit.Framework.CategoryAttribute("v2_e2e")]
+        [NUnit.Framework.CategoryAttribute("v2p_e2e")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_R_01_ReviewerApprovesNextAvailableVacancyOnTheDashboard()
+        public void RV2_P_E2E_02_CreateVacancyByEnteringDataForOptionalFieldsApproveApplyAndMakeApplicationUnsuccessful()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
-                    "raa-v2qa",
+                    "raa-v2p",
+                    "v2_e2e",
+                    "v2p_e2e",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_R_01 - Reviewer approves next available vacancy on the dashboard", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_E2E_02 - Create vacancy by entering data for Optional fields, Approve, Appl" +
+                    "y and make Application Unsuccessful", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,11 +102,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
-testRunner.When("Reviewer is logged into QA Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
+ testRunner.Given("the Provider creates a vacancy by entering all the Optional fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
-testRunner.Then("the Reviewer is able to approve the next available vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.When("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("Provider can make the application unsuccessful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And("the status of the Application is shown as \'unsuccessful\' in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

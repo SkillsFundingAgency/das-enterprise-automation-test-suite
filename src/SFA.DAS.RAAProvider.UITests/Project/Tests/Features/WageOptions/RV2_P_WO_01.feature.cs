@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAAQA.UITests.Project.Tests.Features
+namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.WageOptions
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RV2_R_01")]
-    public partial class RV2_R_01Feature
+    [NUnit.Framework.DescriptionAttribute("RV2_P_WO_01")]
+    public partial class RV2_P_WO_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RV2_R_01.feature"
+#line 1 "RV2_P_WO_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "RV2_R_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/WageOptions", "RV2_P_WO_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,18 +74,18 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV2_R_01 - Reviewer approves next available vacancy on the dashboard")]
+        [NUnit.Framework.DescriptionAttribute("RV2_P_WO_01 - Provider verifies ‘National Minimum Wage\' option")]
         [NUnit.Framework.CategoryAttribute("raa-v2")]
-        [NUnit.Framework.CategoryAttribute("raa-v2qa")]
+        [NUnit.Framework.CategoryAttribute("raa-v2p")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void RV2_R_01_ReviewerApprovesNextAvailableVacancyOnTheDashboard()
+        public void RV2_P_WO_01_ProviderVerifiesNationalMinimumWageOption()
         {
             string[] tagsOfScenario = new string[] {
                     "raa-v2",
-                    "raa-v2qa",
+                    "raa-v2p",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_R_01 - Reviewer approves next available vacancy on the dashboard", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV2_P_WO_01 - Provider verifies ‘National Minimum Wage\' option", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -97,10 +97,11 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-testRunner.When("Reviewer is logged into QA Application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("Provider selects \'National Minimum Wage\' in the first part of the journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
-testRunner.Then("the Reviewer is able to approve the next available vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the Provider verify \'National Minimum Wage\' the wage option selected in the Previ" +
+                        "ew page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

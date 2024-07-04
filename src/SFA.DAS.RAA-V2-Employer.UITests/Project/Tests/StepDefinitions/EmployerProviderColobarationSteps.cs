@@ -5,11 +5,11 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers;
-using SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers;
+using SFA.DAS.RAAProvider.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
 using EmployerStepsHelper = SFA.DAS.RAA_V2_Employer.UITests.Project.Helpers.EmployerStepsHelper;
-using ProviderStepsHelper = SFA.DAS.RAA_V2_Provider.UITests.Project.Helpers.ProviderStepsHelper;
+using ProviderStepsHelper = SFA.DAS.RAAProvider.UITests.Project.Helpers.ProviderStepsHelper;
 
 namespace SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.StepDefinitions
 {
