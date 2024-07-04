@@ -11,6 +11,8 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
 
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
+        private static By ChangeAdditionalQuestion => By.CssSelector("a[data-automation='change-additional-question-1']");
+
         public PreviewYourAdvertOrVacancyPage PreviewAdvert()
         {
             formCompletionHelper.ClickLinkByText("Preview advert before submitting");
@@ -28,5 +30,12 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages.CreateAdvert
             Continue();
             return new VacancyReferencePage(context);
         }
-    }
+
+        public AdditionalQuestionsPage UpdateAdditionalQuestion()
+        {
+            formCompletionHelper.Click(ChangeAdditionalQuestion);
+
+            return new (context);
+        }
+}
 }

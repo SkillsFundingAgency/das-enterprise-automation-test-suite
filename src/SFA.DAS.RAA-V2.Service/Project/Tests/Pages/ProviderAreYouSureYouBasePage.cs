@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
 {
     public abstract class ProviderAreYouSureYouBasePage : Raav2BasePage
     {
-        private static By ConfirmButton => By.CssSelector("input[value='Confirm'][class='govuk-button']");
+        private static By ConfirmButton => By.CssSelector("input.govuk-button[value='Confirm']");
 
         private readonly string _status;
 
@@ -23,6 +23,7 @@ namespace SFA.DAS.RAA_V2.Service.Project.Tests.Pages
         protected void Confirm()
         {
             SelectRadioOptionByForAttribute("notify-candidate-yes");
+
             formCompletionHelper.Click(ConfirmButton);
         }
     }
