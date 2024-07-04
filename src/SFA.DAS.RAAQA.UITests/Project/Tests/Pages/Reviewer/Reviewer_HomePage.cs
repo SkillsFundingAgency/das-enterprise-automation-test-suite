@@ -3,7 +3,7 @@ using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
+namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 {
     public class Reviewer_HomePage(ScenarioContext context) : RAAV2QABasePage(context)
     {

@@ -4,7 +4,7 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project
+namespace SFA.DAS.RAAQA.UITests.Project
 {
     [Binding]
     public class RAAV2QAConfigurationSetup(ScenarioContext context)

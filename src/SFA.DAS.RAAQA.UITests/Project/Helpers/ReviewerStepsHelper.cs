@@ -2,13 +2,13 @@
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
-using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
+using SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Helpers;
+namespace SFA.DAS.RAAQA.UITests.Project.Helpers;
 
 public class ReviewerStepsHelper(ScenarioContext context)
 {

@@ -3,7 +3,7 @@ using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
+namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 {
     public abstract class ApproveVacancyBasePage(ScenarioContext context, bool verifypage = true) : VerifyDetailsBasePage(context, verifypage)
     {

@@ -1,9 +1,9 @@
-﻿using SFA.DAS.RAA_V2_QA.UITests.Project.Helpers;
-using SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer;
+﻿using SFA.DAS.RAAQA.UITests.Project.Helpers;
+using SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer;
 using TechTalk.SpecFlow;
 
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.RAAQA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class ReviewerSteps(ScenarioContext context)

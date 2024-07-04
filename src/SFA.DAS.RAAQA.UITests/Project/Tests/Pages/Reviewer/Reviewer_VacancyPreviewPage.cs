@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
+namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 {
     public class Reviewer_VacancyPreviewPage(ScenarioContext context) : ApproveVacancyBasePage(context)
     {

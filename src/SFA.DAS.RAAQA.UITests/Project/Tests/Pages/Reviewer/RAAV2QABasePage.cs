@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RAA_V2_QA.UITests.Project.Tests.Pages.Reviewer
+namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 {
     public abstract class RAAV2QABasePage : VerifyBasePage
     {
