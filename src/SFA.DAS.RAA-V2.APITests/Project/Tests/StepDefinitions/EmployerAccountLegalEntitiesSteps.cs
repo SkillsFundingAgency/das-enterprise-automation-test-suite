@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.RAA_V2.APITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.RAA.APITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)

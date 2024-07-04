@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.RAA_V2.APITests.Project.Helpers.SqlDbHelpers;
+﻿namespace SFA.DAS.RAA.APITests.Project.Helpers.SqlDbHelpers;
 
 public class EmployerLegalEntitiesSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.AccountsDbConnectionString)
 {
