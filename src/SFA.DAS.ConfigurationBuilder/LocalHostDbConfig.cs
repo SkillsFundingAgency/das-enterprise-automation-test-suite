@@ -35,7 +35,8 @@
                 EarningsDbConnectionString = GetConnectionString(dbDevConfig.EarningsDbName),
                 ApprenticeshipsDbConnectionString = GetConnectionString(dbDevConfig.ApprenticeshipsDbName),
                 RofjaaDbConnectionString = GetConnectionString(dbDevConfig.RofjaaDbName),
-                AANDbConnectionString = GetConnectionString(dbDevConfig.AANDbName)
+                AANDbConnectionString = GetConnectionString(dbDevConfig.AANDbName),
+                CanAccDbConnectionString = GetConnectionString(dbDevConfig.CanAccDbName)
             };
         }
 

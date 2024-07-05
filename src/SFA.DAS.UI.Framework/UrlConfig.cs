@@ -16,13 +16,13 @@ public static class UrlConfig
     public static string CA_BaseUrl => EnvironmentConfig.IsPPEnvironment ? "https://preprod.apprenticeships.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}.apprenticeships.gov.uk/";
     public static string EPAOAssessmentService_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-assessors.apprenticeships.education.gov.uk";
     public static string EmployerApprenticeshipService_BaseUrl => $"https://accounts.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/";
-    public static string FAA_BaseUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}.findapprenticeship.service.gov.uk/";
-    public static string FAA_SearchApprenticeshipUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}.findapprenticeship.service.gov.uk/apprenticeshipsearch";
+    public static string FAA_BaseUrl => $"https://{(EnvironmentConfig.EnvironmentName).ToLower()}-findapprenticeship.apprenticeships.education.gov.uk/";
+    public static string FAA_AppSearch => $"{FAA_BaseUrl}apprenticeshipsearch";
     public static string FATV2_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
     public static string FAT_BaseUrl => EnvironmentConfig.IsPPEnvironment ? "https://pp-findapprenticeshiptraining-v1.apprenticeships.education.gov.uk/" : $"https://{EnvironmentConfig.EnvironmentName}-fatweb.apprenticeships.education.gov.uk/";
     public static string Manage_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-manageapprenticeship.apprenticeships.education.gov.uk/";
     public static string Provider_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/";
-    public static string RAAV2QA_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-review.apprenticeships.education.gov.uk/";
+    public static string RAAQA_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-review.apprenticeships.education.gov.uk/";
     public static string Recruit_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.recruit-apprentice.service.gov.uk/";
     public static string SupportConsole_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";
     public static string SupportTools_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-support-tools.apprenticeships.education.gov.uk";
@@ -45,3 +45,4 @@ public static class UrlConfig
     public static string Apprentice_BaseUrl => $"https://confirm.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/apprenticeships";
     public static string TransferMacthingApplyUrl(string pledgeId) => $"https://transfers.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/opportunities/{pledgeId}";
 }
+

@@ -19,7 +19,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
 		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 		<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
 	</ItemGroup>
@@ -27,7 +27,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\SFA.DAS.TransferMatching.UITests\SFA.DAS.TransferMatching.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj" />
-		<ProjectReference Include="..\SFA.DAS.RAA-V2-Employer.UITests\SFA.DAS.RAA-V2-Employer.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.RAAEmployer.UITests\SFA.DAS.RAAEmployer.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.FAT-V2.UITests\SFA.DAS.FAT-V2.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />

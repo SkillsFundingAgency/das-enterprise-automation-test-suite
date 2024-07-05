@@ -1,0 +1,40 @@
+﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
+
+namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
+{
+    public abstract class BaseVacancyTitlePage(ScenarioContext context) : RaaBasePage(context)
+    {
+        private static By Title => By.CssSelector("#Title");
+
+        public SelectOrganisationPage EnterAdvertTitleMultiOrg()
+        {
+            ChangeVacancyTitle();
+            return new SelectOrganisationPage(context);
+        }
+
+        public ApprenticeshipTrainingPage EnterVacancyTitle()
+        {
+            ChangeVacancyTitle();
+            return new ApprenticeshipTrainingPage(context);
+        }
+
+        public HaveYouAlreadyFoundTrainingPage EnterVacancyTitleForTheFirstAdvert()
+        {
+            ChangeVacancyTitle();
+            return new HaveYouAlreadyFoundTrainingPage(context);
+        }
+
+        public CheckYourAnswersPage UpdateVacancyTitleAndGoToCheckYourAnswersPage()
+        {
+            ChangeVacancyTitle();
+            return new CheckYourAnswersPage(context);
+        }
+
+        private void ChangeVacancyTitle()
+        {
+            formCompletionHelper.EnterText(Title, rAADataHelper.VacancyTitle);
+            Continue();
+        }
+    }
+}

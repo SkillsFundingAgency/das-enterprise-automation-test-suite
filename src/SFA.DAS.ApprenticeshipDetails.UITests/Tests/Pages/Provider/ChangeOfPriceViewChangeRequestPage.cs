@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
     public class ChangeOfPriceViewChangeRequestPage(ScenarioContext context) : ChangePriceNegotiationAmountsPage(context)
     {
         protected override string PageTitle => "View change request";
-        private static By PendingEmployerReviewTag => By.XPath("//strong[text()='Pending employer review']");
+        internal static By PendingEmployerReviewTag => By.XPath("//strong[text()='Pending employer review']");
         private static By TrainingPriceRequestedValue => By.Id("Trainingprice-NewValue");
         private static By TrainingPriceCurrentValue => By.Id("Trainingprice-OriginalValue");
         private static By EndPointAssessmentPriceRequestedValue => By.Id("EndPointAssessmentPrice-NewValue");
