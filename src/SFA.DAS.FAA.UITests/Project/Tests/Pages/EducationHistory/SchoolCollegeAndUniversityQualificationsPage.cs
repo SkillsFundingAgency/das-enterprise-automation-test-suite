@@ -1,0 +1,21 @@
+﻿namespace SFA.DAS.FAA.UITests.Project.Tests.Pages.EducationHistory;
+
+public class SchoolCollegeAndUniversityQualificationsPage(ScenarioContext context) : FAABasePage(context)
+{
+    protected override string PageTitle => "School, college and university qualifications";
+
+    public WhatIsYourMostRecentQualificationPage SelectYesAndContinue()
+    {
+        SelectRadioOptionByForAttribute("DoYouWantToAddAnyQualifications");
+        Continue();
+        return new(context);
+    }
+
+    public FAA_ApplicationOverviewPage SelectNoAndContinue()
+    {
+        SelectRadioOptionByForAttribute("DoYouWantToAddAnyQualifications-No");
+        Continue();
+        return new(context);
+    }
+
+}

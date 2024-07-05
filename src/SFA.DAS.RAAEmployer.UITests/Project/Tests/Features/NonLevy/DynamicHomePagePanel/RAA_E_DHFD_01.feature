@@ -1,0 +1,14 @@
+﻿Feature: RAA_E_DHFD_01
+As a Non Levy Employer, I want to add a vacancy after reserves funding from dynamic homepage
+	
+@raa
+@raaemployer
+@regression
+@addnonlevyfunds
+Scenario: RAA_E_DHFD_01 Employer creates a draft vacancy from dynamic homepage journey
+	Given The User creates NonLevyEmployer account and sign an agreement
+	And the employer reserves funding from the dynamic home page
+	And the employer continue to add advert in the Recruitment 
+	When the Employer creates first Draft advert
+	Then the vacancy details is displayed on the Dynamic home page with Status 'Draft'
+	And Employer can continue creating an advert

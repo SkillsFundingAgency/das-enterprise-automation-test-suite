@@ -7,7 +7,7 @@ global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.Live.SmokeTests.Project.Helpers;
 global using SFA.DAS.Live.SmokeTests.Project.Tests.Pages;
 global using SFA.DAS.Login.Service.Project.Helpers;
-global using SFA.DAS.RAA_V2_Employer.UITests.Project.Tests.Pages.Employer;
+global using SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer;
 global using SFA.DAS.Registration.UITests.Project;
 global using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 global using SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;

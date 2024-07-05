@@ -1,0 +1,23 @@
+{
+  "bindingCulture": {
+    "feature": "en-GB"
+  },
+  "language": {
+    "feature": "en-GB"
+  },
+  "stepAssemblies": [
+    { "assembly": "SFA.DAS.UI.Framework" },
+    { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.TestDataExport" },
+    { "assembly": "SFA.DAS.Registration.UITests" },
+    { "assembly": "SFA.DAS.FAA.UITests" },
+    { "assembly": "SFA.DAS.RAA.Service" },
+    { "assembly": "SFA.DAS.RAAQA.UITests" },
+    { "assembly": "SFA.DAS.ProviderLogin.Service" },
+    { "assembly": "SFA.DAS.DfeAdmin.Service" }
+  ],
+  "generator": {
+    "allowRowTests": false,
+    "addNonParallelizableMarkerForTags": [ "donotexecuteinparallel" ]
+  }
+}

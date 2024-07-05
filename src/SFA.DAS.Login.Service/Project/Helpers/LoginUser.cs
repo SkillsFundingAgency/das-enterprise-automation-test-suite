@@ -37,9 +37,9 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class AuthTestUser : EasAccountUser { }
 
-    public class RAAV2EmployerUser : EasAccountUser { }
+    public class RAAEmployerUser : EasAccountUser { }
 
-    public class RAAV2EmployerProviderPermissionUser : EasAccountUser { }
+    public class RAAEmployerProviderPermissionUser : EasAccountUser { }
 
     public class ProviderPermissionLevyUser : EasAccountUser { }
 
