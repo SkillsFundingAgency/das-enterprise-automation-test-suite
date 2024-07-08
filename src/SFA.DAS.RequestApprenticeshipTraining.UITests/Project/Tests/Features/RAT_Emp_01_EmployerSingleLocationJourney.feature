@@ -1,5 +1,6 @@
 ﻿Feature: RAT_Emp_01_EmployerSingleLocationJourney
 
+@RATEmployer
 @regression
 @mailosaur
 Scenario: RAT_Emp_01_EmployerSingleLocatoinJourney

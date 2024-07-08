@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Hooks
 {
-    [Binding]
+    [Binding, Scope(Tag = "@RATEmployer")]
     public class BeforeScenarioHooks(ScenarioContext context)
     {
         [BeforeScenario(Order = 46)]
