@@ -10,7 +10,11 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
+<<<<<<<< HEAD:src/SFA.DAS.EarlyConnectForms.UITests/Project/Tests/Features/NonUcasStudentJourney.feature.cs
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
+========
+namespace SFA.DAS.SupportConsole.UITests.Project.Tests.Features.Accessibility
+>>>>>>>> master:src/SFA.DAS.SupportConsole.UITests/Project/Tests/Features/Accessibility/SC_Accessibility.feature.cs
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,23 +24,36 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
+<<<<<<<< HEAD:src/SFA.DAS.EarlyConnectForms.UITests/Project/Tests/Features/NonUcasStudentJourney.feature.cs
     [NUnit.Framework.DescriptionAttribute("NonUcasStudentJourney")]
     public partial class NonUcasStudentJourneyFeature
+========
+    [NUnit.Framework.DescriptionAttribute("SC_Accessibility")]
+    public partial class SC_AccessibilityFeature
+>>>>>>>> master:src/SFA.DAS.SupportConsole.UITests/Project/Tests/Features/Accessibility/SC_Accessibility.feature.cs
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
+<<<<<<<< HEAD:src/SFA.DAS.EarlyConnectForms.UITests/Project/Tests/Features/NonUcasStudentJourney.feature.cs
 #line 1 "NonUcasStudentJourney.feature"
+========
+#line 1 "SC_Accessibility.feature"
+>>>>>>>> master:src/SFA.DAS.SupportConsole.UITests/Project/Tests/Features/Accessibility/SC_Accessibility.feature.cs
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
+<<<<<<<< HEAD:src/SFA.DAS.EarlyConnectForms.UITests/Project/Tests/Features/NonUcasStudentJourney.feature.cs
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "NonUcasStudentJourney", "As a user I want to be able to fill online form for student interest in apprentic" +
                     "eship \r\nso that my data will be available for futher progress ", ProgrammingLanguage.CSharp, featureTags);
+========
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "SC_Accessibility", null, ProgrammingLanguage.CSharp, featureTags);
+>>>>>>>> master:src/SFA.DAS.SupportConsole.UITests/Project/Tests/Features/Accessibility/SC_Accessibility.feature.cs
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,6 +92,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
+<<<<<<<< HEAD:src/SFA.DAS.EarlyConnectForms.UITests/Project/Tests/Features/NonUcasStudentJourney.feature.cs
         [NUnit.Framework.DescriptionAttribute("Verify Non Ucas Student journey for NorthEast Region")]
         [NUnit.Framework.CategoryAttribute("ec-v1")]
         [NUnit.Framework.CategoryAttribute("earlyconnect-ui")]
@@ -88,6 +106,21 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Non Ucas Student journey for NorthEast Region", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
+========
+        [NUnit.Framework.DescriptionAttribute("SC_ACC_01 Tier2Navigation")]
+        [NUnit.Framework.CategoryAttribute("accessibility")]
+        [NUnit.Framework.CategoryAttribute("supportconsole")]
+        [NUnit.Framework.CategoryAttribute("masupportconsole")]
+        public void SC_ACC_01Tier2Navigation()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "accessibility",
+                    "supportconsole",
+                    "masupportconsole"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SC_ACC_01 Tier2Navigation", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
+>>>>>>>> master:src/SFA.DAS.SupportConsole.UITests/Project/Tests/Features/Accessibility/SC_Accessibility.feature.cs
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -97,6 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+<<<<<<<< HEAD:src/SFA.DAS.EarlyConnectForms.UITests/Project/Tests/Features/NonUcasStudentJourney.feature.cs
 #line 10
  testRunner.Given("I am on the landing page for a region", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
@@ -108,6 +142,37 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 13
  testRunner.Then("I check my answers, accept and submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+========
+#line 8
+ testRunner.Given("the Tier 2 User is logged into Support Console", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And("the User is on the Account details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.When("the user navigates to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
+ testRunner.Then("the user is redirected to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.And("the user can view levy declarations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.When("the user navigates to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("the user is redirected to finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 15
+ testRunner.And("the user can view transactions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.When("the user navigates to team members page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 17
+ testRunner.Then("the user can view employer user information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+>>>>>>>> master:src/SFA.DAS.SupportConsole.UITests/Project/Tests/Features/Accessibility/SC_Accessibility.feature.cs
 #line hidden
             }
             this.ScenarioCleanup();
