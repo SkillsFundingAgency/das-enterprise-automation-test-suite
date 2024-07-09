@@ -1,0 +1,12 @@
+﻿Feature: RAA_P_E2E_03M
+
+@raa
+@raaprovider
+@raae2e
+@raaprovidere2e
+@regression
+Scenario: RAA_P_E2E_03M - Create vacancy by entering data for Optional fields, Approve, Apply and make Multiply Applications Unsuccessful
+	Given the Provider creates a vacancy by entering all the Optional fields
+	And the Reviewer Approves the vacancy
+	When the Applicant can apply for a Vacancy in FAA
+	Then Provider can make multiple applications unsuccessful

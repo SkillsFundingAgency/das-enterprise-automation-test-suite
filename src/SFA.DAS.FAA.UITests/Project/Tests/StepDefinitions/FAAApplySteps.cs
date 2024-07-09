@@ -1,30 +1,11 @@
-﻿using SFA.DAS.FAA.UITests.Project.Helpers;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
 
-namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
+[Binding]
+public class FAAApplySteps(ScenarioContext context)
 {
-    [Binding]
-    public class FAAApplySteps(ScenarioContext context)
-    {
-        private readonly FAAStepsHelper _faaStepsHelper = new(context);
+    private readonly FAAStepsHelper _faaStepsHelper = new(context);
 
-        [Then(@"the Applicant can apply for a Vacancy in FAA")]
-        [When(@"the Applicant can apply for a Vacancy in FAA")]
-        public void WhenTheApplicantCanApplyForAVacancyInFAA() => _faaStepsHelper.ApplyForAVacancy("No", "No", "No");
-
-        [Then("the Applicant can apply for the Vacancy in FAT")]
-        [When("the Applicant can apply for the Vacancy in FAT")]
-        public void ThenTheApplicatCanApplyForTheVacancyInFAT() => _faaStepsHelper.ApplyForTraineeship();
-
-        [When(@"the Applicant apply for a Vacancy in FAA '(.*)','(.*)','(.*)'")]
-        public void WhenTheApplicantApplyForAVacancyInFAA(string qualificationdetails, string workExperience, string trainingCourse) =>
-            _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse);
-
-        [When(@"the Applicant apply for a Vacancy by browsing in FAA '(.*)','(.*)','(.*)'")]
-        public void WhenTheApplicantApplyForAVacancyByBrowsingInFAA(string qualificationdetails, string workExperience, string trainingCourse) =>
-            _faaStepsHelper.ApplyForAVacancy(qualificationdetails, workExperience, trainingCourse, true);
-
-        [When(@"draft application is created in FAA")]
-        public void WhenDraftApplicationIsCreatedInFAA() => _faaStepsHelper.CreateDraftApplication();
-    }
+    [When(@"the Applicant can apply for a Vacancy in FAA")]
+    [Then(@"the Applicant can apply for a Vacancy in FAA")]
+    public void TheApplicantCanApplyForAVacancyInFAA() => _faaStepsHelper.ApplyForAVacancy().PreviewApplication().SubmitApplication();
 }
