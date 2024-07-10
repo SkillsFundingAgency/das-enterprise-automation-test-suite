@@ -112,7 +112,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
 
         [Then(@"the levy employer can close the pledge")]
-        public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose().ConfirmCloseStatus();
+        public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose().ConfirmStatus("Closed");
 
         [Then(@"the levy employer doesn't close the pledge")]
         public void ThenTheLevyEmployerDoesntCloseThePledge() => ClosePledge().DontClose();
@@ -282,7 +282,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         [When(@"the levy employer is viewing pledges from verification page")]
         [Then(@"the levy employer can view pledges from verification page")]
-        public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().ConfirmActiveStatus().VerifyPledge();
+        public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().ConfirmStatus("Active");
 
         [Then(@"the user can view transfer pledge")]
         public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
