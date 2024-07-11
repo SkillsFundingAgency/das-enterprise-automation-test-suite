@@ -6,8 +6,6 @@ public class CheckYourApplicationBeforeSubmittingPage(ScenarioContext context) :
 {
     protected override string PageTitle => "Check your application before submitting";
 
-    protected override By ContinueButton => By.CssSelector("button.govuk-button[data-module='govuk-button']");
-
     public ApplicationSubmittedPage SubmitApplication()
     {
         SelectCheckBoxByText("I understand that I won't be able to make any changes after I submit my application");
