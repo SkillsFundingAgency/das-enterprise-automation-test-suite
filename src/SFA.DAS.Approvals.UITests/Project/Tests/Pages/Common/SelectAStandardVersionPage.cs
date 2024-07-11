@@ -13,12 +13,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public ApprenticeDetailsPage GoBackToApprenticeDetailsPage()
         {
+            //the back buttons are broken on this page
             tabHelper.NavigateBrowserBack();
             return new ApprenticeDetailsPage(context);
         }
 
         public ProviderApprenticeDetailsPage GoBackToProviderApprenticeDetailsPage()
         {
+            //the back buttons are broken on this page
             tabHelper.NavigateBrowserBack();
             return new ProviderApprenticeDetailsPage(context);
         }
