@@ -220,7 +220,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _providerApprenticeDetailsPage.ClickViewPendingStartDateLink();
 
             _viewChangeOfStartDateRequestPage = new ViewChangeOfStartDate(context).VerifyPendingEmployerReviewTagIsDisplayed()
-                .ValidateRequestedValues(DateTime.Today.Date, context.ScenarioInfo.Title);
+                .ValidateRequestedValues(DateTime.Today.Date, DateTime.Now.AddMonths(12), context.ScenarioInfo.Title);
         }
 
         [Then(@"Provider can successfully cancel the change of Start Date request")]
