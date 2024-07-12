@@ -1,13 +1,13 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
@@ -77,7 +77,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         }
 
         public ApproveApprenticeDetailsPage EmployerAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(listOfApprentice);
-        
+
         public AddApprenticeDetailsPage EmployerGoToAdddApprenticeDetailsFromHomePage() => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard();
 
         public ApproveApprenticeDetailsPage EmployerAddApprentice(int numberOfApprentices) => AddApprentices(numberOfApprentices);
@@ -167,6 +167,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                   .EmployerAddsApprentices()
                   .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                   .SelectFlexiJobAgencyDeliveryModelAndContinue();
+        }
+
+        public ApprenticeDetailsPage VerifyEmployerCanMakeChangesToOption()
+        {
+            return new ApprenticeDetailsPage(context)
+              .ClickChangeOptionLink().GoBackToApprenticeDetailsPage();
+        }
+
+        public ApprenticeDetailsPage VerifyEmployerCanMakeChangesToVersion()
+        {
+            return new ApprenticeDetailsPage(context)
+              .ClickChangeVersionLink().GoBackToApprenticeDetailsPage();
         }
 
         public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsRegularDeliveryModel()

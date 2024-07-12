@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using System;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
@@ -8,7 +9,6 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -105,7 +105,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _employerStepsHelper
                 .EditApprenticeDetailsPagePostApproval()
-                 .VerifyCourseAndCostAreReadOnly();
+                 .VerifyCourseAndCostAreReadOnly()
+                 .GoBack();
+        }
+
+        [Then(@"Employer can still change course option and version")]
+        public void ThenEmployerCanMakeChangesToOption()
+        {
+            _employerStepsHelper.VerifyEmployerCanMakeChangesToOption();
+            _employerStepsHelper.VerifyEmployerCanMakeChangesToVersion();
+
         }
 
         [Then(@"provider cannot make changes to cost and course after ILR match")]
@@ -113,7 +122,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             SetHasHadDataLockSuccessTrue();
 
-            ProviderEditApprentice().VerifyCourseAndCostAreReadOnly();
+            ProviderEditApprentice().VerifyCourseAndCostAreReadOnly()
+                .GoBack();
+        }
+
+        [Then(@"Provider can still change course option and version")]
+        public void ThenProviderCanMakeChangesToOption()
+        {
+            _providerCommonStepsHelper.VerifyProviderCanMakeChangesToOption();
+            _providerCommonStepsHelper.VerifyProviderCanMakeChangesToVersion();
         }
 
         [When(@"the provider edits Name Dob and Reference")]
