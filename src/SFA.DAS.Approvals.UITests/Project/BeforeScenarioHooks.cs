@@ -1,4 +1,7 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
@@ -7,9 +10,6 @@ using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -107,6 +107,6 @@ namespace SFA.DAS.Approvals.UITests.Project
 
         private ApprenticeDataHelper GetApprenticeDataHelper() => new(new ApprenticePPIDataHelper(_tags, context.Get<MailosaurUser>()), _objectcontext, commitmentsdatahelper);
 
-        private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(List<string> larsCode, ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_objectcontext, _dbConfig, larsCode, _tags.IsSelectStandardWithMultipleOptions()), apprenticeStatus);
+        private ApprenticeCourseDataHelper GetApprenticeCourseDataHelper(List<string> larsCode, ApprenticeStatus apprenticeStatus) => new(new RandomCourseDataHelper(_objectcontext, _dbConfig, larsCode, _tags), apprenticeStatus, _tags);
     }
 }

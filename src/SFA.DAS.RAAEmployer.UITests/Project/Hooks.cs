@@ -13,7 +13,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project
         {
             context.Set(new ProviderPermissionsSqlDbHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()));
 
-            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
+            var apprenticeCourseDataHelper = new ApprenticeCourseDataHelper(new RandomCourseDataHelper(), ApprenticeStatus.WaitingToStart, []);
 
             context.Set(apprenticeCourseDataHelper);
         }
