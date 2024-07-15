@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
         protected override string PageTitle => "Review changes";
         private static By ApproveChangesRadioOption => By.Id("option-yes");
         private static By RejectChangesRadioOption => By.Id("option-no");
-        private static By RejectReasonInputField => By.Id("rejectReason");
+        private static By RejectReasonInputField => By.Id("RejectReason");
         private static By TrainingStartDateNewValue => By.Id("TrainingStartDate-NewValue");
         private static By TrainingEndDateNewValue => By.Id("PlannedEndDate-NewValue");
 
