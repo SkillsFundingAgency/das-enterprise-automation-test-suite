@@ -1,6 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -28,6 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
         private static By ChangePriceLink => By.Id("linkChangePrice");
         private static By ChangeStartDateLink => By.Id("linkChangeStartDate");
+        private static By ChangeOptionLink => By.XPath("/html/body/div[3]/main/div/div/table[3]/tbody/tr[7]/td[2]/a");
+        private static By ChangeVersionLink => By.XPath("/html/body/div[3]/main/div/div/table[3]/tbody/tr[6]/td[2]/a");
         private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
         private static By ChangeOfStartDateRequestSentBanner => By.Id("change-of-startdate-request-sent-banner");
         private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
@@ -87,6 +90,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.Click(ChangeEmployerLink);
             return new ProviderInformPage(context);
+        }
+
+        public SelectAStandardOptionpage ClickChangeOptionLink()
+        {
+            formCompletionHelper.Click(ChangeOptionLink);
+            return new SelectAStandardOptionpage(context);
+        }
+
+        public SelectAStandardVersionPage ClickChangeVersionLink()
+        {
+            formCompletionHelper.Click(ChangeVersionLink);
+            return new SelectAStandardVersionPage(context);
         }
 
         public ProviderAccessDeniedPage ClickChangeEmployerLinkGoesToAccessDenied()

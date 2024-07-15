@@ -1,8 +1,9 @@
-﻿using Azure.Core;
+﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using System;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -29,6 +30,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By DeliveryModel => By.XPath("//*[@id='main-content']/div/div/table[3]/tbody/tr[2]/td");
         private static By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
         private static By ChangePriceLink => By.Id("linkChangeApprenticeshipPrice");
+        private static By ChangeOptionLink => By.Id("change-option-link");
+        private static By ChangeVersionLink => By.XPath("/html/body/div[2]/main/div/div/table[3]/tbody/tr[2]/td[2]/a");
         private static By PriceChangePendingBanner => By.Id("price-change-pending-banner");
         private static By StartDateChangePendingBanner => By.Id("start-date-change-pending-banner");
         private static By ViewPendingStartDateChangeLinkBanner => By.Id("linkViewPendingStartDateBanner");
@@ -215,6 +218,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public void ClickReviewStartDateChangeLink() => formCompletionHelper.ClickElement(ChangeOfStartDateReviewRequestLink);
 
         public void ClickChangePriceLink() => formCompletionHelper.Click(ChangePriceLink);
+
+        public SelectAStandardOptionpage ClickChangeOptionLink()
+        {
+            formCompletionHelper.Click(ChangeOptionLink);
+            return new SelectAStandardOptionpage(context);
+        }
+
+        public SelectAStandardVersionPage ClickChangeVersionLink()
+        {
+            formCompletionHelper.Click(ChangeVersionLink);
+            return new SelectAStandardVersionPage(context);
+        }
 
         public void ValidateChangeOfPriceRequestRaisedSuccessfully()
         {
