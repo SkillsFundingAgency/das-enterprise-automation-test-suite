@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private StartAddingApprenticesPage EmployerSendsToProviderToAdd()
         {
-            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my provider to add apprentices");
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my training provider to add apprentices");
             return this;
         }
 
