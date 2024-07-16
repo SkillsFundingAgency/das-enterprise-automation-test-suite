@@ -4,8 +4,6 @@ public class AdditionQuestion1Page(ScenarioContext context) : FAABasePage(contex
 {
     protected override string PageTitle => advertDataHelper.AdditionalQuestion1;
 
-    protected override By ContinueButton => By.CssSelector("button.govuk-button[data-module='govuk-button']");
-
     private static By AdditionalQuestionAnswer => By.CssSelector("#AdditionalQuestionAnswer");
 
     public FAA_ApplicationOverviewPage SelectYesAndCompleteSection()
