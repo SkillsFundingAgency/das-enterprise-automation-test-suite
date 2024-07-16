@@ -1,9 +1,9 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
@@ -13,18 +13,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         public RandomCourseDataHelper() => _availableCourses = AvailableCourses.GetAvailableCourses();
 
-        public RandomCourseDataHelper(ObjectContext objectContext, DbConfig dbConfig, List<string> larsCode, bool isMultipleOptionStandard)
+        public RandomCourseDataHelper(ObjectContext objectContext, DbConfig dbConfig, List<string> larsCode, string[] tags)
         {
             var crsSqlhelper = new CrsSqlhelper(objectContext, dbConfig);
+            string query;
 
-            var multiqueryResult = crsSqlhelper.GetApprenticeCourse(
-            [
-                isMultipleOptionStandard ? CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) : CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode)
-            ]);
+            if (tags.IsSelectStandardWithMultipleOptionsAndVersions())
+            {
+                query = CrsSqlhelper.GetSqlQueryWithMultipleOptionsAndVersions(larsCode);
+            }
+            else if (tags.IsSelectStandardWithMultipleOptions())
+            {
+                query = CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode);
+            }
+            else
+            {
+                query = CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode);
+            }
+            var multiqueryResult = crsSqlhelper.GetApprenticeCourse([query]);
 
             _availableCourses = multiqueryResult[0];
         }
-
 
         public CourseDetails RandomCourse() => SelectACourseExcept(_availableCourses, null);
 

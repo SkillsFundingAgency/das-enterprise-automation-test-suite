@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq;
+using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             static bool IsItJuly() => DateTime.Now.Month == 7;
 
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
+            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart, []);
 
             var nextAcademicYear = IsItJuly() ? AcademicYearDatesHelper.GetNextAcademicYearEndDate() : AcademicYearDatesHelper.GetNextAcademicYearStartDate();
 
@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void LiveApprentice(int _)
         {
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.Live);
+            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.Live, []);
 
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 
@@ -120,7 +120,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void StartDateIsFewMonthsBeforeNow(int _)
         {
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.StartDateIsFewMonthsBeforeNow);
+            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.StartDateIsFewMonthsBeforeNow, []);
 
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 
