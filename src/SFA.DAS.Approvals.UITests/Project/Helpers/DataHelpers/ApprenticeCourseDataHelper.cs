@@ -1,5 +1,5 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using System;
+﻿using System;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
@@ -20,11 +20,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         private readonly DateTime _nextAcademicYearStartDate;
         private readonly ApprenticeStatus _apprenticeStatus;
 
-        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus)
-            : this(apprenticeStatus) => SetCourseDetails(randomCourseHelper, GenerateCourseStartDate(), default, string.Empty);
+        public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, ApprenticeStatus apprenticeStatus, string[] tags)
+            : this(apprenticeStatus) => SetCourseDetails(randomCourseHelper, GenerateCourseStartDate(), default, string.Empty, tags);
 
         public ApprenticeCourseDataHelper(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths, string larsCode)
-            : this(courseStartDate > DateTime.Now ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Live) => SetCourseDetails(randomCourseHelper, courseStartDate, durationInMonths, larsCode);
+            : this(courseStartDate > DateTime.Now ? ApprenticeStatus.WaitingToStart : ApprenticeStatus.Live) => SetCourseDetails(randomCourseHelper, courseStartDate, durationInMonths, larsCode, default);
 
         private ApprenticeCourseDataHelper(ApprenticeStatus apprenticeStatus)
         {
@@ -34,11 +34,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             _nextAcademicYearStartDate = AcademicYearDatesHelper.GetNextAcademicYearStartDate();
         }
 
-        private void SetCourseDetails(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths, string larsCode)
+        private void SetCourseDetails(RandomCourseDataHelper randomCourseHelper, DateTime courseStartDate, int durationInMonths, string larsCode, string[] tags)
         {
             CourseDetails = string.IsNullOrEmpty(larsCode) ? randomCourseHelper.RandomCourse() : randomCourseHelper.SelectASpecificCourse(larsCode);
 
             CourseStartDate = courseStartDate;
+
+            if (tags.IsSelectStandardWithMultipleOptionsAndVersions())
+            {
+                var courseEarliestStartDate = CourseDetails.Course.versionEarliestStartDate;
+                CourseStartDate = new DateTime(courseEarliestStartDate.Year, courseEarliestStartDate.Month, 1).AddMonths(-1);
+            }
+
             CourseDurationInMonths = durationInMonths == default ? CourseDetails.Course.proposedTypicalDuration : durationInMonths;
             CourseLarsCode = CourseDetails.Course.larsCode;
             OtherCourseDetails = randomCourseHelper.RandomCourse(CourseLarsCode);
