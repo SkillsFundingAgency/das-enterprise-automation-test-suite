@@ -11,7 +11,7 @@ public abstract class FAABasePage : VerifyBasePage
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
     protected virtual By SubmitSectionButton => By.CssSelector("button.govuk-button[id='submit-button']");
-
+    
     protected FAABasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
         vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
