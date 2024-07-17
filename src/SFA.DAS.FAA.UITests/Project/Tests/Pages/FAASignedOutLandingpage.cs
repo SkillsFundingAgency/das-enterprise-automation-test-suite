@@ -9,14 +9,19 @@ public class FAASignedOutLandingpage(ScenarioContext context) : FAABasePage(cont
 
     protected override string PageTitle => FAASignedOutPageTitle;
 
-    public static string FAASignedOutPageTitle => "Sign in";
+    public static string FAASignedOutPageTitle => "Sign in or create an account";
 
-    public static By FAASignedOutPageHeader => By.CssSelector(".govuk-header");
+    public static By FAASignedOutPageHeader => By.CssSelector(".one-login-header__nav__link");
 
     private static By SignIn => By.CssSelector("a[href*='signin?']");
+    private static By AcceptAdditionalCookies => By.CssSelector("button[onclick='acceptCookies(true);']");
+    private static By HideAdditionalCookies => By.CssSelector("button[onclick='hideAcceptBanner();']");
+
 
     public StubSignInFAAPage GoToSignInPage()
     {
+        formCompletionHelper.Click(AcceptAdditionalCookies);
+        formCompletionHelper.Click(HideAdditionalCookies);
         formCompletionHelper.Click(SignIn);
 
         return new StubSignInFAAPage(context);

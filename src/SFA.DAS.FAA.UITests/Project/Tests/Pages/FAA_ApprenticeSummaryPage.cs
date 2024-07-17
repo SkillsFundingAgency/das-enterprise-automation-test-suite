@@ -8,7 +8,7 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 
     protected override string AccessibilityPageTitle => "FAA vacancy title page";
 
-    private static By ApplyButton => By.CssSelector("[id='main-content'] button.govuk-button");
+    private static By ApplyButton => By.CssSelector("button[class='govuk-button govuk-!-margin-bottom-0']");
 
     private static By ViewSubmittedApplicationLink => By.CssSelector("a[href*='Submitted']");
 
