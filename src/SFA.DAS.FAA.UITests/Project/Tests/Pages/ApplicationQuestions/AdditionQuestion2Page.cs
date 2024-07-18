@@ -3,8 +3,7 @@
 public class AdditionQuestion2Page(ScenarioContext context) : FAABasePage(context)
 {
     protected override string PageTitle => advertDataHelper.AdditionalQuestion2;
-
-    protected override By ContinueButton => By.CssSelector("button.govuk-button[data-module='govuk-button']");
+    protected override By PageHeader => By.CssSelector("label[for='AdditionalQuestionAnswer']");
 
     private static By AdditionalQuestionAnswer => By.CssSelector("#AdditionalQuestionAnswer");
 
