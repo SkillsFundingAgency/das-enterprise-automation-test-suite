@@ -28,9 +28,9 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<Content Include="..\specflow.json" Link="specflow.json">
+		<None Update="specflow.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
+		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
