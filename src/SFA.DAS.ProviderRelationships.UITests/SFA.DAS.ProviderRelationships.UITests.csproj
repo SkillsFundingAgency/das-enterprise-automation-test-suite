@@ -42,5 +42,10 @@
 	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Project\Helpers\" />
+	  <Folder Include="Project\Hooks\" />
+	  <Folder Include="Project\Tests\" />
+	</ItemGroup>
 
 </Project>
