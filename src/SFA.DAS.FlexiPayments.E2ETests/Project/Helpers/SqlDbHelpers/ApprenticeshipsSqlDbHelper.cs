@@ -6,18 +6,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
     public class ApprenticeshipsSqlDbHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.ApprenticeshipsDbConnectionString)
     {
-        public (string isPilot, string actualStartDate, string plannedStartDate, string plannedEndDate, string agreedPrice, string FundingType, string FundingBandMax) GetEarningsApprenticeshipDetails(string uln)
+        public (string isPilot, string startDate, string endDate, string agreedPrice, string FundingType, string FundingBandMax) GetEarningsApprenticeshipDetails(string uln)
         {
-            string query = $" SELECT apprv.[FundingPlatform], apprv.[ActualStartDate], apprv.[PlannedStartDate], apprv.[PlannedEndDate], apprv.[AgreedPrice], apprv.[FundingType], apprv.[FundingBandMaximum] " +
-               $"FROM [dbo].[Approval] apprv " +
-               $"JOIN [dbo].[Apprenticeship] apprn ON apprv.ApprenticeshipKey = apprn.[Key]" +
-               $"WHERE Uln = '{uln}'";
+            string query = $" SELECT ep.FundingPlatform, eppr.StartDate, eppr.EndDate, eppr.TotalPrice, ep.FundingType, eppr.FundingBandMaximum " +
+                $" FROM [dbo].[Apprenticeship] app " +
+                $" JOIN [dbo].[Episode] ep on app.[Key] = ep.ApprenticeshipKey " +
+                $" JOIN [dbo].[EpisodePrice] eppr on ep.[Key] = eppr.[EpisodeKey] " +
+                $" WHERE app.uln = '{uln}'";
 
             waitForResults = true;
 
             var data = GetData(query);
 
-            return (data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+            return (data[0], data[1], data[2], data[3], data[4], data[5]);
         }
 
         public (string TrainingPrice, string AssessmentPrice, string TotalPrice, string EffectiveFromDate, string reason, string status) GetChangeOfPriceRequestData(string uln)
@@ -47,9 +48,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1], data[2]);
         }
 
-        public (string ActualStartDate, string PlannedEndDate) GetApprenticeshipTrainingDates (string uln)
+        public (string StartDate, string EndDate) GetApprenticeshipTrainingDates (string uln)
         {
-            string query = $"select ActualStartDate, PlannedEndDate " +
+            string query = $"select StartDate, EndDate " +
                 $" from [dbo].[Apprenticeship] " +
                 $" where Uln = '{uln}'";
 
