@@ -43,6 +43,7 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Compile>
 	</ItemGroup>
 
