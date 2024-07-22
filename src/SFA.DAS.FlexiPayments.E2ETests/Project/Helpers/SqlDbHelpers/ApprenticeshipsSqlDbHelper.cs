@@ -50,9 +50,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 
         public (string StartDate, string EndDate) GetApprenticeshipTrainingDates (string uln)
         {
-            string query = $"select StartDate, EndDate " +
-                $" from [dbo].[Apprenticeship] " +
-                $" where Uln = '{uln}'";
+            string query = $"SELECT eppr.StartDate, eppr.EndDate " +
+                $" FROM [dbo].[Apprenticeship] app " +
+                $" JOIN [dbo].[Episode] ep on app.[Key] = ep.ApprenticeshipKey " +
+                $" JOIN [dbo].[EpisodePrice] eppr on ep.[Key] = eppr.[EpisodeKey] " +
+                $" WHERE app.uln = '{uln}'";
 
             waitForResults = true;
 

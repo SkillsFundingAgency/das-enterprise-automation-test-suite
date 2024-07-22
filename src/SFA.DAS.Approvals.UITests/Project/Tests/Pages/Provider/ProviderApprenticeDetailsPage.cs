@@ -200,7 +200,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateRequestSentBanner), "Change of Start Date Request Sent banner not displayed");
                 Assert.That(pageInteractionHelper.GetText(ChangeOfStartDateRequestSentBannerMessage), Is.EqualTo("Request to change the training date sent to employer"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ViewDateChangeYouHaveRequestLinkBanner), "Request to change the training date sent to employer heading not displayed in the banner");
-                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request banner for Change of Start Date not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request tag for Change of Start Date not displayed");
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPendingStartDateLink), "View request link for Change of Start Date not displayed");
             }
             );
