@@ -14,11 +14,11 @@ Scenario: FLP_E2E_NL_01 Non Levy Employer sends an approved cohort to the provid
 	And the provider adds Uln and Opt learner 1 into the pilot
 	When Provider successfully approves the cohort
 	Then validate the following data is created in the commitments database
-		| ULN_Key | is_pilot | price_episode_from_date_str  | price_episode_to_date_str | price_episode_cost | training_price | endpoint_assessment_price |
-		| 1       | true     | StartPreviousMonth           | Null                      | 6000               | 4800           | 1200                      |
+		| ULN_Key | is_pilot | price_episode_from_date_str | price_episode_to_date_str | price_episode_cost | training_price | endpoint_assessment_price |
+		| 1       | true     | StartPreviousMonth          | Null                      | 6000               | 4800           | 1200                      |
 	And validate the following data in Earnings Apprenticeship database
-		| ULN_Key | funding_platform | actual_start_date_str | start_date_str               | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
-		| 1       | 1                | StartPreviousMonth    | StartFirstDayOfPreviousMonth | +23Months            | 6000         | 1            | 18000                |
+		| ULN_Key | funding_platform | start_date_str     | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
+		| 1       | 1                | StartPreviousMonth | +23Months            | 6000         | 1            | 18000                |
 	And validate the following data is created in the earnings database
 		| ULN_Key | total_on_program_payment | monthly_on_program_payment | number_of_delivery_months |
 		| 1       | 4800                     | 200                        | 24                        |

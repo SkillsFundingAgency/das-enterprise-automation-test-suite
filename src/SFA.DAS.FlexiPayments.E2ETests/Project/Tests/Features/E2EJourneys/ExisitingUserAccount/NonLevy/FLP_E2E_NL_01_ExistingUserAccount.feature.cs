@@ -155,7 +155,6 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "funding_platform",
-                            "actual_start_date_str",
                             "start_date_str",
                             "planned_end_date_str",
                             "agreed_price",
@@ -165,7 +164,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "1",
                             "StartPreviousMonth",
-                            "StartFirstDayOfPreviousMonth",
                             "+23Months",
                             "6000",
                             "1",
