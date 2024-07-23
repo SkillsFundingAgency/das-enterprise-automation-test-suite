@@ -251,6 +251,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             }
         }
 
+        [Then(@"validate earnings instalments are updated to reflect the new agreed price of (.*)")]
+        public void ValidateEarningsInstalmentsAreUpdatedToReflectTheNewAgreedPrice(int agreedPrice)
+        {
+            var expectedTotalOnProgrammePayment = agreedPrice * 0.8;
+            var actualTotalOnProgrammePayment = _earningsSqlDbHelper.GetTotalInstalmentsAmount(GetApprenticeULN(1), true);
+
+            Assert.AreEqual(expectedTotalOnProgrammePayment, double.Parse(actualTotalOnProgrammePayment));
+        }
+
         private string ErrorMessage(string message, int ulnKey) => $"'{message}' for ulnkey '{ulnKey}', uln '{GetApprenticeULN(ulnKey)}'";
 
         private string GetApprenticeULN(int key) => context.Get<ObjectContext>().GetULNKeyInformations().Single(x => x.key == key).uln;
