@@ -3,7 +3,6 @@
 public class AddAstandardPage : ManagingStandardsBasePage
 {
     protected override string PageTitle => pageTitle;
-
     protected override string AccessibilityPageTitle => "Add a standard page";
 
     private readonly string pageTitle;
@@ -26,6 +25,18 @@ public class AddAstandardPage : ManagingStandardsBasePage
     public ManageTheStandardsYouDeliverPage Save_NewStandard_Continue()
     {
         Continue();
+
+        try
+        {
+            VerifyPage(PageHeader, "Sorry, there is a problem with the service", null);
+            var sorryThereIsAProblem = new SorryThereIsAProblem(context);
+            sorryThereIsAProblem.ClickReturnToDashboard().AccessStandards();
+        }
+        catch (System.Exception)
+        {
+
+        }
+
         return new ManageTheStandardsYouDeliverPage(context);
     }
 }
