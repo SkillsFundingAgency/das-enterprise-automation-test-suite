@@ -12,6 +12,10 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AP_PP_01_ProviderPermission.feature.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
@@ -36,6 +40,8 @@
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+		<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
@@ -45,7 +51,17 @@
 	<ItemGroup>
 	  <Folder Include="Project\Helpers\" />
 	  <Folder Include="Project\Hooks\" />
-	  <Folder Include="Project\Tests\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Project\Tests\Features\EPR_01_EmployerGrantPermission.feature.cs">
+	    <DependentUpon>EPR_01_EmployerGrantPermission.feature</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EPR_01_EmployerGrantPermission.feature">
+	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
+	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+	  </SpecFlowFeatureFiles>
 	</ItemGroup>
 
 </Project>
