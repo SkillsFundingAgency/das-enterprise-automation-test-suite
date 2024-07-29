@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-	  <RootNamespace>SFA.DAS.ProviderRelationships.UITests</RootNamespace>
+	  <RootNamespace>SFA.DAS.EmployerProviderRelationships.UITests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 	  <IsPackable>false</IsPackable>
     <ImplicitUsings>enable</ImplicitUsings>
