@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public ConfirmYourUserDetailsPage EnterName()
         {
             formCompletionHelper.EnterText(FirstNameInput, registrationDataHelper.FirstName);
-            formCompletionHelper.EnterText(LastNameInput, registrationDataHelper.LastName);
+            formCompletionHelper.EnterText(LastNameInput, " " + registrationDataHelper.LastName);
             Continue();
             return new ConfirmYourUserDetailsPage(context);
         }
