@@ -42,6 +42,13 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes", HttpStatusCode.OK);
         }
 
+        [Then(@"endpoint /api/accounts/\{accountId}/payeschemes can be accessed")]
+        public void ThenEndpointApiAccountIdPayeschemesCanBeAccessed()
+        {
+            var accountId = _objectContext.GetAccountId();
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/payeschemes", HttpStatusCode.OK);
+        }
+
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/\{payeSchemeRef} can be accessed")]
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/scheme?ref=\{payeSchemeRef} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdPayeschemesPayeSchemeRefCanBeAccessed()
