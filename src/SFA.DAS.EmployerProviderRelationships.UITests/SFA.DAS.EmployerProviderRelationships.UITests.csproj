@@ -12,10 +12,6 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\AP_PP_01_ProviderPermission.feature.cs" />
-  </ItemGroup>
-
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
@@ -48,20 +44,5 @@
 	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Project\Helpers\" />
-	  <Folder Include="Project\Hooks\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Compile Update="Project\Tests\Features\EPR_01_EmployerGrantPermission.feature.cs">
-	    <DependentUpon>EPR_01_EmployerGrantPermission.feature</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-	<ItemGroup>
-	  <SpecFlowFeatureFiles Update="Project\Tests\Features\EPR_01_EmployerGrantPermission.feature">
-	    <Visible>$(UsingMicrosoftNETSdk)</Visible>
-	    <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-	  </SpecFlowFeatureFiles>
-	</ItemGroup>
-
+	
 </Project>

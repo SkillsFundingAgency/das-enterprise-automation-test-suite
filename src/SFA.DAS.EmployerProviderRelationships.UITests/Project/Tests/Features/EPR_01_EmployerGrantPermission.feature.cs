@@ -76,13 +76,15 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPR_01_EmployerGrantPermission")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
+        [NUnit.Framework.CategoryAttribute("grantpermission")]
         public void EPR_01_EmployerGrantPermission()
         {
             string[] tagsOfScenario = new string[] {
-                    "employerproviderrelationships"};
+                    "employerproviderrelationships",
+                    "grantpermission"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01_EmployerGrantPermission", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -92,10 +94,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("Levy employer grant create cohort permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.Then("the provider should be added with the correct permissions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

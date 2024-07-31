@@ -6,7 +6,9 @@ public class ProviderConfig : NonEasAccountUser
 {
     public string Ukprn { get; set; }
 
-    public override string ToString() => $"{base.ToString()}, ServiceName:'{Ukprn}'";
+    public string Name { get; set; }
+
+    public override string ToString() => $"{base.ToString()}, ServiceName:'{Ukprn}', ProviderName: '{Name}'";
 }
 
 public class DeleteCohortProviderConfig : ProviderConfig

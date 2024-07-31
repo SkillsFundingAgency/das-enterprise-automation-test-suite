@@ -2,7 +2,9 @@
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project;

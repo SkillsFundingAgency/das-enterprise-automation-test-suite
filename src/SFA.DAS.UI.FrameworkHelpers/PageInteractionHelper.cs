@@ -206,6 +206,9 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         try
         {
             webDriver.FindElement(locator);
+
+            SetDebugInformation($"Verified {locator} can be found by webdriver");
+
             return true;
         }
         catch (NoSuchElementException)
@@ -296,7 +299,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
     public List<IWebElement> FindElements(IWebElement element, By locator, bool withoutImplicitWaits = false) =>
         withoutImplicitWaits ? WithoutImplicitWaits(() => element.FindElements(locator).ToList()) : [.. element.FindElements(locator)];
 
-    public List<IWebElement> FindElements(By locator) => webDriver.FindElements(locator).ToList();
+    public List<IWebElement> FindElements(By locator) => [.. webDriver.FindElements(locator)];
 
     public bool WaitUntilAnyElements(By locator)
     {
