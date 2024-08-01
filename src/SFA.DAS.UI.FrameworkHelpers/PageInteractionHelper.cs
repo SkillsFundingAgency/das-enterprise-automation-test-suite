@@ -259,8 +259,12 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
     public void FocusTheElement(By locator)
     {
         IWebElement webElement = webDriver.FindElement(locator);
+
         new Actions(webDriver).MoveToElement(webElement).Perform();
+
         webDriverWaitHelper.WaitForElementToBeDisplayed(locator);
+
+        SetDebugInformation($"moved focus to {locator}");
     }
 
     public void FocusTheElement(IWebElement element) => new Actions(webDriver).MoveToElement(element).Perform();
