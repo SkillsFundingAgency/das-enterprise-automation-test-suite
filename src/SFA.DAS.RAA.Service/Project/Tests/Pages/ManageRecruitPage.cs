@@ -7,8 +7,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
     {
         protected override string PageTitle => isRaaEmployer ? "Manage Advert" : "Manage vacancy";
 
-        protected static By EditAdvertActionSelector => By.XPath("//a[@class='govuk-link' and contains(@href, 'edit-dates') and text()='Change']");
-        protected static By CloseAdvertActionSelector => By.XPath("//a[@class='govuk-link' and contains(@href, 'close') and text()='Change']");
+        protected static By EditAdvertActionSelector => By.CssSelector("a[href*='/edit-dates']");
+        protected static By CloseAdvertActionSelector => By.CssSelector("a[href*='/close']");
         public CloneVacancyDatesPage CloneAdvert()
         {
             formCompletionHelper.ClickLinkByText("Clone advert");
