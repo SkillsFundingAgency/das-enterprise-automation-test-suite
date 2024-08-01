@@ -91,7 +91,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             //Assert
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(apprentice.CourseStartDate < DateTime.Now.Date && apprentice.CourseStartDate.Date >= new DateTime(2020, 8, 1).Date);
+                if (DateTime.Now.Date.Day == 1 && DateTime.Now.Date.Month == 8)
+                {
+                    Assert.IsTrue(apprentice.CourseStartDate <= DateTime.Now.Date && apprentice.CourseStartDate.Date >= new DateTime(2024, 8, 1).Date);
+                }
+                else
+                {
+                    Assert.IsTrue(apprentice.CourseStartDate < DateTime.Now.Date && apprentice.CourseStartDate.Date >= new DateTime(2024, 8, 1).Date);
+                }
 
                 Assert.IsTrue(AvailableCourses.GetAvailableCourses().Any(x => x.Course.larsCode == apprentice.CourseDetails.Course.larsCode));
             });
