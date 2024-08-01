@@ -24,16 +24,11 @@
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.FAT-V2.UITests\SFA.DAS.FAT-V2.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
+    <ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
     <ProjectReference Include="..\SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Project\Helpers\RATStepHelpers\" />
-    <Folder Include="Project\Tests\StepDefinitions\" />
-    <Folder Include="Project\Tests\Pages\" />
   </ItemGroup>
 
 </Project>

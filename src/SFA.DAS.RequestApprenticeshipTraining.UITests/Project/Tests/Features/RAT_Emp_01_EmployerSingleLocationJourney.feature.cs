@@ -99,6 +99,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the User searches a course then navigates to the provider list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 8
+ testRunner.And("the user transitions from FAT to RAT after clicking on ask if training providers " +
+                        "can run this course as employer owner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
