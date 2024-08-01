@@ -35,13 +35,6 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiRestClient.ExecuteEndpoint("/api/accountlegalentities?query.pageNumber=1&query.pageSize=100", HttpStatusCode.OK);
         }
 
-        [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes can be accessed")]
-        public void ThenEndpointApiAccountsHashedAccountIdPayeschemesCanBeAccessed()
-        {
-            var hashedAccountId = _objectContext.GetHashedAccountId();
-            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes", HttpStatusCode.OK);
-        }
-
         [Then(@"endpoint /api/accounts/\{accountId}/payeschemes can be accessed")]
         public void ThenEndpointApiAccountIdPayeschemesCanBeAccessed()
         {
@@ -49,9 +42,20 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project.Tests.StepDefinitions
             _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{accountId}/payeschemes", HttpStatusCode.OK);
         }
 
+        /*
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/\{payeSchemeRef} can be accessed")]
         [Then(@"endpoint /api/accounts/\{hashedAccountId}/payeschemes/scheme?ref=\{payeSchemeRef} can be accessed")]
         public void ThenEndpointApiAccountsHashedAccountIdPayeschemesPayeSchemeRefCanBeAccessed()
+        {
+            var hashedAccountId = _objectContext.GetHashedAccountId();
+            var payeschemeRef = _objectContext.GetPayeSchemeRefId();
+            var encodepayeschemeRef = Uri.EscapeDataString(payeschemeRef);
+            _innerApiRestClient.ExecuteEndpoint($"/api/accounts/{hashedAccountId}/payeschemes/scheme?payeSchemeRef={encodepayeschemeRef}", HttpStatusCode.OK);
+        }
+        */
+        [Then(@"endpoint /api/accounts/\{accountId}/payeschemes/\{payeSchemeRef} can be accessed")]
+        [Then(@"endpoint /api/accounts/\{accountId}/payeschemes/scheme?ref=\{payeSchemeRef} can be accessed")]
+        public void ThenEndpointApiAccountsAccountIdPayeschemesPayeSchemeRefCanBeAccessed()
         {
             var hashedAccountId = _objectContext.GetHashedAccountId();
             var payeschemeRef = _objectContext.GetPayeSchemeRefId();
