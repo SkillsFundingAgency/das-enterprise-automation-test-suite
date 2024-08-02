@@ -166,6 +166,19 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #endregion
 
+    #region EmployerProviderRelationshipUser
+
+    public class EPRLevyUser : EasAccountUser
+    {
+
+    }
+    public class EPRNonLevyUser : EasAccountUser
+    {
+
+    }
+
+    #endregion
+
     #endregion
 
 }

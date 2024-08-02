@@ -43,13 +43,14 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="..\specflow.json" Link="specflow.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
+		<None Update="specflow.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
 	</ItemGroup>
 ```
 
