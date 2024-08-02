@@ -95,7 +95,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("Levy employer grant all permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Levy employer grants all permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.Then("the provider should be added with the correct permissions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

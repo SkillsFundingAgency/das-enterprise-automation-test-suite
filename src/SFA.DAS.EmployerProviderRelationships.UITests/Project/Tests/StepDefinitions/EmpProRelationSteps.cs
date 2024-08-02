@@ -19,8 +19,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-        [Given(@"Levy employer grant all permission to a provider")]
-        public void LevyEmployerGrantaAllPermissionToAProvider()
+        [Given(@"Levy employer grants all permission to a provider")]
+        public void LevyEmployerGrantsAllPermissionToAProvider()
         {
             var providerConfig = context.GetProviderConfig<ProviderConfig>();
 
