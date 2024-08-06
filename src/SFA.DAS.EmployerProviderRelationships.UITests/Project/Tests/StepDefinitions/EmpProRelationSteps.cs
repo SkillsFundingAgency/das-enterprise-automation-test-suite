@@ -27,8 +27,6 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
         private (NewAddApprenticePermissions AddApprentice, NewRecruitApprenticePermissions RecruitApprentice) permissions;
 
-        private YourTrainingProvidersPage _yourTrainingProvidersPage;
-
         [Given(@"Levy employer grants all permission to a provider")]
         public void LevyEmployerGrantsAllPermissionToAProvider()
         {
@@ -38,7 +36,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerProviderRelationships_BaseUrl(_objectContext.GetHashedAccountId()));
 
-            _yourTrainingProvidersPage = new YourTrainingProvidersPage(context)
+            new YourTrainingProvidersPage(context)
                 .SelectAddATrainingProvider()
                 .SearchForATrainingProvider(providerConfig)
                 .AddOrSetPermissions(permissions)
@@ -89,7 +87,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         {
             this.permissions = permissions;
 
-            _yourTrainingProvidersPage = _yourTrainingProvidersPage
+            new YourTrainingProvidersPage(context)
                 .SelectChangePermissions(providerConfig.Ukprn)
                 .AddOrSetPermissions(permissions)
                 .VerifyYouHaveSetPermissionNotification();
