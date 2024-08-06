@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1]);
         }
 
-        public int GetCohortsToReviewTask(long employerAccountId)
+        public int GetNumberOfCohortsReadyToReview(long employerAccountId)
         {
             string query = $@"WITH CohortsFiltered AS (
 								SELECT 
@@ -43,6 +43,47 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
 							)
 							SELECT COUNT(*) AS TotalCohorts
 							FROM CohortsFiltered;
+							";
+
+            return (int)GetDataAsObject(query);
+        }
+
+        public int GetNumberOfTransferRequestToReview(long employerAccountId)
+        {
+            string query = $@"WITH TransferRequestsFiltered AS (
+                                SELECT [t].Id
+                                FROM [TransferRequest] AS [t]
+                                    INNER JOIN
+                                    (
+                                        SELECT [c].[Id],
+                                               [c].[EmployerAccountId],
+                                               [c].[Reference],
+                                               [c].[TransferSenderId]
+                                        FROM [Commitment] AS [c]
+                                        WHERE [c].[IsDeleted] = CAST(0 AS bit)
+                                    ) AS [t0]
+                                        ON [t].[CommitmentId] = [t0].[Id]
+                                WHERE [t0].[TransferSenderId] = {employerAccountId}
+                                      and [t].Status = 0
+                                )
+                                SELECT COUNT(*) AS TotalRequests
+                                FROM TransferRequestsFiltered;
+							";
+
+            return (int)GetDataAsObject(query);
+        }
+
+        public int GetNumberOfApprenticesToReview(long employerAccountId)
+        {
+            string query = $@"select COUNT(aup.Id)
+                            from [dbo].[ApprenticeshipUpdate] aup
+                                inner join [dbo].[Apprenticeship] app
+                                    on app.Id = aup.ApprenticeshipId
+                                inner join [dbo].[Commitment] comm
+                                    on comm.Id = app.CommitmentId
+                            where comm.EmployerAccountId = {employerAccountId}
+                                  AND aup.Status = 0
+                                  AND aup.Originator = 1
 							";
 
             return (int)GetDataAsObject(query);
