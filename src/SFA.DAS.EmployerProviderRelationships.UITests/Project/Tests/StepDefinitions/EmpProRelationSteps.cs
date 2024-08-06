@@ -41,7 +41,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             _yourTrainingProvidersPage = new YourTrainingProvidersPage(context)
                 .SelectAddATrainingProvider()
                 .SearchForATrainingProvider(providerConfig)
-                .SetPermissions(permissions)
+                .AddOrSetPermissions(permissions)
                 .VerifyYouHaveAddedNotification();
         }
 
@@ -52,7 +52,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             _yourTrainingProvidersPage
                 .SelectChangePermissions(providerConfig.Ukprn)
-                .SetPermissions(permissions)
+                .AddOrSetPermissions(permissions)
                 .VerifyYouHaveSetPermissionNotification();
         }
 

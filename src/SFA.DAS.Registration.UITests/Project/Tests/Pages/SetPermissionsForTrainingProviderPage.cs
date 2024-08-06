@@ -16,7 +16,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     {
         [ToString("Yes")]
         Allow,
-        [ToString("Yes, employer will review records")]
+        [ToString("Yes, employer will review adverts")]
         AllowConditional,
         [ToString("No")]
         DoNotAllow
