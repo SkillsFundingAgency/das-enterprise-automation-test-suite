@@ -28,7 +28,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EPR_01_EmployerGrantPermission.feature"
+#line 1 "EPR_01_EmployerPermission.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -74,16 +74,16 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPR_01_EmployerGrantPermission")]
+        [NUnit.Framework.DescriptionAttribute("EPR_01A_EmployerGrantPermission")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
-        [NUnit.Framework.CategoryAttribute("grantpermission")]
-        public void EPR_01_EmployerGrantPermission()
+        [NUnit.Framework.CategoryAttribute("deletepermission")]
+        public void EPR_01A_EmployerGrantPermission()
         {
             string[] tagsOfScenario = new string[] {
                     "employerproviderrelationships",
-                    "grantpermission"};
+                    "deletepermission"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01_EmployerGrantPermission", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01A_EmployerGrantPermission", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,6 +99,40 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 8
  testRunner.Then("the provider should be added with the correct permissions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 9
+ testRunner.When("the employer changes recruit apprentice permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then("the provider should be added with the correct permissions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("EPR_01B_EmployerDoesNotGrantPermission")]
+        [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
+        [NUnit.Framework.CategoryAttribute("deletepermission")]
+        public void EPR_01B_EmployerDoesNotGrantPermission()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "employerproviderrelationships",
+                    "deletepermission"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01B_EmployerDoesNotGrantPermission", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 15
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 16
+ testRunner.Then("an employer has to select at least one permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
