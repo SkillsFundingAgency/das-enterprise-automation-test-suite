@@ -24,13 +24,13 @@ internal static class SetProviderCredsHelper
 
         var provider = dfeProviderList.Single(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn));
 
-        var providerName = dfeProviderDetailsList.Single(x => x.Ukprn == t.Ukprn);
+        var providerName = dfeProviderDetailsList.SingleOrDefault(x => x.Ukprn == t.Ukprn);
 
         t.Username = provider.Username;
 
         t.Password = provider.Password;
 
-        t.Name = providerName.Name;
+        t.Name = providerName?.Name;
 
         return t;
     }
