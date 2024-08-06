@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System.Xml.Linq;
+using System;
+using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
 
@@ -17,6 +19,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected static By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
         protected static By YourFinancesLink => By.LinkText("Your finances");
         protected static By AANLink => By.LinkText("Join the Apprentice Ambassador Network");
+        private static By LevyDeclarationDueTask => By.LinkText($"Levy declaration due by 19 {DateTime.Now:MMMM}");
         #endregion
 
         protected override string AccessibilityPageTitle => "Employer home page";
@@ -51,6 +54,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             VerifyElement(SetUpAnApprenticeshipSectionHeader);
             VerifyElement(StartNowButton);
+        }
+
+        public void VerifyLevyDeclarationDueTaskMessageShown()
+        {
+            VerifyElement(LevyDeclarationDueTask);
         }
     }
 }
