@@ -1,0 +1,8 @@
+﻿Feature: EMPACC_API_05_ApiGetAccountPayeSchemesInternalAccountIdPayeSchemesPayeSchemeRef
+
+@api
+@employeraccountsapi
+@regression
+@innerapi
+Scenario: EMPACC_API_05_ApiGetAccountPayeSchemesInternalAccountIdPayeSchemesPayeSchemeRef
+	Then endpoint /api/accounts/{accountId}/payeschemes/{payeSchemeRef} can be accessed
