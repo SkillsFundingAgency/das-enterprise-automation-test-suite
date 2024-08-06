@@ -9,7 +9,7 @@ internal class EasAccountsSqlDataHelper(ObjectContext objectContext, DbConfig db
 {
     internal List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountDetails(List<string> emails)
     {
-        var query = emails.Select(x => GetSqlQuery(x)).ToList();
+        var query = emails.Select(GetSqlQuery).ToList();
 
         var listoflegalEntities = new List<List<string>>();
 

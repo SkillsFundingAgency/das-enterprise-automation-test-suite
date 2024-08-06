@@ -1,13 +1,15 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Helpers;
 
 internal static class SetProviderCredsHelper
 {
-    internal static T SetProviderCreds<T>(FrameworkList<DfeProviderUsers> dfeProviderList, T t) where T : ProviderConfig
+    internal static T SetProviderCreds<T>(FrameworkList<DfeProviderUsers> dfeProviderList, List<ProviderDetails> dfeProviderDetailsList, T t) where T : ProviderConfig
     {
         if (string.IsNullOrEmpty(t.Ukprn)) return t;
 
@@ -22,9 +24,13 @@ internal static class SetProviderCredsHelper
 
         var provider = dfeProviderList.Single(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn));
 
+        var providerName = dfeProviderDetailsList.Single(x => x.Ukprn == t.Ukprn);
+
         t.Username = provider.Username;
 
         t.Password = provider.Password;
+
+        t.Name = providerName.Name;
 
         return t;
     }

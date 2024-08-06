@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
-public abstract class WebElementInteractionHelper
+public abstract class WebElementInteractionHelper(IWebDriver webDriver)
 {
-    protected readonly IWebDriver webDriver;
+    protected readonly IWebDriver webDriver = webDriver;
 
     protected static By LinkCssSelector => By.CssSelector("a");
 
@@ -21,8 +21,6 @@ public abstract class WebElementInteractionHelper
     protected static By RadioButtonLabelCssSelector => By.CssSelector("label.selection-button-radio, label.govuk-radios__label");
 
     protected static By CheckBoxCssSelector => By.CssSelector("label.selection-button-checkbox");
-
-    protected WebElementInteractionHelper(IWebDriver webDriver) => this.webDriver = webDriver;
 
     public List<IWebElement> GetElementsByText(By locator, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetAttribute(AttributeHelper.InnerText));
 
