@@ -18,14 +18,23 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages
     public class YourTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
     {
         protected override string PageTitle => "Your training providers";
+
         private static By SetPermissionsLink => By.PartialLinkText("Set permissions");
-        private static By ChangePermissionsLink => By.PartialLinkText("Change permissions");
+
+        private static By ChangePermissionsLink(string ukprn) => By.CssSelector($"a[href*='providers/{ukprn}/changePermissions?']");
 
         private static By NotificationBanner => By.CssSelector($".govuk-notification-banner");
 
         public YourTrainingProvidersPage VerifyYouHaveAddedNotification()
         {
             VerifyPage(NotificationBanner, "You've added");
+
+            return this;
+        }
+
+        public YourTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
+        {
+            VerifyPage(NotificationBanner, "You've set permissions for");
 
             return this;
         }
@@ -47,9 +56,10 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages
             return new SetPermissionsForTrainingProviderPage(context);
         }
 
-        public SetPermissionsForTrainingProviderPage SelectChangePermissions()
+        public SetPermissionsForTrainingProviderPage SelectChangePermissions(string ukprn)
         {
-            formCompletionHelper.ClickElement(ChangePermissionsLink);
+            formCompletionHelper.ClickElement(ChangePermissionsLink(ukprn));
+
             return new SetPermissionsForTrainingProviderPage(context);
         }
 
@@ -72,7 +82,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages
 
         private static By FirstOption => By.CssSelector("[id='SearchTerm__option--0']");
 
-        public SetPermissionsForTrainingProviderPage SearchForATrainingProvider(ProviderConfig providerConfig)
+        public AddPermissionsForTrainingProviderPage SearchForATrainingProvider(ProviderConfig providerConfig)
         {
             formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Name);
 
@@ -95,14 +105,12 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages
 
             Continue();
 
-            return new SetPermissionsForTrainingProviderPage(context);
+            return new AddPermissionsForTrainingProviderPage(context, providerConfig);
         }
     }
 
-    public class SetPermissionsForTrainingProviderPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
+    public abstract class PermissionBasePageForTrainingProviderPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
     {
-        protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
-        protected override string PageTitle => "set permissions";
         protected static By ApprenticeAllowRadioOption => By.Id("addRecords-1");
         protected static By ApprenticeDoNotAllowRadioOption => By.Id("addRecords-2");
 
@@ -110,41 +118,65 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages
         protected static By RecruitAllowConditionalRadioOption => By.Id("recruitApprentices-2");
         protected static By RecruitDoNotAllowRadioOption => By.Id("recruitApprentices-3");
 
-        public YourTrainingProvidersPage SetPermissions(AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission)
+        protected static By ErrorMsg => By.CssSelector(".govuk-error-summary");
+
+        public YourTrainingProvidersPage AddOrSetPermissions((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
         {
-            return SetAddApprentice(cohortpermission).SetRecruitApprentice(recruitpermission);
+            SetAddApprentice(permisssion.cohortpermission);
+
+            SetRecruitApprentice(permisssion.recruitpermission);
+
+            return new YourTrainingProvidersPage(context);
         }
 
-        private SetPermissionsForTrainingProviderPage SetAddApprentice(AddApprenticePermissions permission)
+        protected void SetAddApprentice(AddApprenticePermissions permission)
         {
-            SetPermissionsForTrainingProviderPage Continue(By by)
-            {
-                javaScriptHelper.ClickElement(by);
-                return this;
-            }
+            void Continue(By by) => javaScriptHelper.ClickElement(by);
 
-            return permission switch
+            switch (permission)
             {
-                AddApprenticePermissions.Allow => Continue(ApprenticeAllowRadioOption),
-                _ => Continue(ApprenticeDoNotAllowRadioOption),
+                case AddApprenticePermissions.AllowConditional: Continue(ApprenticeAllowRadioOption); break;
+                case AddApprenticePermissions.DoNotAllow: Continue(ApprenticeDoNotAllowRadioOption); break;
             };
         }
 
-        private YourTrainingProvidersPage SetRecruitApprentice(RecruitApprenticePermissions permission)
+        protected void SetRecruitApprentice(RecruitApprenticePermissions permission)
         {
-            YourTrainingProvidersPage ContinueToConfirm(By by)
+            void ContinueToConfirm(By by)
             {
                 javaScriptHelper.ClickElement(by);
+
                 formCompletionHelper.ClickButtonByText(ContinueButton, "Confirm");
-                return new YourTrainingProvidersPage(context);
             }
 
-            return permission switch
+            switch (permission)
             {
-                RecruitApprenticePermissions.Allow => ContinueToConfirm(RecruitAllowRadioOption),
-                RecruitApprenticePermissions.AllowConditional => ContinueToConfirm(RecruitAllowConditionalRadioOption),
-                _ => ContinueToConfirm(RecruitDoNotAllowRadioOption),
+                case RecruitApprenticePermissions.Allow: ContinueToConfirm(RecruitAllowRadioOption); break;
+                case RecruitApprenticePermissions.AllowConditional: ContinueToConfirm(RecruitAllowConditionalRadioOption); break;
+                case RecruitApprenticePermissions.DoNotAllow: ContinueToConfirm(RecruitDoNotAllowRadioOption); break;
             };
         }
+
+    }
+
+    public class AddPermissionsForTrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : PermissionBasePageForTrainingProviderPage(context)
+    {
+        protected override string PageTitle => $"Add {providerConfig.Name} and set permissions";
+
+        public void VerifyDoNotAllowPermissions()
+        {
+            SetAddApprentice(AddApprenticePermissions.DoNotAllow);
+
+            SetRecruitApprentice(RecruitApprenticePermissions.DoNotAllow);
+
+            VerifyPage(ErrorMsg, "You must select yes for at least one permission for add apprentice records or recruit apprentices");
+        }
+    }
+
+    public class SetPermissionsForTrainingProviderPage(ScenarioContext context) : PermissionBasePageForTrainingProviderPage(context)
+    {
+        protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
+
+        protected override string PageTitle => $"Set permissions";
     }
 }
