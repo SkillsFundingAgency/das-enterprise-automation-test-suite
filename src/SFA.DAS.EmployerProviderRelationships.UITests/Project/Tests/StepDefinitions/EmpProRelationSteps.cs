@@ -48,12 +48,13 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         [When(@"the employer changes recruit apprentice permission")]
         public void TheEmployerChangesRecruitApprenticePermission()
         {
-            permissions = (NewAddApprenticePermissions.AllowConditional, NewRecruitApprenticePermissions.AllowConditional);
+            UpdatePermission((NewAddApprenticePermissions.AllowConditional, NewRecruitApprenticePermissions.AllowConditional));
+        }
 
-            _yourTrainingProvidersPage
-                .SelectChangePermissions(providerConfig.Ukprn)
-                .AddOrSetPermissions(permissions)
-                .VerifyYouHaveSetPermissionNotification();
+        [When(@"the provider does not grant any permission")]
+        public void WhenTheProviderDoesNotGrantAnyPermission()
+        {
+            UpdatePermission((NewAddApprenticePermissions.DoNotAllow, NewRecruitApprenticePermissions.DoNotAllow));
         }
 
         [Then(@"an employer has to select at least one permission")]
@@ -82,6 +83,16 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
                 Assert.That(actual["Permission to recruit apprentices"], Is.EqualTo(EnumToString.GetStringValue(permissions.RecruitApprentice)), "Incorrect add apprentice permission trainning provider page");
             });
+        }
+
+        private void UpdatePermission((NewAddApprenticePermissions AddApprentice, NewRecruitApprenticePermissions RecruitApprentice) permissions)
+        {
+            this.permissions = permissions;
+
+            _yourTrainingProvidersPage = _yourTrainingProvidersPage
+                .SelectChangePermissions(providerConfig.Ukprn)
+                .AddOrSetPermissions(permissions)
+                .VerifyYouHaveSetPermissionNotification();
         }
 
         private void EPRLogin()
