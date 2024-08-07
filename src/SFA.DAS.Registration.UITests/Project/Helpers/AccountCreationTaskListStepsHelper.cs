@@ -96,7 +96,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal static HomePage GrantTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
           createEmployerAccountPage.GoToTrainingProviderPermissionsLink()
             .SelectSetPermissions(string.Empty)
-            .ClickAddApprentice(AddApprenticePermissions.Allow)
+            .ClickAddApprentice(AddApprenticePermissions.AllowConditional)
             .ClickRecruitApprentice(RecruitApprenticePermissions.Allow)
             .ConfirmAndGoToEmployerAccountCreatedPage()
             .GoToHomePage();

@@ -1,18 +1,24 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
     public enum AddApprenticePermissions
     {
-        Allow,
+        [ToString("Yes, employer will review records")]
+        AllowConditional,
+        [ToString("No")]
         DoNotAllow
     }
 
     public enum RecruitApprenticePermissions
     {
+        [ToString("Yes")]
         Allow,
+        [ToString("Yes, employer will review adverts")]
         AllowConditional,
+        [ToString("No")]
         DoNotAllow
     }
 
@@ -44,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
             return permission switch
             {
-                AddApprenticePermissions.Allow => Continue(ApprenticeAllowRadioOption),
+                AddApprenticePermissions.AllowConditional => Continue(ApprenticeAllowRadioOption),
                 _ => Continue(ApprenticeDoNotAllowRadioOption),
             };
         }

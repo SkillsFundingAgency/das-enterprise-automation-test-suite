@@ -1,4 +1,6 @@
-﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages;
+﻿using NUnit.Framework;
+using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
+using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
@@ -9,6 +11,8 @@ using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
+using NewAddApprenticePermissions = SFA.DAS.Registration.UITests.Project.Tests.Pages.AddApprenticePermissions;
+using NewRecruitApprenticePermissions = SFA.DAS.Registration.UITests.Project.Tests.Pages.RecruitApprenticePermissions;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions
 {
@@ -19,26 +23,82 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
+        private readonly ProviderConfig providerConfig = context.GetProviderConfig<ProviderConfig>();
+
+        private (NewAddApprenticePermissions AddApprentice, NewRecruitApprenticePermissions RecruitApprentice) permissions;
+
         [Given(@"Levy employer grants all permission to a provider")]
         public void LevyEmployerGrantsAllPermissionToAProvider()
         {
-            var providerConfig = context.GetProviderConfig<ProviderConfig>();
+            permissions = (NewAddApprenticePermissions.AllowConditional, NewRecruitApprenticePermissions.Allow);
 
-            _employerLoginHelper.Login(context.GetUser<EPRLevyUser>(), true);
+            EPRLogin();
 
             context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerProviderRelationships_BaseUrl(_objectContext.GetHashedAccountId()));
 
             new YourTrainingProvidersPage(context)
                 .SelectAddATrainingProvider()
                 .SearchForATrainingProvider(providerConfig)
-                .SetPermissions(Registration.UITests.Project.Tests.Pages.AddApprenticePermissions.Allow, Registration.UITests.Project.Tests.Pages.RecruitApprenticePermissions.Allow)
+                .AddOrSetPermissions(permissions)
                 .VerifyYouHaveAddedNotification();
+        }
+
+        [When(@"the employer changes recruit apprentice permission")]
+        public void TheEmployerChangesRecruitApprenticePermission()
+        {
+            UpdatePermission((NewAddApprenticePermissions.AllowConditional, NewRecruitApprenticePermissions.AllowConditional));
+        }
+
+        [When(@"the provider does not grant any permission")]
+        public void WhenTheProviderDoesNotGrantAnyPermission()
+        {
+            UpdatePermission((NewAddApprenticePermissions.DoNotAllow, NewRecruitApprenticePermissions.DoNotAllow));
+        }
+
+        [Then(@"an employer has to select at least one permission")]
+        public void ThenAnEmployerHasToSelectAtLeastOnePermission()
+        {
+            EPRLogin();
+
+            context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerProviderRelationships_BaseUrl(_objectContext.GetHashedAccountId()));
+
+            new YourTrainingProvidersPage(context)
+                .SelectAddATrainingProvider()
+                .SearchForATrainingProvider(providerConfig)
+                .VerifyDoNotAllowPermissions();
         }
 
         [Then(@"the provider should be added with the correct permissions")]
         public void TheProviderShouldBeAddedWithTheCorrectPermissions()
         {
+            var providersOnthePage = context.Get<TableRowHelper>().GetTableRows();
 
+            var actual = providersOnthePage.Single(x => x["Training provider"] == providerConfig.Name);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(actual["Permission to add apprentice records"], Is.EqualTo(EnumToString.GetStringValue(permissions.AddApprentice)), "Incorrect add apprentice permission trainning provider page");
+
+                Assert.That(actual["Permission to recruit apprentices"], Is.EqualTo(EnumToString.GetStringValue(permissions.RecruitApprentice)), "Incorrect add apprentice permission trainning provider page");
+            });
+        }
+
+        private void UpdatePermission((NewAddApprenticePermissions AddApprentice, NewRecruitApprenticePermissions RecruitApprentice) permissions)
+        {
+            this.permissions = permissions;
+
+            new YourTrainingProvidersPage(context)
+                .SelectChangePermissions(providerConfig.Ukprn)
+                .AddOrSetPermissions(permissions)
+                .VerifyYouHaveSetPermissionNotification();
+        }
+
+        private void EPRLogin()
+        {
+            _employerLoginHelper.Login(context.GetUser<EPRLevyUser>(), true);
+
+            new DeleteProviderRelationHelper(context).DeleteProviderRelation();
         }
     }
 }
+
