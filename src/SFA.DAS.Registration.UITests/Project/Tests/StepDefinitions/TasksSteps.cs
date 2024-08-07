@@ -1,76 +1,172 @@
 ﻿using System;
-using Polly;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 {
+    [Binding]
     public class TasksSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly RegistrationDataHelper _registrationDataHelper;
-        private readonly RegistrationSqlDataHelper _registrationSqlDataHelper;
-        private readonly TprSqlDataHelper _tprSqlDataHelper;
-        private readonly AccountCreationStepsHelper _accountCreationStepsHelper;
         private readonly TasksHelper _tasksHelper;
-
         private HomePage _homePage;
-        private AddAPAYESchemePage _addAPAYESchemePage;
-        private GgSignInPage _gGSignInPage;
-        private SearchForYourOrganisationPage _searchForYourOrganisationPage;
-        private SelectYourOrganisationPage _selectYourOrganisationPage;
-        private CheckYourDetailsPage _checkYourDetailsPage;
-        private TheseDetailsAreAlreadyInUsePage _theseDetailsAreAlreadyInUsePage;
-        private EnterYourPAYESchemeDetailsPage _enterYourPAYESchemeDetailsPage;
-        private UsingYourGovtGatewayDetailsPage _usingYourGovtGatewayDetailsPage;
-        private CreateAnAccountToManageApprenticeshipsPage _indexPage;
-        private AddPayeSchemeUsingGGDetailsPage _addPayeSchemeUsingGGDetailsPage;
-        private DoYouAcceptTheEmployerAgreementOnBehalfOfPage _doYouAcceptTheEmployerAgreementOnBehalfOfPage;
 
-        private const string LevyDeclarationDueKey = "LevyDeclarationDue";
-        private DateTime CurrentDate = DateTime.UtcNow;
+        private const string TaskQueryResultKey = nameof(TaskQueryResult);
+        private readonly DateTime _currentDate = DateTime.UtcNow;
 
         public TasksSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = _context.Get<ObjectContext>();
-            _registrationDataHelper = context.Get<RegistrationDataHelper>();
-            _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
-            _tprSqlDataHelper = context.Get<TprSqlDataHelper>();
-            _accountCreationStepsHelper = new AccountCreationStepsHelper(context);
             _tasksHelper = new TasksHelper(context);
+            _homePage = new HomePage(context);
+            InitializeTaskQueryResult();
         }
 
-        [When(@"the current date is in range 16 - 19")]
+        private void InitializeTaskQueryResult()
+        {
+            _context.Set(new TaskQueryResult(), TaskQueryResultKey);
+        }
+
+        private TaskQueryResult GetTaskQueryResult()
+        {
+            return _context.Get<TaskQueryResult>(TaskQueryResultKey);
+        }
+
+        private void SetTaskQueryResult(TaskQueryResult taskQueryResult)
+        {
+            _context.Set(taskQueryResult, TaskQueryResultKey);
+        }
+
+        [When("the current date is in range 16 - 19")]
         public void WhenTheCurrentDateIsInRange()
         {
-            var currentDay = CurrentDate.Day;
-
-            _context.Set(currentDay >= 16 && currentDay <= 19, LevyDeclarationDueKey);
-            
+            var tasks = GetTaskQueryResult();
+            var currentDay = _currentDate.Day;
+            tasks.ShowLevyDeclarationTask = currentDay >= 16 && currentDay <= 19;
+            SetTaskQueryResult(tasks);
         }
 
-        [Then(@"display task: 'Levy declaration due by 19 <MMMM>'")]
+        [Then("display task: Levy declaration due by 19 MMMM")]
         public void ThenDisplayTaskLevyDeclarationDueBy()
         {
-            bool showLevyDeclarationMessage = _context.ContainsKey(LevyDeclarationDueKey) && (bool)_context[LevyDeclarationDueKey];
+            var tasks = GetTaskQueryResult();
 
-            if (showLevyDeclarationMessage)
+            if (tasks.ShowLevyDeclarationTask)
             {
                 _homePage.VerifyLevyDeclarationDueTaskMessageShown();
-            }           
+            }
         }
 
-        [When(@"there are X apprentice change(s) to review")]
+        [When("there are X apprentice changes to review")]
         public void WhenThereAreApprenticeChangesToReview()
         {
-            //run a sql query to find out how many changes there should be 
-
-            //then verify message on page IF x > 0
-
+            var tasks = GetTaskQueryResult();
+            tasks.NumberOfApprenticesToReview = _tasksHelper.GetNumberOfApprenticesToReview();
+            SetTaskQueryResult(tasks);
         }
+
+        [Then("display task: X apprentice changes to review")]
+        public void ThenDisplayApprenticeChangesToReview()
+        {
+            var tasks = GetTaskQueryResult();
+            _homePage.VerifyApprenticeChangeToReviewMessageShown(tasks.NumberOfApprenticesToReview);
+        }
+
+        [Then("View changes link should navigate user to Manage your apprentices page")]
+        public void ThenViewApprenticeChangesNavigatesToManageYourApprenticesPage()
+        {
+            var tasks = GetTaskQueryResult();
+
+            _homePage = TasksHelper.ClickViewApprenticeChangesLink(_homePage, tasks.NumberOfApprenticesToReview);
+        }
+
+        [When("there are X cohorts ready for approval")]
+        public void WhenThereAreCohortsReadyToReview()
+        {
+            var tasks = GetTaskQueryResult();
+            tasks.NumberOfCohortsReadyToReview = _tasksHelper.GetNumberOfCohortsReadyToReview();
+            SetTaskQueryResult(tasks);
+        }
+
+        [Then("display task: X cohorts ready for approval")]
+        public void ThenDisplayNumberOfCohortsReadyToReview()
+        {
+            var tasks = GetTaskQueryResult();
+            _homePage.VerifyCohortsReadyToReviewMessageShown(tasks.NumberOfCohortsReadyToReview);
+        }
+
+        [Then("'View cohorts' link should navigate user to 'Apprentice Requests' page")]
+        public void ThenViewCohortsReadyToReviewNavigatesToApprenticeRequestsPage()
+        {
+            var tasks = GetTaskQueryResult();
+
+            _homePage = TasksHelper.ClickViewCohortsToReviewLink(_homePage, tasks.NumberOfCohortsReadyToReview);
+        }
+
+        [When("there is pending Transfer request ready for approval")]
+        public void WhenThereIsAPendingTransferRequestReadyForApproval()
+        {
+            var tasks = GetTaskQueryResult();
+            tasks.NumberOfTransferRequestToReview = _tasksHelper.GetNumberOfTransferRequestToReview();
+            SetTaskQueryResult(tasks);
+        }
+
+        [Then("display task: Transfer request received'")]
+        public void ThenDisplayTransferRequestReceived()
+        {
+            _homePage.VerifyTransferRequestReceivedMessageShown();
+        }
+
+        [Then("'View details' for Transfer Request link should navigate user to 'Transfers (../transfers/connections)' page")]
+        public void ThenViewTransferRequestDetailsNavigatesToTransferConnectionsPage()
+        {
+            _homePage = TasksHelper.ClickViewDetailsForTransferRequestsLink(_homePage);
+        }
+
+        [When("there are X transfer connection request(s) to review")]
+        public void WhenThereAreTransferConnectionRequestsToReview()
+        {
+            var tasks = GetTaskQueryResult();
+            tasks.NumberOfPendingTransferConnections = _tasksHelper.GetNumberOfPendingTransferConnections();
+            SetTaskQueryResult(tasks);
+        }
+
+        [Then("display task: 'X connection request(s) to review'")]
+        public void ThenDisplayTransferConnectionRequests()
+        {
+            var tasks = GetTaskQueryResult();
+            _homePage.VerifyTransferConnectionRequestsMessageShown(tasks.NumberOfPendingTransferConnections);
+        }
+
+        [Then("'View details' for Transfer Connection link should navigate user to 'Transfers (../transfers/connections)' page")]
+        public void ThenViewTransferConnectionRequestDetailsNavigatesToTransferConnectionsPage()
+        {
+            _homePage = TasksHelper.ClickViewDetailsForTransferConnectionRequestsLink(_homePage);
+        }
+
+        [When("there are X transfer pledge applications awaiting your approval")]
+        public void WhenThereAreTransferPledgeApplicationsToReview()
+        {
+            var tasks = GetTaskQueryResult();
+            tasks.NumberTransferPledgeApplicationsToReview = _tasksHelper.GetNumberTransferPledgeApplicationsToReview();
+            SetTaskQueryResult(tasks);
+        }
+
+        [Then("display task: 'X transfer pledge applications awaiting your approval'")]
+        public void ThenDisplayNumberTransferPledgeApplicationsToReview()
+        {
+            var tasks = GetTaskQueryResult();
+            _homePage.VerifyTransferPledgeApplicationsToReviewMessageShown(tasks.NumberTransferPledgeApplicationsToReview);
+        }
+
+        [Then("'View applications(s)' link should navigate user to ‘My Transfer Pledges’ page")]
+        public void ThenViewTransferPledgeApplicationsNavigatesToMyTransfersPage()
+        {
+            var tasks = GetTaskQueryResult();
+
+            _homePage = TasksHelper.ClickTransferPledgeApplicationsLink(_homePage, tasks.NumberOfCohortsReadyToReview);
+        }
+
     }
 }

@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1]);
         }
 
-        public int GetNumberOfCohortsReadyToReview(long employerAccountId)
+        public int GetNumberOfCohortsReadyToReview(string employerAccountId)
         {
             string query = $@"WITH CohortsFiltered AS (
 								SELECT 
@@ -48,7 +48,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
             return (int)GetDataAsObject(query);
         }
 
-        public int GetNumberOfTransferRequestToReview(long employerAccountId)
+        public int GetNumberOfTransferRequestToReview(string employerAccountId)
         {
             string query = $@"WITH TransferRequestsFiltered AS (
                                 SELECT [t].Id
@@ -73,7 +73,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
             return (int)GetDataAsObject(query);
         }
 
-        public int GetNumberOfApprenticesToReview(long employerAccountId)
+        public int GetNumberOfApprenticesToReview(string employerAccountId)
         {
             string query = $@"select COUNT(aup.Id)
                             from [dbo].[ApprenticeshipUpdate] aup

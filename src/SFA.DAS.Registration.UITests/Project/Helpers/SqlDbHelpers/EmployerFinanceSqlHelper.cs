@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
 {
     public class EmployerFinanceSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.FinanceDbConnectionString)
     {
-        public int GetNumberOfPendingTransferConnections(long employerAccountId)
+        public int GetNumberOfPendingTransferConnections(string employerAccountId)
         {
             string query = $@"WITH Invitations AS (
                             SELECT [t].[Id]

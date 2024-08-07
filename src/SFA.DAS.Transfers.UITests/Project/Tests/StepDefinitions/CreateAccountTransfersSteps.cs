@@ -296,7 +296,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         private bool CheckTransferConnectionStatus(string orgName, string role) => OpenTransfers().CheckTransferConnectionStatus(orgName, role);
 
-        private TransfersPage OpenTransfers() => new FinancePage(context, true).OpenTransfers();
+        private Pages.TransfersPage OpenTransfers() => new FinancePage(context, true).OpenTransfers();
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }
