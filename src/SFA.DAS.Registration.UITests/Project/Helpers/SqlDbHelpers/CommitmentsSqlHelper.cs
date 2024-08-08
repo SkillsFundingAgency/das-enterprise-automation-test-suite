@@ -12,7 +12,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
             {
                 { "@Email", email }
             };
-            var query = "SELECT TrainingName, StartDate From Apprenticeship WHERE Email = @Email";
+            var query = "SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '@Email'";
             var data = GetData(query, sqlParameters);
             return (data[0], data[1]);
         }
@@ -110,10 +110,25 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
         }
 
 
+        public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) 
+        {
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@Email", email },
+                { "@Apprenticeshipid", apprenticeshipid.ToString() }
+            };
+            ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '@Email' WHERE Id = @Apprenticeshipid", sqlParameters);
+        }
 
-        public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}");
+        public void ResetEmailForApprenticeshipRecord(string email)
+        {
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@Email", email }
+            };
 
-        public void ResetEmailForApprenticeshipRecord(string email) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Email = '{email}'");
+            ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Email = '@Email'", sqlParameters);
+        }
 
     }
 }
