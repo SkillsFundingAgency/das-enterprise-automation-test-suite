@@ -3,6 +3,7 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -51,6 +52,10 @@ namespace SFA.DAS.Registration.UITests.Project
             context.Set(new RegistrationSqlDataHelper(_objectContext, _dbConfig));
 
             context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
+
+            context.Set(new CommitmentsSqlHelper(_objectContext, _dbConfig));
+            context.Set(new EmployerFinanceSqlHelper(_objectContext, _dbConfig));
+            context.Set(new TransferMatchingSqlDataHelper(_objectContext, _dbConfig));
 
             var randomEmail = registrationDatahelpers.RandomEmail;
 

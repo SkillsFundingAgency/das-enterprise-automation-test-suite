@@ -18,6 +18,7 @@ using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
+using MyTransferPledgesPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyTransferPledgesPage;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
