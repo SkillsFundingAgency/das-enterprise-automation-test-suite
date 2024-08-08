@@ -10,6 +10,7 @@ using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using TransfersPage = SFA.DAS.Transfers.UITests.Project.Tests.Pages.TransfersPage;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {
@@ -296,7 +297,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 
         private bool CheckTransferConnectionStatus(string orgName, string role) => OpenTransfers().CheckTransferConnectionStatus(orgName, role);
 
-        private Pages.TransfersPage OpenTransfers() => new FinancePage(context, true).OpenTransfers();
+        private TransfersPage OpenTransfers() => new FinancePage(context, true).OpenTransfers();
 
         private void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
     }

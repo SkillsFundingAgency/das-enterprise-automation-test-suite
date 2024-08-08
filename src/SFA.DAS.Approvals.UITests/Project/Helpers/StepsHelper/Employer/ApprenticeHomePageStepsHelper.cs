@@ -2,6 +2,7 @@
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
+using ManageYourApprenticesPage = SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer.ManageYourApprenticesPage;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
