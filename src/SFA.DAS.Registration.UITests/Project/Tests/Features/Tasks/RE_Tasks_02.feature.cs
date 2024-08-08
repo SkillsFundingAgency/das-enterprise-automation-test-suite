@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("display task: X apprentice changes to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.Then("View changes link should navigate user to Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("View changes link should navigate user to Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.When("there are X cohorts ready for approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -128,27 +128,26 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("display task: Transfer request received\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
- testRunner.And("\'View details\' for Transfer Request link should navigate user to \'Transfers (../t" +
-                        "ransfers/connections)\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\'View details\' for Transfer Request link should navigate user to Transfers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
- testRunner.When("there are X transfer connection request(s) to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("there are X transfer connection requests to review", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
- testRunner.Then("display task: \'X connection request(s) to review\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("display task: \'X connection requests to review\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 20
- testRunner.And("\'View details\' for Transfer Connection link should navigate user to \'Transfers (." +
-                        "./transfers/connections)\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 21
- testRunner.When("there are X transfer pledge applications awaiting your approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
- testRunner.Then("display task: \'X transfer pledge applications awaiting your approval\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\'View details\' for Transfer Connection link should navigate user to Transfers pag" +
+                        "e", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
- testRunner.And("\'View applications(s)\' link should navigate user to ‘My Transfer Pledges’ page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("there are X transfer pledge applications awaiting your approval", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 24
+ testRunner.Then("display task: \'X transfer pledge applications awaiting your approval\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 25
+ testRunner.And("\'View applications\' link should navigate user to \'My Transfer Pledges\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

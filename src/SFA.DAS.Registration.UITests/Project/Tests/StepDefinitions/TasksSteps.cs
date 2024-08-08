@@ -118,13 +118,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage.VerifyTransferRequestReceivedMessageShown();
         }
 
-        [Then("'View details' for Transfer Request link should navigate user to 'Transfers (../transfers/connections)' page")]
+        [Then("'View details' for Transfer Request link should navigate user to Transfers page")]
         public void ThenViewTransferRequestDetailsNavigatesToTransferConnectionsPage()
         {
             _homePage = TasksHelper.ClickViewDetailsForTransferRequestsLink(_homePage);
         }
 
-        [When("there are X transfer connection request(s) to review")]
+        [When("there are X transfer connection requests to review")]
         public void WhenThereAreTransferConnectionRequestsToReview()
         {
             var tasks = GetTaskQueryResult();
@@ -132,14 +132,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             SetTaskQueryResult(tasks);
         }
 
-        [Then("display task: 'X connection request(s) to review'")]
+        [Then("display task: 'X connection requests to review'")]
         public void ThenDisplayTransferConnectionRequests()
         {
             var tasks = GetTaskQueryResult();
             _homePage.VerifyTransferConnectionRequestsMessageShown(tasks.NumberOfPendingTransferConnections);
         }
 
-        [Then("'View details' for Transfer Connection link should navigate user to 'Transfers (../transfers/connections)' page")]
+        [Then("'View details' for Transfer Connection link should navigate user to Transfers page")]
         public void ThenViewTransferConnectionRequestDetailsNavigatesToTransferConnectionsPage()
         {
             _homePage = TasksHelper.ClickViewDetailsForTransferConnectionRequestsLink(_homePage);
@@ -160,7 +160,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage.VerifyTransferPledgeApplicationsToReviewMessageShown(tasks.NumberTransferPledgeApplicationsToReview);
         }
 
-        [Then("'View applications(s)' link should navigate user to ‘My Transfer Pledges’ page")]
+        [Then("'View applications' link should navigate user to 'My Transfer Pledges' page")]
         public void ThenViewTransferPledgeApplicationsNavigatesToMyTransfersPage()
         {
             var tasks = GetTaskQueryResult();

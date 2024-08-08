@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using System;
+﻿using System;
 using OpenQA.Selenium;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
@@ -65,45 +64,55 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void VerifyApprenticeChangeToReviewMessageShown(int numberOfChanges)
         {
-            var linkText = numberOfChanges == 1 ? "1 apprentice change to review" : $"{numberOfChanges} apprentice changes to review";
-            var apprenticeChangeToReviewMessage = By.LinkText(linkText);
+            var messageText = numberOfChanges == 1 ? "1 apprentice change to review" : $"{numberOfChanges} apprentice changes to review";
+            var xpath = $"//span[contains(text(), '{messageText}')]";
+            var apprenticeChangeToReviewMessage = By.XPath(xpath);
+
             VerifyElement(apprenticeChangeToReviewMessage);
         }
 
-        public ManageYourApprenticesPage ClickViewChangesForApprenticeChangesToReview(int numberOfChanges)
-        {
-            var linkText = numberOfChanges == 1 ? "View change" : "View changes";
-            var apprenticeChangeToReviewLink = By.LinkText(linkText);
-
-            formCompletionHelper.Click(apprenticeChangeToReviewLink);
-            return new ManageYourApprenticesPage(context);
-        }
-               
         public void VerifyCohortsReadyToReviewMessageShown(int numberOfChanges)
         {
-            var linkText = numberOfChanges == 1 ? "1 cohort ready for approval" : $"{numberOfChanges} cohorts ready for approval";
-            var cohortsToReviewMessage = By.LinkText(linkText);
+            var messageText = numberOfChanges == 1 ? "1 cohort ready for approval" : $"{numberOfChanges} cohorts ready for approval";
+            var xpath = $"//span[contains(text(), '{messageText}')]";
+            var cohortsToReviewMessage = By.XPath(xpath);
+
             VerifyElement(cohortsToReviewMessage);
         }
 
         public void VerifyTransferPledgeApplicationsToReviewMessageShown(int numberOfChanges)
         {
-            var linkText = numberOfChanges == 1 ? "1 transfer pledge application awaiting your approval" : $"{numberOfChanges} transfer pledge applications awaiting your approval";
-            var transferApplicationsToReviewMessage = By.LinkText(linkText);
+            var messageText = numberOfChanges == 1 ? "1 transfer pledge application awaiting your approval" : $"{numberOfChanges} transfer pledge applications awaiting your approval";
+            var xpath = $"//span[contains(text(), '{messageText}')]";
+            var transferApplicationsToReviewMessage = By.XPath(xpath);
+
             VerifyElement(transferApplicationsToReviewMessage);
         }
 
         public void VerifyTransferRequestReceivedMessageShown()
         {
-            var transferRequestMessage = By.LinkText("Transfer request received");
+            var xpath = "//span[contains(text(), 'Transfer request received')]";
+            var transferRequestMessage = By.XPath(xpath);
+
             VerifyElement(transferRequestMessage);
         }
 
         public void VerifyTransferConnectionRequestsMessageShown(int numberOfChanges)
         {
-            var linkText = numberOfChanges == 1 ? "1 connection request to review" : $"{numberOfChanges} connection requests to review";
-            var cohortsToReviewMessage = By.LinkText(linkText);
+            var messageText = numberOfChanges == 1 ? "1 connection request to review" : $"{numberOfChanges} connection requests to review";
+            var xpath = $"//span[contains(text(), '{messageText}')]";
+            var cohortsToReviewMessage = By.XPath(xpath);
+
             VerifyElement(cohortsToReviewMessage);
+        }
+
+        public ManageYourApprenticesPage ClickViewChangesForApprenticeChangesToReview(int numberOfChanges)
+        {
+            var linkText = numberOfChanges == 1 ? "change" : "changes";
+            var apprenticeChangeToReviewLink = By.XPath($"//a[contains(., 'View') and contains(., 'apprentice') and contains(., '{linkText}')]");
+
+            formCompletionHelper.Click(apprenticeChangeToReviewLink);
+            return new ManageYourApprenticesPage(context);
         }
 
         public ApprenticeRequestsPage ClickViewCohortsForCohortsReadyToReview(int numberOfChanges)
@@ -114,9 +123,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.Click(cohortsToApproveLink);
             return new ApprenticeRequestsPage(context);
         }
-          
+
         public TransfersPage ClickViewDetailsForTransferRequests()
-        {         
+        {
             formCompletionHelper.Click(TransferRequestViewDetailsLink);
             return new TransfersPage(context);
         }
@@ -129,8 +138,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public MyTransferPledgesPage ClickViewTransferPledgeApplications(int numberOfChanges)
         {
-            var linkText = numberOfChanges == 1 ? "1 transfer pledge to application" : $"{numberOfChanges} transfer pledge to applications";
-            var transferPledgeApplicationsLink = By.LinkText(linkText);
+            var linkText = numberOfChanges == 1 ? "application" : "applications";
+            var transferPledgeApplicationsLink = By.XPath($"//a[contains(., 'View') and contains(., 'transfer pledge') and contains(., '{linkText}')]");
 
             formCompletionHelper.Click(transferPledgeApplicationsLink);
             return new MyTransferPledgesPage(context);
