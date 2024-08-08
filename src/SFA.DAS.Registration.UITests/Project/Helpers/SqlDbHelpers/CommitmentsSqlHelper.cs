@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using System.Collections.Generic;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
@@ -7,14 +8,23 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
     {
         public (string trainingName, string traningDate) GetTrainingNameAndStartDate(string email)
         {
-            var query = $"SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '{email}'";
-            var data = GetData(query);
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@Email", email }
+            };
+            var query = "SELECT TrainingName, StartDate From Apprenticeship WHERE Email = @Email";
+            var data = GetData(query, sqlParameters);
             return (data[0], data[1]);
         }
 
         public int GetNumberOfCohortsReadyToReview(string employerAccountId)
         {
-            string query = $@"WITH CohortsFiltered AS (
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@EmployerAccountId", employerAccountId }
+            };
+
+            string query = @"WITH CohortsFiltered AS (
 								SELECT 
 								[c].[Id]
 							FROM [Commitment] AS [c]
@@ -31,7 +41,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
 								AND [c].IsDraft = 0
 							AND [c].WithParty = 1
 								AND (
-									(([c].[EmployerAccountId] = {employerAccountId}))
+									(([c].[EmployerAccountId] = @EmployerAccountId))
 									AND (
 										([c].[EditStatus] <> CAST(0 AS SMALLINT))
 										OR (
@@ -45,12 +55,17 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
 							FROM CohortsFiltered;
 							";
 
-            return (int)GetDataAsObject(query);
+            return (int)GetDataAsObject(query, sqlParameters);
         }
 
         public int GetNumberOfTransferRequestToReview(string employerAccountId)
         {
-            string query = $@"WITH TransferRequestsFiltered AS (
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@EmployerAccountId", employerAccountId }
+            };
+
+            string query = @"WITH TransferRequestsFiltered AS (
                                 SELECT [t].Id
                                 FROM [TransferRequest] AS [t]
                                     INNER JOIN
@@ -63,30 +78,35 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
                                         WHERE [c].[IsDeleted] = CAST(0 AS bit)
                                     ) AS [t0]
                                         ON [t].[CommitmentId] = [t0].[Id]
-                                WHERE [t0].[TransferSenderId] = {employerAccountId}
+                                WHERE [t0].[TransferSenderId] = @EmployerAccountId
                                       and [t].Status = 0
                                 )
                                 SELECT COUNT(*) AS TotalRequests
                                 FROM TransferRequestsFiltered;
 							";
 
-            return (int)GetDataAsObject(query);
+            return (int)GetDataAsObject(query, sqlParameters);
         }
 
         public int GetNumberOfApprenticesToReview(string employerAccountId)
         {
-            string query = $@"select COUNT(aup.Id)
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@EmployerAccountId", employerAccountId }
+            };
+
+            string query = @"select COUNT(aup.Id)
                             from [dbo].[ApprenticeshipUpdate] aup
                                 inner join [dbo].[Apprenticeship] app
                                     on app.Id = aup.ApprenticeshipId
                                 inner join [dbo].[Commitment] comm
                                     on comm.Id = app.CommitmentId
-                            where comm.EmployerAccountId = {employerAccountId}
+                            where comm.EmployerAccountId = @EmployerAccountId
                                   AND aup.Status = 0
                                   AND aup.Originator = 1
 							";
 
-            return (int)GetDataAsObject(query);
+            return (int)GetDataAsObject(query, sqlParameters);
         }
 
 

@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ConfigurationBuilder;
+﻿using System.Collections.Generic;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
@@ -7,13 +8,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
     {       
         public int GetNumberTransferPledgeApplicationsToReview(string employerAccountId)
         {
-            string query = $@"select COUNT(app.Id) from [dbo].[Application] app
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@EmployerAccountId", employerAccountId }
+            };
+
+            string query = @"select COUNT(app.Id) from [dbo].[Application] app
                                 inner join [dbo].[Pledge] pledge
                                 on pledge.Id = app.PledgeId
                                 where app.Status = 0
-                                and pledge.EmployerAccountId = {employerAccountId};";
+                                and pledge.EmployerAccountId = @EmployerAccountId;";
 
-            return (int)GetDataAsObject(query);
+            return (int)GetDataAsObject(query, sqlParameters);
         }
 
     }
