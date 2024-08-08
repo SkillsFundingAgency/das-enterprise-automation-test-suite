@@ -8,22 +8,34 @@ namespace SFA.DAS.UI.FrameworkHelpers;
 
 public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper)
 {
-    public IList<Dictionary<string, string>> GetTableRows(string tableSelector = "table", string tableRowSelector = "tbody tr", int tablePosition = 0)
+    public List<Dictionary<string, string>> GetTableRows(string tableSelector = "table", string tableRowSelector = "tbody tr", int tablePosition = 0)
     {
         var table = pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).ElementAtOrDefault(tablePosition);
+
+        var headerRow = table?.FindElements(By.CssSelector("thead th"));
+
         var rows = table?.FindElements(By.CssSelector(tableRowSelector));
 
         List<Dictionary<string, string>> tableData = [];
 
+        List<string> headerData = headerRow.Select(x => x.Text).ToList();
+
         foreach (var row in rows)
         {
             var rowData = new Dictionary<string, string>();
+
             var cells = row.FindElements(By.CssSelector("td"));
 
-            foreach (var cell in cells)
+            for (int i = 0; i < cells.Count; i++)
             {
-                var columnName = cell.GetAttribute("data-label");
+                var cell = cells[i];
+
+                string datalabel = cell.GetAttribute("data-label");
+
+                var columnName = string.IsNullOrEmpty(datalabel) ? headerData[i] : datalabel;
+
                 var cellValue = cell.Text.Trim();
+
                 rowData.Add(columnName, cellValue);
             }
 
