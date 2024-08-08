@@ -21,9 +21,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             organisationPage.GoToHomePage();
         }
 
-        public HomePage SetCreateCohortPermission(string ukprn) => SetProviderPermissions(ukprn, string.Empty, AddApprenticePermissions.Allow, RecruitApprenticePermissions.Allow);
+        public HomePage SetCreateCohortPermission(string ukprn) => SetProviderPermissions(ukprn, string.Empty, AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
 
-        public HomePage SetRecruitApprenticesPermission(string ukprn, string orgName) => SetProviderPermissions(ukprn, orgName, AddApprenticePermissions.Allow, RecruitApprenticePermissions.Allow);
+        public HomePage SetRecruitApprenticesPermission(string ukprn, string orgName) => SetProviderPermissions(ukprn, orgName, AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
 
         private HomePage SetProviderPermissions(string ukprn, string orgName, AddApprenticePermissions addApprenticePermissions, RecruitApprenticePermissions recruitApprenticePermissions)
         {
