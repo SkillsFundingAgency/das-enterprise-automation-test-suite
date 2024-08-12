@@ -41,6 +41,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new CreateYourEmployerAccountPage(context);
         }
 
+        public EmployerAccountCreatedPage DoNotSignAgreementAndGoToEmployerAccountCreatedPage()
+        {
+            DoNotSign();
+
+            return new EmployerAccountCreatedPage(context);
+        }
+
         public AccessDeniedPage ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage()
         {
             SelectRadioOptionByText("Yes, I accept the agreement");
