@@ -107,6 +107,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
+            //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
+            //    .SignAgreement()
+            //    .SelectContinueToCreateYourEmployerAccount()
+            //    .GoToTrainingProviderLink()
+            //    .AddTrainingProviderLater()
+            //    .SelectGoToYourEmployerAccountHomepage();
+
+
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
                 .SignAgreementAndGoToEmployerAccountCreatedPage()
                 .SelectGoToYourEmployerAccountHomepage();
@@ -130,6 +138,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
             .DoNotSignAgreementAndGoToEmployerAccountCreatedPage()
             .SelectGoToYourEmployerAccountHomepage();
+
+        //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage.DoNotSignAgreement()
+        //    .GoToTrainingProviderLink()
+        //    .AddTrainingProviderLater()
+        //    .SelectGoToYourEmployerAccountHomepage();
+
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
