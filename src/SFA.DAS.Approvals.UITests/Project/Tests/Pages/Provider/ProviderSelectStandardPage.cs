@@ -1,21 +1,25 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class SelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
+    public class ProviderSelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "What is the apprenticeship course?";
-        protected override By PageHeader => By.ClassName("govuk-heading-l");
+        protected override string PageTitle => "Select standard";
+
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
+
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
-        private static By FirstOption => By.CssSelector("#CourseCode__option--0");
 
         public AddApprenticeDetailsPage EmployerSelectsAStandard()
         {
@@ -32,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetails()
         {
-            SelectStandardAndContinue(apprenticeCourseDataHelper.OtherCourseDetails.Course.title);
+            SelectStandardAndContinue(apprenticeCourseDataHelper.OtherCourseLarsCode);
 
             return new ProviderEditApprenticeDetailsPage(context);
         }
@@ -46,14 +50,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse(string CourseTitle)
+        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse(string LarsCode)
         {
-            SelectStandardAndContinue(CourseTitle);
+            SelectStandardAndContinue(LarsCode);
 
             return new EditApprenticeDetailsPage(context);
         }
 
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseDetails.Course.title);
+        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseLarsCode);
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
@@ -70,20 +74,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
 
-        private void SelectStandardAndContinue() => SelectStandardAndContinue(apprenticeCourseDataHelper.CourseDetails.Course.title);
+        private void SelectStandardAndContinue() => SelectStandardAndContinue(apprenticeCourseDataHelper.CourseLarsCode);
 
-        private void SelectStandardAndContinue(string courseTitle)
+        private void SelectStandardAndContinue(string courseLarsCode)
         {
-            if (pageInteractionHelper.GetUrl().Contains("pas."))
-            {
-                formCompletionHelper.SelectFromDropDownByText(TrainingCourseContainer, courseTitle);
-            }
-            else
-            {
-                javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
-                formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); return pageInteractionHelper.FindElement(FirstOption); });
-            }
-
+            formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, courseLarsCode);
             Continue();
         }
 
