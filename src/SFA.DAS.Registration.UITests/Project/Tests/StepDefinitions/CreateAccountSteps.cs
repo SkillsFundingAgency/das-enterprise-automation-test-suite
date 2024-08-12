@@ -107,11 +107,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
+            //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
+            //    .SignAgreement()
+            //    .SelectContinueToCreateYourEmployerAccount()
+            //    .GoToTrainingProviderLink()
+            //    .AddTrainingProviderLater()
+            //    .SelectGoToYourEmployerAccountHomepage();
+
+
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-                .SignAgreement()
-                .SelectContinueToCreateYourEmployerAccount()
-                .GoToTrainingProviderLink()
-                .AddTrainingProviderLater()
+                .SignAgreementAndGoToEmployerAccountCreatedPage()
                 .SelectGoToYourEmployerAccountHomepage();
 
             SetAgreementId(_homePage);
@@ -131,10 +136,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement() =>
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-            .DoNotSignAgreement()
-            .GoToTrainingProviderLink()
-            .AddTrainingProviderLater()
+            .DoNotSignAgreementAndGoToEmployerAccountCreatedPage()
             .SelectGoToYourEmployerAccountHomepage();
+
+        //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage.DoNotSignAgreement()
+        //    .GoToTrainingProviderLink()
+        //    .AddTrainingProviderLater()
+        //    .SelectGoToYourEmployerAccountHomepage();
+
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
         [When(@"an Employer creates a Non Levy Account and Signs the Agreement")]
