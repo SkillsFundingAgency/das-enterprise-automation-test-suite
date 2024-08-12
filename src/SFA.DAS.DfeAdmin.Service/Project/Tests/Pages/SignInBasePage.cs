@@ -7,6 +7,7 @@ public abstract class SignInBasePage : IdamsLoginBasePage
     protected override bool TakeFullScreenShot => false;
 
     protected override string PageTitle => "Sign in";
+    protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
     #region Locators
     private static By UsernameField => By.Id("username");
@@ -19,6 +20,9 @@ public abstract class SignInBasePage : IdamsLoginBasePage
     public void SubmitValidLoginDetails(string username, string password)
     {
         formCompletionHelper.EnterText(UsernameField, username);
+        if(!pageInteractionHelper.IsElementDisplayed(PasswordField))
+            Continue();
+
         formCompletionHelper.EnterText(PasswordField, password);
         ClickSignInButton();
     }
