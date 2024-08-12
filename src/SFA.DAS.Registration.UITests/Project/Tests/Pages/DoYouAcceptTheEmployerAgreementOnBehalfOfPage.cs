@@ -16,6 +16,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public DoYouAcceptTheEmployerAgreementOnBehalfOfPage(ScenarioContext context) : base(context) => VerifyPage();
 
+        public EmployerAccountCreatedPage SignAgreementAndGoToEmployerAccountCreatedPage()
+        {
+            Sign();
+
+            return new EmployerAccountCreatedPage(context);
+        }
+
         public YouVeAcceptedYourEmployerAgreement SignAgreement()
         {
             Sign();
@@ -26,12 +33,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             Sign();
             return new YouHaveAcceptedTheEmployerAgreementPage(context);
-        }
-
-        public SetPermissionsForTrainingProviderPage ProviderLeadRegistrationSignAgreement()
-        {
-            Sign();
-            return new SetPermissionsForTrainingProviderPage(context);
         }
 
         public CreateYourEmployerAccountPage DoNotSignAgreement()

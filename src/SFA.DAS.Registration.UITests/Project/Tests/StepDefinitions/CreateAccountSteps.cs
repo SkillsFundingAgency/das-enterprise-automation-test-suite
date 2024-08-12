@@ -108,10 +108,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void SignTheAgreement()
         {
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-                .SignAgreement()
-                .SelectContinueToCreateYourEmployerAccount()
-                .GoToTrainingProviderLink()
-                .AddTrainingProviderLater()
+                .SignAgreementAndGoToEmployerAccountCreatedPage()
                 .SelectGoToYourEmployerAccountHomepage();
 
             SetAgreementId(_homePage);

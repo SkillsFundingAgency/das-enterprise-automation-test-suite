@@ -82,10 +82,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SignInTo(index)
             .SearchForAnOrganisation(orgType)
             .SelectYourOrganisation(orgType))
-            .SignAgreement()
-            .SelectContinueToCreateYourEmployerAccount()
-            .GoToTrainingProviderLink()
-            .AddTrainingProviderLater()
+            .SignAgreementAndGoToEmployerAccountCreatedPage()
             .SelectGoToYourEmployerAccountHomepage();
 
         internal static DoYouAcceptTheEmployerAgreementOnBehalfOfPage GoToSignAgreementPage(CheckYourDetailsPage checkYourDetailsPage)
