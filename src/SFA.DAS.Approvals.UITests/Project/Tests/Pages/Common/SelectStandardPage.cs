@@ -76,7 +76,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         private void SelectStandardAndContinue(string courseTitle)
         {
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); return pageInteractionHelper.FindElement(FirstOption); });
+            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
+            //var x = pageInteractionHelper.IsElementDisplayed(FirstOption);
+
+            //if (!pageInteractionHelper.IsElementDisplayed(FirstOption))
+                formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); return pageInteractionHelper.FindElement(FirstOption); });
+            
             Continue();
         }
 
