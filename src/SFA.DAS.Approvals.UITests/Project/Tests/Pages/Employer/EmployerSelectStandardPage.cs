@@ -1,15 +1,19 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class SelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
+    public class EmployerSelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         protected override string PageTitle => "What is the apprenticeship course?";
         protected override By PageHeader => By.ClassName("govuk-heading-l");
@@ -83,7 +87,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                 javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
                 formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); return pageInteractionHelper.FindElement(FirstOption); });
             }
-
             Continue();
         }
 

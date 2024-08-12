@@ -224,7 +224,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return this;
         }
 
-        private void EditCourse() => ClickEditCourseLink().EmployerSelectsAnotherCourse();
+        private void EditCourse() => EmployerClickEditCourseLink().EmployerSelectsAnotherCourse();
 
         private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingCost);
 
@@ -235,5 +235,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                 : By.XPath("//button[text()='Add']");
         }
 
+        public EmployerSelectStandardPage EmployerClickEditCourseLink()
+        {
+            formCompletionHelper.Click(TrainingCourseEditLink);
+            return new EmployerSelectStandardPage(context);
+        }
     }
 }

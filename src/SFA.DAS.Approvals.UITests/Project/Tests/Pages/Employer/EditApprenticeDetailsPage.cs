@@ -47,7 +47,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmChangesPage EditCourse(string larsCode)
         {
-            ClickEditCourseLink().EmployerSelectsAnotherCourse(larsCode);
+            EmployerClickEditCourseLink().EmployerSelectsAnotherCourse(larsCode);
 
             Update();
 

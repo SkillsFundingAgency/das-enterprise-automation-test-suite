@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return EditApprenticeFunc(providerApproveApprenticeDetailsPage, false, (editPage) =>
             {
                 if (shouldCheckCoursesAreStandards)
-                    editPage = editPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
+                    editPage = editPage.ProviderClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectableAndContinue();
 
                 return editPage;
             });
@@ -64,7 +64,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                 var providerEditApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectEditApprentice(i);
 
                 providerApproveApprenticeDetailsPage = providerEditApprenticeDetailsPage.EditAllApprenticeDetailsExceptCourse()
-                    .ClickEditCourseLink()
+                    .ProviderClickEditCourseLink()
                     .ProviderSelectsAStandardForEditApprenticeDetails()
                     .ClickSave(true);
             }
