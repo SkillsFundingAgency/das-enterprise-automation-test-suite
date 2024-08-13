@@ -1,14 +1,9 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -28,25 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddApprenticeDetailsPage(context);
         }
 
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard() => ProviderSelectsAStandard(false);
-
-        public ProviderAddApprenticeDetailsPage ProviderSelectsAStandardForFlexiPilotLearner() => ProviderSelectsAStandard(true);
-
         public SelectDeliveryModelPage SelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
-
-        public ProviderEditApprenticeDetailsPage ProviderSelectsAStandardForEditApprenticeDetails()
-        {
-            SelectStandardAndContinue(apprenticeCourseDataHelper.OtherCourseDetails.Course.title);
-
-            return new ProviderEditApprenticeDetailsPage(context);
-        }
-
-        public ProviderEditApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectableAndContinue()
-        {
-            AssertStandardAndFrameworkCoursesAreSelectable();
-            Continue();
-            return new ProviderEditApprenticeDetailsPage(context);
-        }
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
@@ -66,38 +43,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new SelectDeliveryModelPage(context);
         }
 
-        private ProviderAddApprenticeDetailsPage ProviderSelectsAStandard(bool isFlexiPaymentPilotLearner)
-        {
-            SelectStandardAndContinue();
-
-            return new ProviderAddApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
-        }
-
-
         private void SelectStandardAndContinue() => SelectStandardAndContinue(apprenticeCourseDataHelper.CourseDetails.Course.title);
 
         private void SelectStandardAndContinue(string courseTitle)
         {
-            if (pageInteractionHelper.GetUrl().Contains("pas."))
-            {
-                formCompletionHelper.SelectFromDropDownByText(TrainingCourseContainer, courseTitle);
-            }
-            else
-            {
-                javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
-                formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); return pageInteractionHelper.FindElement(FirstOption); });
-            }
+            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
+            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
         }
-
-        public void AssertStandardIsNotAvailable()
-        {
-            var courseDetails = apprenticeCourseDataHelper.CourseDetails;
-
-            Assert.That(formCompletionHelper.GetAllDropDownValue(TrainingCourseContainer).Any(x => x == courseDetails.Course.larsCode), Is.False, $"{courseDetails.Course.larsCode}, {courseDetails.Course.title} is available for the provider");
-        }
-
-        private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.That(GetAllTrainingCourses().All(x => x.Contains("(Framework)")), Is.False);
 
         private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
         {
