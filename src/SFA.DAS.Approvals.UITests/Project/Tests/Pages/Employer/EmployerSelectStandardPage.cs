@@ -48,13 +48,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void SelectStandardAndContinue(string courseTitle)
         {
-            javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, "");
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); return pageInteractionHelper.FindElement(FirstOption); });
+            formCompletionHelper.ClickElement
+                (() => 
+                    { javaScriptHelper.SetTextUsingJavaScript(TrainingCourseContainer, ""); 
+                        formCompletionHelper.EnterText(TrainingCourseContainer, courseTitle); 
+                        return pageInteractionHelper.FindElement(FirstOption); 
+                    }
+                );
+
             Continue();
         }
 
         private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
         {
+            var x = GetAllTrainingCourses();
             Assert.That(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")), Is.True);
             Continue();
             return new AddApprenticeDetailsPage(context);
