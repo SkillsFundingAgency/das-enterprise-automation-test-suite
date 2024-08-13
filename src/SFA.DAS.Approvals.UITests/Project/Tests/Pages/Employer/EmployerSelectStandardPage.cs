@@ -14,6 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By PageHeader => By.ClassName("govuk-heading-l");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
+        private static By TrainingCourseList => By.CssSelector("#CourseCode-select");
         private static By FirstOption => By.CssSelector("#CourseCode__option--0");
 
         public AddApprenticeDetailsPage EmployerSelectsAStandard()
@@ -59,6 +60,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddApprenticeDetailsPage(context);
         }
 
-        private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
+        private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseList);
     }
 }
