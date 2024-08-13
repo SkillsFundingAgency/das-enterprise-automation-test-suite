@@ -94,25 +94,32 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()
         {
+            //_homePageStepsHelper
+            //    .GoToCreateYourEmployerAccountPage()
+            //    .GoToYourEmployerAgreementLink()
+            //    .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
+            //    .ProviderLeadRegistrationSignAgreement()
+            //    .SelectContinueToCreateYourEmployerAccount()
+            //    .GoToTrainingProviderLink()
+            //    .AddTrainingProviderNow()
+            //    .SelectAddATrainingProvider()
+            //    .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>().Ukprn)
+            //    .ConfirmTrainingProvider()
+            //    .SelectSaveAndComeBackLater()
+            //    .SelectContinueCreatingYourAccount()
+            //    .GoToTrainingProviderPermissionsLink()
+            //    .SelectSetPermissions("")
+            //    .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
+            //    .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
+            //    .ConfirmProviderLeadRegistrationPermissions()
+            //    .ContinueToAccountCreationConfirmationPage()
+            //    .SelectGoToYourEmployerAccountHomepage();
+
             _homePageStepsHelper
                 .GoToCreateYourEmployerAccountPage()
                 .GoToYourEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-                .ProviderLeadRegistrationSignAgreement()
-                .SelectContinueToCreateYourEmployerAccount()
-                .GoToTrainingProviderLink()
-                .AddTrainingProviderNow()
-                .SelectAddATrainingProvider()
-                .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>().Ukprn)
-                .ConfirmTrainingProvider()
-                .SelectSaveAndComeBackLater()
-                .SelectContinueCreatingYourAccount()
-                .GoToTrainingProviderPermissionsLink()
-                .SelectSetPermissions("")
-                .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
-                .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
-                .ConfirmProviderLeadRegistrationPermissions()
-                .ContinueToAccountCreationConfirmationPage()
+                .PLRSignAgreementAndGotoEmployerAccountCreatedPage()
                 .SelectGoToYourEmployerAccountHomepage();
 
         }
