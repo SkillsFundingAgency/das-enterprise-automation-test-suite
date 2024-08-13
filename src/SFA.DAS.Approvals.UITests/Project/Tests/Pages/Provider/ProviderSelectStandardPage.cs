@@ -1,27 +1,19 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class SelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
+    public class ProviderSelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         protected override string PageTitle => "Select standard";
-
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
-
-        public AddApprenticeDetailsPage EmployerSelectsAStandard()
-        {
-            SelectStandardAndContinue();
-
-            return new AddApprenticeDetailsPage(context);
-        }
 
         public ProviderAddApprenticeDetailsPage ProviderSelectsAStandard() => ProviderSelectsAStandard(false);
 
@@ -43,16 +35,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new ProviderEditApprenticeDetailsPage(context);
         }
 
-        public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
-
         public EditApprenticeDetailsPage EmployerSelectsAnotherCourse(string LarsCode)
         {
             SelectStandardAndContinue(LarsCode);
 
             return new EditApprenticeDetailsPage(context);
         }
-
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseLarsCode);
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
@@ -68,13 +56,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new ProviderAddApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
 
-
         private void SelectStandardAndContinue() => SelectStandardAndContinue(apprenticeCourseDataHelper.CourseLarsCode);
 
         private void SelectStandardAndContinue(string courseLarsCode)
         {
             formCompletionHelper.SelectFromDropDownByValue(TrainingCourseContainer, courseLarsCode);
-
             Continue();
         }
 
@@ -86,13 +72,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
         private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.That(GetAllTrainingCourses().All(x => x.Contains("(Framework)")), Is.False);
-
-        private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
-        {
-            Assert.That(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")), Is.True);
-            Continue();
-            return new AddApprenticeDetailsPage(context);
-        }
 
         private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
     }

@@ -66,7 +66,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private static ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
-            if (shouldConfirmOnlyStandardCoursesSelectable) addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
+            if (shouldConfirmOnlyStandardCoursesSelectable) addApprenticeDetailsPage.EmployerClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
 
             return addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
         }

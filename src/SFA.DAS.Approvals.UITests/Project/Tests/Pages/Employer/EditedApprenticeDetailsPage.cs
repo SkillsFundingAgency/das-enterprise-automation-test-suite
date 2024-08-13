@@ -10,5 +10,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override string AccessibilityPageTitle => "Employer view apprentice full name";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+
     }
 }
