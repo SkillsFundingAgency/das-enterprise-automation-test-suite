@@ -12,11 +12,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.Id("continue-button");
         private static By MessageBox => By.Name("message");
 
-        public SelectStandardPage EmployerAddsApprentices()
+        public EmployerSelectStandardPage EmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new SelectStandardPage(context);
+            return new EmployerSelectStandardPage(context);
         }
 
         public CohortSentYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
@@ -39,11 +39,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public SelectStandardPage NonLevyEmployerAddsApprentices()
+        public EmployerSelectStandardPage NonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new SelectStandardPage(context);
+            return new EmployerSelectStandardPage(context);
         }
 
         public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()

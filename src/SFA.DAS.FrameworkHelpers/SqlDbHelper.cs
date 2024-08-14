@@ -78,6 +78,7 @@ public abstract class SqlDbHelper(ObjectContext objectContext, string connection
     protected string GetDataAsString(string queryToExecute) => Convert.ToString(GetDataAsObject(queryToExecute));
 
     protected object GetDataAsObject(string queryToExecute) => GetListOfData(queryToExecute)[0][0];
+    protected object GetDataAsObject(string queryToExecute, Dictionary<string, string> parameters) => GetListOfData(queryToExecute, connectionString, parameters).data[0][0];
 
     protected object WaitAndGetDataAsObject(string queryToExecute)
     {

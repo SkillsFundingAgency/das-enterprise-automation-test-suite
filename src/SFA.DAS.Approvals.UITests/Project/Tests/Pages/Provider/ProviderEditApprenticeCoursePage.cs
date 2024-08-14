@@ -46,8 +46,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return ProviderConfirmChangesPage();
         }
 
-        protected override void EditCourse() => ClickEditCourseLink().ProviderSelectsAStandardForEditApprenticeDetails();
+        protected override void EditCourse() => ProviderClickEditCourseLink().ProviderSelectsAStandardForEditApprenticeDetails();
 
         private ProviderConfirmChangesPage ProviderConfirmChangesPage() => new(context);
+
+        public ProviderSelectStandardPage ProviderClickEditCourseLink()
+        {
+            formCompletionHelper.Click(TrainingCourseEditLink);
+            return new ProviderSelectStandardPage(context);
+        }
     }
 }

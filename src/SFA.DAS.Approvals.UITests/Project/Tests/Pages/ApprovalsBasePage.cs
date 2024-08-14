@@ -41,12 +41,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
             if (verifypage) VerifyPage();
         }
 
-        public SelectStandardPage ClickEditCourseLink()
-        {
-            formCompletionHelper.Click(TrainingCourseEditLink);
-            return new SelectStandardPage(context);
-        }
-
         protected bool IsSelectStandardWithMultipleOptions() => tags.IsSelectStandardWithMultipleOptions()
             || tags.IsSelectStandardWithMultipleOptionsAndVersions();
 
