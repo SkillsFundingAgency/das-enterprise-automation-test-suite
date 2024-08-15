@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.Levy
+namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.UI_Validations
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,26 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_02_ExisitingUserAccount")]
-    public partial class FLP_E2E_EUA_02_ExisitingUserAccountFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_UI_01_TrainingPriceAndEPAPriceAreReset")]
+    public partial class FLP_UI_01_TrainingPriceAndEPAPriceAreResetFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_E2E_EUA_02_ExisitingUserAccount.feature"
+#line 1 "FLP_UI_01_TrainingPriceAndEPAPriceAreReset.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/Levy", "FLP_E2E_EUA_02_ExisitingUserAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_01_TrainingPriceAndEPAPriceAreReset", @"The purpose of this test is to perform UI validations in the below workflow:
+- Training Provider adds a learner's details and send them to the employer 
+- Employer reviews the details and suggests a different Total price; sends back the details to TP for approval
+- When TP review the details, Total price suggested by Employer is displayed but Training Price and EPA price are reset 
+- TP is unable to approve the cohort until they enter Training Price and EPA price", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +78,19 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_02 Employer adds apprentice details to a cohort and Provider opts the" +
-            " learner out of the pilot")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_E2E_EUA_02EmployerAddsApprenticeDetailsToACohortAndProviderOptsTheLearnerOutOfThePilot()
+        public void FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "e2escenarios",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_02 Employer adds apprentice details to a cohort and Provider opts the" +
-                    " learner out of the pilot", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,71 +100,42 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 13
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
                             "agreed_price"});
-                table12.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "1",
                             "154",
-                            "2004/02/01",
-                            "2022/08/01",
-                            "11",
+                            "2004/06/01",
+                            "2023/08/15",
+                            "12",
                             "15000"});
-#line 8
- testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table12, "And ");
-#line hidden
-#line 11
- testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 12
- testRunner.And("the provider adds Ulns and opts the learners out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 13
- testRunner.And("Simplified Payments Pilot tags and additional columns are NOT displayed on Approv" +
-                        "e apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 14
- testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Pilot Provider adds apprentices to the cohort witht the following details", ((string)(null)), table24, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN_Key",
-                            "is_pilot",
-                            "price_episode_from_date_str",
-                            "price_episode_to_date_str",
-                            "price_episode_cost",
-                            "training_price",
-                            "endpoint_assessment_price"});
-                table13.AddRow(new string[] {
-                            "1",
-                            "false",
-                            "2022/08/01",
-                            "Null",
-                            "15000",
-                            "",
-                            ""});
-#line 15
- testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table13, "Then ");
+#line 17
+ testRunner.And("pilot provider approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN_Key"});
-                table14.AddRow(new string[] {
-                            "1"});
 #line 18
- testRunner.And("validate there is no data in Apprenticeship database", ((string)(null)), table14, "And ");
+ testRunner.And("Employer changes the Total Price then approve the cohort and sends it to the trai" +
+                        "ning provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN_Key"});
-                table15.AddRow(new string[] {
-                            "1"});
+#line 19
+ testRunner.When("provider logs in to review the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then("validate Training Price and EPA price have been reset with blue warning message d" +
+                        "isplayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 21
- testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table15, "And ");
+ testRunner.And("verify training provider cannot approve the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

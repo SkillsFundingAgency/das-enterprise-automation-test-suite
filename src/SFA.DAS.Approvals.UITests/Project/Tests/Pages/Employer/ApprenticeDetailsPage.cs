@@ -1,6 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using System;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
@@ -46,10 +48,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
         private static By PriceChangesRequestedHeading => By.XPath("//h2[contains(text(),\"Price change requested\")]");
         private static By ViewPriceChangeLink => By.Id("linkViewPendingPrice");
-        private static By PriceChangeCancelledBanner => By.CssSelector("div.govuk-notification-banner.govuk-notification-banner--success");
-        private static By PriceChangeCancelBannerMessage => By.CssSelector("div.govuk-notification-banner.govuk-notification-banner--success h3");
-
-
+        private static By PriceChangeCancelledBanner => By.Id("cancelled-price-change-banner");
+        private static By PriceChangeCancelBannerMessage => By.CssSelector("#cancelled-price-change-banner h3");
+        private static By ProviderPaymentStatusRow => By.XPath("//td[@id='provider-payments-status']/preceding-sibling::th");
+        private static By ProviderPaymentStatusValue => By.Id("provider-payments-status");
+        private static By ChangeProviderPaymentStatusLink => By.Id("linkChangePaymentStatus");
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
@@ -252,5 +255,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             }
            );
         }
+
+        public ApprenticeDetailsPage ValidateProviderPaymentStatus(string status)
+        {
+            Assert.AreEqual("Provider payments status", pageInteractionHelper.GetText(ProviderPaymentStatusRow), "Provider Payment status label not displayed");
+            Assert.AreEqual(status, pageInteractionHelper.GetText(ProviderPaymentStatusValue), "Incorrect Provider payment status found!");
+
+            return this;
+        }
+
+        public void ClickChangeProviderPaymentStatusLink() => formCompletionHelper.Click(ChangeProviderPaymentStatusLink);
     }
 }
