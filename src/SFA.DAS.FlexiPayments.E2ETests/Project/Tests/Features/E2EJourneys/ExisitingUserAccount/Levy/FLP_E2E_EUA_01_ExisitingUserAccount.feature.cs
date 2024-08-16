@@ -114,14 +114,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/20",
-                            "2022/08/01",
+                            "2023/08/01",
                             "12",
                             "15000"});
                 table8.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/06/27",
-                            "2022/09/29",
+                            "2023/09/29",
                             "12",
                             "18000"});
 #line 11
@@ -151,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table9.AddRow(new string[] {
                             "1",
                             "true",
-                            "2022/08/01",
+                            "2023/08/01",
                             "Null",
                             "15000",
                             "12000",
@@ -159,7 +159,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table9.AddRow(new string[] {
                             "2",
                             "true",
-                            "2022/09/29",
+                            "2023/09/29",
                             "Null",
                             "18000",
                             "14400",
@@ -170,7 +170,6 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "funding_platform",
-                            "actual_start_date_str",
                             "start_date_str",
                             "planned_end_date_str",
                             "agreed_price",
@@ -179,18 +178,16 @@ this.ScenarioInitialize(scenarioInfo);
                 table10.AddRow(new string[] {
                             "1",
                             "1",
-                            "2022/08/01",
-                            "2022/08/01",
                             "2023/08/01",
+                            "2024/08/01",
                             "15000",
                             "0",
                             "15000"});
                 table10.AddRow(new string[] {
                             "2",
                             "1",
-                            "2022/09/29",
-                            "2022/09/01",
                             "2023/09/29",
+                            "2024/09/29",
                             "18000",
                             "0",
                             "18000"});

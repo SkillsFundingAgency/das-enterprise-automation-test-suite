@@ -79,12 +79,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         }
 
         [Given(@"Provider searches for the learner on Manage your apprentice page")]
+        [When(@"Provider searches for the learner on Manage your apprentice page")]
         [Then(@"Provider searches for the learner on Manage your apprentice page")]
         public void ProviderSearchesLearnerOnManageYourApprenticesPage()
         {
             _providerApprenticeDetailsPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
                 .SelectViewCurrentApprenticeDetails();
         }
+
+        [Then(@"display a Provider payments status row with (Active|Inactive) status to Provider")]
+        public void DisplayAProviderPaymentsStatusRowWithStatus(string providerPaymentStatus)
+        {
+            _providerApprenticeDetailsPage.ValidateProviderPaymentStatus(providerPaymentStatus);
+        }
+
 
         [Then(@"Provider can review the Change of Price request and approve it")]
         public void ThenProviderCanReviewTheChangeOfPriceRequestAndApproveIt()
@@ -212,7 +220,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _providerApprenticeDetailsPage.ClickViewPendingStartDateLink();
 
             _viewChangeOfStartDateRequestPage = new ViewChangeOfStartDate(context).VerifyPendingEmployerReviewTagIsDisplayed()
-                .ValidateRequestedValues(DateTime.Today.Date, context.ScenarioInfo.Title);
+                .ValidateRequestedValues(DateTime.Today.Date, DateTime.Now.AddMonths(12), context.ScenarioInfo.Title);
         }
 
         [Then(@"Provider can successfully cancel the change of Start Date request")]

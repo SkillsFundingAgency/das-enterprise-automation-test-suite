@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -17,14 +18,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected EditApprenticeDetailsBasePage(ScenarioContext context, bool verifypage = true) : base(context, verifypage) { }
 
-        public void VerifyCourseAndCostAreReadOnly()
+        public EditApprenticeDetailsBasePage VerifyCourseAndCostAreReadOnly()
         {
             MultipleVerifyPage(
             [
                 () => VerifyPage(ReadOnlyTrainingCost),
                 () => VerifyPage(ReadOnlyTrainingCourse)
             ]);
+
+            return this;
         }
+
+        public ProviderApprenticeDetailsPage GoBack()
+        {
+            Back();
+            return new ProviderApprenticeDetailsPage(context);
+        }
+
         public void VerifyReadOnlyEmail() => VerifyElement(ReadOnyEmailField, GetApprenticeEmail());
 
         public void EditCostCourseAndReference(string reference)

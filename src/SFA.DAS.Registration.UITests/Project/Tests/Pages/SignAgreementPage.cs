@@ -32,10 +32,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YouVeAcceptedYourEmployerAgreement(context);
         }
 
-        public HomePage DoNotSignAgreement()
+        public EmployerAccountCreatedPage PLRSignAgreementAndGotoEmployerAccountCreatedPage()
         {
-            DoNotSign();
-            return new HomePage(context);
+            Sign();
+            return new EmployerAccountCreatedPage(context);
         }
 
         private void Sign() => Continue(WantToSignRadioButton);

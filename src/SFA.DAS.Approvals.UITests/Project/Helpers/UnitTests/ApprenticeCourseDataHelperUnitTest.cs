@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq;
+using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
-using System;
-using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
 {
@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
             static bool IsItJuly() => DateTime.Now.Month == 7;
 
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart);
+            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.WaitingToStart, []);
 
             var nextAcademicYear = IsItJuly() ? AcademicYearDatesHelper.GetNextAcademicYearEndDate() : AcademicYearDatesHelper.GetNextAcademicYearStartDate();
 
@@ -84,14 +84,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void LiveApprentice(int _)
         {
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.Live);
+            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.Live, []);
 
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 
             //Assert
             Assert.Multiple(() =>
             {
-                Assert.IsTrue(apprentice.CourseStartDate < DateTime.Now.Date && apprentice.CourseStartDate.Date >= new DateTime(2020, 8, 1).Date);
+                if (DateTime.Now.Date.Day == 1 && DateTime.Now.Date.Month == 8)
+                {
+                    Assert.IsTrue(apprentice.CourseStartDate <= DateTime.Now.Date && apprentice.CourseStartDate.Date >= new DateTime(2024, 8, 1).Date);
+                }
+                else
+                {
+                    Assert.IsTrue(apprentice.CourseStartDate < DateTime.Now.Date && apprentice.CourseStartDate.Date >= new DateTime(2024, 8, 1).Date);
+                }
 
                 Assert.IsTrue(AvailableCourses.GetAvailableCourses().Any(x => x.Course.larsCode == apprentice.CourseDetails.Course.larsCode));
             });
@@ -120,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.UnitTests
         public void StartDateIsFewMonthsBeforeNow(int _)
         {
             //Arrange 
-            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.StartDateIsFewMonthsBeforeNow);
+            var apprentice = new ApprenticeCourseDataHelper(GetRandomCourseDataHelper(), ApprenticeStatus.StartDateIsFewMonthsBeforeNow, []);
 
             Console.WriteLine($"CourseStartDate : {apprentice.CourseStartDate}, Course {apprentice.CourseLarsCode}");
 

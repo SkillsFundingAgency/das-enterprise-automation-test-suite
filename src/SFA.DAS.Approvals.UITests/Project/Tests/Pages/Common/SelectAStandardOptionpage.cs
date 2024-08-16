@@ -1,10 +1,12 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
-    public class SelectAStandardOptionpage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class SelectAStandardOptionpage(ScenarioContext context, bool verifyPage = true) : ApprovalsBasePage(context, verifyPage)
     {
         protected override string PageTitle => "Select a standard option";
 
@@ -18,5 +20,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         }
 
         public void ContinueWithAlreadySelectedStandardOption() => Continue();
+
+        public ApprenticeDetailsPage GoBackToApprenticeDetailsPage()
+        {
+            Back();
+            return new ApprenticeDetailsPage(context);
+        }
+        public ProviderApprenticeDetailsPage GoBackToProviderApprenticeDetailsPage()
+        {
+            Back();
+            return new ProviderApprenticeDetailsPage(context);
+        }
     }
 }

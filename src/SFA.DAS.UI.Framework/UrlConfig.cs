@@ -7,6 +7,7 @@ public static class UrlConfig
 {
     public static string Live_Employer_BaseUrl => "https://accounts.manage-apprenticeships.service.gov.uk";
 
+    public static string EmployerProviderRelationships_BaseUrl(string id) => $"https://relationships.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/accounts/{id}/providers";
     public static string AAN_Employer_BaseUrl => EmployerApprenticeshipService_BaseUrl;
     public static string AAN_Apprentice_BaseUrl => $"https://aan.{EnvironmentConfig.EnvironmentName}-aas.apprenticeships.education.gov.uk/onboarding/before-you-start";
     public static string AAN_Admin_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-adminaan.apprenticeships.education.gov.uk/";

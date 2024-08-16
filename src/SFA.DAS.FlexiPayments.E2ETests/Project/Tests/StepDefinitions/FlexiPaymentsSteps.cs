@@ -4,6 +4,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport;
 using SFA.DAS.FrameworkHelpers;
@@ -260,7 +261,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _apprenticeDetailsPage.ClickReviewStartDateChangeLink();
 
-            _employerReviewChangesPage = new EmployerReviewChangesPage(_context).ValidateChangeOfStartDateRequestedValues(DateTime.Now, _context.ScenarioInfo.Title);
+            _employerReviewChangesPage = new EmployerReviewChangesPage(_context).ValidateChangeOfStartDateRequestedValues(DateTime.Now, DateTime.Now.AddMonths(12), _context.ScenarioInfo.Title);
         }
 
         [Then(@"Employer is able to successfully reject the Change of Price request")]
@@ -285,6 +286,28 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _flexiPaymentProviderSteps.SetApprenticeDetailsInContext(learnerNumber);
 
             _apprenticeDetailsPage.ValidateEmployerEditApprovedApprentice(action == "can");
+        }
+
+        [Then(@"display a Provider payments status row with (Active|Inactive) status to Employer")]
+        public void DisplayAProviderPaymentsStatusRowWithStatus(string providerPaymentStatus)
+        {
+            _apprenticeDetailsPage.ValidateProviderPaymentStatus(providerPaymentStatus);
+        }
+
+        [Then(@"employer is able to successfully freeze provider payments")]
+        public void EmployerSuccessfullyFreezesProviderPayments()
+        {
+            _apprenticeDetailsPage.ClickChangeProviderPaymentStatusLink();
+
+            _apprenticeDetailsPage = new EmployerFreezeProviderPaymentsPage(_context).FreezeFuturePayments();
+        }
+
+        [Then(@"employer is able to successfully unfreeze provider payments")]
+        public void EmployerSuccessfullyUnfreezeProviderPayments()
+        {
+            _apprenticeDetailsPage.ClickChangeProviderPaymentStatusLink();
+
+            _apprenticeDetailsPage = new EmployerUnfreezeProviderPaymentsPage(_context).UnfreezeFuturePayments();
         }
     }
 }

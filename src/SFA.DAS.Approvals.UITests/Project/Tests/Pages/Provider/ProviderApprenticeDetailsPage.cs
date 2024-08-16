@@ -1,6 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -28,6 +29,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By SimplifiedPaymentsPilotNotificationMessage => By.Id("fix-data-mismatch-email");
         private static By ChangePriceLink => By.Id("linkChangePrice");
         private static By ChangeStartDateLink => By.Id("linkChangeStartDate");
+        private static By ChangeOptionLink => By.XPath("/html/body/div[3]/main/div/div/table[3]/tbody/tr[7]/td[2]/a");
+        private static By ChangeVersionLink => By.XPath("/html/body/div[3]/main/div/div/table[3]/tbody/tr[6]/td[2]/a");
         private static By ChangeOfPriceRequestSentBanner => By.Id("change-of-price-request-sent-banner");
         private static By ChangeOfStartDateRequestSentBanner => By.Id("change-of-startdate-request-sent-banner");
         private static By ChangeOfPriceRequestSentBannerMessage => By.CssSelector("#change-of-price-request-sent-banner h3");
@@ -48,6 +51,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By ReviewPriceChangeRequestedBannerLink => By.Id("linkBannerViewPendingPrice");
         private static By ChangeRequestedTag => By.XPath("//strong[contains(text(),'Change requested')]");
         private static By ReviewPriceChangeLink => By.Id("linkViewPendingPrice");
+        private static By ProviderPaymentStatusRow => By.XPath("//td[@id='provider-payments-status']/preceding-sibling::th");
+        private static By ProviderPaymentStatusValue => By.Id("provider-payments-status");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -85,6 +90,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.Click(ChangeEmployerLink);
             return new ProviderInformPage(context);
+        }
+
+        public SelectAStandardOptionpage ClickChangeOptionLink()
+        {
+            formCompletionHelper.Click(ChangeOptionLink);
+            return new SelectAStandardOptionpage(context);
+        }
+
+        public SelectAStandardVersionPage ClickChangeVersionLink()
+        {
+            formCompletionHelper.Click(ChangeVersionLink);
+            return new SelectAStandardVersionPage(context);
         }
 
         public ProviderAccessDeniedPage ClickChangeEmployerLinkGoesToAccessDenied()
@@ -183,7 +200,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDateRequestSentBanner), "Change of Start Date Request Sent banner not displayed");
                 Assert.That(pageInteractionHelper.GetText(ChangeOfStartDateRequestSentBannerMessage), Is.EqualTo("Request to change the training date sent to employer"));
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ViewDateChangeYouHaveRequestLinkBanner), "Request to change the training date sent to employer heading not displayed in the banner");
-                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request banner for Change of Start Date not displayed");
+                Assert.That(pageInteractionHelper.IsElementDisplayed(ChangeOfStartDatePendingRequestTag), "Pending request tag for Change of Start Date not displayed");
                 Assert.That(pageInteractionHelper.IsElementDisplayed(ViewPendingStartDateLink), "View request link for Change of Start Date not displayed");
             }
             );
@@ -248,5 +265,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public void ClickReviewPriceChangeLink() => formCompletionHelper.ClickElement(ReviewPriceChangeLink);
+
+        public ProviderApprenticeDetailsPage ValidateProviderPaymentStatus(string status)
+        {
+            Assert.AreEqual("Provider payments status", pageInteractionHelper.GetText(ProviderPaymentStatusRow), "Provider Payment status label not displayed");
+            Assert.AreEqual(status, pageInteractionHelper.GetText(ProviderPaymentStatusValue), "Incorrect Provider payment status found!");
+
+            return this;
+        }
     }
 }

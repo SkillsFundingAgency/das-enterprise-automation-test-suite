@@ -10,6 +10,7 @@ using SFA.DAS.Transfers.UITests.Project.Tests.Pages;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using TransfersPage = SFA.DAS.Transfers.UITests.Project.Tests.Pages.TransfersPage;
 
 namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
 {

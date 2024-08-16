@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -40,13 +41,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
         private static By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
 
-        public void VerifyCourseAndCostAreReadOnly()
+        public AddAndEditApprenticeDetailsBasePage VerifyCourseAndCostAreReadOnly()
         {
             MultipleVerifyPage(
             [
                 () => VerifyPage(ReadOnlyTrainingCost),
                 () => VerifyPage(ReadOnlyTrainingCourse)
             ]);
+
+            return this;
+        }
+
+        public ApprenticeDetailsPage GoBack()
+        {
+            Back();
+            return new ApprenticeDetailsPage(context);
         }
 
         protected void EnterTrainingCost(string cost)
@@ -103,8 +112,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             formCompletionHelper.EnterText(FirstNameField, apprenticeDataHelper.ApprenticeFirstname);
             formCompletionHelper.EnterText(LastNameField, apprenticeDataHelper.ApprenticeLastname);
-        }   
-        
+        }
+
         protected void EnterApprenticeName(string firstName, string lastName)
         {
             formCompletionHelper.EnterText(FirstNameField, firstName);
@@ -129,8 +138,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             formCompletionHelper.EnterText(DateOfBirthDay, apprenticeDataHelper.DateOfBirthDay);
             formCompletionHelper.EnterText(DateOfBirthMonth, apprenticeDataHelper.DateOfBirthMonth);
             formCompletionHelper.EnterText(DateOfBirthYear, apprenticeDataHelper.DateOfBirthYear);
-        } 
-        
+        }
+
         protected void EnterDob(int day, int month, int year)
         {
             formCompletionHelper.EnterText(DateOfBirthDay, day);
@@ -215,7 +224,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return this;
         }
 
-        private void EditCourse() => ClickEditCourseLink().EmployerSelectsAnotherCourse();
+        private void EditCourse() => EmployerClickEditCourseLink().EmployerSelectsAnotherCourse();
 
         private void EditCost() => formCompletionHelper.EnterText(TrainingCost, "2" + editedApprenticeDataHelper.TrainingCost);
 
@@ -226,5 +235,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                 : By.XPath("//button[text()='Add']");
         }
 
+        public EmployerSelectStandardPage EmployerClickEditCourseLink()
+        {
+            formCompletionHelper.Click(TrainingCourseEditLink);
+            return new EmployerSelectStandardPage(context);
+        }
     }
 }

@@ -8,23 +8,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class StartAddingApprenticesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Start adding apprentices";
-
         protected override bool TakeFullScreenShot => false;
-
         protected override By ContinueButton => By.Id("continue-button");
+        private static By MessageBox => By.Name("message");
 
-        public SelectStandardPage EmployerAddsApprentices()
+        public EmployerSelectStandardPage EmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new SelectStandardPage(context);
+            return new EmployerSelectStandardPage(context);
         }
 
-        public MessageForYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
+        public CohortSentYourTrainingProviderPage EmployerSendsToProviderToAddApprentices()
         {
             EmployerSendsToProviderToAdd();
+            formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToProvider);
             Continue();
-            return new MessageForYourTrainingProviderPage(context);
+            return new CohortSentYourTrainingProviderPage(context);
         }
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
@@ -35,15 +35,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private StartAddingApprenticesPage EmployerSendsToProviderToAdd()
         {
-            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my provider to add apprentices");
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my training provider to add apprentices");
             return this;
         }
 
-        public SelectStandardPage NonLevyEmployerAddsApprentices()
+        public EmployerSelectStandardPage NonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();
             Continue();
-            return new SelectStandardPage(context);
+            return new EmployerSelectStandardPage(context);
         }
 
         public ChooseAReservationPage DynamicHomePageNonLevyEmployerAddsApprentices()

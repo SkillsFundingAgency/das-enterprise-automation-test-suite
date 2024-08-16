@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public abstract class ProviderConfirmApplicantInterviewPage : RaaBasePage
     {
-        protected static By NotificationBanner => By.CssSelector("#main-content > div.govuk-grid-row > div.govuk-grid-column-two-thirds.govuk-\\!-margin-bottom-6 > div > div.govuk-notification-banner__content > h3");
+        protected static By NotificationBanner => By.CssSelector("#main-content > div:nth-child(1) > div:nth-child(1) > div > div.govuk-notification-banner__content > h3");
 
         protected override By PageHeader => NotificationBanner;
 

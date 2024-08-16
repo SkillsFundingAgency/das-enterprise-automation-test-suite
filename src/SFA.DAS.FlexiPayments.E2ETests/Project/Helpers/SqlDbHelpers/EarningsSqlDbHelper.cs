@@ -62,5 +62,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 
             return (totalEarnings, levyEarnings, nonLevyEarnings, nonLevyGovernmentContribution, nonLevyEmployerContribution);
         }
+
+        public string GetTotalInstalmentsAmount (string uln, bool waitForResults)
+        {
+            string query = $" select sum(Amount) as 'NewPrice' from [Query].[Earning] " +
+                $" where ULN = '{uln}'";
+
+            this.waitForResults = waitForResults;
+
+            var data = GetData(query);
+
+            return (data[0]);
+        }
     }
 }

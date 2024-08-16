@@ -79,6 +79,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._02_PostApprovals.Coc
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("liveapprentice")]
         [NUnit.Framework.CategoryAttribute("cocscenarios")]
+        [NUnit.Framework.CategoryAttribute("selectstandardwithmultipleoptionsandversions")]
         [NUnit.Framework.CategoryAttribute("postapprovals")]
         public void AP_CoC_05EmployerOrProviderCannotMakeChangeToCostAndCourseAfterILRMatchOnLiveApprentice()
         {
@@ -86,11 +87,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._02_PostApprovals.Coc
                     "regression",
                     "liveapprentice",
                     "cocscenarios",
+                    "selectstandardwithmultipleoptionsandversions",
                     "postapprovals"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_CoC_05 Employer or Provider cannot make change to cost and course after ILR ma" +
                     "tch on live Apprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,14 +102,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 9
  testRunner.Given("the Employer has approved apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("Employer cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
- testRunner.And("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.And("Employer can still change course option and version", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.Then("provider cannot make changes to cost and course after ILR match", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.And("Provider can still change course option and version", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

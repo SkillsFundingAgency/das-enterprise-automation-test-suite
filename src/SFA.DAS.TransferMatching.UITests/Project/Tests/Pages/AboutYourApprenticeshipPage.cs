@@ -7,6 +7,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Provide more detail about your apprenticeship";
 
+        protected override By PageHeader => By.ClassName("govuk-label--xl");
+
         private static By MoreDetailsSelector => By.CssSelector("#more-detail");
 
         protected override By ContinueButton => By.CssSelector("#opportunity-criteria-continue");
