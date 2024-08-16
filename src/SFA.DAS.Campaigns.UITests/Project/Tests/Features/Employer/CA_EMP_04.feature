@@ -1,5 +1,7 @@
 ﻿Feature: CA_EMP_04
 
+@ignoreintest
+@ignoreinpp
 @campaigns
 @employer
 @regression
