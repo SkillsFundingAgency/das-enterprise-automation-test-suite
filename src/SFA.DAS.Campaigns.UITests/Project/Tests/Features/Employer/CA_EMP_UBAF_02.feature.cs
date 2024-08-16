@@ -35,7 +35,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "CA_EMP_UBAF_02", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Employer", "CA_EMP_UBAF_02", "As the apprenticeship service \r\n\r\nI want to update the calculation for estimating" +
+                    " benefit funding used by the Understanding apprenticeship funding and benefits s" +
+                    "creen (UBAF) \r\n\r\nSo that changes to policy are correctly reflected", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -86,7 +88,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_EMP_UBAF_02 Verify levy select over 3 million and calculate results", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 13
  testRunner.Given("the user navigates to the Understanding Apprentice benefit and funding page make " +
                         "selection over three million", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden

@@ -21,8 +21,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public UBAFEstimatedFundingBasePage SelectUnder3Million()
         {
             formCompletionHelper.SelectRadioOptionByLocator(Under3Million);
-            formCompletionHelper.SendKeys(TrainingCourse, "Abattoir worker (Level 2)");
-            formCompletionHelper.SendKeys(NumberOfRolesAvailable,"2");
+            formCompletionHelper.SendKeys(TrainingCourse, campaignsDataHelper.Course);
+            formCompletionHelper.SendKeys(NumberOfRolesAvailable,campaignsDataHelper.Positions);
             formCompletionHelper.ClickElement(CalculateFunding);
             return new UBAFEstimatedFundingBasePage(context);
         }
@@ -30,8 +30,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         public UBAFEstimatedFundingBasePage SelectOver3Million()
         {
             formCompletionHelper.SelectRadioOptionByLocator(Over3Million);
-            formCompletionHelper.SendKeys(TrainingCourse, "Abattoir worker (Level 2)");
-            formCompletionHelper.SendKeys(NumberOfRolesAvailable, "2");
+            formCompletionHelper.SendKeys(TrainingCourse, campaignsDataHelper.Course);
+            formCompletionHelper.SendKeys(NumberOfRolesAvailable, campaignsDataHelper.Positions);
             formCompletionHelper.ClickElement(CalculateFunding);
             return new UBAFEstimatedFundingBasePage(context);
         }
