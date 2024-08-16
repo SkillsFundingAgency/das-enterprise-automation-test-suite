@@ -12,9 +12,12 @@ namespace SFA.DAS.Campaigns.UITests
         private readonly CampaignsStepsHelper _stepsHelper = new(context);
 
         private FundingAnApprenticeshipPage _fundingAnApprenticeshipPage;
-
+        
         [Given(@"the user navigates to the funding an apprenticeship page")]
         public void GivenTheUserNavigatesToTheFundingAnApprenticeshipPage() => _fundingAnApprenticeshipPage = _stepsHelper.GoToEmployerHubPage().NavigateToFundingAnApprenticeshipPage();
+
+        [Given(@"the user navigates to the Understanding Apprentice benefit and funding page")]
+        public void GivenTheUserNavigatesToTheUnderstandingApprenticeBenefitAndFundingPage() => _stepsHelper.GoToEmployerHubPage().NavigateToUnderstandingApprenticeshipBenefitsAndFunding().SelectUnder3Million();
 
         [Then(@"Employer selects Levy Paying and continues")]
         public void ThenEmployerSelectsLevyPayingAndContinues() => _fundingAnApprenticeshipPage.NavigateToLevyEmployerPage();
