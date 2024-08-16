@@ -14,7 +14,7 @@ namespace SFA.DAS.Campaigns.UITests
         [Given(@"the user navigates to the funding an apprenticeship page")]
         public void GivenTheUserNavigatesToTheFundingAnApprenticeshipPage() => _fundingAnApprenticeshipPage = _stepsHelper.GoToEmployerHubPage().NavigateToFundingAnApprenticeshipPage();
 
-        [Given(@"the user navigates to the Understanding Apprentice benefit and funding page")]
+        [Given(@"the user navigates to the Understanding Apprentice benefit and funding page make selection under three million")]
         public void GivenTheUserNavigatesToTheUnderstandingApprenticeBenefitAndFundingPage() => _stepsHelper.GoToEmployerHubPage().NavigateToUnderstandingApprenticeshipBenefitsAndFunding().SelectUnder3Million();
 
         [Given(@"the user navigates to the Understanding Apprentice benefit and funding page make selection over three million")]

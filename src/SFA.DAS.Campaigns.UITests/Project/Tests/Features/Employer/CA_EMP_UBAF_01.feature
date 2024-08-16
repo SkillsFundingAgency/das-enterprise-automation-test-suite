@@ -10,6 +10,6 @@ So that changes to policy are correctly reflected
 @employer
 @regression
 Scenario: CA_EMP_UBAF_01 Verify non levy select under 3 million and calculate results
-	Given the user navigates to the Understanding Apprentice benefit and funding page
+	Given the user navigates to the Understanding Apprentice benefit and funding page make selection under three million
 	
 	
