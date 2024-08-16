@@ -6,8 +6,6 @@ namespace SFA.DAS.Campaigns.UITests
 {
     [Binding]
     public class CampaignsFundingSteps(ScenarioContext context)
-
-
     {
         private readonly CampaignsStepsHelper _stepsHelper = new(context);
 
@@ -18,6 +16,9 @@ namespace SFA.DAS.Campaigns.UITests
 
         [Given(@"the user navigates to the Understanding Apprentice benefit and funding page")]
         public void GivenTheUserNavigatesToTheUnderstandingApprenticeBenefitAndFundingPage() => _stepsHelper.GoToEmployerHubPage().NavigateToUnderstandingApprenticeshipBenefitsAndFunding().SelectUnder3Million();
+
+        [Given(@"the user navigates to the Understanding Apprentice benefit and funding page make selection over three million")]
+        public void GivenTheUserNavigatesToTheUnderstandingApprenticeBenefitAndFundingPageMakeSelectionOverThreeMillion() => _stepsHelper.GoToEmployerHubPage().NavigateToUnderstandingApprenticeshipBenefitsAndFunding().SelectOver3Million();
 
         [Then(@"Employer selects Levy Paying and continues")]
         public void ThenEmployerSelectsLevyPayingAndContinues() => _fundingAnApprenticeshipPage.NavigateToLevyEmployerPage();

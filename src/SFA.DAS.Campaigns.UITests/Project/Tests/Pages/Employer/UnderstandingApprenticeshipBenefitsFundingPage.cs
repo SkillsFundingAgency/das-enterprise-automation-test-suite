@@ -10,11 +10,11 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         #region Page Object Element
 
         private readonly By Under3Million = By.CssSelector("label[for='PayBillGreaterThanThreeMillion']");
-        private readonly By Over3Million = By.CssSelector("#PayBillGreaterThanThreeMillion");
+        private readonly By Over3Million = By.CssSelector("label[for='pay-bill-over']");
         private readonly By TrainingCourse = By.CssSelector("#StandardUid");
         private readonly By NumberOfRolesAvailable = By.CssSelector("#NumberOfRoles");
         private readonly By CalculateFunding = By.CssSelector("button[type='submit']");
-        private readonly By FundingBanner = By.CssSelector(".govuk-panel__title");
+        
 
         #endregion
 
@@ -35,10 +35,5 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(CalculateFunding);
             return new UBAFEstimatedFundingBasePage(context);
         }
-
-
-
-
-
     }
 }

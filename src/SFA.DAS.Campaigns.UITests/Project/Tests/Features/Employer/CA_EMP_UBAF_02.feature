@@ -1,4 +1,4 @@
-﻿Feature: CA_EMP_UBAF_01
+﻿Feature: CA_EMP_UBAF_02
 
 As the apprenticeship service 
 
@@ -9,7 +9,5 @@ So that changes to policy are correctly reflected
 @campaigns
 @employer
 @regression
-Scenario: CA_EMP_UBAF_01 Verify non levy select under 3 million and calculate results
-	Given the user navigates to the Understanding Apprentice benefit and funding page
-	
-	
+Scenario: CA_EMP_UBAF_02 Verify levy select over 3 million and calculate results
+	Given the user navigates to the Understanding Apprentice benefit and funding page make selection over three million 
