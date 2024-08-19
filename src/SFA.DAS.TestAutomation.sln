@@ -146,6 +146,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAA.UITests", "SFA.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerProviderRelationships.UITests", "SFA.DAS.EmployerProviderRelationships.UITests\SFA.DAS.EmployerProviderRelationships.UITests.csproj", "{E8295751-BA32-4C50-841E-0162C8B103FE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EarlyConnectForms.UITests", "SFA.DAS.EarlyConnectForms.UITests\SFA.DAS.EarlyConnectForms.UITests.csproj", "{5DE2AB1D-894E-4378-AD44-43E9524FE47A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -507,6 +509,12 @@ Global
 		{E8295751-BA32-4C50-841E-0162C8B103FE}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{E8295751-BA32-4C50-841E-0162C8B103FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8295751-BA32-4C50-841E-0162C8B103FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
