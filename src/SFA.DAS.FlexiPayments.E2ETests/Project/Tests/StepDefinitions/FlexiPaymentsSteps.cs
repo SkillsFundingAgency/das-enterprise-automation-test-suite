@@ -244,6 +244,15 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 .ValidateChangeOfPriceRequestRaisedSuccessfully();
         }
 
+        [When(@"Employer successfully creates a Change of Price request to reduce the agreed price to (.*)")]
+        public void WhenEmployerSuccessfullyCreatesAChangeOfPriceRequestToReduceTheAgreedPriceTo(int newAgreedPrice)
+        {
+            new EmployerChangeTheTotalPricePage(_context).EnterValidChangeOfPriceDetails(newAgreedPrice.ToString(), DateTime.Today, _context.ScenarioInfo.Title)
+                .ClickSendButton()
+                .ValidateChangeOfPriceRequestRaisedSuccessfully();
+        }
+
+
         [Then(@"Employer searches for learner on Manage your apprentices page")]
         public void EmployerSearchesLearnerOnManageYourApprenticesPage() => _apprenticeDetailsPage = _employerStepsHelper.ViewCurrentApprenticeDetails(true);
 
