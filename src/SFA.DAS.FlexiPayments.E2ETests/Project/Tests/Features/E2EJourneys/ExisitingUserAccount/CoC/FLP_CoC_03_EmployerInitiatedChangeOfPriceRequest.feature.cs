@@ -125,7 +125,8 @@ this.ScenarioInitialize(scenarioInfo);
                         "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.And("Employer successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer successfully creates a Change of Price request to reduce the agreed pric" +
+                        "e to 14500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
  testRunner.And("Employer initiated Change of Price request details are saved in the PriceHistory " +
@@ -136,6 +137,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 18
  testRunner.And("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 19
+ testRunner.And("validate instalments amounts have been updated in the earnings db to reflect the " +
+                        "new agreed price of 14500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
