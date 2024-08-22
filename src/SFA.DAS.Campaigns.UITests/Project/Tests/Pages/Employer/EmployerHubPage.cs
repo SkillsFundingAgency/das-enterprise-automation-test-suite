@@ -14,10 +14,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected static By FundingAnApprenticeship => By.CssSelector("a[href='/employers/funding-an-apprenticeship']");
 
+        protected static By UnderstandingApprenticeshipBenefitsAndFunding => By.CssSelector("a[href='/employers/understanding-apprenticeship-benefits-and-funding']");
+
         protected static By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 
+        public UnderstandingApprenticeshipBenefitsFundingPage NavigateToUnderstandingApprenticeshipBenefitsAndFunding()
+        {
+            formCompletionHelper.ClickElement(UnderstandingApprenticeshipBenefitsAndFunding);
+            return new UnderstandingApprenticeshipBenefitsFundingPage(context);
+        }
         public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage()
         {
             formCompletionHelper.ClickElement(FundingAnApprenticeship);
