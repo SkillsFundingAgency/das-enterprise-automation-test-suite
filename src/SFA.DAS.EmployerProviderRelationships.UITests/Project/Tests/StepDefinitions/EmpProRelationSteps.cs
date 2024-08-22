@@ -1,18 +1,18 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
-using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using NewAddApprenticePermissions = SFA.DAS.Registration.UITests.Project.Tests.Pages.AddApprenticePermissions;
 using NewRecruitApprenticePermissions = SFA.DAS.Registration.UITests.Project.Tests.Pages.RecruitApprenticePermissions;
+
+using YourTrainingProvidersPage = SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.YourTrainingProvidersPage;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions
 {
@@ -34,7 +34,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             EPRLogin();
 
-            context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerProviderRelationships_BaseUrl(_objectContext.GetHashedAccountId()));
+            new YourTrainingProvidersLinkHomePage(context).OpenProviderPermissions();
 
             new YourTrainingProvidersPage(context)
                 .SelectAddATrainingProvider()
@@ -60,7 +60,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         {
             EPRLogin();
 
-            context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerProviderRelationships_BaseUrl(_objectContext.GetHashedAccountId()));
+            new YourTrainingProvidersLinkHomePage(context).OpenProviderPermissions();
 
             new YourTrainingProvidersPage(context)
                 .SelectAddATrainingProvider()
