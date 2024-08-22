@@ -27,6 +27,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             string sqlQueryToSetDataLockSuccessStatus = $"UPDATE Apprenticeship SET HasHadDataLockSuccess = 1 WHERE ULN = '{uln}'";
 
             ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
+        }  
+        
+        public void SetCreatedOnForOverlappingTrainingDate(string uln, string createdOnDate)
+        {
+            if (uln.Equals(null))
+            {
+                throw new Exception("ULN is not set");
+            } 
+            if (createdOnDate.Equals(null))
+            {
+                throw new Exception("OLTD.CreatedOn is not set");
+            }
+
+            var command = $@"UPDATE [dbo].[OverlappingTrainingDateRequest] set CreatedOn = '{createdOnDate}'
+                                   where Id = (SELECT TOP (1) 
+                                       OLTD.Id   FROM [dbo].[OverlappingTrainingDateRequest] OLTD
+                                   Inner Join Apprenticeship A on OLTD.DraftApprenticeshipId = A.Id
+                                   Where ULN = '{uln}'
+                                   Order by OLTD.Id desc);";
+
+            ExecuteSqlCommand(command);
         }
 
         public int GetApprenticeshipId(string uln) => Convert.ToInt32(WaitAndGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
@@ -44,6 +65,59 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             var data = GetData(query);
             return Convert.ToString(data[0]);
+        }
+
+        public DateTime? GetEmployerNotifiedOnForOverlappingTrainingDate(string uln)
+        {         
+            string query = $@"SELECT TOP (1) 
+                             OLTD.NotifiedEmployerOn
+                          FROM [dbo].[OverlappingTrainingDateRequest] OLTD
+                         Inner Join Apprenticeship A on OLTD.DraftApprenticeshipId = A.Id
+                         Where ULN = '{uln}'
+                         Order by OLTD.Id desc";
+
+            var data = GetData(query);
+
+            if (data[0].Equals(null))
+            {
+                return null;
+            }
+
+            return Convert.ToDateTime(data[0]);
+        }
+
+        public bool CheckIfEmployerHasNotActionedOverlappingTrainingDate(string uln)
+        {
+            string query = $@"SELECT TOP (1) 
+                             OLTD.Id
+                          FROM [dbo].[OverlappingTrainingDateRequest] OLTD
+                         Inner Join Apprenticeship A on OLTD.DraftApprenticeshipId = A.Id
+                         Where ULN = '{uln}'
+                           AND OLTD.[Status] = 0
+                           AND OLTD.ResolutionType is NULL
+                         Order by OLTD.Id desc";
+
+            var data = GetData(query);
+
+            return !data[0].Equals(null);
+        }
+        
+        public bool CheckIfPreviousApprenticeshipHasBeenStoppedWithStopDateAsNewStartDate(string uln)
+        {        
+            string query = $@"select Top 1 previous.Id from 
+                           dbo.OverlappingTrainingDateRequest OLTD
+                           inner join dbo.Apprenticeship previous
+                           on previous.Id = OLTD.PreviousApprenticeshipId
+                           inner join dbo.Apprenticeship draft
+                           on draft.Id = OLTD.DraftApprenticeshipId
+                           Where previous.ULN = '{uln}'
+                           AND previous.PaymentStatus = 3 -- stopped
+                           AND previous.StopDate = draft.StartDate
+                           Order by OLTD.Id desc";
+
+            var data = GetData(query);
+         
+            return !data[0].Equals(null);
         }
 
         public string GetApprenticeshipULN(string reference)
