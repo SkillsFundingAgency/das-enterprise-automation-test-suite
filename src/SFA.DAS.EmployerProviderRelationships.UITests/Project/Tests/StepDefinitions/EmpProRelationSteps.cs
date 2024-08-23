@@ -88,7 +88,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         {
             _employerLoginHelper.Login(context.GetUser<EPRLevyUser>(), true);
 
-            new DeleteProviderRelationHelper(context).DeleteProviderRelation();
+            new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation();
         }
     }
 }

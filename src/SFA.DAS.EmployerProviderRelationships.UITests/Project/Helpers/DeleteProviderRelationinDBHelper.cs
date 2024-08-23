@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 {
-    public class DeleteProviderRelationHelper(ScenarioContext context)
+    public class DeleteProviderRelationinDbHelper(ScenarioContext context)
     {
         private DbConfig DbConfig => context.Get<DbConfig>();
 

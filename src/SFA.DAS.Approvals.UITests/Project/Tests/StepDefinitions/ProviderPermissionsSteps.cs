@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var homePage = _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
-            new DeleteProviderRelationHelper(_context).DeleteProviderRelation(_providerPermissionConfig);
+            new DeleteProviderRelationinDbHelper(_context).DeleteProviderRelation(_providerPermissionConfig);
 
             _employerPermissionsStepsHelper.SetProviderPermissions(_providerPermissionConfig);
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _homePageStepsHelper.GotoEmployerHomePage();
 
-            _employerPermissionsStepsHelper.DoNotSetProviderPermission(_providerPermissionConfig);
+            _employerPermissionsStepsHelper.RemoveProviderPermission(_providerPermissionConfig);
         }
 
         [Then(@"Provider can Create Cohort")]

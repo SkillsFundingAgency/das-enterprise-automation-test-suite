@@ -10,7 +10,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
     {
         public HomePage SetProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow));
 
-        public HomePage DoNotSetProviderPermission(ProviderConfig providerConfig) => UpdateProviderPermission(providerConfig, (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
+        public HomePage RemoveProviderPermission(ProviderConfig providerConfig) => UpdateProviderPermission(providerConfig, (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
 
         internal HomePage SetProviderPermissions(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)
         {
