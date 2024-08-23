@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
 {
     public class StepsHelper(ScenarioContext context)
     {
-        public ScenarioContext Context { get; } = context; //ApplicantInReview
+        public ScenarioContext Context { get; } = context; 
 
         public static void VerifyWageType(ProviderVacancySearchResultPage providerVacancySearchResultPage, string wageType)
             => providerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyWageType(wageType);
@@ -25,6 +25,9 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
             => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantUnsucessful().FeedbackForUnsuccessful().ConfirmUnsuccessful();
         public static void MultiApplicantsUnsucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageAllApplicants().ProviderMakeAllSelectedApplicantsUnsucessful().FeedbackForMultipleUnsuccessful().ConfirmUnsuccessful();
+        public static void ApplicantInReview(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+            => employerVacancySearchResultPage.NavigateToManageApplicant().MarkApplicantInReview();
+
         public static void ApplicantUnsucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
         public static void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)

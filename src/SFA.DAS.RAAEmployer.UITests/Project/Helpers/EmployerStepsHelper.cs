@@ -20,7 +20,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
 
         internal void ApplicantUnsucessful() => StepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReferenceInNewTab());
 
-        public void ApplicantShared() => StepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
+        internal void ApplicantReview() => StepsHelper.ApplicantInReview(SearchVacancyByVacancyReferenceInNewTab());
 
         internal void ApplicantSucessful() => StepsHelper.ApplicantSucessful(SearchVacancyByVacancyReferenceInNewTab());
 
