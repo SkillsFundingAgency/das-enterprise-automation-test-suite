@@ -76,6 +76,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderSelectsAStandard(false).SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
+        [When(@"provider starts CoE journey which leads to an overlap")]
+        public void WhenProviderStartsCoEJourneyLeadingToOverlap()
+        {
+            SetUlnForOLTD();
+            _providerStepsHelper.StartChangeOfEmployerOLTDJourney();
+        }
+
         [When(@"Provider tries to add a new apprentice using details from table below")]
         public void WhenProviderTriesToAddANewApprenticeUsingDetailsFromTableBelow(Table table)
         {
@@ -114,6 +121,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var homepage = login ? _providerCommonStepsHelper.GoToProviderHomePage() : _providerStepsHelper.NavigateToProviderHomePage();
 
             return homepage.GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer().ConfirmEmployer().ProviderSelectsAStandard();
+        }
+
+        [When(@"provider decides to send stop request email from service for Change Of Employer Overlapping Training Dates")]
+        public void WhenProviderSelectsToContactTheEmployerThemselvesForChangeOfEmployerOverlappingTrainingDates()
+        {
+            new ProviderCoEOverlappingTrainingDateThereMayBeProblemPage(_context)
+                .SelectYesTheseDetailsAreCorrect()
+                .SendStopEmail();
         }
 
         [When(@"provider selects to contact the employer themselves")]
@@ -218,7 +233,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"One more week has passed")]
         public void ThenOneMoreWeekHasPassed()
         {
-            var twoWeeksAgoDateTime = DateTime.UtcNow.AddDays(-14);
+            var twoWeeksAgoDateTime = DateTime.UtcNow.AddDays(-15);
             var date = twoWeeksAgoDateTime.ToString("yyyy-MM-dd");
 
             var uln = GetUlnForOLTD();

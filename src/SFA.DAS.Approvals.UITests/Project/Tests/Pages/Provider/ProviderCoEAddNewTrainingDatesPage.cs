@@ -25,5 +25,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderCoEPricePage(context);
         }
+
+        public ProviderCoEPricePage EnterNewTrainingDatesTriggeringOLTDAndContinue()
+        {
+            formCompletionHelper.EnterText(StartDateMonth, DateTime.UtcNow.Month.ToString());
+            formCompletionHelper.EnterText(StartDateYear, DateTime.UtcNow.Year.ToString());
+            formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
+            formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(3).Year.ToString());
+            Continue();
+            return new ProviderCoEPricePage(context);
+        }
     }
 }
