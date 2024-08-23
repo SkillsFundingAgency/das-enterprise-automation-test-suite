@@ -17,6 +17,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             SelectRadioOptionByForAttribute("outcome-interviewing");
             SaveAndContinue();
         }
+        public ProviderReviewingApplicantPage MarkApplicantInReview()
+        {
+            OutcomeInterviewWithEmployer();
+            return new ProviderReviewingApplicantPage(context);
+        }
+
         public ProviderInteviewingApplicantPage MarkApplicantInterviewWithEmployer()
         {
             OutcomeInterviewWithEmployer(); 

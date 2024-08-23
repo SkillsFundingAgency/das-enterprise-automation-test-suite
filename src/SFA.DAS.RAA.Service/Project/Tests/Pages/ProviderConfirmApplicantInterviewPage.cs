@@ -23,5 +23,9 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         public class ProviderInteviewingApplicantPage(ScenarioContext context) : ProviderConfirmApplicantInterviewPage(context, "interviewing")
         {
         }
+
+        public class ProviderReviewingApplicantPage(ScenarioContext context) : ProviderConfirmApplicantInterviewPage(context, "in review")
+        {
+        }
     }
 }
