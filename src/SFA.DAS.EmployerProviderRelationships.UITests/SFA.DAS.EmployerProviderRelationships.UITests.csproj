@@ -39,5 +39,8 @@
 	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
 	  </None>
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Project\Tests\Pages\" />
+	</ItemGroup>
 	
 </Project>

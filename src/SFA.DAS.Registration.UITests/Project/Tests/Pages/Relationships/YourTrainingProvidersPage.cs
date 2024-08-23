@@ -2,13 +2,30 @@
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages
+namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 {
+    public enum AddApprenticePermissions
+    {
+        [ToString("Yes, employer will review records")]
+        AllowConditional,
+        [ToString("No")]
+        DoNotAllow
+    }
+
+    public enum RecruitApprenticePermissions
+    {
+        [ToString("Yes")]
+        Allow,
+        [ToString("Yes, employer will review adverts")]
+        AllowConditional,
+        [ToString("No")]
+        DoNotAllow
+    }
+
     public abstract class EmployerProviderRelationshipsBasePage : RegistrationBasePage
     {
         protected EmployerProviderRelationshipsBasePage(ScenarioContext context) : base(context) => VerifyPage();
@@ -93,7 +110,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages
 
                 pageInteractionHelper.WaitForElementToChange(FirstOption, AttributeHelper.InnerText, providerConfig.Ukprn);
 
-                if (!pageInteractionHelper.IsElementDisplayed(FirstOption) && !pageInteractionHelper.GetStringCollectionFromElementsGroup(AutoCompleteOptions).ToList().Any(x=>x.ContainsCompareCaseInsensitive(providerConfig.Ukprn)))
+                if (!pageInteractionHelper.IsElementDisplayed(FirstOption) && !pageInteractionHelper.GetStringCollectionFromElementsGroup(AutoCompleteOptions).ToList().Any(x => x.ContainsCompareCaseInsensitive(providerConfig.Ukprn)))
                 {
                     Assert.Fail($"Auto complete menu for list of providers does not pop up provider : {providerConfig.Name}, {providerConfig.Ukprn}");
                 }

@@ -1,28 +1,10 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public enum AddApprenticePermissions
-    {
-        [ToString("Yes, employer will review records")]
-        AllowConditional,
-        [ToString("No")]
-        DoNotAllow
-    }
-
-    public enum RecruitApprenticePermissions
-    {
-        [ToString("Yes")]
-        Allow,
-        [ToString("Yes, employer will review adverts")]
-        AllowConditional,
-        [ToString("No")]
-        DoNotAllow
-    }
-
-
     public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl");

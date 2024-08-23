@@ -26,12 +26,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new SetPermissionsForTrainingProviderPage(context);
         }
 
-        public SetPermissionsForTrainingProviderPage SelectChangePermissions()
-        {
-            formCompletionHelper.ClickElement(ChangePermissionsLink);
-            return new SetPermissionsForTrainingProviderPage(context);
-        }
-
         public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
         {
             formCompletionHelper.Click(BackLink);

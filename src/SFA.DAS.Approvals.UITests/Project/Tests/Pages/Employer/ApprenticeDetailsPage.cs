@@ -1,9 +1,7 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
-using System;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer

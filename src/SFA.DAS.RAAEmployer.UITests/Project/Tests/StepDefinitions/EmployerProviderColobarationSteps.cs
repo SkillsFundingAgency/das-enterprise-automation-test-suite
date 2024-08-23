@@ -40,8 +40,6 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
 
             var homePage = _rAAEmployerLoginHelper.GoToHomePage(_loginUser);
 
-            EmployerPermissionsStepsHelper.SetAgreementId(homePage, _loginUser.OrganisationName);
-
             /*
              * these steps are executed as part of test data preparation.
              * 
