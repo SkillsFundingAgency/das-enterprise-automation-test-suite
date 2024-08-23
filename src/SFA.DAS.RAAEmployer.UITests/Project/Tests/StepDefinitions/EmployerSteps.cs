@@ -11,6 +11,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can mark applicant as In Review")]
         public void ThenEmployerCanMarkApplicantAsInReview() => _employerStepsHelper.ApplicantReview();
 
+        [Then(@"Employer can mark the application as interviewing")]
+        public void ThenEmployerCanMarkTheApplicationAsInterviewing() => _employerStepsHelper.ApplicantInterviewing();
 
         [Then(@"Employer can make the application successful")]
         public void ThenEmployerCanMakeTheApplicationSuccessful() => _employerStepsHelper.ApplicantSucessful();
