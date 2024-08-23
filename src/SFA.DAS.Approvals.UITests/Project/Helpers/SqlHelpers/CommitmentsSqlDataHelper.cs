@@ -1,8 +1,8 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 {
@@ -27,14 +27,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             string sqlQueryToSetDataLockSuccessStatus = $"UPDATE Apprenticeship SET HasHadDataLockSuccess = 1 WHERE ULN = '{uln}'";
 
             ExecuteSqlCommand(sqlQueryToSetDataLockSuccessStatus);
-        }  
-        
+        }
+
         public void SetCreatedOnForOverlappingTrainingDate(string uln, string createdOnDate)
         {
             if (uln.Equals(null))
             {
                 throw new Exception("ULN is not set");
-            } 
+            }
             if (createdOnDate.Equals(null))
             {
                 throw new Exception("OLTD.CreatedOn is not set");
@@ -68,7 +68,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         }
 
         public DateTime? GetEmployerNotifiedOnForOverlappingTrainingDate(string uln)
-        {         
+        {
             string query = $@"SELECT TOP (1) 
                              OLTD.NotifiedEmployerOn
                           FROM [dbo].[OverlappingTrainingDateRequest] OLTD
@@ -78,7 +78,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
             var data = GetData(query);
 
-            if (data[0].Equals(null))
+            if (string.IsNullOrEmpty(data[0]))
             {
                 return null;
             }
@@ -95,15 +95,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                          Where ULN = '{uln}'
                            AND OLTD.[Status] = 0
                            AND OLTD.ResolutionType is NULL
+                           AND OLTD.ActionedOn is NULL
                          Order by OLTD.Id desc";
 
             var data = GetData(query);
 
-            return !data[0].Equals(null);
+            return !string.IsNullOrEmpty(data[0]);
         }
-        
+
         public bool CheckIfPreviousApprenticeshipHasBeenStoppedWithStopDateAsNewStartDate(string uln)
-        {        
+        {
             string query = $@"select Top 1 previous.Id from 
                            dbo.OverlappingTrainingDateRequest OLTD
                            inner join dbo.Apprenticeship previous
@@ -116,8 +117,45 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                            Order by OLTD.Id desc";
 
             var data = GetData(query);
-         
-            return !data[0].Equals(null);
+
+            return !string.IsNullOrEmpty(data[0]);
+        }
+
+        public bool CheckThatOverlappingTrainingDateIsNotResolved(string uln)
+        {
+            string query = $@"select Top 1 OLTD.Id from 
+                           dbo.OverlappingTrainingDateRequest OLTD
+                           inner join dbo.Apprenticeship previous
+                           on previous.Id = OLTD.PreviousApprenticeshipId
+                           inner join dbo.Apprenticeship draft
+                           on draft.Id = OLTD.DraftApprenticeshipId
+                           Where 
+						   previous.ULN = '{uln}'
+                           AND OLTD.ResolutionType is null
+						   AND OLTD.Status = 0
+                           Order by OLTD.Id desc";
+
+            var data = GetData(query);
+
+            return !string.IsNullOrEmpty(data[0]);
+        }
+
+        public bool CheckIfZendeskTicketHasBeenRaised(string uln)
+        {
+            string query = $@"select Top 1 OLTD.Id from 
+                           dbo.OverlappingTrainingDateRequest OLTD
+                           inner join dbo.Apprenticeship previous
+                           on previous.Id = OLTD.PreviousApprenticeshipId
+                           inner join dbo.Apprenticeship draft
+                           on draft.Id = OLTD.DraftApprenticeshipId
+                           Where 
+						   previous.ULN = '{uln}'
+                           AND OLTD.NotifiedServiceDeskOn is not null
+                           Order by OLTD.Id desc";
+
+            var data = GetData(query);
+
+            return !string.IsNullOrEmpty(data[0]);
         }
 
         public string GetApprenticeshipULN(string reference)

@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._02_PostApprovals.Ove
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_DO_09_OLTD_CoE")]
-    public partial class AP_DO_09_OLTD_CoEFeature
+    [NUnit.Framework.DescriptionAttribute("AP_DO_10_OLTD_CoE")]
+    public partial class AP_DO_10_OLTD_CoEFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_DO_09_OLTD_CoE.feature"
+#line 1 "AP_DO_10_OLTD_CoE.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/02_PostApprovals/OverlappingTrainingDateRequest", "AP_DO_09_OLTD_CoE", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/02_PostApprovals/OverlappingTrainingDateRequest", "AP_DO_10_OLTD_CoE", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._02_PostApprovals.Ove
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_DO_09_OLTD_CoE Automatically stop the record after 2 weeks")]
+        [NUnit.Framework.DescriptionAttribute("AP_DO_10_OLTD_CoE raise zendesk ticket after 2 weeks")]
         [NUnit.Framework.CategoryAttribute("postapprovals")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("overlappingtrainingdaterequest")]
-        public void AP_DO_09_OLTD_CoEAutomaticallyStopTheRecordAfter2Weeks()
+        public void AP_DO_10_OLTD_CoERaiseZendeskTicketAfter2Weeks()
         {
             string[] tagsOfScenario = new string[] {
                     "postapprovals",
                     "regression",
                     "overlappingtrainingdaterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_09_OLTD_CoE Automatically stop the record after 2 weeks", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_10_OLTD_CoE raise zendesk ticket after 2 weeks", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,34 +96,36 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("Employer and provider approve an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
- testRunner.When("provider starts CoE journey which leads to an overlap", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 9
+ testRunner.And("Employer selects to stop the active apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.When("provider starts CoE journey which leads to an overlap for stopped apprenticeship", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 11
  testRunner.And("provider decides to send stop request email from service for Change Of Employer O" +
                         "verlapping Training Dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 12
  testRunner.And("One week has passed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 13
  testRunner.Then("send a reminder email to the old employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 14
  testRunner.And("old employer has not taken any action yet", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 15
  testRunner.When("One more week has passed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
- testRunner.Then("Automatically stop the record with stopDate = NewStartDate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Then("Automatically raise a ZenDesk ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
- testRunner.Then("overlapping training date request is resolved in database with status 1 and resol" +
-                        "utionType 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.Then("check that the Overlapping Training Date Request is NOT resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

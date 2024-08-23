@@ -76,6 +76,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderSelectsAStandard(false).SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
+        [When(@"provider starts CoE journey which leads to an overlap for stopped apprenticeship")]
+        public void WhenProviderStartsCoEJourneyLeadingToOverlapForStoppedApprenticeship()
+        {
+            SetUlnForOLTD();
+            _providerStepsHelper.StartChangeOfEmployerOLTDJourney(true);
+        }
+
         [When(@"provider starts CoE journey which leads to an overlap")]
         public void WhenProviderStartsCoEJourneyLeadingToOverlap()
         {
@@ -249,6 +256,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var hasBeenAutoStopped = _commitmentsSqlDataHelper.CheckIfPreviousApprenticeshipHasBeenStoppedWithStopDateAsNewStartDate(uln);
             Assert.IsTrue(hasBeenAutoStopped);
         }
+
+        [Then(@"Automatically raise a ZenDesk ticket")]
+        public void ThenAutomaticallyRaiseAZenDeskTicket()
+        {
+            var uln = GetUlnForOLTD();
+            var hasBeenAutoStopped = _commitmentsSqlDataHelper.CheckIfZendeskTicketHasBeenRaised(uln);
+            Assert.IsTrue(hasBeenAutoStopped);
+        }
+
+        [Then(@"check that the Overlapping Training Date Request is NOT resolved")]
+        public void ThenCheckThatOverlappingTrainingDateRequestIsNotResolved()
+        {
+            var uln = GetUlnForOLTD();
+            var isNotResolved = _commitmentsSqlDataHelper.CheckThatOverlappingTrainingDateIsNotResolved(uln);
+            Assert.IsTrue(isNotResolved);
+        }
+
         [When(@"provider selects to edit the price")]
         public void WhenProviderSelectsToEditThePrice()
         {
