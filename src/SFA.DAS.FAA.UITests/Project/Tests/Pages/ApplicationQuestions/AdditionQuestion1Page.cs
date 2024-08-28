@@ -3,7 +3,7 @@
 public class AdditionQuestion1Page(ScenarioContext context) : FAABasePage(context)
 {
     protected override string PageTitle => advertDataHelper.AdditionalQuestion1;
-
+    protected override By PageHeader => By.CssSelector("label[for='AdditionalQuestionAnswer']");
     private static By AdditionalQuestionAnswer => By.CssSelector("#AdditionalQuestionAnswer");
 
     public FAA_ApplicationOverviewPage SelectYesAndCompleteSection()

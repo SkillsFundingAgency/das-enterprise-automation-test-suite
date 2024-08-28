@@ -9,7 +9,7 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
     public class ChangeOfPriceReviewChangeRequestPage(ScenarioContext context) : ChangeOfPriceViewChangeRequestPage(context)
     {
         protected override string PageTitle => "Review changes";
-        private static By RejectReasonInputField => By.Id("rejectReason");
+        private static By RejectReasonInputField => By.Id("RejectReason");
         private static By ApproveChangesRadioOption => By.Id("option-yes");
         private static By RejectChangesRadioOption => By.Id("option-no");
 
@@ -38,7 +38,5 @@ namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Provider
             formCompletionHelper.Click(ContinueButton);
             return new ProviderApprenticeDetailsPage(context);
         }
-
     }
-
 }
