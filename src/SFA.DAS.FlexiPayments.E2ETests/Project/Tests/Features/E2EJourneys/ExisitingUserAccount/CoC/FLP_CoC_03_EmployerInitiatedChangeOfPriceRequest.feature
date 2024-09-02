@@ -12,7 +12,8 @@ Scenario: FLP_CoC_03 Employer Initiated Change Of Price Request
 		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 15000        | true         |
     And Employer searches for the learner on Manage your apprentice page
 	When Employer proceeds to create a Change of Price request for flexi payments pilot learner
-	And Employer successfully creates a Change of Price request
+	And Employer successfully creates a Change of Price request to reduce the agreed price to 14500
 	And Employer initiated Change of Price request details are saved in the PriceHistory table
 	Then Provider can review the Change of Price request and approve it
 	And the approved Change of Price request is saved in the PriceHistory table
+	And validate instalments amounts have been updated in the earnings db to reflect the new agreed price of 14500

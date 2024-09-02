@@ -260,6 +260,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             Assert.AreEqual(expectedTotalOnProgrammePayment, double.Parse(actualTotalOnProgrammePayment));
         }
 
+        [Then(@"validate instalments amounts have been updated in the earnings db to reflect the new agreed price of (.*)")]
+        public void ValidateInstalmentsAmountsHaveBeenUpdatedInTheEarningsDbToReflectTheNewAgreedPriceOf(double newAgreedPrice)
+        {
+            var actualTotalOnProgrammePayment = _earningsSqlDbHelper.GetTotalInstalmentsAmount(GetApprenticeULN(1), true);
+
+            var expectedOnProgrammePayment = newAgreedPrice * 0.8;
+
+            var roundedActualTotalPayment = Math.Round(decimal.Parse(actualTotalOnProgrammePayment));
+            var roundedExpectedTotalPayment = Math.Round(expectedOnProgrammePayment);
+
+            Assert.AreEqual(roundedExpectedTotalPayment, roundedActualTotalPayment, $"Expected total on-programme payment to be: {roundedExpectedTotalPayment} but found {roundedActualTotalPayment} in earnings db");
+        }
         private string ErrorMessage(string message, int ulnKey) => $"'{message}' for ulnkey '{ulnKey}', uln '{GetApprenticeULN(ulnKey)}'";
 
         private string GetApprenticeULN(int key) => context.Get<ObjectContext>().GetULNKeyInformations().Single(x => x.key == key).uln;
