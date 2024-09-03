@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
@@ -213,12 +212,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenOneWeekHasPassed()
         {
             var oneWeekAgoDateTime = DateTime.UtcNow.AddDays(-8);
-            var date = oneWeekAgoDateTime.ToString("yyyy-MM-dd");
+            var date = oneWeekAgoDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
             var uln = GetUlnForOLTD();
             _commitmentsSqlDataHelper.SetCreatedOnForOverlappingTrainingDate(uln, date);
-
-            Thread.Sleep(TimeSpan.FromMinutes(2));
         }
 
         [Then(@"send a reminder email to the old employer")]
@@ -241,12 +238,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenOneMoreWeekHasPassed()
         {
             var twoWeeksAgoDateTime = DateTime.UtcNow.AddDays(-15);
-            var date = twoWeeksAgoDateTime.ToString("yyyy-MM-dd");
+            var date = twoWeeksAgoDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
 
             var uln = GetUlnForOLTD();
             _commitmentsSqlDataHelper.SetCreatedOnForOverlappingTrainingDate(uln, date);
-
-            Thread.Sleep(TimeSpan.FromMinutes(2));
         }
 
         [Then(@"Automatically stop the record with stopDate = NewStartDate")]

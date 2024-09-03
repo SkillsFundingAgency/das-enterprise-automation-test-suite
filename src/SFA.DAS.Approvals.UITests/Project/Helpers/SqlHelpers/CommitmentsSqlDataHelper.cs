@@ -40,14 +40,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                 throw new Exception("OLTD.CreatedOn is not set");
             }
 
-            var command = $@"UPDATE [dbo].[OverlappingTrainingDateRequest] set CreatedOn = '{createdOnDate}'
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@ULN", uln },
+                { "@CREATEDON", createdOnDate}
+            };
+
+            var command = @"UPDATE [dbo].[OverlappingTrainingDateRequest] set CreatedOn = @CREATEDON
                                    where Id = (SELECT TOP (1) 
                                        OLTD.Id   FROM [dbo].[OverlappingTrainingDateRequest] OLTD
                                    Inner Join Apprenticeship A on OLTD.DraftApprenticeshipId = A.Id
-                                   Where ULN = '{uln}'
+                                   Where ULN = @ULN
                                    Order by OLTD.Id desc);";
 
-            ExecuteSqlCommand(command);
+            ExecuteSqlCommand(command, sqlParameters);
         }
 
         public int GetApprenticeshipId(string uln) => Convert.ToInt32(WaitAndGetDataAsObject($"SELECT Id from [dbo].[Apprenticeship] WHERE ULN = '{uln}' AND PaymentStatus >= 1"));
@@ -69,14 +75,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public DateTime? GetEmployerNotifiedOnForOverlappingTrainingDate(string uln)
         {
-            string query = $@"SELECT TOP (1) 
-                             OLTD.NotifiedEmployerOn
+            waitForResults = true;
+
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@ULN", uln }
+            };
+
+            string query = @"SELECT TOP (1) 
+                            OLTD.NotifiedEmployerOn
                           FROM [dbo].[OverlappingTrainingDateRequest] OLTD
                          Inner Join Apprenticeship A on OLTD.DraftApprenticeshipId = A.Id
-                         Where ULN = '{uln}'
+                         Where ULN = @ULN
+                            AND OLTD.NotifiedEmployerOn is not null
                          Order by OLTD.Id desc";
 
-            var data = GetData(query);
+            var data = GetData(query, sqlParameters);
 
             if (string.IsNullOrEmpty(data[0]))
             {
@@ -88,72 +102,96 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public bool CheckIfEmployerHasNotActionedOverlappingTrainingDate(string uln)
         {
-            string query = $@"SELECT TOP (1) 
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@ULN", uln }
+            };
+
+            string query = @"SELECT TOP (1) 
                              OLTD.Id
                           FROM [dbo].[OverlappingTrainingDateRequest] OLTD
                          Inner Join Apprenticeship A on OLTD.DraftApprenticeshipId = A.Id
-                         Where ULN = '{uln}'
+                         Where ULN = @ULN
                            AND OLTD.[Status] = 0
                            AND OLTD.ResolutionType is NULL
                            AND OLTD.ActionedOn is NULL
                          Order by OLTD.Id desc";
 
-            var data = GetData(query);
+            var data = GetData(query, sqlParameters);
 
             return !string.IsNullOrEmpty(data[0]);
         }
 
         public bool CheckIfPreviousApprenticeshipHasBeenStoppedWithStopDateAsNewStartDate(string uln)
         {
-            string query = $@"select Top 1 previous.Id from 
+            waitForResults = true;
+
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@ULN", uln }
+            };
+
+            string query = @"select Top 1 previous.Id from 
                            dbo.OverlappingTrainingDateRequest OLTD
                            inner join dbo.Apprenticeship previous
                            on previous.Id = OLTD.PreviousApprenticeshipId
                            inner join dbo.Apprenticeship draft
                            on draft.Id = OLTD.DraftApprenticeshipId
-                           Where previous.ULN = '{uln}'
+                           Where previous.ULN = @ULN
                            AND previous.PaymentStatus = 3 -- stopped
                            AND previous.StopDate = draft.StartDate
                            Order by OLTD.Id desc";
 
-            var data = GetData(query);
+            var data = GetData(query, sqlParameters);
 
             return !string.IsNullOrEmpty(data[0]);
         }
 
         public bool CheckThatOverlappingTrainingDateIsNotResolved(string uln)
         {
-            string query = $@"select Top 1 OLTD.Id from 
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@ULN", uln }
+            };
+
+            string query = @"select Top 1 OLTD.Id from 
                            dbo.OverlappingTrainingDateRequest OLTD
                            inner join dbo.Apprenticeship previous
                            on previous.Id = OLTD.PreviousApprenticeshipId
                            inner join dbo.Apprenticeship draft
                            on draft.Id = OLTD.DraftApprenticeshipId
                            Where 
-						   previous.ULN = '{uln}'
+						   previous.ULN = @ULN
                            AND OLTD.ResolutionType is null
 						   AND OLTD.Status = 0
                            Order by OLTD.Id desc";
 
-            var data = GetData(query);
+            var data = GetData(query, sqlParameters);
 
             return !string.IsNullOrEmpty(data[0]);
         }
 
         public bool CheckIfZendeskTicketHasBeenRaised(string uln)
         {
-            string query = $@"select Top 1 OLTD.Id from 
+            waitForResults = true;
+
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@ULN", uln }
+            };
+
+            string query = @"select Top 1 OLTD.Id from 
                            dbo.OverlappingTrainingDateRequest OLTD
                            inner join dbo.Apprenticeship previous
                            on previous.Id = OLTD.PreviousApprenticeshipId
                            inner join dbo.Apprenticeship draft
                            on draft.Id = OLTD.DraftApprenticeshipId
                            Where 
-						   previous.ULN = '{uln}'
+						   previous.ULN = @ULN
                            AND OLTD.NotifiedServiceDeskOn is not null
                            Order by OLTD.Id desc";
 
-            var data = GetData(query);
+            var data = GetData(query, sqlParameters);
 
             return !string.IsNullOrEmpty(data[0]);
         }
