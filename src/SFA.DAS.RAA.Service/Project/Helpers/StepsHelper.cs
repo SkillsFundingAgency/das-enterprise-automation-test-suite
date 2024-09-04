@@ -28,7 +28,7 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
         public static void ApplicantInReview(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MarkApplicantInReview();
         public static void ApplicantMarkForInterview(EmployerVacancySearchResultPage employerVacancySearchResultPage)
-            => employerVacancySearchResultPage.NavigateToManageApplicant().MarkApplicantInReview();
+            => employerVacancySearchResultPage.NavigateToManageApplicant().MarkApplicantAsInterviewing();
         public static void ApplicantUnsucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
         public static void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
