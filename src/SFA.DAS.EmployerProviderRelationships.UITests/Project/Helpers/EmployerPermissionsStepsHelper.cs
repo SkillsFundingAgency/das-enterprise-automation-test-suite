@@ -8,11 +8,13 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 {
     public class EmployerPermissionsStepsHelper(ScenarioContext context)
     {
-        public HomePage SetProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow));
+        public HomePage SetAllProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow));
 
-        public HomePage RemoveProviderPermission(ProviderConfig providerConfig) => UpdateProviderPermission(providerConfig, (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
+        public HomePage SetCreateCohortProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.DoNotAllow));
 
-        internal HomePage SetProviderPermissions(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)
+        public HomePage RemoveAllProviderPermission(ProviderConfig providerConfig) => UpdateProviderPermission(providerConfig, (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
+
+        private HomePage SetProviderPermissions(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)
         {
             return OpenProviderPermissions()
                 .SelectAddATrainingProvider()

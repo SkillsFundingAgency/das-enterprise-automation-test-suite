@@ -12,6 +12,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper = new(context);
 
         [Then(@"create cohort permission is granted to a provider")]
-        public void ThenCreateCohortPermissionIsGrantedToAProvider() => _employerPermissionsStepsHelper.SetProviderPermissions(_perfTestProviderPermissionsConfig);
+        public void ThenCreateCohortPermissionIsGrantedToAProvider() => _employerPermissionsStepsHelper.SetCreateCohortProviderPermissions(_perfTestProviderPermissionsConfig);
     }
 }

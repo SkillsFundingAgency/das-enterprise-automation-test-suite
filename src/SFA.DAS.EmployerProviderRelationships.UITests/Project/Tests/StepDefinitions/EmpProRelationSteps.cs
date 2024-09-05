@@ -32,7 +32,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             EPRLogin();
 
-            _employerPermissionsStepsHelper.SetProviderPermissions(providerConfig);
+            _employerPermissionsStepsHelper.SetAllProviderPermissions(providerConfig);
         }
 
         [When(@"the employer changes recruit apprentice permission")]
