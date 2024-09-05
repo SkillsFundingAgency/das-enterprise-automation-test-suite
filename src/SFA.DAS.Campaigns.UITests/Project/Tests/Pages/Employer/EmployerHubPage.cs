@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected static By UnderstandingApprenticeshipBenefitsAndFunding => By.CssSelector("a[href='/employers/understanding-apprenticeship-benefits-and-funding']");
 
-        protected static By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
+        protected static By RegisterInterest => By.CssSelector("a[href='/employers/sign-up']");
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 

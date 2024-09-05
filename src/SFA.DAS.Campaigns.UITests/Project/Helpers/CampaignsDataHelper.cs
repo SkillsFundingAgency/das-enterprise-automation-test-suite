@@ -12,6 +12,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
             Email = $"{Firstname}.{Lastname}@example.com";
             Positions = RandomDataGenerator.GenerateRandomNumber(1);
             Course = $"Abattoir worker (Level 2)";
+            Industry = $"Care services";
+            Region = $"London";
         }
 
         public string FullName { get; }
@@ -25,5 +27,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
         public string Positions { get; }
 
         public string Course { get; }
+        public string Industry { get; }
+        public string Region { get; }
     }
 }
