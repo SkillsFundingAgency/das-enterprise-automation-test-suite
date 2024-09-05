@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
@@ -10,6 +7,9 @@ using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework.TestSupport;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project
@@ -29,8 +29,6 @@ namespace SFA.DAS.Approvals.UITests.Project
             commitmentsdatahelper = new CommitmentsSqlDataHelper(_objectcontext, _dbConfig);
 
             context.Set(commitmentsdatahelper);
-
-            context.Set(new ProviderPermissionsSqlDbHelper(_objectcontext, _dbConfig));
 
             context.Set(new RofjaaDbSqlHelper(_objectcontext, _dbConfig));
 

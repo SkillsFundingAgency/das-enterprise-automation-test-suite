@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using Polly;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
@@ -36,13 +37,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"Employer grant create cohort permission to a provider")]
         public void GivenEmployerGrantCreateCohortPermissionToAProvider()
         {
-            _employerPermissionsStepsHelper.RemovePermissisons(_providerPermissionConfig);
+            _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
-            var homePage = _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
+            new DeleteProviderRelationinDbHelper(_context).DeleteProviderRelation(_providerPermissionConfig);
 
-            EmployerPermissionsStepsHelper.SetAgreementId(homePage, string.Empty);
-
-            _employerPermissionsStepsHelper.SetCreateCohortPermission(_providerPermissionConfig.Ukprn);
+            _employerPermissionsStepsHelper.SetCreateCohortProviderPermissions(_providerPermissionConfig);
 
             _providerLoginUser = new ProviderLoginUser { Username = _providerPermissionConfig.Username, Password = _providerPermissionConfig.Password, Ukprn = _providerPermissionConfig.Ukprn };
         }
@@ -52,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _homePageStepsHelper.GotoEmployerHomePage();
 
-            _employerPermissionsStepsHelper.UnSetCreateCohortPermission();
+            _employerPermissionsStepsHelper.RemoveAllProviderPermission(_providerPermissionConfig);
         }
 
         [Then(@"Provider can Create Cohort")]

@@ -11,26 +11,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public ConfirmTrainingProviderPermissionsPage(ScenarioContext context) : base(context) => VerifyPage();
 
-        public PermissionsUpdatedPage ConfirmTrainingProviderPermissions()
-        {
-            Continue();
-            return new PermissionsUpdatedPage(context);
-        }
-
-        public PermissionsUpdatedPage ConfirmYesTrainingProviderPermissions()
-        {
-            javaScriptHelper.ClickElement(SelectYesConfirmChange);
-            Continue();
-            return new PermissionsUpdatedPage(context);
-        }
-
-        public YouVeSuccessfullySetProviderPermissionsPage ConfirmProviderLeadRegistrationPermissions()
-        {
-            javaScriptHelper.ClickElement(SelectYesConfirmChange);
-            Continue();
-            return new YouVeSuccessfullySetProviderPermissionsPage(context);
-        }
-
         public EmployerAccountCreatedPage ConfirmAndGoToEmployerAccountCreatedPage()
         {
             var SelectConfirmButton = By.XPath("//*[@id=\"main-content\"]/div/div/form/div/button");
