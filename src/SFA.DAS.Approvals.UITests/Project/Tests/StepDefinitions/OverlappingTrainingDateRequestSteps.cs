@@ -244,8 +244,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _commitmentsSqlDataHelper.SetCreatedOnForOverlappingTrainingDate(uln, date);
         }
 
-        [Then(@"Automatically stop the record with stopDate = NewStartDate")]
-        public void ThenAutomaticallyStopPreviousApprenticeshipAndSetStopDate()
+        [Then(@"System automatically stops the record with stopDate = NewStartDate")]
+        public void ThenSystemAutomaticallyStopsTheRecordWithStopDateNewStartDate()
         {
             var uln = GetUlnForOLTD();
             var hasBeenAutoStopped = _commitmentsSqlDataHelper.CheckIfPreviousApprenticeshipHasBeenStoppedWithStopDateAsNewStartDate(uln);
