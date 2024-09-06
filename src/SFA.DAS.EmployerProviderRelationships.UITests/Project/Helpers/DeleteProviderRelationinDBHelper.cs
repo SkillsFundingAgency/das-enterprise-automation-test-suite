@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 {
-    public class DeleteProviderRelationHelper(ScenarioContext context)
+    public class DeleteProviderRelationinDbHelper(ScenarioContext context)
     {
         private DbConfig DbConfig => context.Get<DbConfig>();
 
@@ -15,9 +15,10 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 
         private ProviderConfig ProviderConfig => context.GetProviderConfig<ProviderConfig>();
 
-        internal void DeleteProviderRelation()
-        {
-            new EmployerProviderRelationshipsSqlDataHelper(ObjectContext, DbConfig).DeleteProviderRelation(ProviderConfig.Ukprn, ObjectContext.GetDBAccountId());
-        }
+        internal void DeleteProviderRelation() => DeleteProviderRelation(ProviderConfig);
+
+        public void DeleteProviderRelation(ProviderConfig providerConfig) => DeleteProviderRelation(providerConfig.Ukprn, ObjectContext.GetDBAccountId());
+
+        private void DeleteProviderRelation(string ukprn, string accountid) => new RelationshipsSqlDataHelper(ObjectContext, DbConfig).DeleteProviderRelation(ukprn, accountid);
     }
 }

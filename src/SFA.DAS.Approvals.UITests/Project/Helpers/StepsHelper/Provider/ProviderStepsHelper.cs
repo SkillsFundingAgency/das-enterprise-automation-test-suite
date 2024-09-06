@@ -50,6 +50,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                     .VerifyChangeOfEmployerHasBeenRequested();
         }
 
+        public ProviderCoEOverlappingTrainingDateThereMayBeProblemPage StartChangeOfEmployerOLTDJourney(bool isApprenticeshipStopped = false)
+        {
+            return CurrentApprenticeDetails()
+                    .ClickChangeEmployerLink()
+                    .SelectChangeTheEmployer()
+                    .SelectNewEmployer()
+                    .ConfirmNewEmployer()
+                    .EnterNewTrainingDatesTriggeringOLTDAndContinue(isApprenticeshipStopped)
+                    .EnterNewPriceAndContinueToThereIsAProblemPage();
+        }
+
         private ProviderApprenticeDetailsPage CurrentApprenticeDetails() => _providerCommonStepsHelper.CurrentApprenticeDetails();
 
         private ProviderApproveApprenticeDetailsPage AddApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage, int numberOfApprentices)
