@@ -78,27 +78,22 @@ namespace SFA.DAS.Approvals.UITests.Project
         {
             List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentices = [];
 
+            List<string> larsCode;
+
             if (_tags.Contains("portableflexijob"))
             {
-                var larsCode = roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode(context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
-
-                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
-
+                larsCode = roatpV2SqlDataHelper.GetPortableFlexiJobLarsCode(context.GetPortableFlexiJobProviderConfig<PortableFlexiJobProviderConfig>()?.Ukprn);
             }
             else if (_tags.Contains("limitingstandards"))
             {
-                var larsCode = roatpV2SqlDataHelper.GetCoursesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
-
-                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
+                larsCode = roatpV2SqlDataHelper.GetCoursesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
             }
             else
             {
-                var larsCode = roatpV2SqlDataHelper.GetCoursesThatProviderDeosOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
-
-                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
-
-                listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
+                larsCode = roatpV2SqlDataHelper.GetCoursesThatProviderDeosOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);                
             }
+
+            listOfApprentices.Add((GetApprenticeDataHelper(), GetApprenticeCourseDataHelper(larsCode, apprenticeStatus)));
 
             return listOfApprentices;
         }

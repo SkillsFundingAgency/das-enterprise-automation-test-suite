@@ -16,20 +16,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         public RandomCourseDataHelper(ObjectContext objectContext, DbConfig dbConfig, List<string> larsCode, string[] tags)
         {
             var crsSqlhelper = new CrsSqlhelper(objectContext, dbConfig);
-            string query;
 
-            if (tags.IsSelectStandardWithMultipleOptionsAndVersions())
-            {
-                query = CrsSqlhelper.GetSqlQueryWithMultipleOptionsAndVersions(larsCode);
-            }
-            else if (tags.IsSelectStandardWithMultipleOptions())
-            {
-                query = CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode);
-            }
-            else
-            {
-                query = CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode);
-            }
+            string query = 
+                tags.IsSelectStandardWithMultipleOptionsAndVersions() ? 
+                CrsSqlhelper.GetSqlQueryWithMultipleOptionsAndVersions(larsCode) :
+                
+                tags.IsSelectStandardWithMultipleOptions() ? 
+                CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) : 
+
+                CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode);
+
             var multiqueryResult = crsSqlhelper.GetApprenticeCourse([query]);
 
             _availableCourses = multiqueryResult[0];
