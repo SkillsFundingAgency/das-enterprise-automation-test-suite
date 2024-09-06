@@ -7,7 +7,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public class ViewVacancyPage(ScenarioContext context) : VerifyDetailsBasePage(context)
     {
-        protected override By PageHeader => By.ClassName("govuk-heading-xl");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-l.faa-vacancy__title");
 
         protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
@@ -19,9 +19,9 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         private static By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
 
-        private static By EmployerWageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
+        private static By EmployerWageType => By.XPath("//div[@class='app-preview-wrap']//div[1]//dd[1]");
 
-        protected override By DisabilityConfident => By.CssSelector("img.app-disability-confident-logo");
+        protected override By DisabilityConfident => By.CssSelector("img[alt='Disability Confident']");
 
         public void VerifyWageType(string wageType) => VerifyWageAmount(WageType, wageType);
 
