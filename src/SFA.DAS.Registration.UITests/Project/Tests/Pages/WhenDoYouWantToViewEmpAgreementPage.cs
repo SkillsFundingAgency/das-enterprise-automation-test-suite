@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -14,7 +13,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         private static By ViewItNowRadionButton => By.CssSelector("label");
         #endregion
 
-        public WhenDoYouWantToViewEmpAgreementPage(ScenarioContext context) : base(context) { VerifyPage(); var email = objectContext.GetRegisteredEmail(); objectContext.SetOrUpdateUserCreds(email, string.Empty, context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(email)); }
+        public WhenDoYouWantToViewEmpAgreementPage(ScenarioContext context) : base(context) { VerifyPage(); } // var email = objectContext.GetRegisteredEmail(); objectContext.SetOrUpdateUserCreds(email, string.Empty, context.Get<RegistrationSqlDataHelper>().CollectAccountDetails(email)); }
 
         public SignAgreementPage SelectViewAgreementNowAndContinue()
         {

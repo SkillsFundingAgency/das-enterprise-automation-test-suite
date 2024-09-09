@@ -50,7 +50,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
         internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password) => objectContext.SetOrUpdateUserCreds(emailaddress, password, []);
 
-        internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password, List<(string accountId, string hashedId, string orgName, string publicHashedId)> accDetails)
+        internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password, List<(string accountId, string hashedId, string orgName, string publicHashedId, string alename, string aleid, string aleAccountid, string aleAgreementid)> accDetails)
         {
             var usercreds = objectContext.GetAllUserCreds();
 
@@ -75,11 +75,11 @@ namespace SFA.DAS.Registration.UITests.Project
 
         private static UserCreds GetUserCreds(List<UserCreds> userCreds, string emailaddress) => userCreds.SingleOrDefault(x => x.EmailAddress == emailaddress);
 
-        private static void UpdateUserCreds(this ObjectContext objectContext, string emailaddress, List<(string accountId, string hashedId, string orgName, string publicHashedId)> accDetails)
+        private static void UpdateUserCreds(this ObjectContext objectContext, string emailaddress, List<(string accountId, string hashedId, string orgName, string publicHashedId, string alename, string aleid, string aleAccountid, string aleAgreementid)> accDetails)
         {
             var usercreds = GetUserCreds(objectContext.GetAllUserCreds(), emailaddress);
 
-            foreach (var (accountId, hashedId, orgName, publicHashedId) in accDetails)
+            foreach (var (accountId, hashedId, orgName, publicHashedId, alename, aleid, aleAccountid, aleAgreementid) in accDetails)
             {
                 var userAccountDetails = usercreds.AccountDetails;
 
@@ -87,7 +87,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
                 if (userAccountDetails.Any(x => x.AccountId == accountId)) continue;
 
-                userAccountDetails.Add(new AccountDetails(accountId, hashedId, orgName, publicHashedId, index));
+                userAccountDetails.Add(new AccountDetails(index, accountId, hashedId, orgName, publicHashedId, alename, aleid, aleAccountid, aleAgreementid));
             }
         }
     }
