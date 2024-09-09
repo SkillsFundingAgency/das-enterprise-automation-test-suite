@@ -252,8 +252,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsTrue(hasBeenAutoStopped);
         }
 
-        [Then(@"Automatically raise a ZenDesk ticket")]
-        public void ThenAutomaticallyRaiseAZenDeskTicket()
+        [Then(@"System automatically raises a ZenDesk ticket")]
+        public void ThenSystemAutomaticallyRaisesAZenDeskTicket()
         {
             var uln = GetUlnForOLTD();
             var hasBeenAutoStopped = _commitmentsSqlDataHelper.CheckIfZendeskTicketHasBeenRaised(uln);
