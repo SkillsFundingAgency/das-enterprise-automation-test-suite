@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.FrameworkHelpers;
+using System.Collections.Generic;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 {
@@ -12,8 +13,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
             Email = $"{Firstname}.{Lastname}@example.com";
             Positions = RandomDataGenerator.GenerateRandomNumber(1);
             Course = $"Abattoir worker (Level 2)";
-            Industry = $"Care services";
-            Region = $"London";
+            EmployeesSize = RandomDataGenerator.GetRandomElementFromListOfElements(EmployeeRadioOptions);
+            Industry = RandomDataGenerator.GetRandomElementFromListOfElements(ValidIndustries);
+            Region = RandomDataGenerator.GetRandomElementFromListOfElements(ValidLocations);
         }
 
         public string FullName { get; }
@@ -28,7 +30,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
 
         public string Course { get; }
         public string Industry { get; init; }
-        public string Region { get; set; }
+        public string Region { get; init; }
         public string EmployeesSize { get; init; }
         private static List<string> EmployeeRadioOptions => new() { "Between 10 and 49 employees", "Between 50 and 249 employees", "Over 250 employees" };
 

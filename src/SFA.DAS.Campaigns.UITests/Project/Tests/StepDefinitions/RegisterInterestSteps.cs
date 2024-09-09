@@ -15,6 +15,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.StepDefinitions
         public void GivenTheEmployerNavigatesToRegisterInterestPage() => _registerInterestPage = _stepsHelper.GoToEmployerHubPage().NavigateToRegisterInterestPage();
 
         [Then(@"an employer registers interest")]
-        public void ThenAnEmployerRegistersInterest() => _registerInterestPage.RegisterInterest();
+        public void ThenAnEmployerRegistersInterest() => _registerInterestPage.EnterPersonalDetails().RegisterInterest();
     }
 }
