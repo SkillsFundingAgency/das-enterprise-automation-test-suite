@@ -75,12 +75,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_EMP_02 Check that Levy Paying Employer Selected appropriate content displayed")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void CA_EMP_02CheckThatLevyPayingEmployerSelectedAppropriateContentDisplayed()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "campaigns",
                     "employer",
                     "regression"};

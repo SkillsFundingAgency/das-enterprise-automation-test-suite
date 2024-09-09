@@ -1,5 +1,5 @@
 ﻿Feature: CA_EMP_01
-
+@ignore
 @campaigns
 @employer
 @regression

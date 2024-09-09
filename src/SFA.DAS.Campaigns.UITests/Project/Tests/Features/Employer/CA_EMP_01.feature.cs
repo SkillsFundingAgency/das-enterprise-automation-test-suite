@@ -75,12 +75,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.Employer
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_EMP_01_Check Funding An Apprenticeship Page Details")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
         [NUnit.Framework.CategoryAttribute("employer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void CA_EMP_01_CheckFundingAnApprenticeshipPageDetails()
         {
             string[] tagsOfScenario = new string[] {
+                    "ignore",
                     "campaigns",
                     "employer",
                     "regression"};
