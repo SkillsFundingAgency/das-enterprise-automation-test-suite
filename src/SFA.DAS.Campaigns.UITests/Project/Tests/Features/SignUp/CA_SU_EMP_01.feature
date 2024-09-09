@@ -1,8 +1,7 @@
 ﻿Feature: CA_SU_EMP_01
 
-Register Interest as an Employer
+Sign up to Emails as an Employer
 @campaigns
-@registerinterest
 @signup
 @regression
 Scenario: CA_SU_EMP_01_Sign Up to emails as an Employer

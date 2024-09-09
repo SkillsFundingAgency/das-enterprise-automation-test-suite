@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.RegisterInterest
+namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.SignUp
 {
     using TechTalk.SpecFlow;
     using System;
@@ -28,14 +28,14 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.RegisterInterest
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "CA_RI_EMP_01.feature"
+#line 1 "CA_SU_EMP_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/RegisterInterest", "CA_SU_EMP_01", "Register Interest as an Employer", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/SignUp", "CA_SU_EMP_01", "Sign up to Emails as an Employer", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,19 +76,17 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Features.RegisterInterest
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_SU_EMP_01_Sign Up to emails as an Employer")]
         [NUnit.Framework.CategoryAttribute("campaigns")]
-        [NUnit.Framework.CategoryAttribute("registerinterest")]
         [NUnit.Framework.CategoryAttribute("signup")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void CA_SU_EMP_01_SignUpToEmailsAsAnEmployer()
         {
             string[] tagsOfScenario = new string[] {
                     "campaigns",
-                    "registerinterest",
                     "signup",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_SU_EMP_01_Sign Up to emails as an Employer", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,10 +96,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 8
  testRunner.Given("the employer navigates to Sign Up Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("an employer registers interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
