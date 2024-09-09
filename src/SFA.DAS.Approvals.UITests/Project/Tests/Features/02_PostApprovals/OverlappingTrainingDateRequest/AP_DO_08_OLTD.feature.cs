@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Features._02_PostApprovals.OverlappingTrainingDateRequest
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AP_PP_01_ProviderPermission")]
-    public partial class AP_PP_01_ProviderPermissionFeature
+    [NUnit.Framework.DescriptionAttribute("AP_DO_08_OLTD_Automatically_stop_the_record_after_2_weeks")]
+    public partial class AP_DO_08_OLTD_Automatically_Stop_The_Record_After_2_WeeksFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "AP_PP_01_ProviderPermission.feature"
+#line 1 "AP_DO_08_OLTD.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/ProviderPermission", "AP_PP_01_ProviderPermission", "An employer can grant and revoke create cohort permission to a provider", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/02_PostApprovals/OverlappingTrainingDateRequest", "AP_DO_08_OLTD_Automatically_stop_the_record_after_2_weeks", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("AP_PP_01 Employer grant and revoke Create Cohort permission to a provider")]
-        [NUnit.Framework.CategoryAttribute("deletepermission")]
-        [NUnit.Framework.CategoryAttribute("CreateCohortPermission")]
-        [NUnit.Framework.CategoryAttribute("approvals")]
-        public void AP_PP_01EmployerGrantAndRevokeCreateCohortPermissionToAProvider()
+        [NUnit.Framework.DescriptionAttribute("AP_DO_08_OLTD_Automatically stop the record after 2 weeks")]
+        [NUnit.Framework.CategoryAttribute("postapprovals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("overlappingtrainingdaterequest")]
+        public void AP_DO_08_OLTD_AutomaticallyStopTheRecordAfter2Weeks()
         {
             string[] tagsOfScenario = new string[] {
-                    "deletepermission",
-                    "CreateCohortPermission",
-                    "approvals"};
+                    "postapprovals",
+                    "regression",
+                    "overlappingtrainingdaterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PP_01 Employer grant and revoke Create Cohort permission to a provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_DO_08_OLTD_Automatically stop the record after 2 weeks", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,17 +96,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given("Employer and provider approve an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 8
- testRunner.Given("Employer grant create cohort permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("provider creates a draft apprentice which has an overlap", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("Provider can Create Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("provider decides to send stop request email from service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.When("Employer revoke create cohort permission to a provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("One week has passed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("Provider cannot Create Cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("send a reminder email to the old employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.And("old employer has not taken any action yet", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.When("One more week has passed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("Automatically stop the record with stopDate = NewStartDate", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 15
+ testRunner.Then("overlapping training date request is resolved in database with status 1 and resol" +
+                        "utionType 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

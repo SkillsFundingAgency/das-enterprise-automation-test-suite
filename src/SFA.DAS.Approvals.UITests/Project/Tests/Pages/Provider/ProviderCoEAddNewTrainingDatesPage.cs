@@ -25,5 +25,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Continue();
             return new ProviderCoEPricePage(context);
         }
+
+        public ProviderCoEPricePage EnterNewTrainingDatesTriggeringOLTDAndContinue(bool isApprenticeshipStopped = false)
+        {
+            var startDate = isApprenticeshipStopped? DateTime.UtcNow.AddMonths(-1) : DateTime.UtcNow;
+
+            formCompletionHelper.EnterText(StartDateMonth, startDate.Month.ToString());
+            formCompletionHelper.EnterText(StartDateYear, startDate.Year.ToString());
+            formCompletionHelper.EnterText(EndDateMonth, DateTime.UtcNow.Month.ToString());
+            formCompletionHelper.EnterText(EndDateYear, DateTime.UtcNow.AddYears(3).Year.ToString());
+            Continue();
+            return new ProviderCoEPricePage(context);
+        }
     }
 }
