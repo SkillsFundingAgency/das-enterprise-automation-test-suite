@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         protected override By EmployerNameInAboutTheEmployerSection => By.CssSelector("div.govuk-grid-column-two-thirds > p:nth-child(4)");
 
-        private static By WageType => By.CssSelector(".govuk-grid-column-one-third .govuk-body");
+        private static By WageType => By.XPath("//div[@class='app-preview-wrap']//div[1]//dd[1]");
 
         private static By EmployerWageType => By.XPath("//div[@class='app-preview-wrap']//div[1]//dd[1]");
 
