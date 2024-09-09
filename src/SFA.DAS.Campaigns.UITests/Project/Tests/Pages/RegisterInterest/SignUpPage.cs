@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
 {
-    public class RegisterInterestPage(ScenarioContext context) : CampaingnsVerifyLinks(context)
+    public class SignUpPage(ScenarioContext context) : CampaingnsVerifyLinks(context)
     {
         protected override string PageTitle => "Get emails about taking on your first apprentice";
 
@@ -23,13 +23,13 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
         private static By Signup => By.CssSelector("#btn-register-interest-complete");
         #endregion
 
-        public RegisterInterestPage EnterPersonalDetails()
+        public SignUpPage EnterPersonalDetails()
         {
             formCompletionHelper.EnterText(FirstNameField, campaignsDataHelper.Firstname);
             formCompletionHelper.EnterText(LastNameField, campaignsDataHelper.Lastname);
             formCompletionHelper.EnterText(EmailField, campaignsDataHelper.Email);
             formCompletionHelper.SelectRadioOptionByText(SelectCompanySize, campaignsDataHelper.EmployeesSize);
-            return new RegisterInterestPage(context);
+            return new SignUpPage(context);
         }
         public ThanksForSubscribingPage RegisterInterest()
         { 

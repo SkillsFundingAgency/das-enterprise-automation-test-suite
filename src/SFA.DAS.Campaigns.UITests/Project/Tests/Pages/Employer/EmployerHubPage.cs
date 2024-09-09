@@ -16,7 +16,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected static By UnderstandingApprenticeshipBenefitsAndFunding => By.CssSelector("a[href='/employers/understanding-apprenticeship-benefits-and-funding']");
 
-        protected static By RegisterInterest => By.CssSelector("a[href='/employers/sign-up']");
+        protected static By EmployerSignUpButton => By.CssSelector("a[href='/employers/sign-up']");
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 
@@ -37,10 +37,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new SearchForAnApprenticeshipPage(context);
         }
 
-        public RegisterInterestPage NavigateToRegisterInterestPage()
+        public SignUpPage NavigateToSignUpPage()
         {
-            formCompletionHelper.ClickElement(RegisterInterest);
-            return new RegisterInterestPage(context);
+            formCompletionHelper.ClickElement(EmployerSignUpButton);
+            return new SignUpPage(context);
         }
     }
 }
