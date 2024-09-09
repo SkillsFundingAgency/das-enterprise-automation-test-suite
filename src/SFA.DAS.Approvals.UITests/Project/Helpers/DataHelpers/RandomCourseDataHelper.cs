@@ -7,35 +7,22 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 {
-    public class RandomCourseDataHelper
+    public class RandomCourseDataHelper(List<CourseDetails> availableCourses)
     {
-        private readonly List<CourseDetails> _availableCourses;
+        public readonly List<CourseDetails> AvailableCourses = availableCourses;
 
-        public RandomCourseDataHelper() => _availableCourses = AvailableCourses.GetAvailableCourses();
+        public RandomCourseDataHelper() : this(DataHelpers.AvailableCourses.GetAvailableCourses()) { }
 
-        public RandomCourseDataHelper(ObjectContext objectContext, DbConfig dbConfig, List<string> larsCode, string[] tags)
+        public RandomCourseDataHelper(ObjectContext objectContext, DbConfig dbConfig, List<string> larsCode, string[] tags) : this(GetAvailableCourses(objectContext, dbConfig, larsCode, tags))
         {
-            var crsSqlhelper = new CrsSqlhelper(objectContext, dbConfig);
 
-            string query = 
-                tags.IsSelectStandardWithMultipleOptionsAndVersions() ? 
-                CrsSqlhelper.GetSqlQueryWithMultipleOptionsAndVersions(larsCode) :
-                
-                tags.IsSelectStandardWithMultipleOptions() ? 
-                CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) : 
-
-                CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode);
-
-            var multiqueryResult = crsSqlhelper.GetApprenticeCourse([query]);
-
-            _availableCourses = multiqueryResult[0];
         }
 
-        public CourseDetails RandomCourse() => SelectACourseExcept(_availableCourses, null);
+        public CourseDetails RandomCourse() => SelectACourseExcept(AvailableCourses, null);
 
-        public CourseDetails RandomCourse(string selectedCourse) => SelectACourseExcept(_availableCourses, selectedCourse);
+        public CourseDetails RandomCourse(string selectedCourse) => SelectACourseExcept(AvailableCourses, selectedCourse);
 
-        public CourseDetails SelectASpecificCourse(string courseToSelect) => SelectSpecificCourse(_availableCourses, courseToSelect);
+        public CourseDetails SelectASpecificCourse(string courseToSelect) => SelectSpecificCourse(AvailableCourses, courseToSelect);
 
         private static CourseDetails SelectACourseExcept(List<CourseDetails> courses, string except) => Func(courses, except, (x, y) => x != y);
 
@@ -46,6 +33,22 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
             var newlist = courses.Where(x => func(x.Course.larsCode, larsCode)).ToList();
 
             return RandomDataGenerator.GetRandomElementFromListOfElements(newlist);
+        }
+
+        public static List<CourseDetails> GetAvailableCourses(ObjectContext objectContext, DbConfig dbConfig, List<string> larsCode, string[] tags)
+        {
+            string query =
+                tags.IsSelectStandardWithMultipleOptionsAndVersions() ?
+                CrsSqlhelper.GetSqlQueryWithMultipleOptionsAndVersions(larsCode) :
+
+                tags.IsSelectStandardWithMultipleOptions() ?
+                CrsSqlhelper.GetSqlQueryWithMultipleOptions(larsCode) :
+
+                CrsSqlhelper.GetSqlQueryWithNoOptions(larsCode);
+
+            var multiqueryResult = new CrsSqlhelper(objectContext, dbConfig).GetApprenticeCourse([query]);
+
+            return multiqueryResult[0];
         }
     }
 }
