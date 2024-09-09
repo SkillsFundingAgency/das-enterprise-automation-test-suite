@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq;
+using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
@@ -13,8 +15,6 @@ using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using System;
-using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -75,6 +75,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             ProviderSelectsAStandard(false).SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails();
         }
 
+        [When(@"provider starts CoE journey which leads to an overlap for stopped apprenticeship")]
+        public void WhenProviderStartsCoEJourneyLeadingToOverlapForStoppedApprenticeship()
+        {
+            SetUlnForOLTD();
+            _providerStepsHelper.StartChangeOfEmployerOLTDJourney(true);
+        }
+
+        [When(@"provider starts CoE journey which leads to an overlap")]
+        public void WhenProviderStartsCoEJourneyLeadingToOverlap()
+        {
+            SetUlnForOLTD();
+            _providerStepsHelper.StartChangeOfEmployerOLTDJourney();
+        }
+
         [When(@"Provider tries to add a new apprentice using details from table below")]
         public void WhenProviderTriesToAddANewApprenticeUsingDetailsFromTableBelow(Table table)
         {
@@ -113,6 +127,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var homepage = login ? _providerCommonStepsHelper.GoToProviderHomePage() : _providerStepsHelper.NavigateToProviderHomePage();
 
             return homepage.GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer().ConfirmEmployer().ProviderSelectsAStandard();
+        }
+
+        [When(@"provider decides to send stop request email from service for Change Of Employer Overlapping Training Dates")]
+        public void WhenProviderSelectsToContactTheEmployerThemselvesForChangeOfEmployerOverlappingTrainingDates()
+        {
+            new ProviderCoEOverlappingTrainingDateThereMayBeProblemPage(_context)
+                .SelectYesTheseDetailsAreCorrect()
+                .SendStopEmail();
         }
 
         [When(@"provider selects to contact the employer themselves")]
@@ -184,6 +206,66 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var uln = GetUlnForOLTD();
             var numberOfApprenticesWithUln = _commitmentsSqlDataHelper.GetApprenticeshipCountFromULN(uln);
             Assert.AreEqual(2, numberOfApprenticesWithUln);
+        }
+
+        [When(@"One week has passed")]
+        public void ThenOneWeekHasPassed()
+        {
+            var oneWeekAgoDateTime = DateTime.UtcNow.AddDays(-8);
+            var date = oneWeekAgoDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+            var uln = GetUlnForOLTD();
+            _commitmentsSqlDataHelper.SetCreatedOnForOverlappingTrainingDate(uln, date);
+        }
+
+        [Then(@"send a reminder email to the old employer")]
+        public void ThenSendReminderEmailToOldEmployer()
+        {
+            var uln = GetUlnForOLTD();
+            var notifiedEmployerOn = _commitmentsSqlDataHelper.GetEmployerNotifiedOnForOverlappingTrainingDate(uln);
+            Assert.IsNotNull(notifiedEmployerOn);
+        }
+
+        [Then(@"old employer has not taken any action yet")]
+        public void ThenOldEmployerHasNotTakenAnyAction()
+        {
+            var uln = GetUlnForOLTD();
+            var hasNotActioned = _commitmentsSqlDataHelper.CheckIfEmployerHasNotActionedOverlappingTrainingDate(uln);
+            Assert.IsTrue(hasNotActioned);
+        }
+
+        [When(@"One more week has passed")]
+        public void ThenOneMoreWeekHasPassed()
+        {
+            var twoWeeksAgoDateTime = DateTime.UtcNow.AddDays(-15);
+            var date = twoWeeksAgoDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+            var uln = GetUlnForOLTD();
+            _commitmentsSqlDataHelper.SetCreatedOnForOverlappingTrainingDate(uln, date);
+        }
+
+        [Then(@"Automatically stop the record with stopDate = NewStartDate")]
+        public void ThenAutomaticallyStopPreviousApprenticeshipAndSetStopDate()
+        {
+            var uln = GetUlnForOLTD();
+            var hasBeenAutoStopped = _commitmentsSqlDataHelper.CheckIfPreviousApprenticeshipHasBeenStoppedWithStopDateAsNewStartDate(uln);
+            Assert.IsTrue(hasBeenAutoStopped);
+        }
+
+        [Then(@"Automatically raise a ZenDesk ticket")]
+        public void ThenAutomaticallyRaiseAZenDeskTicket()
+        {
+            var uln = GetUlnForOLTD();
+            var hasBeenAutoStopped = _commitmentsSqlDataHelper.CheckIfZendeskTicketHasBeenRaised(uln);
+            Assert.IsTrue(hasBeenAutoStopped);
+        }
+
+        [Then(@"check that the Overlapping Training Date Request is NOT resolved")]
+        public void ThenCheckThatOverlappingTrainingDateRequestIsNotResolved()
+        {
+            var uln = GetUlnForOLTD();
+            var isNotResolved = _commitmentsSqlDataHelper.CheckThatOverlappingTrainingDateIsNotResolved(uln);
+            Assert.IsTrue(isNotResolved);
         }
 
         [When(@"provider selects to edit the price")]
