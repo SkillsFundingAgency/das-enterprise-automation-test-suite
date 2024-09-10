@@ -10,7 +10,6 @@ namespace SFA.DAS.Registration.UITests.Project
     {
         #region Constants
         private static string UserCredsKey(int index) => $"usercreds_{index}";
-        private const string AgreementIdKey = "agreementid";
         private const string LoggedInUserObject = "loggedinuserobject";
         private const string OrganisationNameKey = "organisationname";
         private const string TransferSenderOrganisationNameKey = "transfersenderorganisationname";
@@ -38,7 +37,6 @@ namespace SFA.DAS.Registration.UITests.Project
             }
         }
 
-        internal static void SetAgreementId(this ObjectContext objectContext, string agreementId) => objectContext.Replace(AgreementIdKey, agreementId);
         public static void SetOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Set(OrganisationNameKey, organisationName);
         public static void ReplaceTransferSenderOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(TransferSenderOrganisationNameKey, organisationName);
         public static void ReplaceTransferReceiverOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Replace(TransferReceiverOrganisationNameKey, organisationName);
@@ -47,8 +45,6 @@ namespace SFA.DAS.Registration.UITests.Project
         public static void UpdateOrganisationName(this ObjectContext objectContext, string organisationName) => objectContext.Update(OrganisationNameKey, organisationName);
         public static void SetAdditionalOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName, int index) => objectContext.Set(AdditionalOrganisation(index), secondAccountOrganisationName);
         internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
-
-        internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password) => objectContext.SetOrUpdateUserCreds(emailaddress, password, []);
 
         internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password, List<(string accountId, string hashedId, string orgName, string publicHashedId, string alename, string aleid, string aleAccountid, string aleAgreementid)> accDetails)
         {
