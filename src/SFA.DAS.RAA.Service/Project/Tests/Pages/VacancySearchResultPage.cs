@@ -7,11 +7,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
     public abstract class VacancySearchResultPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected static By Filter => By.CssSelector("#Filter");
-
+        private static By SearchInput => By.CssSelector("input#search-input");
         protected static By VacancyStatusSelector => By.CssSelector("[data-label='Status']");
 
         protected static By VacancyActionSelector => By.CssSelector("[id^='manage']");
         protected static By RejectedVacancyActionSelector => By.CssSelector("[data-label='Action']");
+        private static By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
         public void VerifyAdvertStatus(string expected)
         {
@@ -22,6 +23,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         {
             formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
             pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
+            formCompletionHelper.EnterText(SearchInput, vacancyTitleDataHelper.VacancyTitle);
+            formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("Edit and submit", vacancyTitleDataHelper.VacancyTitle);
         }
 
