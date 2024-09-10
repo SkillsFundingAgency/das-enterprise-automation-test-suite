@@ -13,5 +13,5 @@ Scenario: AP_DO_10_OLTD_CoE raise zendesk ticket after 2 weeks
 	Then send a reminder email to the old employer
 	And old employer has not taken any action yet
 	When One more week has passed
-	Then Automatically raise a ZenDesk ticket
+	Then System automatically raises a ZenDesk ticket
 	Then check that the Overlapping Training Date Request is NOT resolved
