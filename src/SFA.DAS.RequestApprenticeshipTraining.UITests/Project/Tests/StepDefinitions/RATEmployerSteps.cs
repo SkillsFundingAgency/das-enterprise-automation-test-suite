@@ -1,9 +1,12 @@
 ﻿using SFA.DAS.Login.Service;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers.RATEmployerStepHelpers;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages;
+using SFA.DAS.RequestApprenticeshipTraining.UITests.Project;
 using TechTalk.SpecFlow;
+using Polly;
+using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
 
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefinitions
@@ -11,9 +14,11 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefini
     [Binding]
     public class RATEmployerSteps
     {
+        private static ScenarioContext context;
         private readonly ScenarioContext _context;
         private readonly RATLoginHelper _rATloginHelper;
-        
+        private readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
+
 
         public RATEmployerSteps(ScenarioContext context)
         {
@@ -21,10 +26,15 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefini
             _rATloginHelper = new RATLoginHelper(context);
         }
 
-    [Given(@"the user transitions from FAT to RAT after clicking on ask if training providers can run this course as employer owner")]
-        public void GivenTheUserTransitionsFromFATToRATAfterClickingOnAskIfTrainingProvidersCanRunThisCourseAsEmployerOwner()
+    [Given(@"the user clicks on ask if training providers can run this course as employer owner")]
+        public void GivenTheUserClicksOnAskIfTrainingProvidersCanRunThisCourseAsEmployerOwner() => _rATloginHelper.RATTransitionLinkPage();
+
+        [Then(@"the Employer logs in using employer RAT Account")]
+        public void ThenTheEmployerLogsInUsingEmployerRatAccount()
         {
-            _rATloginHelper.RATTransitionLinkPage();
+            _employerLoginHelper.Login(context.GetUser<RATOwnerUser>(), true);
+            
         }
+
     }
 }

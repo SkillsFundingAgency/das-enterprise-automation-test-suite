@@ -14,12 +14,16 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
-    <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="SpecFlow.Assist.Dynamic" Version="1.4.2" />
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+		<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.FAT-V2.UITests\SFA.DAS.FAT-V2.UITests.csproj" />
@@ -30,5 +34,17 @@
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
     <ProjectReference Include="..\SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj" />
   </ItemGroup>
+	<ItemGroup>
+		<None Update="appsettings.Environment.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</None>
+		<None Update="appsettings.Project.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Update="specflow.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>
