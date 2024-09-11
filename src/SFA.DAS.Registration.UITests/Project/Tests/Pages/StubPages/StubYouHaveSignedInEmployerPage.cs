@@ -18,8 +18,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
                 objectContext.UpdateLoginIdOrUserRef(username, idOrUserRef);
 
-                objectContext.SetOrUpdateUserCreds(username, idOrUserRef);
-
                 objectContext.SetDbNameToTearDown(CleanUpDbName.EasUsersTestDataCleanUp, username);
             }
         }
