@@ -20,24 +20,24 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourney")]
-    public partial class FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_UI_02_ChangeOfPriceProviderInitiatedJourney")]
+    public partial class FLP_UI_02_ChangeOfPriceProviderInitiatedJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourney.feature"
+#line 1 "FLP_UI_02_ChangeOfPriceProviderInitiatedJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_03_ChangeOfPriceEmployerInitiatedJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
-                    " errors) for Employer while \r\nraise a Change of Price request for a learner opte" +
-                    "d in the pilot. ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_02_ChangeOfPriceProviderInitiatedJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
+                    " errors) for a training provider while \r\nraise a Change of Price request for a l" +
+                    "earner opted in the pilot. ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -76,18 +76,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_03 Change Of Price Employer Initiated Journey")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_02 Change Of Price Provider Initiated Journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_UI_Validations_03ChangeOfPriceEmployerInitiatedJourney()
+        public void FLP_UI_02ChangeOfPriceProviderInitiatedJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_Validations_03 Change Of Price Employer Initiated Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_02 Change Of Price Provider Initiated Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table27.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
@@ -116,62 +116,63 @@ this.ScenarioInitialize(scenarioInfo);
                             "true"});
 #line 10
  testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
-                        " data", ((string)(null)), table27, "Given ");
+                        " data", ((string)(null)), table25, "Given ");
 #line hidden
 #line 13
-    testRunner.And("Employer searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.When("Employer proceeds to create a Change of Price request for flexi payments pilot le" +
+ testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
                         "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.And("Employer submits change of price form without changing input fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider submits change of price form without changing input fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.Then("all default validation errors are displayed to the Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("all default change of price validation errors are displayed to the Provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
- testRunner.And("validate new Total Price must be between 1 and 100000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("validate Training Price and EPA price must be between 1 and 100000", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
- testRunner.And("a read-only current Total Price is displayed on the page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a dynamic Total price field is displayed with the sum of Training price and End-p" +
+                        "oint assessment price", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
- testRunner.And("validate Employer cannot enter an Effective From Date that is before Training Sta" +
-                        "rt Date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("validate Effective From Date cannot be before Training Start Date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 20
- testRunner.And("validate Employer cannot enter an Effective From Date that is after Training End " +
-                        "Date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("validate Effective From Date cannot be after Training End Date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
-    testRunner.And("Employer successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
+                        "00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
- testRunner.And("Employer is able to view details of change of price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider is able to view details of change of price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
- testRunner.And("Employer can successfully cancel the change of price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider can successfully cancel the change of price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
- testRunner.And("Employer proceeds to create a Change of Price request for flexi payments pilot le" +
+ testRunner.And("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
                         "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
- testRunner.And("Employer successfully creates a Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
+                        "00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 27
- testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer searches for learner on Manage your apprentices page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 28
- testRunner.And("Provider is able to view the pending Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer is able to view the pending Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 29
- testRunner.And("Provider can view the details of the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer can view the details of the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
- testRunner.And("Provider is able to successfully reject the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer is able to successfully reject the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

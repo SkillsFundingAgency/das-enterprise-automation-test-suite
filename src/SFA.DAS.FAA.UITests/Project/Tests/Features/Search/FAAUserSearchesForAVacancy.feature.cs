@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
+namespace SFA.DAS.FAA.UITests.Project.Tests.Features.Search
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RAA_E_AdditionalAdvert")]
-    public partial class RAA_E_AdditionalAdvertFeature
+    [NUnit.Framework.DescriptionAttribute("FAA_UserSearchesForAVacancy_01")]
+    public partial class FAA_UserSearchesForAVacancy_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RAA_E_AdditionalAdvert.feature"
+#line 1 "FAAUserSearchesForAVacancy.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RAA_E_AdditionalAdvert", "\tAs a Levy Employer, Create additional Advert", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Search", "FAA_UserSearchesForAVacancy_01", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,20 +73,16 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RAA_E_AdditionalAdvertAndApprovePerfTestDataPreparation(string employeremail, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("FAA_USFV_01 User Searches For A Vacancy")]
+        [NUnit.Framework.CategoryAttribute("tag1")]
+        public void FAA_USFV_01UserSearchesForAVacancy()
         {
-            string[] @__tags = new string[] {
-                    "perftest",
-                    "donottakescreenshot"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("employeremail", employeremail);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_E_AdditionalAdvert and Approve Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_USFV_01 User Searches For A Vacancy", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,25 +92,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given("the candidate can login in to faa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 8
- testRunner.Given(string.Format("the Employer creates additional using \'{0}\'", employeremail), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("the candidate does a what and where search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the candidate is presented with search results page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
+ testRunner.And("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RAA_E_AdditionalAdvert and Approve Perf test data preparation: To Be declared")]
-        [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public void RAA_E_AdditionalAdvertAndApprovePerfTestDataPreparation_ToBeDeclared()
-        {
-#line 7
-this.RAA_E_AdditionalAdvertAndApprovePerfTestDataPreparation("To Be declared", ((string[])(null)));
-#line hidden
         }
     }
 }

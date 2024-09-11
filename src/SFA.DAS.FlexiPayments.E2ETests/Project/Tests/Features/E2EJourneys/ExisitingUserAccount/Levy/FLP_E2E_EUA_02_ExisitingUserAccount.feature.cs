@@ -74,20 +74,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_02 Employer adds two apprentices details to a cohort and Provider opt" +
-            "s them out of the pilot")]
+        [NUnit.Framework.DescriptionAttribute("FLP_E2E_EUA_02 Employer adds apprentice details to a cohort and Provider opts the" +
+            " learner out of the pilot")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("e2escenarios")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_E2E_EUA_02EmployerAddsTwoApprenticesDetailsToACohortAndProviderOptsThemOutOfThePilot()
+        public void FLP_E2E_EUA_02EmployerAddsApprenticeDetailsToACohortAndProviderOptsTheLearnerOutOfThePilot()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "e2escenarios",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_02 Employer adds two apprentices details to a cohort and Provider opt" +
-                    "s them out of the pilot", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_E2E_EUA_02 Employer adds apprentice details to a cohort and Provider opts the" +
+                    " learner out of the pilot", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,27 +115,20 @@ this.ScenarioInitialize(scenarioInfo);
                             "2022/08/01",
                             "11",
                             "15000"});
-                table12.AddRow(new string[] {
-                            "2",
-                            "91",
-                            "2004/02/01",
-                            "2022/09/01",
-                            "11",
-                            "18000"});
 #line 8
  testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table12, "And ");
 #line hidden
-#line 12
+#line 11
  testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 12
  testRunner.And("the provider adds Ulns and opts the learners out of the pilot", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 13
  testRunner.And("Simplified Payments Pilot tags and additional columns are NOT displayed on Approv" +
                         "e apprentice details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 14
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -154,54 +147,21 @@ this.ScenarioInitialize(scenarioInfo);
                             "15000",
                             "",
                             ""});
-                table13.AddRow(new string[] {
-                            "2",
-                            "false",
-                            "2022/09/01",
-                            "Null",
-                            "18000",
-                            "",
-                            ""});
-#line 16
+#line 15
  testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table13, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN_Key",
-                            "funding_platform",
-                            "actual_start_date_str",
-                            "start_date_str",
-                            "planned_end_date_str",
-                            "agreed_price",
-                            "funding_type",
-                            "funding_band_maximum"});
+                            "ULN_Key"});
                 table14.AddRow(new string[] {
-                            "1",
-                            "2",
-                            "Null",
-                            "2022/08/01",
-                            "2023/07/01",
-                            "15000",
-                            "0",
-                            "15000"});
-                table14.AddRow(new string[] {
-                            "2",
-                            "2",
-                            "Null",
-                            "2022/09/01",
-                            "2023/08/01",
-                            "18000",
-                            "0",
-                            "18000"});
-#line 20
- testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table14, "And ");
+                            "1"});
+#line 18
+ testRunner.And("validate there is no data in Apprenticeship database", ((string)(null)), table14, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key"});
                 table15.AddRow(new string[] {
                             "1"});
-                table15.AddRow(new string[] {
-                            "2"});
-#line 24
+#line 21
  testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table15, "And ");
 #line hidden
             }

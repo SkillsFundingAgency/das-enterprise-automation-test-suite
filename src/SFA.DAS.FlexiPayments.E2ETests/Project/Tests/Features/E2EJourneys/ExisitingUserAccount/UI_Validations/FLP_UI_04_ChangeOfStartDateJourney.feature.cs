@@ -20,22 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_04_ChangeOfStartDateJourney")]
-    public partial class FLP_UI_Validations_04_ChangeOfStartDateJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("FLP_UI_04_ChangeOfStartDateJourney")]
+    public partial class FLP_UI_04_ChangeOfStartDateJourneyFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_UI_Validations_04_ChangeOfStartDateJourney.feature"
+#line 1 "FLP_UI_04_ChangeOfStartDateJourney.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_Validations_04_ChangeOfStartDateJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/UI_Validations", "FLP_UI_04_ChangeOfStartDateJourney", "The purpose of this test is to validate the UI journey (input fields + validation" +
                     " errors) for \r\nChange of Start Date initiated by Training Provider. The employer" +
                     " used in this test will be a non-levy employer.", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
@@ -76,18 +76,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_UI_Validations_04 Change Of Start Date Journey")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_04 Change Of Start Date Journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_UI_Validations_04ChangeOfStartDateJourney()
+        public void FLP_UI_04ChangeOfStartDateJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_Validations_04 Change Of Start Date Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_04 Change Of Start Date Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -106,17 +106,17 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table28.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "1",
                             "91",
                             "2000/11/20",
                             "StartPreviousMonth",
-                            "24",
+                            "12",
                             "18000",
                             "true"});
 #line 10
  testRunner.Given("NonLevy Employer and Pilot provider have a fully approved apprentices with the be" +
-                        "low data", ((string)(null)), table28, "Given ");
+                        "low data", ((string)(null)), table27, "Given ");
 #line hidden
 #line 13
  testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
