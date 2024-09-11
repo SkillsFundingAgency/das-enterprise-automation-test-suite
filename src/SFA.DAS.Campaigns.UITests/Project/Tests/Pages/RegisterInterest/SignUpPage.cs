@@ -1,8 +1,11 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -15,7 +18,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
         #region PageObjects
         private static By FirstNameField => By.CssSelector("#FirstName");
         private static By LastNameField => By.CssSelector("#LastName");
-        private static By EmailField => By.CssSelector("#Email");   
+        private static By EmailField => By.CssSelector("#Email");
+        private static By SizeOfYourCompanylabel => By.CssSelector("label[for=SizeOfYourCompany]");
         private static By SelectCompanySize => By.CssSelector(".govuk-radios__label");
         private static By SelectIndustryDropdown => By.CssSelector("#Industry");  
         private static By SelectRegionDropdown => By.CssSelector("#Location");
@@ -28,12 +32,21 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.RegisterInterest
             formCompletionHelper.EnterText(FirstNameField, campaignsDataHelper.Firstname);
             formCompletionHelper.EnterText(LastNameField, campaignsDataHelper.Lastname);
             formCompletionHelper.EnterText(EmailField, campaignsDataHelper.Email);
-            formCompletionHelper.SelectRadioOptionByText(SelectCompanySize, campaignsDataHelper.EmployeesSize);
-            formCompletionHelper.SelectFromDropDownByText(SelectIndustryDropdown, campaignsDataHelper.Industry);
-            formCompletionHelper.SelectFromDropDownByText(SelectRegionDropdown, campaignsDataHelper.Region);
+
+            var empSize = pageInteractionHelper.FindElements(SizeOfYourCompanylabel).Select(x => x.Text).ToList();
+            formCompletionHelper.SelectRadioOptionByText(SelectCompanySize, GetRandomOption(empSize));
+
+            var industryAllOptions = formCompletionHelper.GetAllDropDownOptions(SelectIndustryDropdown);
+            formCompletionHelper.SelectFromDropDownByText(SelectIndustryDropdown, GetRandomOption(industryAllOptions));
+
+            var RegionAllOptions = formCompletionHelper.GetAllDropDownOptions(SelectRegionDropdown);
+            formCompletionHelper.SelectFromDropDownByText(SelectRegionDropdown, GetRandomOption(RegionAllOptions));
+
             formCompletionHelper.Click(IncludeInURLabel);
             formCompletionHelper.Click(Signup);
             return new ThanksForSubscribingPage(context);
         }
+
+        private static string GetRandomOption(List<string> options) => RandomDataGenerator.GetRandomElementFromListOfElements(options);
     }
 }
