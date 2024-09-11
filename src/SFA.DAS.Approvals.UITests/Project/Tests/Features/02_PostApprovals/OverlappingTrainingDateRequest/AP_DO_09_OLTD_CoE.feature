@@ -11,5 +11,5 @@ Scenario: AP_DO_09_OLTD_CoE Automatically stop the record after 2 weeks
 	Then send a reminder email to the old employer
 	And old employer has not taken any action yet
 	When One more week has passed	
-	Then Automatically stop the record with stopDate = NewStartDate
+	Then System automatically stops the record with stopDate = NewStartDate
 	Then overlapping training date request is resolved in database with status 1 and resolutionType 3

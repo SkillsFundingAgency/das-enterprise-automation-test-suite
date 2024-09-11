@@ -122,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("One more week has passed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("Automatically raise a ZenDesk ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("System automatically raises a ZenDesk ticket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
  testRunner.Then("check that the Overlapping Training Date Request is NOT resolved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
