@@ -44,13 +44,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"An Employer has given create reservation permission to a provider")]
         public void GivenAnEmployerHasGivenCreateReservationPermissionToAProvider()
         {
-            var homePage = _loginHelper.Login(_context.GetUser<NonLevyUser>());
+            _loginHelper.Login(_context.GetUser<NonLevyUser>());
 
             _objectContext.SetProviderMakesReservationForNonLevyEmployers();
-
-            homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickViewAgreementLink()
-                .SetAgreementId();
         }
 
         [Given(@"the Provider with create reservation permission logs in")]

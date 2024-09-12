@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
+namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.E2EJourney
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RAA_E_CreateFirstAdvert")]
-    public partial class RAA_E_CreateFirstAdvertFeature
+    [NUnit.Framework.DescriptionAttribute("RAA_E_E2E_04")]
+    public partial class RAA_E_E2E_04Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RAA_E_CreateFirstAdvert.feature"
+#line 1 "RAA_E_E2E_04.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/TestDataPreparation", "RAA_E_CreateFirstAdvert", "\tAs a Levy Employer, Create First Advert", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourney", "RAA_E_E2E_04", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,20 +73,26 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Features.TestDataPreparation
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RAA_E_CreateFirstAdvertPerfTestDataPreparation(string employeremail, string[] exampleTags)
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("RAA_E_E2E_04 - Create an advert with trading name, Approve, Apply and and mark Ap" +
+            "plication as Interviewing")]
+        [NUnit.Framework.CategoryAttribute("raa")]
+        [NUnit.Framework.CategoryAttribute("raaemployer")]
+        [NUnit.Framework.CategoryAttribute("raae2e")]
+        [NUnit.Framework.CategoryAttribute("raaemployere2e")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void RAA_E_E2E_04_CreateAnAdvertWithTradingNameApproveApplyAndAndMarkApplicationAsInterviewing()
         {
-            string[] @__tags = new string[] {
-                    "perftest",
-                    "donottakescreenshot"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+            string[] tagsOfScenario = new string[] {
+                    "raa",
+                    "raaemployer",
+                    "raae2e",
+                    "raaemployere2e",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("employeremail", employeremail);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_E_CreateFirstAdvert Perf test data preparation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_E_E2E_04 - Create an advert with trading name, Approve, Apply and and mark Ap" +
+                    "plication as Interviewing", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,22 +102,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given(string.Format("the Employer creates first draft advert using \'{0}\'", employeremail), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.Given("the Employer creates an anonymous advert", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 10
+ testRunner.And("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.When("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("Employer can mark the application as interviewing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RAA_E_CreateFirstAdvert Perf test data preparation: To Be declared")]
-        [NUnit.Framework.CategoryAttribute("perftest")]
-        [NUnit.Framework.CategoryAttribute("donottakescreenshot")]
-        public void RAA_E_CreateFirstAdvertPerfTestDataPreparation_ToBeDeclared()
-        {
-#line 7
-this.RAA_E_CreateFirstAdvertPerfTestDataPreparation("To Be declared", ((string[])(null)));
-#line hidden
         }
     }
 }
