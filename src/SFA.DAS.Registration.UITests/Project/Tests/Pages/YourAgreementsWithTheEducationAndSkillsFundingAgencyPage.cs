@@ -37,13 +37,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new ReviewYourDetailsPage(context);
         }
 
-        public void SetAgreementId()
-        {
-            var agreementId = pageInteractionHelper.GetText(AgreementId).Remove(0, 14);
-
-            objectContext.SetAgreementId(agreementId);
-        }
-
         public bool VerifyIfUpdateTheseDetailsLinkIsPresent()
         {
             ShowSection();
