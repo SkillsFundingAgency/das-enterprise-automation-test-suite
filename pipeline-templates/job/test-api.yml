@@ -15,38 +15,54 @@ jobs:
         steps:
         - checkout: self
         - checkout: das-platform-automation
+        
+        - task: PowerShell@2
+          displayName: 'Log Build Definition Name'
+          inputs:
+            targetType: inline
+            scriptType: 'powershell'
+            scriptPath: ''
+            inlineScript: |
+              Write-Host "Build Definition Name: $(Build.DefinitionName)"
+        
         - task: FileTransform@1
           displayName: 'Tokenization: Transform file *.json'
           inputs:
             FolderPath: '$(Pipeline.Workspace)/**/tests.zip'
             FileType: json
+        
         - task: ExtractFiles@1
           displayName: 'Extract files'
           inputs:
             archiveFilePatterns: '$(Pipeline.Workspace)/**/tests.zip'
             destinationFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
+        
         - template: azure-pipelines-templates/deploy/step/sql-whitelist-ip.yml@das-platform-building-blocks
           parameters:
             ServiceConnection: ${{ parameters.ServiceConnection }}
             SQLServerName: $(SharedSQLServerName)
+        
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-whitelist-ip.yml@das-platform-building-blocks
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(ApprenticeAccountsAppServiceName)
-              RuleName: ${{ replace(variables['Build.DefinitionName'], '-api-automation', '') }}
+              RuleName: ${{ substring(replace(variables['Build.DefinitionName'], '-api-automation', ''), 0, 32) }}
+        
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-whitelist-ip.yml@das-platform-building-blocks
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(ApprenticeCommitmentsOuterApiAppServiceName)
-              RuleName: ${{ replace(variables['Build.DefinitionName'], '-api-automation', '') }}
+              RuleName: ${{ substring(replace(variables['Build.DefinitionName'], '-api-automation', ''), 0, 32) }}
+        
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-whitelist-ip.yml@das-platform-building-blocks
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(CoursesAppServiceName)
-              RuleName: ${{ replace(variables['Build.DefinitionName'], '-api-automation', '') }}
+              RuleName: ${{ substring(replace(variables['Build.DefinitionName'], '-api-automation', ''), 0, 32) }}
+        
         - task: DotNetCoreCLI@2
           env:
             ResourceEnvironmentName: $(ResourceEnvironmentName)
@@ -55,27 +71,32 @@ jobs:
             arguments: '--filter "${{ parameters.TestFilter }}" --logger trx;logfilename=${{ parameters.Environment }}_testResults.trx'
             projects: |
               ${{ parameters.TestDlls }}
+        
         - task: PowerShell@2
           displayName: 'Check .trx File Exists'
           inputs:
             targetType: filePath
             filePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/src/Check-TestResults.ps1'
             arguments: '-SourcePath "$(Agent.TempDirectory)"'
+        
         - template: azure-pipelines-templates/deploy/step/sql-remove-ip.yml@das-platform-building-blocks
           parameters:
             ServiceConnection: ${{ parameters.ServiceConnection }}
             SQLServerName: $(SharedSQLServerName)
             IPAddress: $(IPAddress)
+        
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-remove-ip.yml@das-platform-building-blocks
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(ApprenticeAccountsAppServiceName)
+        
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-remove-ip.yml@das-platform-building-blocks
             parameters:
               ServiceConnection: ${{ parameters.ServiceConnection }}
               ResourceName: $(ApprenticeCommitmentsOuterApiAppServiceName)
+        
         - ${{ if eq(parameters['Environment'], 'PP') }}:
           - template: azure-pipelines-templates/deploy/step/appservice-remove-ip.yml@das-platform-building-blocks
             parameters:
