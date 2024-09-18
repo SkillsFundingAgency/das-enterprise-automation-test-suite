@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
-using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderConfirmApplicantInterviewPage;
+using static SFA.DAS.RAA.Service.Project.Tests.Pages.ConfirmApplicantPage;
 using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderDoYouWantToShareAnApplicationBasePage;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
@@ -12,15 +12,32 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         private static By SaveStatus => By.CssSelector("button[type='submit'][class='govuk-button']");
 
-        private void OutcomeInterviewWithEmployer()
+        private void OutcomeInterviewingRadioButton()
         {
             SelectRadioOptionByForAttribute("outcome-interviewing");
             SaveAndContinue();
         }
+
+        private void OutcomeReviewed()
+        {
+            SelectRadioOptionByForAttribute("outcome-reviewed");
+            SaveAndContinue();
+        }
+        public ProviderAndEmployerReviewingApplicantPage MarkApplicantInReview()
+        {
+            OutcomeReviewed();
+            return new ProviderAndEmployerReviewingApplicantPage(context);
+        }
+
         public ProviderInteviewingApplicantPage MarkApplicantInterviewWithEmployer()
         {
-            OutcomeInterviewWithEmployer(); 
+            OutcomeInterviewingRadioButton();
             return new ProviderInteviewingApplicantPage(context);
+        }
+        public EmployerInteviewingApplicantPage MarkApplicantAsInterviewing()
+        {
+            OutcomeInterviewingRadioButton();
+            return new EmployerInteviewingApplicantPage(context);
         }
         private void OutcomeSharedWithEmployer()
         {

@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ConfigurationBuilder
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.ConfigurationBuilder
 {
     public class LocalHostDbConfig(DbDevConfig dbDevConfig, bool useSqlLogin)
     {
@@ -42,9 +44,7 @@
 
         private string GetConnectionString(string dbName)
         {
-            string GetDbName() => useSqlLogin ? "Database" : "Initial Catalog";
-
-            var x = $"Server={dbDevConfig.Server};{GetDbName()}={dbName};{dbDevConfig.ConnectionDetails};";
+            var x = $"Server={dbDevConfig.Server};{SqlDbConfigHelper.GetDbNameKey(useSqlLogin)}={dbName};{dbDevConfig.ConnectionDetails};";
 
             return EnvironmentConfig.ReplaceEnvironmentName(x);
         }

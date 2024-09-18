@@ -118,18 +118,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
                 .SignAgreementAndGoToEmployerAccountCreatedPage()
                 .SelectGoToYourEmployerAccountHomepage();
-
-            SetAgreementId(_homePage);
-        }
-
-        private HomePage SetAgreementId(HomePage homePage)
-        {
-            homePage
-                 .GoToYourOrganisationsAndAgreementsPage()
-                 .ClickViewAgreementLink()
-                 .SetAgreementId();
-
-            return new HomePage(_context, true);
         }
 
         [When(@"the Employer does not sign the Agreement")]
