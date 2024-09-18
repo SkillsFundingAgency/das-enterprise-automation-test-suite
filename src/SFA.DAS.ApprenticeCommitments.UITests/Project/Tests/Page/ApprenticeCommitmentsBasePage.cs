@@ -6,7 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ApprenticeCommitmentsBasePage : TopBannerSettingsPage
     {
-        protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
+        protected virtual By ServiceHeader => By.CssSelector(".govuk-header__service-name");
         protected static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected static By ConfirmingEntityNamePageHeader => By.CssSelector("main div .govuk-heading-m");
         protected static By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
