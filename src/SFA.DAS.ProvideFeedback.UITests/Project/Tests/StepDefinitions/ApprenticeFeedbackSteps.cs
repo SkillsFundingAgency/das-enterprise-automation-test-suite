@@ -1,4 +1,8 @@
-﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+﻿using Polly;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service.Project;
 
 namespace SFA.DAS.ProvideFeedback.UITests;
 
@@ -18,9 +22,13 @@ public class ApprenticeFeedbackSteps
     [Given(@"the apprentice logs into apprentice portal")]
     public void GivenTheApprenticeLogsIntoApprenticePortal()
     {
-        _setApprenticeDetailsHelper.SetApprenticeDetailsInObjectContext(_context.GetUser<ApprenticeFeedbackUser>());
+        var user = _context.GetUser<ApprenticeFeedbackUser>();
 
-        new SignIntoMyApprenticeshipPage(_context).GoToApprenticeOverviewPage(false);
+        _setApprenticeDetailsHelper.SetApprenticeDetailsInObjectContext(user);
+
+        new StubSignInApprenticeAccountsPage(_context).SubmitValidUserDetails(user.Username, user.IdOrUserRef).Continue();
+
+        _ = new ApprenticeOverviewPage(_context, false);
     }
 
     [Given(@"apprentice completes the feedback journey for a training provider")]

@@ -161,6 +161,23 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     }
 
+    #region ApprenticeAccount
+
+    public class CocApprenticeUser : ApprenticeUser { }
+
+    public class ApprenticeFeedbackUser : ApprenticeUser { }
+
+    public abstract class ApprenticeUser : GovSignUser
+    {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Id { get; set; }
+    }
+
+
+    #endregion
 
     #endregion
 

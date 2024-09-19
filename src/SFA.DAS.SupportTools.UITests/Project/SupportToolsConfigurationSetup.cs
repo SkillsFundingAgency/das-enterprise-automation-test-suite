@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.SupportTools.UITests.Project;
+﻿using SFA.DAS.Login.Service.Project;
+
+namespace SFA.DAS.SupportTools.UITests.Project;
 
 [Binding]
 public class SupportToolsConfigurationSetup(ScenarioContext context)

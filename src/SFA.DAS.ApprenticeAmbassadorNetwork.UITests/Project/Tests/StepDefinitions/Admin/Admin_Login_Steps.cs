@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
 

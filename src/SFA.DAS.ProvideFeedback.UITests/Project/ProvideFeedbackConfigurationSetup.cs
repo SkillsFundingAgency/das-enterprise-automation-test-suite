@@ -2,7 +2,6 @@
 global using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 global using SFA.DAS.ConfigurationBuilder;
 global using SFA.DAS.FrameworkHelpers;
-global using SFA.DAS.Login.Service;
 global using SFA.DAS.Login.Service.Project.Helpers;
 global using SFA.DAS.ProvideFeedback.UITests.Project;
 global using SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
@@ -15,22 +14,26 @@ global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Collections.Generic;
 global using System.Linq;
 global using TechTalk.SpecFlow;
+using SFA.DAS.Login.Service.Project;
 
 namespace SFA.DAS.ProvideFeedback.UITests.Project;
 
 [Binding]
 public class ProvideFeedbackConfigurationSetup(ScenarioContext context)
 {
-    private readonly ConfigSection _configSection = context.Get<ConfigSection>();
-
     [BeforeScenario(Order = 2)]
     public void SetUpProvideFeedbackConfigConfiguration()
     {
+        var configSection = context.Get<ConfigSection>();
+
         context.SetEasLoginUser(
         [
-            _configSection.GetConfigSection<EmployerFeedbackUser>()
+            configSection.GetConfigSection<EmployerFeedbackUser>()
         ]);
 
-        context.SetNonEasLoginUser(_configSection.GetConfigSection<ApprenticeFeedbackUser>());
+        context.SetApprenticeAccountsPortalUser(
+        [
+           configSection.GetConfigSection<ApprenticeFeedbackUser>(),
+        ]);
     }
 }

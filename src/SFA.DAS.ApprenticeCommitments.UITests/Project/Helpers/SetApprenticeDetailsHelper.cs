@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeCommitments.APITests.Project;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
@@ -23,16 +23,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public (string firstName, string lastName) SetApprenticeDetailsInObjectContext(ApprenticeUser user)
         {
-            var username = user.ApprenticeUsername;
 
-            (string apprenticeId, string firstName, string lastName) = _appAccSqlDbHelper.GetApprenticeDetails(username);
+            (string apprenticeId, string firstName, string lastName, string username) = (user.Id, user.FirstName, user.LastName, user.Username);
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
-                Assert.Fail($"{username} not found in the db");
+            //if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+            //    Assert.Fail($"{username} not found in the db");
 
             _objectContext.SetApprenticeId(apprenticeId);
             _objectContext.SetApprenticeEmail(username);
-            _objectContext.SetApprenticePassword(user.ApprenticePassword);
+            _objectContext.SetApprenticePassword(user.IdOrUserRef);
 
             _objectContext.SetFirstName(firstName);
             _objectContext.SetLastName(lastName);
