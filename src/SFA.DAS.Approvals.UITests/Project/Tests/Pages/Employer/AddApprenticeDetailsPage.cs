@@ -107,8 +107,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             var startMonth = pageInteractionHelper.FindElement(StartDateMonth).GetAttribute("value");
             var startYear = pageInteractionHelper.FindElement(StartDateYear).GetAttribute("value");
 
-            Assert.IsNotEmpty(startMonth);
-            Assert.IsNotEmpty(startYear);
+            Assert.IsNotEmpty(startMonth, "Failed to validate startMonth field is pre-populated");
+            Assert.IsNotEmpty(startYear, "Failed to validate startYear field is pre-populated");
         }
     }
 }
