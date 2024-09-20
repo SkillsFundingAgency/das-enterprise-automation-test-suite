@@ -20,10 +20,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override string PageTitle => "Add apprentice details";
 
-        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool isMF)
+        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool checkStartDateNotEmpty)
         {
             SubmitValidPersonalDetails();
-            SubmitValidTrainingDetails(isMF);
+            SubmitValidTrainingDetails(checkStartDateNotEmpty);
 
             return new ApproveApprenticeDetailsPage(context);
         }
@@ -34,13 +34,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             EnterDob();
         }
 
-        public void SubmitValidTrainingDetails(bool isMF)
+        public void SubmitValidTrainingDetails(bool checkStartDateNotEmpty)
         {
             var courseStartDate = GetCourseStartDate();
 
             ClickStartMonth();
 
-            if (isMF == false) EnterStartDate(courseStartDate);
+            if (checkStartDateNotEmpty)
+                VerifyStartDateIsPrePopulated();
+            else
+                EnterStartDate(courseStartDate);
 
             EnterEndDate(objectContext.HasEndDate() ? objectContext.GetEndDate() : apprenticeCourseDataHelper.CourseEndDate);
 
@@ -98,5 +101,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         }
 
         private void SaveAndContinue() => formCompletionHelper.ClickElement(SaveAndContinueButton);
+
+        private void VerifyStartDateIsPrePopulated()
+        {
+            var startMonth = pageInteractionHelper.FindElement(StartDateMonth).GetAttribute("value");
+            var startYear = pageInteractionHelper.FindElement(StartDateYear).GetAttribute("value");
+
+            Assert.IsNotEmpty(startMonth, "Failed to validate startMonth field is pre-populated");
+            Assert.IsNotEmpty(startYear, "Failed to validate startYear field is pre-populated");
+        }
     }
 }
