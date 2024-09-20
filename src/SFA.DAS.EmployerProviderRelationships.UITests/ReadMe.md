@@ -1,6 +1,5 @@
-**Build Staus**
-
 ![Build Status]([https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=415](https://sfa-gov-uk.vsrm.visualstudio.com/_apis/public/Release/badge/c39e0c0b-7aff-4606-b160-3566f3bbce23/415/1492))
+
 # ProviderRelationships (PR) 
 Provider relationships is the service that controls the permissions granted by employers to providers which allow for certain tasks to be carried out by providers on behalf of the employer like creating cohorts and adversts.
 
