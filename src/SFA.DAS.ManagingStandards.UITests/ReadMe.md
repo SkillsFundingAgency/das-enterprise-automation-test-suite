@@ -1,4 +1,4 @@
-[![Build Status:- Green](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=398)]
+[![Build Status](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=398)]
 # PROJECT NAME
 Project and service description : Managing Standards (Providers will have no requirement to maintain data in ‘Course Directory’ 
 for apprenticeship standards, all data can be view and managed in their AS provider account.)

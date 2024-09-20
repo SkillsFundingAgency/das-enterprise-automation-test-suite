@@ -1,4 +1,4 @@
-[![Build Status:- Amber](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?definitionId=371&view=mine&_a=releases)]
+[![Build Status](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?definitionId=371&view=mine&_a=releases)]
 # PROJECT NAME
 Project and service description : Find apprenticeship training for your apprentice (FAT)
 ## Prerequisites to run the tests:
