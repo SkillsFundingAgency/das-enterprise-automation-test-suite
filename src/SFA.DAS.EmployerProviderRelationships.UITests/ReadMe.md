@@ -1,4 +1,4 @@
-[![Green](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=415)]
+[![Build Status:- Green](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=415)]
 # PROJECT NAME
 Project and service description : ProviderRelationships (PR) 
 ## Prerequisites to run the tests:

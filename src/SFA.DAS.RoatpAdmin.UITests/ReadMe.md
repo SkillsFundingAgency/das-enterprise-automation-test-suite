@@ -1,4 +1,4 @@
-[![Amber](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=322)]
+[![Build Status:- Amber](https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=322)]
 # PROJECT NAME
 Project and service description : Apply to join the apprenticeship provider and assessment register (APAR)
 ## Prerequisites to run the tests:
