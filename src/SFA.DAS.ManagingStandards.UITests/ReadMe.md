@@ -1,4 +1,5 @@
-![Build Status](https://sfa-gov-uk.vsrm.visualstudio.com/_apis/public/Release/badge/c39e0c0b-7aff-4606-b160-3566f3bbce23/398/1437)
+**Pipeline URL** - https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?definitionId=398&view=mine&_a=releases
+
 # Managing Standards
 Project and service description:
 This service manages the standards the training providers offer. They will have no requirement to maintain data in ‘Course Directory’ for apprenticeship standards, all data can be view and managed in their PAS provider account.

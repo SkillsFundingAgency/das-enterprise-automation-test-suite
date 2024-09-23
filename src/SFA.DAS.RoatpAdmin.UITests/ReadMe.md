@@ -1,4 +1,4 @@
-![Build Status](https://sfa-gov-uk.vsrm.visualstudio.com/_apis/public/Release/badge/c39e0c0b-7aff-4606-b160-3566f3bbce23/322/1074)
+**Pipeline URL** - https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?definitionId=322&view=mine&_a=releases
 
 # Apply to join the apprenticeship provider and assessment register (APAR)
 Service that manages the registration of training providers
