@@ -1,6 +1,6 @@
 ﻿**Pipeline URL** - https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=407
 
-# Project Name: Registration
+# Project Name: Transfers
 Employer Transfers manages transfer of levy funds b/w two employer accounts and its usage in Approvals journey
 
 ## Prerequisites to run the tests:
