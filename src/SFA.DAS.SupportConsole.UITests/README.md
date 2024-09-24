@@ -24,4 +24,6 @@ Support Console is a backoffice app, used to serve customers (employers and prov
 * das-{env}-comt-db
 
 ## FYIs
-This service is only available in TEST & PP environment
+* This service is only available in TEST & PP environment
+* Sonmetime account in use runs out of levy funds. If new PAYE scheme is added, then new levy funds value should be updated in variable library: 
+PreProd Automation Suite Variables > SupportConsole_CurrentLevyBalance
