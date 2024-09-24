@@ -24,11 +24,15 @@ public class AANConfigurationSetup(ScenarioContext context)
 
         context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<AanApprenticeUser>(),
-            configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
-            configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
             SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanAdminUser()),
             SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanSuperAdminUser())
         });
+
+        context.SetApprenticeAccountsPortalUser(
+        [
+           configSection.GetConfigSection<AanApprenticeUser>(),
+           configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
+           configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
+        ]);
     }
 }

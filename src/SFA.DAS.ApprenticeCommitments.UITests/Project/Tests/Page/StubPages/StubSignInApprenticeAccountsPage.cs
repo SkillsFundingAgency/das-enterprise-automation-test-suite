@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages
     {
         protected override string PageTitle => StubSignInPageTitle;
 
-        internal static string StubSignInPageTitle => "Stub Authentication - Enter sign in details";
+        public static string StubSignInPageTitle => "Stub Authentication - Enter sign in details";
 
         public StubYouHaveSignedInApprenticeAccountsPage SubmitValidUserDetails(string email, string idOrUserRef)
         {

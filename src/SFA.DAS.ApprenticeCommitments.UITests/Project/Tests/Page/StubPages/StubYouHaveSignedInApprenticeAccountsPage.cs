@@ -6,8 +6,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages
 {
     public class StubYouHaveSignedInApprenticeAccountsPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : StubYouHaveSignedInBasePage(context, username, idOrUserRef, newUser)
     {
-
-        protected override By ContinueButton => By.CssSelector("a.govuk-button[href*='/apprenticeship']");
+        protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public new void Continue() => base.Continue();
     }

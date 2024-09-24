@@ -1,14 +1,11 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages;
+using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
     public class SignInPage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "Sign in to My apprenticeship";
-
-        private static By EnterUsername => By.Id("Username");
-
-        private static By EnterPassword => By.Id("Password");
+        protected override string PageTitle => StubSignInApprenticeAccountsPage.StubSignInPageTitle;
 
         public BeforeYouStartPage SubmitValidUserDetails(AanBaseUser user)
         {
@@ -33,17 +30,13 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
 
         private void SubmitUserDetails(AanBaseUser user, bool firstlogin)
         {
-            formCompletionHelper.EnterText(EnterUsername, user.Username);
-
-            formCompletionHelper.EnterText(EnterPassword, user.Password);
+            new StubSignInApprenticeAccountsPage(context).SubmitValidUserDetails(user.Username, user.IdOrUserRef).Continue();
 
             if (firstlogin)
             {
                 if (tags.Any(x => x == "aanapprenticeonboardingreset")) context.Get<AANSqlHelper>().ResetApprenticeOnboardingJourney(user.Username);
                 objectContext.SetLoginCredentials(user);
             }
-
-            Continue();
         }
     }
 }
