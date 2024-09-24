@@ -49,10 +49,11 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             new StubSignInApprenticeAccountsPage(context).SubmitValidUserDetails(objectContext.GetApprenticeEmail(), objectContext.GetApprenticePassword()).Continue();
         }
 
-        public CreateLoginDetailsPage ClickCreateAnAccountLinkOnSignInPage()
+        public CreateMyApprenticeshipAccountPage CreateAccountInStub()
         {
-            formCompletionHelper.ClickLinkByText("Create an account");
-            return new CreateLoginDetailsPage(context);
+            new StubSignInApprenticeAccountsPage(context).CreateAccount(objectContext.GetApprenticeEmail()).Continue();
+
+            return new CreateMyApprenticeshipAccountPage(context);
         }
     }
 }

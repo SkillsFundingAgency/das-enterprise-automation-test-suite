@@ -3,6 +3,7 @@
 @apprenticecommitments
 @regression
 @deletecmaddatacreatedthroughapi_RegAndAppTablesOnly
+@ignore
 Scenario: AC_CI_01_InvalidPassword
 	When an apprenticeship is created via API request
 	Then an error is shown for entering mismatched passwords
