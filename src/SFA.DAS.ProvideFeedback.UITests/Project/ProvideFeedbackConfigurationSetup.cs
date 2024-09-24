@@ -3,7 +3,6 @@ global using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 global using SFA.DAS.ConfigurationBuilder;
 global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.Login.Service.Project.Helpers;
-global using SFA.DAS.ProvideFeedback.UITests.Project;
 global using SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 global using SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 global using SFA.DAS.Registration.UITests.Project.Helpers;

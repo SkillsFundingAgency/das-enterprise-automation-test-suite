@@ -1,10 +1,8 @@
-﻿using Polly;
-using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;
 
-namespace SFA.DAS.ProvideFeedback.UITests;
+namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class ApprenticeFeedbackSteps

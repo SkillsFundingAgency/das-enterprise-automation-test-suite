@@ -1,6 +1,6 @@
 using SFA.DAS.Login.Service.Project;
 
-namespace SFA.DAS.ProvideFeedback.UITests;
+namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions;
 
 
 [Binding]
