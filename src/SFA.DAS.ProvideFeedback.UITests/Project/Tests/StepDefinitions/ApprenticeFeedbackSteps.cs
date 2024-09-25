@@ -24,7 +24,7 @@ public class ApprenticeFeedbackSteps
 
         _setApprenticeDetailsHelper.SetApprenticeDetailsInObjectContext(user);
 
-        new StubSignInApprenticeAccountsPage(_context).SubmitValidUserDetails(user.Username, user.IdOrUserRef).Continue();
+        new StubSignInApprenticeAccountsPage(_context).SubmitValidUserDetails(user).Continue();
 
         _ = new ApprenticeOverviewPage(_context, false);
     }

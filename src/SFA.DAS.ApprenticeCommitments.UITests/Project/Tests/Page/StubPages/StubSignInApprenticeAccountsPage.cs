@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Login.Service.Project.Tests.Pages;
+﻿using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Login.Service.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
 
@@ -9,6 +10,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages
         protected override string PageTitle => StubSignInPageTitle;
 
         public static string StubSignInPageTitle => "Stub Authentication - Enter sign in details";
+
+        public StubYouHaveSignedInApprenticeAccountsPage SubmitValidUserDetails(ApprenticeUser user) => SubmitValidUserDetails(user.Username, user.IdOrUserRef);
 
         public StubYouHaveSignedInApprenticeAccountsPage SubmitValidUserDetails(string email, string idOrUserRef)
         {

@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
 
         private void SubmitUserDetails(AanBaseUser user, bool firstlogin)
         {
-            new StubSignInApprenticeAccountsPage(context).SubmitValidUserDetails(user.Username, user.IdOrUserRef).Continue();
+            new StubSignInApprenticeAccountsPage(context).SubmitValidUserDetails(user).Continue();
 
             if (firstlogin)
             {
