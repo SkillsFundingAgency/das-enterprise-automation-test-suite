@@ -39,16 +39,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return new ResetPasswordPage(context);
         }
 
-        public static ForgottenPasswordConfirmPage ResetPasswordFromSignInPageForUnverifiedAccount(SignIntoMyApprenticeshipPage signIntoMyApprenticeshipPage) => signIntoMyApprenticeshipPage.ClickChangeYourPasswordLinkOnSignInPage().SubmitEmailOnForgottenPasswordPage();
-
         public SignIntoMyApprenticeshipPage ResetPasswordAndReturnToSignInPage() => BuildResetPasswordPageUsingDBHelper().UpdatePassword().ReturnToSignInPage();
-
-        public void EnterMismatchedPasswordsAndValidateError(ResetPasswordPage resetPasswordPage)
-        {
-            resetPasswordPage.EnterMismatchedPasswordsOnResetPasswordPage(config.AC_AccountPassword);
-            resetPasswordPage.VerifyErrorSummaryTitle();
-            resetPasswordPage.VerifyMismatchPasswordErrorOnPasswordResetPage();
-        }
 
         private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(action);
     }

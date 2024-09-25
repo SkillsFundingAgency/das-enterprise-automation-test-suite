@@ -38,12 +38,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ApprenticeOverviewPage(context);
         }
 
-        public ForgottenPasswordPage ClickChangeYourPasswordLinkOnSignInPage()
-        {
-            formCompletionHelper.ClickLinkByText("change your password");
-            return new ForgottenPasswordPage(context);
-        }
-
         private void SignIn()
         {
             new StubSignInApprenticeAccountsPage(context).SubmitValidUserDetails(objectContext.GetApprenticeEmail(), objectContext.GetApprenticePassword()).Continue();
