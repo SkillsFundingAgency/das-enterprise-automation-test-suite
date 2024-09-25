@@ -8,8 +8,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     public class SignIntoMyApprenticeshipPage(ScenarioContext context) : ApprenticeCommitmentsBasePage(context)
     {
         protected override string PageTitle => StubSignInApprenticeAccountsPage.StubSignInPageTitle;
-        private static By Username => By.CssSelector("#Username");
-        private static By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
         public ApprenticeHomePage GoToApprenticeHomePage()
         {

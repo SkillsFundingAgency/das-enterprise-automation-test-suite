@@ -1,6 +1,4 @@
-﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
-using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
-using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
