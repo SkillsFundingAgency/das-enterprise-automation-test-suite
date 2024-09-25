@@ -21,12 +21,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             var resetPasswordPage = passwordResetStepsHelper.BuildResetPasswordPageUsingDBHelper();
             passwordResetStepsHelper.EnterMismatchedPasswordsAndValidateError(resetPasswordPage);
         }
-
-        [Then(@"an error is shown for entering mismatched passwords")]
-        public void ThenAnErrorIsShownForEnteringMismatchedPasswords()
-        {
-            //var createLoginDetailsPage = createAccountStepsHelper.NavigateToCreateLoginDetailsPage().EnterEmailAndConfirmEmail();
-            //passwordResetStepsHelper.EnterMismatchedPasswordsAndValidateErrorOnCreateLoginDetailsPage(createLoginDetailsPage);
-        }
     }
 }
