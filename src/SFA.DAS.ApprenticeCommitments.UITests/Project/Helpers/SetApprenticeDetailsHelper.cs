@@ -23,11 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public (string firstName, string lastName) SetApprenticeDetailsInObjectContext(ApprenticeUser user)
         {
-
             (string apprenticeId, string firstName, string lastName, string username) = (user.Id, user.FirstName, user.LastName, user.Username);
-
-            //if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
-            //    Assert.Fail($"{username} not found in the db");
 
             _objectContext.SetApprenticeId(apprenticeId);
             _objectContext.SetApprenticeEmail(username);

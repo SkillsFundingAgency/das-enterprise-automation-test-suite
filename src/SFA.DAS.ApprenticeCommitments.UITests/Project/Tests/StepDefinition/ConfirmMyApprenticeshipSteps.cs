@@ -19,6 +19,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenOnlyTheLatestApprenticeshipShouldBeVisible()
         {
             var invitation = createAccountStepsHelper.OpenLatestInvitation(2);
+
             _apprenticeOverviewPage = invitation.CTAOnStartPageToSignIn().GoToApprenticeHomePage()
                 .NavigateToOverviewPageWithCmadLinkOnTheHomePage().VerifyDaysToConfirmWarning();
         }
