@@ -50,13 +50,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             resetPasswordPage.VerifyMismatchPasswordErrorOnPasswordResetPage();
         }
 
-        public void EnterMismatchedPasswordsAndValidateErrorOnCreateLoginDetailsPage(CreateLoginDetailsPage createLoginDetailsPage)
-        {
-            createLoginDetailsPage.EnterMismatchedPasswordsOnCreateLoginDetailsPage(config.AC_AccountPassword);
-            createLoginDetailsPage.VerifyErrorSummaryTitle();
-            createLoginDetailsPage.VerifyMismatchPasswordErrorOnCreateLoginDetailsPage();
-        }
-
         private void RetryOnNUnitException(Action action) => _assertHelper.RetryOnNUnitExceptionWithLongerTimeOut(action);
     }
 }
