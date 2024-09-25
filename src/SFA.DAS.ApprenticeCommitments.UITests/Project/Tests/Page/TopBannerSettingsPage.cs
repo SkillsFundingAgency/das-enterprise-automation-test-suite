@@ -18,12 +18,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ChangeYourPersonalDetailsPage(context);
         }
 
-        public ForgottenYourPasswordPage NavigateToChangeYourPassword()
-        {
-            NavigateToSettings("Change your password");
-            return new ForgottenYourPasswordPage(context);
-        }
-
         protected void ClickAccountSettings() => formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
 
         protected void NavigateToSettings(string settingsName)

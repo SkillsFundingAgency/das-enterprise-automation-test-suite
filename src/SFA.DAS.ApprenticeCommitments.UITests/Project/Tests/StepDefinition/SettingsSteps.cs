@@ -14,31 +14,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Then(@"an apprentice can change their personal details")]
         public void ThenAnApprenticeCanChangeTheirPersonalDetails()
         {
-            GetTopBannerSettingsPage().NavigateToChangeYourPersonalDetails().UpdateApprenticeName();
+            new TopBannerSettingsPage(context).NavigateToChangeYourPersonalDetails().UpdateApprenticeName();
             // DOB fields were disabled after a successful match before, but in Sprint28 AccoutsWeb rework, DOB field is made Editable.
         }
-
-        [Then(@"an apprentice can change their password before confirming account")]
-        public void ThenAnApprenticeCanChangeTheirPasswordBeforeConfirmingAccount() => UpdatePassword().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
 
         [Then(@"an apprentice change their personal details menu is available")]
         public void ThenAnApprenticeChangeTheirPersonalDetailsMenuIsAvailable() => new CreateMyApprenticeshipAccountPage(context).NavigateToChangeYourPersonalDetails();
 
-        private PasswordResetSuccessfulPage UpdatePassword()
-        {
-            GetTopBannerSettingsPage().NavigateToChangeYourPassword().RequestToUpdatePassword();
-            GetLinkBySubject(objectContext.GetApprenticeEmail(), "Password reset for My apprenticeship", "change your password");
-            return new ResetPasswordPage(context).UpdatePassword();
-        }
-
-        private void GetLinkBySubject(string email, string subject, string linkText)
-        {
-            var link = context.Get<MailosaurApiHelper>().GetLinkBySubject(email, subject, linkText);
-
-            tabHelper.OpenInNewTab(link);
-        }
-
-
-        private TopBannerSettingsPage GetTopBannerSettingsPage() => new(context);
     }
 }
