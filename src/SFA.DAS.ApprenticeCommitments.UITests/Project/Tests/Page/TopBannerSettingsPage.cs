@@ -24,12 +24,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             return new ForgottenYourPasswordPage(context);
         }
 
-        public ChangeYourEmailAddressPage NavigateToChangeYourEmailAddress()
-        {
-            NavigateToSettings("Change your email address");
-            return new ChangeYourEmailAddressPage(context);
-        }
-
         protected void ClickAccountSettings() => formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
 
         protected void NavigateToSettings(string settingsName)

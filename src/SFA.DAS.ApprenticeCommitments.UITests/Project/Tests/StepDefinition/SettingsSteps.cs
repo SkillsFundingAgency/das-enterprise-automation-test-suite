@@ -11,12 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         [Given(@"an apprentice has a confirmed account")]
         public void GivenAnApprenticeHasAConfirmedAccount() => createAccountStepsHelper.CreateAccountViaApiAndConfirmApprenticeshipViaDb();
 
-        [Then(@"an apprentice can change their email")]
-        public void ThenAnApprenticeCanChangeTheirEmail() => UpdateEmailAddress().ReturnToHome().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage().SignInWithUpdatedEmail();
-
-        [Then(@"an apprentice can change their email before confirming account")]
-        public void ThenAnApprenticeCanChangeTheirEmailBeforeConfirmingAccount() => UpdateEmailAddress().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
-
         [Then(@"an apprentice can change their personal details")]
         public void ThenAnApprenticeCanChangeTheirPersonalDetails()
         {
@@ -38,13 +32,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             GetTopBannerSettingsPage().NavigateToChangeYourPassword().RequestToUpdatePassword();
             GetLinkBySubject(objectContext.GetApprenticeEmail(), "Password reset for My apprenticeship", "change your password");
             return new ResetPasswordPage(context).UpdatePassword();
-        }
-
-        private YouHaveUpdatedYourEmailAddressPage UpdateEmailAddress()
-        {
-            GetTopBannerSettingsPage().NavigateToChangeYourEmailAddress().RequestToUpdateEmailAddress();
-            GetLinkBySubject(objectContext.GetApprenticeChangedEmail(), "Confirm your new email address", "Verify email address");
-            return new ChangeYourEmailAddressPage(context).UpdateEmailAddress();
         }
 
         private void GetLinkBySubject(string email, string subject, string linkText)
