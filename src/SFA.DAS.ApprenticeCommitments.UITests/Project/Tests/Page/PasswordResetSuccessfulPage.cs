@@ -6,10 +6,5 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Password reset successful";
 
-        public SignIntoMyApprenticeshipPage ReturnToSignInPage()
-        {
-            formCompletionHelper.ClickLinkByText("Return to home");
-            return new SignIntoMyApprenticeshipPage(context);
-        }
     }
 }

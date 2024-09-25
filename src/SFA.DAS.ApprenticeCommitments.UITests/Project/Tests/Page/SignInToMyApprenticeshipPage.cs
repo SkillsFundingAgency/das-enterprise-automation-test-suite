@@ -11,13 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By Username => By.CssSelector("#Username");
         private static By SignInButton => By.XPath("//button[contains(text(),'Sign in')]");
 
-        public CreateMyApprenticeshipAccountPage SignInToApprenticePortalForPersonalDetailsUnVerifiedAccount()
-        {
-            VerifyElement(PrivacyLinkInTheBody);
-            SignIn();
-            return new CreateMyApprenticeshipAccountPage(context);
-        }
-
         public ApprenticeHomePage GoToApprenticeHomePage()
         {
             SignIn();

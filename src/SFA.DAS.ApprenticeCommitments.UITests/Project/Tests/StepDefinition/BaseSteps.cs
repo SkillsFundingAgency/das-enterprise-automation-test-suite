@@ -11,7 +11,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         protected readonly ScenarioContext context = context;
         protected readonly CreateAccountStepsHelper createAccountStepsHelper = new(context);
         protected readonly ConfirmMyApprenticeshipStepsHelper confirmMyApprenticeshipStepsHelper = new(context);
-        protected readonly PasswordResetStepsHelper passwordResetStepsHelper = new(context);
         protected readonly ApprenticeCommitmentsConfig config = context.GetApprenticeCommitmentsConfig<ApprenticeCommitmentsConfig>();
         protected readonly TabHelper tabHelper = context.Get<TabHelper>();
         protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
