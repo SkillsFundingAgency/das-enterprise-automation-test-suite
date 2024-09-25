@@ -77,6 +77,17 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             page.GoToHomePage();
         }
 
+        [Then(@"the provider is unable to add an existing provider")]
+        public void ThenTheProviderIsUnableToAddAnExistingProvider()
+        {
+            new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
+                .SelectAddATrainingProvider()
+                .SearchForAnExistingTrainingProvider(providerConfig);
+            new AlreadyLinkedToTrainingProviderPage(context).CannotAddExistingTrainingProvider();
+
+        }
+
+
         private void UpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
         {
             this.permissions = permissions;

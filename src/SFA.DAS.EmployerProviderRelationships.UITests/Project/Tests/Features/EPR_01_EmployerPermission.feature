@@ -15,3 +15,10 @@ Scenario: EPR_01A_EmployerGrantPermission
 @deletepermission
 Scenario: EPR_01B_EmployerDoesNotGrantPermission
 	Then an employer has to select at least one permission	
+
+@employerproviderrelationships
+@deletepermission
+Scenario: EPR_01C_EmployerTrysToAddExistingProvider
+	Given Levy employer grants all permission to a provider
+	Then the provider should be added with the correct permissions
+	And the provider is unable to add an existing provider
