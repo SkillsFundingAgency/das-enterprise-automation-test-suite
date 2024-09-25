@@ -12,12 +12,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages
 
         public StubYouHaveSignedInApprenticeAccountsPage SubmitValidUserDetails(string email, string idOrUserRef)
         {
-            return GoToStubYouHaveSignedInAssessorPage(email, idOrUserRef, false);
+            return GoToStubYouHaveSignedInApprenticeAccountsPage(email, idOrUserRef, false);
         }
 
-        public StubYouHaveSignedInApprenticeAccountsPage CreateAccount(string email) => GoToStubYouHaveSignedInAssessorPage(email, $"{Guid.NewGuid()}", true);
+        public StubYouHaveSignedInApprenticeAccountsPage CreateAccount(string email) => GoToStubYouHaveSignedInApprenticeAccountsPage(email, $"{Guid.NewGuid()}", true);
 
-        private StubYouHaveSignedInApprenticeAccountsPage GoToStubYouHaveSignedInAssessorPage(string email, string idOrUserRef, bool newUser)
+        private StubYouHaveSignedInApprenticeAccountsPage GoToStubYouHaveSignedInApprenticeAccountsPage(string email, string idOrUserRef, bool newUser)
         {
             EnterLoginDetailsAndClickSignIn(email, idOrUserRef);
 
