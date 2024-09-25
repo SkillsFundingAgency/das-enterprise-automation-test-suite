@@ -32,6 +32,7 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text.RegularExpressions;
 global using TechTalk.SpecFlow;
+using SFA.DAS.Login.Service.Project;
 
 namespace SFA.DAS.EPAO.UITests.Project;
 

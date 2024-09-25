@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.Login.Service.Project;
 
 namespace SFA.DAS.SupportConsole.UITests.Project.Helpers;
 

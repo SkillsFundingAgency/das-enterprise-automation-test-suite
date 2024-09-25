@@ -15,6 +15,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public abstract class GovSignUser : LoginUser
     {
         public string IdOrUserRef { get; set; }
+
+        public override string ToString() => $"{base.ToString()}, IdOrUserRef:'{IdOrUserRef}'";
     }
 
     public abstract class NonEasAccountUser : LoginUser
@@ -133,18 +135,6 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #endregion
 
-    #region AanApprenticeUser
-
-    public abstract class AanBaseUser : NonEasAccountUser { }
-
-    public class AanApprenticeUser : AanBaseUser { }
-
-    public class AanApprenticeNonBetaUser : AanBaseUser { }
-
-    public class AanApprenticeOnBoardedUser : AanBaseUser { }
-
-    #endregion
-
     #region FAAUser
 
     public abstract class FAAPortalUser : GovSignUser
@@ -161,6 +151,30 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     }
 
+    #region ApprenticeAccount
+
+    public class CocApprenticeUser : ApprenticeUser { }
+
+    public class ApprenticeFeedbackUser : ApprenticeUser { }
+
+    public abstract class ApprenticeUser : GovSignUser
+    {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Id { get; set; }
+    }
+
+    public abstract class AanBaseUser : ApprenticeUser { }
+
+    public class AanApprenticeUser : AanBaseUser { }
+
+    public class AanApprenticeNonBetaUser : AanBaseUser { }
+
+    public class AanApprenticeOnBoardedUser : AanBaseUser { }
+
+    #endregion
 
     #endregion
 

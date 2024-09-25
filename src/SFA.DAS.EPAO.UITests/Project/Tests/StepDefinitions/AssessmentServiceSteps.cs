@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.Login.Service.Project;
+
+namespace SFA.DAS.EPAO.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class AssessmentServiceSteps(ScenarioContext context) : EPAOBaseSteps(context)
