@@ -18,9 +18,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             // DOB fields were disabled after a successful match before, but in Sprint28 AccoutsWeb rework, DOB field is made Editable.
         }
 
-        [Then(@"an apprentice can change their password")]
-        public void ThenAnApprenticeCanChangeTheirPassword() => UpdatePassword().ReturnToHome();
-
         [Then(@"an apprentice can change their password before confirming account")]
         public void ThenAnApprenticeCanChangeTheirPasswordBeforeConfirmingAccount() => UpdatePassword().ReturnToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage();
 
