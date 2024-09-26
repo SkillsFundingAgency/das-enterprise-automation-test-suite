@@ -22,7 +22,7 @@ public class SqlDbBaseHelper(ObjectContext objectContext, string connectionStrin
 
     public int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {
-        SetDebugInformation($"ExecuteSqlCommand:{Environment.NewLine}{queryToExecute}");
+        SetDebugInformation($"ExecuteSqlCommand : {SqlDbConfigHelper.GetDbName(connectionString)}{Environment.NewLine}{queryToExecute}");
 
         try
         {

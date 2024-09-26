@@ -1,10 +1,7 @@
 ﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.ApprenticeCommitments.UITests.Project;
 
 namespace SFA.DAS.ProvideFeedback.UITests.Project;
-
-public class ApprenticeFeedbackUser : ApprenticeUser { }
 
 [Binding, Scope(Tag = "apprenticefeedback")]
 public class ApprenticeFeedbackHooks(ScenarioContext context) : BaseHooks(context)

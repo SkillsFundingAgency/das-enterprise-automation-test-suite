@@ -17,12 +17,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             formCompletionHelper.ClickButtonByText(SubmitButton, "Save and continue");
         }
 
-        public void EnterMismatchedPasswordsOnResetPasswordPage(string password) => SubmitPassword(password, password + 1, true);
-
-        public void VerifyMismatchPasswordErrorOnCreateLoginDetailsPage() => pageInteractionHelper.VerifyText(PasswordError, "Enter the same password");
-
-        public void VerifyMismatchPasswordErrorOnPasswordResetPage() => pageInteractionHelper.VerifyText(PasswordError, "Passwords should match");
-
         protected void SubmitPassword(string password, string confirmpassword, bool clickSubmit = false)
         {
             formCompletionHelper.EnterText(Password, password);
