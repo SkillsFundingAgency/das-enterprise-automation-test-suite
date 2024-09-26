@@ -17,6 +17,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             return new YourTrainingProvidersPage(context);
         }
 
+        public Relationships.EnterYourTrainingProviderNameReferenceNumberUKPRNPage AddTrainingProviderNow1()
+        {
+            formCompletionHelper.SelectRadioOptionByText("Yes, I'll add a training provider now");
+            Continue();
+            return new Relationships.EnterYourTrainingProviderNameReferenceNumberUKPRNPage(context);
+        }
+
         public EmployerAccountCreatedPage AddTrainingProviderLater()
         {
             formCompletionHelper.SelectRadioOptionByText("No, I want to finish setting up my account and add one later");

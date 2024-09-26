@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using TechTalk.SpecFlow;
@@ -102,5 +103,11 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .ConfirmAndGoToEmployerAccountCreatedPage()
             .GoToHomePage();
 
+        internal static HomePage AddTrainingProviderAndGrantPermission(CreateYourEmployerAccountPage createEmployerAccountPage, ProviderConfig providerConfig) =>
+         createEmployerAccountPage.GoToTrainingProviderLink()
+           .AddTrainingProviderNow1()
+           .SearchForATrainingProvider(providerConfig)
+           .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow))
+           .SelectGoToYourEmployerAccountHomepage();
     }
 }

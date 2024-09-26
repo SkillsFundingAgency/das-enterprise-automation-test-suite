@@ -163,5 +163,26 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 AccountCreationTaskListStepsHelper.GrantTrainingProviderPermissions(_createYourEmployerAccountPage);
             }
         }
+        
+        [When(@"user (.*) add training provider and (.*), the user (.*) grant training provider permissions")]
+        public void UserAddTrainingProviderAndGrantPermission(bool canAddTrainingProvider, bool doesAdd, bool doesGrant)
+        {
+            _createYourEmployerAccountPage = canAddTrainingProvider
+              ? AccountCreationTaskListStepsHelper.UserCanClickTrainingProvider(_createYourEmployerAccountPage)
+              : AccountCreationTaskListStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
+
+
+            if (canAddTrainingProvider && doesAdd)
+            {
+                _createYourEmployerAccountPage = AccountCreationTaskListStepsHelper.AddTrainingProvider(_createYourEmployerAccountPage, _context.GetProviderConfig<ProviderConfig>().Ukprn);
+            }
+
+            if (doesGrant)
+            {
+                AccountCreationTaskListStepsHelper.GrantTrainingProviderPermissions(_createYourEmployerAccountPage);
+            }
+
+        }
+
     }
 }

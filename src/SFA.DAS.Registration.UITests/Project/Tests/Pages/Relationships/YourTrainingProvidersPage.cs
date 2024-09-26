@@ -4,6 +4,7 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
+using System.Security;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
@@ -145,6 +146,15 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
             SetRecruitApprentice(permisssion.recruitpermission);
 
             return new YourTrainingProvidersPage(context);
+        }
+
+        public EmployerAccountCreatedPage AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
+        {
+            SetAddApprentice(permisssion.cohortpermission);
+
+            SetRecruitApprentice(permisssion.recruitpermission);
+
+            return new EmployerAccountCreatedPage(context);
         }
 
         protected void SetAddApprentice(AddApprenticePermissions permission)

@@ -107,30 +107,30 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer Signs the Agreement")]
         public void SignTheAgreement()
         {
-            //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-            //    .SignAgreement()
-            //    .SelectContinueToCreateYourEmployerAccount()
-            //    .GoToTrainingProviderLink()
-            //    .AddTrainingProviderLater()
-            //    .SelectGoToYourEmployerAccountHomepage();
-
-
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-                .SignAgreementAndGoToEmployerAccountCreatedPage()
+                .SignAgreement()
+                .SelectContinueToCreateYourEmployerAccount()
+                .GoToTrainingProviderLink()
+                .AddTrainingProviderLater()
                 .SelectGoToYourEmployerAccountHomepage();
+
+
+            //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
+            //    .SignAgreementAndGoToEmployerAccountCreatedPage()
+            //    .SelectGoToYourEmployerAccountHomepage();
         }
 
         [When(@"the Employer does not sign the Agreement")]
         [Then(@"the Employer does not sign the Agreement")]
         public void DoNotSignTheAgreement() =>
-            _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-            .DoNotSignAgreementAndGoToEmployerAccountCreatedPage()
-            .SelectGoToYourEmployerAccountHomepage();
+        //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
+        //.DoNotSignAgreementAndGoToEmployerAccountCreatedPage()
+        //.SelectGoToYourEmployerAccountHomepage();
 
-        //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage.DoNotSignAgreement()
-        //    .GoToTrainingProviderLink()
-        //    .AddTrainingProviderLater()
-        //    .SelectGoToYourEmployerAccountHomepage();
+        _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage.DoNotSignAgreement()
+            .GoToTrainingProviderLink()
+            .AddTrainingProviderLater()
+            .SelectGoToYourEmployerAccountHomepage();
 
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
