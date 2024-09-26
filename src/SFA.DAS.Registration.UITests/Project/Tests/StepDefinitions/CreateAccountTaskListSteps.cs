@@ -136,33 +136,33 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             return _createYourEmployerAccountPage = AccountCreationTaskListStepsHelper.AcceptEmployerAgreementWhenAlreadyAcknowledged(_createYourEmployerAccountPage);
         }
 
-        [When(@"user (.*) add training provider and (.*)")]
-        public CreateYourEmployerAccountPage UserCanAddTrainingProvider(bool canAddTrainingProvider, bool doesAdd)
-        {
-            _createYourEmployerAccountPage = canAddTrainingProvider
-               ? AccountCreationTaskListStepsHelper.UserCanClickTrainingProvider(_createYourEmployerAccountPage)
-               : AccountCreationTaskListStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
+        //[When(@"user (.*) add training provider and (.*)")]
+        //public CreateYourEmployerAccountPage UserCanAddTrainingProvider(bool canAddTrainingProvider, bool doesAdd)
+        //{
+        //    _createYourEmployerAccountPage = canAddTrainingProvider
+        //       ? AccountCreationTaskListStepsHelper.UserCanClickTrainingProvider(_createYourEmployerAccountPage)
+        //       : AccountCreationTaskListStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
 
 
-            if (canAddTrainingProvider && doesAdd)
-            {
-                _createYourEmployerAccountPage = AccountCreationTaskListStepsHelper.AddTrainingProvider(_createYourEmployerAccountPage, _context.GetProviderConfig<ProviderConfig>().Ukprn);
-            }
-            return _createYourEmployerAccountPage;
-        }
+        //    if (canAddTrainingProvider && doesAdd)
+        //    {
+        //        _createYourEmployerAccountPage = AccountCreationTaskListStepsHelper.AddTrainingProvider(_createYourEmployerAccountPage, _context.GetProviderConfig<ProviderConfig>().Ukprn);
+        //    }
+        //    return _createYourEmployerAccountPage;
+        //}
 
-        [When(@"user (.*) grant training provider permissions and (.*)")]
-        public void UserCanGrantProviderPermissions(bool canAddPermissions, bool doesGrant)
-        {
-            _createYourEmployerAccountPage = canAddPermissions
-               ? AccountCreationTaskListStepsHelper.UserCanClickTrainingProviderPermissions(_createYourEmployerAccountPage)
-               : AccountCreationTaskListStepsHelper.UserCannotClickTrainingProviderPermissions(_createYourEmployerAccountPage);
+        //[When(@"user (.*) grant training provider permissions and (.*)")]
+        //public void UserCanGrantProviderPermissions(bool canAddPermissions, bool doesGrant)
+        //{
+        //    _createYourEmployerAccountPage = canAddPermissions
+        //       ? AccountCreationTaskListStepsHelper.UserCanClickTrainingProviderPermissions(_createYourEmployerAccountPage)
+        //       : AccountCreationTaskListStepsHelper.UserCannotClickTrainingProviderPermissions(_createYourEmployerAccountPage);
 
-            if (canAddPermissions && doesGrant)
-            {
-                AccountCreationTaskListStepsHelper.GrantTrainingProviderPermissions(_createYourEmployerAccountPage);
-            }
-        }
+        //    if (canAddPermissions && doesGrant)
+        //    {
+        //        AccountCreationTaskListStepsHelper.GrantTrainingProviderPermissions(_createYourEmployerAccountPage);
+        //    }
+        //}
         
         [When(@"user (.*) add training provider and (.*), the user (.*) grant training provider permissions")]
         public void UserAddTrainingProviderAndGrantPermission(bool canAddTrainingProvider, bool doesAdd, bool doesGrant)
@@ -171,18 +171,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
               ? AccountCreationTaskListStepsHelper.UserCanClickTrainingProvider(_createYourEmployerAccountPage)
               : AccountCreationTaskListStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
 
-
-            if (canAddTrainingProvider && doesAdd)
+            if (canAddTrainingProvider && doesAdd && doesGrant)
             {
-                _createYourEmployerAccountPage = AccountCreationTaskListStepsHelper.AddTrainingProvider(_createYourEmployerAccountPage, _context.GetProviderConfig<ProviderConfig>().Ukprn);
+                AccountCreationTaskListStepsHelper.AddTrainingProviderAndGrantPermission(_createYourEmployerAccountPage, _context.GetProviderConfig<ProviderConfig>());
             }
-
-            if (doesGrant)
-            {
-                AccountCreationTaskListStepsHelper.GrantTrainingProviderPermissions(_createYourEmployerAccountPage);
-            }
-
         }
-
     }
 }
