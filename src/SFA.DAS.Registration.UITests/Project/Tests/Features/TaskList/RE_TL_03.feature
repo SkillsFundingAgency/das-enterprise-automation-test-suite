@@ -18,5 +18,5 @@ Scenario: RE_TL_03_Set Account Name on task list
 	Then user can resume employer registration journey
 	
 Examples:
-	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | 
-	| does		  | can				  | does			   | can					  | doesn't                   | cannot                 | doesn't                 |
+	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | DoesGrantProviderPermissions |
+	| does        | can               | does               | can                      | doesn't                   | cannot                 | doesn't                 | doesn't                      |
