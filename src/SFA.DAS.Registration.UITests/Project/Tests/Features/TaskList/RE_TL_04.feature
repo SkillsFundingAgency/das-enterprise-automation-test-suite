@@ -19,5 +19,5 @@ Scenario: RE_TL_04_Employer Agreement on task list
 	Then user accepts agreement having already acknowledged
 		
 Examples:
-	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider |
-	| does		  | can               | does	           | can                      | does					  | can					   | does	                 |
+	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | DoesGrantProviderPermissions |
+	| does        | can               | does               | can                      | does                      | can                    | does                    | does                         |

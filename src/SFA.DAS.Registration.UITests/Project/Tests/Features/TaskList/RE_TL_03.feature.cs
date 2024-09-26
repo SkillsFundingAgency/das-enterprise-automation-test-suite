@@ -125,7 +125,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("user {0} accept the employer agreement and {1}", canSignEmployerAgreement, doesSignEmployerAgreement), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.When(string.Format("user {0} add training provider and {1}", canAddTrainingProvider, doesAddTrainingProvider), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("user {0} add training provider and {1}, the user <DoesGrantProviderPermissions> g" +
+                            "rant training provider permissions", canAddTrainingProvider, doesAddTrainingProvider), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
  testRunner.When("user logs out and log back in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
