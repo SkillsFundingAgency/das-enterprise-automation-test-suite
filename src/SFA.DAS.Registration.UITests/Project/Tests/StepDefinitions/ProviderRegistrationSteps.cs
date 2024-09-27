@@ -4,6 +4,7 @@ using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -94,34 +95,17 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()
         {
-            //_homePageStepsHelper
-            //    .GoToCreateYourEmployerAccountPage()
-            //    .GoToYourEmployerAgreementLink()
-            //    .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-            //    .ProviderLeadRegistrationSignAgreement()
-            //    .SelectContinueToCreateYourEmployerAccount()
-            //    .GoToTrainingProviderLink()
-            //    .AddTrainingProviderNow()
-            //    .SelectAddATrainingProvider()
-            //    .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>().Ukprn)
-            //    .ConfirmTrainingProvider()
-            //    .SelectSaveAndComeBackLater()
-            //    .SelectContinueCreatingYourAccount()
-            //    .GoToTrainingProviderPermissionsLink()
-            //    .SelectSetPermissions("")
-            //    .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
-            //    .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
-            //    .ConfirmProviderLeadRegistrationPermissions()
-            //    .ContinueToAccountCreationConfirmationPage()
-            //    .SelectGoToYourEmployerAccountHomepage();
-
             _homePageStepsHelper
                 .GoToCreateYourEmployerAccountPage()
                 .GoToYourEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-                .PLRSignAgreementAndGotoEmployerAccountCreatedPage()
+                .ProviderLeadRegistrationSignAgreement()
+                .SelectContinueToCreateYourEmployerAccount()
+                .GoToTrainingProviderLink()
+                .AddTrainingProviderNow1()
+                .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>())
+                .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow))
                 .SelectGoToYourEmployerAccountHomepage();
-
         }
 
         [Then(@"the invited employer status is ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]
