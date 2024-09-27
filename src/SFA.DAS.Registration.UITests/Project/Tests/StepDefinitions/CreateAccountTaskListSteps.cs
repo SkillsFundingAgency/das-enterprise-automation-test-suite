@@ -171,7 +171,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
               ? AccountCreationTaskListStepsHelper.UserCanClickTrainingProvider(_createYourEmployerAccountPage)
               : AccountCreationTaskListStepsHelper.UserCannotClickTrainingProvider(_createYourEmployerAccountPage);
 
-            if (canAddTrainingProvider && doesAdd && doesGrant)
+            if (doesAdd && doesGrant)
             {
                 AccountCreationTaskListStepsHelper.AddTrainingProviderAndGrantPermission(_createYourEmployerAccountPage, _context.GetProviderConfig<ProviderConfig>());
             }

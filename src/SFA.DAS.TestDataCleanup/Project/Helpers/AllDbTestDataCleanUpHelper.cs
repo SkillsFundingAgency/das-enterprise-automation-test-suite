@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers;
+﻿using Polly;
+
+namespace SFA.DAS.TestDataCleanup.Project.Helpers;
 
 public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig dbConfig)
 {
@@ -10,7 +12,7 @@ public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig db
 
     private List<string[]> _apprenticeIds;
 
-    public (List<string>, List<string>) CleanUpAllDbTestData(string email) => CleanUpAllDbTestData(new List<string> { email });
+    public (List<string>, List<string>) CleanUpAllDbTestData(string email) => CleanUpAllDbTestData([email]);
 
     public (List<string>, List<string>) CleanUpAllDbTestData(List<string> email)
     {
@@ -51,6 +53,13 @@ public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig db
             var accountIdsListArray = easAccDbSqlDataHelper.GetAccountIds(userEmailList);
 
             var noOfRowsDeleted = CleanUpUsersDbTestData(userEmailList) + CleanUpPregDbTestData(userEmailList);
+
+            var appaccdbNameToTearDown = objectContext.GetDbNameToTearDown();
+
+            if (appaccdbNameToTearDown.TryGetValue(CleanUpDbName.EasAppAccTestDataCleanUp, out HashSet<string> appaccemails))
+            {
+                noOfRowsDeleted += CleanUpAppAccDbTestData([.. appaccemails]);
+            }
 
             var accountidsTodelete = accountIdsListArray.ListOfArrayToList(0);
 
@@ -129,6 +138,15 @@ public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig db
         SetDetails(helper);
 
         return SetDebugMessage(() => helper.CleanUpAComtTestData(_apprenticeIds));
+    }
+
+    private int CleanUpAppAccDbTestData(List<string> emailsToDelete)
+    {
+        var helper = new TestDataCleanUpAppAccDbSqlDataHelper(objectContext, dbConfig);
+
+        SetDetails(helper);
+
+        return SetDebugMessage(() => helper.CleanUpAppAccDbTestData(emailsToDelete));
     }
 
     private int CleanUpEmpIncTestData(List<string> accountidsTodelete)
