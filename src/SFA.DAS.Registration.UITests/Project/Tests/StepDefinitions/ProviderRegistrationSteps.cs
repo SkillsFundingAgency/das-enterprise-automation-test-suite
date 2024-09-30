@@ -10,6 +10,7 @@ using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -95,6 +96,13 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()
         {
+            var permission = (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow);
+
+            // For provider lead registration, atleast one permission for add apprentice or recuirt apprentice should be selected
+            if (_context.ScenarioInfo.Tags.Contains("providerleadregistration"))
+            { permission = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.DoNotAllow); }
+
+
             _homePageStepsHelper
                 .GoToCreateYourEmployerAccountPage()
                 .GoToYourEmployerAgreementLink()
@@ -104,7 +112,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .GoToTrainingProviderLink()
                 .AddTrainingProviderNow1()
                 .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>())
-                .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.DoNotAllow))
+                .AddOrSetPermissionsAndCreateAccount(permission)
                 .SelectGoToYourEmployerAccountHomepage();
         }
 
