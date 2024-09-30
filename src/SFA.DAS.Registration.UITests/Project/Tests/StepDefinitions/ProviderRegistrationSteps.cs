@@ -104,7 +104,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .GoToTrainingProviderLink()
                 .AddTrainingProviderNow1()
                 .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>())
-                .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow))
+                .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.DoNotAllow))
                 .SelectGoToYourEmployerAccountHomepage();
         }
 
