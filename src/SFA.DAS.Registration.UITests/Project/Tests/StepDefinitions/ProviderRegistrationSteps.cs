@@ -110,7 +110,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ProviderLeadRegistrationSignAgreement()
                 .SelectContinueToCreateYourEmployerAccount()
                 .GoToTrainingProviderLink()
-                .AddTrainingProviderNow1()
+                .AddTrainingProviderNow()
                 .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>())
                 .AddOrSetPermissionsAndCreateAccount(permission)
                 .SelectGoToYourEmployerAccountHomepage();

@@ -50,12 +50,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
         internal static CreateYourEmployerAccountPage UserCanClickTrainingProvider(CreateYourEmployerAccountPage createEmployerAccountPage) =>
         createEmployerAccountPage.GoToTrainingProviderLink().GoBackToCreateYourEmployerAccountPage();
 
-        internal static CreateYourEmployerAccountPage UserCannotClickTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-          createEmployerAccountPage.VerifyStepCannotBeStartedYet(CreateYourEmployerAccountPage.TrainingProviderPermissionsItemText);
-
-        internal static CreateYourEmployerAccountPage UserCanClickTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-        createEmployerAccountPage.GoToTrainingProviderPermissionsLink().GoBackToCreateYourEmployerAccountPage();
-
         internal static CreateYourEmployerAccountPage AddPAYEFromTaskListForCloseTo3Million(CreateYourEmployerAccountPage createEmployerAccountPage) =>
          createEmployerAccountPage.GoToAddPayeLink()
             .SelectOptionCloseTo3Million()
@@ -86,26 +80,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SignAgreementHavingAlreadyAcknowledged()
             .ClickOnViewYourAccountButtonToReturnToTaskList();
 
-        internal static CreateYourEmployerAccountPage AddTrainingProvider(CreateYourEmployerAccountPage createEmployerAccountPage, string ukprn) =>
-         createEmployerAccountPage.GoToTrainingProviderLink()
-           .AddTrainingProviderNow()
-           .SelectAddATrainingProvider()
-           .SearchForATrainingProvider(ukprn)
-           .ConfirmTrainingProvider()
-           .SelectSaveAndComeBackLater()
-           .SelectContinueCreatingYourAccount();
-
-        internal static HomePage GrantTrainingProviderPermissions(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-          createEmployerAccountPage.GoToTrainingProviderPermissionsLink()
-            .SelectSetPermissions(string.Empty)
-            .ClickAddApprentice(AddApprenticePermissions.AllowConditional)
-            .ClickRecruitApprentice(RecruitApprenticePermissions.Allow)
-            .ConfirmAndGoToEmployerAccountCreatedPage()
-            .GoToHomePage();
-
         internal static HomePage AddTrainingProviderAndGrantPermission(CreateYourEmployerAccountPage createEmployerAccountPage, ProviderConfig providerConfig) =>
          createEmployerAccountPage.GoToTrainingProviderLink()
-           .AddTrainingProviderNow1()
+           .AddTrainingProviderNow()
            .SearchForATrainingProvider(providerConfig)
            .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow))
            .SelectGoToYourEmployerAccountHomepage();
