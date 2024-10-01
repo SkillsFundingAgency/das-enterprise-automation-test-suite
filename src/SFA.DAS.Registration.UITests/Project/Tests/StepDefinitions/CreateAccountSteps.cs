@@ -105,32 +105,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [Then(@"the Employer is able to Sign the Agreement")]
         [When(@"the Employer Signs the Agreement")]
         [Then(@"the Employer Signs the Agreement")]
-        public void SignTheAgreement()
+        public void SignTheAgreementAndAddProviderLater()
         {
-            //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-            //    .SignAgreement()
-            //    .SelectContinueToCreateYourEmployerAccount()
-            //    .GoToTrainingProviderLink()
-            //    .AddTrainingProviderLater()
-            //    .SelectGoToYourEmployerAccountHomepage();
-
-
             _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-                .SignAgreementAndGoToEmployerAccountCreatedPage()
+                .SignAgreement()
+                .SelectContinueToCreateYourEmployerAccount()
+                .GoToTrainingProviderLink()
+                .AddTrainingProviderLater()
                 .SelectGoToYourEmployerAccountHomepage();
         }
 
         [When(@"the Employer does not sign the Agreement")]
         [Then(@"the Employer does not sign the Agreement")]
-        public void DoNotSignTheAgreement() =>
-            _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage
-            .DoNotSignAgreementAndGoToEmployerAccountCreatedPage()
-            .SelectGoToYourEmployerAccountHomepage();
+        public void DoNotSignTheAgreementAndAddProviderLater() =>
 
-        //_homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage.DoNotSignAgreement()
-        //    .GoToTrainingProviderLink()
-        //    .AddTrainingProviderLater()
-        //    .SelectGoToYourEmployerAccountHomepage();
+        _homePage = _doYouAcceptTheEmployerAgreementOnBehalfOfPage.DoNotSignAgreement()
+            .GoToTrainingProviderLink()
+            .AddTrainingProviderLater()
+            .SelectGoToYourEmployerAccountHomepage();
 
 
         [Given(@"an Employer creates a Non Levy Account and Signs the Agreement")]
@@ -149,7 +141,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _accountCreationStepsHelper.UpdateOrganisationName(orgType);
             CreateUserAccountAndAddOrg(orgType);
-            SignTheAgreement();
+            SignTheAgreementAndAddProviderLater();
         }
 
         [When(@"an Employer Account with (Company|PublicSector|Charity) Type Org is created")]
@@ -157,7 +149,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void GivenAnEmployerAccountWithSpecifiedTypeOrgIsCreatedAndAgeementIsNotSigned(OrgType orgType)
         {
             CreateUserAccountAndAddOrg(orgType);
-            DoNotSignTheAgreement();
+            DoNotSignTheAgreementAndAddProviderLater();
         }
 
         [Given(@"an Employer creates a Levy Account and Signs the Agreement")]
@@ -285,7 +277,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         {
             _searchForYourOrganisationPage = _usingYourGovtGatewayDetailsPage.ContinueToGGSignIn().SignInTo(0);
             AddOrganisationDetails();
-            SignTheAgreement();
+            SignTheAgreementAndAddProviderLater();
         }
 
         [Then(@"the Employer is able to rename the Account")]

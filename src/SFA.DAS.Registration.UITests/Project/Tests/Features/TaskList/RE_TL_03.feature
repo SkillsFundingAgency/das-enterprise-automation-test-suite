@@ -13,10 +13,10 @@ Scenario: RE_TL_03_Set Account Name on task list
 	When user <CanSetAccountName> set account name and <DoesSetAccountName>
 	Then user can update account name
 	When user <CanSignEmployerAgreement> accept the employer agreement and <DoesSignEmployerAgreement>
-	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>
+	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>, the user <DoesGrantProviderPermissions> grant training provider permissions
 	When user logs out and log back in
 	Then user can resume employer registration journey
 	
 Examples:
-	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | 
-	| does		  | can				  | does			   | can					  | doesn't                   | cannot                 | doesn't                 |
+	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | DoesGrantProviderPermissions |
+	| does        | can               | does               | can                      | doesn't                   | cannot                 | doesn't                 | doesn't                      |

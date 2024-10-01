@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using System;
 using System.Collections.Generic;

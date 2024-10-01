@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -77,8 +77,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             page.GoToHomePage();
         }
 
-        [Then(@"the provider is unable to add an existing provider")]
-        public void ThenTheProviderIsUnableToAddAnExistingProvider()
+        [Then(@"the employer is unable to add an existing provider")]
+        public void ThenTheEmployerIsUnableToAddAnExistingProvider()
         {
             new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
                 .SelectAddATrainingProvider()

@@ -14,7 +14,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             Continue();
             return new CreateYourEmployerAccountPage(context);
         }
-
-
     }
 }

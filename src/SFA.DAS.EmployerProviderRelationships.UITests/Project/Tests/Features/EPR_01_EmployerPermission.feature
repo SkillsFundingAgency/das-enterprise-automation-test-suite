@@ -21,4 +21,4 @@ Scenario: EPR_01B_EmployerDoesNotGrantPermission
 Scenario: EPR_01C_EmployerTrysToAddExistingProvider
 	Given Levy employer grants all permission to a provider
 	Then the provider should be added with the correct permissions
-	And the provider is unable to add an existing provider
+	And the employer is unable to add an existing provider

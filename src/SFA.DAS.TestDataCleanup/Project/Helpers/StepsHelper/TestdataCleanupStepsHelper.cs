@@ -4,7 +4,7 @@ public class TestdataCleanupStepsHelper(ScenarioContext context) : TestdataClean
 {
     private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
 
-    public void CleanUpAllDbTestData(HashSet<string> email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_objectContext, _dbConfig).CleanUpAllDbTestData(email.ToList()));
+    public void CleanUpAllDbTestData(HashSet<string> email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_objectContext, _dbConfig).CleanUpAllDbTestData([.. email]));
 
     public void CleanUpAllDbTestData(string email) => ReportTestDataCleanUp(() => new AllDbTestDataCleanUpHelper(_objectContext, _dbConfig).CleanUpAllDbTestData(email));
 

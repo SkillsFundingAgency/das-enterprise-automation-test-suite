@@ -33,10 +33,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Hooks
             }
             else if (tags.Contains("deletecmaddatacreatedthroughapi"))
             {
-                if (tags.Contains("cmadupdatedemail"))
-                    apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(_objectContext.GetApprenticeChangedEmail());
-                else
-                    apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(email);
+                apprenticeId = _aLoginSqlDbHelper.GetApprenticeIdFromAspNetUsersTable(email);
 
                 //appacc db
                 _apprenticeCommitmentsAccountsSqlDbHelper.DeleteEmailAddressHistoryTableData(apprenticeId);

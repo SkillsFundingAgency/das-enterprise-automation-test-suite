@@ -169,7 +169,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("the provider should be added with the correct permissions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
- testRunner.And("the provider is unable to add an existing provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the employer is unable to add an existing provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
