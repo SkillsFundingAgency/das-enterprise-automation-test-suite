@@ -15,8 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         public static string OrganisationAndPAYEItemText => "Add a PAYE scheme";
         public static string AccountNameItemText => "Set your account name";
         public static string EmployerAgreementItemText => "Your employer agreement";
-        public static string TrainingProviderItemText => "Training provider";
-        public static string TrainingProviderPermissionsItemText => "Training provider permissions";
+        public static string TrainingProviderItemText => "Add a training provider and set their permissions";
         #endregion
 
         public CreateYourEmployerAccountPage(ScenarioContext context) : base(context) => VerifyPage();
@@ -55,12 +54,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText(TrainingProviderItemText);
             return new AddATrainingProviderPage(context);
-        }
-
-        public YourTrainingProvidersPage GoToTrainingProviderPermissionsLink()
-        {
-            formCompletionHelper.ClickLinkByText(TrainingProviderPermissionsItemText);
-            return new YourTrainingProvidersPage(context);
         }
 
         public CreateYourEmployerAccountPage VerifyStepCannotBeStartedYet(string listItemText)

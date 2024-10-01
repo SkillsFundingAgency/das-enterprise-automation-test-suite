@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.TestDataCleanup.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -122,7 +123,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         protected void EnterApprenticeEmail() => EnterApprenticeEmail(apprenticeDataHelper.ApprenticeEmail);
 
-        protected void EnterApprenticeEmail(string email) => formCompletionHelper.EnterText(EmailField, email);
+        protected void EnterApprenticeEmail(string email)
+        {
+            formCompletionHelper.EnterText(EmailField, email);
+
+            objectContext.AddDbNameToTearDown(CleanUpDbName.EasAppAccTestDataCleanUp, email);
+        }
 
         protected void EnterApprenticeMandatoryValidDetails()
         {
@@ -209,7 +215,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             AddValidEmail();
             Update();
         }
-        protected void AddValidEmail() => formCompletionHelper.EnterText(EmailField, GetApprenticeEmail());
+        protected void AddValidEmail() => EnterApprenticeEmail(GetApprenticeEmail());
         private string GetApprenticeEmail() => apprenticeDataHelper.ApprenticeEmail;
         protected void Update() => formCompletionHelper.ClickElement(UpdateDetailsButton);
         public void EditApprenticeNameDobAndReference(string reference) => EditNameDobAndReference(reference).Update();
