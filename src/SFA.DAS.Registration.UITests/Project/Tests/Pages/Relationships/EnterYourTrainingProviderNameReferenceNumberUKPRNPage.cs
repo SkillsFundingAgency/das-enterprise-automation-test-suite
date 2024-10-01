@@ -22,6 +22,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         public AddPermissionsForTrainingProviderPage SearchForATrainingProvider(ProviderConfig providerConfig)
         {
+            EnterATrainingProvider(providerConfig);
+
+            return new AddPermissionsForTrainingProviderPage(context, providerConfig);
+        }
+
+        public AlreadyLinkedToTrainingProviderPage SearchForAnExistingTrainingProvider(ProviderConfig providerConfig)
+        {
+            EnterATrainingProvider(providerConfig);
+
+            return new AlreadyLinkedToTrainingProviderPage(context);
+        }
+
+        private void EnterATrainingProvider(ProviderConfig providerConfig)
+        {
             formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Name);
 
             context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
@@ -42,8 +56,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
             javaScriptHelper.ClickElement(FirstOption);
 
             Continue();
-
-            return new AddPermissionsForTrainingProviderPage(context, providerConfig);
         }
     }
 }
