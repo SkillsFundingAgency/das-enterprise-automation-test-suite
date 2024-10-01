@@ -22,32 +22,20 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         public AddPermissionsForTrainingProviderPage SearchForATrainingProvider(ProviderConfig providerConfig)
         {
-            formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Name);
-
-            context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
-            {
-                pageInteractionHelper.WaitForElementToChange(AutoCompleteMenu, "class", "autocomplete__menu--visible");
-
-                pageInteractionHelper.WaitForElementToChange(FirstOption, AttributeHelper.InnerText, providerConfig.Ukprn);
-
-                if (!pageInteractionHelper.IsElementDisplayed(FirstOption) && !pageInteractionHelper.GetStringCollectionFromElementsGroup(AutoCompleteOptions).ToList().Any(x => x.ContainsCompareCaseInsensitive(providerConfig.Ukprn)))
-                {
-                    Assert.Fail($"Auto complete menu for list of providers does not pop up provider : {providerConfig.Name}, {providerConfig.Ukprn}");
-                }
-
-                pageInteractionHelper.FocusTheElement(FirstOption);
-
-            }, RetryTimeOut.GetTimeSpan([10, 5, 5]));
-
-            javaScriptHelper.ClickElement(FirstOption);
-
-            Continue();
+            EnterATrainingProvider(providerConfig);
 
             return new AddPermissionsForTrainingProviderPage(context, providerConfig);
         }
 
         public AlreadyLinkedToTrainingProviderPage SearchForAnExistingTrainingProvider(ProviderConfig providerConfig)
         {
+            EnterATrainingProvider(providerConfig);
+
+            return new AlreadyLinkedToTrainingProviderPage(context);
+        }
+
+        private void EnterATrainingProvider(ProviderConfig providerConfig)
+        {
             formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Name);
 
             context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
@@ -68,18 +56,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
             javaScriptHelper.ClickElement(FirstOption);
 
             Continue();
-
-            return new AlreadyLinkedToTrainingProviderPage(context);
-        }
-    }
-
-    public class AlreadyLinkedToTrainingProviderPage(ScenarioContext context) : PermissionBasePageForTrainingProviderPage(context)
-    {
-        protected override string PageTitle => "You're already linked to this training provider";
-
-        public void CannotAddExistingTrainingProvider()
-        {
-            formCompletionHelper.ClickLinkByText("Return to your training providers");
         }
     }
 }
