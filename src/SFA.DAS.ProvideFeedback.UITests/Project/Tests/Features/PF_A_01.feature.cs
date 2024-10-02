@@ -100,6 +100,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the apprentice logs into apprentice portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
+ testRunner.And("the apprentice is eligible to give feedback on their providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
  testRunner.And("apprentice completes the feedback journey for a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

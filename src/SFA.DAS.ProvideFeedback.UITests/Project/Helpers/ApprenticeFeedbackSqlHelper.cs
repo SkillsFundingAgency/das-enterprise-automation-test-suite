@@ -11,4 +11,12 @@ public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig c
 
         ExecuteSqlCommand(query);
     }
+
+    public void SetFeedbackEligibility(string apprenticeshipid)
+    {
+        var query = $"select id into #appfeedbacktargetid from ApprenticeFeedbackTarget where ApprenticeId = '{apprenticeshipid}' " +
+                    $"update [ApprenticeFeedbackTarget] set [Status]=2, [FeedbackEligibility]=1 where Id in (select id from #appfeedbacktargetid);";
+
+        ExecuteSqlCommand(query);
+    }
 }

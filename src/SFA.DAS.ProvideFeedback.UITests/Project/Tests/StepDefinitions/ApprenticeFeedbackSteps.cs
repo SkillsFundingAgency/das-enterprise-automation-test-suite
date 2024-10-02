@@ -1,4 +1,6 @@
-﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmIdentity;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages;
 using SFA.DAS.Login.Service.Project;
 
@@ -45,4 +47,16 @@ public class ApprenticeFeedbackSteps
             .SubmitAnswers();
     }
 
+    [Given(@"the apprentice is eligible to give feedback on their providers")]
+    public void GivenTheApprenticeIsEligibleToGiveFeedbackOnTheirProviders()
+    {
+        var objectContext = _context.Get<ObjectContext>();
+        var dbConfig = _context.Get<DbConfig>();
+
+        var apprenticeId = objectContext.GetApprenticeId();
+
+        var sqlHelper = new ApprenticeFeedbackSqlHelper(objectContext, dbConfig);
+
+        sqlHelper.SetFeedbackEligibility(apprenticeId);
+    }
 }
