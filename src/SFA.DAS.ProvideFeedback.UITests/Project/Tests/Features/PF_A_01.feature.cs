@@ -103,7 +103,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("the apprentice is eligible to give feedback on their providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.And("apprentice completes the feedback journey for a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("apprentice completes the feedback journey for a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then("the feedback is acknowledged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -31,8 +31,22 @@ public class ApprenticeFeedbackSteps
         _ = new ApprenticeOverviewPage(_context, false);
     }
 
-    [Given(@"apprentice completes the feedback journey for a training provider")]
-    public void GivenApprenticeCompletesTheFeedbackJourneyForATrainingProvider()
+   
+    [Given(@"the apprentice is eligible to give feedback on their providers")]
+    public void GivenTheApprenticeIsEligibleToGiveFeedbackOnTheirProviders()
+    {
+        var objectContext = _context.Get<ObjectContext>();
+        var dbConfig = _context.Get<DbConfig>();
+
+        var apprenticeId = objectContext.GetApprenticeId();
+
+        var sqlHelper = new ApprenticeFeedbackSqlHelper(objectContext, dbConfig);
+
+        sqlHelper.SetFeedbackEligibility(apprenticeId);
+    }
+
+    [When(@"apprentice completes the feedback journey for a training provider")]
+    public void WhenApprenticeCompletesTheFeedbackJourneyForATrainingProvider()
     {
         new ApprenticeFeedbackHomePage(_context)
             .GiveFeedbackOnYourTrainingProvider()
@@ -47,16 +61,10 @@ public class ApprenticeFeedbackSteps
             .SubmitAnswers();
     }
 
-    [Given(@"the apprentice is eligible to give feedback on their providers")]
-    public void GivenTheApprenticeIsEligibleToGiveFeedbackOnTheirProviders()
+    [Then(@"the feedback is acknowledged")]
+    public void ThenTheFeedbackIsAcknowledged()
     {
-        var objectContext = _context.Get<ObjectContext>();
-        var dbConfig = _context.Get<DbConfig>();
-
-        var apprenticeId = objectContext.GetApprenticeId();
-
-        var sqlHelper = new ApprenticeFeedbackSqlHelper(objectContext, dbConfig);
-
-        sqlHelper.SetFeedbackEligibility(apprenticeId);
+        var page = new FeedbackCompletePage(_context);
+        page.VerifyBanner();
     }
 }
