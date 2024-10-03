@@ -2,7 +2,7 @@
 
 A short summary of the feature
 
-@@regression
+@regression
 @registration
 @addnonlevyfunds
 Scenario: RE_TL_04_Employer Agreement on task list

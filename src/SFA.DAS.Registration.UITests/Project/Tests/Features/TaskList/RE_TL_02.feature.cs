@@ -76,7 +76,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_TL_02_AddPAYEDetailsOnTaskList(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string canGrantProviderPermissions, string doesGrantProviderPermissions, string[] exampleTags)
+        public virtual void RE_TL_02_AddPAYEDetailsOnTaskList(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string doesGrantProviderPermissions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression",
@@ -95,7 +95,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             argumentsOfScenario.Add("DoesSignEmployerAgreement", doesSignEmployerAgreement);
             argumentsOfScenario.Add("CanAddTrainingProvider", canAddTrainingProvider);
             argumentsOfScenario.Add("DoesAddTrainingProvider", doesAddTrainingProvider);
-            argumentsOfScenario.Add("CanGrantProviderPermissions", canGrantProviderPermissions);
             argumentsOfScenario.Add("DoesGrantProviderPermissions", doesGrantProviderPermissions);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_TL_02_Add PAYE Details on task list", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
@@ -148,7 +147,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void RE_TL_02_AddPAYEDetailsOnTaskList_Variant0()
         {
 #line 9
-this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", ((string[])(null)));
+this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", "doesn\'t", ((string[])(null)));
 #line hidden
         }
         
@@ -160,7 +159,7 @@ this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "doesn\'t", "cannot", "doe
         public void RE_TL_02_AddPAYEDetailsOnTaskList_Variant1()
         {
 #line 9
-this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", ((string[])(null)));
+this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "doesn\'t", "cannot", "doesn\'t", "doesn\'t", ((string[])(null)));
 #line hidden
         }
         
@@ -172,19 +171,7 @@ this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "doesn\'t",
         public void RE_TL_02_AddPAYEDetailsOnTaskList_Variant2()
         {
 #line 9
-this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "does", "can", "doesn\'t", "cannot", "doesn\'t", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RE_TL_02_Add PAYE Details on task list: Variant 3")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("registration")]
-        [NUnit.Framework.CategoryAttribute("addnonlevyfunds")]
-        public void RE_TL_02_AddPAYEDetailsOnTaskList_Variant3()
-        {
-#line 9
-this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "does", "can", "does", "can", "does", ((string[])(null)));
+this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "does", "can", "doesn\'t", "doesn\'t", ((string[])(null)));
 #line hidden
         }
     }
