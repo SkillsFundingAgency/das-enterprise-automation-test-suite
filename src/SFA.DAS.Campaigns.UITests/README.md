@@ -15,10 +15,10 @@ Please refer to main readme for User secrets or framework secrets on Confluence 
 
 Development Pipelines and Jobs related to the project and 
 Regression Automation Suite: E2_das-approvals-automation-test-suite https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=217
-das-campaigns   for initial build            https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_build?definitionId=1232
-das-campaigns   for Environment release      https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=314
-das-digital-engagement                       https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_build?definitionId=2180
-das-test-digeng-data-fa 'DataCollectionSubscribe'
+'das-campaigns'    for initial build            https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_build?definitionId=1232
+'das-campaigns'    for Environment release      https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=314
+'das-digital-engagement'  for data consumption into marketo   https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_build?definitionId=2180
+'das-test-digeng-data-fa' 'DataCollectionSubscribe' for data consumption into marketo
 
 
 Data considerations
