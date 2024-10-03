@@ -133,15 +133,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("user {0} accept the employer agreement and {1}", canSignEmployerAgreement, doesSignEmployerAgreement), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
- testRunner.When(string.Format("user {0} add training provider and {1}", canAddTrainingProvider, doesAddTrainingProvider), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("user {0} add training provider and {1}, the user {2} grant training provider perm" +
+                            "issions", canAddTrainingProvider, doesAddTrainingProvider, doesGrantProviderPermissions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 20
- testRunner.When(string.Format("user {0} grant training provider permissions and {1}", canGrantProviderPermissions, doesGrantProviderPermissions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 21
  testRunner.When("user logs out and log back in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 21
  testRunner.Then("user can resume employer registration journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

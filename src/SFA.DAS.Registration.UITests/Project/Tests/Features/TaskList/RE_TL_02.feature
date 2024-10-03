@@ -13,16 +13,15 @@ Scenario: RE_TL_02_Add PAYE Details on task list
 	When user <DoesAddPAYE> add PAYE details
 	When user <CanSetAccountName> set account name and <DoesSetAccountName>
 	When user <CanSignEmployerAgreement> accept the employer agreement and <DoesSignEmployerAgreement>
-	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>
-	When user <CanGrantProviderPermissions> grant training provider permissions and <DoesGrantProviderPermissions>
+	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>, the user <DoesGrantProviderPermissions> grant training provider permissions
 	When user logs out and log back in
 	Then user can resume employer registration journey
 
 	
 Examples:
 	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | CanGrantProviderPermissions | DoesGrantProviderPermissions |
-	| does		 | can               | doesn't            | cannot                   | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
-	| does		 | can               | does	              | can                      | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
-	| does		 | can               | does	              | can                      | does						 | can					  | doesn't                 | cannot                      | doesn't                      |
-	| does		 | can               | does	              | can                      | does						 | can					  | does	                | can	                      | doesn't                      |
+	| does        | can               | doesn't            | cannot                   | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
+	| does        | can               | does               | can                      | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
+	| does        | can               | does               | can                      | does                      | can                    | doesn't                 | cannot                      | doesn't                      |
+	| does        | can               | does               | can                      | does                      | can                    | does                    | can                         | does                         |
 	

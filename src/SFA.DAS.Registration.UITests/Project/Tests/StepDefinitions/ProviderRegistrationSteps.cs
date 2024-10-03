@@ -4,11 +4,13 @@ using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
@@ -94,34 +96,24 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         [When(@"the employer signs the agreement")]
         public void WhenTheEmployerSignsTheAgreement()
         {
-            //_homePageStepsHelper
-            //    .GoToCreateYourEmployerAccountPage()
-            //    .GoToYourEmployerAgreementLink()
-            //    .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-            //    .ProviderLeadRegistrationSignAgreement()
-            //    .SelectContinueToCreateYourEmployerAccount()
-            //    .GoToTrainingProviderLink()
-            //    .AddTrainingProviderNow()
-            //    .SelectAddATrainingProvider()
-            //    .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>().Ukprn)
-            //    .ConfirmTrainingProvider()
-            //    .SelectSaveAndComeBackLater()
-            //    .SelectContinueCreatingYourAccount()
-            //    .GoToTrainingProviderPermissionsLink()
-            //    .SelectSetPermissions("")
-            //    .ClickAddApprentice(AddApprenticePermissions.DoNotAllow)
-            //    .ClickRecruitApprentice(RecruitApprenticePermissions.DoNotAllow)
-            //    .ConfirmProviderLeadRegistrationPermissions()
-            //    .ContinueToAccountCreationConfirmationPage()
-            //    .SelectGoToYourEmployerAccountHomepage();
+            var permission = (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow);
+
+            // For provider lead registration, atleast one permission for add apprentice or recuirt apprentice should be selected
+            if (_context.ScenarioInfo.Tags.Contains("providerleadregistration"))
+            { permission = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.DoNotAllow); }
+
 
             _homePageStepsHelper
                 .GoToCreateYourEmployerAccountPage()
                 .GoToYourEmployerAgreementLink()
                 .ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-                .PLRSignAgreementAndGotoEmployerAccountCreatedPage()
+                .ProviderLeadRegistrationSignAgreement()
+                .SelectContinueToCreateYourEmployerAccount()
+                .GoToTrainingProviderLink()
+                .AddTrainingProviderNow()
+                .SearchForATrainingProvider(_context.GetProviderConfig<ProviderConfig>())
+                .AddOrSetPermissionsAndCreateAccount(permission)
                 .SelectGoToYourEmployerAccountHomepage();
-
         }
 
         [Then(@"the invited employer status is ""(Account creation not started|Account creation started|PAYE scheme added|Legal agreement accepted)""")]

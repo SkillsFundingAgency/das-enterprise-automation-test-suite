@@ -127,15 +127,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("user {0} accept the employer agreement and {1}", canSignEmployerAgreement, doesSignEmployerAgreement), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.When(string.Format("user {0} add training provider and {1}", canAddTrainingProvider, doesAddTrainingProvider), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("user {0} add training provider and {1}, the user {2} grant training provider perm" +
+                            "issions", canAddTrainingProvider, doesAddTrainingProvider, doesGrantProviderPermissions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
- testRunner.When(string.Format("user {0} grant training provider permissions and {1}", canGrantProviderPermissions, doesGrantProviderPermissions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 18
  testRunner.When("user logs out and log back in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 18
  testRunner.Then("user can resume employer registration journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -186,7 +184,7 @@ this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "does", "ca
         public void RE_TL_02_AddPAYEDetailsOnTaskList_Variant3()
         {
 #line 9
-this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "does", "can", "does", "can", "doesn\'t", ((string[])(null)));
+this.RE_TL_02_AddPAYEDetailsOnTaskList("does", "can", "does", "can", "does", "can", "does", "can", "does", ((string[])(null)));
 #line hidden
         }
     }
