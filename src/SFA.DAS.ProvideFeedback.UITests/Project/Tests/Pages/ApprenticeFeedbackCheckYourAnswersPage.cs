@@ -20,7 +20,7 @@ public class ApprenticeFeedbackCheckYourAnswersPage(ScenarioContext context) : A
         return new(context);
     }
 
-    public FeedbackCompletePage SubmitAnswers()
+    public ApprenticeFeedbackCompletePage SubmitAnswers()
     {
         formCompletionHelper.ClickButtonByText(ContinueToSubmitButton, "Submit");
 

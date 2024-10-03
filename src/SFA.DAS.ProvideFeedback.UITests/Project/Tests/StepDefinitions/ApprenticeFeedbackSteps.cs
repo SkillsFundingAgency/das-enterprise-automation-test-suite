@@ -37,19 +37,15 @@ public class ApprenticeFeedbackSteps
     {
         var objectContext = _context.Get<ObjectContext>();
         var dbConfig = _context.Get<DbConfig>();
-
         var apprenticeId = objectContext.GetApprenticeId();
-
         var sqlHelper = new ApprenticeFeedbackSqlHelper(objectContext, dbConfig);
-
-        sqlHelper.SetFeedbackEligibility(apprenticeId);
+        sqlHelper.ResetFeedbackEligibility(apprenticeId);
     }
 
     [When(@"apprentice completes the feedback journey for a training provider")]
     public void WhenApprenticeCompletesTheFeedbackJourneyForATrainingProvider()
     {
-        new ApprenticeFeedbackHomePage(_context)
-            .GiveFeedbackOnYourTrainingProvider()
+        new ApprenticeFeedbackSelectProviderPage(_context)
             .SelectATrainingProvider()
             .StartNow()
             .ProvideFeedback()
@@ -58,13 +54,32 @@ public class ApprenticeFeedbackSteps
             .GoToCheckYourAnswersPage()
             .ChangeOverallRating()
             .GoToCheckYourAnswersPage()
-            .SubmitAnswers();
+            .SubmitAnswers()
+            .GiveFeedbackOnYourTrainingProvider();
     }
 
-    [Then(@"the feedback is acknowledged")]
-    public void ThenTheFeedbackIsAcknowledged()
+    [Given(@"the apprentice has not provided feedback previously")]
+    public void GivenTheApprenticeHasNotProvidedFeedbackPreviously()
     {
-        var page = new FeedbackCompletePage(_context);
-        page.VerifyBanner();
+        var objectContext = _context.Get<ObjectContext>();
+        var dbConfig = _context.Get<DbConfig>();
+        var apprenticeId = objectContext.GetApprenticeId();
+        var sqlHelper = new ApprenticeFeedbackSqlHelper(objectContext, dbConfig);
+        sqlHelper.RemoveAllFeedback(apprenticeId);
+    }
+
+    [Then(@"the feedback status shows as Pending")]
+    public void ThenTheFeedbackStatusShowsAsPending()
+    {
+        var feedbackCompletePage = new ApprenticeFeedbackHomePage(_context);
+        var selectProviderPage = feedbackCompletePage.GiveFeedbackOnYourTrainingProvider();
+        selectProviderPage.VerifyFeedbackStatusAsPending();
+    }
+
+    [Then(@"the feedback status shows as Submitted")]
+    public void ThenTheFeedbackStatusShowsAsSubmitted()
+    {
+        var selectProviderPage = new ApprenticeFeedbackSelectProviderPage(_context);
+        selectProviderPage.VerifyFeedbackStatusAsSubmitted();
     }
 }
