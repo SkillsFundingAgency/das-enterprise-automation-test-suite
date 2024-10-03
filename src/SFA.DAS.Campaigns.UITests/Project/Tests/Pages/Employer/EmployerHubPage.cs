@@ -25,11 +25,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.ClickElement(UnderstandingApprenticeshipBenefitsAndFunding);
             return new UnderstandingApprenticeshipBenefitsFundingPage(context);
         }
-        public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage()
-        {
-            formCompletionHelper.ClickElement(FundingAnApprenticeship);
-            return new FundingAnApprenticeshipPage(context);
-        }
 
         public SearchForAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
         {
