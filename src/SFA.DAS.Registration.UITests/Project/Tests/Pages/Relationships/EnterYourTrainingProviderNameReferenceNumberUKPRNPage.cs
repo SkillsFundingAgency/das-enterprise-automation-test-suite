@@ -36,7 +36,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         private void EnterATrainingProvider(ProviderConfig providerConfig)
         {
-            formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Name);
+            formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Ukprn);
 
             context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
             {
@@ -51,7 +51,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
                 pageInteractionHelper.FocusTheElement(FirstOption);
 
-            }, RetryTimeOut.GetTimeSpan([10, 5, 5]));
+            }, RetryTimeOut.GetTimeSpan([10, 10, 10]));
 
             javaScriptHelper.ClickElement(FirstOption);
 
