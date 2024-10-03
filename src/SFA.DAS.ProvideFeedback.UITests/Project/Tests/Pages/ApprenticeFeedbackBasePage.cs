@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public abstract class ApprenticeFeedbackBasePage(ScenarioContext context, bool verifypage = true) : EmployerFeedbackBasePage(context, verifypage)
+public abstract class ApprenticeFeedbackBasePage(ScenarioContext context, bool verifypage = true) : ProvideFeedbackBasePage(context, verifypage)
 {
     protected static By NavigationBarFeedbackLink => By.CssSelector(".app-navigation__link[href*='feedback']");
 

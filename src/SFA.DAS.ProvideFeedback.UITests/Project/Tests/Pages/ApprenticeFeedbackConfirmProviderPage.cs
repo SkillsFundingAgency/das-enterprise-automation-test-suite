@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages;
 
-public class ApprenticeFeedbackConfirmProviderPage(ScenarioContext context) : EmployerFeedbackBasePage(context)
+public class ApprenticeFeedbackConfirmProviderPage(ScenarioContext context) : ApprenticeFeedbackBasePage(context)
 {
     protected override string PageTitle => "Confirm training provider";
 
