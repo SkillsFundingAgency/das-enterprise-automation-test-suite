@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers;
-using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Features.ConfirmIdentity;
 using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages;
 using SFA.DAS.Login.Service.Project;
 
@@ -9,7 +8,6 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions;
 [Binding]
 public class ApprenticeFeedbackSteps
 {
-
     private readonly ScenarioContext _context;
     private readonly SetApprenticeDetailsHelper _setApprenticeDetailsHelper;
 
@@ -55,7 +53,7 @@ public class ApprenticeFeedbackSteps
             .ChangeOverallRating()
             .GoToCheckYourAnswersPage()
             .SubmitAnswers()
-            .GiveFeedbackOnYourTrainingProvider();
+            .NavigateToGiveFeedbackOnYourTrainingProvider();
     }
 
     [Given(@"the apprentice has not provided feedback previously")]
@@ -72,7 +70,7 @@ public class ApprenticeFeedbackSteps
     public void ThenTheFeedbackStatusShowsAsPending()
     {
         var feedbackCompletePage = new ApprenticeFeedbackHomePage(_context);
-        var selectProviderPage = feedbackCompletePage.GiveFeedbackOnYourTrainingProvider();
+        var selectProviderPage = feedbackCompletePage.NavigateToGiveFeedbackOnYourTrainingProvider();
         selectProviderPage.VerifyFeedbackStatusAsPending();
     }
 
