@@ -12,7 +12,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
         private static By AllSectionsConfirmedSuccessTickIcon => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private static By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
-        protected static By FeedbackLink => By.CssSelector(".app-navigation__link[href*='feedback']");
         private static By DaysToConfirmWarningText => By.CssSelector(".govuk-warning-text__text");
         private static By OverviewPageSubTextBelowPageTitle => By.XPath("(//h1//following-sibling::p)[1]");
         private static By OverviewPageWarningIcon => By.CssSelector(".govuk-warning-text__icon");
