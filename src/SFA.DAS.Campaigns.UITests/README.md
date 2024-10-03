@@ -10,7 +10,7 @@ Test URL https://test.apprenticeships.gov.uk/
 
 Prerequisites to run the tests:
 Please refer to main readme which has all the initial setup details
-Please refer to main readme for User secrets 
+Please refer to main readme for User secrets or framework secrets on Confluence Wiki where necessary
 
 
 Development Pipelines and Jobs related to the project and 
