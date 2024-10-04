@@ -12,8 +12,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected static By SearchForAnApprenticeship => By.CssSelector("#fiu-panel-link-fat");
 
-        protected static By FundingAnApprenticeship => By.CssSelector("a[href='/employers/funding-an-apprenticeship']");
-
         protected static By UnderstandingApprenticeshipBenefitsAndFunding => By.CssSelector("a[href='/employers/understanding-apprenticeship-benefits-and-funding']");
 
         protected static By EmployerSignUpButton => By.CssSelector("a[href='/employers/sign-up']");
@@ -24,11 +22,6 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.ClickElement(UnderstandingApprenticeshipBenefitsAndFunding);
             return new UnderstandingApprenticeshipBenefitsFundingPage(context);
-        }
-        public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage()
-        {
-            formCompletionHelper.ClickElement(FundingAnApprenticeship);
-            return new FundingAnApprenticeshipPage(context);
         }
 
         public SearchForAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
