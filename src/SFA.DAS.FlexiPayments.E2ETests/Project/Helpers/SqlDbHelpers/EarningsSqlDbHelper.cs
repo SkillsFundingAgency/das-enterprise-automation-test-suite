@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
+using System.Collections.Generic;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
@@ -73,6 +74,16 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             var data = GetData(query);
 
             return (data[0]);
+        }
+
+        public List<string[]> GetIndividualInstalmentsAmounts (string uln, byte period, string academicYear)
+        {
+            string query = $"Select Amount from [Query].[Earning] " +
+                $" where ULN =  '{uln}' and DeliveryPeriod >= {period} and AcademicYear >= {academicYear} ";
+
+            var data = GetMultipleData(query);
+
+            return (data);
         }
     }
 }

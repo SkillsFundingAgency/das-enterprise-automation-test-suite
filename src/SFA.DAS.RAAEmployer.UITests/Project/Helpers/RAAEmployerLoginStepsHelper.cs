@@ -1,4 +1,4 @@
-﻿using SFA.DAS.Login.Service;
+﻿using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;

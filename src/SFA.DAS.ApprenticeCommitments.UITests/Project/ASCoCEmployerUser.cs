@@ -6,12 +6,4 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project
     {
         public CocApprenticeUser CocApprenticeUser { get; set; }
     }
-
-    public class CocApprenticeUser : ApprenticeUser { }
-
-    public abstract class ApprenticeUser
-    {
-        public string ApprenticeUsername { get; set; }
-        public string ApprenticePassword { get; set; }
-    }
 }

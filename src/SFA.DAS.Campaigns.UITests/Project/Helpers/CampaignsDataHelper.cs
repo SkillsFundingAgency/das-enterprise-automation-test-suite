@@ -10,6 +10,8 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
             Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);
             FullName = $"{Firstname} {Lastname}";
             Email = $"{Firstname}.{Lastname}@example.com";
+            Positions = RandomDataGenerator.GenerateRandomNumber(1);
+            Course = $"Abattoir worker (Level 2)";
         }
 
         public string FullName { get; }
@@ -19,5 +21,9 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
         public string Lastname { get; }
 
         public string Email { get; }
+
+        public string Positions { get; }
+
+        public string Course { get; }
     }
 }

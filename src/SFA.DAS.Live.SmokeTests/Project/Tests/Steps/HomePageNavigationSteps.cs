@@ -32,7 +32,7 @@ public class HomePageNavigationSteps(ScenarioContext context)
     [Then(@"Your training providers link should direct user to Your training providers page")]
     public void YourTrainingProvidersLinkShouldDirectUserToYourTrainingProvidersPage()
     {
-        new YourTrainingProvidersLinkHomePage(context).OpenProviderPermissions().GoToHomePage();
+        new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions().GoToHomePage();
     }
 
     [Then(@"Your finances link should direct user to Finance page")]

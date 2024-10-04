@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -44,13 +44,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Given(@"An Employer has given create reservation permission to a provider")]
         public void GivenAnEmployerHasGivenCreateReservationPermissionToAProvider()
         {
-            var homePage = _loginHelper.Login(_context.GetUser<NonLevyUser>());
+            _loginHelper.Login(_context.GetUser<NonLevyUser>());
 
             _objectContext.SetProviderMakesReservationForNonLevyEmployers();
-
-            homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickViewAgreementLink()
-                .SetAgreementId();
         }
 
         [Given(@"the Provider with create reservation permission logs in")]

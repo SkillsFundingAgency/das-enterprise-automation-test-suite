@@ -42,9 +42,11 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public void WaitForElementToChange(By locator, string text) => webDriverWaitHelper.TextToBePresentInElementLocated(locator, text);
 
-    public void WaitForElementToChange(By locator, string attribute, string value)
+    public void WaitForElementToChange(By locator, string attribute, string value) => WaitForElementToChange(locator, attribute, value, null);
+
+    public void WaitForElementToChange(By locator, string attribute, string value, Action retryAction)
     {
-        WaitForElementToChange(() => FindElement(locator), attribute, value);
+        WaitForElementToChange(() => FindElement(locator), attribute, value, retryAction);
 
         SetDebugInformation($"waited for '{locator}' : attribute : '{attribute}' to change to : '{value}'");
     }
@@ -344,7 +346,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     private void WaitForPageToLoad() => webDriverWaitHelper.WaitForPageToLoad();
 
-    private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value)
+    private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value, Action retryAction)
     {
         bool func(Func<IWebElement> webelement)
         {
@@ -355,6 +357,6 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
             throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
         }
 
-        retryHelper.RetryOnWebDriverException(() => func(element));
+        retryHelper.RetryOnWebDriverException(() => func(element), retryAction);
     }
 }

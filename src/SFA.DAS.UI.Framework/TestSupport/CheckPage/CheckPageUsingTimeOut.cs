@@ -10,11 +10,11 @@ public abstract class CheckPageUsingTimeOut(ScenarioContext context) : CheckPage
 
     public override bool IsPageDisplayed() => IsPageDisplayed(() => 
     {
-        var idenifier = Identifier;
+        var identfier = Identifier;
 
-        SetDebugInformation($"Check the page using Identifier: '{idenifier}'");
+        SetDebugInformation($"Check the page using Identifier: '{identfier}'");
 
-        return checkPageInteractionHelper.VerifyPage(idenifier); 
+        return checkPageInteractionHelper.VerifyPage(identfier); 
     });
 
     protected bool IsPageDisplayedUsingPageTitle(string pageTitle) => IsPageDisplayed(() =>

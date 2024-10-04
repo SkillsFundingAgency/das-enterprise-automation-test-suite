@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.ProviderFeedback.UITests.Project.Tests.Features
+namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -100,7 +100,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the apprentice logs into apprentice portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("apprentice completes the feedback journey for a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the apprentice is eligible to give feedback on their providers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+ testRunner.And("the apprentice has not provided feedback previously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.Then("the feedback status shows as Pending", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.When("apprentice completes the feedback journey for a training provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 12
+ testRunner.Then("the feedback status shows as Submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

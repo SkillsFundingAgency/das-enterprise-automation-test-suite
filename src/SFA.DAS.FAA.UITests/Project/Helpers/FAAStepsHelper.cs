@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
+using SFA.DAS.Login.Service.Project;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers;
 

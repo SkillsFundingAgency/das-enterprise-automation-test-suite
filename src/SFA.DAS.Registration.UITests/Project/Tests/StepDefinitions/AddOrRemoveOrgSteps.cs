@@ -69,9 +69,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
 
         private void VerifyOrgDetails(string orgNumber, string OrgName, string orgAddress)
         {
-            StringAssert.AreEqualIgnoringCase(orgNumber, _checkYourDetailsPage.GetOrganisationNumber());
-            StringAssert.AreEqualIgnoringCase(OrgName, _checkYourDetailsPage.GetOrganisationName());
-            StringAssert.Contains(orgAddress, _checkYourDetailsPage.GetOrganisationAddress());
+            StringAssert.AreEqualIgnoringCase(orgNumber, _checkYourDetailsPage.GetOrganisationNumber(), "Org number does not match");
+            StringAssert.AreEqualIgnoringCase(OrgName, _checkYourDetailsPage.GetOrganisationName(), "Org name does not match");
+            Assert.That(orgAddress, Does.Contain(orgAddress).IgnoreCase, "Org address does not match");
         }
 
         private void AddOrgToTheAccount(OrgType orgType)

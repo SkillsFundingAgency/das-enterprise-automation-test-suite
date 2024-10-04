@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAA.DataGenerator.Project.Config;
+﻿using SFA.DAS.Login.Service.Project;
+using SFA.DAS.RAA.DataGenerator.Project.Config;
 
 namespace SFA.DAS.FAA.UITests.Project;
 
