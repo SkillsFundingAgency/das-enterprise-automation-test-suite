@@ -17,7 +17,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
         {
             protected override By Identifier => FirstOption;
 
-            public TrainingProviderListPopulated(ScenarioContext context) : base(context) => checkPageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([2, 2, 2]));
+            public TrainingProviderListPopulated(ScenarioContext context) : base(context) => checkPageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([5, 5, 5]));
 
             public bool IsPageDisplayed(ProviderConfig providerConfig, Action retryAction) { checkPageInteractionHelper.WaitForElementToChange(FirstOption, AttributeHelper.InnerText, providerConfig.Ukprn, retryAction); return true; }
         }
