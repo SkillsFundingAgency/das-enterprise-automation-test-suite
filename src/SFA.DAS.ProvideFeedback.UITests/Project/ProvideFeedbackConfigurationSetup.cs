@@ -14,6 +14,7 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using TechTalk.SpecFlow;
 using SFA.DAS.Login.Service.Project;
+using SFA.DAS.ProviderLogin.Service.Project;
 
 namespace SFA.DAS.ProvideFeedback.UITests.Project;
 

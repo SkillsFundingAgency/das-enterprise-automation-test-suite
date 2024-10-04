@@ -34,6 +34,7 @@ public class ProviderHomePage : InterimProviderBasePage
     protected static By AppsIndicativeEarningsReport => By.LinkText("Apps Indicative earnings report");
 
     protected static By YourStandardsAndTrainingVenues => By.LinkText("Your standards and training venues");
+    protected static By YourFeedback => By.LinkText("Your feedback");
 
     public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
 
