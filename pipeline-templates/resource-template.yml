@@ -42,6 +42,10 @@ stages:
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
+- template: stage/demo.yml
+  parameters:
+    TestFilter: ${{ parameters.TestFilter }}
+    TestDlls: ${{ parameters.TestDlls }}    
 - template: stage/preprod.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
