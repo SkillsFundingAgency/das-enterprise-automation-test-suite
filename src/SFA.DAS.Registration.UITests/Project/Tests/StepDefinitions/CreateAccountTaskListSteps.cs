@@ -44,6 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         public void WhenUserLogsOutAndLogsBackIn()
         {
             var loggedInAccountUser = _objectContext.GetLoginCredentials();
+
             _createYourEmployerAccountPage.SignOut()
                 .CickContinueInYouveLoggedOutPage()
                 .GoToStubSignInPage()
@@ -130,11 +131,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
             return _createYourEmployerAccountPage;
         }
 
-        [Then(@"user accepts agreement having already acknowledged")]
-        public CreateYourEmployerAccountPage UserCanAcceptEmployerAgreement()
-        {
-            return _createYourEmployerAccountPage = AccountCreationTaskListStepsHelper.AcceptEmployerAgreementWhenAlreadyAcknowledged(_createYourEmployerAccountPage);
-        }
+        [Then(@"user accepts agreement from the home page")]
+        public void UserAcceptsAgreementFromTheHomePage() => AccountCreationStepsHelper.SignAgreementFromHomePage(new HomePage(_context));
         
         [When(@"user (.*) add training provider and (.*), the user (.*) grant training provider permissions")]
         public void UserAddTrainingProviderAndGrantPermission(bool canAddTrainingProvider, bool doesAdd, bool doesGrant)

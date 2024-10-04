@@ -16,7 +16,7 @@ Scenario: RE_TL_04_Employer Agreement on task list
 	Then user can update account name
 	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>, the user <DoesGrantProviderPermissions> grant training provider permissions
 	When user logs out and log back in
-	Then user accepts agreement having already acknowledged
+	Then user accepts agreement from the home page
 		
 Examples:
 	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | DoesGrantProviderPermissions |
