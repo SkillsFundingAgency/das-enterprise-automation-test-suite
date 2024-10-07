@@ -16,7 +16,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 
         protected static By GetAnAdvisorInLancashire => By.CssSelector("li:nth-child(2) a:nth-child(1)");
         protected static By GetAnAdvisorInGreaterLondon => By.CssSelector("li:nth-child(2) a:nth-child(1)");
-        protected static By GetAnAdvisorInNorthEast => By.CssSelector("li:nth-child(3) a:nth-child(1)");
+        protected static By GetAnAdvisorInNorthEast => By.CssSelector("li:nth-child(2) a:nth-child(1)");
 
         public EarlyConnectHomePage AcceptCookieAndAlert()
         {
