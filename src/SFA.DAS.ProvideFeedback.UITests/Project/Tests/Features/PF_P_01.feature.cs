@@ -76,14 +76,12 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("PF_P_01 Provider logs in to view feedback")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
         public void PF_P_01ProviderLogsInToViewFeedback()
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_01 Provider logs in to view feedback", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -93,8 +91,59 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "AcademicYear",
+                            "Rating"});
+                table1.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table1.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table1.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table1.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table1.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table1.AddRow(new string[] {
+                            "Previous",
+                            "Poor"});
+                table1.AddRow(new string[] {
+                            "Previous",
+                            "Poor"});
+                table1.AddRow(new string[] {
+                            "Previous",
+                            "Poor"});
+                table1.AddRow(new string[] {
+                            "Previous",
+                            "Poor"});
+                table1.AddRow(new string[] {
+                            "Previous",
+                            "Poor"});
+#line 6
+testRunner.Given("the provider has been rated as follows", ((string)(null)), table1, "Given ");
+#line hidden
+#line 18
+testRunner.When("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 19
+testRunner.Then("their overall score is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 20
+testRunner.When("they select the tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 21
+testRunner.Then("their score for that year is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 22
+testRunner.When("they select the tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 23
+testRunner.Then("their score for that year is \'Poor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

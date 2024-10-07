@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages.Provider
 {
@@ -10,10 +11,5 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.Click(YourFeedback);
             return new(context, false);
         }
-    }
-
-    public class FeedbackOverviewPage(ScenarioContext context, bool navigate = false)
-    {
-
     }
 }
