@@ -4,7 +4,7 @@ namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 
 public class DfeSignInPage(ScenarioContext context) : SignInBasePage(context)
 {
-    public static string DfePageTitle => "Access the DfE Sign-in service";
+    public static string DfePageTitle => "Department for Education Sign-in";
 
     public static By DfePageIdentifier => By.CssSelector(DfePageIdentifierCss);
 

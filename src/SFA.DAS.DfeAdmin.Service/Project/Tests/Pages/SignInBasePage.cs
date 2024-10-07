@@ -20,7 +20,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
     protected override string PageTitle => "Sign in"; 
 
-    protected override By ContinueButton => By.XPath("//button[contains(text(),'Next')]");
+    protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
     #region Locators
     private static By UsernameField => By.Id("username");
