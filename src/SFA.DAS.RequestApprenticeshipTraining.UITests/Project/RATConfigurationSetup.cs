@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.Login.Service;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project
@@ -16,7 +16,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project
             context.SetEasLoginUser(
             [
                 _configSection.GetConfigSection<RATOwnerUser>()
-            ]);            
+            ]);
         }
 
 

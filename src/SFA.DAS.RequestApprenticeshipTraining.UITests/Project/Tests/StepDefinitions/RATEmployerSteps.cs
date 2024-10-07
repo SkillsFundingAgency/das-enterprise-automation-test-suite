@@ -1,12 +1,8 @@
-﻿using SFA.DAS.Login.Service;
+﻿using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project;
-using TechTalk.SpecFlow;
-using Polly;
 using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
+using TechTalk.SpecFlow;
 
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefinitions
@@ -26,14 +22,14 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefini
             _rATloginHelper = new RATLoginHelper(context);
         }
 
-    [Given(@"the user clicks on ask if training providers can run this course as employer owner")]
+        [Given(@"the user clicks on ask if training providers can run this course as employer owner")]
         public void GivenTheUserClicksOnAskIfTrainingProvidersCanRunThisCourseAsEmployerOwner() => _rATloginHelper.RATTransitionLinkPage();
 
         [Then(@"the Employer logs in using employer RAT Account")]
         public void ThenTheEmployerLogsInUsingEmployerRatAccount()
         {
             _employerLoginHelper.Login(context.GetUser<RATOwnerUser>(), true);
-            
+
         }
 
     }
