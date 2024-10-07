@@ -15,65 +15,65 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
     using TechTalk.SpecFlow;
     using System;
     using System.Linq;
-    
-    
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("NonUcasStudentJourney")]
     public partial class NonUcasStudentJourneyFeature
     {
-        
+
         private TechTalk.SpecFlow.ITestRunner testRunner;
-        
+
         private static string[] featureTags = ((string[])(null));
-        
+
 #line 1 "NonUcasStudentJourney.feature"
 #line hidden
-        
+
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "NonUcasStudentJourney", "As a user I want to be able to fill online form for student interest in apprentic" +
-                    "eship \r\nso that my data will be available for futher progress ", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "NonUcasStudentJourney", "As a user I want to be able to fill online form for student inter" +
+                    "est in apprenticeship \r\nso that my data will be available for futher progress ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
-        
+
         [NUnit.Framework.OneTimeTearDownAttribute()]
         public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
-        
+
         [NUnit.Framework.SetUpAttribute()]
         public void TestInitialize()
         {
         }
-        
+
         [NUnit.Framework.TearDownAttribute()]
         public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
-        
+
         public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
         }
-        
+
         public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
-        
+
         public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
-        
+
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Non Ucas Student journey for NorthEast Region")]
         [NUnit.Framework.CategoryAttribute("ec-v1")]
@@ -88,7 +88,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Non Ucas Student journey for NorthEast Region", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
-this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -98,16 +98,61 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 10
- testRunner.Given("I am on the landing page for a region", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                testRunner.Given("I am on the landing page for a region", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 11
- testRunner.And("I enter valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                testRunner.And("I selected North East Advisor Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("I answer the triage questions related to me", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                testRunner.And("I enter valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.Then("I check my answers, accept and submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                testRunner.And("I answer the triage questions related to me", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+                testRunner.Then("I check my answers, accept and submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify Non Ucas Student journey for Lancashire Region")]
+        [NUnit.Framework.CategoryAttribute("ec-v1")]
+        [NUnit.Framework.CategoryAttribute("earlyconnect-ui")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void VerifyNonUcasStudentJourneyForLancashireRegion()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "ec-v1",
+                    "earlyconnect-ui",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Non Ucas Student journey for Lancashire Region", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 20
+            this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 21
+                testRunner.Given("I am on the landing page for a region", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 22
+                testRunner.And("I selected Lancashire Advisor Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 23
+                testRunner.And("I enter valid details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 24
+                testRunner.And("I answer the triage questions related to me", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+                testRunner.Then("I check my answers, accept and submit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

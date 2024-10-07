@@ -32,5 +32,10 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             formCompletionHelper.Click(GetAnAdvisorInNorthEast);
             return new EarlyConnectHomePage(context);
         }
+        public EarlyConnectHomePage SelectLancashire()
+        {
+            formCompletionHelper.Click(GetAnAdvisorInLancashire);
+            return new EarlyConnectHomePage(context);
+        }
     }
 }
