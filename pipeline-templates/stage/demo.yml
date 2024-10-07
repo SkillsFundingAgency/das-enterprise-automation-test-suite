@@ -1,0 +1,19 @@
+parameters:
+  TestFilter:
+  TestDlls:
+
+stages:
+- stage: Deploy_DEMO
+  dependsOn: []
+  displayName: Run test suite on DEMO
+  condition: eq(variables['Build.Reason'], 'Manual')
+  variables:  
+  - group: DEMO Automation Suite Variables
+  - group: DEMO DevTest Shared Resources
+  jobs:
+  - template: ../job/demo-api.yml
+    parameters:
+      Environment: TEST
+      ServiceConnection: SFA-DAS-DevTest-ARM
+      TestFilter: ${{ parameters.TestFilter }}
+      TestDlls: ${{ parameters.TestDlls }}

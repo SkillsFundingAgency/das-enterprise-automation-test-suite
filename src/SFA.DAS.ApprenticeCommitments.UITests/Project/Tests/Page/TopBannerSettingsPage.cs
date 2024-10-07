@@ -15,26 +15,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ChangeYourPersonalDetailsPage NavigateToChangeYourPersonalDetails()
         {
             NavigateToSettings("Change your personal details");
+
             return new ChangeYourPersonalDetailsPage(context);
         }
 
-        public ForgottenYourPasswordPage NavigateToChangeYourPassword()
-        {
-            NavigateToSettings("Change your password");
-            return new ForgottenYourPasswordPage(context);
-        }
-
-        public ChangeYourEmailAddressPage NavigateToChangeYourEmailAddress()
-        {
-            NavigateToSettings("Change your email address");
-            return new ChangeYourEmailAddressPage(context);
-        }
-
-        protected void ClickAccountSettings() => formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
-
         protected void NavigateToSettings(string settingsName)
         {
-            ClickAccountSettings();
+            formCompletionHelper.ClickLinkByText(NavigationLink, "Account settings");
+
             formCompletionHelper.ClickLinkByText(NavigationSubLink, settingsName);
         }
     }

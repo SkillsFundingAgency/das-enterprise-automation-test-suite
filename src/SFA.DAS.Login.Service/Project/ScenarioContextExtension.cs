@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Login.Service
+namespace SFA.DAS.Login.Service.Project
 {
     public static class ScenarioContextExtension
     {
@@ -47,6 +47,24 @@ namespace SFA.DAS.Login.Service
                 users[i].FullName = signInIds[i].displayName;
 
                 SetUser(context, users[i]);
+            }
+        }
+
+        public static void SetApprenticeAccountsPortalUser(this ScenarioContext context, List<ApprenticeUser> users)
+        {
+            var signInIds = new ApprenticeAccountsStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                users[i].IdOrUserRef = signInIds[i].signInId;
+
+                users[i].FirstName = signInIds[i].firstName;
+
+                users[i].LastName = signInIds[i].lastName;
+
+                users[i].Id = signInIds[i].id;
+
+                SetUser(context, users[i]); 
             }
         }
 

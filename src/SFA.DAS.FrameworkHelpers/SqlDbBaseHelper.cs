@@ -1,11 +1,10 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using static SFA.DAS.FrameworkHelpers.WaitConfigurationHelper;
 
 namespace SFA.DAS.FrameworkHelpers;
 
-public partial class SqlDbBaseHelper(ObjectContext objectContext, string connectionString)
+public class SqlDbBaseHelper(ObjectContext objectContext, string connectionString)
 {
     protected bool waitForResults = false;
 
@@ -23,7 +22,7 @@ public partial class SqlDbBaseHelper(ObjectContext objectContext, string connect
 
     public int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {
-        SetDebugInformation($"ExecuteSqlCommand:{Environment.NewLine}{queryToExecute}");
+        SetDebugInformation($"ExecuteSqlCommand : {SqlDbConfigHelper.GetDbName(connectionString)}{Environment.NewLine}{queryToExecute}");
 
         try
         {
@@ -59,7 +58,7 @@ public partial class SqlDbBaseHelper(ObjectContext objectContext, string connect
 
     private List<(List<object[]> data, int noOfColumns)> GetMultipleListOfData(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {
-        SetDebugInformation($"ReadDataFromDataBase:{Environment.NewLine}{string.Join(Environment.NewLine, queryToExecute)}");
+        SetDebugInformation($"ReadDataFromDataBase : {SqlDbConfigHelper.GetDbName(connectionString)}{Environment.NewLine}{string.Join(Environment.NewLine, queryToExecute)}");
 
         try
         {
@@ -86,7 +85,7 @@ public partial class SqlDbBaseHelper(ObjectContext objectContext, string connect
                     result = RetriveData(queryToExecute, dbConnection, command);
 
                     return false;
-                }, $"{queryToExecute.FirstOrDefault()}{Environment.NewLine}{WriteDebugMessage(connectionString)}").Wait();
+                }, $"{queryToExecute.FirstOrDefault()}{Environment.NewLine}{SqlDbConfigHelper.WriteDebugMessage(connectionString)}").Wait();
             }
 
             return result;
@@ -128,10 +127,5 @@ public partial class SqlDbBaseHelper(ObjectContext objectContext, string connect
 
     private static SqlConnection GetSqlConnection(string connectionString) => GetSqlConnectionHelper.GetSqlConnection(connectionString);
 
-    private static string WriteDebugMessage(string connectionString) => ConnectionStringRegex().Replace(connectionString, "Password=<*******>;Trusted_Connection");
-
     private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
-
-    [GeneratedRegex(@"Password=.*;Trusted_Connection")]
-    private static partial Regex ConnectionStringRegex();
 }

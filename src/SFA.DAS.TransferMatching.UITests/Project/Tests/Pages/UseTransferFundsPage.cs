@@ -9,7 +9,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Use transfer funds from";
 
-        private static By StartNowButton => By.XPath("//a[text()='Start now']");
+        private static By StartNowButton => By.LinkText("Start now");
 
         public AddTrainingProviderDetailsPage ClickOnStartNowButton()
         {

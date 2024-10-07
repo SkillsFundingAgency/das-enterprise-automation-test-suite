@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.EPAO.UITests.Project.Helpers;
+﻿using SFA.DAS.Login.Service.Project;
+
+namespace SFA.DAS.EPAO.UITests.Project.Helpers;
 
 public class EPAOWithdrawalHelper(ScenarioContext context)
 {

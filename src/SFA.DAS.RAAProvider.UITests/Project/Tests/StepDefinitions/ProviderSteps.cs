@@ -8,6 +8,9 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
     {
         private readonly ProviderStepsHelper _providerStepsHelper = new(context);
 
+        [Then(@"Provider can make the application in review")]
+        public void ThenProviderCanMakeTheApplicationInReview() => _providerStepsHelper.ApplicantReview();
+
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
