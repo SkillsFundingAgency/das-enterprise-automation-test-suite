@@ -13,4 +13,14 @@ public class FeedbackOverviewPage(ScenarioContext context, bool navigate = false
     {
         formCompletionHelper.Click(By.Id($"tab_app-{academicYear}"));
     }
+
+    public void VerifyEmployerFeedbackRating(string period, string expectedRating)
+    {
+        pageInteractionHelper.VerifyText(By.Id($"employer-rating-description-{period}"), expectedRating);
+    }
+
+    public void SelectEmployerTabForAcademicYear(string academicYear)
+    {
+        formCompletionHelper.Click(By.Id($"tab_emp-{academicYear}"));
+    }
 }

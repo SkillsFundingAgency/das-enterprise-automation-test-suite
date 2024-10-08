@@ -37,6 +37,10 @@ Given the provider has been rated by employers as follows
 	| Previous     | Excellent |
 	| Previous     | Excellent |
 	| Previous     | Excellent |
-#When The provider logs in to the provider portal
-#And the provider opts to view their feedback
-#Then their overall employer feedback score is 'Good'
+When The provider logs in to the provider portal
+And the provider opts to view their feedback
+Then their overall employer feedback score is 'Good'
+When they select the employer feedback tab for the current academic year
+Then their employer feedback score for that year is 'Poor'
+When they select the employer feedback tab for the previous academic year
+Then their employer feedback score for that year is 'Excellent'

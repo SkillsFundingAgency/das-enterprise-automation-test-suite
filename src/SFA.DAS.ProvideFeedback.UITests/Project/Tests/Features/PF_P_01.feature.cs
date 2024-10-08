@@ -207,6 +207,27 @@ this.ScenarioInitialize(scenarioInfo);
 #line 28
 testRunner.Given("the provider has been rated by employers as follows", ((string)(null)), table2, "Given ");
 #line hidden
+#line 40
+testRunner.When("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 41
+testRunner.And("the provider opts to view their feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+testRunner.Then("their overall employer feedback score is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 43
+testRunner.When("they select the employer feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 44
+testRunner.Then("their employer feedback score for that year is \'Poor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 45
+testRunner.When("they select the employer feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 46
+testRunner.Then("their employer feedback score for that year is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

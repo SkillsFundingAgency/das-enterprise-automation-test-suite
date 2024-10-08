@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+﻿using DnsClient;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.ProvideFeedback.UITests.Project.Models;
 using SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
@@ -113,5 +114,52 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
             var summaryPage = new FeedbackOverviewPage(context);
             summaryPage.VerifyApprenticeFeedbackRating(academicYear, rating);
         }
+
+        [Then(@"their overall employer feedback score is '([^']*)'")]
+        public void ThenTheirOverallEmployerFeedbackScoreIs(string rating)
+        {
+            var summaryPage = new FeedbackOverviewPage(context);
+            summaryPage.VerifyEmployerFeedbackRating("All", rating);
+
+        }
+
+        [When(@"they select the employer feedback tab for the current academic year")]
+        public void WhenTheySelectTheEmployerFeedbackTabForTheCurrentAcademicYear()
+        {
+            var academicYearHelper = new AcademicYearHelper();
+            var academicYear = academicYearHelper.GetCurrentAcademicYear();
+
+            var objectContext = context.Get<ObjectContext>();
+            objectContext.Set("academic-year", academicYear);
+
+            var summaryPage = new FeedbackOverviewPage(context);
+            summaryPage.SelectEmployerTabForAcademicYear(academicYear);
+        }
+
+        [Then(@"their employer feedback score for that year is '([^']*)'")]
+        public void ThenTheirEmployerFeedbackScoreForThatYearIs(string rating)
+        {
+            var objectContext = context.Get<ObjectContext>();
+            var academicYear = objectContext.Get("academic-year");
+
+            var summaryPage = new FeedbackOverviewPage(context);
+            summaryPage.VerifyEmployerFeedbackRating(academicYear, rating);
+        }
+
+        [When(@"they select the employer feedback tab for the previous academic year")]
+        public void WhenTheySelectTheEmployerFeedbackTabForThePreviousAcademicYear()
+        {
+            var academicYearHelper = new AcademicYearHelper();
+            var academicYear = academicYearHelper.GetPreviousAcademicYear();
+
+            var objectContext = context.Get<ObjectContext>();
+            objectContext.Replace("academic-year", academicYear);
+
+            var summaryPage = new FeedbackOverviewPage(context);
+            summaryPage.SelectEmployerTabForAcademicYear(academicYear);
+        }
+
+
+
     }
 }
