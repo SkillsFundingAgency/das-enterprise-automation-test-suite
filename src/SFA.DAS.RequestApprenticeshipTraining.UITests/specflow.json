@@ -12,7 +12,8 @@
     { "assembly": "SFA.DAS.ProviderLogin.Service" },
     { "assembly": "SFA.DAS.FAT-V2.UITests" },
     { "assembly": "SFA.DAS.MailosaurAPI.Service" },
-    { "assembly": "SFA.DAS.Login.Service" }
+    { "assembly": "SFA.DAS.Login.Service" },
+    { "assembly": "SFA.DAS.Registration.UITests" }
 
   ],
   "generator": {
