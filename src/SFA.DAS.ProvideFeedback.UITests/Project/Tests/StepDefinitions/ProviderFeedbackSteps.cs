@@ -12,15 +12,15 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
         [When(@"The provider logs in to the provider portal")]
         public void GivenTheProviderLogsInToTheProviderPortal()
         {
-           var homePage = GoToProviderHomePage(false);
-            var feedbackOverview = homePage.SelectYourFeedback();
-        }
-
-        public FeedbackProviderHomePage GoToProviderHomePage(bool newTab)
-        {
             var providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
             providerCommonStepsHelper.GoToProviderHomePage(false);
-            return new FeedbackProviderHomePage(context, false);
+        }
+
+        [When(@"the provider opts to view their feedback")]
+        public void WhenTheProviderOptsToViewTheirFeedback()
+        {
+            var homePage = new FeedbackProviderHomePage(context);
+            homePage.SelectYourFeedback();
         }
 
         [Given(@"the provider has been rated by apprentices as follows")]
@@ -44,7 +44,6 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
                 sqlHelper.CreateProviderFeedback(apprenticeshipId, ukprn, providerName, rating);
             }
             sqlHelper.GenerateFeedbackSummaries();
-
         }
 
         [Then(@"their overall apprentice feedback score is '([^']*)'")]

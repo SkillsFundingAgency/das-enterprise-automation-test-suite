@@ -16,6 +16,7 @@ Given the provider has been rated by apprentices as follows
 	| Previous     | Poor      |
 	| Previous     | Poor      |
 When The provider logs in to the provider portal
+And the provider opts to view their feedback
 Then their overall apprentice feedback score is 'Good'
 When they select the apprentice feedback tab for the current academic year
 Then their apprentice feedback score for that year is 'Excellent'

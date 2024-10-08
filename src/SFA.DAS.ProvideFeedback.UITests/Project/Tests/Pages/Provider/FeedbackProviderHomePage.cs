@@ -9,7 +9,7 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages.Provider
         public FeedbackOverviewPage SelectYourFeedback()
         {
             formCompletionHelper.Click(YourFeedback);
-            return new(context, false);
+            return new(context);
         }
     }
 }
