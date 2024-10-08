@@ -75,18 +75,20 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RAT_Emp_01_EmployerSingleLocatoinJourney")]
-        [NUnit.Framework.CategoryAttribute("RATEmployer")]
+        [NUnit.Framework.CategoryAttribute("ratemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("mailosaur")]
+        [NUnit.Framework.CategoryAttribute("rat")]
         public void RAT_Emp_01_EmployerSingleLocatoinJourney()
         {
             string[] tagsOfScenario = new string[] {
-                    "RATEmployer",
+                    "ratemployer",
                     "regression",
-                    "mailosaur"};
+                    "mailosaur",
+                    "rat"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_01_EmployerSingleLocatoinJourney", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,14 +98,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
+#line 8
  testRunner.Given("the User searches a course then navigates to the provider list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("the user clicks on ask if training providers can run this course as employer owne" +
                         "r", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
  testRunner.Then("the Employer logs in using employer RAT Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

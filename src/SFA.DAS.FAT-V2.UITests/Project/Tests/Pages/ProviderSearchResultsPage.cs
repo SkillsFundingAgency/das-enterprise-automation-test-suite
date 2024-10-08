@@ -15,6 +15,8 @@ public class ProviderSearchResultsPage(ScenarioContext context) : FATV2BasePage(
 
     protected override By PageHeader => By.ClassName("govuk-caption-xl");
 
+    private static By AskIfTrainingProvidersCanRunThisCourseLink => By.LinkText("Ask if training providers can run this course");
+
     #region Locators
     private static By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
     private static By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
@@ -22,6 +24,8 @@ public class ProviderSearchResultsPage(ScenarioContext context) : FATV2BasePage(
     private static By RemoveLocation => By.LinkText("Clear");
 
     #endregion
+
+    public void ClickAskProviders() => formCompletionHelper.Click(AskIfTrainingProvidersCanRunThisCourseLink);
 
     public ProviderSummaryPage SelectFirstProviderInTheList()
     {

@@ -1,7 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers.StubPages;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
@@ -17,7 +14,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
 
         public void TransitionToRATFromFAT()
         {
-            formCompletionHelper.Click(AskIfTrainingProvidersCanRunThisCourseLink);
-        }        
+            formCompletionHelper.Click(AskIfTrainingProvidersCanRunThisCourseLink); 
+        }
     }
 }
