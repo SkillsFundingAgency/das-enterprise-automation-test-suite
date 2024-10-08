@@ -147,5 +147,4 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
         element.SendKeys(text);
     }
-
 }

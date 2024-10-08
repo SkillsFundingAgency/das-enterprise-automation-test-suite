@@ -2,7 +2,9 @@
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using SFA.DAS.UI.FrameworkHelpers;
+using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -10,6 +12,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 {
     public class EnterYourTrainingProviderNameReferenceNumberUKPRNPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
     {
+
+        public class TrainingProviderListPopulated : CheckPageUsingLongerTimeOut
+        {
+            protected override By Identifier => FirstOption;
+
+            public TrainingProviderListPopulated(ScenarioContext context) : base(context) => checkPageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([5, 5, 5]));
+
+            public bool IsPageDisplayed(ProviderConfig providerConfig, Action retryAction) { checkPageInteractionHelper.WaitForElementToChange(FirstOption, AttributeHelper.InnerText, providerConfig.Ukprn, retryAction); return true; }
+        }
+
         protected override string PageTitle => "name or reference number (UKPRN)";
 
         private static By UKProviderReferenceNumberText => By.CssSelector("input[id='SearchTerm']");
@@ -36,22 +48,27 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         private void EnterATrainingProvider(ProviderConfig providerConfig)
         {
-            formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Name);
+            string a = string.Empty;
+
+            foreach (var i in providerConfig.Ukprn)
+            {
+                a = $"{i}";
+
+                formCompletionHelper.SendKeys(UKProviderReferenceNumberText, a);
+            }
 
             context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
             {
                 pageInteractionHelper.WaitForElementToChange(AutoCompleteMenu, "class", "autocomplete__menu--visible");
 
-                pageInteractionHelper.WaitForElementToChange(FirstOption, AttributeHelper.InnerText, providerConfig.Ukprn);
+                new TrainingProviderListPopulated(context).IsPageDisplayed(providerConfig, () => formCompletionHelper.SendKeys(UKProviderReferenceNumberText, $"{Keys.Backspace}{a}"));
 
                 if (!pageInteractionHelper.IsElementDisplayed(FirstOption) && !pageInteractionHelper.GetStringCollectionFromElementsGroup(AutoCompleteOptions).ToList().Any(x => x.ContainsCompareCaseInsensitive(providerConfig.Ukprn)))
                 {
                     Assert.Fail($"Auto complete menu for list of providers does not pop up provider : {providerConfig.Name}, {providerConfig.Ukprn}");
                 }
 
-                pageInteractionHelper.FocusTheElement(FirstOption);
-
-            }, RetryTimeOut.GetTimeSpan([10, 5, 5]));
+            }, RetryTimeOut.GetTimeSpan([10, 10, 10]));
 
             javaScriptHelper.ClickElement(FirstOption);
 

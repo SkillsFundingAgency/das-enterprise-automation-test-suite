@@ -76,7 +76,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_TL_01_CreateAccountByCompletingOneTaskAtATime(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string canGrantProviderPermissions, string doesGrantProviderPermissions, string[] exampleTags)
+        public virtual void RE_TL_01_CreateAccountByCompletingOneTaskAtATime(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string doesGrantProviderPermissions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression",
@@ -95,7 +95,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             argumentsOfScenario.Add("DoesSignEmployerAgreement", doesSignEmployerAgreement);
             argumentsOfScenario.Add("CanAddTrainingProvider", canAddTrainingProvider);
             argumentsOfScenario.Add("DoesAddTrainingProvider", doesAddTrainingProvider);
-            argumentsOfScenario.Add("CanGrantProviderPermissions", canGrantProviderPermissions);
             argumentsOfScenario.Add("DoesGrantProviderPermissions", doesGrantProviderPermissions);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_TL_01_Create Account by completing one task at a time", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
@@ -154,7 +153,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void RE_TL_01_CreateAccountByCompletingOneTaskAtATime_Doesnt()
         {
 #line 10
-this.RE_TL_01_CreateAccountByCompletingOneTaskAtATime("doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", ((string[])(null)));
+this.RE_TL_01_CreateAccountByCompletingOneTaskAtATime("doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", "cannot", "doesn\'t", "doesn\'t", ((string[])(null)));
 #line hidden
         }
     }

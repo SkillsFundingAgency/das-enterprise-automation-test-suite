@@ -74,12 +74,6 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
             .SignAgreement()
             .SelectContinueToCreateYourEmployerAccount();
 
-        internal static CreateYourEmployerAccountPage AcceptEmployerAgreementWhenAlreadyAcknowledged(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-          createEmployerAccountPage.GoToYourEmployerAgreementLink()
-            .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
-            .SignAgreementHavingAlreadyAcknowledged()
-            .ClickOnViewYourAccountButtonToReturnToTaskList();
-
         internal static HomePage AddTrainingProviderAndGrantPermission(CreateYourEmployerAccountPage createEmployerAccountPage, ProviderConfig providerConfig) =>
          createEmployerAccountPage.GoToTrainingProviderLink()
            .AddTrainingProviderNow()
