@@ -75,14 +75,14 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PF_P_01 Provider logs in to view feedback")]
+        [NUnit.Framework.DescriptionAttribute("PF_P_01 Provider logs in to view feedback from apprentices")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void PF_P_01ProviderLogsInToViewFeedback()
+        public void PF_P_01ProviderLogsInToViewFeedbackFromApprentices()
         {
             string[] tagsOfScenario = new string[] {
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_01 Provider logs in to view feedback", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_01 Provider logs in to view feedback from apprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -149,6 +149,63 @@ testRunner.When("they select the apprentice feedback tab for the previous academ
 #line hidden
 #line 25
 testRunner.Then("their apprentice feedback score for that year is \'Poor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("PF_P_02 Provider logs in to view feedback from employers")]
+        public void PF_P_02ProviderLogsInToViewFeedbackFromEmployers()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_02 Provider logs in to view feedback from employers", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "AcademicYear",
+                            "Rating"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Poor"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Poor"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Poor"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Poor"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Poor"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+#line 28
+testRunner.Given("the provider has been rated by employers as follows", ((string)(null)), table2, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -35,7 +35,7 @@ public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig c
         ExecuteSqlCommand(sql);
     }
 
-    public void CreateProviderFeedback(int apprenticeshipId, string ukprn, string providerName, ProviderRating rating)
+    public void CreateApprenticeProviderFeedback(int apprenticeshipId, string ukprn, string providerName, ProviderRating rating)
     {
         var targetId = Guid.NewGuid();
         var resultId = Guid.NewGuid();
@@ -59,7 +59,6 @@ public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig c
         ExecuteSqlCommand($"INSERT INTO [dbo].[ProviderAttribute]([ApprenticeFeedbackResultId],[AttributeId],[AttributeValue]) VALUES ('{resultId}',2,1)");
         ExecuteSqlCommand($"INSERT INTO [dbo].[ProviderAttribute]([ApprenticeFeedbackResultId],[AttributeId],[AttributeValue]) VALUES ('{resultId}',3,1)");
     }
-
 
     public void GenerateFeedbackSummaries()
     {

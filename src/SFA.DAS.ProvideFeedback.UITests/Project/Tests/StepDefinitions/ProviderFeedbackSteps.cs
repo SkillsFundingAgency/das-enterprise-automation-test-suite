@@ -41,10 +41,33 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
             foreach (var rating in data)
             {
                 apprenticeshipId++;
-                sqlHelper.CreateProviderFeedback(apprenticeshipId, ukprn, providerName, rating);
+                sqlHelper.CreateApprenticeProviderFeedback(apprenticeshipId, ukprn, providerName, rating);
             }
             sqlHelper.GenerateFeedbackSummaries();
         }
+
+        [Given(@"the provider has been rated by employers as follows")]
+        public void GivenTheProviderHasBeenRatedByEmployersAsFollows(Table table)
+        {
+            var objectContext = context.Get<ObjectContext>();
+            var dbConfig = context.Get<DbConfig>();
+            var providerConfig = context.GetProviderConfig<ProviderConfig>();
+            var ukprn = providerConfig.Ukprn;
+
+            var sqlHelper = new EmployerFeedbackSqlHelper(objectContext, dbConfig);
+
+            var data = table.CreateSet<ProviderRating>().ToList();
+
+            sqlHelper.ClearProviderFeedback(ukprn);
+            var accountId = 0;
+            foreach (var rating in data)
+            {
+                accountId++;
+                sqlHelper.CreateEmployerProviderFeedback(ukprn, accountId, rating);
+            }
+            sqlHelper.GenerateFeedbackSummaries();
+        }
+
 
         [Then(@"their overall apprentice feedback score is '([^']*)'")]
         public void ThenTheirOverallScoreIs(string rating)
