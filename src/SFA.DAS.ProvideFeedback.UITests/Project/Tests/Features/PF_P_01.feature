@@ -2,6 +2,7 @@
 
 As a Provider, I want to be able to login to view feedback left by Apprentices and Employers
 
+@regression
 Scenario: PF_P_01 Provider logs in to view feedback
 Given the provider has been rated by apprentices as follows
 	| AcademicYear | Rating    |
@@ -22,5 +23,3 @@ When they select the apprentice feedback tab for the current academic year
 Then their apprentice feedback score for that year is 'Excellent'
 When they select the apprentice feedback tab for the previous academic year
 Then their apprentice feedback score for that year is 'Poor'
-
-
