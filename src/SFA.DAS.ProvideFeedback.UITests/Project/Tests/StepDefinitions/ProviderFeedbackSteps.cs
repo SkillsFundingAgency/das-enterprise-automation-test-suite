@@ -1,6 +1,4 @@
-﻿using DnsClient;
-using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.ProvideFeedback.UITests.Project.Models;
 using SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
@@ -25,36 +23,39 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
             return new FeedbackProviderHomePage(context, false);
         }
 
-        [Given(@"the provider has been rated as follows")]
-        public void GivenTheProviderHasBeenRatedAsFollows(Table table)
+        [Given(@"the provider has been rated by apprentices as follows")]
+        public void GivenTheProviderHasBeenRatedByApprenticesAsFollows(Table table)
         {
             var objectContext = context.Get<ObjectContext>();
             var dbConfig = context.Get<DbConfig>();
             var providerConfig = context.GetProviderConfig<ProviderConfig>();
             var ukprn = providerConfig.Ukprn;
+            var providerName = providerConfig.Name;
 
             var sqlHelper = new ApprenticeFeedbackSqlHelper(objectContext, dbConfig);
 
             var data = table.CreateSet<ProviderRating>().ToList();
 
             sqlHelper.ClearProviderFeedback(ukprn);
+            var apprenticeshipId = 0;
             foreach (var rating in data)
             {
-                sqlHelper.CreateProviderFeedback(ukprn, rating);
+                apprenticeshipId++;
+                sqlHelper.CreateProviderFeedback(apprenticeshipId, ukprn, providerName, rating);
             }
             sqlHelper.GenerateFeedbackSummaries();
 
         }
 
-        [Then(@"their overall score is '([^']*)'")]
+        [Then(@"their overall apprentice feedback score is '([^']*)'")]
         public void ThenTheirOverallScoreIs(string rating)
         {
             var summaryPage = new FeedbackOverviewPage(context);
-            summaryPage.VerifyRating("All", rating);
+            summaryPage.VerifyApprenticeFeedbackRating("All", rating);
         }
 
 
-        [When(@"they select the tab for the current academic year")]
+        [When(@"they select the apprentice feedback tab for the current academic year")]
         public void WhenTheySelectTheTabForTheCurrentAcademicYear()
         {
             var academicYearHelper = new AcademicYearHelper();
@@ -67,7 +68,7 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
             summaryPage.SelectApprenticeTabForAcademicYear(academicYear);
         }
 
-        [When(@"they select the tab for the previous academic year")]
+        [When(@"they select the apprentice feedback tab for the previous academic year")]
         public void WhenTheySelectTheTabForThePreviousAcademicYear()
         {
             var academicYearHelper = new AcademicYearHelper();
@@ -81,14 +82,14 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
         }
 
 
-        [Then(@"their score for that year is '([^']*)'")]
+        [Then(@"their apprentice feedback score for that year is '([^']*)'")]
         public void ThenTheirScoreForThatYearIs(string rating)
         {
             var objectContext = context.Get<ObjectContext>();
             var academicYear = objectContext.Get("academic-year");
 
             var summaryPage = new FeedbackOverviewPage(context);
-            summaryPage.VerifyRating(academicYear, rating);
+            summaryPage.VerifyApprenticeFeedbackRating(academicYear, rating);
         }
     }
 }

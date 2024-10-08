@@ -125,25 +125,25 @@ this.ScenarioInitialize(scenarioInfo);
                             "Previous",
                             "Poor"});
 #line 6
-testRunner.Given("the provider has been rated as follows", ((string)(null)), table1, "Given ");
+testRunner.Given("the provider has been rated by apprentices as follows", ((string)(null)), table1, "Given ");
 #line hidden
 #line 18
 testRunner.When("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
-testRunner.Then("their overall score is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("their overall apprentice feedback score is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 20
-testRunner.When("they select the tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("they select the apprentice feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 21
-testRunner.Then("their score for that year is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("their apprentice feedback score for that year is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 22
-testRunner.When("they select the tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("they select the apprentice feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
-testRunner.Then("their score for that year is \'Poor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("their apprentice feedback score for that year is \'Poor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

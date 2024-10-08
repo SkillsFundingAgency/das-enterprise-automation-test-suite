@@ -5,8 +5,6 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Helpers;
 
 public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.ApprenticeFeedbackDbConnectionString)
 {
-    private long _apprenticeshipId = 0;
-
     public void RemoveAllFeedback(string apprenticeshipId)
     {
         var query = $"select id into #appfeedbacktargetid from ApprenticeFeedbackTarget where ApprenticeId = '{apprenticeshipId}' " +
@@ -37,14 +35,13 @@ public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig c
         ExecuteSqlCommand(sql);
     }
 
-    public void CreateProviderFeedback(string ukprn, ProviderRating rating)
+    public void CreateProviderFeedback(int apprenticeshipId, string ukprn, string providerName, ProviderRating rating)
     {
         var targetId = Guid.NewGuid();
         var resultId = Guid.NewGuid();
-        var apprenticeshipId = _apprenticeshipId++;
 
         var sql = $"INSERT INTO [dbo].[ApprenticeFeedbackTarget]([Id], [ApprenticeId], [ApprenticeshipId], [Status], [StartDate], [EndDate], [Ukprn], [ProviderName], [StandardUId], [LarsCode], [StandardName], [FeedbackEligibility], [EligibilityCalculationDate], [CreatedOn], [UpdatedOn], [Withdrawn], [IsTransfer], [DateTransferIdentified], [ApprenticeshipStatus])" +
-                  $"VALUES ('{targetId}', 'B46EDA62-4621-4187-AA2B-A65280B41BDC', {apprenticeshipId}, 2, GETDATE(), DATEADD(year, 2, GETDATE()), {ukprn}, 'MERCEDES-BENZ CARS UK LIMITED', 'ST0005_1.1', 119, NULL, 1, GETDATE(), GETDATE(), GETDATE(), 0, 0, NULL, 1);";
+                  $"VALUES ('{targetId}', 'B46EDA62-4621-4187-AA2B-A65280B41BDC', {apprenticeshipId}, 2, GETDATE(), DATEADD(year, 2, GETDATE()), {ukprn}, '{providerName}', 'ST0005_1.1', 119, NULL, 1, GETDATE(), GETDATE(), GETDATE(), 0, 0, NULL, 1);";
 
         ExecuteSqlCommand(sql);
 

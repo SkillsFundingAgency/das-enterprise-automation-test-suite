@@ -2,7 +2,7 @@
 
 public class FeedbackOverviewPage(ScenarioContext context, bool navigate = false) : ProviderFeedbackBasePage(context, true)
 {
-    public void VerifyRating(string period, string expectedRating)
+    public void VerifyApprenticeFeedbackRating(string period, string expectedRating)
     {
         pageInteractionHelper.VerifyText(By.Id($"apprentice-rating-description-{period}"), expectedRating);
     }
