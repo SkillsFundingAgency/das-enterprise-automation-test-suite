@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>SFA.DAS.AggregatedEmployerDemand.UITests</RootNamespace>
+    <RootNamespace>SFA.DAS.FAT.UITests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -15,26 +15,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
-	<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.FAT.UITests\SFA.DAS.FAT.UITests.csproj" />
-    <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-	<ProjectReference Include="..\SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+<ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
-		</None>
+    </None>
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
