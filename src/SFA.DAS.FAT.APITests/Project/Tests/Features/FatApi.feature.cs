@@ -20,22 +20,22 @@ namespace SFA.DAS.FAT.APITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FatV2Api")]
-    public partial class FatV2ApiFeature
+    [NUnit.Framework.DescriptionAttribute("FatApi")]
+    public partial class FatApiFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FatV2Api.feature"
+#line 1 "FatApi.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "FatV2Api", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "FatApi", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,7 +73,7 @@ namespace SFA.DAS.FAT.APITests.Project.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyFatV2Api(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
+        public virtual void VerifyFatApi(string testCaseId, string method, string endpoint, string payload, string responseStatus, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -90,7 +90,7 @@ namespace SFA.DAS.FAT.APITests.Project.Tests.Features
             argumentsOfScenario.Add("Endpoint", endpoint);
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatApi", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,42 +112,42 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2001")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatApi: Fat001")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyFatV2Api_Fatv2001()
+        public void VerifyFatApi_Fat001()
         {
 #line 6
-this.VerifyFatV2Api("Fatv2001", "GET", "/epaos/EPA0241", "fatv2epaos.json", "OK", ((string[])(null)));
+this.VerifyFatApi("Fat001", "GET", "/epaos/EPA0241", "fatepaos.json", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2002")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatApi: Fat002")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyFatV2Api_Fatv2002()
+        public void VerifyFatApi_Fat002()
         {
 #line 6
-this.VerifyFatV2Api("Fatv2002", "GET", "/epaos/EPA0241/courses", "", "OK", ((string[])(null)));
+this.VerifyFatApi("Fat002", "GET", "/epaos/EPA0241/courses", "", "OK", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2003")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatApi: Fat003")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyFatV2Api_Fatv2003()
+        public void VerifyFatApi_Fat003()
         {
 #line 6
-this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
+this.VerifyFatApi("Fat003", "GET", "/epaos", "", "OK", ((string[])(null)));
 #line hidden
         }
         
-        public virtual void VerifyFatV2ApiCourse(string testCaseId, string method, string endpoint, string payload, string responseStatus, string responseContent, string[] exampleTags)
+        public virtual void VerifyFatApiCourse(string testCaseId, string method, string endpoint, string payload, string responseStatus, string responseContent, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "api",
@@ -165,7 +165,7 @@ this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
             argumentsOfScenario.Add("Payload", payload);
             argumentsOfScenario.Add("ResponseStatus", responseStatus);
             argumentsOfScenario.Add("ResponseContent", responseContent);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api course", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatApi course", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -187,30 +187,30 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api course: Fatv2004")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatApi course: Fat004")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyFatV2ApiCourse_Fatv2004()
+        public void VerifyFatApiCourse_Fat004()
         {
 #line 19
-this.VerifyFatV2ApiCourse("Fatv2004", "GET", "/epaos/EPA0241/courses", "", "OK", "EPA0241", ((string[])(null)));
+this.VerifyFatApiCourse("Fat004", "GET", "/epaos/EPA0241/courses", "", "OK", "EPA0241", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify FatV2Api EPAO")]
+        [NUnit.Framework.DescriptionAttribute("Verify FatApi EPAO")]
         [NUnit.Framework.CategoryAttribute("api")]
         [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void VerifyFatV2ApiEPAO()
+        public void VerifyFatApiEPAO()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
                     "fatapi",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api EPAO", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatApi EPAO", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

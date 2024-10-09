@@ -8,6 +8,6 @@ namespace SFA.DAS.FAT.APITests.Project
     public class BeforeScenarioHooks(ScenarioContext context)
     {
         [BeforeScenario(Order = 32)]
-        public void SetUpHelpers() => context.SetRestClient(new FatV2RestClient(context.Get<ObjectContext>(), context.GetOuter_ApiAuthTokenConfig()));
+        public void SetUpHelpers() => context.SetRestClient(new FatRestClient(context.Get<ObjectContext>(), context.GetOuter_ApiAuthTokenConfig()));
     }
 }

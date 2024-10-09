@@ -6,9 +6,9 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.FAT.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class Fatv2ApiSteps(ScenarioContext context)
+    public class FatApiSteps(ScenarioContext context)
     {
-        private readonly FatV2RestClient _restClient = context.GetRestClient<FatV2RestClient>();
+        private readonly FatRestClient _restClient = context.GetRestClient<FatRestClient>();
 
         [When(@"the user sends (GET|POST) request to (.*) with payload (.*)")]
         public void TheUserSendsRequestTo(Method method, string endppoint, string payload) => CreateRestRequest(method, endppoint, payload);

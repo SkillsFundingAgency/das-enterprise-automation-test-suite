@@ -4,7 +4,7 @@ using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.FAT.APITests.Project
 {
-    public class FatV2RestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config)
+    public class FatRestClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config)
     {
         protected override string ApiName => "/epaoregister";
     }
