@@ -23,4 +23,9 @@ public class FeedbackOverviewPage(ScenarioContext context, bool navigate = false
     {
         formCompletionHelper.Click(By.Id($"tab_emp-{academicYear}"));
     }
+
+    public void VerifyText(string expectedText)
+    {
+        pageInteractionHelper.IsElementDisplayed(By.XPath($"//*[text()='{expectedText}']"));
+    }
 }

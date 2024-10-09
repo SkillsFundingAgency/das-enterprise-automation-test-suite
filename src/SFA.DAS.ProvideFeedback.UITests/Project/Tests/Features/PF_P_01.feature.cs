@@ -75,15 +75,19 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PF_P_01 Provider logs in to view feedback from apprentices")]
+        [NUnit.Framework.DescriptionAttribute("PF_P_01 Provider logs in to view feedback from apprentices when the minimum numbe" +
+            "r of reviews has not been reached")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void PF_P_01ProviderLogsInToViewFeedbackFromApprentices()
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        public void PF_P_01ProviderLogsInToViewFeedbackFromApprenticesWhenTheMinimumNumberOfReviewsHasNotBeenReached()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression"};
+                    "regression",
+                    "donotexecuteinparallel"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_01 Provider logs in to view feedback from apprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_01 Provider logs in to view feedback from apprentices when the minimum numbe" +
+                    "r of reviews has not been reached", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -101,67 +105,42 @@ this.ScenarioInitialize(scenarioInfo);
                             "Excellent"});
                 table1.AddRow(new string[] {
                             "Current",
-                            "Excellent"});
+                            "VeryPoor"});
                 table1.AddRow(new string[] {
                             "Current",
                             "Excellent"});
                 table1.AddRow(new string[] {
                             "Current",
                             "Good"});
-                table1.AddRow(new string[] {
-                            "Current",
-                            "Good"});
-                table1.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
-                table1.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
-                table1.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
-                table1.AddRow(new string[] {
-                            "Previous",
-                            "Good"});
-                table1.AddRow(new string[] {
-                            "Previous",
-                            "Poor"});
-#line 7
+#line 8
 testRunner.Given("the provider has been rated by apprentices as follows", ((string)(null)), table1, "Given ");
 #line hidden
-#line 19
+#line 14
 testRunner.When("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 20
+#line 15
 testRunner.And("the provider opts to view their feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
-testRunner.Then("their overall apprentice feedback score is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 22
-testRunner.When("they select the apprentice feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 23
-testRunner.Then("their apprentice feedback score for that year is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 24
-testRunner.When("they select the apprentice feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 25
-testRunner.Then("their apprentice feedback score for that year is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+testRunner.Then("they see the following text: \"You\'ll see apprentice reviews after at least 5 appr" +
+                        "entices give feedback during an academic year.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PF_P_02 Provider logs in to view feedback from employers")]
-        public void PF_P_02ProviderLogsInToViewFeedbackFromEmployers()
+        [NUnit.Framework.DescriptionAttribute("PF_P_02 Provider logs in to view feedback from apprentices")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        public void PF_P_02ProviderLogsInToViewFeedbackFromApprentices()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "donotexecuteinparallel"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_02 Provider logs in to view feedback from employers", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_02 Provider logs in to view feedback from apprentices", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -188,7 +167,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Good"});
                 table2.AddRow(new string[] {
                             "Current",
-                            "Poor"});
+                            "Good"});
                 table2.AddRow(new string[] {
                             "Previous",
                             "Excellent"});
@@ -204,28 +183,153 @@ this.ScenarioInitialize(scenarioInfo);
                 table2.AddRow(new string[] {
                             "Previous",
                             "Poor"});
-#line 28
-testRunner.Given("the provider has been rated by employers as follows", ((string)(null)), table2, "Given ");
+#line 21
+testRunner.Given("the provider has been rated by apprentices as follows", ((string)(null)), table2, "Given ");
 #line hidden
-#line 40
+#line 33
 testRunner.When("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 41
+#line 34
 testRunner.And("the provider opts to view their feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 42
-testRunner.Then("their overall employer feedback score is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 35
+testRunner.Then("their overall apprentice feedback score is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 36
+testRunner.When("they select the apprentice feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
+testRunner.Then("their apprentice feedback score for that year is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 38
+testRunner.When("they select the apprentice feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 39
+testRunner.Then("their apprentice feedback score for that year is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("PF_P_03 Provider logs in to view feedback from employers when the minimum number " +
+            "of reviews has not been reached")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        public void PF_P_03ProviderLogsInToViewFeedbackFromEmployersWhenTheMinimumNumberOfReviewsHasNotBeenReached()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "donotexecuteinparallel"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_03 Provider logs in to view feedback from employers when the minimum number " +
+                    "of reviews has not been reached", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 43
-testRunner.When("they select the employer feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "AcademicYear",
+                            "Rating"});
 #line 44
-testRunner.Then("their employer feedback score for that year is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 45
-testRunner.When("they select the employer feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.Given("the provider has been rated by employers as follows", ((string)(null)), table3, "Given ");
 #line hidden
 #line 46
+testRunner.When("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 47
+testRunner.And("the provider opts to view their feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 48
+testRunner.Then("they see the following text: \"There are no employer reviews for this period of ti" +
+                        "me.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("PF_P_04 Provider logs in to view feedback from employers")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("donotexecuteinparallel")]
+        public void PF_P_04ProviderLogsInToViewFeedbackFromEmployers()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "donotexecuteinparallel"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_P_04 Provider logs in to view feedback from employers", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 52
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "AcademicYear",
+                            "Rating"});
+                table4.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table4.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table4.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table4.AddRow(new string[] {
+                            "Current",
+                            "Good"});
+                table4.AddRow(new string[] {
+                            "Current",
+                            "Poor"});
+                table4.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table4.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table4.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table4.AddRow(new string[] {
+                            "Previous",
+                            "Good"});
+                table4.AddRow(new string[] {
+                            "Previous",
+                            "Poor"});
+#line 53
+testRunner.Given("the provider has been rated by employers as follows", ((string)(null)), table4, "Given ");
+#line hidden
+#line 65
+testRunner.When("The provider logs in to the provider portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 66
+testRunner.And("the provider opts to view their feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 67
+testRunner.Then("their overall employer feedback score is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 68
+testRunner.When("they select the employer feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 69
+testRunner.Then("their employer feedback score for that year is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 70
+testRunner.When("they select the employer feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 71
 testRunner.Then("their employer feedback score for that year is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

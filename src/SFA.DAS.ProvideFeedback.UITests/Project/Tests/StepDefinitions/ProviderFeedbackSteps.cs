@@ -159,7 +159,11 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
             summaryPage.SelectEmployerTabForAcademicYear(academicYear);
         }
 
-
-
+        [Then(@"they see the following text: ""([^""]*)""")]
+        public void ThenTheySeeTheFollowingText(string expectedText)
+        {
+            var summaryPage = new FeedbackOverviewPage(context);
+            summaryPage.VerifyText(expectedText);
+        }
     }
 }
