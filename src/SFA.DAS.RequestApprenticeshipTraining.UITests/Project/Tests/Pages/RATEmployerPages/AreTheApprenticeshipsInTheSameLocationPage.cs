@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
@@ -14,8 +9,8 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         protected override string PageTitle => "Are the apprenticeships in the same location?";
 
         #region Locators
-        private static By ClickYesIfSame => By.XPath("(//input[@class='govuk-radios__input'])[1]");
-        private static By ClickNoIfNot => By.XPath("(//input[@class='govuk-radios__input'])[2]");
+        private static By ClickYesIfSame => By.CssSelector("label[for='SameLocation']");
+        private static By ClickNoIfNot => By.CssSelector("label[for='SameLocation-no']");
         #endregion
 
         public AreTheApprenticeshipsInTheSameLocationPage ClickYesForSameLocation()

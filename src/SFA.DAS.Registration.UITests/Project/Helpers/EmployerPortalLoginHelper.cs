@@ -31,13 +31,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(EasAccountUser loginUser, bool isLevy)
         {
-            SetLoginCredentials(loginUser, isLevy);
-
             var homePage = Login(loginUser);
 
-            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
+            SetCredentials(loginUser, isLevy);
 
             return homePage;
+        }
+
+        protected void SetCredentials(EasAccountUser loginUser, bool isLevy)
+        {
+            SetLoginCredentials(loginUser, isLevy);
+
+            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
         }
 
         public HomePage Login(LevyUser nonLevyUser) => Login(nonLevyUser, true);

@@ -1,11 +1,5 @@
 ﻿using OpenQA.Selenium;
-using Polly;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
@@ -18,11 +12,11 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         private static By EnterNumberOfApprentices => By.CssSelector(".govuk-input govuk-input--width-4");
         #endregion
 
-        public HowManyAprenticesWouldDoThisApprenticeshipTrainingPage EnterHowManypprentices()
+        public AreTheApprenticeshipsInTheSameLocationPage EnterHowManypprentices()
         {
             formCompletionHelper.EnterText(EnterNumberOfApprentices, 1);
             Continue();
-            return new HowManyAprenticesWouldDoThisApprenticeshipTrainingPage(context);
+            return new AreTheApprenticeshipsInTheSameLocationPage(context);
         }
     }
 }
