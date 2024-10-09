@@ -107,22 +107,22 @@ this.ScenarioInitialize(scenarioInfo);
                             "Excellent"});
                 table1.AddRow(new string[] {
                             "Current",
-                            "Excellent"});
+                            "Good"});
                 table1.AddRow(new string[] {
                             "Current",
+                            "Good"});
+                table1.AddRow(new string[] {
+                            "Previous",
                             "Excellent"});
                 table1.AddRow(new string[] {
                             "Previous",
-                            "Poor"});
+                            "Excellent"});
                 table1.AddRow(new string[] {
                             "Previous",
-                            "Poor"});
+                            "Excellent"});
                 table1.AddRow(new string[] {
                             "Previous",
-                            "Poor"});
-                table1.AddRow(new string[] {
-                            "Previous",
-                            "Poor"});
+                            "Good"});
                 table1.AddRow(new string[] {
                             "Previous",
                             "Poor"});
@@ -136,7 +136,7 @@ testRunner.When("The provider logs in to the provider portal", ((string)(null)),
 testRunner.And("the provider opts to view their feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
-testRunner.Then("their overall apprentice feedback score is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("their overall apprentice feedback score is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 22
 testRunner.When("they select the apprentice feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -148,7 +148,7 @@ testRunner.Then("their apprentice feedback score for that year is \'Excellent\'"
 testRunner.When("they select the apprentice feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
-testRunner.Then("their apprentice feedback score for that year is \'Poor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("their apprentice feedback score for that year is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -176,34 +176,34 @@ this.ScenarioInitialize(scenarioInfo);
                             "Rating"});
                 table2.AddRow(new string[] {
                             "Current",
-                            "Poor"});
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Current",
+                            "Good"});
                 table2.AddRow(new string[] {
                             "Current",
                             "Poor"});
                 table2.AddRow(new string[] {
-                            "Current",
+                            "Previous",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Excellent"});
+                table2.AddRow(new string[] {
+                            "Previous",
+                            "Good"});
+                table2.AddRow(new string[] {
+                            "Previous",
                             "Poor"});
-                table2.AddRow(new string[] {
-                            "Current",
-                            "Poor"});
-                table2.AddRow(new string[] {
-                            "Current",
-                            "Poor"});
-                table2.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
-                table2.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
-                table2.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
-                table2.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
-                table2.AddRow(new string[] {
-                            "Previous",
-                            "Excellent"});
 #line 28
 testRunner.Given("the provider has been rated by employers as follows", ((string)(null)), table2, "Given ");
 #line hidden
@@ -214,13 +214,13 @@ testRunner.When("The provider logs in to the provider portal", ((string)(null)),
 testRunner.And("the provider opts to view their feedback", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 42
-testRunner.Then("their overall employer feedback score is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("their overall employer feedback score is \'Excellent\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 43
 testRunner.When("they select the employer feedback tab for the current academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 44
-testRunner.Then("their employer feedback score for that year is \'Poor\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("their employer feedback score for that year is \'Good\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 45
 testRunner.When("they select the employer feedback tab for the previous academic year", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
