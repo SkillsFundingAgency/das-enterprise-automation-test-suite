@@ -77,7 +77,7 @@ namespace SFA.DAS.FAT.APITests.Project.Tests.Features
         {
             string[] @__tags = new string[] {
                     "api",
-                    "fatv2api",
+                    "fatapi",
                     "regression"};
             if ((exampleTags != null))
             {
@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2001")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("fatv2api")]
+        [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyFatV2Api_Fatv2001()
         {
@@ -126,7 +126,7 @@ this.VerifyFatV2Api("Fatv2001", "GET", "/epaos/EPA0241", "fatv2epaos.json", "OK"
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2002")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("fatv2api")]
+        [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyFatV2Api_Fatv2002()
         {
@@ -138,7 +138,7 @@ this.VerifyFatV2Api("Fatv2002", "GET", "/epaos/EPA0241/courses", "", "OK", ((str
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api: Fatv2003")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("fatv2api")]
+        [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyFatV2Api_Fatv2003()
         {
@@ -151,7 +151,7 @@ this.VerifyFatV2Api("Fatv2003", "GET", "/epaos", "", "OK", ((string[])(null)));
         {
             string[] @__tags = new string[] {
                     "api",
-                    "fatv2api",
+                    "fatapi",
                     "regression"};
             if ((exampleTags != null))
             {
@@ -189,7 +189,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api course: Fatv2004")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("fatv2api")]
+        [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyFatV2ApiCourse_Fatv2004()
         {
@@ -201,13 +201,13 @@ this.VerifyFatV2ApiCourse("Fatv2004", "GET", "/epaos/EPA0241/courses", "", "OK",
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify FatV2Api EPAO")]
         [NUnit.Framework.CategoryAttribute("api")]
-        [NUnit.Framework.CategoryAttribute("fatv2api")]
+        [NUnit.Framework.CategoryAttribute("fatapi")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyFatV2ApiEPAO()
         {
             string[] tagsOfScenario = new string[] {
                     "api",
-                    "fatv2api",
+                    "fatapi",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify FatV2Api EPAO", null, tagsOfScenario, argumentsOfScenario, featureTags);

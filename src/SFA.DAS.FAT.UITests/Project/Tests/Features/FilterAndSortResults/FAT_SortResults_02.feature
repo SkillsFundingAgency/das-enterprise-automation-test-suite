@@ -1,6 +1,6 @@
-﻿Feature: FATV2_SortResults_02
+﻿Feature: FATSortResults_02
 
-@fatv2
+@fat
 @regression
 Scenario: FAT_SR_02 Verify Search Results Sorting
 	Given the User searches with animal term

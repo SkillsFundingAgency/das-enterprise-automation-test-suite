@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-public abstract class FATV2BasePage : VerifyBasePage
+public abstract class FATBasePage : VerifyBasePage
 {
     #region Locators
     protected override By BackLink => By.CssSelector("a.link-back");
@@ -12,7 +12,7 @@ public abstract class FATV2BasePage : VerifyBasePage
     protected virtual By ViewShortlistLink => By.Id("header-view-shortlist");
     #endregion
 
-    protected FATV2BasePage(ScenarioContext context) : base(context) => VerifyPage();
+    protected FATBasePage(ScenarioContext context) : base(context) => VerifyPage();
 
     public void SearchApprenticeship(string searchTerm)
     {

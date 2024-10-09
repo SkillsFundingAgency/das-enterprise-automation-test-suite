@@ -1,8 +1,8 @@
-﻿Feature: FATV2_Accessibility
+﻿Feature: FATAccessibility
 
-@fatv2
+@fat
 @accessibility
-Scenario: FATV2_Accessibility_TEST
+Scenario: FATAccessibility_TEST
 	Given the user has shortlisted a provider
 	When the the user navigates to shortlist page
 	Then the user is able remove the shortlisted provider

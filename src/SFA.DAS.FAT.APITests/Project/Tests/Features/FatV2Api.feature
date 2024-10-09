@@ -1,7 +1,7 @@
 ﻿Feature: FatV2Api
 
 @api
-@fatv2api
+@fatapi
 @regression
 Scenario Outline: Verify FatV2Api
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -14,7 +14,7 @@ Examples:
 | Fatv2003   | GET    | /epaos                 |                 | OK             |
 
 @api
-@fatv2api
+@fatapi
 @regression
 Scenario Outline: Verify FatV2Api course
 	When the user sends <Method> request to <Endpoint> with payload <Payload> 
@@ -25,7 +25,7 @@ Examples:
 | Fatv2004   | GET    | /epaos/EPA0241/courses |                 | OK             | EPA0241         |
 
 @api
-@fatv2api
+@fatapi
 @regression
 Scenario: Verify FatV2Api EPAO
 	When the user sends GET request to /epaos without payload

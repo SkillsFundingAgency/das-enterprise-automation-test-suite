@@ -1,6 +1,6 @@
-﻿Feature: FATV2_CourseDetails_01
+﻿Feature: FATCourseDetails_01
 
-@fatv2
+@fat
 @regression
 Scenario: FAT2_CD_01 Course Details Page Content
 	Given the User navigates to the Search Results page

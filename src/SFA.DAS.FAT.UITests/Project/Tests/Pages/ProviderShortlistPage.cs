@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-public class ProviderShortlistPage(ScenarioContext context) : FATV2BasePage(context)
+public class ProviderShortlistPage(ScenarioContext context) : FATBasePage(context)
 {
     protected override string PageTitle => "Shortlisted training providers";
 

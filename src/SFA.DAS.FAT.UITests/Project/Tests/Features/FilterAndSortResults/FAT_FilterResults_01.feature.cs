@@ -20,22 +20,22 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.FilterAndSortResults
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FATV2_FilterResults_01")]
-    public partial class FATV2_FilterResults_01Feature
+    [NUnit.Framework.DescriptionAttribute("FATFilterResults_01")]
+    public partial class FATFilterResults_01Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FATV2_FilterResults_01.feature"
+#line 1 "FAT_FilterResults_01.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FilterAndSortResults", "FATV2_FilterResults_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/FilterAndSortResults", "FATFilterResults_01", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.FilterAndSortResults
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FATV2_FR_01 Verify Search Results filtering")]
-        [NUnit.Framework.CategoryAttribute("fatv2")]
+        [NUnit.Framework.DescriptionAttribute("FATFR_01 Verify Search Results filtering")]
+        [NUnit.Framework.CategoryAttribute("fat")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void FATV2_FR_01VerifySearchResultsFiltering()
+        public void FATFR_01VerifySearchResultsFiltering()
         {
             string[] tagsOfScenario = new string[] {
-                    "fatv2",
+                    "fat",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_FR_01 Verify Search Results filtering", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATFR_01 Verify Search Results filtering", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

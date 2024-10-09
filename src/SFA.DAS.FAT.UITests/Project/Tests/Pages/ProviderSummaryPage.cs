@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-public class ProviderSummaryPage(ScenarioContext context) : FATV2BasePage(context)
+public class ProviderSummaryPage(ScenarioContext context) : FATBasePage(context)
 {
     protected override string PageTitle => objectContext.GetProviderName();
 

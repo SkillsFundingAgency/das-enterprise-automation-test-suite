@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAT.UITests.Project.Tests.Features.Accessibility
+namespace SFA.DAS.FAT.UITests.Project.Tests.Features.Shortlist
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.Accessibility
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FATV2_Accessibility")]
-    public partial class FATV2_AccessibilityFeature
+    [NUnit.Framework.DescriptionAttribute("FATRemoveAShortlist")]
+    public partial class FATRemoveAShortlistFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FATV2_Accessibility.feature"
+#line 1 "FAT_RemoveAShortlist.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Accessibility", "FATV2_Accessibility", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Shortlist", "FATRemoveAShortlist", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.Accessibility
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FATV2_Accessibility_TEST")]
-        [NUnit.Framework.CategoryAttribute("fatv2")]
-        [NUnit.Framework.CategoryAttribute("accessibility")]
-        public void FATV2_Accessibility_TEST()
+        [NUnit.Framework.DescriptionAttribute("FATRAC_01_Remove A Shortlisted Provider")]
+        [NUnit.Framework.CategoryAttribute("fat")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void FATRAC_01_RemoveAShortlistedProvider()
         {
             string[] tagsOfScenario = new string[] {
-                    "fatv2",
-                    "accessibility"};
+                    "fat",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATV2_Accessibility_TEST", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATRAC_01_Remove A Shortlisted Provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

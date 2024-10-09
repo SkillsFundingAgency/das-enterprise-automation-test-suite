@@ -7,7 +7,7 @@ public class ProviderShortListedResultPage(ScenarioContext context) : ProviderSe
     protected override By PageHeader => By.CssSelector(".govuk-tag.app-provider-shortlist-tag");
 }
 
-public class ProviderSearchResultsPage(ScenarioContext context) : FATV2BasePage(context)
+public class ProviderSearchResultsPage(ScenarioContext context) : FATBasePage(context)
 {
     protected override string PageTitle => "Training providers for";
 

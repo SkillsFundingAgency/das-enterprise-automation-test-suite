@@ -1,8 +1,8 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Helpers;
 
-public class FATV2StepsHelper(ScenarioContext context)
+public class FATStepsHelper(ScenarioContext context)
 {
-    public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATV2IndexPage(context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
+    public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATIndexPage(context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
 
     public ProviderSummaryPage SelectASpecificProvider(string provider) => new ProviderSearchResultsPage(context).ClickSpecifiedProvider(provider);
 

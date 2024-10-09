@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-public abstract class ApprenticeshipTrainingCourseBasePage : FATV2BasePage
+public abstract class ApprenticeshipTrainingCourseBasePage : FATBasePage
 {
     protected override string PageTitle => "Apprenticeship training courses";
 

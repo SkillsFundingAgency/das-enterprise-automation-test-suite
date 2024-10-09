@@ -40,10 +40,10 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
         return new TrainingCourseSummaryPage(context);
     }
 
-    public FATV2IndexPage NavigateBackToHompage()
+    public FATIndexPage NavigateBackToHompage()
     {
         NavigateToHomepage();
-        return new FATV2IndexPage(context);
+        return new FATIndexPage(context);
     }
 
     public void SelectNameOrderSort() => SelectSortByValue("Name");

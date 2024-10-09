@@ -1,8 +1,8 @@
-﻿Feature: FATV2_SearchAreaWhereCourseIsNotOffered_03
+﻿Feature: FATSearchAreaWhereCourseIsNotOffered_03
 
-@fatv2
+@fat
 @regression
-Scenario: FATV2_SAWCINO_03_Search Training Where Course Is Not Offered
+Scenario: FATSAWCINO_03_Search Training Where Course Is Not Offered
 	Given the User searches a course then navigates to the provider list
 	When the User selects 10005124 from the list
 	And enters the location Exeter, Devon

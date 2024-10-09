@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-public class FATV2IndexPage(ScenarioContext context) : FATV2BasePage(context)
+public class FATIndexPage(ScenarioContext context) : FATBasePage(context)
 {
     protected override string PageTitle => "Find apprenticeship training";
 

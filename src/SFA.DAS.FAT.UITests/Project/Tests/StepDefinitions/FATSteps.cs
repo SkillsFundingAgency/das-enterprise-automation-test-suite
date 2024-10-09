@@ -1,20 +1,20 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class FATV2Steps
+public class FATSteps
 {
     private readonly ScenarioContext _context;
-    private readonly FATV2StepsHelper _fATV2StepsHelper;
+    private readonly FATStepsHelper _fATV2StepsHelper;
     private TrainingCourseSearchResultsPage _trainingCourseSearchResultsPage;
     private TrainingCourseSummaryPage _trainingCourseSummaryPage;
     private ProviderSearchResultsPage _providerSearchResultsPage;
     private ProviderSummaryPage _providerSummaryPage;
     private ProviderShortlistPage _providerShortlistPage;
 
-    public FATV2Steps(ScenarioContext context)
+    public FATSteps(ScenarioContext context)
     {
         _context = context;
-        _fATV2StepsHelper = new FATV2StepsHelper(_context);
+        _fATV2StepsHelper = new FATStepsHelper(_context);
     }
 
     [Given(@"the User navigates to the Search Results page")]
