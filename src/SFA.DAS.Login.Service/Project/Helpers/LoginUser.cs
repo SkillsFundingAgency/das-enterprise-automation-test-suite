@@ -71,6 +71,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class AanEmployerUser : EasAccountUser { }
 
+    public class RATOwnerUser : EasAccountUser { }
+
     public class AddMultiplePayeLevyUser : EasAccountUser
     {
         public string NoOfPayeToAdd { get; set; }
