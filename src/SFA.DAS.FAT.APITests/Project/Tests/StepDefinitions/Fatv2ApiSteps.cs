@@ -3,7 +3,7 @@ using SFA.DAS.API.Framework;
 using System.Net;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.FAT_V2.APITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.FAT.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class Fatv2ApiSteps(ScenarioContext context)

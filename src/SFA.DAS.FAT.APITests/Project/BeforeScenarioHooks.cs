@@ -2,7 +2,7 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.FAT_V2.APITests.Project
+namespace SFA.DAS.FAT.APITests.Project
 {
     [Binding]
     public class BeforeScenarioHooks(ScenarioContext context)

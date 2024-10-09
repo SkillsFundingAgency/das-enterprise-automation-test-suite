@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>SFA.DAS.FAT_V2.APITests</RootNamespace>
+    <RootNamespace>SFA.DAS.FAT.APITests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>

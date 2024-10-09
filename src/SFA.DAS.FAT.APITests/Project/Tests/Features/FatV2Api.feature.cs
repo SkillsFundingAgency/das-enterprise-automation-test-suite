@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAT_V2.APITests.Project.Tests.Features
+namespace SFA.DAS.FAT.APITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
