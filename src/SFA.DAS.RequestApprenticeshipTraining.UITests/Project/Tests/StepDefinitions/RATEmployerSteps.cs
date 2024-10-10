@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.FAT.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Helpers;
+using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 
