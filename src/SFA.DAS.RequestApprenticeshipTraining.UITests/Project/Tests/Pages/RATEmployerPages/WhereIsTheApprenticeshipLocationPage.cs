@@ -1,27 +1,29 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
 {
-    public class WhereIsTheApprenticeshipLocationPage(ScenarioContext context) : BasePage(context)
+    public class WhereIsTheApprenticeshipLocationPage(ScenarioContext context) : RatProjectBasePage(context)
     {
         protected override string PageTitle => "Where is the apprenticeship location?";
 
         #region Locators
         private static By EnterLocation => By.CssSelector(".autocomplete__input autocomplete__input--default");
+        private static By ClickEastMidlands => By.LinkText("Derby");
         #endregion
 
-        public WhereIsTheApprenticeshipLocationPage EnterCityTownPostcode()
+        public SelectTrainingOptionsPage EnterCityTownPostcode()
         {
             formCompletionHelper.EnterText(EnterLocation, "CV1 2WT");
             Continue();
-            return new WhereIsTheApprenticeshipLocationPage(context);
+            return new SelectTrainingOptionsPage(context);
+        }
+
+        public SelectTrainingOptionsPage ChooseRegion()
+        {
+            formCompletionHelper.Click(ClickEastMidlands);
+            Continue();
+            return new SelectTrainingOptionsPage(context);
         }
     }
 }

@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
 {
-    public class AskIfTrainingProvidersCanRunThisCoursePage(ScenarioContext context) : BasePage(context)
+    public class AskIfTrainingProvidersCanRunThisCoursePage(ScenarioContext context) : RatProjectBasePage(context)
     {
         protected override string PageTitle => "Ask if training providers can run this course";
 
@@ -12,7 +12,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         private static By ClickStartNowButton => By.CssSelector(".govuk-button govuk-button--start");
         #endregion
 
-        public HowManyAprenticesWouldDoThisApprenticeshipTrainingPage ClickStatNow()
+        public HowManyAprenticesWouldDoThisApprenticeshipTrainingPage ClickStarNow()
         {
             formCompletionHelper.Click(ClickStartNowButton);
 
