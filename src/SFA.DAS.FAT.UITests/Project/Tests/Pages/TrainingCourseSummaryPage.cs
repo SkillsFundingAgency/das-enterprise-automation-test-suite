@@ -1,30 +1,47 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
+public class TrainingCourseSummaryPage(ScenarioContext context) : FATBasePage(context)
 {
-    public class TrainingCourseSummaryPage : FATBasePage
+    protected override string PageTitle => objectContext.GetTrainingCourseName();
+
+    protected override string AccessibilityPageTitle => "Training course name Page";
+
+    #region Locators
+    private static By LocationTextBox => By.Id("search-location");
+    private static By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
+    private static By BackToCourseSearchPage => By.Id("courses-breadcrumb");
+
+    #endregion
+
+    public FATIndexPage NavigateBackToHompage()
     {
-        protected override string PageTitle => objectContext.GetTrainingCourseName();
+        NavigateToHomepage();
+        return new FATIndexPage(context);
+    }
 
-        protected override string AccessibilityPageTitle => "Training course name Page";
+    public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
+    {
+        formCompletionHelper.EnterText(LocationTextBox, location);
+        formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
+        formCompletionHelper.Click(ViewProvidersForThisCourseButton);
+        return new ProviderSearchResultsPage(context);
+    }
 
-        #region Locators
-        private static By FindTrainingProvidersButton => By.LinkText("Find training providers");
-        #endregion
+    public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
+    {
+        formCompletionHelper.Click(ViewProvidersForThisCourseButton);
+        return new ProviderSearchResultsPage(context);
+    }
 
-        public TrainingCourseSummaryPage(ScenarioContext context) : base(context) => VerifyPage();
+    public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
+    {
+        NavigateBackToCourseSummary();
+        return new TrainingCourseSearchResultsPage(context);
+    }
 
-        public FindATrainingProviderPage ClickFindTrainingProvidersButton()
-        {
-            formCompletionHelper.Click(FindTrainingProvidersButton);
-            return new FindATrainingProviderPage(context);
-        }
-
-        public TrainingCourseSearchResultsPage NavigateBackFromTrainingCourseSummaryPage()
-        {
-            NavigateBack();
-            return new TrainingCourseSearchResultsPage(context);
-        }
+    public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
+    {
+        formCompletionHelper.Click(BackToCourseSearchPage);
+        return new TrainingCourseSearchResultsPage(context);
     }
 }
