@@ -1,22 +1,17 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
+public class FATIndexPage(ScenarioContext context) : FATBasePage(context)
 {
-    public class FATIndexPage : FATBasePage
+    protected override string PageTitle => "Find apprenticeship training";
+
+    #region Locators
+    private static By StartButton => By.LinkText("Start now");
+
+    #endregion
+
+    public FindApprenticeshipTrainingSearchPage ClickStartButton()
     {
-        protected override string PageTitle => "Find apprenticeship training";
-
-        #region Locators
-        private static By StartButton => By.Id("start-button");
-        #endregion
-
-        public FATIndexPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public FindApprenticeshipTrainingSearchPage ClickStartButton()
-        {
-            formCompletionHelper.Click(StartButton);
-            return new FindApprenticeshipTrainingSearchPage(context);
-        }
+        formCompletionHelper.Click(StartButton);
+        return new FindApprenticeshipTrainingSearchPage(context);
     }
 }

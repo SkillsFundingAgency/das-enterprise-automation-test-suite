@@ -114,12 +114,18 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_SU_EMP_02_Sign Up to emails as an Employer with between 10 and 49 employees")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
+        [NUnit.Framework.CategoryAttribute("signup")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void CA_SU_EMP_02_SignUpToEmailsAsAnEmployerWithBetween10And49Employees()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "campaigns",
+                    "signup",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_SU_EMP_02_Sign Up to emails as an Employer with between 10 and 49 employees", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
+#line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -129,16 +135,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 14
+#line 17
  testRunner.Given("the employer navigates to Sign Up Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 15
+#line 18
  testRunner.When("the employer fill Your details section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
+#line 19
  testRunner.And("Your Company by selecting radiobutton Between Ten and FourtyNine employees", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 20
  testRunner.Then("an employer registers interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -147,44 +153,17 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CA_SU_EMP_03_Sign Up to emails as an Employer with between 50 and 249 employees")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
+        [NUnit.Framework.CategoryAttribute("signup")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void CA_SU_EMP_03_SignUpToEmailsAsAnEmployerWithBetween50And249Employees()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "campaigns",
+                    "signup",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_SU_EMP_03_Sign Up to emails as an Employer with between 50 and 249 employees", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 19
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 20
- testRunner.Given("the employer navigates to Sign Up Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 21
- testRunner.When("the employer fill Your details section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
- testRunner.And("Your Company by selecting radiobutton Between Fifty and TwoFourtyNine employees", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 23
- testRunner.Then("an employer registers interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CA_SU_EMP_04_Sign Up to emails as an Employer with over 250 employees")]
-        public void CA_SU_EMP_04_SignUpToEmailsAsAnEmployerWithOver250Employees()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_SU_EMP_04_Sign Up to emails as an Employer with over 250 employees", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -202,9 +181,48 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the employer fill Your details section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
- testRunner.And("Your Company by selecting radiobutton Over TwoHundredandFifty employees", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Your Company by selecting radiobutton Between Fifty and TwoFourtyNine employees", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 29
+ testRunner.Then("an employer registers interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("CA_SU_EMP_04_Sign Up to emails as an Employer with over 250 employees")]
+        [NUnit.Framework.CategoryAttribute("campaigns")]
+        [NUnit.Framework.CategoryAttribute("signup")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void CA_SU_EMP_04_SignUpToEmailsAsAnEmployerWithOver250Employees()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "campaigns",
+                    "signup",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CA_SU_EMP_04_Sign Up to emails as an Employer with over 250 employees", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 34
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 35
+ testRunner.Given("the employer navigates to Sign Up Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 36
+ testRunner.When("the employer fill Your details section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
+ testRunner.And("Your Company by selecting radiobutton Over TwoHundredandFifty employees", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 38
  testRunner.Then("an employer registers interest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
