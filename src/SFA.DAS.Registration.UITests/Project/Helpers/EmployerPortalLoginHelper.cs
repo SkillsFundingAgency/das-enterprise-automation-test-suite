@@ -31,9 +31,9 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(EasAccountUser loginUser, bool isLevy)
         {
-            var homePage = Login(loginUser);
-
             SetCredentials(loginUser, isLevy);
+
+            var homePage = Login(loginUser);
 
             return homePage;
         }

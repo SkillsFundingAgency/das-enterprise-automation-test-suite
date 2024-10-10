@@ -30,7 +30,9 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         private static By AutoCompleteOptions => By.CssSelector(".autocomplete__option");
 
-        private static By FirstOption => By.CssSelector("[id='SearchTerm__option--0']");
+        private static By NthOption(int i) => By.CssSelector($"[id='SearchTerm__option--{i}']");
+
+        private static By FirstOption => NthOption(0);
 
         public AddPermissionsForTrainingProviderPage SearchForATrainingProvider(ProviderConfig providerConfig)
         {
@@ -48,14 +50,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         private void EnterATrainingProvider(ProviderConfig providerConfig)
         {
+            string search = providerConfig.Ukprn;
+
             string a = string.Empty;
 
-            foreach (var i in providerConfig.Ukprn)
+            foreach (var i in search)
             {
                 a = $"{i}";
 
                 formCompletionHelper.SendKeys(UKProviderReferenceNumberText, a);
             }
+
+            int optionIndex = 0;
 
             context.Get<RetryAssertHelper>().RetryOnNUnitException(() =>
             {
@@ -63,14 +69,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
                 new TrainingProviderListPopulated(context).IsPageDisplayed(providerConfig, () => formCompletionHelper.SendKeys(UKProviderReferenceNumberText, $"{Keys.Backspace}{a}"));
 
-                if (!pageInteractionHelper.IsElementDisplayed(FirstOption) && !pageInteractionHelper.GetStringCollectionFromElementsGroup(AutoCompleteOptions).ToList().Any(x => x.ContainsCompareCaseInsensitive(providerConfig.Ukprn)))
+                var isAutoCompleteDisplayed = pageInteractionHelper.IsElementDisplayed(FirstOption);
+
+                var autoCompleteList = pageInteractionHelper.GetStringCollectionFromElementsGroup(AutoCompleteOptions).ToList();
+
+                if (!isAutoCompleteDisplayed && !autoCompleteList.Any(x => x.ContainsCompareCaseInsensitive(search)))
                 {
                     Assert.Fail($"Auto complete menu for list of providers does not pop up provider : {providerConfig.Name}, {providerConfig.Ukprn}");
                 }
 
+                var elementText = autoCompleteList.Find(x => x.ContainsCompareCaseInsensitive(search));
+
+                optionIndex = autoCompleteList.IndexOf(elementText);
+
             }, RetryTimeOut.GetTimeSpan([10, 10, 10]));
 
-            javaScriptHelper.ClickElement(FirstOption);
+            javaScriptHelper.ClickElement(NthOption(optionIndex));
 
             Continue();
         }
