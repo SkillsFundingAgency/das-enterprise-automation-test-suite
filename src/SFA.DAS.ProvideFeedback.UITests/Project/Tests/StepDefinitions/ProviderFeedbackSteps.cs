@@ -53,16 +53,10 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
 
             var data = table.CreateSet<ProviderRating>().ToList();
 
-            sqlHelper.ClearProviderFeedback(ukprn);
-            var accountId = 0;
-            foreach (var rating in data)
-            {
-                accountId++;
-                sqlHelper.CreateEmployerProviderFeedback(ukprn, accountId, rating);
-            }
+            sqlHelper.CreateEmployerFeedback(ukprn, data);
+            sqlHelper.CreateEmployerFeedbackResults(ukprn, data);
             sqlHelper.GenerateFeedbackSummaries();
         }
-
 
         [Then(@"their overall apprentice feedback score is '([^']*)'")]
         public void ThenTheirOverallScoreIs(string rating)
@@ -70,7 +64,6 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
             var summaryPage = new FeedbackOverviewPage(context);
             summaryPage.VerifyApprenticeFeedbackRating("All", rating);
         }
-
 
         [When(@"they select the apprentice feedback tab for the current academic year")]
         public void WhenTheySelectTheTabForTheCurrentAcademicYear()
@@ -97,7 +90,6 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
             var summaryPage = new FeedbackOverviewPage(context);
             summaryPage.SelectApprenticeTabForAcademicYear(academicYear);
         }
-
 
         [Then(@"their apprentice feedback score for that year is '([^']*)'")]
         public void ThenTheirScoreForThatYearIs(string rating)
