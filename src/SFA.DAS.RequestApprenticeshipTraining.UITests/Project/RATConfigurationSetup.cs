@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project
 {
     [Binding]
-    public class RATConfigurationSetup(ScenarioContext context)
+    public class RatConfigurationSetup(ScenarioContext context)
     {
         private readonly ConfigSection _configSection = context.Get<ConfigSection>();
 
