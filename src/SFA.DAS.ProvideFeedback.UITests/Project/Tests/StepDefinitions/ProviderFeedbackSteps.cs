@@ -37,13 +37,7 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.StepDefinitions
 
             var data = table.CreateSet<ProviderRating>().ToList();
 
-            sqlHelper.ClearProviderFeedback(ukprn);
-            var apprenticeshipId = 0;
-            foreach (var rating in data)
-            {
-                apprenticeshipId++;
-                sqlHelper.CreateApprenticeProviderFeedback(apprenticeshipId, ukprn, providerName, rating);
-            }
+            sqlHelper.CreateApprenticeProviderFeedback(data, ukprn, providerName);
             sqlHelper.GenerateFeedbackSummaries();
         }
 

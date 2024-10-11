@@ -23,41 +23,49 @@ public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig c
         ExecuteSqlCommand(query);
     }
 
-    public void ClearProviderFeedback(string ukprn)
+    public void CreateApprenticeProviderFeedback(List<ProviderRating> ratings, string ukprn, string providerName)
     {
-        var sql =
-            $"delete from ProviderStarsSummary where Ukprn = {ukprn};" +
-            $"delete from ProviderRatingSummary where Ukprn = {ukprn}; " +
-            $"delete from ProviderAttribute where ApprenticeFeedbackResultId in (select Id from ApprenticeFeedbackResult where ApprenticeFeedbackTargetId in (select Id from ApprenticeFeedbackTarget where Ukprn = {ukprn}))" +
-            $"delete from ApprenticeFeedbackResult where ApprenticeFeedbackTargetId in (select Id from ApprenticeFeedbackTarget where Ukprn = {ukprn})" +
-            $"delete from ApprenticeFeedbackTarget where Ukprn = {ukprn}";
+        var sql = $@"
+        DELETE FROM ProviderStarsSummary WHERE Ukprn = {ukprn};
+        DELETE FROM ProviderRatingSummary WHERE Ukprn = {ukprn};
+        DELETE FROM ProviderAttribute WHERE ApprenticeFeedbackResultId IN (SELECT Id FROM ApprenticeFeedbackResult WHERE ApprenticeFeedbackTargetId IN (SELECT Id FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn}));
+        DELETE FROM ApprenticeFeedbackResult WHERE ApprenticeFeedbackTargetId IN (SELECT Id FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn});
+        DELETE FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn};
+        ";
 
-        ExecuteSqlCommand(sql);
-    }
+        var apprenticeshipId = 1;
+        var currentAcademicYearDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        var previousAcademicYearDate = DateTime.UtcNow.AddYears(-1).ToString("yyyy-MM-dd");
 
-    public void CreateApprenticeProviderFeedback(int apprenticeshipId, string ukprn, string providerName, ProviderRating rating)
-    {
-        var targetId = Guid.NewGuid();
-        var resultId = Guid.NewGuid();
-
-        var sql = $"INSERT INTO [dbo].[ApprenticeFeedbackTarget]([Id], [ApprenticeId], [ApprenticeshipId], [Status], [StartDate], [EndDate], [Ukprn], [ProviderName], [StandardUId], [LarsCode], [StandardName], [FeedbackEligibility], [EligibilityCalculationDate], [CreatedOn], [UpdatedOn], [Withdrawn], [IsTransfer], [DateTransferIdentified], [ApprenticeshipStatus])" +
-                  $"VALUES ('{targetId}', 'B46EDA62-4621-4187-AA2B-A65280B41BDC', {apprenticeshipId}, 2, GETDATE(), DATEADD(year, 2, GETDATE()), {ukprn}, '{providerName}', 'ST0005_1.1', 119, NULL, 1, GETDATE(), GETDATE(), GETDATE(), 0, 0, NULL, 1);";
-
-        ExecuteSqlCommand(sql);
-
-        var resultDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
-        if (rating.AcademicYear == "Previous")
+        foreach (var rating in ratings)
         {
-            resultDate = DateTime.UtcNow.AddYears(-1).ToString("yyyy-MM-dd");
+            var targetId = Guid.NewGuid();
+            var resultId = Guid.NewGuid();
+            var resultDate = rating.AcademicYear == "Previous" ? previousAcademicYearDate : currentAcademicYearDate;
+
+            sql += $@"
+            INSERT INTO [dbo].[ApprenticeFeedbackTarget]
+            ([Id], [ApprenticeId], [ApprenticeshipId], [Status], [StartDate], [EndDate], [Ukprn], [ProviderName], [StandardUId], [LarsCode], [StandardName], [FeedbackEligibility], [EligibilityCalculationDate], [CreatedOn], [UpdatedOn], [Withdrawn], [IsTransfer], [DateTransferIdentified], [ApprenticeshipStatus])
+            VALUES 
+            ('{targetId}', 'B46EDA62-4621-4187-AA2B-A65280B41BDC', {apprenticeshipId}, 2, GETDATE(), DATEADD(year, 2, GETDATE()), {ukprn}, '{providerName}', 'ST0005_1.1', 119, NULL, 1, GETDATE(), GETDATE(), GETDATE(), 0, 0, NULL, 1);
+
+            INSERT INTO [dbo].[ApprenticeFeedbackResult]
+            ([Id],[ApprenticeFeedbackTargetId],[StandardUId],[DateTimeCompleted],[ProviderRating],[AllowContact])
+            VALUES 
+            ('{resultId}', '{targetId}', 'ST0418_1.0', '{resultDate}', '{rating.Rating}', 0);
+
+            INSERT INTO [dbo].[ProviderAttribute]
+            ([ApprenticeFeedbackResultId],[AttributeId],[AttributeValue])
+            VALUES 
+            ('{resultId}', 1, 1),
+            ('{resultId}', 2, 1),
+            ('{resultId}', 3, 1);
+            ";
+
+            apprenticeshipId++;
         }
 
-        sql = $"INSERT INTO [dbo].[ApprenticeFeedbackResult] ([Id],[ApprenticeFeedbackTargetId],[StandardUId],[DateTimeCompleted],[ProviderRating],[AllowContact])" +
-              $"VALUES ('{resultId}' ,'{targetId}' ,'ST0418_1.0' ,'{resultDate}' ,'{rating.Rating}' ,0)";
         ExecuteSqlCommand(sql);
-
-        ExecuteSqlCommand($"INSERT INTO [dbo].[ProviderAttribute]([ApprenticeFeedbackResultId],[AttributeId],[AttributeValue]) VALUES ('{resultId}',1,1)");
-        ExecuteSqlCommand($"INSERT INTO [dbo].[ProviderAttribute]([ApprenticeFeedbackResultId],[AttributeId],[AttributeValue]) VALUES ('{resultId}',2,1)");
-        ExecuteSqlCommand($"INSERT INTO [dbo].[ProviderAttribute]([ApprenticeFeedbackResultId],[AttributeId],[AttributeValue]) VALUES ('{resultId}',3,1)");
     }
 
     public void GenerateFeedbackSummaries()
