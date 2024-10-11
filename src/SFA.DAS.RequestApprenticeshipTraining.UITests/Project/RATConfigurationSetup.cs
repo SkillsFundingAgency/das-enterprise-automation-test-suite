@@ -18,7 +18,5 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project
                 _configSection.GetConfigSection<RATOwnerUser>()
             ]);
         }
-
-
     }
 }
