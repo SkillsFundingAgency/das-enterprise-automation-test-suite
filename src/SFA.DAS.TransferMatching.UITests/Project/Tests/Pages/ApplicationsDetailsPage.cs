@@ -1,5 +1,6 @@
-﻿using OpenQA.Selenium;
-using System.Linq;
+﻿using System.Linq;
+using OpenQA.Selenium;
+using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
@@ -27,7 +28,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             VerifyApplicationStatus(applicationStatus);
 
-            if (applicationStatus == "FUNDS AVAILABLE") VerifyPage(PageHeader, $"{GetPledgeId()}");
+            if (applicationStatus == ApplicationStatus.FundsUsed.GetLabelForReceiver()) VerifyPage(PageHeader, $"{GetPledgeId()}");
             else VerifyPage();
         }
 

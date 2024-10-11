@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Threading;
+using FluentAssertions;
+using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
@@ -14,8 +17,6 @@ using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Threading;
 using TechTalk.SpecFlow;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 using MyTransferPledgesPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyTransferPledgesPage;
@@ -102,7 +103,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
             SubmitApplicationHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
-            OpenPledgeApplication("AWAITING APPROVAL").SetPledgeApplication();
+            OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver()).SetPledgeApplication();
         }
 
         [Then(@"the non levy employer cannot exceed the available pledge funding")]
@@ -137,23 +138,27 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING YOUR APPROVAL");
 
         [Then(@"the non levy employer can accept funding")]
-        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE");
+        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication(ApplicationStatus.Accepted.GetLabelForReceiver());
 
         [Then(@"the non levy employer can withdraw funding")]
-        public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
+        public void ThenTheNonLevyEmployerCanWithdrawFunding()
+        {
+            OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount();
+            OpenPledgeApplication(ApplicationStatus.Withdrawn.GetLabelForReceiver());
+        }
 
         [Then(@"the non levy employer can open approved pledge application")]
         public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication()
         {
             _employerHomePageStepsHelper.GotoEmployerHomePage();
-            OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+            OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver());
         }
 
         [Then(@"the non levy employer can open awaiting approval pledge application")]
         public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication()
         {
             _employerHomePageStepsHelper.GotoEmployerHomePage();
-            OpenPledgeApplication("AWAITING APPROVAL");
+            OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver());
         }
 
         [Then(@"the non levy employer can withdraw funding before approval")]
@@ -165,7 +170,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             LoginAsReceiver(_context.Get<NonLevyUser>());
 
-            OpenPledgeApplication("AWAITING APPROVAL").WithdrawBeforeApproval().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN");
+            OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver()).WithdrawBeforeApproval().ReturnToMyAccount();
+            OpenPledgeApplication(ApplicationStatus.Withdrawn.GetLabelForReceiver());
 
         }
 
@@ -341,6 +347,23 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
         }
 
+        [Then(@"Application has not been actioned for 3 months")]
+        public void ApplicationHasNotBeenActionedFor3Months()
+        {
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
+            Thread.Sleep(TimeSpan.FromSeconds(10));
+
+            // trigger autoRejection job
+            _transferMatchingJobsHelper.RunApplicationsWithAutomaticRejectionJob();
+        }
+
+        [Then(@"Application should be auto rejected")]
+        public void ApplicationShouldBeAutoRejected()
+        {
+            var status = _transferMatchingSqlDataHelper.GetPledgeApplicationByDetails(_objectContext.GetPledgeDetail().PledgeId);
+            status.Should().Be((int)ApplicationStatus.Rejected);
+        }
+
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
         {
             SignOutAndGoToTransferMacthingApplyUrl();
@@ -384,7 +407,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
             LoginAsReceiver(_context.Get<NonLevyUser>());
 
-            return OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+            return OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver());
         }
 
         private void CanApplyForTransferOppurtunity(bool canApply)
@@ -456,7 +479,9 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             SubmitApplicationHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge ? "" : _objectContext.GetPledgeDetail().PledgeId);
 
-            return OpenPledgeApplication(_isImmediateAutoApprovalPledge ? "APPROVED, AWAITING YOUR ACCEPTANCE" : "AWAITING APPROVAL").SetPledgeApplication();
+            return OpenPledgeApplication(_isImmediateAutoApprovalPledge ?
+                ApplicationStatus.Approved.GetLabelForReceiver()
+                : ApplicationStatus.Pending.GetLabelForReceiver()).SetPledgeApplication();
         }
 
         private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);

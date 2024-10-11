@@ -1,7 +1,8 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {
@@ -30,6 +31,34 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             sqlQueryFromFile = MyRegex3().Replace(sqlQueryFromFile, details);
 
             ExecuteSqlCommand(sqlQueryFromFile);
+        }
+
+        public void UpdateCreatedDateForApplicationTo3MonthsAgo(string details)
+        {
+            string sqlQueryFromFile = FileHelper.GetSql("TMUpdateApplicationCreatedDate3MonthsAgo");
+
+            sqlQueryFromFile = MyRegex3().Replace(sqlQueryFromFile, details);
+
+            ExecuteSqlCommand(sqlQueryFromFile);
+        }
+
+        public int GetPledgeApplicationByDetails(string details)
+        {
+            waitForResults = true;
+
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@DETAILS", details }
+            };
+
+            string query = @"SELECT TOP (1) Status
+                            FROM
+                           [dbo].[Application]                       
+                         Where Details = @DETAILS;";
+
+            var data = GetData(query, sqlParameters);
+
+            return Convert.ToInt32(data[0]);
         }
 
         [GeneratedRegex(@"__EmployerAccountId__")]
