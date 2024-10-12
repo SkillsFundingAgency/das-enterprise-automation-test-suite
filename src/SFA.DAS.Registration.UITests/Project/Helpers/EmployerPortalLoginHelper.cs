@@ -1,4 +1,5 @@
-﻿using SFA.DAS.FrameworkHelpers;
+﻿using Polly;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
@@ -30,13 +31,18 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
 
         public HomePage Login(EasAccountUser loginUser, bool isLevy)
         {
-            SetLoginCredentials(loginUser, isLevy);
+            SetCredentials(loginUser, isLevy);
 
             var homePage = Login(loginUser);
 
-            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
-
             return homePage;
+        }
+
+        protected void SetCredentials(EasAccountUser loginUser, bool isLevy)
+        {
+            SetLoginCredentials(loginUser, isLevy);
+
+            objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
         }
 
         public HomePage Login(LevyUser nonLevyUser) => Login(nonLevyUser, true);

@@ -13,10 +13,10 @@ public abstract class CheckPage(ScenarioContext context) : VerifyBasePage(contex
 
     public virtual bool IsPageDisplayed()
     {
-        var idenifier = Identifier;
+        var identifier = Identifier;
 
-        SetDebugInformation($"Check page using Identifier: '{idenifier}'");
+        SetDebugInformation($"Check page using Identifier: '{identifier}'");
 
-        return pageInteractionHelper.IsElementDisplayedAfterPageLoad(idenifier);
+        return pageInteractionHelper.IsElementDisplayedAfterPageLoad(identifier);
     }
 }

@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderInformPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "What you'll need";
+        protected override string PageTitle => "Change of employer";
 
         protected override bool TakeFullScreenShot => false;
 

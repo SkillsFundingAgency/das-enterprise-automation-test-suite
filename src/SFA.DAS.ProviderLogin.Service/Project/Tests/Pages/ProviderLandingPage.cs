@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 
-public class ProviderLandingPage(ScenarioContext context) : IdamsLoginBasePage(context, false)
+public class ProviderLandingPage(ScenarioContext context) : IdamsLoginBasePage(context)
 {
     protected override string PageTitle => ProviderLandingPageTitle;
 

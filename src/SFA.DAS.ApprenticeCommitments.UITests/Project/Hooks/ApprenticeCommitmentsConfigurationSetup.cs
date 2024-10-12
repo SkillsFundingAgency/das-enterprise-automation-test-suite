@@ -1,5 +1,5 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -18,7 +18,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Hooks
 
             var cocEmpUser = _configSection.GetConfigSection<ASCoCEmployerUser>();
 
-            cocEmpUser.CocApprenticeUser = _configSection.GetConfigSection<CocApprenticeUser>();
+            context.SetApprenticeAccountsPortalUser( [_configSection.GetConfigSection<CocApprenticeUser>() ]);
+
+            cocEmpUser.CocApprenticeUser = context.Get<CocApprenticeUser>();
 
             context.SetEasLoginUser([cocEmpUser, _configSection.GetConfigSection<ASListedLevyUser>()]);
         }

@@ -64,17 +64,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             return apprenticeHomePage;
         }
 
-        public SignIntoMyApprenticeshipPage CreateAccountAndSignOutBeforeConfirmingPersonalDetails()
-        {
-            CreateApprenticeshipViaApiRequest();
-            return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().SignOutFromTheService().ClickSignBackInLinkFromSignOutPage();
-        }
-
         public void CreateApprenticeshipViaApiRequest() => appreticeCommitmentsApiHelper.CreateApprovalsCreatedEvent();
 
-        public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => NavigateToCreateLoginDetailsPage().EnterDetailsOnCreateLoginDetailsPageAndContinue();
-
-        public CreateLoginDetailsPage NavigateToCreateLoginDetailsPage() => OpenLatestInvitation(1).CTAOnStartPageToSignIn().ClickCreateAnAccountLinkOnSignInPage();
+        public CreateMyApprenticeshipAccountPage CreateAccountAndGetToCreateMyApprenticeshipAccountPage() => OpenLatestInvitation(1).CTAOnStartPageToSignIn().CreateAccountInStub();
 
         public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage()
         {

@@ -2,12 +2,5 @@
 
 public abstract class IdamsLoginBasePage : VerifyBasePage
 {
-    protected static By PireanPreprod => By.XPath("//span[contains(text(),'Pirean Preprod')]");
-
-    protected IdamsLoginBasePage(ScenarioContext context, bool verifypage = true) : base(context)
-    {
-        if (verifypage) VerifyPage();
-    }
-
-    public void LoginToPireanPreprod() => formCompletionHelper.Click(PireanPreprod);
+    protected IdamsLoginBasePage(ScenarioContext context) : base(context) => VerifyPage();
 }

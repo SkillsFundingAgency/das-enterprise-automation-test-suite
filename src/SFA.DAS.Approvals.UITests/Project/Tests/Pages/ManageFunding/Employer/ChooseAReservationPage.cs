@@ -20,10 +20,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new ChooseAReservationPage(context);
         }
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickSaveAndContinueButton()
+        public EmployerSelectStandardPage ClickSaveAndContinueButton()
         {
             Continue();
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
+            return new EmployerSelectStandardPage(context);
         }
 
         public EmployerSelectStandardPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
