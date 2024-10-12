@@ -5,7 +5,7 @@ Vacancies are listed on **Find an Apprenticeship**(FAA), connecting employers wi
 **Pipeline URL** - https://sfa-gov-uk.visualstudio.com/Digital%20Apprenticeship%20Service/_release?definitionId=315&view=mine&_a=releases
 
 ## Prerequisites for Running the Tests:
-1. Refer to the main README for all initial setup instructions.
+1. Refer to the main README for all initial setup instructions (https://github.com/SkillsFundingAgency/das-enterprise-automation-test-suite/blob/master/README.md).
 2. Refer to the main README for details on configuring User Secrets.
 
 ## Pipelines related to the project
