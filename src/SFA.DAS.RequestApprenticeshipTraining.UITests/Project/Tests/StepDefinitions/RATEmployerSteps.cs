@@ -9,7 +9,6 @@ using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmplo
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
@@ -19,15 +18,11 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefini
 
         private AskIfTrainingProvidersCanRunThisCoursePage landingPage;
 
-        [Given(@"an employer requests apprenticeship trainning")]
-        public void AnEmployerRequestsApprenticeshipTrainning()
-        {
-            var courseTitles = context.Get<RoatpV2SqlDataHelper>().GetCourseTitlesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+        [Given(@"an employer requests apprenticeship training")]
+        public void AnEmployerRequestsApprenticeshipTraining() => RequestTrainingProvider(false);
 
-            var randomCourse = RandomDataGenerator.GetRandomElementFromListOfElements(courseTitles);
-
-            _fATV2StepsHelper.SearchForTrainingCourse(randomCourse).SelectFirstTrainingResult().ClickViewProvidersForThisCourse().ClickAskProviders();
-        }
+        [Given(@"an employer adds location to requests apprenticeship training")]
+        public void AnEmployerAddsLocationToRequestsApprenticeshipTraining() => RequestTrainingProvider(true);
 
         [When(@"the employer logs in to rat employer account")]
         public void WhenTheEmployerLogsInToRatEmployerAccount()
@@ -38,7 +33,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefini
         [Then(@"the employer submits the request for single location")]
         public void TheEmployerSubmitsTheRequestForSingleLocation()
         {
-            landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesForASingleLocation().EnterCityTownPostcode().SelectTrainingOptions().SubmitAnswers();
+            landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesForASingleLocation().GoToTrainingOptionsPage(true).SelectTrainingOptions().SubmitAnswers();
         }
 
         [Then(@"the employer submits the request for multiple location")]
@@ -46,5 +41,21 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefini
         {
             landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickNoForAMultipleLocation().ChooseRegion().SelectTrainingOptions().SubmitAnswers();
         }
+
+        [Then(@"the employer submits the request for one apprentice")]
+        public void TheEmployerSubmitsTheRequestForOneApprentice()
+        {
+            landingPage.ClickStarNow().Enter1Apprentices().GoToTrainingOptionsPage(false).SelectTrainingOptions().SubmitAnswers();
+        }
+
+        private void RequestTrainingProvider(bool filterLocation)
+        {
+            var courseTitles = context.Get<RoatpV2SqlDataHelper>().GetCourseTitlesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+
+            var randomCourse = RandomDataGenerator.GetRandomElementFromListOfElements(courseTitles);
+
+            _fATV2StepsHelper.SearchForTrainingCourse(randomCourse).SelectFirstTrainingResult().ViewProvidersForThisCourse(filterLocation, string.Empty).RequestTrainingProvider();
+        }
+
     }
 }

@@ -20,22 +20,22 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RAT_Emp_02_EmployerMultiLocationJourney")]
-    public partial class RAT_Emp_02_EmployerMultiLocationJourneyFeature
+    [NUnit.Framework.DescriptionAttribute("RAT_Emp_03_EmpAddsLocation1AppAndCancelRequest")]
+    public partial class RAT_Emp_03_EmpAddsLocation1AppAndCancelRequestFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RAT_Emp_02_EmployerMultiLocationJourney.feature"
+#line 1 "RAT_Emp_03_EmpAddsLocation1AppAndCancelRequest.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "RAT_Emp_02_EmployerMultiLocationJourney", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "RAT_Emp_03_EmpAddsLocation1AppAndCancelRequest", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RAT_Emp_02_EmployerMultiLocationJourney")]
+        [NUnit.Framework.DescriptionAttribute("RAT_Emp_03_EmpAddsLocation1AppAndCancelRequest")]
         [NUnit.Framework.CategoryAttribute("ratemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("mailosaur")]
         [NUnit.Framework.CategoryAttribute("rat")]
-        public void RAT_Emp_02_EmployerMultiLocationJourney()
+        public void RAT_Emp_03_EmpAddsLocation1AppAndCancelRequest()
         {
             string[] tagsOfScenario = new string[] {
                     "ratemployer",
@@ -87,7 +87,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
                     "mailosaur",
                     "rat"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_02_EmployerMultiLocationJourney", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_03_EmpAddsLocation1AppAndCancelRequest", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,13 +99,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("an employer requests apprenticeship training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("an employer adds location to requests apprenticeship training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
  testRunner.When("the employer logs in to rat employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the employer submits the request for multiple location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the employer submits the request for one apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

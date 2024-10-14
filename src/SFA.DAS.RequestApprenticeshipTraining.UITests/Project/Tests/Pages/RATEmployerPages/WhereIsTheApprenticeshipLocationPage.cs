@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
@@ -28,9 +28,9 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         private static By MultipleLocation => By.CssSelector("label.govuk-checkboxes__label");
         #endregion
 
-        public SelectTrainingOptionsPage EnterCityTownPostcode()
+        public SelectTrainingOptionsPage GoToTrainingOptionsPage(bool enterLocation)
         {
-            new ApprenticeshipLocationAutoCompleteHelper(context).SelectFromAutoCompleteList(RandomDataGenerator.RandomTown());
+            if (enterLocation) new ApprenticeshipLocationAutoCompleteHelper(context).SelectFromAutoCompleteList(RandomDataGenerator.RandomTown());
 
             Continue();
 
@@ -66,8 +66,5 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         protected override By AutoCompleteMenu => By.CssSelector("[id='SingleLocation__listbox']");
 
         protected override By NthOption(int i) => By.CssSelector($"[id='SingleLocation__option--{i}']");
-
     }
 }
-
-

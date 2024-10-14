@@ -79,18 +79,16 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("mailosaur")]
         [NUnit.Framework.CategoryAttribute("rat")]
-        [NUnit.Framework.CategoryAttribute("getcoursesthatproviderdeosnotoffer")]
         public void RAT_Emp_01_EmployerSingleLocatoinJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "ratemployer",
                     "regression",
                     "mailosaur",
-                    "rat",
-                    "getcoursesthatproviderdeosnotoffer"};
+                    "rat"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_01_EmployerSingleLocatoinJourney", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,13 +98,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
- testRunner.Given("an employer requests apprenticeship trainning", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Given("an employer requests apprenticeship training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 9
  testRunner.When("the employer logs in to rat employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 10
  testRunner.Then("the employer submits the request for single location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

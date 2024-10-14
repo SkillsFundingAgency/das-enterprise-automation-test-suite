@@ -35,8 +35,11 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
     public TrainingCourseSummaryPage SelectFirstTrainingResult()
     {
         var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
+
         objectContext.SetTrainingCourseName(firstLinkText);
+
         formCompletionHelper.ClickLinkByText(firstLinkText);
+
         return new TrainingCourseSummaryPage(context);
     }
 
