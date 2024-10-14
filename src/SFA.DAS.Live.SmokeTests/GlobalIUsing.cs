@@ -2,7 +2,7 @@ global using OpenQA.Selenium;
 global using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 global using SFA.DAS.ConfigurationBuilder;
 global using SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages;
-global using SFA.DAS.FAT_V2.UITests.Project.Tests.Pages;
+global using SFA.DAS.FAT.UITests.Project.Tests.Pages;
 global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.Live.SmokeTests.Project.Helpers;
 global using SFA.DAS.Live.SmokeTests.Project.Tests.Pages;

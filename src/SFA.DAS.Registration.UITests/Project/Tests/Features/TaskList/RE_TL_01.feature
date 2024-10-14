@@ -22,5 +22,5 @@ Scenario: RE_TL_01_Create Account by completing one task at a time
 
 	
 Examples:
-	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | CanGrantProviderPermissions | DoesGrantProviderPermissions |
-	| doesn't     | cannot            | doesn't            | cannot                   | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
+	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | DoesGrantProviderPermissions |
+	| doesn't     | cannot            | doesn't            | cannot                   | doesn't                   | cannot                 | doesn't                 | doesn't                      |

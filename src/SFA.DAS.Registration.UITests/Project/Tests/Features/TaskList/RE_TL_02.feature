@@ -19,9 +19,8 @@ Scenario: RE_TL_02_Add PAYE Details on task list
 
 	
 Examples:
-	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | CanGrantProviderPermissions | DoesGrantProviderPermissions |
-	| does        | can               | doesn't            | cannot                   | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
-	| does        | can               | does               | can                      | doesn't                   | cannot                 | doesn't                 | cannot                      | doesn't                      |
-	| does        | can               | does               | can                      | does                      | can                    | doesn't                 | cannot                      | doesn't                      |
-	| does        | can               | does               | can                      | does                      | can                    | does                    | can                         | does                         |
+	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | DoesGrantProviderPermissions |
+	| does        | can               | doesn't            | cannot                   | doesn't                   | cannot                 | doesn't                 | doesn't                      |
+	| does        | can               | does               | can                      | doesn't                   | cannot                 | doesn't                 | doesn't                      |
+	| does        | can               | does               | can                      | does                      | can                    | doesn't                 | doesn't                      |
 	

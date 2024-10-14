@@ -35,7 +35,7 @@ public abstract class AanAdminCreateEventBaseDatahelper
 
         EventTitle = $"{name}_{date:ddMMMyyyy}_From{date:HHmm}To{eventEndDateAndTime:HHmm}_{date:fffff}";
 
-        var location = RandomDataGenerator.GetRandomElementFromListOfElements(new System.Collections.Generic.List<string> { "London", "Coventry", "Harrow", "Manchester", "Yorkshire", "Temple" });
+        var location = RandomDataGenerator.RandomTown();
 
         EventInPersonLocation = location;
 

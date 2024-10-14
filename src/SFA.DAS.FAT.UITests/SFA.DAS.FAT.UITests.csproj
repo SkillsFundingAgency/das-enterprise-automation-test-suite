@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
-	</Compile>
+    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +30,7 @@
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+<ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -42,4 +42,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
 </Project>
