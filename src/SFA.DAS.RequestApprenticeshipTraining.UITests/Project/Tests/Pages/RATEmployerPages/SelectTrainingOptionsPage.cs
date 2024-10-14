@@ -1,31 +1,25 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
 {
-    public class SelectTrainingOptionsPage(ScenarioContext context) : BasePage(context)
+    public class SelectTrainingOptionsPage(ScenarioContext context) : RatProjectBasePage(context)
     {
         protected override string PageTitle => "Select training options";
 
         #region Locators
-        private static By ClickAtApprenticesWorkplace => By.XPath("(//div[@class='govuk-checkboxes__item'])[1]");
-        private static By ClickDayRelease => By.XPath("(//div[@class='govuk-checkboxes__item'])[2]");
-        private static By ClickBlockRelease => By.XPath("(//div[@class='govuk-checkboxes__item'])[3]");
+        private readonly By AtApprenticesWorkplace = By.CssSelector("label[for='AtApprenticesWorkplace']");
+        private readonly By DayRelease = By.CssSelector("label[for='DayRelease']");
+        private readonly By BlockRelease = By.CssSelector("label[for='BlockRelease']");
         #endregion
 
-        public SelectTrainingOptionsPage ClickCheckboxes()
+        public CheckYourAnswersPage SelectTrainingOptions()
         {
-            formCompletionHelper.Click(ClickAtApprenticesWorkplace);
-            formCompletionHelper.Click(ClickDayRelease);
-            formCompletionHelper.Click(ClickDayRelease);
+            formCompletionHelper.Click(AtApprenticesWorkplace);
+            formCompletionHelper.Click(DayRelease);
+            formCompletionHelper.Click(BlockRelease);
             Continue();
-            return new SelectTrainingOptionsPage(context);
+            return new CheckYourAnswersPage(context);
         }
     }
 }

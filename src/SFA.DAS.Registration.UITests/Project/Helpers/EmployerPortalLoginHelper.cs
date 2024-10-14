@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.FrameworkHelpers;
+﻿using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;

@@ -4,7 +4,7 @@ using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Helpers
+namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers
 {
     public class EmployerPortalViaRatLoginHelper(ScenarioContext context) : EmployerPortalLoginHelper(context)
     {

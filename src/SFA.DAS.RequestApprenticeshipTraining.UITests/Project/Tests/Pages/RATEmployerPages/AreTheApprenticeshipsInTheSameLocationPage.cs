@@ -1,29 +1,29 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
 {
-    public class AreTheApprenticeshipsInTheSameLocationPage(ScenarioContext context) : BasePage(context)
+    public class AreTheApprenticeshipsInTheSameLocationPage(ScenarioContext context) : RatProjectBasePage(context)
     {
         protected override string PageTitle => "Are the apprenticeships in the same location?";
 
         #region Locators
         private static By ClickYesIfSame => By.CssSelector("label[for='SameLocation']");
+
         private static By ClickNoIfNot => By.CssSelector("label[for='SameLocation-no']");
         #endregion
 
-        public AreTheApprenticeshipsInTheSameLocationPage ClickYesForSameLocation()
+        public WhereIsTheApprenticeshipLocationPage ClickYesForASingleLocation() => GoToLocationPage(true);
+
+        public WhereIsTheApprenticeshipLocationPage ClickNoForAMultipleLocation() => GoToLocationPage(false);
+
+        private WhereIsTheApprenticeshipLocationPage GoToLocationPage(bool IsSingleLocation)
         {
-            formCompletionHelper.Click(ClickYesIfSame);
+            formCompletionHelper.Click(IsSingleLocation ? ClickYesIfSame : ClickNoIfNot);
+
             Continue();
-            return new AreTheApprenticeshipsInTheSameLocationPage(context);
-        }
-        public AreTheApprenticeshipsInTheSameLocationPage ClickNoForADifferentLocation()
-        {
-            formCompletionHelper.Click(ClickNoIfNot);
-            Continue();
-            return new AreTheApprenticeshipsInTheSameLocationPage(context);
+
+            return new WhereIsTheApprenticeshipLocationPage(context, IsSingleLocation);
         }
     }
 }
