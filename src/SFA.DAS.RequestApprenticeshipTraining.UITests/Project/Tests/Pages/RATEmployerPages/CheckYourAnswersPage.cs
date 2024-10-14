@@ -37,7 +37,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         {
             ClickChange(ClickChangeApprenticeshipLocations);
 
-            return new(context);
+            return new(context, true);
         }
 
         public SelectTrainingOptionsPage ChangeTrainingOptions()

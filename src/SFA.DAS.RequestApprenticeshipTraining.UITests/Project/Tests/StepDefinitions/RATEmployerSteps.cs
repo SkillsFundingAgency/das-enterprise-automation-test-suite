@@ -38,13 +38,13 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefini
         [Then(@"the employer submits the request for single location")]
         public void TheEmployerSubmitsTheRequestForSingleLocation()
         {
-            landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesForSameLocation().EnterCityTownPostcode().SelectTrainingOptions().SubmitAnswers();
+            landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesForASingleLocation().EnterCityTownPostcode().SelectTrainingOptions().SubmitAnswers();
         }
 
         [Then(@"the employer submits the request for multiple location")]
         public void TheEmployerSubmitsTheRequest()
         {
-            landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickNoForADifferentLocation().ChooseRegion().SelectTrainingOptions().SubmitAnswers();
+            landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickNoForAMultipleLocation().ChooseRegion().SelectTrainingOptions().SubmitAnswers();
         }
     }
 }

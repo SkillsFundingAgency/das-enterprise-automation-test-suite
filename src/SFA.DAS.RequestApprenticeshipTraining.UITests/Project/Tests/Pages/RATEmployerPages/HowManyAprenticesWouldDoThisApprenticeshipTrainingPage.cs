@@ -8,6 +8,8 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
     {
         protected override string PageTitle => "How many apprentices would do this apprenticeship training?";
 
+        protected override By PageHeader => By.CssSelector("label[for='NumberOfApprentices']");
+
         #region Locators
         private static By EnterNumberOfApprentices => By.CssSelector("#NumberOfApprentices");
         #endregion
@@ -23,7 +25,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         {
             EnterApprentices(1);
 
-            return new WhereIsTheApprenticeshipLocationPage(context);
+            return new WhereIsTheApprenticeshipLocationPage(context, true);
         }
 
         private void EnterApprentices(int noOfApprentice)

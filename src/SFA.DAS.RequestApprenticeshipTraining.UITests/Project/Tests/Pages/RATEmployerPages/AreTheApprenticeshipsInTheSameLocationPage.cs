@@ -9,20 +9,21 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
 
         #region Locators
         private static By ClickYesIfSame => By.CssSelector("label[for='SameLocation']");
+
         private static By ClickNoIfNot => By.CssSelector("label[for='SameLocation-no']");
         #endregion
 
-        public WhereIsTheApprenticeshipLocationPage ClickYesForSameLocation() => GoToLocationPage(true);
+        public WhereIsTheApprenticeshipLocationPage ClickYesForASingleLocation() => GoToLocationPage(true);
 
-        public WhereIsTheApprenticeshipLocationPage ClickNoForADifferentLocation() => GoToLocationPage(false);
+        public WhereIsTheApprenticeshipLocationPage ClickNoForAMultipleLocation() => GoToLocationPage(false);
 
-        private WhereIsTheApprenticeshipLocationPage GoToLocationPage(bool IsSameLocation)
+        private WhereIsTheApprenticeshipLocationPage GoToLocationPage(bool IsSingleLocation)
         {
-            formCompletionHelper.Click(IsSameLocation ? ClickYesIfSame : ClickNoIfNot);
+            formCompletionHelper.Click(IsSingleLocation ? ClickYesIfSame : ClickNoIfNot);
 
             Continue();
 
-            return new WhereIsTheApprenticeshipLocationPage(context);
+            return new WhereIsTheApprenticeshipLocationPage(context, IsSingleLocation);
         }
     }
 }

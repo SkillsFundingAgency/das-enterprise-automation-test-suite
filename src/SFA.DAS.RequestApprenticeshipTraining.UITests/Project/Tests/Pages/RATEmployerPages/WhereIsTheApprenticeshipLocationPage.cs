@@ -5,9 +5,24 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
 {
-    public class WhereIsTheApprenticeshipLocationPage(ScenarioContext context) : RatProjectBasePage(context)
+    public class WhereIsTheApprenticeshipLocationPage : RatProjectBasePage
     {
+        protected override By PageHeader => dynamicPageHeader;
+
+        private readonly By dynamicPageHeader;
+
+        public WhereIsTheApprenticeshipLocationPage(ScenarioContext context, bool IsSingleLocation) : base(context, false)
+        {
+            dynamicPageHeader = IsSingleLocation ? PageHeaderForSingleLocation : PageHeaderForMultipleLocation;
+
+            VerifyPage();
+        }
+
         protected override string PageTitle => "Where is the apprenticeship location?";
+
+        private static By PageHeaderForMultipleLocation => By.CssSelector(".govuk-fieldset__heading");
+
+        private static By PageHeaderForSingleLocation => By.CssSelector("label[for='SingleLocation']");
 
         #region Locators
         private static By MultipleLocation => By.CssSelector("label.govuk-checkboxes__label");
@@ -54,4 +69,5 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
 
     }
 }
+
 

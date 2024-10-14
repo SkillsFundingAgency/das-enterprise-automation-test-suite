@@ -4,8 +4,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
 {
-    public abstract class RatProjectBasePage(ScenarioContext context) : BasePage(context)
+    public abstract class RatProjectBasePage : VerifyBasePage
     {
+        protected RatProjectBasePage(ScenarioContext context, bool verifyPage = true) : base(context) { if (verifyPage) VerifyPage(); }
+        
         protected override By ContinueButton => By.CssSelector("[id='main-content'] button.govuk-button[type='submit']");
     }
 }
