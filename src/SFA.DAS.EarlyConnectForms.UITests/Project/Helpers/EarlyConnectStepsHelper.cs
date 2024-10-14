@@ -1,4 +1,6 @@
-﻿using SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages;
+﻿using Polly;
+using SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 using static SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages.ConfirmSurveySentPage;
 
@@ -32,7 +34,10 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         }
         public WhatsYourNamePage GoToCheckEmailAuthCodePage()
         {
-            return new EmailAuthCodePage(context).EnterValidAuthCode();
+            var email = context.Get<EarlyConnectDataHelper>().Email;
+            var authCode = context.Get<MailosaurApiHelper>().GetCodeInEmail(email);
+
+            return new EmailAuthCodePage(context).EnterValidAuthCode(authCode);
         }
 
         public DateOfBirthPage GoToWhatYourNamePage()

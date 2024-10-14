@@ -16,6 +16,21 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     private readonly DateTime dateTime = DateTime.Now;
 
+    public string GetCodeInEmail(string email)
+    {
+        var mailosaurAPIUser = GetMailosaurAPIUser(email);
+        var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
+        var criteria = new SearchCriteria()
+        {
+            SentTo = email,
+            Subject = "Confirm your email address – Department for education"
+        };
+        criteria.SentTo = email;
+        var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
+
+        return message.Html.Codes[0].Value;
+    }
+
     public string GetLinkBySubject(string email, string subject, string linkText)
     {
         _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and link text '{linkText}' after {dateTime:HH:mm:ss}");
