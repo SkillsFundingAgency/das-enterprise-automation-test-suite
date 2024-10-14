@@ -77,13 +77,13 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify Non Ucas Student journey for NorthEast Region")]
         [NUnit.Framework.CategoryAttribute("ec-v1")]
-        [NUnit.Framework.CategoryAttribute("earlyconnect-ui")]
+        [NUnit.Framework.CategoryAttribute("earlyconnect")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void VerifyNonUcasStudentJourneyForNorthEastRegion()
         {
             string[] tagsOfScenario = new string[] {
                     "ec-v1",
-                    "earlyconnect-ui",
+                    "earlyconnect",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify Non Ucas Student journey for NorthEast Region", null, tagsOfScenario, argumentsOfScenario, featureTags);

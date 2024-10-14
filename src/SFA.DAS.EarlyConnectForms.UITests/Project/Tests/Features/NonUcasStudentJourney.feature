@@ -3,7 +3,7 @@ As a user I want to be able to fill online form for student interest in apprenti
 so that my data will be available for futher progress 
 
 @ec-v1
-@earlyconnect-ui
+@earlyconnect
 @regression
 
 Scenario: Verify Non Ucas Student journey for NorthEast Region
