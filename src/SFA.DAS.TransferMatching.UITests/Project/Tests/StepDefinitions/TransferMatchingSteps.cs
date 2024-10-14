@@ -29,6 +29,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
+        private TransferFundDetailsInErrorPage _transferFundDetailsInErrorPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
         private readonly TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
@@ -269,6 +270,22 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             SetPledgeDetail();
         }
 
+
+        [Then(@"the levy employer can create pledge with funding equal to course cost")]
+        public void TheLevyEmployerCanCreatePledgeWithFundingEqualToCourseCost()
+        {
+            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false, true);
+
+            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+
+            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+            SetPledgeDetail();
+        }
+
         [Then(@"the levy employer can create anonymous pledge using non default criteria")]
         public void TheLevyEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
         {
@@ -360,8 +377,24 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"Application should be auto rejected")]
         public void ApplicationShouldBeAutoRejected()
         {
-            var status = _transferMatchingSqlDataHelper.GetPledgeApplicationByDetails(_objectContext.GetPledgeDetail().PledgeId);
+            var status = _transferMatchingSqlDataHelper.GetPledgeApplicationStatusByDetails(_objectContext.GetPledgeDetail().PledgeId);
             status.Should().Be((int)ApplicationStatus.Rejected);
+        }
+
+        [Then(@"the Pledge balance drops below £2,000 Pledge should be auto closed")]
+        public void PledgeBalanceDropsBelow2000AndShouldBeAutoClosed()
+        {
+            var (status, remainingAmount) = _transferMatchingSqlDataHelper.GetPledgeDetails(_objectContext.GetPledgeDetail().PledgeId);
+
+            remainingAmount.Should().BeLessThanOrEqualTo(2000);
+            status.Should().Be((int)PledgeStatus.Closed);
+        }
+
+        [Then(@"Pledge wont be shown publicly")]
+        public void PledgeIsNotShownPublicly()
+        {
+            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
+            _transferFundDetailsInErrorPage = new TransferFundDetailsInErrorPage(_context);
         }
 
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
@@ -459,8 +492,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
 
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool immediateMatch, bool useMinimalFunding) =>
-            GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding)
+        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool immediateMatch, bool useMinimalFunding, bool useFundingEqualToEstimatedCost = false) =>
+            GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding, useFundingEqualToEstimatedCost)
             .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName)
             .GoToPledge100PercentMatchPage().EnterValidMatchChoice(immediateMatch);
 

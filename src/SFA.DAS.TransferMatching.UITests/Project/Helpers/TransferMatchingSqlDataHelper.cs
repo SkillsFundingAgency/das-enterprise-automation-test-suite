@@ -42,7 +42,30 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             ExecuteSqlCommand(sqlQueryFromFile);
         }
 
-        public int GetPledgeApplicationByDetails(string details)
+        public (int status, int remainingAmount) GetPledgeDetails(string details)
+        {
+            waitForResults = true;
+
+            Dictionary<string, string> sqlParameters = new()
+            {
+                { "@DETAILS", details }
+            };
+
+            string query = @"SELECT 
+                            TOP (1) pl.[Status], pl.[RemainingAmount]
+                                FROM
+                            [dbo].[Application] app   
+                            inner join [dbo].[Pledge] pl
+                            on pl.Id = app.PledgeId                    
+                            Where app.Details =  @DETAILS;";
+
+            var data = GetData(query, sqlParameters);
+
+
+            return (Convert.ToInt32(data[0]), Convert.ToInt32(data[1]));
+        }
+
+        public int GetPledgeApplicationStatusByDetails(string details)
         {
             waitForResults = true;
 
@@ -59,7 +82,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             var data = GetData(query, sqlParameters);
 
             return Convert.ToInt32(data[0]);
-        }
+        }              
 
         [GeneratedRegex(@"__EmployerAccountId__")]
         private static partial Regex MyRegex();
