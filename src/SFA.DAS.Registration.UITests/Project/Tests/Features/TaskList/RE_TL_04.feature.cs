@@ -73,7 +73,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_TL_04_EmployerAgreementOnTaskList(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string[] exampleTags)
+        public virtual void RE_TL_04_EmployerAgreementOnTaskList(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string doesGrantProviderPermissions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression",
@@ -92,6 +92,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             argumentsOfScenario.Add("DoesSignEmployerAgreement", doesSignEmployerAgreement);
             argumentsOfScenario.Add("CanAddTrainingProvider", canAddTrainingProvider);
             argumentsOfScenario.Add("DoesAddTrainingProvider", doesAddTrainingProvider);
+            argumentsOfScenario.Add("DoesGrantProviderPermissions", doesGrantProviderPermissions);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_TL_04_Employer Agreement on task list", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
@@ -128,13 +129,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("user can update account name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
- testRunner.When(string.Format("user {0} add training provider and {1}", canAddTrainingProvider, doesAddTrainingProvider), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("user {0} add training provider and {1}, the user {2} grant training provider perm" +
+                            "issions", canAddTrainingProvider, doesAddTrainingProvider, doesGrantProviderPermissions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
  testRunner.When("user logs out and log back in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
- testRunner.Then("user accepts agreement having already acknowledged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("user accepts agreement from the home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -148,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void RE_TL_04_EmployerAgreementOnTaskList_Does()
         {
 #line 8
-this.RE_TL_04_EmployerAgreementOnTaskList("does", "can", "does", "can", "does", "can", "does", ((string[])(null)));
+this.RE_TL_04_EmployerAgreementOnTaskList("does", "can", "does", "can", "does", "can", "does", "does", ((string[])(null)));
 #line hidden
         }
     }

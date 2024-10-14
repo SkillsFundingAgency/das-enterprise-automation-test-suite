@@ -16,8 +16,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private static By ClosePLedgeSelector => By.Id("close-pledge-button");
         private static By RejectContinueSelector => By.CssSelector("#applications-action");
         private static By CheckBoxSelector => By.ClassName("govuk-checkboxes__input");
-        private static By PledgedFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(1) > div > p.govuk-heading-l.app-data__figure\r\n");
-        private static By EstimatedRemainingFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(2) > div:nth-child(2) > div > p.govuk-heading-l.app-data__figure");
+        private static By PledgedFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(3) > div:nth-child(1) > div > p.govuk-heading-l.app-data__figure\r\n");
+        private static By EstimatedRemainingFundsSelector => By.CssSelector("#main-content > div.govuk-width-container > div:nth-child(3) > div:nth-child(2) > div > p.govuk-heading-l.app-data__figure");
         private static By ApplicationStatusSelector => By.CssSelector("#ApplicationsToReject > fieldset > table > tbody > tr > td:nth-child(6) > strong");
 
         private static By PledgedFunds => By.LinkText("Pledged funds");

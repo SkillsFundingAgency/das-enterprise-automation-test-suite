@@ -1,7 +1,7 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 

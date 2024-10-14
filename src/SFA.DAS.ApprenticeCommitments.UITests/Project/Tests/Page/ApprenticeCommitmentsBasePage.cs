@@ -6,11 +6,10 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ApprenticeCommitmentsBasePage : TopBannerSettingsPage
     {
-        protected virtual By ServiceHeader => By.CssSelector(".govuk-header__link--service-name");
+        protected virtual By ServiceHeader => By.CssSelector(".govuk-header__service-name");
         protected static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected static By ConfirmingEntityNamePageHeader => By.CssSelector("main div .govuk-heading-m");
         protected static By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
-        protected static By PrivacyLinkInTheBody => By.XPath("//a[@href='/Privacy']");
         protected static By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
         protected static By ConfirmButton => By.Id("employer-provider-confirm");

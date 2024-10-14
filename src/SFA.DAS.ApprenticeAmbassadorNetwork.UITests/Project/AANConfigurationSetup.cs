@@ -1,6 +1,6 @@
 ﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using System.Collections.Generic;
 
@@ -24,11 +24,15 @@ public class AANConfigurationSetup(ScenarioContext context)
 
         context.SetNonEasLoginUser(new List<NonEasAccountUser>
         {
-            configSection.GetConfigSection<AanApprenticeUser>(),
-            configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
-            configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
             SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanAdminUser()),
             SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AanSuperAdminUser())
         });
+
+        context.SetApprenticeAccountsPortalUser(
+        [
+           configSection.GetConfigSection<AanApprenticeUser>(),
+           configSection.GetConfigSection<AanApprenticeNonBetaUser>(),
+           configSection.GetConfigSection<AanApprenticeOnBoardedUser>(),
+        ]);
     }
 }

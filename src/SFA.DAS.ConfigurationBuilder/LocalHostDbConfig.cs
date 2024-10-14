@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ConfigurationBuilder
+﻿using SFA.DAS.FrameworkHelpers;
+
+namespace SFA.DAS.ConfigurationBuilder
 {
     public class LocalHostDbConfig(DbDevConfig dbDevConfig, bool useSqlLogin)
     {
@@ -36,15 +38,14 @@
                 ApprenticeshipsDbConnectionString = GetConnectionString(dbDevConfig.ApprenticeshipsDbName),
                 RofjaaDbConnectionString = GetConnectionString(dbDevConfig.RofjaaDbName),
                 AANDbConnectionString = GetConnectionString(dbDevConfig.AANDbName),
-                CanAccDbConnectionString = GetConnectionString(dbDevConfig.CanAccDbName)
+                CanAccDbConnectionString = GetConnectionString(dbDevConfig.CanAccDbName),
+                RatDbConnectionString = GetConnectionString(dbDevConfig.RatDbName)
             };
         }
 
         private string GetConnectionString(string dbName)
         {
-            string GetDbName() => useSqlLogin ? "Database" : "Initial Catalog";
-
-            var x = $"Server={dbDevConfig.Server};{GetDbName()}={dbName};{dbDevConfig.ConnectionDetails};";
+            var x = $"Server={dbDevConfig.Server};{SqlDbConfigHelper.GetDbNameKey(useSqlLogin)}={dbName};{dbDevConfig.ConnectionDetails};";
 
             return EnvironmentConfig.ReplaceEnvironmentName(x);
         }

@@ -23,7 +23,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             formCompletionHelper.SelectRadioOptionByText("No, I want to change my employer account name");
 
             formCompletionHelper.EnterText(NewNameTextBox, newAccountName);
+
+            objectContext.UpdateOrganisationName(newAccountName);
+
             Continue();
+
             return new ConfirmYourNewAccountNamePage(context);
         }
 

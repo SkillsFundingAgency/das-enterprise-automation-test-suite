@@ -12,11 +12,10 @@ Scenario: RE_TL_05_Add training provider permissions on task list
 	When user <DoesAddPAYE> add PAYE details
 	When user <CanSetAccountName> set account name and <DoesSetAccountName>
 	When user <CanSignEmployerAgreement> accept the employer agreement and <DoesSignEmployerAgreement>
-	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>
 	When user logs out and log back in
 	Then user can resume employer registration journey
-	When user <CanGrantProviderPermissions> grant training provider permissions and <DoesGrantProviderPermissions>
+	When user <CanAddTrainingProvider> add training provider and <DoesAddTrainingProvider>, the user <DoesGrantProviderPermissions> grant training provider permissions
 	
 Examples:
-	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | CanGrantProviderPermissions | DoesGrantProviderPermissions |
-	| does		  | can               | does	           | can                      | does					  | can					   | does	                 | can	                       | does						  |
+	| DoesAddPAYE | CanSetAccountName | DoesSetAccountName | CanSignEmployerAgreement | DoesSignEmployerAgreement | CanAddTrainingProvider | DoesAddTrainingProvider | DoesGrantProviderPermissions |
+	| does        | can               | does               | can                      | does                      | can                    | does                    | does                         |

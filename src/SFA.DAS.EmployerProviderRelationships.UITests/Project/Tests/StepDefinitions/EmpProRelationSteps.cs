@@ -1,18 +1,16 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
-using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
-using NewAddApprenticePermissions = SFA.DAS.Registration.UITests.Project.Tests.Pages.AddApprenticePermissions;
-using NewRecruitApprenticePermissions = SFA.DAS.Registration.UITests.Project.Tests.Pages.RecruitApprenticePermissions;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions
 {
@@ -21,38 +19,32 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
     {
         private readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
 
-        private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper = new(context);
 
         private readonly ProviderConfig providerConfig = context.GetProviderConfig<ProviderConfig>();
 
-        private (NewAddApprenticePermissions AddApprentice, NewRecruitApprenticePermissions RecruitApprentice) permissions;
+        private (AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions;
 
         [Given(@"Levy employer grants all permission to a provider")]
         public void LevyEmployerGrantsAllPermissionToAProvider()
         {
-            permissions = (NewAddApprenticePermissions.AllowConditional, NewRecruitApprenticePermissions.Allow);
+            permissions = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
 
             EPRLogin();
 
-            context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerProviderRelationships_BaseUrl(_objectContext.GetHashedAccountId()));
-
-            new YourTrainingProvidersPage(context)
-                .SelectAddATrainingProvider()
-                .SearchForATrainingProvider(providerConfig)
-                .AddOrSetPermissions(permissions)
-                .VerifyYouHaveAddedNotification();
+            _employerPermissionsStepsHelper.SetAllProviderPermissions(providerConfig);
         }
 
         [When(@"the employer changes recruit apprentice permission")]
         public void TheEmployerChangesRecruitApprenticePermission()
         {
-            UpdatePermission((NewAddApprenticePermissions.AllowConditional, NewRecruitApprenticePermissions.AllowConditional));
+            UpdatePermission((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.AllowConditional));
         }
 
         [When(@"the provider does not grant any permission")]
         public void WhenTheProviderDoesNotGrantAnyPermission()
         {
-            UpdatePermission((NewAddApprenticePermissions.DoNotAllow, NewRecruitApprenticePermissions.DoNotAllow));
+            UpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
         }
 
         [Then(@"an employer has to select at least one permission")]
@@ -60,9 +52,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         {
             EPRLogin();
 
-            context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerProviderRelationships_BaseUrl(_objectContext.GetHashedAccountId()));
-
-            new YourTrainingProvidersPage(context)
+            new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
                 .SelectAddATrainingProvider()
                 .SearchForATrainingProvider(providerConfig)
                 .VerifyDoNotAllowPermissions();
@@ -71,6 +61,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         [Then(@"the provider should be added with the correct permissions")]
         public void TheProviderShouldBeAddedWithTheCorrectPermissions()
         {
+            var page = _employerPermissionsStepsHelper.OpenProviderPermissions();
+
             var providersOnthePage = context.Get<TableRowHelper>().GetTableRows();
 
             var actual = providersOnthePage.Single(x => x["Training provider"] == providerConfig.Name);
@@ -81,23 +73,33 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
                 Assert.That(actual["Permission to recruit apprentices"], Is.EqualTo(EnumToString.GetStringValue(permissions.RecruitApprentice)), "Incorrect add apprentice permission trainning provider page");
             });
+
+            page.GoToHomePage();
         }
 
-        private void UpdatePermission((NewAddApprenticePermissions AddApprentice, NewRecruitApprenticePermissions RecruitApprentice) permissions)
+        [Then(@"the employer is unable to add an existing provider")]
+        public void ThenTheEmployerIsUnableToAddAnExistingProvider()
+        {
+            new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
+                .SelectAddATrainingProvider()
+                .SearchForAnExistingTrainingProvider(providerConfig);
+            new AlreadyLinkedToTrainingProviderPage(context).CannotAddExistingTrainingProvider();
+
+        }
+
+
+        private void UpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
         {
             this.permissions = permissions;
 
-            new YourTrainingProvidersPage(context)
-                .SelectChangePermissions(providerConfig.Ukprn)
-                .AddOrSetPermissions(permissions)
-                .VerifyYouHaveSetPermissionNotification();
+            _employerPermissionsStepsHelper.UpdateProviderPermission(providerConfig, permissions);
         }
 
         private void EPRLogin()
         {
             _employerLoginHelper.Login(context.GetUser<EPRLevyUser>(), true);
 
-            new DeleteProviderRelationHelper(context).DeleteProviderRelation();
+            new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation();
         }
     }
 }

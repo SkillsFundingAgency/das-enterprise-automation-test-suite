@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderCoEPricePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "What's the new agreed apprenticeship price";
+        protected override string PageTitle => "New agreed training price";
 
         protected override bool TakeFullScreenShot => false;
 
@@ -17,6 +17,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.EnterText(Price, "1002");
             Continue();
             return new ProviderCoESummaryPage(context);
+        }   
+        
+        public ProviderCoEOverlappingTrainingDateThereMayBeProblemPage EnterNewPriceAndContinueToThereIsAProblemPage()
+        {
+            formCompletionHelper.EnterText(Price, "1002");
+            Continue();
+            return new ProviderCoEOverlappingTrainingDateThereMayBeProblemPage(context);
         }
     }
 }

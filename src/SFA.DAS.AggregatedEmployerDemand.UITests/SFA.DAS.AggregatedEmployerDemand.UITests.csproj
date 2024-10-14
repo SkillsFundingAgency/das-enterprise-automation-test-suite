@@ -16,13 +16,13 @@
 
   <ItemGroup>
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SFA.DAS.FAT-V2.UITests\SFA.DAS.FAT-V2.UITests.csproj" />
+    <ProjectReference Include="..\SFA.DAS.FAT.UITests\SFA.DAS.FAT.UITests.csproj" />
     <ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />

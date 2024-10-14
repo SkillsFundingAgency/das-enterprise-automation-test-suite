@@ -12,7 +12,7 @@ public static class OC_TestDataTearDownExtension
     private const string AfterScenarioTestDataTearDown = "afterscenariotestdatateardown";
     #endregion
 
-    public static void SetDbNameToTearDown(this ObjectContext objectContext, string dbName, string value)
+    public static void AddDbNameToTearDown(this ObjectContext objectContext, string dbName, string value)
     {
         var dictionary = objectContext.GetDbNameToTearDown();
 
