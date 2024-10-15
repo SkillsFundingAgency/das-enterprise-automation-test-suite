@@ -137,7 +137,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING YOUR APPROVAL");
 
         [Then(@"the non levy employer can accept funding")]
-        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE");
+        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE TO ADD APPRENTICE");
 
         [Then(@"the non levy employer can withdraw funding")]
         public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }
