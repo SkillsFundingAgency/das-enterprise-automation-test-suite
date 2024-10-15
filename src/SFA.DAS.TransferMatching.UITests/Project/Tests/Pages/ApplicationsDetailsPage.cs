@@ -28,7 +28,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             VerifyApplicationStatus(applicationStatus);
 
-            if (applicationStatus == ApplicationStatus.FundsUsed.GetLabelForReceiver()) VerifyPage(PageHeader, $"{GetPledgeId()}");
+            if (applicationStatus == ApplicationStatus.Accepted.GetLabelForReceiver()) VerifyPage(PageHeader, $"{GetPledgeId()}");
             else VerifyPage();
         }
 
