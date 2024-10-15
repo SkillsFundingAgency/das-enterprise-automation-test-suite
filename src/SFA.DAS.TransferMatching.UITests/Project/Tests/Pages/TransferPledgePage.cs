@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Registration.UITests.Project;
@@ -59,8 +60,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public TransferPledgePage ConfirmApplicationStatus(string expected)
         {
-            Assert.That(pageInteractionHelper.GetText(ApplicationStatusSelector), Is.EqualTo(expected), "Expected Application Status not found");
-
+            var statusText = pageInteractionHelper.GetText(ApplicationStatusSelector);
+            statusText.Should().Be(expected);
             return new TransferPledgePage(context);
         }
 

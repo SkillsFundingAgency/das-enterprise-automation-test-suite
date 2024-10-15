@@ -23,9 +23,18 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
             }
         }
 
-        public void UpdateCreatedDateForApplicationToToday(string details)
+        public void UpdateCreatedDateForApplicationTo6WeeksAgo(string details)
         {
-            string sqlQueryFromFile = FileHelper.GetSql("TMUpdateApplicationCreatedDate");
+            string sqlQueryFromFile = FileHelper.GetSql("TMUpdateApplicationCreatedDate6WeeksAgo");
+
+            sqlQueryFromFile = MyRegex3().Replace(sqlQueryFromFile, details);
+
+            ExecuteSqlCommand(sqlQueryFromFile);
+        }
+         
+        public void UpdateCreatedDateForApplicationTo5WeeksAgo(string details)
+        {
+            string sqlQueryFromFile = FileHelper.GetSql("TMUpdateApplicationCreatedDate5WeeksAgo");
 
             sqlQueryFromFile = MyRegex3().Replace(sqlQueryFromFile, details);
 

@@ -149,6 +149,21 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
         }
 
+        [Then(@"the receiver can open approved pledge application")]
+        public void ThenTheReceiverCanOpenApprovedPledgeApplication()
+        {
+            var sender = _context.Get<TransferMatchingUser>();
+            UpdateOrganisationName(sender.OrganisationName);
+
+            SignOut();
+
+            var receiverLogin = _context.Get<LevyUser>();
+            UpdateOrganisationName(receiverLogin.OrganisationName);
+            LoginAsReceiver(receiverLogin);
+
+            OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+        }
+
         [Then(@"the non levy employer can open awaiting approval pledge application")]
         public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication()
         {
@@ -334,11 +349,25 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"wait for 6 weeks")]
         public void ApplicationIsApprovedAfter6Weeks()
         {
-            //update created on date to 6 weeks later
-            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToToday(_objectContext.GetPledgeDetail().PledgeId);
+            //update created on date to 6 weeks Ago
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
             Thread.Sleep(TimeSpan.FromSeconds(10));
             // trigger autoapproval job
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
+        }
+
+        [Then(@"the application is seven days from being auto approved")]
+        public void ApplicationIs7DaysFromBeingAutoApproved()
+        {
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo5WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+        }
+        
+        [Then(@"the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'")]
+        public void ApplicationStatusShowsDateDueToAutoApprove()
+        {
+            var approvalDate = "AUTO APPROVAL ON " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+
+            GoToTransferPledgePageAsSender().ConfirmApplicationStatus(approvalDate);
         }
 
         public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
