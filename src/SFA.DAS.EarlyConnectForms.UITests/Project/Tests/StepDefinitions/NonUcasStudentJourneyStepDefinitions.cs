@@ -13,7 +13,19 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         public void GivenIAmOnTheLandingPageForARegion()
         {
             _stepsHelper.GoToEarlyConnectHomePage();
-            _stepsHelper.GoToEarlyConnectAdvisorPage();
+        }
+
+        [Given(@"I selected North East Advisor Page")]
+        public void GivenIISelectedNorthEastAdvisorPage()
+        {
+            _stepsHelper.GoToEarlyConnectNorthEastAdvisorPage();
+            _stepsHelper.GoToEarlyConnectEmailPage();
+        }
+
+        [Given(@"I selected Lancashire Advisor Page")]
+        public void GivenIISelectedLancashireAdvisorPage()
+        {
+            _stepsHelper.GoToEarlyConnectLancashireAdvisorPage();
             _stepsHelper.GoToEarlyConnectEmailPage();
         }
 

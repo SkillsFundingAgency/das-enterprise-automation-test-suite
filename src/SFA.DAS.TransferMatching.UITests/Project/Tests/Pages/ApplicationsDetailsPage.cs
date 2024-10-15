@@ -27,7 +27,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         {
             VerifyApplicationStatus(applicationStatus);
 
-            if (applicationStatus == "FUNDS AVAILABLE") VerifyPage(PageHeader, $"{GetPledgeId()}");
+            if (applicationStatus == "FUNDS AVAILABLE TO ADD APPRENTICE") VerifyPage(PageHeader, $"{GetPledgeId()}");
             else VerifyPage();
         }
 

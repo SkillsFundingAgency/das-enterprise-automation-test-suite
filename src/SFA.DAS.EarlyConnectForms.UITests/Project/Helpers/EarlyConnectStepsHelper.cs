@@ -11,9 +11,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             return new EarlyConnectHomePage(context).AcceptCookieAndAlert();
         }
 
-        public EarlyConnectHomePage GoToEarlyConnectAdvisorPage()
+        public EarlyConnectHomePage GoToEarlyConnectNorthEastAdvisorPage()
         {
             return new EarlyConnectHomePage(context).SelectNorthEast();
+        }
+
+        public EarlyConnectHomePage GoToEarlyConnectLancashireAdvisorPage()
+        {
+            return new EarlyConnectHomePage(context).SelectLancashire();
         }
 
         public GetApprenticeshipAdviserPage GoToEarlyConnectEmailPage()

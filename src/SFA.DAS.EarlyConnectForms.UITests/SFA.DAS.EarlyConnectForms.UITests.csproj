@@ -16,7 +16,7 @@
 	
   <ItemGroup>
 	  <PackageReference Include="Mailosaur" Version="8.8.0" />
-	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

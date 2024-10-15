@@ -1,105 +1,119 @@
-﻿using NUnit.Framework;
-using SFA.DAS.FAT.UITests.Project.Helpers;
-using SFA.DAS.FAT.UITests.Project.Tests.Pages;
-using System.Linq;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions;
 
-namespace SFA.DAS.FAT.UITests.Project.Tests.StepDefinitions
+[Binding]
+public class FATSteps
 {
-    [Binding]
-    public class FATSteps
+    private readonly ScenarioContext _context;
+    private readonly FATStepsHelper _fATV2StepsHelper;
+    private TrainingCourseSearchResultsPage _trainingCourseSearchResultsPage;
+    private TrainingCourseSummaryPage _trainingCourseSummaryPage;
+    private ProviderSearchResultsPage _providerSearchResultsPage;
+    private ProviderSummaryPage _providerSummaryPage;
+    private ProviderShortlistPage _providerShortlistPage;
+
+    public FATSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly FATStepsHelper _fATStepsHelper;
-        private TrainingCourseSearchResultsPage _trainingCourseSearchResultsPage;
-        private ProviderSearchResultsPage _providerSearchResultsPage;
-        private FindATrainingProviderPage _findATrainingProviderPage;
-        private ProviderSummaryPage _providerSummaryPage;
-
-        public FATSteps(ScenarioContext context)
-        {
-            _context = context;
-            _fATStepsHelper = new FATStepsHelper(_context);
-        }
-
-        [Given(@"the User navigates to the Search Results page")]
-        [When(@"the User navigates to the Search Results page")]
-        public void WhenTheUserNavigatesToTheSearchResultsPage() => _trainingCourseSearchResultsPage = _fATStepsHelper.SearchForTrainingCourse();
-
-        [Then(@"the Search Results page features are displayed")]
-        public void ThenTheSearchResultsPageFeaturesAreDisplayed() => _trainingCourseSearchResultsPage.VerifyFilterAndSortByFields();
-
-        [When(@"the User selects level (2|3|4|5|6|7) to filter results")]
-        public void WhenTheUserSelectsLevelToFilterResults(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.SelectLevelAndFilterResults(level);
-
-        [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
-        public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
-
-        [Given(@"the User searches with (.*) term")]
-        [When(@"the User searches with (.*) term")]
-        public void WhenTheUserSearchesWithATerm(string training) => _trainingCourseSearchResultsPage = _fATStepsHelper.SearchForTrainingCourse(training);
-
-        [Then(@"the User is able to choose the first training from the results displayed")]
-        public void ThenTheUserIsAbleToChooseTheFirstTrainingFromTheResultsDisplayed() =>
-            _findATrainingProviderPage = _trainingCourseSearchResultsPage.SelectFirstTrainingResult().ClickFindTrainingProvidersButton();
-
-        [Then(@"the User is able to find the Provider by location (.*) for the chosen training")]
-        public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode)
-        {
-            _providerSearchResultsPage = _findATrainingProviderPage.EnterPostCodeAndSearch(postCode);
-            FATStepsHelper.CheckIfSatisfactionAndAchievementRatesAreDisplayed(_providerSearchResultsPage);
-        }
-
-        [When(@"the User chooses to diplay results in (ascending order|descending order) of Apprenticeship Level")]
-        public void WhenTheUserChoosesToDiplayResultsInTheSelectedOrderOfApprenticeshipLevel(string order)
-        {
-            if (order.Contains("ascending order"))
-                _trainingCourseSearchResultsPage.SelectAscendingOrderSort();
-            else
-                _trainingCourseSearchResultsPage.SelectDescendingOrderSort();
-        }
-
-        [Then(@"the results are displayed in (ascending order|descending order)")]
-        public void ThenTheResultsAreDisplayedInTheSelectedOrder(string order)
-        {
-            var levelInfo = _trainingCourseSearchResultsPage.GetLevelInfoFromResults();
-
-            if (order.Equals("ascending order"))
-                CollectionAssert.IsOrdered(levelInfo, "Results are not Ascending ordered based on Level");
-            else
-                CollectionAssert.IsOrdered(levelInfo.Reverse(), "Results are not Descending ordered based on Level");
-        }
-
-        [Given(@"the User has searched for a Course and selected the Provider")]
-        public void GivenTheUserHasSearchedForACourseAndSelectedTheProvider()
-        {
-            WhenTheUserSearchesWithATerm("Account");
-            ThenTheUserIsAbleToChooseTheFirstTrainingFromTheResultsDisplayed();
-            ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining("CV1 5FB");
-
-            _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderResult();
-        }
-
-        [Then(@"User is able to navigate back to the beginning of the E2E search")]
-        public void ThenUserIsAbleToNavigateBackToTheBeginningOfTheE2ESearch() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
-            .NavigateBackFromProviderSearchResultsPage()
-            .NavigateBackFromFindATrainingProviderPage()
-            .NavigateBackFromTrainingCourseSummaryPage()
-            .NavigateBackFromTrainingCourseSearchResultsPage()
-            .NavigateBackFromFindApprenticeshipTrainingSearchPage();
-
-        [Given(@"the User has searched only for a Training Provider by querying (.*)")]
-        public void GivenTheUserHasSearchedOnlyForATrainingProviderByQuerying(string providerName) =>
-            _providerSummaryPage = new FATIndexPage(_context).ClickStartButton()
-                .ClickSearchTrainingProviderLink()
-                .SearchForProvider(providerName)
-                .SelectFirstProviderResult();
-
-        [Then(@"User is able to navigate back to the beginning of the Training Provider search")]
-        public void ThenUserIsAbleToNavigateBackToTheBeginningOfTheTrainingProviderSearch() => _providerSummaryPage
-            .NavigateBackFromProviderSummaryPageForProviderOnlySearch()
-            .NavigateBackFromSearchResultsInFindATrainingProviderByNamePage()
-            .NavigateBackFromFindATrainingProviderByNamePage()
-            .NavigateBackFromFindApprenticeshipTrainingSearchPage();
+        _context = context;
+        _fATV2StepsHelper = new FATStepsHelper(_context);
     }
+
+    [Given(@"the User navigates to the Search Results page")]
+    [When(@"the User navigates to the Search Results page")]
+    public void WhenTheUserNavigatesToTheSearchResultsPage() => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse(string.Empty);
+
+    [Given(@"the User searches with (.*) term")]
+    [When(@"the User searches with (.*) term")]
+    public void WhenTheUserSearchesWithATerm(string training) => _trainingCourseSearchResultsPage = _fATV2StepsHelper.SearchForTrainingCourse(training);
+
+    [Given(@"the User chooses the first course from the Search Results page")]
+    [When(@"the User chooses the first course from the Search Results page")]
+    public void WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage() => _trainingCourseSummaryPage = _trainingCourseSearchResultsPage.SelectFirstTrainingResult();
+
+    [Given(@"the User is able to find the Provider by location (.*) for the chosen training")]
+    [Then(@"the User is able to find the Provider by location (.*) for the chosen training")]
+    public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode) => _providerSearchResultsPage = _trainingCourseSummaryPage.EnterPostCodeAndSearch(postCode);
+
+    [Given(@"user navigates to provider details page")]
+    public void GivenUserNavigatesToProviderDetailsPage()
+    {
+        GivenTheUserSearchesACourseThenNavigatesToTheProviderList();
+        ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining();
+    }
+
+    [Given(@"the User searches a course then navigates to the provider list")]
+    public void GivenTheUserSearchesACourseThenNavigatesToTheProviderList()
+    {
+        WhenTheUserSearchesWithATerm("Advanced golf");
+        WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage();
+
+        _providerSearchResultsPage = _trainingCourseSummaryPage.ClickViewProvidersForThisCourse();
+    }
+
+    [Given(@"the user has shortlisted a provider")]
+    public void GivenTheUserHasShortlistedAProvider()
+    {
+        WhenTheUserSearchesWithATerm("Adult care worker");
+        WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage();
+        ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining("Coventry");
+        WhenUserShortlistsWithALocation();
+    }
+
+    [When(@"the User selects level (2|3|4|5|6|7) to filter results")]
+    public void WhenTheUserSelectsLevelToFilterResults(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.SelectLevelAndFilterResults(level);
+
+    [When(@"the User chooses to diplay results in '(Name|Relevance)' order")]
+    public void WhenTheUserChoosesToDiplayResultsInOrder(string order)
+    {
+        if (order.Contains("Name"))
+            _trainingCourseSearchResultsPage.SelectNameOrderSort();
+        else
+            _trainingCourseSearchResultsPage.SelectRelevanceOrderSort();
+    }
+
+    [When(@"the User selects (.*) from the list")]
+    public void WhenTheUserSelectsAProviderFromTheList(string provider) => _providerSummaryPage = _fATV2StepsHelper.SelectASpecificProvider(provider);
+
+    [When(@"enters the location (.*)")]
+    public void WhenEntersTheSearchedLocation(string location) => _providerSummaryPage.EnterPostCodeAndSearch(location);
+
+    [When(@"user shortlists without a location")]
+    public void WhenUserShortlistsWithoutALocation()
+    {
+        _providerSearchResultsPage.RemoveLocationOnProviderListPage();
+        _providerSearchResultsPage.ShortlistAProviderFromProviderList();
+    }
+
+    [When(@"user shortlists with a location")]
+    public void WhenUserShortlistsWithALocation() => _providerSearchResultsPage.ShortlistAProviderFromProviderList();
+
+    [Given(@"the the user navigates to shortlist page")]
+    [When(@"the the user navigates to shortlist page")]
+    public void WhenTheTheUserNavigatesToShortlistPage() => _providerShortlistPage = _providerSearchResultsPage.NavigateToProviderShortlistPage();
+
+    [Then(@"only the level (2|3|4|5|6|7) Search Results are displayed")]
+    public void ThenOnlyTheLevelSearchResultsAreDisplayed(string level) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifyLevelInfoFromSearchResults(level);
+
+    [Then(@"the '(Name |Relevance)' link is displayed")]
+    public void ThenTheLinkIsDisplayed(string relevance) => _trainingCourseSearchResultsPage = _trainingCourseSearchResultsPage.VerifySortByInfoFromSearchResults(relevance);
+
+    [Then(@"User is able to return to homepage")]
+    public void ThenUserIsAbleToReturnToHomepage() => _trainingCourseSummaryPage.NavigateBackToHompage();
+
+    [Then(@"the User is able to select the Provider for the chosen training")]
+    public void ThenTheUserIsAbleToSelectTheProviderForTheChosenTraining() => _providerSummaryPage = _providerSearchResultsPage.SelectFirstProviderInTheList();
+
+    [Then(@"training options displayed")]
+    public void ThenTrainingOptionsDisplayed() => _providerSummaryPage.VerifyTrainingOptionsDisplayed();
+
+    [Then(@"user is able to navigate to homepage using the breadcrumbs")]
+    public void ThenUserIsAbleToNavigateToHomepageUsingTheBreadcrumbs() => _providerSummaryPage.NavigateBackFromProviderSummaryPage()
+        .NavigateBackFromTrainingProvidersPage()
+        .NavigateBackFromCourseSummaryPage()
+        .NavigateBackToHompage();
+
+    [Then(@"the user is able remove the shortlisted provider")]
+    public void ThenTheUserIsAbleRemoveTheShortlistedProvider() => _providerShortlistPage.RemoveShortlistedProvider();
+
+    [Then(@"the user is able to return to course search page")]
+    public void ThenTheUserIsAbleToReturnToCourseSearchPage() => _providerShortlistPage.ReturnToTrainingCourseSearchResultsPage();
 }
