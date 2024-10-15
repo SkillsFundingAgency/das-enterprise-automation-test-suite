@@ -1,7 +1,7 @@
 ﻿**Pipeline URL** - https://dev.azure.com/sfa-gov-uk/Digital%20Apprenticeship%20Service/_release?_a=releases&view=mine&definitionId=414
 
-# **Early Connect API (EC UCAS and Non UCAS)**
-Project: The service is about how UCAS and Non UCAS(Others) will share their data with Apprenticeship Service and how we process them and support the student’s apprenticeship journeys
+# **Early Connect GAA - StudentSurveyForm (EC UCAS and Non UCAS)**
+Project: The service is about how UCAS and Non UCAS(Others) students will share their data with Apprenticeship Service and how we process them and support the student’s apprenticeship journeys
 Currently triaged in three regions in England with their respective LepsCode
 North East  
 Lancashire 
