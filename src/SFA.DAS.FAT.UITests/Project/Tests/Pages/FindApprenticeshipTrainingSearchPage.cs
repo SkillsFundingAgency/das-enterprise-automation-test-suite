@@ -5,6 +5,7 @@ public class FindApprenticeshipTrainingSearchPage(ScenarioContext context) : App
     public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
     {
         SearchApprenticeship(searchTerm);
+
         return new TrainingCourseSearchResultsPage(context);
     }
 }

@@ -2,37 +2,36 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages
+namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages;
+
+public class HowManyAprenticesWouldDoThisApprenticeshipTrainingPage(ScenarioContext context) : RatProjectBasePage(context)
 {
-    public class HowManyAprenticesWouldDoThisApprenticeshipTrainingPage(ScenarioContext context) : RatProjectBasePage(context)
+    protected override string PageTitle => "How many apprentices would do this apprenticeship training?";
+
+    protected override By PageHeader => By.CssSelector("label[for='NumberOfApprentices']");
+
+    #region Locators
+    private static By EnterNumberOfApprentices => By.CssSelector("#NumberOfApprentices");
+    #endregion
+
+    public AreTheApprenticeshipsInTheSameLocationPage EnterMoreThan1Apprentices()
     {
-        protected override string PageTitle => "How many apprentices would do this apprenticeship training?";
+        EnterApprentices(RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 4));
 
-        protected override By PageHeader => By.CssSelector("label[for='NumberOfApprentices']");
+        return new AreTheApprenticeshipsInTheSameLocationPage(context);
+    }
 
-        #region Locators
-        private static By EnterNumberOfApprentices => By.CssSelector("#NumberOfApprentices");
-        #endregion
+    public WhereIsTheApprenticeshipLocationPage Enter1Apprentices()
+    {
+        EnterApprentices(1);
 
-        public AreTheApprenticeshipsInTheSameLocationPage EnterMoreThan1Apprentices()
-        {
-            EnterApprentices(RandomDataGenerator.GenerateRandomNumberBetweenTwoValues(2, 4));
+        return new WhereIsTheApprenticeshipLocationPage(context, true);
+    }
 
-            return new AreTheApprenticeshipsInTheSameLocationPage(context);
-        }
+    private void EnterApprentices(int noOfApprentice)
+    {
+        formCompletionHelper.EnterText(EnterNumberOfApprentices, noOfApprentice);
 
-        public WhereIsTheApprenticeshipLocationPage Enter1Apprentices()
-        {
-            EnterApprentices(1);
-
-            return new WhereIsTheApprenticeshipLocationPage(context, true);
-        }
-
-        private void EnterApprentices(int noOfApprentice)
-        {
-            formCompletionHelper.EnterText(EnterNumberOfApprentices, noOfApprentice);
-
-            Continue();
-        }
+        Continue();
     }
 }
