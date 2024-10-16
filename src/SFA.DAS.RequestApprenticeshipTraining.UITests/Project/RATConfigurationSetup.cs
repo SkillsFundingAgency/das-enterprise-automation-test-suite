@@ -15,7 +15,8 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project
         {
             context.SetEasLoginUser(
             [
-                _configSection.GetConfigSection<RATOwnerUser>()
+                _configSection.GetConfigSection<RatEmployerUser>(),
+                _configSection.GetConfigSection<RatCancelEmployerUser>()
             ]);
         }
     }

@@ -14,9 +14,11 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATE
         private static By ClickChangeTrainingOptions => By.CssSelector("a[id='AtApprenticesWorkplace-change']");
         #endregion
 
-        public void SubmitAnswers()
+        public WeHaveveSharedThisWithTrainingProvidersPage SubmitAnswers()
         {
             Continue();
+
+            return new(context);
         }
 
         public HowManyAprenticesWouldDoThisApprenticeshipTrainingPage ChangeHowManyApprentices()

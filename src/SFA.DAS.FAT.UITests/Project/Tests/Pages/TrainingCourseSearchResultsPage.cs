@@ -9,6 +9,8 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
     private static By SortByOption => By.Id("sort-by-name");
     private static By SortByInfoText => By.Id("sort-by-relevance");
 
+    private static By FirstSearchResult => By.CssSelector(".das-search-results__heading");
+
     #endregion
 
     public TrainingCourseSearchResultsPage SelectLevelAndFilterResults(string level)
@@ -34,9 +36,11 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
 
     public TrainingCourseSummaryPage SelectFirstTrainingResult()
     {
-        var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
+        var firstLinkText = pageInteractionHelper.GetText(FirstSearchResult).Replace("\r\n", " ");
 
         objectContext.SetTrainingCourseName(firstLinkText);
+
+        SetDebugInformation($"selected '{firstLinkText}' course");
 
         formCompletionHelper.ClickLinkByText(firstLinkText);
 
@@ -46,6 +50,7 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
     public FATIndexPage NavigateBackToHompage()
     {
         NavigateToHomepage();
+
         return new FATIndexPage(context);
     }
 

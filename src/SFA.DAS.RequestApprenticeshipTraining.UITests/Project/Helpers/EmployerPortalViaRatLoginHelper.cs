@@ -8,7 +8,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers
 {
     public class EmployerPortalViaRatLoginHelper(ScenarioContext context) : EmployerPortalLoginHelper(context)
     {
-        public AskIfTrainingProvidersCanRunThisCoursePage LoginViaRat(RATOwnerUser loginUser)
+        public AskIfTrainingProvidersCanRunThisCoursePage LoginViaRat(RatEmployerBaseUser loginUser)
         {
             SetCredentials(loginUser, true);
 
