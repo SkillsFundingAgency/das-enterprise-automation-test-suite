@@ -1,7 +1,7 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 {

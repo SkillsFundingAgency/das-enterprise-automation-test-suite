@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Threading;
+using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
@@ -14,8 +16,6 @@ using SFA.DAS.TransferMatching.UITests.Project.Helpers;
 using SFA.DAS.TransferMatching.UITests.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using System.Threading;
 using TechTalk.SpecFlow;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 using MyTransferPledgesPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyTransferPledgesPage;
