@@ -1,6 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FAT.UITests.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
@@ -21,7 +20,7 @@ public class RatEmployerSteps(ScenarioContext context)
 
     private TrainingRequestDetailPage trainingRequestDetailPage;
 
-    private readonly EmployerHomePageStepsHelper _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
+    private readonly EmployerHomePageStepsHelper _homePageStepsHelper = new(context);
 
     [Given(@"an employer requests apprenticeship training")]
     public void AnEmployerRequestsApprenticeshipTraining() => RequestTrainingProvider(false);
@@ -41,13 +40,13 @@ public class RatEmployerSteps(ScenarioContext context)
     [Then(@"the employer submits the request for single location")]
     public void TheEmployerSubmitsTheRequestForSingleLocation()
     {
-        SelectActiveRequest(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesForASingleLocation().GoToTrainingOptionsPage(true));
+        SelectActiveRequest(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesToChooseSingleLocation().GoToTrainingOptionsPage(true));
     }
 
     [Then(@"the employer submits the request for multiple location")]
     public void TheEmployerSubmitsTheRequest()
     {
-        SelectActiveRequest(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickNoForAMultipleLocation().ChooseRegion());
+        SelectActiveRequest(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickNoToChooseMultipleLocation().ChooseRegion());
     }
 
     [Then(@"the employer submits the request for one apprentice")]
@@ -68,7 +67,6 @@ public class RatEmployerSteps(ScenarioContext context)
         _homePageStepsHelper.GotoEmployerHomePage();
 
         new RatEmployerHomePage(context).NavigateToFindApprenticeshipPage().SelectActiveRequest().VerifyProviderResponse();
-
     }
 
     private void LoginViaRat(RatEmployerBaseUser loginUser) => landingPage = new EmployerPortalViaRatLoginHelper(context).LoginViaRat(loginUser);

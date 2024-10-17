@@ -1,10 +1,10 @@
-﻿Feature: RAT_Emp_03_EmployerRequestProviderResponds
+﻿Feature: RAT_Emp_04_EmployerRequestProviderResponds
 
 @ratemployer
 @regression
 @mailosaur
 @rat
-Scenario: RAT_Emp_03_EmployerRequestProviderResponds
+Scenario: RAT_Emp_04_EmployerRequestProviderResponds
 	Given an employer requests apprenticeship training
 	When the employer logs in to rat multi employer account
 	Then the employer submits the request for single location
