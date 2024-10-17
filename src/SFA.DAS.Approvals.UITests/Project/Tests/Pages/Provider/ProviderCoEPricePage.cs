@@ -19,11 +19,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderCoESummaryPage(context);
         }   
         
-        public ProviderCoEOverlappingTrainingDateThereMayBeProblemPage EnterNewPriceAndContinueToThereIsAProblemPage()
+        public ProviderCoEOverlappingTrainingDateConfirmDatesPage EnterNewPriceAndContinueToThereIsAProblemPage()
         {
             formCompletionHelper.EnterText(Price, "1002");
             Continue();
-            return new ProviderCoEOverlappingTrainingDateThereMayBeProblemPage(context);
+            return new ProviderCoEOverlappingTrainingDateConfirmDatesPage(context);
         }
     }
 }
