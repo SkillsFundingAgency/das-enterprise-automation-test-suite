@@ -2,6 +2,6 @@
 
 public class TransferMatchingJobsConfig
 {
-    public string ApplicationsWithAutomaticApproval_Code { get; set; }
-    public string ApplicationsWithAutomaticRejection_Code { get; set; }
+    public string HttpAutomaticApplicationApprovalFunction_Code { get; set; }
+    public string HttpAutomaticApplicationRejectionFunction_Code { get; set; }
 }

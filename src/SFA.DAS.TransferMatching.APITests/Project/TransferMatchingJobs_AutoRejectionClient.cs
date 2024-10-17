@@ -7,7 +7,7 @@ using SFA.DAS.FrameworkHelpers;
 namespace SFA.DAS.TransferMatching.APITests.Project
 {
     public class TransferMatchingJobs_AutoRejectionClient(ObjectContext objectContext, TransferMatchingJobsConfig config)
-        : OuterJobs_BaseApiRestClient(objectContext, config.ApplicationsWithAutomaticRejection_Code)
+        : OuterJobs_BaseApiRestClient(objectContext, config.HttpAutomaticApplicationRejectionFunction_Code)
     {
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.LevyTransferMatchingJobs_BaseUrl;
 
