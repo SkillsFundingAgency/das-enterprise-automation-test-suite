@@ -132,8 +132,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"provider decides to send stop request email from service for Change Of Employer Overlapping Training Dates")]
         public void WhenProviderSelectsToContactTheEmployerThemselvesForChangeOfEmployerOverlappingTrainingDates()
         {
-            new ProviderCoEOverlappingTrainingDateThereMayBeProblemPage(_context)
-                .SelectYesTheseDetailsAreCorrect()
+            new ProviderCoEOverlappingTrainingDateConfirmDatesPage(_context)
+                .SaveAndSend()
                 .SendStopEmail();
         }
 
