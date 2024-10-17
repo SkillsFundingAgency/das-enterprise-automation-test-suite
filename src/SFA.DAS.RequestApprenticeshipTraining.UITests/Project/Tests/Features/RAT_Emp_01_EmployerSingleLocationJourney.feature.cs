@@ -77,18 +77,16 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("RAT_Emp_01A_EmployerSingleLocationJourney")]
         [NUnit.Framework.CategoryAttribute("ratemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("mailosaur")]
         [NUnit.Framework.CategoryAttribute("rat")]
         public void RAT_Emp_01A_EmployerSingleLocationJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "ratemployer",
                     "regression",
-                    "mailosaur",
                     "rat"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_01A_EmployerSingleLocationJourney", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,13 +96,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
+#line 7
  testRunner.Given("an employer requests apprenticeship training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
  testRunner.When("the employer logs in to rat employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 10
+#line 9
  testRunner.Then("the employer submits the request for single location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -115,18 +113,16 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("RAT_Emp_01B_EmployerMultiLocationJourney")]
         [NUnit.Framework.CategoryAttribute("ratemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("mailosaur")]
         [NUnit.Framework.CategoryAttribute("rat")]
         public void RAT_Emp_01B_EmployerMultiLocationJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "ratemployer",
                     "regression",
-                    "mailosaur",
                     "rat"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_01B_EmployerMultiLocationJourney", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 17
+#line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -136,13 +132,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 18
+#line 16
  testRunner.Given("an employer requests apprenticeship training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 19
+#line 17
  testRunner.When("the employer logs in to rat employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 20
+#line 18
  testRunner.Then("the employer submits the request for multiple location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

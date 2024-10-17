@@ -2,7 +2,6 @@
 
 @ratemployer
 @regression
-@mailosaur
 @rat
 Scenario: RAT_Emp_01A_EmployerSingleLocationJourney
 	Given an employer requests apprenticeship training
@@ -12,7 +11,6 @@ Scenario: RAT_Emp_01A_EmployerSingleLocationJourney
 
 @ratemployer
 @regression
-@mailosaur
 @rat
 Scenario: RAT_Emp_01B_EmployerMultiLocationJourney
 	Given an employer requests apprenticeship training

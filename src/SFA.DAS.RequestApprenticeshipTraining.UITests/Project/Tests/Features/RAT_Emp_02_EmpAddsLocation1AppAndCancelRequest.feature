@@ -2,7 +2,6 @@
 
 @ratemployer
 @regression
-@mailosaur
 @rat
 Scenario: RAT_Emp_02_EmpAddsLocation1AppAndCancelRequest
 	Given an employer adds location to requests apprenticeship training
