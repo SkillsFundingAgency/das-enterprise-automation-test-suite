@@ -9,7 +9,4 @@ public record RatDataHelper
     public string ProviderEmail { get; set; }
 
     public string ProviderName { get; set; }
-
-    public override string ToString() => $"TrainingCourse:'{TrainingCourse}', RequestId : {RequestId}";
-
 }

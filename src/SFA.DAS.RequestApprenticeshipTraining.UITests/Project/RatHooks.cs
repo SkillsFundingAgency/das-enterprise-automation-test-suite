@@ -26,5 +26,10 @@ public class RatHooks(ScenarioContext context)
     }
 
     [AfterScenario(Order = 33)]
-    public void ClearDownRatData() => _tryCatch.AfterScenarioException(() => new RatSqlHelper(_objectContext, _dbConfig).ClearDownRatData(_objectContext.GetDBAccountId(), _ratDataHelper.RequestId));
+    public void ClearDownRatData()
+    {
+        if (context.TestError != null) return;
+
+        _tryCatch.AfterScenarioException(() => new RatSqlHelper(_objectContext, _dbConfig).ClearDownRatData(_objectContext.GetDBAccountId(), _ratDataHelper.RequestId));
+    }
 }
