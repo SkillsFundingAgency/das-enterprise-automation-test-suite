@@ -76,6 +76,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return employerReviewYourCohortPage;
         }
 
+        public ApproveApprenticeDetailsPage EmployerReviewsTopCohortInReadyToReview()
+        {
+            var employerReviewYourCohortPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
+                .ClickApprenticeRequestsLink()
+                .GoToReadyToReview()
+                .SelectSingleReadyForReviewRequestInTable();
+         
+            return employerReviewYourCohortPage;
+        }
+
         public ApproveApprenticeDetailsPage EmployerAddApprentice(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice) => AddApprentices(listOfApprentice);
 
         public AddApprenticeDetailsPage EmployerGoToAdddApprenticeDetailsFromHomePage() => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard();
@@ -321,6 +331,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                   .EmployerEditDeliveryModelToFlexiAndContinue()
                   .ClickUpdateDetailsButtonAfterChange()
                   .AcceptChangesAndSubmit();
-        }
+        }        
     }
 }
