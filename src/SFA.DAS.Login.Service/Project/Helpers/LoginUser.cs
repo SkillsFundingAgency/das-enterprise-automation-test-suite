@@ -75,6 +75,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class RatEmployerUser : RatEmployerBaseUser { }
 
+    public class RatMultiEmployerUser : RatEmployerBaseUser { }
+
     public class RatCancelEmployerUser : RatEmployerBaseUser { }
 
     public class AddMultiplePayeLevyUser : EasAccountUser

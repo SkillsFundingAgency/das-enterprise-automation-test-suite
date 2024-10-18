@@ -16,6 +16,7 @@ public class RatConfigurationSetup(ScenarioContext context)
         context.SetEasLoginUser(
         [
             _configSection.GetConfigSection<RatEmployerUser>(),
+            _configSection.GetConfigSection<RatMultiEmployerUser>(),
             _configSection.GetConfigSection<RatCancelEmployerUser>()
         ]);
     }
