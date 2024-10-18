@@ -6,7 +6,9 @@ public class ProviderConfig : NonEasAccountUser
 {
     public string Ukprn { get; set; }
 
-    public override string ToString() => $"{base.ToString()}, ServiceName:'{Ukprn}'";
+    public string Name { get; set; }
+
+    public override string ToString() => $"{base.ToString()}, ServiceName:'{Ukprn}', ProviderName: '{Name}'";
 }
 
 public class DeleteCohortProviderConfig : ProviderConfig
@@ -25,13 +27,7 @@ public class ChangeOfPartyConfig : ProviderConfig
 
 public class ProviderPermissionsConfig : ProviderConfig
 {
-    public string PermissionsCosmosUrl { get; set; }
 
-    public string PermissionsCosmosDBKey { get; set; }
-
-    public string PermissionsCosmosDatabaseName { get; set; }
-
-    public string PermissionsCosmosCollectionName { get; set; }
 }
 
 public class PortableFlexiJobProviderConfig : ProviderConfig { }

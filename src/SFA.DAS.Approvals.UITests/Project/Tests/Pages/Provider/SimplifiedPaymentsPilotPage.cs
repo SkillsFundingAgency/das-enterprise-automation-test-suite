@@ -10,11 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override By PageHeader => By.CssSelector("form h1");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        public SelectStandardPage MakePaymentsPilotSelectionAndContinueToSelectStandardPage()
+        public ProviderSelectStandardPage MakePaymentsPilotSelectionAndContinueToSelectStandardPage()
         {
             SelectAndContinue(true);
 
-            return new SelectStandardPage(context);
+            return new ProviderSelectStandardPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage MakePaymentsPilotSelectionAndContinueToEditApprenticeDetailsPage(bool OptIn)

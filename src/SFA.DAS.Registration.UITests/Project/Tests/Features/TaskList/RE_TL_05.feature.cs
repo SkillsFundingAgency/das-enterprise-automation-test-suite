@@ -73,7 +73,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void RE_TL_05_AddTrainingProviderPermissionsOnTaskList(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string canGrantProviderPermissions, string doesGrantProviderPermissions, string[] exampleTags)
+        public virtual void RE_TL_05_AddTrainingProviderPermissionsOnTaskList(string doesAddPAYE, string canSetAccountName, string doesSetAccountName, string canSignEmployerAgreement, string doesSignEmployerAgreement, string canAddTrainingProvider, string doesAddTrainingProvider, string doesGrantProviderPermissions, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "regression",
@@ -92,7 +92,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Features.TaskList
             argumentsOfScenario.Add("DoesSignEmployerAgreement", doesSignEmployerAgreement);
             argumentsOfScenario.Add("CanAddTrainingProvider", canAddTrainingProvider);
             argumentsOfScenario.Add("DoesAddTrainingProvider", doesAddTrainingProvider);
-            argumentsOfScenario.Add("CanGrantProviderPermissions", canGrantProviderPermissions);
             argumentsOfScenario.Add("DoesGrantProviderPermissions", doesGrantProviderPermissions);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RE_TL_05_Add training provider permissions on task list", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
@@ -124,16 +123,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("user {0} accept the employer agreement and {1}", canSignEmployerAgreement, doesSignEmployerAgreement), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.When(string.Format("user {0} add training provider and {1}", canAddTrainingProvider, doesAddTrainingProvider), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
  testRunner.When("user logs out and log back in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 16
  testRunner.Then("user can resume employer registration journey", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 18
- testRunner.When(string.Format("user {0} grant training provider permissions and {1}", canGrantProviderPermissions, doesGrantProviderPermissions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 17
+ testRunner.When(string.Format("user {0} add training provider and {1}, the user {2} grant training provider perm" +
+                            "issions", canAddTrainingProvider, doesAddTrainingProvider, doesGrantProviderPermissions), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -147,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
         public void RE_TL_05_AddTrainingProviderPermissionsOnTaskList_Does()
         {
 #line 8
-this.RE_TL_05_AddTrainingProviderPermissionsOnTaskList("does", "can", "does", "can", "does", "can", "does", "can", "does", ((string[])(null)));
+this.RE_TL_05_AddTrainingProviderPermissionsOnTaskList("does", "can", "does", "can", "does", "can", "does", "does", ((string[])(null)));
 #line hidden
         }
     }

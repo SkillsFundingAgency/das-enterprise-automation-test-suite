@@ -2,7 +2,7 @@
 global using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 global using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.EmployerPages;
 global using SFA.DAS.AggregatedEmployerDemand.UITests.Project.Tests.Pages.ProviderPages;
-global using SFA.DAS.FAT_V2.UITests.Project.Helpers;
+global using SFA.DAS.FAT.UITests.Project.Helpers;
 global using SFA.DAS.FrameworkHelpers;
 global using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 global using SFA.DAS.UI.Framework.TestSupport;

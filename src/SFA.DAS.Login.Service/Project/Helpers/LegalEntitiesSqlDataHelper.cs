@@ -9,9 +9,7 @@ internal class EasAccountsSqlDataHelper(ObjectContext objectContext, DbConfig db
 {
     internal List<(List<string> listoflegalEntities, string idOrUserRef)> GetAccountDetails(List<string> emails)
     {
-        var query = emails.Select(x => GetSqlQuery(x)).ToList();
-
-        var listoflegalEntities = new List<List<string>>();
+        var query = emails.Select(GetSqlQuery).ToList();
 
         var accountdetails = new List<(List<string>, string)>();
 
@@ -22,8 +20,6 @@ internal class EasAccountsSqlDataHelper(ObjectContext objectContext, DbConfig db
             var userref = legalEntities.ListOfArrayToList(1);
 
             var x = legalEntitieslist.IsNoDataFound() ? [] : legalEntitieslist;
-
-            listoflegalEntities.Add(x);
 
             var y = userref.IsNoDataFound() ? string.Empty : userref.FirstOrDefault();
 

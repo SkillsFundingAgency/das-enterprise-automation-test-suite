@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AP_PP_01_ProviderPermission")]
-    [NUnit.Framework.CategoryAttribute("approvals")]
     public partial class AP_PP_01_ProviderPermissionFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "approvals"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_PP_01_ProviderPermission.feature"
 #line hidden
@@ -77,13 +75,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ProviderPermission
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("AP_PP_01 Employer grant and revoke Create Cohort permission to a provider")]
-        [NUnit.Framework.CategoryAttribute("inprogress")]
+        [NUnit.Framework.CategoryAttribute("deletepermission")]
         [NUnit.Framework.CategoryAttribute("CreateCohortPermission")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
         public void AP_PP_01EmployerGrantAndRevokeCreateCohortPermissionToAProvider()
         {
             string[] tagsOfScenario = new string[] {
-                    "inprogress",
-                    "CreateCohortPermission"};
+                    "deletepermission",
+                    "CreateCohortPermission",
+                    "approvals"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AP_PP_01 Employer grant and revoke Create Cohort permission to a provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7

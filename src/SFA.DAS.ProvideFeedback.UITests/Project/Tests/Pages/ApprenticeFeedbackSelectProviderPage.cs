@@ -24,4 +24,14 @@ public class ApprenticeFeedbackSelectProviderPage(ScenarioContext context) : App
 
         return new(context);
     }
+
+    public void VerifyFeedbackStatusAsPending()
+    {
+        pageInteractionHelper.VerifyText(By.ClassName("govuk-tag--blue"), "YOU CAN SUBMIT");
+    }
+
+    public void VerifyFeedbackStatusAsSubmitted()
+    {
+        pageInteractionHelper.VerifyText(By.ClassName("govuk-tag--green"), "SUBMITTED");
+    }
 }

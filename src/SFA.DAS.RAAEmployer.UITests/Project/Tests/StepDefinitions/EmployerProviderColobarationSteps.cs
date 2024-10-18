@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.RAAEmployer.UITests.Project.Helpers;
@@ -39,8 +39,6 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             _loginUser = _context.GetUser<RAAEmployerProviderPermissionUser>();
 
             var homePage = _rAAEmployerLoginHelper.GoToHomePage(_loginUser);
-
-            EmployerPermissionsStepsHelper.SetAgreementId(homePage, _loginUser.OrganisationName);
 
             /*
              * these steps are executed as part of test data preparation.

@@ -12,16 +12,16 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
 
         protected static By SearchForAnApprenticeship => By.CssSelector("#fiu-panel-link-fat");
 
-        protected static By FundingAnApprenticeship => By.CssSelector("a[href='/employers/funding-an-apprenticeship']");
+        protected static By UnderstandingApprenticeshipBenefitsAndFunding => By.CssSelector("a[href='/employers/understanding-apprenticeship-benefits-and-funding']");
 
-        protected static By RegisterInterest => By.CssSelector("#fiu-panel-link-reg-int-emp");
+        protected static By EmployerSignUpButton => By.CssSelector("a[href='/employers/sign-up']");
 
         public void VerifySubHeadings() => VerifyFiuCards(() => NavigateToEmployerHubPage());
 
-        public FundingAnApprenticeshipPage NavigateToFundingAnApprenticeshipPage()
+        public UnderstandingApprenticeshipBenefitsFundingPage NavigateToUnderstandingApprenticeshipBenefitsAndFunding()
         {
-            formCompletionHelper.ClickElement(FundingAnApprenticeship);
-            return new FundingAnApprenticeshipPage(context);
+            formCompletionHelper.ClickElement(UnderstandingApprenticeshipBenefitsAndFunding);
+            return new UnderstandingApprenticeshipBenefitsFundingPage(context);
         }
 
         public SearchForAnApprenticeshipPage NavigateToFindAnApprenticeshipPage()
@@ -30,10 +30,10 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Employer
             return new SearchForAnApprenticeshipPage(context);
         }
 
-        public RegisterInterestPage NavigateToRegisterInterestPage()
+        public SignUpPage NavigateToSignUpPage()
         {
-            formCompletionHelper.ClickElement(RegisterInterest);
-            return new RegisterInterestPage(context);
+            formCompletionHelper.ClickElement(EmployerSignUpButton);
+            return new SignUpPage(context);
         }
     }
 }

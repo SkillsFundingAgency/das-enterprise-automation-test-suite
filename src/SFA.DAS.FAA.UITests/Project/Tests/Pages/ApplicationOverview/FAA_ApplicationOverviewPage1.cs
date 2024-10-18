@@ -33,10 +33,10 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
     private static string InterviewAdjustments_1 => "Request adjustments on your application";
 
 
-    private static string DisabilityConfidence => "Disability Confidence";
+    private static string DisabilityConfidence => "Disability Confident";
 
-    private static string DisabilityConfidenceFirstQuestion => "Interview under the Disability";
-    private static string DisabilityConfidence_1 => "Interview under the Disability Confident scheme";
+    private static string DisabilityConfidenceFirstQuestion => "Interview under the Disability Confident Scheme";
+    private static string DisabilityConfidence_1 => "Interview under the Disability Confident Scheme";
 
     #endregion
 }

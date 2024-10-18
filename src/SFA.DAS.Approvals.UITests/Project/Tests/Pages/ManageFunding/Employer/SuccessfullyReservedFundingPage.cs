@@ -27,11 +27,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new AddAnApprenitcePage(context);
         }
 
-        internal SelectStandardPage AddAnotherApprentice()
+        internal EmployerSelectStandardPage AddAnotherApprentice()
         {
             ChooseToAddApprenticeRadioButton();
             Continue();
-            return new SelectStandardPage(context);
+            return new EmployerSelectStandardPage(context);
         }
 
         private void ChooseToAddApprenticeRadioButton() => formCompletionHelper.ClickElement(AddApprenticeRadioButton);

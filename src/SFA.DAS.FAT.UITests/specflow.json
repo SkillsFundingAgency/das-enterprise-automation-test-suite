@@ -1,4 +1,4 @@
-﻿{
+{
   "bindingCulture": {
     "feature": "en-GB"
   },
@@ -6,7 +6,9 @@
     "feature": "en-GB"
   },
   "stepAssemblies": [
-    { "assembly": "SFA.DAS.UI.Framework" }
+    { "assembly": "SFA.DAS.UI.Framework" },
+    { "assembly": "SFA.DAS.ConfigurationBuilder" },
+    { "assembly": "SFA.DAS.TestDataExport" }
   ],
   "generator": {
     "allowRowTests": false,

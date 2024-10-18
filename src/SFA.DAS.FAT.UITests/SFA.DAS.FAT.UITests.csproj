@@ -8,15 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
-	</Compile>
+    <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -30,7 +30,7 @@
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+<ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		<CopyToPublishDirectory>Never</CopyToPublishDirectory>
@@ -42,4 +42,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
 </Project>

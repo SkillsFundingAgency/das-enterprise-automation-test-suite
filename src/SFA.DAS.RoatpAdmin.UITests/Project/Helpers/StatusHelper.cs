@@ -4,7 +4,7 @@
     {
         internal static string StatusPass => "Pass";
 
-        internal static string NotRequired => "Not required";
+        internal static string NotRequired => "Not Required";
 
         internal static string StatusInProgress => "In progress";
 

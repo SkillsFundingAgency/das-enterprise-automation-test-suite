@@ -7,7 +7,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
     public class FlexiPaymnetsApprenticeshipsDataModel
     {
         public DateTime? StartDate;
-        public DateTime? ActualStartDate;
         public DateTime? PlannedEndDate;
 
         public int ULNKey { get; set; }
@@ -23,15 +22,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
                     : DataHelpers.TryParseDate(value);
             }
         }
-        public string ActualStartDateStr
-        {
-            set
-            {
-                ActualStartDate = value == "Today" ? DataHelpers.CalculateStartDate()
-                    : value == "StartPreviousMonth" ? DataHelpers.CalculateStartDate(true)
-                    : DataHelpers.TryParseDate(value);
-            }
-        }
+
         public string PlannedEndDateStr
         {
             set

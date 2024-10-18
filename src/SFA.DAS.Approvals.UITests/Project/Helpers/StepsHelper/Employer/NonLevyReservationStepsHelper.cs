@@ -27,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
             int noOfApprentice = listOfApprentice.Count;
+            bool checkStartDateNotEmpty;
 
             AddApprenticeDetailsPage addApprenticeDetailsPage;
 
@@ -37,13 +38,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 if (i == 0)
                 {
                     addApprenticeDetailsPage = NonLevyEmployerAddsProviderDetails().EmployerAddsApprentices().EmployerSelectsAStandard();
+                    checkStartDateNotEmpty = true;
                 }
                 else
                 {
                     addApprenticeDetailsPage = AddAnotherApprentice(_approveApprenticeDetailsPage);
+                    checkStartDateNotEmpty = false;
                 }
 
-                _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, shouldConfirmOnlyStandardCoursesSelectable);
+                _approveApprenticeDetailsPage = NonLevyEmployerAddsApprenticeDetails(addApprenticeDetailsPage, shouldConfirmOnlyStandardCoursesSelectable, checkStartDateNotEmpty);
             }
 
 
@@ -59,16 +62,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private static AddApprenticeDetailsPage AddAnotherApprentice(ApproveApprenticeDetailsPage approveApprenticeDetailsPage)
         {
-            var page = approveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().ChooseCreateANewReservationRadioButton().ClickSaveAndContinueButton();
-
-            return ManageFundingEmployerStepsHelper.CreateReservation(page).AddAnotherApprentice().EmployerSelectsAStandard();
+            return approveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().ChooseCreateANewReservationRadioButton().ClickSaveAndContinueButton().EmployerSelectsAStandard();
         }
 
-        private static ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable)
+        private static ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable, bool checkStartDateNotEmpty)
         {
-            if (shouldConfirmOnlyStandardCoursesSelectable) addApprenticeDetailsPage.ClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
+            if (shouldConfirmOnlyStandardCoursesSelectable) addApprenticeDetailsPage.EmployerClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
 
-            return addApprenticeDetailsPage.SubmitValidApprenticeDetails(true);
+            return addApprenticeDetailsPage.SubmitValidApprenticeDetails(checkStartDateNotEmpty);
         }
 
         private StartAddingApprenticesPage NonLevyEmployerAddsProviderDetails()

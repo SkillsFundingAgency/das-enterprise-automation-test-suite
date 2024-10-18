@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
@@ -8,7 +9,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected override string PageTitle => "Employer account created";
         private static By GoToYourEmployerAccountHomepage => By.LinkText("Go to your employer account homepage");
 
-        public EmployerAccountCreatedPage(ScenarioContext context) : base(context) => VerifyPage();
+        public EmployerAccountCreatedPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
+
+            var _registrationSqlDataHelper = context.Get<RegistrationSqlDataHelper>();
+
+            var loggedInAccountUser = objectContext.GetLoginCredentials();
+
+            objectContext.SetOrUpdateUserCreds(loggedInAccountUser.Username, loggedInAccountUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loggedInAccountUser.Username));
+        }
 
         public HomePage SelectGoToYourEmployerAccountHomepage()
         {

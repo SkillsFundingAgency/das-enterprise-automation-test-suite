@@ -36,11 +36,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderChooseAReservationPage(context);
         }
 
-        internal SelectStandardPage SelectAddAnApprentice()
+        internal ProviderSelectStandardPage SelectAddAnApprentice()
         {
             AddAnApprentice();
 
-            return new SelectStandardPage(context);
+            return new ProviderSelectStandardPage(context);
         }
 
         internal SimplifiedPaymentsPilotPage SelectAddAnApprenticeForFlexiPaymentsProvider()

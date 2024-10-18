@@ -5,7 +5,7 @@ using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework;
 using TechTalk.SpecFlow;
@@ -34,7 +34,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _providerStepsHelper = new ProviderStepsHelper(context);
             _editedApprenticeDataHelper = context.Get<EditedApprenticeDataHelper>();
             _user = _context.GetUser<ASCoCEmployerUser>();
-            _setApprenticeDetailsHelper = new Helpers.SetApprenticeDetailsHelper(context);
+            _setApprenticeDetailsHelper = new SetApprenticeDetailsHelper(context);
         }
 
         [Given(@"a Course date CoC occurs on an apprenticeship on Employer side")]
@@ -47,7 +47,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
             if (!(appDetailPage.CanEditApprenticeDetails())) appDetailPage = appDetailPage.ClickViewChangesLink().UndoChanges();
 
-            appDetailPage.ClickEditApprenticeDetailsLink().ClickEditCourseLink().EmployerSelectsAnotherCourse().EditCourseDates().AcceptChangesAndSubmit();
+            appDetailPage.ClickEditApprenticeDetailsLink().EmployerClickEditCourseLink().EmployerSelectsAnotherCourse().EditCourseDates().AcceptChangesAndSubmit();
 
             _providerStepsHelper.ApproveChangesAndSubmit();
 
@@ -111,7 +111,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         {
             var user = _user.CocApprenticeUser;
 
-            var username = user.ApprenticeUsername;
+            var username = user.Username;
 
             var (firstName, lastName) = _setApprenticeDetailsHelper.SetApprenticeDetails(user);
 

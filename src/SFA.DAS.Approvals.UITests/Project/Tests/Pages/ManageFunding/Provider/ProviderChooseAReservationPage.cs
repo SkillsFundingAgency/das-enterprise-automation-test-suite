@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         protected override bool TakeFullScreenShot => false;
 
         private static By CreateANewReservationButton => By.CssSelector(".govuk-label--s");
-        private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
+        private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         public ProviderApprenticeshipTrainingPage CreateANewReservation()
         {

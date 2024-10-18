@@ -43,13 +43,14 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="..\specflow.json" Link="specflow.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
+		<None Update="specflow.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
 	</ItemGroup>
 ```
 
@@ -84,6 +85,9 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 	</ItemGroup>
 ```
+8. Create Readme file for the project
+	Include details about the service and project to assist QAs on how to debug issues and what is needed to run the tests. _See template and sample in repo root folder._
+
 Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
 
 ## Set Up (API):
@@ -168,6 +172,9 @@ Note: This API framework is built with all standard libraries and ready to write
 		<ProjectReference Include="..\SFA.DAS.API.Framework\SFA.DAS.API.Framework.csproj" />
 	</ItemGroup>
 ```
+9. Create Readme file for the project
+	Include details about the service and project to assist QAs on how to debug issues and what is needed to run the tests. _See template and sample in repo root folder._
+
 Please follow existing folder structure, folder name and file name so that it would be consistent with other project structure and naming conventions
 
 ## How to use User secrets:

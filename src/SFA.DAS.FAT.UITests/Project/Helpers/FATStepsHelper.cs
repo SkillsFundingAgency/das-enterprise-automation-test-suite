@@ -1,27 +1,12 @@
-﻿using NUnit.Framework;
-using SFA.DAS.FAT.UITests.Project.Tests.Pages;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT.UITests.Project.Helpers;
 
-namespace SFA.DAS.FAT.UITests.Project.Helpers
+public class FATStepsHelper(ScenarioContext context)
 {
-    public class FATStepsHelper(ScenarioContext context)
-    {
-        public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course = "")
-        {
-            new FATIndexPage(context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
-            return new TrainingCourseSearchResultsPage(context);
-        }
+    public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATIndexPage(context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
 
-        public static void CheckIfSatisfactionAndAchievementRatesAreDisplayed(ProviderSearchResultsPage providerSearchResultsPage)
-        {
-            Assert.IsTrue(RegexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetEmployerSatisfactionPercentageInfo()), "EmployerSatisfactionPercentageInfo is Not displayed");
-            Assert.IsTrue(RegexHelper.CheckForPercentageValueMatch(providerSearchResultsPage.GetLearnerSatisfactionPercentageInfoInfo()), "LearnerSatisfactionPercentageInfo is Not displayed");
+    public ProviderSummaryPage SelectASpecificProvider(string provider) => new ProviderSearchResultsPage(context).ClickSpecifiedProvider(provider);
 
-            var achievementRatePercentageInfo = providerSearchResultsPage.GetAchievementRatePercentageInfoInfo();
+    public ProviderShortlistPage ShortlistATrainingCourseAndNavigateToShortlistPage() => ViewProvidersForThisCourse().ShortlistAProviderFromProviderList().NavigateToProviderShortlistPage();
 
-            if (!RegexHelper.CheckForPercentageValueMatch(achievementRatePercentageInfo))
-                Assert.AreEqual("no data available", achievementRatePercentageInfo, "AchievementRateInfo is Not displayed");
-        }
-    }
+    public ProviderSearchResultsPage ViewProvidersForThisCourse() => SearchForTrainingCourse(string.Empty).SelectFirstTrainingResult().ViewProvidersForThisCourse();
 }

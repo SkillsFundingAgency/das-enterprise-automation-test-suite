@@ -18,11 +18,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new ApprovalsProviderHomePage(context);
         }
 
-        internal SelectStandardPage GoToSelectStandardPage()
+        internal ProviderSelectStandardPage GoToSelectStandardPage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-add");
             formCompletionHelper.ClickElement(ContinueButtonTo);
-            return new SelectStandardPage(context);
+            return new ProviderSelectStandardPage(context);
         }
 
         public new ProviderMakingChangesPage VerifySucessMessage()

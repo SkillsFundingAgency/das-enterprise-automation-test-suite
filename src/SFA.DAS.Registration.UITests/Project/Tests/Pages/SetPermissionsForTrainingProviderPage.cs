@@ -1,22 +1,9 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 {
-    public enum AddApprenticePermissions
-    {
-        Allow,
-        DoNotAllow
-    }
-
-    public enum RecruitApprenticePermissions
-    {
-        Allow,
-        AllowConditional,
-        DoNotAllow
-    }
-
-
     public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl");
@@ -28,7 +15,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected static By ApprenticeDoNotAllowRadioOption => By.Id("operation-0-no");
         protected static By RecruitDoNotAllowRadioOption => By.Id("operation-1-no");
 
-        #region Helpers and Context
+        #region Helpers and Context 
 
         #endregion
 
@@ -36,34 +23,34 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public SetPermissionsForTrainingProviderPage ClickAddApprentice(AddApprenticePermissions permission)
         {
+            SetPermissionsForTrainingProviderPage Continue(By by)
+            {
+                javaScriptHelper.ClickElement(by);
+                return this;
+            }
+
             return permission switch
             {
-                AddApprenticePermissions.Allow => Continue(ApprenticeAllowRadioOption),
+                AddApprenticePermissions.AllowConditional => Continue(ApprenticeAllowRadioOption),
                 _ => Continue(ApprenticeDoNotAllowRadioOption),
             };
         }
 
         public ConfirmTrainingProviderPermissionsPage ClickRecruitApprentice(RecruitApprenticePermissions permission)
         {
+            ConfirmTrainingProviderPermissionsPage ContinueToConfirm(By by)
+            {
+                javaScriptHelper.ClickElement(by);
+                Continue();
+                return new ConfirmTrainingProviderPermissionsPage(context);
+            }
+
             return permission switch
             {
                 RecruitApprenticePermissions.Allow => ContinueToConfirm(RecruitAllowRadioOption),
                 RecruitApprenticePermissions.AllowConditional => ContinueToConfirm(RecruitAllowConditionalRadioOption),
                 _ => ContinueToConfirm(RecruitDoNotAllowRadioOption),
             };
-        }
-
-        private SetPermissionsForTrainingProviderPage Continue(By by)
-        {
-            javaScriptHelper.ClickElement(by);
-            return this;
-        }
-
-        private ConfirmTrainingProviderPermissionsPage ContinueToConfirm(By by)
-        {
-            javaScriptHelper.ClickElement(by);
-            Continue();
-            return new ConfirmTrainingProviderPermissionsPage(context);
         }
     }
 }

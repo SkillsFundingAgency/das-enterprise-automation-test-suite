@@ -3,7 +3,7 @@ using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -18,6 +18,7 @@ using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
+using MyTransferPledgesPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyTransferPledgesPage;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 {
@@ -136,7 +137,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING YOUR APPROVAL");
 
         [Then(@"the non levy employer can accept funding")]
-        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE");
+        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication("FUNDS AVAILABLE TO ADD APPRENTICE");
 
         [Then(@"the non levy employer can withdraw funding")]
         public void ThenTheNonLevyEmployerCanWithdrawFunding() { OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount(); OpenPledgeApplication("WITHDRAWN"); }

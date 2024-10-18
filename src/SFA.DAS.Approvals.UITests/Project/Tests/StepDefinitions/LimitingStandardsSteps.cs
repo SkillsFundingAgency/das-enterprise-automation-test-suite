@@ -7,7 +7,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
@@ -64,11 +64,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
             _providerApproveStepsHelper.EditAndApprove();
 
-            var larsCode = context.Get<RoatpV2SqlDataHelper>().GetCoursesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+            var courseTitles = context.Get<RoatpV2SqlDataHelper>().GetCourseTitlesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
 
-            var randomLarsCode = RandomDataGenerator.GetRandomElementFromListOfElements(larsCode);
+            var randomCourse = RandomDataGenerator.GetRandomElementFromListOfElements(courseTitles);
 
-            _employerStepsHelper.EditApprenticeDetailsPagePostApproval().EditCourse(randomLarsCode).AcceptChangesAndSubmit();
+            _employerStepsHelper.EditApprenticeDetailsPagePostApproval().EditCourse(randomCourse).AcceptChangesAndSubmit();
         }
 
         [When(@"provider opens the cohort")]

@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
@@ -20,17 +20,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new ChooseAReservationPage(context);
         }
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickSaveAndContinueButton()
+        public EmployerSelectStandardPage ClickSaveAndContinueButton()
         {
             Continue();
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
+            return new EmployerSelectStandardPage(context);
         }
 
-        public SelectStandardPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+        public EmployerSelectStandardPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
         {
             formCompletionHelper.Click(ChooseCourseReservation);
             Continue();
-            return new SelectStandardPage(context);
+            return new EmployerSelectStandardPage(context);
         }
     }
 }

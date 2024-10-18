@@ -18,7 +18,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         private const string TrainingNameKey = "trainingname";
         private const string EmployerAccountLegalEntityIdKey = "employeraccountlegalentityid";
         private const string EmailKey = "emailkey";
-        private const string ChangedEmailKey = "changedemailkey";
         private const string PasswordKey = "passwordKey";
         private const string ProviderNameKey = "providername";
         private const string EmployerNameKey = "employername";
@@ -44,7 +43,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
             objectContext.SetApprenticeEmail(email);
         }
         public static void SetApprenticeEmail(this ObjectContext objectContext, string value) => objectContext.Replace(EmailKey, value);
-        public static void SetApprenticeChangedEmail(this ObjectContext objectContext, string value) => objectContext.Replace(ChangedEmailKey, value);
         public static void SetApprenticePassword(this ObjectContext objectContext, string value) => objectContext.Replace(PasswordKey, value);
         internal static void SetProviderName(this ObjectContext objectContext, string value) => objectContext.Replace(ProviderNameKey, value);
         internal static void SetEmployerName(this ObjectContext objectContext, string value) => objectContext.Replace(EmployerNameKey, value);
@@ -52,7 +50,6 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
         internal static void SetTrainingEndDate(this ObjectContext objectContext, string value) => objectContext.Replace(TrainingEndDateKey, value);
         internal static string GetCommitmentsApprenticeshipId(this ObjectContext objectContext) => objectContext.Get(CommitmentsApprenticeshipIdKey);
         public static string GetApprenticeEmail(this ObjectContext objectContext) => objectContext.Get(EmailKey);
-        public static string GetApprenticeChangedEmail(this ObjectContext objectContext) => objectContext.Get(ChangedEmailKey);
         public static string GetApprenticePassword(this ObjectContext objectContext) => objectContext.Get(PasswordKey);
         public static string GetFirstName(this ObjectContext objectContext) => objectContext.Get(FirstNameKey);
         public static string GetLastName(this ObjectContext objectContext) => objectContext.Get(LastNameKey);

@@ -6,14 +6,14 @@ namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 public class AedStepsHelper
 {
     private readonly ScenarioContext _context;
-    private readonly FATV2StepsHelper _fATV2StepsHelper;
+    private readonly FATStepsHelper _fATV2StepsHelper;
     private readonly TabHelper _tabHelper;
 
     public AedStepsHelper(ScenarioContext context)
     {
         _context = context;
 
-        _fATV2StepsHelper = new FATV2StepsHelper(_context);
+        _fATV2StepsHelper = new FATStepsHelper(_context);
 
         _tabHelper = context.Get<TabHelper>();
     }
