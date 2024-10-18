@@ -104,17 +104,17 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.And("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 12
-   testRunner.Then("the non levy employer can apply for the pledge but is not immediately autoapprove" +
+#line 9
+ testRunner.Then("the non levy employer can apply for the pledge but is not immediately autoapprove" +
                         "d", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
+#line 10
  testRunner.And("the levy employer can view the awaiting your approval application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 11
  testRunner.Then("It is 7 days before an application reaches 3 months without any action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 19
+#line 12
     testRunner.And("the levy employer will be able to view auto rejected date of application under st" +
                         "atus tag \'Application expires on dd/mm/yy\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
