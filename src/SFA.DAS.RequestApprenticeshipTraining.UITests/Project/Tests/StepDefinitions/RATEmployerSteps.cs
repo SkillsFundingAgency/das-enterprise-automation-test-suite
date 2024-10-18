@@ -1,24 +1,26 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FAT.UITests.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages;
+using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class RATEmployerSteps(ScenarioContext context)
+public class RatEmployerSteps(ScenarioContext context)
 {
     private readonly FATStepsHelper _fATV2StepsHelper = new(context);
 
     private AskIfTrainingProvidersCanRunThisCoursePage landingPage;
 
-    private WeHaveSharedThisWithTrainingProvidersPage submitConfirmationPage;
+    private TrainingRequestDetailPage trainingRequestDetailPage;
+
+    private readonly EmployerHomePageStepsHelper _homePageStepsHelper = new(context);
 
     [Given(@"an employer requests apprenticeship training")]
     public void AnEmployerRequestsApprenticeshipTraining() => RequestTrainingProvider(false);
@@ -32,43 +34,50 @@ public class RATEmployerSteps(ScenarioContext context)
     [When(@"the employer logs in to rat cancel employer account")]
     public void TheEmployerLogsInToRatCancelEmployerAccount() => LoginViaRat(context.GetUser<RatCancelEmployerUser>());
 
+    [When(@"the employer logs in to rat multi employer account")]
+    public void TheEmployerLogsInToRatMultiEmployerAccount() => LoginViaRat(context.GetUser<RatMultiEmployerUser>());
 
     [Then(@"the employer submits the request for single location")]
     public void TheEmployerSubmitsTheRequestForSingleLocation()
     {
-        SubmitAnswers(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesForASingleLocation().GoToTrainingOptionsPage(true));
+        SelectActiveRequest(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickYesToChooseSingleLocation().GoToTrainingOptionsPage(true));
     }
 
     [Then(@"the employer submits the request for multiple location")]
     public void TheEmployerSubmitsTheRequest()
     {
-        SubmitAnswers(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickNoForAMultipleLocation().ChooseRegion());
+        SelectActiveRequest(landingPage.ClickStarNow().EnterMoreThan1Apprentices().ClickNoToChooseMultipleLocation().ChooseRegion());
     }
 
     [Then(@"the employer submits the request for one apprentice")]
     public void TheEmployerSubmitsTheRequestForOneApprentice()
     {
-        SubmitAnswers(landingPage.ClickStarNow().Enter1Apprentices().GoToTrainingOptionsPage(false));
+        SelectActiveRequest(landingPage.ClickStarNow().Enter1Apprentices().GoToTrainingOptionsPage(false));
     }
 
     [Then(@"the employer can cancel the request")]
     public void TheEmployerCanCancelTheRequest()
     {
-        submitConfirmationPage.ReturnToRequestPage().SelectActiveRequest().CancelYourRequest().SubmitCancelRequest();
+        trainingRequestDetailPage.CancelYourRequest().SubmitCancelRequest();
+    }
+
+    [Then(@"the employer receives the response")]
+    public void TheEmployerReceivesTheResponse()
+    {
+        _homePageStepsHelper.GotoEmployerHomePage();
+
+        new RatEmployerHomePage(context).NavigateToFindApprenticeshipPage().SelectActiveRequest().VerifyProviderResponse();
     }
 
     private void LoginViaRat(RatEmployerBaseUser loginUser) => landingPage = new EmployerPortalViaRatLoginHelper(context).LoginViaRat(loginUser);
 
-    private void SubmitAnswers(SelectTrainingOptionsPage selectTrainingOptionsPage) => submitConfirmationPage = selectTrainingOptionsPage.SelectTrainingOptions().SubmitAnswers();
-
+    private void SelectActiveRequest(SelectTrainingOptionsPage selectTrainingOptionsPage) => trainingRequestDetailPage = selectTrainingOptionsPage.SelectTrainingOptions().SubmitAnswers().ReturnToRequestPage().SelectActiveRequest();
 
     private void RequestTrainingProvider(bool filterLocation)
     {
-        var courseTitles = context.Get<RoatpV2SqlDataHelper>().GetCourseTitlesthatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>()?.Ukprn);
+        var title = context.Get<RoatpV2SqlDataHelper>().GetTitlethatProviderDeosNotOffer(context.GetProviderConfig<ProviderConfig>().Ukprn);
 
-        var randomCourse = RandomDataGenerator.GetRandomElementFromListOfElements(courseTitles);
-
-        _fATV2StepsHelper.SearchForTrainingCourse(randomCourse).SelectFirstTrainingResult().ViewProvidersForThisCourse(filterLocation, string.Empty).RequestTrainingProvider();
+        _fATV2StepsHelper.SearchForTrainingCourse(title).SelectFirstTrainingResult().ViewProvidersForThisCourse(filterLocation, string.Empty).RequestTrainingProvider();
     }
 
 }

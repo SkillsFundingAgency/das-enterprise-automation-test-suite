@@ -1,7 +1,6 @@
 ﻿using AutoFixture;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using System;
-using System.Collections.Generic;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
 {
@@ -13,13 +12,13 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Tests.Builders
         {
             var fixture = new Fixture();
             _data = fixture.Create<LearnerSubmissionDto>();
-            _data.Training = new List<TrainingDto>
-            {
+            _data.Training =
+            [
                 new() {
                     Reference = "ZPROG001",
-                    PriceEpisodes = new List<PriceEpisodeDto>()
+                    PriceEpisodes = []
                 }
-            };
+            ];
         }
 
         public LearnerSubmissionDto Create() => _data;
