@@ -61,8 +61,8 @@ public class RatEmployerSteps(ScenarioContext context)
         trainingRequestDetailPage.CancelYourRequest().SubmitCancelRequest();
     }
 
-    [Then(@"the employer receives the request")]
-    public void TheEmployerReceivesTheRequest()
+    [Then(@"the employer receives the response")]
+    public void TheEmployerReceivesTheResponse()
     {
         _homePageStepsHelper.GotoEmployerHomePage();
 

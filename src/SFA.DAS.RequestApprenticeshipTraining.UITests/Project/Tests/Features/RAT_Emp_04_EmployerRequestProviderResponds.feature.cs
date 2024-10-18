@@ -20,22 +20,22 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RAT_Emp_04_EmployerRequestProviderResponds")]
-    public partial class RAT_Emp_04_EmployerRequestProviderRespondsFeature
+    [NUnit.Framework.DescriptionAttribute("Rat_Emp_04_EmployerRequestProviderResponds")]
+    public partial class Rat_Emp_04_EmployerRequestProviderRespondsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RAT_Emp_04_EmployerRequestProviderResponds.feature"
+#line 1 "Rat_Emp_04_EmployerRequestProviderResponds.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "RAT_Emp_04_EmployerRequestProviderResponds", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "Rat_Emp_04_EmployerRequestProviderResponds", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RAT_Emp_04_EmployerRequestProviderResponds")]
+        [NUnit.Framework.DescriptionAttribute("Rat_Emp_04_EmployerRequestProviderResponds")]
         [NUnit.Framework.CategoryAttribute("ratemployer")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("mailosaur")]
         [NUnit.Framework.CategoryAttribute("rat")]
-        public void RAT_Emp_04_EmployerRequestProviderResponds()
+        public void Rat_Emp_04_EmployerRequestProviderResponds()
         {
             string[] tagsOfScenario = new string[] {
                     "ratemployer",
@@ -87,7 +87,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
                     "mailosaur",
                     "rat"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_04_EmployerRequestProviderResponds", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Rat_Emp_04_EmployerRequestProviderResponds", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("a provider responds to the employer request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("the employer receives the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the employer receives the response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
