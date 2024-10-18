@@ -13,5 +13,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin
             formCompletionHelper.ClickElement(SaveButton);
             return new ConfirmNotificationSuccess(context);
         }
+
+        public ConfirmNotificationSuccess SelectNoAndSave()
+        {
+            formCompletionHelper.SelectRadioOptionByText("No");
+            formCompletionHelper.ClickElement(SaveButton);
+            return new ConfirmNotificationSuccess(context);
+        }
     }
 }

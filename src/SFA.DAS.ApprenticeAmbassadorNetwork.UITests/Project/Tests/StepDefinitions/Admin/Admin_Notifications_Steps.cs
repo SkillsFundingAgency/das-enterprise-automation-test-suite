@@ -19,6 +19,13 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
             new NotificationsSettingsPage(context)
                 .SelectYesAndSave();
         }
-      
+
+        [Then(@"the user select No for emails and confirm notification saved")]
+        public void ThenTheUserSelectNoForEmailsAndConfirmNotificationSaved()
+        {
+            new NotificationsSettingsPage(context)
+                .SelectNoAndSave();
+        }
+
     }
 }
