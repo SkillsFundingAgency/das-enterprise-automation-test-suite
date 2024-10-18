@@ -6,8 +6,15 @@ public static partial class GeneratedRegexHelper
 {
     [GeneratedRegex("/")]
     public static partial Regex UrlEscapeRegex();
-
 }
+
+
+public static partial class GenerateGuidRegexHelper
+{
+    [GeneratedRegex("[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}")]
+    public static partial Regex FindGuidRegex();
+}
+
 
 public partial class ProjectNameRegexHelper
 {

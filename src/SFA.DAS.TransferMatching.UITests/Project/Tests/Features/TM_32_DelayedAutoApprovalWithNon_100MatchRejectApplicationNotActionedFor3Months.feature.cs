@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RAT_Emp_02_EmpAddsLocation1AppAndCancelRequest")]
-    public partial class RAT_Emp_02_EmpAddsLocation1AppAndCancelRequestFeature
+    [NUnit.Framework.DescriptionAttribute("TM_32_DelayedAutoApprovalWithNon_100MatchRejectApplicationNotActionedFor3Months")]
+    public partial class TM_32_DelayedAutoApprovalWithNon_100MatchRejectApplicationNotActionedFor3MonthsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RAT_Emp_02_EmpAddsLocation1AppAndCancelRequest.feature"
+#line 1 "TM_32_DelayedAutoApprovalWithNon_100MatchRejectApplicationNotActionedFor3Months.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "RAT_Emp_02_EmpAddsLocation1AppAndCancelRequest", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "TM_32_DelayedAutoApprovalWithNon_100MatchRejectApplicationNotActionedFor3Months", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,19 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RAT_Emp_02_EmpAddsLocation1AppAndCancelRequest")]
-        [NUnit.Framework.CategoryAttribute("ratemployer")]
+        [NUnit.Framework.DescriptionAttribute("TM_32 Delayed AutoApproval With Non-100% Match Reject Application Not Actioned Fo" +
+            "r 3 Months")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("mailosaur")]
-        [NUnit.Framework.CategoryAttribute("rat")]
-        public void RAT_Emp_02_EmpAddsLocation1AppAndCancelRequest()
+        [NUnit.Framework.CategoryAttribute("transfermatching")]
+        public void TM_32DelayedAutoApprovalWithNon_100MatchRejectApplicationNotActionedFor3Months()
         {
             string[] tagsOfScenario = new string[] {
-                    "ratemployer",
                     "regression",
-                    "mailosaur",
-                    "rat"};
+                    "transfermatching"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAT_Emp_02_EmpAddsLocation1AppAndCancelRequest", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TM_32 Delayed AutoApproval With Non-100% Match Reject Application Not Actioned Fo" +
+                    "r 3 Months", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,17 +96,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+    testRunner.Given("the levy employer logins using existing transfer matching account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 7
+    testRunner.Then("the levy employer can create anonymous pledge using non default criteria", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 8
- testRunner.Given("an employer adds location to requests apprenticeship training", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Then("the levy employer can view pledges from verification page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
- testRunner.When("the employer logs in to rat cancel employer account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("the receiver levy employer applies for the pledge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the employer submits the request for one apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("Application has not been actioned for 3 months", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.And("the employer can cancel the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.Then("Application should be auto rejected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
