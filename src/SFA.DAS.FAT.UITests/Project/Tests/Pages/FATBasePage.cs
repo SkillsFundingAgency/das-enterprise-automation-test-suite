@@ -9,11 +9,9 @@ public abstract class FATBasePage : VerifyBasePage
     protected virtual By FirstProviderResultLink => By.ClassName("das-search-results__link");
     protected virtual By HomePageLink => By.LinkText("Home");
     protected virtual By ViewShortlistLink => By.Id("header-view-shortlist");
-
-    protected virtual bool DoVerifyPage => true;
     #endregion
 
-    protected FATBasePage(ScenarioContext context) : base(context) { if (DoVerifyPage) VerifyPage(); }
+    protected FATBasePage(ScenarioContext context) : base(context) => VerifyPage(); 
 
     public void SearchApprenticeship(string searchTerm)
     {

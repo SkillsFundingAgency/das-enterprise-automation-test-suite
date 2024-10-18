@@ -2,7 +2,7 @@
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages;
+namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
 public class HowManyAprenticesWouldDoThisApprenticeshipTrainingPage(ScenarioContext context) : RatProjectBasePage(context)
 {

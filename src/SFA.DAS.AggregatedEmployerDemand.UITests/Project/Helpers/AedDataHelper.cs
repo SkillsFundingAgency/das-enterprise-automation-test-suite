@@ -20,5 +20,5 @@ public record AedDataHelper
 
     private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToLower();
 
-    private static List<string> ValidLocations => new() { "Crawley, West Sussex", "Bilston, West Midlands", "Coventry, West Midlands", "Canary Wharf, Greater London", "CV1 2WT" };
+    private static List<string> ValidLocations => ["Crawley, West Sussex", "Bilston, West Midlands", "Coventry, West Midlands", "Canary Wharf, Greater London", "CV1 2WT"];
 }
