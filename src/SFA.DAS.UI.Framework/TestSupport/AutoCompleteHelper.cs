@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.UI.Framework.TestSupport
 {
     public abstract class AutoCompleteHelper
     {

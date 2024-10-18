@@ -10,7 +10,7 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages
 
         private static string ExpectedPageTitle => "One application cancelled";
 
-        private List<string> ExpectedPageTitles => new() { PageTitle, ExpectedPageTitle };
+        private List<string> ExpectedPageTitles => [PageTitle, ExpectedPageTitle];
 
         protected static By ViewApplicationsSelector => By.CssSelector("#main-content .govuk-button");
 
