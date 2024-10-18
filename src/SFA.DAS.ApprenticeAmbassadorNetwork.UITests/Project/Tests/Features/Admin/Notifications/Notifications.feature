@@ -1,6 +1,8 @@
 ﻿Feature: Notifications
 
-A short summary of the feature
+As an AAN Admin User
+I want to be able to access and update my notification settings
+So that I can update my email preferences if required.
 
 @aan
 @aanadmin
