@@ -8,6 +8,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
     public class HomePage : InterimHomeBasePage
     {
         #region Locators
+
+        protected static By FindApprenticeshipLink => By.LinkText("Find apprenticeship training and manage requests");
         protected static By StartNowButton => By.LinkText("Start now");
         protected static By YourFundingReservationsLink => By.LinkText("Your funding reservations");
         protected static By YourTransfersLink => By.LinkText("Your transfers");
@@ -18,7 +20,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         protected static By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
         protected static By YourFinancesLink => By.LinkText("Your finances");
         protected static By AANLink => By.LinkText("Join the Apprentice Ambassador Network");
-        private static By LevyDeclarationDueTask => By.LinkText($"Levy declaration due by 19 {DateTime.Now:MMMM}");
         private static By TransferRequestViewDetailsLink => By.XPath("//li[contains(span, 'Transfer request received')]/span/a[text()='View details']");
         private static By TransferConnectionRequestViewDetailsLink => By.XPath("//li[contains(span, 'connection requests to review')]/span/a[text()='View details']");
         #endregion
@@ -59,7 +60,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
 
         public void VerifyLevyDeclarationDueTaskMessageShown()
         {
-            VerifyElement(LevyDeclarationDueTask);
+            var messageText = $"Levy declaration due by 19 {DateTime.Now:MMMM}";
+            var xpath = $"//span[contains(text(), '{messageText}')]";
+            var levyDeclarationDue = By.XPath(xpath);
+
+            VerifyElement(levyDeclarationDue);
         }
 
         public void VerifyApprenticeChangeToReviewMessageShown(int numberOfChanges)

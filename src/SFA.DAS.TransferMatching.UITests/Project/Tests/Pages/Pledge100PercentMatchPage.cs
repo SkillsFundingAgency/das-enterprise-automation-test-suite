@@ -18,7 +18,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private void SelectMatchChoice(bool immediateMatch)
         {
-            string radioOption = immediateMatch ? "Yes, automatically approve" : "No, I would like 6 weeks to approve or reject 100% matches";
+            string radioOption = immediateMatch ? "Yes, automatically approve"
+                : "No, I would like 6 weeks to approve or reject 100% matches";
 
             formCompletionHelper.SelectRadioOptionByText(radioOption);
 

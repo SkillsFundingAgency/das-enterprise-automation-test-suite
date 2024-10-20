@@ -31,7 +31,7 @@ public class FATSteps
 
     [Given(@"the User is able to find the Provider by location (.*) for the chosen training")]
     [Then(@"the User is able to find the Provider by location (.*) for the chosen training")]
-    public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode) => _providerSearchResultsPage = _trainingCourseSummaryPage.EnterPostCodeAndSearch(postCode);
+    public void ThenTheUserIsAbleToFindTheProviderByPostCodeForTheChosenTraining(string postCode) => _providerSearchResultsPage = _trainingCourseSummaryPage.ViewProvidersForThisCourse(postCode);
 
     [Given(@"user navigates to provider details page")]
     public void GivenUserNavigatesToProviderDetailsPage()
@@ -46,7 +46,7 @@ public class FATSteps
         WhenTheUserSearchesWithATerm("Advanced golf");
         WhenTheUserChoosesTheFirstCourseFromTheSearchResultsPage();
 
-        _providerSearchResultsPage = _trainingCourseSummaryPage.ClickViewProvidersForThisCourse();
+        _providerSearchResultsPage = _trainingCourseSummaryPage.ViewProvidersForThisCourse();
     }
 
     [Given(@"the user has shortlisted a provider")]
