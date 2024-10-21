@@ -103,7 +103,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void WhenTheNonLevyEmployerAppliesForThePledgeButNotImmediatelyAutoApproved()
         {
             _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
-            SubmitApplicationHelper.SubmitApplication(new CreateATransfersApplicationPage(_context));
+            SubmitApplicationHelper.SubmitApplication(new CreateATransfersApplicationPage(_context), _objectContext.GetPledgeDetail().PledgeId);
             OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver()).SetPledgeApplication();
         }
 
@@ -153,6 +153,21 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _employerHomePageStepsHelper.GotoEmployerHomePage();
             OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver());
+        }
+
+        [Then(@"the receiver can open approved pledge application")]
+        public void ThenTheReceiverCanOpenApprovedPledgeApplication()
+        {
+            var sender = _context.Get<TransferMatchingUser>();
+            UpdateOrganisationName(sender.OrganisationName);
+
+            SignOut();
+
+            var receiverLogin = _context.Get<LevyUser>();
+            UpdateOrganisationName(receiverLogin.OrganisationName);
+            LoginAsReceiver(receiverLogin);
+
+            OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
         }
 
         [Then(@"the non levy employer can open awaiting approval pledge application")]
@@ -357,11 +372,44 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"wait for 6 weeks")]
         public void ApplicationIsApprovedAfter6Weeks()
         {
-            //update created on date to 6 weeks later
-            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToToday(_objectContext.GetPledgeDetail().PledgeId);
+            //update created on date to 6 weeks Ago
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
             Thread.Sleep(TimeSpan.FromSeconds(10));
             // trigger autoapproval job
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
+        }
+
+        [Then(@"the application is seven days from being auto approved")]
+        public void ApplicationIs7DaysFromBeingAutoApproved()
+        {
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo5WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+        }
+        
+        [Then(@"the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'")]
+        public void ApplicationStatusShowsDateDueToAutoApprove()
+        {
+            var approvalDate = "AUTO APPROVAL ON " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+
+            GoToTransferPledgePageAsSender().ConfirmApplicationStatus(approvalDate);
+        }
+
+        [Then(@"It is 7 days before an application reaches 3 months without any action")]
+        public void ItIsAWeekBeforeApplicationIs3MonthsOldWithoutAnyAction()
+        {
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToAWeekLessThan3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
+        }
+
+        [Then(@"the levy employer will be able to view auto rejected date of application under status tag 'Application expires on dd/mm/yy'")]
+        public void ApplicationStatusShowsDateDueToAutoReject()
+        {
+            var approvalDate = "APPLICATION EXPIRES ON " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+
+            var sender = _context.Get<TransferMatchingUser>();
+            UpdateOrganisationName(sender.OrganisationName);
+
+            SignOut();
+            LoginAsSender(sender);
+            NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ConfirmApplicationStatus(approvalDate);
         }
 
         [Then(@"Application has not been actioned for 3 months")]
