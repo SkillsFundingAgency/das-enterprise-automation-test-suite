@@ -35,6 +35,8 @@ public class ProviderHomePage : InterimProviderBasePage
 
     protected static By YourStandardsAndTrainingVenues => By.LinkText("Your standards and training venues");
 
+    protected static By ViewEmployerRequestsForTraining => By.LinkText("View employer requests for training");
+
     public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
 
 }

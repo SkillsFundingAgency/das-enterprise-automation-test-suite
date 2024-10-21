@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages;
+namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
 public class CheckYourAnswersPage(ScenarioContext context) : RatProjectBasePage(context)
 {
@@ -25,7 +25,7 @@ public class CheckYourAnswersPage(ScenarioContext context) : RatProjectBasePage(
     {
         ClickChange(ClickChangeHowManyApprentices);
 
-        return new (context);
+        return new(context);
     }
 
     public AreTheApprenticeshipsInTheSameLocationPage ChangeOneApprenticeshipLocation()

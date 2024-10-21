@@ -11,5 +11,7 @@ Scenario:TM_29_Create Delayed Transfer Pledge and Approve After 6 Weeks
 	Then the levy employer can create pledge using default criteria
 	And the levy employer can view pledges from verification page
 	When the receiver levy employer applies for the pledge
+	Then the application is seven days from being auto approved
+	Then the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'
 	Then wait for 6 weeks
-	And the non levy employer can open approved pledge application
+	And the receiver can open approved pledge application

@@ -1,7 +1,8 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages;
+namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
 public class SelectTrainingOptionsPage(ScenarioContext context) : RatProjectBasePage(context)
 {
@@ -15,10 +16,12 @@ public class SelectTrainingOptionsPage(ScenarioContext context) : RatProjectBase
 
     public CheckYourAnswersPage SelectTrainingOptions()
     {
-        formCompletionHelper.Click(AtApprenticesWorkplace);
-        formCompletionHelper.Click(DayRelease);
-        formCompletionHelper.Click(BlockRelease);
+        var selector = RandomDataGenerator.GetRandomElementFromListOfElements([AtApprenticesWorkplace, DayRelease, BlockRelease]);
+
+        formCompletionHelper.Click(selector);
+
         Continue();
+
         return new CheckYourAnswersPage(context);
     }
 }

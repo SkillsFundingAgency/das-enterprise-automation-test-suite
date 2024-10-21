@@ -8,3 +8,5 @@ Scenario: TM_28_AutoApproval Does Not Occur When Not a Complete Match
 	And the levy employer can view pledges from verification page
 	Then the non levy employer can apply for the pledge but is not immediately autoapproved
 	And the levy employer can view the awaiting your approval application
+	Then It is 7 days before an application reaches 3 months without any action
+    And the levy employer will be able to view auto rejected date of application under status tag 'Application expires on dd/mm/yy'

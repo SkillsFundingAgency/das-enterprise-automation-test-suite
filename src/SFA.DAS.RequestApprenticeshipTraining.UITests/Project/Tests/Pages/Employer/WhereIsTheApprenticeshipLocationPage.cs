@@ -3,7 +3,7 @@ using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.RATEmployerPages;
+namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
 public class WhereIsTheApprenticeshipLocationPage : RatProjectBasePage
 {
