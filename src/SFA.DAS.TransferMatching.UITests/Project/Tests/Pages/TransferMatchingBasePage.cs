@@ -20,7 +20,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected static By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
 
-        private static By ApplicaitonStatusSelector => By.CssSelector("div.govuk-body");      //By.XPath("//strong[contains(@class,'govuk-tag')]");
+        private static By ApplicationStatusSelector => By.XPath("//*[@id=\"main-content\"]/div/div[1]/div[1]/div/div/strong");
 
         protected TransferMatchingBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
@@ -31,13 +31,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageSelector);
 
-        protected void VerifyApplicationStatus(string expectedStatus)
-        {
-
-            var actualStatus = pageInteractionHelper.GetText(ApplicaitonStatusSelector);
-            actualStatus = actualStatus.Remove(0, 20).Trim().ToUpper();
-            Assert.AreEqual(expectedStatus, actualStatus); 
-        }          
+        protected void VerifyApplicationStatus(string expectedStatus) => VerifyElement(ApplicationStatusSelector, expectedStatus);
 
         protected Pledge GetPledgeDetail() => objectContext.GetPledgeDetail();
 
