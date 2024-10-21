@@ -6,7 +6,7 @@ using System.Net;
 
 namespace SFA.DAS.TransferMatching.APITests.Project
 {
-    public class TransferMatchingJobs_AutoApprovalClient(ObjectContext objectContext, TransferMatchingJobsConfig config) : OuterJobs_BaseApiRestClient(objectContext, config.ApplicationsWithAutomaticApproval_Code)
+    public class TransferMatchingJobs_AutoApprovalClient(ObjectContext objectContext, TransferMatchingJobsConfig config) : OuterJobs_BaseApiRestClient(objectContext, config.HttpAutomaticApplicationApprovalFunction_Code)
     {
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.LevyTransferMatchingJobs_BaseUrl;
 
