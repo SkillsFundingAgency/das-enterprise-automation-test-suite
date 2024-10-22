@@ -4,9 +4,9 @@ public class EventOutlinePage(ScenarioContext context) : AanAdminBasePage(contex
 {
     protected override string PageTitle => "Event outline";
 
-    private static By EventOutlineText => By.CssSelector("#eventOutline");
+    private static By EventOutlineText => By.XPath("//textarea[@id='EventOutline']");
 
-    private static By EventSummaryText => By.CssSelector("#EventSummary p");
+    private static By EventSummaryText => By.CssSelector("div[aria-label='Editor editing area: main']");
 
     public IncludeGuestSpeakerPage SubmitEventOutline()
     {
