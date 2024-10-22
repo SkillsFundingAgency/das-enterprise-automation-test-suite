@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
 {
     public class CreateCsvFileHelper
     {
-        private static string CsvHeader => "CohortRef,AgreementID,ULN,FamilyName,GivenNames,DateOfBirth,EmailAddress,StdCode,StartDate,EndDate,TotalPrice,EPAOrgID,ProviderRef,RecognisePriorLearning,DurationReducedBy,PriceReducedBy";
+        private static string CsvHeader => "CohortRef,AgreementID,ULN,FamilyName,GivenNames,DateOfBirth,EmailAddress,StdCode,StartDate,EndDate,TotalPrice,EPAOrgID,ProviderRef,RecognisePriorLearning,TrainingTotalHours,TrainingHoursReduction,IsDurationReducedByRPL,DurationReducedBy,PriceReducedBy";
 
         public static void CreateCsvFile(List<BulkUploadApprenticeDetails> apprenticeDetailsList, string fileLocation)
         {
@@ -18,7 +18,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
                     $"{apprentice.GivenNames},{apprentice.DateOfBirth},{apprentice.EmailAddress}," +
                     $"{apprentice.StdCode},{apprentice.StartDate},{apprentice.EndDate}," +
                     $"{apprentice.TotalPrice},{apprentice.EPAOrgID},{apprentice.ProviderRef}," +
-                    $"{apprentice.RecognisePriorLearning}, {apprentice.DurationReducedBy}, {apprentice.PriceReducedBy}");
+                    $"{apprentice.RecognisePriorLearning}, {apprentice.TrainingTotalHours}, {apprentice.TrainingHoursReduction}," +
+                    $"{apprentice.IsDurationReducedByRPL}, {apprentice.DurationReducedBy}, {apprentice.PriceReducedBy}");
             }
         }
     }
