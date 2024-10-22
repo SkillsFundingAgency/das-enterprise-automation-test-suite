@@ -31,7 +31,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void TheEmployerAtMaxReservationLimitLogins()
         {
             _employerPortalLoginHelper.Login(_nonLevyUserAtMaxReservationLimit, false);
-            //_apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage();
         }
 
         [When(@"user tries to create an apprenticeship request \(cohort\)")]
