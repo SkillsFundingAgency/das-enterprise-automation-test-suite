@@ -43,8 +43,4 @@
 	  </None>
 	</ItemGroup>
 	
-	<ItemGroup>
-	  <Folder Include="Project\Tests\Features\Admin\Notifications\" />
-	</ItemGroup>
-	
 </Project>
