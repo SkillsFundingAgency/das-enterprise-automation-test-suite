@@ -12,10 +12,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         internal ProviderConfirmEmployerPage ChooseLevyEmployer() => ChooseAnEmployer("Levy");
 
         internal ProviderConfirmEmployerPage ChooseNonLevyEmployer() => ChooseAnEmployer("NonLevy");
+        internal ProviderConfirmEmployerPage ChooseNonLevyEmployerAtMaxReservationLimit() => ChooseAnEmployer("NonLevyUserAtMaxReservationLimit");
 
         private ProviderConfirmEmployerPage ChooseAnEmployer(string employerType)
         {
-            var employerUser = employerType == "Levy" ? context.GetUser<LevyUser>() : (EasAccountUser)context.GetUser<NonLevyUser>();
+           
+            EasAccountUser employerUser = employerType switch
+            {
+                "NonLevy" => context.GetUser<NonLevyUser>(),
+                "NonLevyUserAtMaxReservationLimit" => context.GetUser<NonLevyUserAtMaxReservationLimit>(),
+                _ => context.GetUser<LevyUser>()
+            };
 
             var employerName = employerUser.OrganisationName[..3] + "%";
 
