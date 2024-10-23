@@ -25,6 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project
                 _configSection.GetConfigSection<ProviderPermissionLevyUser>(),
                 _configSection.GetConfigSection<EmployerWithMultipleAccountsUser>(),
                 _configSection.GetConfigSection<FlexiJobUser>(),
+                _configSection.GetConfigSection<NonLevyUserAtMaxReservationLimit>(),
                 _configSection.GetConfigSection<EmployerConnectedToPortableFlexiJobProvider>()
             ]);
         }

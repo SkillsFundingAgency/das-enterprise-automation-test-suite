@@ -9,12 +9,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
     {
         private static By TableRows => By.CssSelector(".govuk-table .govuk-table__body .govuk-table__row");
 
+        private static By SingleRequestSelector => By.ClassName("cohort-details-link");
         private static By ReferenceSelector => By.CssSelector("[data-label=Reference]");
 
         protected void SelectCurrentCohortDetailsFromTable()
         {
             javaScriptHelper.ScrollToTheBottom();
             tableRowHelper.SelectRowFromTableDescending("Details", objectContext.GetCohortReference());
+        }
+        
+        protected void SelectSingleRequestInTable()
+        {
+            formCompletionHelper.ClickElement(SingleRequestSelector);           
         }
 
         protected void SelectCurrentCohortDetailsFromTable(string key) => tableRowHelper.SelectRowFromTable("Details", key);

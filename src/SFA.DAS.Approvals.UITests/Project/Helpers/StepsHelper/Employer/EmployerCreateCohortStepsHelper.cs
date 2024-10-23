@@ -1,8 +1,8 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using System;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
@@ -51,6 +51,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFunc())
                .EmployerSendsToProviderToAddApprentices()
                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+        }
+
+        public StartAddingApprenticesPage NonLevyEmployerTriesToAddApprentice()
+        {
+            return _confirmProviderDetailsHelper
+               .ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
+        }
+
+        public void NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
+        {
+            new StartAddingApprenticesPage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
         }
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
