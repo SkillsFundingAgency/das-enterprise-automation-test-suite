@@ -4,7 +4,7 @@ public class EventTitlePage(ScenarioContext context) : AanAdminBasePage(context)
 {
     protected override string PageTitle => "Event title";
 
-    private static By EventTitleSelector => By.CssSelector("#eventTitle");
+    private static By EventTitleSelector => By.CssSelector("input#EventTitle");
 
     public EventOutlinePage SubmitEventTitle()
     {
