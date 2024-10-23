@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;
@@ -26,6 +27,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
+        private ProviderConfirmEmployerPage _providerConfirmEmployerPage;
 
         public ProviderReservationsSteps(ScenarioContext context)
         {
@@ -50,6 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Given(@"the Provider with create reservation permission logs in")]
+        [When(@"the Provider with create reservation permission logs in")]
         public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_login, true);
 
         [When(@"the Provider creates a reservation")]
@@ -97,6 +100,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider can access Manage Funding Page to reserve more funding")]
         public void ThenTheProviderCanAccessManageFundingPageToReserveMoreFunding() => _providerStepsHelper
             .NavigateToProviderHomePage().GoToManageYourFunding().ClickReserveMoreFundingLink();
+
+        [Then(@"the Provider with suitable permissions tries to create reservation on behalf of this employer")]
+        public void WhenTheProviderWithSuitablePermissionsTriesToCreateReservationOnBehalfOfThisEmployer()
+        {
+            _providerConfirmEmployerPage = _approvalsProviderHomePage.GoToManageYourFunding()
+                .ClickReserveMoreFundingLink()
+                .StartReservedFunding()
+                .ChooseNonLevyEmployerAtMaxReservationLimit();
+        }
+
+        [Then(@"the Provider is blocked with a shutter page")]
+        public void TheProviderIsBlockedByReservationFundingRestrictionsPage()
+        {
+            _providerConfirmEmployerPage.ConfirmNonLevyEmployerAtMaxReservationLimit();
+        }
 
         private void ProviderMakeReservation() => _providerAddApprenticeDetailsPage = _providerReservationStepsHelper.ProviderMakeReservation(_login);
     }

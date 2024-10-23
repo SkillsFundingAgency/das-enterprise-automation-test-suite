@@ -4,9 +4,9 @@ public class GuestSpeakerDetailPage(ScenarioContext context) : AanAdminBasePage(
 {
     protected override string PageTitle => "Guest speaker name";
 
-    private static By Name => By.CssSelector("#name");
+    private static By Name => By.CssSelector("input#Name");
 
-    private static By JobRoleAndOrganisation => By.CssSelector("#jobRoleAndOrganisation");
+    private static By JobRoleAndOrganisation => By.CssSelector("input#JobRoleAndOrganisation");
 
     public GuestSpeakersPage AddGuestSpeaker(int i)
     {
