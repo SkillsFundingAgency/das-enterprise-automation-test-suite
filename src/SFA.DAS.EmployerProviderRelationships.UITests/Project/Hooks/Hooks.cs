@@ -7,8 +7,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Hooks
     [Binding]
     public class Hooks(ScenarioContext context)
     {
-        [AfterScenario(Order = 22)]
-        [Scope(Tag = "deletepermission")]
-        public void DeleteProviderRelationA() => context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation());
+    //    [AfterScenario(Order = 22)]
+    //    [Scope(Tag = "deletepermission")]
+    //    public void DeleteProviderRelationA() => context.Get<TryCatchExceptionHelper>().AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation());
     }
 }

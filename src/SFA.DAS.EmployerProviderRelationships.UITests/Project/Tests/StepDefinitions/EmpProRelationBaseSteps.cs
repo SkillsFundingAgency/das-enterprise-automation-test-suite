@@ -13,6 +13,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
     {
         protected readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
 
+        protected readonly EmployerHomePageStepsHelper _employerHomePageHelper = new(context);
+
         protected readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper = new(context);
 
         protected readonly ProviderConfig providerConfig = context.GetProviderConfig<ProviderConfig>();
@@ -27,6 +29,11 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         }
 
         protected void EPRLevyUserLogin() => EPRLogin(context.GetUser<EPRLevyUser>());
+
+        protected void EPRReLogin()
+        {
+            _employerHomePageHelper.GotoEmployerHomePage();
+        }
 
         protected void EPRLogin(EPRBaseUser user)
         {

@@ -5,9 +5,9 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 {
     public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.PermissionsDbConnectionString)
     {
-        public void DeleteProviderRelation(string ukprn, string accountid)
+        public void DeleteProviderRelation(string ukprn, string accountid, string empemail)
         {
-            var sqlQuery = $"DECLARE @ukprn INT = {ukprn}, @accountid INT = {accountid};" + FileHelper.GetSql("DeleteProviderRelation");
+            var sqlQuery = $"DECLARE @ukprn INT = {ukprn}, @accountid INT = {accountid}, @empemail VARCHAR(32) = '{empemail}';" + FileHelper.GetSql("DeleteProviderRelation");
 
             ReTryExecuteSqlCommand(sqlQuery);
         }

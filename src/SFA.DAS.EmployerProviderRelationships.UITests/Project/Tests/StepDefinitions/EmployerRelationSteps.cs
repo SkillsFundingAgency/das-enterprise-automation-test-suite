@@ -76,7 +76,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         [Then(@"the employer accepts the request")]
         public void TheEmployerAcceptsTheRequest()
         {
-
+            EPRReLogin();
         }
     }
 }
