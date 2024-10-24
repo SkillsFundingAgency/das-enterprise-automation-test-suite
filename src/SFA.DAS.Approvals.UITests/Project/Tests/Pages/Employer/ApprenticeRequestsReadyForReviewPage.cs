@@ -15,6 +15,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             return new ApproveApprenticeDetailsPage(context);
         }
+        
+        public ApproveApprenticeDetailsPage SelectSingleReadyForReviewRequestInTable()
+        {
+            SelectSingleRequestInTable();
+
+            return new ApproveApprenticeDetailsPage(context);
+        }
     }
 }
 

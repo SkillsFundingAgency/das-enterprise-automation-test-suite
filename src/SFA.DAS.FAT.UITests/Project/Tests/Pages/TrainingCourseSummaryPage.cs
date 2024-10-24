@@ -19,17 +19,23 @@ public class TrainingCourseSummaryPage(ScenarioContext context) : FATBasePage(co
         return new FATIndexPage(context);
     }
 
-    public ProviderSearchResultsPage EnterPostCodeAndSearch(string location)
-    {
-        formCompletionHelper.EnterText(LocationTextBox, location);
-        formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
-        formCompletionHelper.Click(ViewProvidersForThisCourseButton);
-        return new ProviderSearchResultsPage(context);
-    }
+    public ProviderSearchResultsPage ViewProvidersForThisCourse() => ViewProvidersForThisCourse(false, string.Empty);
 
-    public ProviderSearchResultsPage ClickViewProvidersForThisCourse()
+    public ProviderSearchResultsPage ViewProvidersForThisCourse(string location) => ViewProvidersForThisCourse(true, location);
+
+    public ProviderSearchResultsPage ViewProvidersForThisCourse(bool filterByLocation, string location)
     {
+        if (filterByLocation)
+        {
+            location = string.IsNullOrEmpty(location) ? RandomDataGenerator.RandomTown() : location;
+
+            formCompletionHelper.EnterText(LocationTextBox, location);
+
+            formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
+        }
+
         formCompletionHelper.Click(ViewProvidersForThisCourseButton);
+
         return new ProviderSearchResultsPage(context);
     }
 
@@ -44,4 +50,16 @@ public class TrainingCourseSummaryPage(ScenarioContext context) : FATBasePage(co
         formCompletionHelper.Click(BackToCourseSearchPage);
         return new TrainingCourseSearchResultsPage(context);
     }
+}
+
+public class FindProviderLocationAutoCompleteHelper(ScenarioContext context) : AutoCompleteHelper(context)
+{
+    protected override string SearchPage => "Find training providers for this course";
+
+    protected override By SearchTextInput => By.CssSelector("input[id='search-location']");
+
+    protected override By AutoCompleteMenu => By.CssSelector("[id='search-location__listbox']");
+
+    protected override By NthOption(int i) => By.CssSelector($"[id='search-location__option--{i}']");
+
 }
