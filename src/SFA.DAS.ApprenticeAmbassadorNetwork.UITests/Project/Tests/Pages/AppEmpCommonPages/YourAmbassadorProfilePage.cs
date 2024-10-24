@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using Mailosaur.Models;
+using Microsoft.VisualBasic;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
@@ -12,7 +13,7 @@ public class YourAmbassadorProfilePage(ScenarioContext context) : AanBasePage(co
     private static By ChangeForContactDetailsLink => By.XPath("//a[contains(@href,'/edit-contact-detail')]");
     private static By SummaryValue => By.CssSelector(".govuk-summary-list__value");
 
-    public void VerifyYourAmbassadorProfile(string value) => VerifyPage(() => pageInteractionHelper.FindElements(SummaryValue), value);
+    public void VerifyYourAmbassadorProfile(string value) => VerifyFromMultipleElements(SummaryValue, value); 
 
     public YourPersonalDetailsPage AccessChangeForPersonalDetails()
     {

@@ -56,9 +56,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
             pageInteractionHelper.InvokeAction(() =>
             {
                 MultipleVerifyPage([
-                    () => VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle),
-                    () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationName), dataHelper.OrganisationName),
-                    () => VerifyPage(() => pageInteractionHelper.FindElements(TicketOrganisationUserName), dataHelper.OrganisationUserName)]);
+                    () => VerifyFromMultipleElements(PageHeader, PageTitle),
+                    () => VerifyFromMultipleElements(TicketOrganisationName, dataHelper.OrganisationName),
+                    () => VerifyFromMultipleElements(TicketOrganisationUserName, dataHelper.OrganisationUserName)]);
             });
         }
 

@@ -78,6 +78,8 @@ public abstract class VerifyBasePage : InterimBasePage
 
     protected bool VerifyPage(Func<List<IWebElement>> func, string expected) => VerifyPage(() => VerifyElement(func, expected));
 
+    protected bool VerifyFromMultipleElements(By locator, string expected) => VerifyPage(() => pageInteractionHelper.FindElements(locator), expected);
+
     protected bool VerifyPage(By locator) => VerifyPage(() => VerifyElement(locator));
 
     protected bool VerifyPage(By locator, Action retryAction) => VerifyPage(() => pageInteractionHelper.VerifyPage(locator, retryAction));
