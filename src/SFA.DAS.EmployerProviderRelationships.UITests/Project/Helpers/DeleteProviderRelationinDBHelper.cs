@@ -12,10 +12,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 
         private ProviderConfig ProviderConfig => context.GetProviderConfig<ProviderConfig>();
 
-        internal void DeleteProviderRelation() => DeleteProviderRelation(ProviderConfig);
+        public void DeleteProviderRelation() => context.Get<RelationshipsSqlDataHelper>().DeleteProviderRelation(ProviderConfig.Ukprn, ObjectContext.GetDBAccountId(), ObjectContext.GetRegisteredEmail());
 
-        public void DeleteProviderRelation(ProviderConfig providerConfig) => DeleteProviderRelation(providerConfig.Ukprn, ObjectContext.GetDBAccountId(), ObjectContext.GetRegisteredEmail());
-
-        private void DeleteProviderRelation(string ukprn, string accountid, string empemail) => context.Get<RelationshipsSqlDataHelper>().DeleteProviderRelation(ukprn, accountid, empemail);
     }
 }
