@@ -37,6 +37,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EmployerSelectStandardPage(context);
         }
 
+        public YouCannotCreateAnotherFundingReservationPage SelectAddAnotherApprenticeWithMaxReservationLimit()
+        {
+            AddAnApprentice();
+            return new YouCannotCreateAnotherFundingReservationPage(context);
+        }
+
         public ChooseAReservationPage SelectAddAnApprenticeUsingReservation()
         {
             AddAnApprentice();

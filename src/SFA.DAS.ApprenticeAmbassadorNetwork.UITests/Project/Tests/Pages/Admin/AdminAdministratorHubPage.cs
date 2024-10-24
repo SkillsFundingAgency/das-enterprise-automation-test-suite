@@ -19,4 +19,11 @@ public class AdminAdministratorHubPage : AanAdminBasePage
 
         return new ManageAmbassadorsPage(context);
     }
+
+    public NotificationsSettingsPage ManageNotifications()
+    {
+        formCompletionHelper.ClickLinkByText("Notification settings");
+
+        return new NotificationsSettingsPage(context);
+    }
 }

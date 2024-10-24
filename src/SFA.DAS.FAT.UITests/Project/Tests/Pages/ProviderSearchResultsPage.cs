@@ -25,7 +25,7 @@ public class ProviderSearchResultsPage(ScenarioContext context) : FATBasePage(co
 
     #endregion
 
-    public void ClickAskProviders() => formCompletionHelper.Click(AskIfTrainingProvidersCanRunThisCourseLink);
+    public void RequestTrainingProvider() => formCompletionHelper.Click(AskIfTrainingProvidersCanRunThisCourseLink);
 
     public ProviderSummaryPage SelectFirstProviderInTheList()
     {

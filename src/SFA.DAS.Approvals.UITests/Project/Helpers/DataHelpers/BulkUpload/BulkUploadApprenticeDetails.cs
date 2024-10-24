@@ -21,6 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
 
             RecognisePriorLearning = RPLDataHelper.RecognisePriorLearning;
 
+            TrainingTotalHours = Convert.ToInt32(RPLDataHelper.TrainingTotalHours);
+
+            TrainingHoursReduction = Convert.ToInt32(RPLDataHelper.DurationReducedByHours);
+
+            IsDurationReducedByRPL = true;
+
             DurationReducedBy = RPLDataHelper.DurationReducedBy;
 
             PriceReducedBy = RPLDataHelper.PriceReducedBy;
@@ -52,6 +58,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers.BulkUpload
         public string EmailAddress { get; set; }
         public string AgreementId { get; set; }
         public string RecognisePriorLearning { get; set; }
+        public int TrainingTotalHours { get; set; }
+        public int TrainingHoursReduction { get; set; }
+        public bool IsDurationReducedByRPL { get; set; }
         public string DurationReducedBy { get; set; }
         public string PriceReducedBy { get; set; }
 

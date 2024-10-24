@@ -24,7 +24,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
     public class YourTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
     {
-        protected override string PageTitle => "Your training providers";
+        protected override string PageTitle => "Manage training providers";
 
         private static By SetPermissionsLink => By.PartialLinkText("Set permissions");
 
