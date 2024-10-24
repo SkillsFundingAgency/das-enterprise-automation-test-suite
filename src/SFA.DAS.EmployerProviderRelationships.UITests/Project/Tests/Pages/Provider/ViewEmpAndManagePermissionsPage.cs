@@ -7,6 +7,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
     {
         private static By AddAnEmployerSelector => By.LinkText("Add an employer");
 
+        private static By SearchTerm => By.CssSelector("input#SearchTerm");
+
         private static By HasPendingRequest => By.CssSelector(".govuk-checkboxes__label[for='HasPendingRequest']");
 
         private static By ApplyFilter => By.CssSelector("button[id='filters-submit-second'][type='submit']");
@@ -22,13 +24,24 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
             return new(context);
         }
 
-        public void VerifyEmployerPermission(string empName)
+        public EmployerAccountDetailsPage ViewEmployer()
+        {
+            formCompletionHelper.EnterText(SearchTerm, eprDataHelper.EmployerName);
+
+            formCompletionHelper.Click(ApplyFilter);
+
+            formCompletionHelper.Click(By.CssSelector($"a[href*='{eprDataHelper.AgreementId}']"));
+
+            return new(context);
+        }
+
+        public void VerifyPendingRequest()
         {
             formCompletionHelper.Click(HasPendingRequest);
 
             formCompletionHelper.Click(ApplyFilter);
 
-            VerifyFromMultipleElements(EmpLinks, empName);
+            VerifyFromMultipleElements(EmpLinks, eprDataHelper.EmployerName);
         }
     }
 }

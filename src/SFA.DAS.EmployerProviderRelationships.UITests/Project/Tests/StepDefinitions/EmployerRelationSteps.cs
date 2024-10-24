@@ -80,9 +80,28 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         {
             EPRReLogin();
 
-            var requestId = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, objectContext.GetRegisteredEmail());
-
-            _employerPermissionsStepsHelper.AcceptOrDeclineProviderPermissionsRequest(providerConfig, requestId, true);
+            AcceptOrDeclineProviderPermissionsRequest(true);
         }
+
+        [Then(@"the employer declines the request")]
+        public void TheEmployerDeclinesTheRequest()
+        {
+            EPRReLogin();
+
+            AcceptOrDeclineProviderPermissionsRequest(false);
+        }
+
+
+        [Then(@"the employer accepts the updated request")]
+        public void TheEmployerAcceptsTheUpdatedRequest()
+        {
+            
+        }
+
+        private void AcceptOrDeclineProviderPermissionsRequest(bool doesAllow)
+        {
+            _employerPermissionsStepsHelper.AcceptOrDeclineProviderPermissionsRequest(providerConfig, eprDataHelper.RequestId, doesAllow);
+        }
+
     }
 }

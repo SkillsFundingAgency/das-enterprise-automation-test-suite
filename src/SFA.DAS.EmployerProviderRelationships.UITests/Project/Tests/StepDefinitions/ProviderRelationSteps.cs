@@ -1,11 +1,10 @@
-﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
+﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
+using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -25,16 +24,30 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             permissions = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
 
-            var providerConfig = context.GetProviderConfig<ProviderConfig>();
+            GoToProviderRelationsHomePage();
 
+            eprDataHelper.EmployerEmail = employerUser.Username;
+
+            eprDataHelper.EmployerName = employerUser.OrganisationName;
+
+            var request = new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmail().ContinueToInvite().ProviderRequestPermissions(permissions);
+
+            request.GoToViewEmployersPage().VerifyPendingRequest();
+        }
+
+        [When(@"the provider update the permission")]
+        public void TheProviderUpdateThePermission()
+        {
+            GoToProviderRelationsHomePage();
+
+            new ViewEmpAndManagePermissionsPage(context).ViewEmployer();
+        }
+
+        private void GoToProviderRelationsHomePage()
+        {
             _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
 
             context.Get<TabHelper>().GoToUrl(UrlConfig.ProviderRelations_BaseUrl(providerConfig.Ukprn));
-
-            var request = new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EmailEmployerEmail(employerUser.Username).ContinueToInvite().ProviderRequestPermissions(permissions);
-
-            request.GoToViewEmployersPage().VerifyEmployerPermission(employerUser.OrganisationName);
         }
-
     }
 }

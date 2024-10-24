@@ -38,6 +38,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         private static By NotificationBanner => By.CssSelector($".govuk-notification-banner");
 
+        private static By TableRows => By.ClassName("govuk-table__row");
+
         public YourTrainingProvidersPage VerifyYouHaveAddedNotification()
         {
             VerifyPage(NotificationBanner, "You've added");
@@ -54,6 +56,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         public AddAsATrainingProviderPage ViewProviderRequests(ProviderConfig providerConfig, string requestId)
         {
+            VerifyFromMultipleElements(TableRows, providerConfig.Name);
+
             formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
 
             return new(context, providerConfig);

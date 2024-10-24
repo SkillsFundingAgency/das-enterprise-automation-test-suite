@@ -25,7 +25,9 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 
         public HomePage AcceptOrDeclineProviderPermissionsRequest(ProviderConfig providerConfig, string requestId, bool doesAllow)
         {
-            return OpenProviderPermissions().ViewProviderRequests(providerConfig, requestId).AcceptOrDeclineRequest(doesAllow).GoToHomePage();
+            var page = OpenProviderPermissions().ViewProviderRequests(providerConfig, requestId);
+
+            return doesAllow ? page.AcceptProviderRequest().GoToHomePage() : page.DeclineRequest().ConfirmDeclineRequest().GoToHomePage();
         }
 
         internal HomePage UpdateProviderPermission(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)

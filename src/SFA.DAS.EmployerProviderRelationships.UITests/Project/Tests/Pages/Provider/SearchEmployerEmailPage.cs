@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider
@@ -9,8 +10,10 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
 
         protected override string PageTitle => "Search employer email";
 
-        public EmailAccountFoundPage EmailEmployerEmail(string email)
+        public EmailAccountFoundPage EnterEmployerEmail()
         {
+            var email = eprDataHelper.EmployerEmail;
+
             formCompletionHelper.EnterText(EmailSelector, email);
 
             Continue();

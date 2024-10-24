@@ -18,9 +18,16 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         protected static By ErrorMsg => By.CssSelector(".govuk-error-summary");
 
-        public YourTrainingProvidersPage AcceptOrDeclineRequest(bool doesAllow)
+        public YourTrainingProvidersPage AcceptProviderRequest()
         {
-            ContinueToConfirm(doesAllow ? AllowRequestOption : DeclineRequestOption);
+            ContinueToConfirm(AllowRequestOption);
+
+            return new(context);
+        }
+
+        public AreYouSureYouDoNotWantToAddPage DeclineRequest()
+        {
+            ContinueToConfirm(DeclineRequestOption);
 
             return new(context);
         }
