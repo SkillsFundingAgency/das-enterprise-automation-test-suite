@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
@@ -18,6 +19,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         protected readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper = new(context);
 
         protected readonly ProviderConfig providerConfig = context.GetProviderConfig<ProviderConfig>();
+
+        protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
 
         protected (AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions;
 

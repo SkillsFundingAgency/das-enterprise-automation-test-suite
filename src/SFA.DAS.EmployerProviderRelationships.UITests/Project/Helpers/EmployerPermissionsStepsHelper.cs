@@ -2,7 +2,6 @@
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using TechTalk.SpecFlow;
-using YourTrainingProvidersPage = SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships.YourTrainingProvidersPage;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
 {
@@ -22,6 +21,11 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
                 .AddOrSetPermissions(permissions)
                 .VerifyYouHaveAddedNotification()
                 .GoToHomePage();
+        }
+
+        public HomePage AcceptOrDeclineProviderPermissionsRequest(ProviderConfig providerConfig, string requestId, bool doesAllow)
+        {
+            return OpenProviderPermissions().ViewProviderRequests(providerConfig, requestId).AcceptOrDeclineRequest(doesAllow).GoToHomePage();
         }
 
         internal HomePage UpdateProviderPermission(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)

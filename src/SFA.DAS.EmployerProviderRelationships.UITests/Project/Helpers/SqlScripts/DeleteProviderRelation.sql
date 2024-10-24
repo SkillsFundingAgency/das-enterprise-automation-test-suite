@@ -5,6 +5,6 @@ delete from AccountProviderLegalEntities where id in (select id from #apleids)
 delete from permissionsaudit where AccountLegalEntityId in (select AccountLegalEntityId from #apleids)
 delete from notifications where AccountLegalEntityId in (select AccountLegalEntityId from #apleids)
 delete from accountProviders where id in (select id from #apids)
-delete from Requests where ukprn = @ukprn and EmployerContactEmail = '@empemail'
+delete from Requests where ukprn = @ukprn and EmployerContactEmail = @empemail
 drop table #apids
 drop table #apleids

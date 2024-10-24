@@ -11,6 +11,7 @@ public class YourTrainingProvidersLinkHomePage(ScenarioContext context) : HomePa
     public YourTrainingProvidersPage OpenRelationshipPermissions()
     {
         formCompletionHelper.ClickElement(YourTrainingProvidersLink);
+
         return new YourTrainingProvidersPage(context);
     }
 }

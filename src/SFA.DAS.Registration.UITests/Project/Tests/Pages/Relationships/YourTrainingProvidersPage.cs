@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.ProviderLogin.Service.Project;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
@@ -20,6 +21,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
         AllowConditional,
         [ToString("No")]
         DoNotAllow
+    }
+
+    public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : PermissionBasePageForTrainingProviderPage(context)
+    {
+        protected override string PageTitle => $"Add {providerConfig.Name} as a training provider";
     }
 
     public class YourTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
@@ -46,11 +52,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
             return this;
         }
 
+        public AddAsATrainingProviderPage ViewProviderRequests(ProviderConfig providerConfig, string requestId)
+        {
+            formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
+
+            return new(context, providerConfig);
+        }
+
         public EnterYourTrainingProviderNameReferenceNumberUKPRNPage SelectAddATrainingProvider()
         {
             formCompletionHelper.ClickButtonByText(ContinueButton, "Add a training provider");
 
-            return new EnterYourTrainingProviderNameReferenceNumberUKPRNPage(context);
+            return new (context);
         }
 
         public SetPermissionsForTrainingProviderPage SelectSetPermissions(string orgName)
@@ -60,7 +73,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
             else
                 tableRowHelper.SelectRowFromTable("Set permissions", orgName);
 
-            return new SetPermissionsForTrainingProviderPage(context);
+            return new (context);
         }
 
         public SetPermissionsForTrainingProviderPage SelectChangePermissions(string ukprn)
@@ -73,6 +86,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
         public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
         {
             formCompletionHelper.Click(BackLink);
+
             return new CreateYourEmployerAccountPage(context);
         }
     }

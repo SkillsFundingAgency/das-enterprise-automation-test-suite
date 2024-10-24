@@ -7,9 +7,11 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
     {
         public void DeleteProviderRelation(string ukprn, string accountid, string empemail)
         {
-            var sqlQuery = $"DECLARE @ukprn INT = {ukprn}, @accountid INT = {accountid}, @empemail VARCHAR(32) = '{empemail}';" + FileHelper.GetSql("DeleteProviderRelation");
+            var sqlQuery = $"DECLARE @ukprn INT = {ukprn}, @accountid INT = {accountid}, @empemail NVARCHAR(255) = '{empemail}';" + FileHelper.GetSql("DeleteProviderRelation");
 
             ReTryExecuteSqlCommand(sqlQuery);
         }
+
+        public string GetRequestId(string ukprn, string empemail) => GetDataAsString($"select id from Requests where ukprn = {ukprn} and EmployerContactEmail = '{empemail}'");
     }
 }

@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -77,6 +79,10 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         public void TheEmployerAcceptsTheRequest()
         {
             EPRReLogin();
+
+            var requestId = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, objectContext.GetRegisteredEmail());
+
+            _employerPermissionsStepsHelper.AcceptOrDeclineProviderPermissionsRequest(providerConfig, requestId, true);
         }
     }
 }

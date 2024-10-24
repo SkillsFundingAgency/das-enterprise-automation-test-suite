@@ -12,7 +12,18 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
         protected static By RecruitAllowConditionalRadioOption => By.Id("recruitApprentices-2");
         protected static By RecruitDoNotAllowRadioOption => By.Id("recruitApprentices-3");
 
+
+        protected static By AllowRequestOption => By.Id("acceptAddAccountRequestYes");
+        protected static By DeclineRequestOption => By.Id("acceptAddAccountRequestNo");
+
         protected static By ErrorMsg => By.CssSelector(".govuk-error-summary");
+
+        public YourTrainingProvidersPage AcceptOrDeclineRequest(bool doesAllow)
+        {
+            ContinueToConfirm(doesAllow ? AllowRequestOption : DeclineRequestOption);
+
+            return new(context);
+        }
 
         public YourTrainingProvidersPage AddOrSetPermissions((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
         {
@@ -20,7 +31,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
             SetRecruitApprentice(permisssion.recruitpermission);
 
-            return new YourTrainingProvidersPage(context);
+            return new (context);
         }
 
         public EmployerAccountCreatedPage AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
@@ -29,7 +40,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
             SetRecruitApprentice(permisssion.recruitpermission);
 
-            return new EmployerAccountCreatedPage(context);
+            return new (context);
         }
 
         protected void SetAddApprentice(AddApprenticePermissions permission)
@@ -45,13 +56,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         protected void SetRecruitApprentice(RecruitApprenticePermissions permission)
         {
-            void ContinueToConfirm(By by)
-            {
-                javaScriptHelper.ClickElement(by);
-
-                formCompletionHelper.ClickButtonByText(ContinueButton, "Confirm");
-            }
-
             switch (permission)
             {
                 case RecruitApprenticePermissions.Allow: ContinueToConfirm(RecruitAllowRadioOption); break;
@@ -60,5 +64,11 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
             };
         }
 
+        private void ContinueToConfirm(By by)
+        {
+            javaScriptHelper.ClickElement(by);
+
+            formCompletionHelper.ClickButtonByText(ContinueButton, "Confirm");
+        }
     }
 }
