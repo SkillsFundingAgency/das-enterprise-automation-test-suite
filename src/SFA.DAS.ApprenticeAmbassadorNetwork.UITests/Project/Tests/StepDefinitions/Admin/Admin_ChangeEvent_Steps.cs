@@ -3,7 +3,7 @@
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
 
 [Binding, Scope(Tag = "@aanadmin")]
-public class Admin_ChangeEvent_Steps(ScenarioContext context) : Admin_CreateEvent_BaseSteps(context)
+public class Admin_ChangeEvent_Steps(ScenarioContext context) : AdminCreateEventBaseSteps(context)
 {
     private CheckYourEventPage checkYourEventPage;
 

@@ -120,6 +120,41 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_01b admin user filter events")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanadmin")]
+        [NUnit.Framework.CategoryAttribute("aanadn01b")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_ADN_01BAdminUserFilterEvents()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanadmin",
+                    "aanadn01b",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_01b admin user filter events", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 20
+    testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 21
+    testRunner.And("an event called \'Location Filter Test Event 1\' in \'Bromsgrove\' has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

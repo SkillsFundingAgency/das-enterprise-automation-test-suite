@@ -8,6 +8,7 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
+using OpenQA.Selenium.DevTools.V127.WebAudio;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 
@@ -20,5 +21,9 @@ public class AANHooks(ScenarioContext context) : AANBaseHooks(context)
         context.Set(new AANSqlHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()));
 
         context.Set(new AANDataHelpers());
+
+        context.Set(new AanAdminStepsHelper(context));
+
+        context.Set(new AanAdminCreateEventDatahelper());
     }
 }

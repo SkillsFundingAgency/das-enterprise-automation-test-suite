@@ -61,5 +61,12 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
                  .ClearAllFilters();
 
         }
+
+        [Given(@"an event called '([^']*)' in '([^']*)' has been created")]
+        public void GivenAnEventCalledInHasBeenCreated(string distanceInMiles, string location)
+        {
+            var stepsHelper = context.Get<AanAdminStepsHelper>();
+            stepsHelper.CheckYourEvent(EventFormat.InPerson, false, false).SubmitEvent();
+        }
     }
 }
