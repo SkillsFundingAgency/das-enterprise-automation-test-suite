@@ -51,6 +51,32 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             GoToEmailAccountFoundPage().VerifyAlreadyLinkedToThisEmployer();
         }
 
+        [Then(@"the provider should be shown a shutter page where an employer has multiple accounts")]
+        public void TheProviderShouldBeShownAShutterPageWhereAnEmployerHasMultipleAccounts()
+        {
+            var user = context.GetUser<EPRMultiAccountUser>();
+
+            EnterEmployerEmailAndGoToShutterPage(user.Username);
+        }
+
+        [Then(@"the provider should be shown a shutter page where an employer has multiple organisations")]
+        public void ThenTheProviderShouldBeShownAShutterPageWhereAnEmployerHasMultipleOrganisations()
+        {
+            var user = context.GetUser<EPRMultiOrgUser>();
+
+            EnterEmployerEmailAndGoToShutterPage(user.Username);
+        }
+
+        private void EnterEmployerEmailAndGoToShutterPage(string username)
+        {
+            eprDataHelper.EmployerEmail = username;
+
+            GoToProviderRelationsHomePage();
+
+            GoToSearchEmployerEmailPage().EnterEmployerEmailAndGoToShutterPage();
+        }
+
+
         private void GoToProviderRelationsHomePage()
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
@@ -58,6 +84,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             context.Get<TabHelper>().GoToUrl(UrlConfig.ProviderRelations_BaseUrl(providerConfig.Ukprn));
         }
 
-        private EmailAccountFoundPage GoToEmailAccountFoundPage() => new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmail();
+        private SearchEmployerEmailPage GoToSearchEmployerEmailPage() => new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer();
+
+        private EmailAccountFoundPage GoToEmailAccountFoundPage() => GoToSearchEmployerEmailPage().EnterEmployerEmail();
     }
 }

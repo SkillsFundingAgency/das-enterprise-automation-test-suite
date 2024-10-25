@@ -200,6 +200,10 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EPRDeclineRequestUser : EPRBaseUser { }
 
+    public class EPRMultiOrgUser : EPRBaseUser { }
+
+    public class EPRMultiAccountUser : MultipleEasAccountUser { }
+
     #endregion
 
     #endregion
