@@ -16,7 +16,9 @@ public class EmployerProviderRelationshipConfigurationSetup(ScenarioContext cont
         context.SetEasLoginUser(
         [
             configSection.GetConfigSection<EPRLevyUser>(),
-            configSection.GetConfigSection<EPRNonLevyUser>()
+            configSection.GetConfigSection<EPRNonLevyUser>(),
+            configSection.GetConfigSection<EPRAcceptRequestUser>(),
+            configSection.GetConfigSection<EPRDeclineRequestUser>()
         ]);
     }
 }
