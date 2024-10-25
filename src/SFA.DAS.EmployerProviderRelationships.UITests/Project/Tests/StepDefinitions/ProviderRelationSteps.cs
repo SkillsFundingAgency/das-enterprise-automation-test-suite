@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             eprDataHelper.EmployerName = employerUser.OrganisationName;
 
-            var request = new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmail().ContinueToInvite().ProviderRequestPermissions(permissions);
+            var request = GoToEmailAccountFoundPage().ContinueToInvite().ProviderRequestPermissions(permissions);
 
             request.GoToViewEmployersPage().VerifyPendingRequest();
         }
@@ -43,11 +43,21 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             new ViewEmpAndManagePermissionsPage(context).ViewEmployer();
         }
 
+        [Then(@"the provider should be shown a shutter page where relationship already exists")]
+        public void TheProviderShouldBeShownAShutterPageWhereRelationshipAlreadyExists()
+        {
+            GoToProviderRelationsHomePage();
+
+            GoToEmailAccountFoundPage().VerifyAlreadyLinkedToThisEmployer();
+        }
+
         private void GoToProviderRelationsHomePage()
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
 
             context.Get<TabHelper>().GoToUrl(UrlConfig.ProviderRelations_BaseUrl(providerConfig.Ukprn));
         }
+
+        private EmailAccountFoundPage GoToEmailAccountFoundPage() => new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmail();
     }
 }

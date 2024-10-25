@@ -108,6 +108,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 11
  testRunner.Then("the employer accepts the updated request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 12
+ testRunner.Then("the provider should be shown a shutter page where relationship already exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
