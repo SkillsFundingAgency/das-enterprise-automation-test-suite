@@ -25,6 +25,8 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
         protected readonly EprDataHelper eprDataHelper = context.Get<EprDataHelper>();
 
+        protected readonly string[] tags = context.ScenarioInfo.Tags;
+
         protected (AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions;
 
         protected void UpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)

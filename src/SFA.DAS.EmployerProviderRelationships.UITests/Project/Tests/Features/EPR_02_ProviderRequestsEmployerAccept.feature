@@ -1,9 +1,10 @@
 ﻿
-Feature: EPR_02_ProviderRequestsEmployerAllow
+Feature: EPR_02_ProviderRequestsEmployerAccept
 
 @employerproviderrelationships
 @deletepermission
-Scenario: EPR_02_ProviderRequestsEmployerAllow
+@acceptrequest
+Scenario: EPR_02_ProviderRequestsEmployerAccept
 	Given a provider requests all permission from an employer
 	Then the employer accepts the request
 	When the provider update the permission

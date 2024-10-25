@@ -196,7 +196,9 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     
     public class EPRNonLevyUser : EPRBaseUser { }
 
-    public class EPRAddRequestUser : EPRBaseUser { }
+    public class EPRAcceptRequestUser : EPRBaseUser { }
+
+    public class EPRDeclineRequestUser : EPRBaseUser { }
 
     #endregion
 

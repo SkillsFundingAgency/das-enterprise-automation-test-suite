@@ -1,11 +1,11 @@
-﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
-using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
+﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions
@@ -18,7 +18,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         [Given(@"a provider requests all permission from an employer")]
         public void AProviderRequestsAllPermissionFromAnEmployer()
         {
-            var employerUser = context.GetUser<EPRAddRequestUser>();
+            EPRBaseUser employerUser = tags.Contains("acceptrequest") ? context.GetUser<EPRAcceptRequestUser>() : context.GetUser<EPRDeclineRequestUser>();
 
             EPRLogin(employerUser);
 
