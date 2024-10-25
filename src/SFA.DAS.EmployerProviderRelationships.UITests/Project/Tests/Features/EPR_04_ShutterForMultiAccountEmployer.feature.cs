@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPR_02_ProviderRequestsEmployerAccept")]
-    public partial class EPR_02_ProviderRequestsEmployerAcceptFeature
+    [NUnit.Framework.DescriptionAttribute("EPR_04_ShutterForMultiAccountEmployer")]
+    public partial class EPR_04_ShutterForMultiAccountEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EPR_02_ProviderRequestsEmployerAccept.feature"
+#line 1 "EPR_04_ShutterForMultiAccountEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_02_ProviderRequestsEmployerAccept", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_04_ShutterForMultiAccountEmployer", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,19 +74,17 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPR_02_ProviderRequestsEmployerAccept")]
+        [NUnit.Framework.DescriptionAttribute("EPR_04_ShutterForMultiAccountEmployer")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
-        [NUnit.Framework.CategoryAttribute("deletepermission")]
-        [NUnit.Framework.CategoryAttribute("acceptrequest")]
-        public void EPR_02_ProviderRequestsEmployerAccept()
+        [NUnit.Framework.CategoryAttribute("multiaccount")]
+        public void EPR_04_ShutterForMultiAccountEmployer()
         {
             string[] tagsOfScenario = new string[] {
                     "employerproviderrelationships",
-                    "deletepermission",
-                    "acceptrequest"};
+                    "multiaccount"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_02_ProviderRequestsEmployerAccept", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_04_ShutterForMultiAccountEmployer", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -96,20 +94,9 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("a provider requests all permission from an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.Then("the employer accepts the request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 10
- testRunner.When("the provider update the permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 11
- testRunner.Then("the employer accepts the updated request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 12
- testRunner.Then("the provider should be shown a shutter page where relationship already exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Then("the provider should be shown a shutter page where an employer has multiple accoun" +
+                        "ts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

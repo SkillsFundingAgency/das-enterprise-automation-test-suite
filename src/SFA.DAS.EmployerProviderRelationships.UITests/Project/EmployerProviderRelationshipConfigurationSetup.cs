@@ -18,7 +18,9 @@ public class EmployerProviderRelationshipConfigurationSetup(ScenarioContext cont
             configSection.GetConfigSection<EPRLevyUser>(),
             configSection.GetConfigSection<EPRNonLevyUser>(),
             configSection.GetConfigSection<EPRAcceptRequestUser>(),
-            configSection.GetConfigSection<EPRDeclineRequestUser>()
+            configSection.GetConfigSection<EPRDeclineRequestUser>(),
+            configSection.GetConfigSection<EPRMultiAccountUser>(),
+            configSection.GetConfigSection<EPRMultiOrgUser>()
         ]);
     }
 }

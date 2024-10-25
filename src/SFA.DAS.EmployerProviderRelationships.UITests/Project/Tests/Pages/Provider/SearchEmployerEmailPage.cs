@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider
@@ -12,13 +11,27 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
 
         public EmailAccountFoundPage EnterEmployerEmail()
         {
+            var email = EnterEmail(); 
+
+            return new(context, email);
+        }
+
+        public ContactEmployerShutterPage EnterEmployerEmailAndGoToShutterPage()
+        {
+            EnterEmail();
+
+            return new(context);
+        }
+
+        private string EnterEmail()
+        {
             var email = eprDataHelper.EmployerEmail;
 
             formCompletionHelper.EnterText(EmailSelector, email);
 
             Continue();
 
-            return new(context, email);
+            return email;
         }
 
     }

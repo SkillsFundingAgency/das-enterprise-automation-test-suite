@@ -9,3 +9,4 @@ Scenario: EPR_02_ProviderRequestsEmployerAccept
 	Then the employer accepts the request
 	When the provider update the permission
 	Then the employer accepts the updated request
+	Then the provider should be shown a shutter page where relationship already exists

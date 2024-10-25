@@ -30,7 +30,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             eprDataHelper.EmployerName = employerUser.OrganisationName;
 
-            var request = new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmail().ContinueToInvite().ProviderRequestPermissions(permissions);
+            var request = GoToEmailAccountFoundPage().ContinueToInvite().ProviderRequestPermissions(permissions);
 
             request.GoToViewEmployersPage().VerifyPendingRequest();
         }
@@ -43,11 +43,49 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             new ViewEmpAndManagePermissionsPage(context).ViewEmployer();
         }
 
+        [Then(@"the provider should be shown a shutter page where relationship already exists")]
+        public void TheProviderShouldBeShownAShutterPageWhereRelationshipAlreadyExists()
+        {
+            GoToProviderRelationsHomePage();
+
+            GoToEmailAccountFoundPage().VerifyAlreadyLinkedToThisEmployer();
+        }
+
+        [Then(@"the provider should be shown a shutter page where an employer has multiple accounts")]
+        public void TheProviderShouldBeShownAShutterPageWhereAnEmployerHasMultipleAccounts()
+        {
+            var user = context.GetUser<EPRMultiAccountUser>();
+
+            EnterEmployerEmailAndGoToShutterPage(user.Username);
+        }
+
+        [Then(@"the provider should be shown a shutter page where an employer has multiple organisations")]
+        public void ThenTheProviderShouldBeShownAShutterPageWhereAnEmployerHasMultipleOrganisations()
+        {
+            var user = context.GetUser<EPRMultiOrgUser>();
+
+            EnterEmployerEmailAndGoToShutterPage(user.Username);
+        }
+
+        private void EnterEmployerEmailAndGoToShutterPage(string username)
+        {
+            eprDataHelper.EmployerEmail = username;
+
+            GoToProviderRelationsHomePage();
+
+            GoToSearchEmployerEmailPage().EnterEmployerEmailAndGoToShutterPage();
+        }
+
+
         private void GoToProviderRelationsHomePage()
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
 
             context.Get<TabHelper>().GoToUrl(UrlConfig.ProviderRelations_BaseUrl(providerConfig.Ukprn));
         }
+
+        private SearchEmployerEmailPage GoToSearchEmployerEmailPage() => new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer();
+
+        private EmailAccountFoundPage GoToEmailAccountFoundPage() => GoToSearchEmployerEmailPage().EnterEmployerEmail();
     }
 }
