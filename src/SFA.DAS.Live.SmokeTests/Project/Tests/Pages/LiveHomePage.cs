@@ -12,7 +12,7 @@ public class LiveHomePage(ScenarioContext context) : HomePage(context)
 
     private static By WebWidgetTitle => By.CssSelector("h1[id='widgetHeaderTitle']");
 
-    private static By FindApprenticeshipTrainingLink => By.LinkText("Find apprenticeship training");
+    private static By FindApprenticeshipTrainingLink => By.LinkText("Find apprenticeship training and manage requests");
 
     public LiveHomePage VerifyHeaders() { VerifyElement(HeaderSelector); return this; }
 
