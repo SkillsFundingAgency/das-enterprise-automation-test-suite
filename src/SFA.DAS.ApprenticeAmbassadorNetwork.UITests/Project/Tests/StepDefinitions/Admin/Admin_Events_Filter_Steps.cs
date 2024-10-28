@@ -118,5 +118,19 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
                 titles.Should().NotContain(unexpected.EventTitle);
             }
         }
+
+        [Then(@"the heading text ""([^""]*)"" is displayed")]
+        public void ThenTheHeadingTextIsDisplayed(string expectedText)
+        {
+            var manageEventsPage = new ManageEventsPage(context);
+            manageEventsPage.VerifyHeadingText(expectedText);
+        }
+
+        [Then(@"the text ""([^""]*)"" is displayed")]
+        public void ThenTheTextIsDisplayed(string expectedText)
+        {
+            var manageEventsPage = new ManageEventsPage(context);
+            manageEventsPage.VerifyBodyText(expectedText);
+        }
     }
 }
