@@ -150,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "EventTitle",
+                            "Event Title",
                             "Location"});
                 table1.AddRow(new string[] {
                             "Location Filter Test Event 1",
@@ -167,14 +167,21 @@ this.ScenarioInitialize(scenarioInfo);
 #line 26
     testRunner.When("the user filters events within 10 miles of \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title"});
+                table2.AddRow(new string[] {
+                            "Location Filter Test Event 1"});
+                table2.AddRow(new string[] {
+                            "Location Filter Test Event 2"});
 #line 27
-    testRunner.Then("the event search results should include \'Location Filter Test Event 1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the following events can be found within the search results:", ((string)(null)), table2, "Then ");
 #line hidden
-#line 28
-    testRunner.And("the event search results should include \'Location Filter Test Event 2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 29
-    testRunner.And("the event search results should not include \'Location Filter Test Event 3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title"});
+                table3.AddRow(new string[] {
+                            "Location Filter Test Event 3"});
+#line 31
+    testRunner.And("the following events can not be found within the search results:", ((string)(null)), table3, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

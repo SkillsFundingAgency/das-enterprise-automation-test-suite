@@ -91,6 +91,34 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
             stepsHelper.ClearEventTitleCache();
         }
 
+        [Then(@"the following events can be found within the search results:")]
+        public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
+        {
+            var stepsHelper = context.Get<AanAdminStepsHelper>();
+            var titles = stepsHelper.GetAllEventTitles();
+
+            var expectedEvents = table.CreateSet<NetworkEvent>().ToList();
+
+            foreach (var expected in expectedEvents)
+            {
+                titles.Should().Contain(expected.EventTitle);
+            }
+        }
+
+        [Then(@"the following events can not be found within the search results:")]
+        public void ThenTheFollowingEventsCanNotBeFoundWithingTheSearchResults(Table table)
+        {
+            var stepsHelper = context.Get<AanAdminStepsHelper>();
+            var titles = stepsHelper.GetAllEventTitles();
+
+            var unexpectedEvents = table.CreateSet<NetworkEvent>().ToList();
+
+            foreach (var unexpected in unexpectedEvents)
+            {
+                titles.Should().NotContain(unexpected.EventTitle);
+            }
+        }
+
         [Then(@"the event search results should include '([^']*)'")]
         public void ThenTheEventSearchResultsShouldInclude(string expected)
         {
