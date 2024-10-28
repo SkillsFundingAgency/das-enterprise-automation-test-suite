@@ -32,7 +32,6 @@ Scenario: AAN_ADN_01b admin user filter events
     | Event Title                  |
     | Location Filter Test Event 3 |
 
-        
 @aan
 @aanadmin
 @aanadn01c
@@ -42,4 +41,3 @@ Scenario: AAN_ADN_01c admin user filter events by a location that does not exist
     When the user filters events within 10 miles of "Lilliput"
     Then the heading text "We cannot find the location you entered" is displayed
     And the text "We do not recognise Lilliput" is displayed
-
