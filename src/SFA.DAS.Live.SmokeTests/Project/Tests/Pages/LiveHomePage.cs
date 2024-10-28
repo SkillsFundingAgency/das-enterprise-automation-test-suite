@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.Live.SmokeTests.Project.Tests.Pages;
+﻿using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
+
+namespace SFA.DAS.Live.SmokeTests.Project.Tests.Pages;
 
 public class LiveHomePage(ScenarioContext context) : HomePage(context)
 {
@@ -31,10 +33,10 @@ public class LiveHomePage(ScenarioContext context) : HomePage(context)
         WebWidgetIframe);
     }
 
-    public FindApprenticeshipTrainingSearchPage GoToFatHomePage()
+    public FindApprenticeshipTrainingAndManageRequestsPage GoToFatHomePage()
     {
         tabHelper.OpenInNewTab(() => formCompletionHelper.Click(FindApprenticeshipTrainingLink));
 
-        return new FindApprenticeshipTrainingSearchPage(context);
+        return new FindApprenticeshipTrainingAndManageRequestsPage(context);
     }
 }
