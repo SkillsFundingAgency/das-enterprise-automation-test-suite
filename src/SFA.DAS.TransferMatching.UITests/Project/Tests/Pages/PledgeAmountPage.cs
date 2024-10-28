@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -33,27 +34,30 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new PledgeAmountPage(context);
         }
 
-        public CreateATransferPledgePage EnterInValidAmountForCreateAPledge(bool useMinimalFunding = false)
+        public CreateATransferPledgePage EnterInValidAmountForCreateAPledge(bool useMinimalFunding = false, bool useFundingEqualToEstimatedCost = false)
         {
-            EnterAmount(false, useMinimalFunding);
+            EnterAmount(false, useMinimalFunding, useFundingEqualToEstimatedCost);
 
             return new CreateATransferPledgePage(context);
         }
 
-        private void EnterAmount(bool exceedMaxFunding, bool useMinimalFunding = false)
+        private void EnterAmount(bool exceedMaxFunding, bool useMinimalFunding = false, bool useFundingEqualToEstimatedCost = false)
         {
             int amount = objectContext.GetEmployerTotalPledgeAmount();
             if (!exceedMaxFunding && useMinimalFunding && amount > tMDataHelper.MinimalPledgeAmount)
             {
                 amount = tMDataHelper.MinimalPledgeAmount;
             }
+
             int randomAmount = exceedMaxFunding ? Helpers.TMDataHelper.GenerateRandomNumberMoreThanMaxAmount(amount) : ValidatePledgeAmount(amount);
 
-            formCompletionHelper.EnterText(AmountCssSelector, randomAmount);
+            int pledgeAmount = !useFundingEqualToEstimatedCost ? randomAmount
+                                : tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail().CurrencyStringToInt().Value + 1;
+            formCompletionHelper.EnterText(AmountCssSelector, pledgeAmount);
 
             Continue();
 
-            objectContext.SetPledgeAmount(randomAmount);
+            objectContext.SetPledgeAmount(pledgeAmount);
         }
 
         private int ValidatePledgeAmount(int availablepledgeamount)

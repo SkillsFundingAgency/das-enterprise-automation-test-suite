@@ -1,32 +1,64 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
+public class ProviderShortListedResultPage(ScenarioContext context) : ProviderSearchResultsPage(context)
 {
-    public class ProviderSearchResultsPage : FATBasePage
+    protected override string PageTitle => "Shortlisted";
+
+    protected override By PageHeader => By.CssSelector(".govuk-tag.app-provider-shortlist-tag");
+}
+
+public class ProviderSearchResultsPage(ScenarioContext context) : FATBasePage(context)
+{
+    protected override string PageTitle => "Training providers for";
+
+    protected override bool TakeFullScreenShot => false;
+
+    protected override By PageHeader => By.ClassName("govuk-caption-xl");
+
+    private static By AskIfTrainingProvidersCanRunThisCourseLink => By.LinkText("Ask if training providers can run this course");
+
+    #region Locators
+    private static By SpecifiedProvider(string provider) => By.Id($"provider-{provider}");
+    private static By BackToCourseSummaryPage => By.Id("course-detail-breadcrumb");
+    private static By AddToShortlist => By.CssSelector("button[id^='add-to-shortlist-']");
+    private static By RemoveLocation => By.LinkText("Clear");
+
+    #endregion
+
+    public void RequestTrainingProvider() => formCompletionHelper.Click(AskIfTrainingProvidersCanRunThisCourseLink);
+
+    public ProviderSummaryPage SelectFirstProviderInTheList()
     {
-        protected override string PageTitle => "Search results";
-
-        protected override By FirstResultLink => By.CssSelector("#provider-results a");
-
-        public ProviderSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        #region Locators
-        private static By EmployerSatisfactionPercentageInfo => By.CssSelector("dd.employer-satisfaction");
-        private static By LearnerSatisfactionPercentageInfo => By.CssSelector("dd.learner-satisfaction");
-        private static By AchievementRatePercentageInfo => By.CssSelector("dd.achievement-rate");
-        #endregion
-
-        public string GetEmployerSatisfactionPercentageInfo() => pageInteractionHelper.GetText(EmployerSatisfactionPercentageInfo);
-
-        public string GetLearnerSatisfactionPercentageInfoInfo() => pageInteractionHelper.GetText(LearnerSatisfactionPercentageInfo);
-
-        public string GetAchievementRatePercentageInfoInfo() => pageInteractionHelper.GetText(AchievementRatePercentageInfo);
-
-        public FindATrainingProviderPage NavigateBackFromProviderSearchResultsPage()
-        {
-            NavigateBack();
-            return new FindATrainingProviderPage(context);
-        }
+        var firstProviderLinkText = pageInteractionHelper.GetText(FirstProviderResultLink);
+        objectContext.SetProviderName(firstProviderLinkText);
+        formCompletionHelper.ClickLinkByText(firstProviderLinkText);
+        return new ProviderSummaryPage(context);
     }
+    public TrainingCourseSummaryPage NavigateBackFromTrainingProvidersPage()
+    {
+        NavigateBackToTrainingProviders();
+        return new TrainingCourseSummaryPage(context);
+    }
+    public TrainingCourseSummaryPage NavigateBackToTrainingProviders()
+    {
+        formCompletionHelper.Click(BackToCourseSummaryPage);
+        return new TrainingCourseSummaryPage(context);
+    }
+    public ProviderShortListedResultPage ShortlistAProviderFromProviderList()
+    {
+        formCompletionHelper.Click(AddToShortlist);
+        return new ProviderShortListedResultPage(context);
+    }
+    public ProviderSearchResultsPage RemoveLocationOnProviderListPage()
+    {
+        formCompletionHelper.Click(RemoveLocation);
+        return new ProviderSearchResultsPage(context);
+    }
+    public ProviderShortlistPage NavigateToProviderShortlistPage()
+    {
+        NavigateToShortlistPage();
+        return new ProviderShortlistPage(context);
+    }
+
+    public ProviderSummaryPage ClickSpecifiedProvider(string provider) { formCompletionHelper.Click(SpecifiedProvider(provider)); return new(context); }
 }

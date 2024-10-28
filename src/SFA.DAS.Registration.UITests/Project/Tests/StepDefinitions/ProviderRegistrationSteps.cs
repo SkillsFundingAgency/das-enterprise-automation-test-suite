@@ -2,7 +2,6 @@
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;

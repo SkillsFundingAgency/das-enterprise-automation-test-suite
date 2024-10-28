@@ -111,6 +111,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.And("the levy employer can view the awaiting your approval application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 11
+ testRunner.Then("It is 7 days before an application reaches 3 months without any action", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+    testRunner.And("the levy employer will be able to view auto rejected date of application under st" +
+                        "atus tag \'Application expires on dd/mm/yy\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

@@ -20,8 +20,8 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             MultipleVerifyPage(
             [
-                () => VerifyPage(),
-                () => VerifyPage(() => pageInteractionHelper.FindElements(AccountDisabledInfo), AccountDisabledInfoMessage)
+                VerifyPage,
+                () => VerifyFromMultipleElements(AccountDisabledInfo, AccountDisabledInfoMessage)
             ]);
         }
 

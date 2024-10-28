@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Mailosaur" Version="8.8.*" />
+		<PackageReference Include="Mailosaur" Version="8.9.*" />
 	</ItemGroup>
 
 	<ItemGroup>

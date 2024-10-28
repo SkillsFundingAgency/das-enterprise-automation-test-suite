@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
     public static class AvailableCourses
     {
         internal static List<CourseDetails> GetAvailableCourses()
-            => new() { SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician, FoodIndustryTechnologist };
+            => [SoftwareTester, SoftwareDeveloper, AbattoirWorker, SoftwareDevelopmentTechnician, FoodIndustryTechnologist];
 
         private static CourseDetails SoftwareTester => new()
         {

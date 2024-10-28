@@ -1,74 +1,62 @@
-﻿using OpenQA.Selenium;
-using System.Collections.Generic;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
+public class TrainingCourseSearchResultsPage(ScenarioContext context) : ApprenticeshipTrainingCourseBasePage(context)
 {
-    public class TrainingCourseSearchResultsPage : FATBasePage
+    #region Locators
+    private static By UpdateResultsButton => By.Id("filters-submit");
+    private static By LevelCheckBox(string level) => By.Id($"level-{level}");
+    private static By LevelText => By.ClassName("das-no-wrap");
+    private static By SortByOption => By.Id("sort-by-name");
+    private static By SortByInfoText => By.Id("sort-by-relevance");
+
+    private static By FirstSearchResult => By.CssSelector(".das-search-results__heading");
+
+    #endregion
+
+    public TrainingCourseSearchResultsPage SelectLevelAndFilterResults(string level)
     {
-        protected override string PageTitle => "Search results";
-
-        #region Locators
-        private static By FilterResultsPanel => By.CssSelector(".filters.filters-accordion");
-        private static By LevelCheckBox(string level) => By.Id($"SelectedLevels_{level}");
-        private static By SortByDropDownField => By.Id("select-order");
-        private static By LevelText => By.CssSelector("dd.level");
-        private static By UpdateResultsButton => By.CssSelector(".button[value='Update results']");
-        private static By SortByDropDown => By.Id("select-order");
-        private static By LevelInfoText => By.ClassName("level");
-        #endregion
-
-        public TrainingCourseSearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public TrainingCourseSearchResultsPage VerifyFilterAndSortByFields()
-        {
-            VerifyElement(FilterResultsPanel);
-            VerifyElement(SortByDropDownField);
-            return this;
-        }
-
-        public TrainingCourseSearchResultsPage SearchApprenticeshipInSearchResultsPage(string searchTerm)
-        {
-            SearchApprenticeship(searchTerm);
-            return this;
-        }
-
-        public TrainingCourseSearchResultsPage SelectLevelAndFilterResults(string level)
-        {
-            ClickLevelCheckBox(level);
-            formCompletionHelper.Click(UpdateResultsButton);
-            return this;
-        }
-
-        public TrainingCourseSearchResultsPage VerifyLevelInfoFromSearchResults(string level)
-        {
-            pageInteractionHelper.VerifyText(LevelText, level);
-            ClickLevelCheckBox(level);
-            return this;
-        }
-
-        public TrainingCourseSummaryPage SelectFirstTrainingResult()
-        {
-            var firstLinkText = pageInteractionHelper.GetText(FirstResultLink);
-            objectContext.SetTrainingCourseName(firstLinkText);
-            formCompletionHelper.ClickLinkByText(firstLinkText);
-            return new TrainingCourseSummaryPage(context);
-        }
-
-        public void SelectAscendingOrderSort() => SelectDropDownValue("Level (low to high)");
-
-        public void SelectDescendingOrderSort() => SelectDropDownValue("Level (high to low)");
-
-        public IEnumerable<string> GetLevelInfoFromResults() => pageInteractionHelper.GetStringCollectionFromElementsGroup(LevelInfoText);
-
-        public FindApprenticeshipTrainingSearchPage NavigateBackFromTrainingCourseSearchResultsPage()
-        {
-            NavigateBack();
-            return new FindApprenticeshipTrainingSearchPage(context);
-        }
-
-        private void ClickLevelCheckBox(string level) => formCompletionHelper.Click(LevelCheckBox(level));
-
-        private void SelectDropDownValue(string value) => formCompletionHelper.SelectFromDropDownByText(SortByDropDown, value);
+        SelectLevelCheckBox(level);
+        formCompletionHelper.Click(UpdateResultsButton);
+        return this;
     }
+
+    public TrainingCourseSearchResultsPage VerifyLevelInfoFromSearchResults(string level)
+    {
+        pageInteractionHelper.VerifyText(LevelText, level);
+        UnselectLevelCheckBox(level);
+        formCompletionHelper.Click(UpdateResultsButton);
+        return this;
+    }
+
+    public TrainingCourseSearchResultsPage VerifySortByInfoFromSearchResults(string relevance)
+    {
+        pageInteractionHelper.VerifyText(SortByInfoText, relevance);
+        return this;
+    }
+
+    public TrainingCourseSummaryPage SelectFirstTrainingResult()
+    {
+        var firstLinkText = pageInteractionHelper.GetText(FirstSearchResult).Replace("\r\n", " ");
+
+        objectContext.SetTrainingCourseName(firstLinkText);
+
+        SetDebugInformation($"selected '{firstLinkText}' course");
+
+        formCompletionHelper.ClickLinkByText(firstLinkText);
+
+        return new TrainingCourseSummaryPage(context);
+    }
+
+    public FATIndexPage NavigateBackToHompage()
+    {
+        NavigateToHomepage();
+
+        return new FATIndexPage(context);
+    }
+
+    public void SelectNameOrderSort() => SelectSortByValue("Name");
+    public void SelectRelevanceOrderSort() => SelectSortByValue("Relevance");
+    private void SelectLevelCheckBox(string level) => formCompletionHelper.SelectCheckbox(LevelCheckBox(level));
+    private void UnselectLevelCheckBox(string level) => formCompletionHelper.UnSelectCheckbox(LevelCheckBox(level));
+    private void SelectSortByValue(string value) => formCompletionHelper.ClickLinkByText(SortByOption, value);
 }

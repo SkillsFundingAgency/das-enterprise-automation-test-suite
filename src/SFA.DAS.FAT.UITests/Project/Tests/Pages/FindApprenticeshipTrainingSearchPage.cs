@@ -1,34 +1,11 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.FAT.UITests.Project.Tests.Pages
+public class FindApprenticeshipTrainingSearchPage(ScenarioContext context) : ApprenticeshipTrainingCourseBasePage(context)
 {
-    public class FindApprenticeshipTrainingSearchPage : FATBasePage
+    public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
     {
-        protected override string PageTitle => "Find apprenticeship training";
+        SearchApprenticeship(searchTerm);
 
-        #region Locators
-        private static By SearchTrainingProviderLink => By.CssSelector("span[id='search-training-provider'] a");
-        #endregion
-
-        public FindApprenticeshipTrainingSearchPage(ScenarioContext context) : base(context) => VerifyPage();
-
-        public TrainingCourseSearchResultsPage SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(string searchTerm)
-        {
-            SearchApprenticeship(searchTerm);
-            return new TrainingCourseSearchResultsPage(context);
-        }
-
-        public FATIndexPage NavigateBackFromFindApprenticeshipTrainingSearchPage()
-        {
-            NavigateBack();
-            return new FATIndexPage(context);
-        }
-
-        public FindATrainingProviderByNamePage ClickSearchTrainingProviderLink()
-        {
-            formCompletionHelper.Click(SearchTrainingProviderLink);
-            return new FindATrainingProviderByNamePage(context);
-        }
+        return new TrainingCourseSearchResultsPage(context);
     }
 }

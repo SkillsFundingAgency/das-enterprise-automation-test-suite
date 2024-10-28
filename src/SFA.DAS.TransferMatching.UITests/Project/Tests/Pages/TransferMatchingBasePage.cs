@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.TransferMatching.UITests.Project.Helpers;
@@ -19,7 +20,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         protected static By ErrorMessageSelector => By.CssSelector(".govuk-error-summary");
 
-        private static By ApplicaitonStatusSelector => By.CssSelector("#main-content .application-status-one");
+        private static By ApplicationStatusSelector => By.XPath("//*[@id=\"main-content\"]/div/div[1]/div[1]/div/div/strong");
 
         protected TransferMatchingBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
         {
@@ -30,7 +31,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public string GetErrorMessage() => pageInteractionHelper.GetText(ErrorMessageSelector);
 
-        protected void VerifyApplicationStatus(string expectedStatus) => VerifyElement(ApplicaitonStatusSelector, expectedStatus);
+        protected void VerifyApplicationStatus(string expectedStatus) => VerifyElement(ApplicationStatusSelector, expectedStatus);
 
         protected Pledge GetPledgeDetail() => objectContext.GetPledgeDetail();
 

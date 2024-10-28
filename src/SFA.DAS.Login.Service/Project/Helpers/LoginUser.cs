@@ -51,6 +51,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class NonLevyUser : EasAccountUser { }
 
+    public class NonLevyUserAtMaxReservationLimit : EasAccountUser { }
+
     public class EINoApplicationUser : EasAccountUser { }
 
     public class EIAmendVrfUser : EasAccountUser { }
@@ -70,6 +72,14 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public class EmployerConnectedToPortableFlexiJobProvider : EasAccountUser { }
 
     public class AanEmployerUser : EasAccountUser { }
+
+    public abstract class RatEmployerBaseUser : EasAccountUser { }
+
+    public class RatEmployerUser : RatEmployerBaseUser { }
+
+    public class RatMultiEmployerUser : RatEmployerBaseUser { }
+
+    public class RatCancelEmployerUser : RatEmployerBaseUser { }
 
     public class AddMultiplePayeLevyUser : EasAccountUser
     {
@@ -180,14 +190,19 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     #region EmployerProviderRelationshipUser
 
-    public class EPRLevyUser : EasAccountUser
-    {
+    public abstract class EPRBaseUser : EasAccountUser { }
 
-    }
-    public class EPRNonLevyUser : EasAccountUser
-    {
+    public class EPRLevyUser : EPRBaseUser { }
+    
+    public class EPRNonLevyUser : EPRBaseUser { }
 
-    }
+    public class EPRAcceptRequestUser : EPRBaseUser { }
+
+    public class EPRDeclineRequestUser : EPRBaseUser { }
+
+    public class EPRMultiOrgUser : EPRBaseUser { }
+
+    public class EPRMultiAccountUser : MultipleEasAccountUser { }
 
     #endregion
 
