@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using NUnit.Framework.Internal.Execution;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
@@ -17,6 +20,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static string Employer => "Employer";
         private static string Regionalchair => "Regional chair";
 
+        private static By NextPageLink => By.LinkText("Next »");
+        private static By EventTitle => By.CssSelector(".das-search-results__heading");
         private static By FromDateField => By.CssSelector("#fromDate");
         private static By ToDateField => By.CssSelector("#toDate");
         private static By ApplyFilterButton => By.CssSelector("#filters-submit");
@@ -24,12 +29,19 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static By SelectedFilter(string x) => By.XPath($"//a[contains(@title,'{x}')]");
 
         protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
+        protected static By Location => By.CssSelector("#location");
 
         protected static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
 
         public void FilterEventFromTomorrow() => FilterEventByDate(null);
 
         public void FilterEventByOneMonth() => FilterEventByDate(DateTime.Now.AddDays(30));
+
+        public void FilterEventsByLocation(string location)
+        {
+            EnterLocation(location);
+            ApplyFilter();
+        }
 
         protected void FilterEventBy(DateTime startDate, DateTime endDate, string type, string region)
         {
@@ -101,8 +113,35 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(by, formattedDate);
         }
 
+        private void EnterLocation(string location)
+        {
+            formCompletionHelper.EnterText(Location, location);
+        }
+
         private void ApplyFilter(string x) { SelectCheckBoxByText(x); ApplyFilter(); }
 
         private void ApplyFilter() => formCompletionHelper.ClickElement(ApplyFilterButton);
+
+        protected List<string> GetAllEventTitles()
+        {
+            return pageInteractionHelper.FindElements(EventTitle).Select(x => x.Text).ToList();
+        }
+
+        protected bool HasNextPageLink()
+        {
+            try
+            {
+                return pageInteractionHelper.FindElement(NextPageLink) != null;
+            }
+            catch(NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        protected void ClickNextPageLink()
+        {
+            formCompletionHelper.Click(NextPageLink);
+        }
     }
 }

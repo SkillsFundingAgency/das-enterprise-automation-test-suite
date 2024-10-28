@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CancelEvent;
+﻿using System.Collections.Generic;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CancelEvent;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
@@ -43,6 +44,12 @@ public class ManageEventsPage(ScenarioContext context) : SearchEventsBasePage(co
     public new ManageEventsPage FilterEventByOneMonth()
     {
         base.FilterEventByOneMonth();
+        return this;
+    }
+
+    public new ManageEventsPage FilterEventsByLocation(string location)
+    {
+        base.FilterEventsByLocation(location);
         return this;
     }
 
@@ -100,4 +107,18 @@ public class ManageEventsPage(ScenarioContext context) : SearchEventsBasePage(co
         return this;
     }
 
+    public List<string> GetEventTitles()
+    {
+        return base.GetAllEventTitles();
+    }
+
+    public void ClickNextPage()
+    {
+        base.ClickNextPageLink();
+    }
+
+    public bool HasNextPage()
+    {
+        return base.HasNextPageLink();
+    }
 }

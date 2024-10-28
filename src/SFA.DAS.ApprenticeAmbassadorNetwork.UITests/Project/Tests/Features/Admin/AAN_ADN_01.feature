@@ -18,11 +18,12 @@ Scenario: AAN_ADN_01 admin user filter events
 @regression
 Scenario: AAN_ADN_01b admin user filter events
     Given an admin logs into the AAN portal
-    And an event called 'Location Filter Test Event 1' in 'Bromsgrove' has been created
-    #And an event called 'Location Filter Test Event 2' in 'Kidderminster' has been created
-    #And an event called 'Location Filter Test Event 3' in 'Sunderland' has been created
-    #When an admin logs into the AAN portal
-    #And the user filters events within '10' miles of 'Bromsgrove'
-    #Then event search results should include 'Location Filter Test Event 1'
-    #And the event search results should include 'Location Filter Test Event 2'
-    #And the event search results should not include 'Location Filter Test Event 3'
+    And the following events have been created:
+    | EventTitle                   | Location                                                                    |
+    | Location Filter Test Event 1 | The Maids Head, King's Lynn, PE32 1NG                                       |
+    | Location Filter Test Event 2 | Eagles Golf Club, 37-39 School Road, King's Lynn, PE34 4RS                  |
+    | Location Filter Test Event 3 | Spalding United Football Club, Sir Halley Stewart Field, Spalding, PE11 1DA |
+    When the user filters events within 10 miles of "PE30 5HF"
+    Then the event search results should include 'Location Filter Test Event 1'
+    And the event search results should include 'Location Filter Test Event 2'
+    And the event search results should not include 'Location Filter Test Event 3'

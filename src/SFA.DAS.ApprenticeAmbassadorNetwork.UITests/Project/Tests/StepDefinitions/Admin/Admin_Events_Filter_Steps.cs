@@ -1,4 +1,8 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+﻿using FluentAssertions;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin
 {
@@ -62,11 +66,47 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 
         }
 
-        [Given(@"an event called '([^']*)' in '([^']*)' has been created")]
-        public void GivenAnEventCalledInHasBeenCreated(string distanceInMiles, string location)
+        [Given(@"the following events have been created:")]
+        public void GivenTheFollowingEventsHaveBeenCreated(Table table)
         {
             var stepsHelper = context.Get<AanAdminStepsHelper>();
-            stepsHelper.CheckYourEvent(EventFormat.InPerson, false, false).SubmitEvent();
+
+            var events = table.CreateSet<NetworkEvent>().ToList();
+
+            foreach(var e in events)
+            {
+                var confirmationPage = stepsHelper.CheckYourEvent(EventFormat.InPerson, false, false, e.EventTitle, e.Location).SubmitEvent();
+                confirmationPage.AccessHub();
+            };
+        }
+
+        [When(@"the user filters events within (.*) miles of ""([^""]*)""")]
+        public void WhenTheUserFiltersEventsWithinMilesOf(int p0, string location)
+        {
+            var hub = new AdminAdministratorHubPage(context);
+            var manageEvents = hub.AccessManageEvents();
+            manageEvents.FilterEventsByLocation(location);
+
+            var stepsHelper = context.Get<AanAdminStepsHelper>();
+            stepsHelper.ClearEventTitleCache();
+        }
+
+        [Then(@"the event search results should include '([^']*)'")]
+        public void ThenTheEventSearchResultsShouldInclude(string expected)
+        {
+            var stepsHelper = context.Get<AanAdminStepsHelper>();
+            var titles = stepsHelper.GetAllEventTitles();
+
+            titles.Should().Contain(expected);
+        }
+
+        [Then(@"the event search results should not include '([^']*)'")]
+        public void ThenTheEventSearchResultsShouldNotInclude(string expected)
+        {
+            var stepsHelper = context.Get<AanAdminStepsHelper>();
+            var titles = stepsHelper.GetAllEventTitles();
+
+            titles.Should().NotContain(expected);
         }
     }
 }

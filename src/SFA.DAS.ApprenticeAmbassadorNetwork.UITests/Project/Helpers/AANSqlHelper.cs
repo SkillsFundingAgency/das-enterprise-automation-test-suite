@@ -77,4 +77,9 @@ public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlD
         $"DELETE FROM EventGuest where CalendarEventId = @EventId " +
         $"DELETE FROM CalendarEvent WHERE Id = @EventId; " +
         $"END");
+
+    public void DeleteLocationFilterEvents()
+    {
+        ExecuteSqlCommand("DELETE FROM CalendarEvent where [Title] LIKE 'Location Filter Test Event%'");
+    }
 }

@@ -15,9 +15,9 @@ public class InPersonOrOnlinePage : AanAdminBasePage
         VerifyPage();
     }
 
-    public IsEventAtSchoolPage SubmitInPersonDetails()
+    public IsEventAtSchoolPage SubmitInPersonDetails(string location = null)
     {
-        SubmitInPerson();
+        SubmitInPerson(location);
 
         Continue();
 
@@ -34,9 +34,9 @@ public class InPersonOrOnlinePage : AanAdminBasePage
     }
 
 
-    public IsEventAtSchoolPage SubmitHybridDetails()
+    public IsEventAtSchoolPage SubmitHybridDetails(string location = null)
     {
-        SubmitInPerson();
+        SubmitInPerson(location);
 
         SubmitOnline();
 
@@ -67,7 +67,17 @@ public class InPersonOrOnlinePage : AanAdminBasePage
         return new(context);
     }
 
-    private void SubmitInPerson() => SelectAutoDropDown(aanAdminCreateEventDatahelper.EventInPersonLocation);
+    private void SubmitInPerson(string location = null)
+    {
+        if (string.IsNullOrWhiteSpace(location))
+        {
+            SelectAutoDropDown(aanAdminCreateEventDatahelper.EventInPersonLocation);
+        }
+        else
+        {
+            SelectAutoDropDown(location, true);
+        }
+    }
 
     private void SubmitOnline() => formCompletionHelper.EnterText(LinkInput, aanAdminCreateEventDatahelper.EventOnlineLink);
 }

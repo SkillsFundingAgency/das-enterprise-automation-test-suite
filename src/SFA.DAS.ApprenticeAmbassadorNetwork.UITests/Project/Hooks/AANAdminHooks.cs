@@ -32,4 +32,13 @@ public class AANAdminHooks(ScenarioContext context) : AANBaseHooks(context)
             if (!string.IsNullOrEmpty(eventId)) context.Get<AANSqlHelper>().DeleteAdminCreatedEvent(eventId);
         });
     }
+
+    [AfterScenario(Order = 34), Scope(Tag = "@aanadn01b")]
+    public void DeleteLocationFilterEvents()
+    {
+        context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
+        {
+            context.Get<AANSqlHelper>().DeleteLocationFilterEvents();
+        });
+    }
 }

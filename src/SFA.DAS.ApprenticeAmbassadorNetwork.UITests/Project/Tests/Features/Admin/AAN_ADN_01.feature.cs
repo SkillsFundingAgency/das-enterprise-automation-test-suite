@@ -149,8 +149,32 @@ this.ScenarioInitialize(scenarioInfo);
 #line 20
     testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "EventTitle",
+                            "Location"});
+                table1.AddRow(new string[] {
+                            "Location Filter Test Event 1",
+                            "The Maids Head, King\'s Lynn, PE32 1NG"});
+                table1.AddRow(new string[] {
+                            "Location Filter Test Event 2",
+                            "Eagles Golf Club, 37-39 School Road, King\'s Lynn, PE34 4RS"});
+                table1.AddRow(new string[] {
+                            "Location Filter Test Event 3",
+                            "Spalding United Football Club, Sir Halley Stewart Field, Spalding, PE11 1DA"});
 #line 21
-    testRunner.And("an event called \'Location Filter Test Event 1\' in \'Bromsgrove\' has been created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("the following events have been created:", ((string)(null)), table1, "And ");
+#line hidden
+#line 26
+    testRunner.When("the user filters events within 10 miles of \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 27
+    testRunner.Then("the event search results should include \'Location Filter Test Event 1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 28
+    testRunner.And("the event search results should include \'Location Filter Test Event 2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 29
+    testRunner.And("the event search results should not include \'Location Filter Test Event 3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
