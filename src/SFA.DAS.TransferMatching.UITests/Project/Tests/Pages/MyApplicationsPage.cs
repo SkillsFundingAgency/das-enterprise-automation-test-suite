@@ -11,5 +11,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText(GetPledgeId());
             return new ApplicationsDetailsPage(context, expectedStatus);
         }
+
+        public ManageTransferMatchingPage GoBackToManageTransfersPage()
+        {
+            formCompletionHelper.ClickLinkByText("Manage Transfers");
+            return new ManageTransferMatchingPage(context);
+        }
+
+        
     }
 }

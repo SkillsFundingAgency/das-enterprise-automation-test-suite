@@ -34,6 +34,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new MyTransferPledgesPage(context);
         }
 
+        public ManageTransferMatchingPage GoBackToManageTransfersPage()
+        {
+            formCompletionHelper.ClickLinkByText("Your transfers");
+            return new ManageTransferMatchingPage(context);
+        }
+
         private void SearchPledge()
         {
             // Continue until either PledgeSelector is found or no more pages to go through

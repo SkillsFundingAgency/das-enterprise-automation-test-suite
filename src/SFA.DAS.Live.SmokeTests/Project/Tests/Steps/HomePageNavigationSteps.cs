@@ -44,7 +44,13 @@ public class HomePageNavigationSteps(ScenarioContext context)
     [Then(@"Your transfers link should direct user to Manage transfers page")]
     public void YourTransfersLinkShouldDirectUserToManageTransfersPage()
     {
-        new HomePageFinancesSection_YourTransfers(context).NavigateToTransferMatchingPage().GoToAccountHomePage();
+        new HomePageFinancesSection_YourTransfers(context)
+            .NavigateToTransferMatchingPage()
+             .GoToViewMyTransferPledgePage()
+             .GoBackToManageTransfersPage()
+             .ViewApplicationsIhaveSubmitted()
+             .GoBackToManageTransfersPage()
+             .GoToAccountHomePage();
     }
 
     [Then(@"Your organisations and agreements link should direct user to Your organisations and agreements page")]
