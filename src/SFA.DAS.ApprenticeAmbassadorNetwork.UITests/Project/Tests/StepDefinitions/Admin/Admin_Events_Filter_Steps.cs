@@ -118,23 +118,5 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
                 titles.Should().NotContain(unexpected.EventTitle);
             }
         }
-
-        [Then(@"the event search results should include '([^']*)'")]
-        public void ThenTheEventSearchResultsShouldInclude(string expected)
-        {
-            var stepsHelper = context.Get<AanAdminStepsHelper>();
-            var titles = stepsHelper.GetAllEventTitles();
-
-            titles.Should().Contain(expected);
-        }
-
-        [Then(@"the event search results should not include '([^']*)'")]
-        public void ThenTheEventSearchResultsShouldNotInclude(string expected)
-        {
-            var stepsHelper = context.Get<AanAdminStepsHelper>();
-            var titles = stepsHelper.GetAllEventTitles();
-
-            titles.Should().NotContain(expected);
-        }
     }
 }
