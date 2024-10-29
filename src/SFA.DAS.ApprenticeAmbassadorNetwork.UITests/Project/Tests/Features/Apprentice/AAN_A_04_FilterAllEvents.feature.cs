@@ -151,13 +151,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Location"});
                 table4.AddRow(new string[] {
                             "Location Filter Test Event 1",
-                            "The Maids Head, King\'s Lynn, PE32 1NG"});
+                            "1 Paradise, Scarborough, YO11 1RB"});
                 table4.AddRow(new string[] {
                             "Location Filter Test Event 2",
-                            "Eagles Golf Club, 37-39 School Road, King\'s Lynn, PE34 4RS"});
+                            "5 East Terrace, Whitby, YO21 3HB"});
                 table4.AddRow(new string[] {
                             "Location Filter Test Event 3",
-                            "Spalding United Football Club, Sir Halley Stewart Field, Spalding, PE11 1DA"});
+                            "23 Shambles, York, YO1 7LZ"});
 #line 20
     testRunner.Given("the following events have been created:", ((string)(null)), table4, "Given ");
 #line hidden
@@ -165,7 +165,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.When("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 26
-    testRunner.When("the user filters events within 10 miles of \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.And("the user filters events within 20 miles of \"YO11 1QB\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Event Title"});
