@@ -1,5 +1,13 @@
-﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+﻿using FluentAssertions;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
+using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
 
@@ -13,7 +21,9 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     private AanApprenticeOnBoardedUser user;
 
     [Given(@"an onboarded apprentice logs into the AAN portal")]
-    public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage = SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
+    [When(@"an onboarded apprentice logs into the AAN portal")]
+    public void AnOnboardedApprenticeLogsIntoTheAANPortal() => networkHubPage =
+        SubmitUserDetails_OnboardingJourneyComplete(user = context.Get<AanApprenticeOnBoardedUser>());
 
     [Then(@"the user should be able to successfully verify a regional chair member profile")]
     public void VerifyRegionalChairMemberProfile() => AccessNetworkDirectory(true);
@@ -21,20 +31,25 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     [Then(@"the user should be able to successfully verify an apprentice member profile")]
     public void VerifyApprenticeMemberProfile() => AccessNetworkDirectory(false);
 
-    private void AccessNetworkDirectory(bool isRegionalChair) => AccessNetworkDirectory(networkHubPage, isRegionalChair, user.Username);
+    private void AccessNetworkDirectory(bool isRegionalChair) =>
+        AccessNetworkDirectory(networkHubPage, isRegionalChair, user.Username);
 
-    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to an apprentice member successfully")]
-    public void TheUserShouldBeAbleToAskAnApprenticeMemberSuccessfully(string message) => SendApprenticeMessage(networkDirectoryPage, Apprentice, message);
+    [Then(
+        @"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to an apprentice member successfully")]
+    public void TheUserShouldBeAbleToAskAnApprenticeMemberSuccessfully(string message) =>
+        SendApprenticeMessage(networkDirectoryPage, Apprentice, message);
 
-    [Then(@"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to a regional chair member successfully")]
-    public void TheUserShouldBeAbleToAskARegionalChairMemberSuccessfully(string message) => SendRegionalChairMessage(networkDirectoryPage, Apprentice, message);
+    [Then(
+        @"the user should be able to (ask for industry advice|ask for help with a network activity|request a case study|get in touch after meeting at a network event) to a regional chair member successfully")]
+    public void TheUserShouldBeAbleToAskARegionalChairMemberSuccessfully(string message) =>
+        SendRegionalChairMessage(networkDirectoryPage, Apprentice, message);
 
     [When(@"the user should be able to successfully verify ambassador profile")]
     public void VerifyYourAmbassadorProfile() => VerifyYourAmbassadorProfile(networkHubPage, user.Username);
 
     [Then(@"the user should be able to update profile information")]
-    public void ThenTheUserShouldBeAbleToUpdateProfileInformation() => new YourAmbassadorProfilePage(context).
-        AccessChangeForPersonalDetails()
+    public void ThenTheUserShouldBeAbleToUpdateProfileInformation() => new YourAmbassadorProfilePage(context)
+        .AccessChangeForPersonalDetails()
         .ChangePersonalDetailsAndContinue()
         .AccessChangeForInterestInNetwork()
         .SelectProjectManagementAndContinue()
@@ -44,22 +59,24 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
         .ChangeLinkedlnUrlAndContinue();
 
     [When(@"the user should be able to successfully hide ambassador profile information")]
-    public void WhenTheUserShouldBeAbleToSuccessfullyHideAmbassadorProfileInformation() => AccessYourAmbassadorProfile(networkHubPage)
-        .AccessChangeForPersonalDetails()
-        .HideJobtitleAndBiography()
-        .AccessChangeForApprenticeshipInformation()
-        .HideApprenticeshipInformation()
-        .AccessChangeForContactDetails()
-        .HideLinkedlnInformation();
+    public void WhenTheUserShouldBeAbleToSuccessfullyHideAmbassadorProfileInformation() =>
+        AccessYourAmbassadorProfile(networkHubPage)
+            .AccessChangeForPersonalDetails()
+            .HideJobtitleAndBiography()
+            .AccessChangeForApprenticeshipInformation()
+            .HideApprenticeshipInformation()
+            .AccessChangeForContactDetails()
+            .HideLinkedlnInformation();
 
     [Then(@"the user should be able to successfully display ambassador profile information")]
-    public void ThenTheUserShouldBeAbleToSuccessfullyDisplayAmbassadorProfileInformation() => new YourAmbassadorProfilePage(context)
-        .AccessChangeForPersonalDetails()
-        .DisplayJobtitleAndBiography()
-        .AccessChangeForApprenticeshipInformation()
-        .DisplayApprenticeshipInformation()
-        .AccessChangeForContactDetails()
-        .DisplayLinkedlnInformation();
+    public void ThenTheUserShouldBeAbleToSuccessfullyDisplayAmbassadorProfileInformation() =>
+        new YourAmbassadorProfilePage(context)
+            .AccessChangeForPersonalDetails()
+            .DisplayJobtitleAndBiography()
+            .AccessChangeForApprenticeshipInformation()
+            .DisplayApprenticeshipInformation()
+            .AccessChangeForContactDetails()
+            .DisplayLinkedlnInformation();
 
 
     [Then(@"the user should be able to successfully signup for a future event")]
@@ -84,11 +101,64 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     public void FilterByMultipleCombination() => FilterByMultipleCombination(searchNetworkEventsPage);
 
     [Then(@"the user should be able to successfully filter events by role Network Directory")]
-    public void FilterByRole_NetworkDirectory() => networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
+    public void FilterByRole_NetworkDirectory() =>
+        networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
 
     [Then(@"the user should be able to successfully filter events by regions Network Directory")]
     public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
 
-    [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
-    public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
+    [Then(
+        @"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
+    public void FilterByMultipleCombination_NetworkDirectory() =>
+        FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
+
+    [Given(@"the following events have been created:")]
+    public void GivenTheFollowingEventsHaveBeenCreated(Table table)
+    {
+        var tabHelper = context.Get<TabHelper>();
+        tabHelper.GoToUrl(UrlConfig.AAN_Admin_BaseUrl);
+
+        var user = context.GetUser<AanAdminUser>();
+
+        new DfeSignInPage(context).SubmitValidLoginDetails(user);
+
+        var stepsHelper = context.Get<AanAdminStepsHelper>();
+
+        var events = table.CreateSet<NetworkEvent>().ToList();
+
+        foreach (var e in events)
+        {
+            var confirmationPage = stepsHelper.CheckYourEvent(EventFormat.InPerson, false, false, e.EventTitle, e.Location).SubmitEvent();
+            confirmationPage.AccessHub();
+        };
+
+        tabHelper.GoToUrl(UrlConfig.AAN_Apprentice_BaseUrl);
+    }
+
+    [When(@"the user filters events within (.*) miles of ""([^""]*)""")]
+    public void WhenTheUserFiltersEventsWithinMilesOf(int p0, string location)
+    {
+        var searchNetworkEventsPage = networkHubPage.AccessEventsHub()
+            .AccessAllNetworkEvents();
+
+        searchNetworkEventsPage.FilterEventsByLocation(location);
+
+        var stepsHelper = context.Get<AanAdminStepsHelper>();
+        stepsHelper.ClearEventTitleCache();
+    }
+
+    [Then(@"the following events can be found within the search results:")]
+    public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
+    {
+        var stepsHelper = context.Get<AanAdminStepsHelper>();
+        var titles = stepsHelper.GetAllEventTitles();
+
+        var expectedEvents = table.CreateSet<NetworkEvent>().ToList();
+
+        foreach (var expected in expectedEvents)
+        {
+            titles.Should().Contain(expected.EventTitle);
+        }
+    }
+
 }

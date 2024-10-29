@@ -120,6 +120,57 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_04b_Apprentice admin user filter events")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanaprenticeevents")]
+        [NUnit.Framework.CategoryAttribute("aanaprentice")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_A_04B_ApprenticeAdminUserFilterEvents()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanaprenticeevents",
+                    "aanaprentice",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_04b_Apprentice admin user filter events", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title",
+                            "Location"});
+                table4.AddRow(new string[] {
+                            "Location Filter Test Event 1",
+                            "The Maids Head, King\'s Lynn, PE32 1NG"});
+#line 20
+    testRunner.Given("the following events have been created:", ((string)(null)), table4, "Given ");
+#line hidden
+#line 25
+    testRunner.When("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 26
+    testRunner.When("the user filters events within 10 miles of \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title"});
+                table5.AddRow(new string[] {
+                            "Location Filter Test Event 1"});
+#line 27
+    testRunner.Then("the following events can be found within the search results:", ((string)(null)), table5, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
