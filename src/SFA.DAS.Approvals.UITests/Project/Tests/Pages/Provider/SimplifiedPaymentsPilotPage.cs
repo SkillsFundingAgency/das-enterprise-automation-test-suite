@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class SimplifiedPaymentsPilotPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "Will this apprentice be part of the Simplified Payments pilot?";
+        protected override string PageTitle => "Will this apprentice be part of the Payments Simplification private Beta?";
         protected override By PageHeader => By.CssSelector("form h1");
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
