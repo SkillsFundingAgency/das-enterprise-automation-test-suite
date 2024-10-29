@@ -9,8 +9,6 @@ public class ManageEventsPage(ScenarioContext context) : SearchEventsBasePage(co
     private static By CancelEventLink(string id) => By.CssSelector($"a[href='/events/{id}/cancel']");
 
     private static By CreateEventButton => By.CssSelector("#create-event");
-    private static By SearchResultsHeading = By.ClassName("das-search-results__heading");
-    private static By BodyText = By.ClassName("govuk-body");
 
     protected override string PageTitle => "Manage events";
 
@@ -107,30 +105,5 @@ public class ManageEventsPage(ScenarioContext context) : SearchEventsBasePage(co
     {
         base.VerifyEventRegion_London_Filter();
         return this;
-    }
-
-    public List<string> GetEventTitles()
-    {
-        return base.GetAllEventTitles();
-    }
-
-    public void ClickNextPage()
-    {
-        base.ClickNextPageLink();
-    }
-
-    public bool HasNextPage()
-    {
-        return base.HasNextPageLink();
-    }
-
-    public void VerifyHeadingText(string expectedText)
-    {
-        pageInteractionHelper.VerifyText(SearchResultsHeading, expectedText);
-    }
-
-    public void VerifyBodyText(string expectedText)
-    {
-        pageInteractionHelper.VerifyText(BodyText, expectedText);
     }
 }

@@ -24,6 +24,8 @@ public class AANHooks(ScenarioContext context) : AANBaseHooks(context)
 
         context.Set(new AanAdminStepsHelper(context));
 
+        context.Set(new ApprenticeStepsHelper(context));
+
         context.Set(new AanAdminCreateEventDatahelper());
     }
 }

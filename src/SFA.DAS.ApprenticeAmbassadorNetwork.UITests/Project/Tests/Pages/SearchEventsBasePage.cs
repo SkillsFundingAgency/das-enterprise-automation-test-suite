@@ -25,6 +25,9 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static By FromDateField => By.CssSelector("#fromDate");
         private static By ToDateField => By.CssSelector("#toDate");
         private static By ApplyFilterButton => By.CssSelector("#filters-submit");
+        private static By SearchResultsHeading = By.ClassName("das-search-results__heading");
+        private static By BodyText = By.ClassName("govuk-body");
+
 
         private static By SelectedFilter(string x) => By.XPath($"//a[contains(@title,'{x}')]");
 
@@ -149,6 +152,31 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected void ClickNextPageLink()
         {
             formCompletionHelper.Click(NextPageLink);
+        }
+
+        public List<string> GetEventTitles()
+        {
+            return GetAllEventTitles();
+        }
+
+        public void ClickNextPage()
+        {
+            ClickNextPageLink();
+        }
+
+        public bool HasNextPage()
+        {
+            return HasNextPageLink();
+        }
+
+        public void VerifyHeadingText(string expectedText)
+        {
+            pageInteractionHelper.VerifyText(SearchResultsHeading, expectedText);
+        }
+
+        public void VerifyBodyText(string expectedText)
+        {
+            pageInteractionHelper.VerifyText(BodyText, expectedText);
         }
     }
 }

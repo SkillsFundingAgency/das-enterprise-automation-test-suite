@@ -1,12 +1,10 @@
 ﻿using FluentAssertions;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
-using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow.Assist;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Apprentice;
@@ -136,21 +134,21 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     }
 
     [When(@"the user filters events within (.*) miles of ""([^""]*)""")]
-    public void WhenTheUserFiltersEventsWithinMilesOf(int p0, string location)
+    public void WhenTheUserFiltersEventsWithinMilesOf(int radius, string location)
     {
         var searchNetworkEventsPage = networkHubPage.AccessEventsHub()
             .AccessAllNetworkEvents();
 
-        searchNetworkEventsPage.FilterEventsByLocation(location);
+        searchNetworkEventsPage.FilterEventsByLocation(location, radius);
 
-        var stepsHelper = context.Get<AanAdminStepsHelper>();
+        var stepsHelper = context.Get<ApprenticeStepsHelper>();
         stepsHelper.ClearEventTitleCache();
     }
 
     [Then(@"the following events can be found within the search results:")]
     public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
     {
-        var stepsHelper = context.Get<AanAdminStepsHelper>();
+        var stepsHelper = context.Get<ApprenticeStepsHelper>();
         var titles = stepsHelper.GetAllEventTitles();
 
         var expectedEvents = table.CreateSet<NetworkEvent>().ToList();
@@ -160,5 +158,18 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
             titles.Should().Contain(expected.EventTitle);
         }
     }
+    
+    [Then(@"the following events can not be found within the search results:")]
+    public void ThenTheFollowingEventsCanNotBeFoundWithinTheSearchResults(Table table)
+    {
+        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        var titles = stepsHelper.GetAllEventTitles();
 
+        var unexpectedEvents = table.CreateSet<NetworkEvent>().ToList();
+
+        foreach (var unexpected in unexpectedEvents)
+        {
+            titles.Should().NotContain(unexpected.EventTitle);
+        }
+    }
 }

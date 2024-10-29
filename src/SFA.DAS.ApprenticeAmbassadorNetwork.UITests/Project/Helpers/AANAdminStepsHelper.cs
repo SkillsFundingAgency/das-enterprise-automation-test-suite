@@ -5,6 +5,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
 {
     public class AanAdminStepsHelper(ScenarioContext context)
     {
+        private readonly SharedStepsHelper _sharedStepsHelper = new SharedStepsHelper(context);
+
         private string EventTitlesKey = "AanAdminStepsHelper.EventTitlesKey";
 
         protected SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
@@ -64,31 +66,13 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
 
         public List<string> GetAllEventTitles()
         {
-            if (context.ContainsKey(EventTitlesKey))
-            {
-                return context.Get<List<string>>(EventTitlesKey);
-            }
-
             var manageEvents = new ManageEventsPage(context);
-            var eventTitles = manageEvents.GetEventTitles();
-
-            while (manageEvents.HasNextPage())
-            {
-                manageEvents.ClickNextPage();
-                var titles = manageEvents.GetEventTitles();
-                eventTitles.AddRange(titles);
-            }
-
-            context.Add(EventTitlesKey, eventTitles);
-            return eventTitles;
+            return _sharedStepsHelper.GetAllEventTitles(manageEvents);
         }
 
         public void ClearEventTitleCache()
         {
-            if (context.ContainsKey(EventTitlesKey))
-            {
-                context.Remove(EventTitlesKey);
-            }
+            _sharedStepsHelper.ClearEventTitleCache();
         }
     }
 }
