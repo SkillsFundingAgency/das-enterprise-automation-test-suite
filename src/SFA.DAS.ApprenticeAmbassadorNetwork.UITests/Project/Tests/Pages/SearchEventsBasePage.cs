@@ -30,6 +30,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
         protected static By Location => By.CssSelector("#location");
+        protected static By Radius => By.CssSelector("#Radius");
 
         protected static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
 
@@ -37,9 +38,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public void FilterEventByOneMonth() => FilterEventByDate(DateTime.Now.AddDays(30));
 
-        public void FilterEventsByLocation(string location)
+        public void FilterEventsByLocation(string location, int radius)
         {
             EnterLocation(location);
+            EnterRadius(radius);
             ApplyFilter();
         }
 
@@ -116,6 +118,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private void EnterLocation(string location)
         {
             formCompletionHelper.EnterText(Location, location);
+        }
+
+        private void EnterRadius(int radius)
+        {
+            formCompletionHelper.SelectFromDropDownByText(Radius, $"{radius} miles");
         }
 
         private void ApplyFilter(string x) { SelectCheckBoxByText(x); ApplyFilter(); }

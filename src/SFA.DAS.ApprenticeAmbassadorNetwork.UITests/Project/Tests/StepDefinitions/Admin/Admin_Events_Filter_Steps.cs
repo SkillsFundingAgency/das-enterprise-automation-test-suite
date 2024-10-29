@@ -81,11 +81,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         }
 
         [When(@"the user filters events within (.*) miles of ""([^""]*)""")]
-        public void WhenTheUserFiltersEventsWithinMilesOf(int p0, string location)
+        public void WhenTheUserFiltersEventsWithinMilesOf(int radius, string location)
         {
             var hub = new AdminAdministratorHubPage(context);
             var manageEvents = hub.AccessManageEvents();
-            manageEvents.FilterEventsByLocation(location);
+            manageEvents.FilterEventsByLocation(location, radius);
 
             var stepsHelper = context.Get<AanAdminStepsHelper>();
             stepsHelper.ClearEventTitleCache();

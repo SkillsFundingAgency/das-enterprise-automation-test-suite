@@ -49,9 +49,9 @@ public class ManageEventsPage(ScenarioContext context) : SearchEventsBasePage(co
         return this;
     }
 
-    public new ManageEventsPage FilterEventsByLocation(string location)
+    public new ManageEventsPage FilterEventsByLocation(string location, int radius)
     {
-        base.FilterEventsByLocation(location);
+        base.FilterEventsByLocation(location, radius);
         return this;
     }
 
