@@ -122,15 +122,36 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         [Then(@"the heading text ""([^""]*)"" is displayed")]
         public void ThenTheHeadingTextIsDisplayed(string expectedText)
         {
-            var manageEventsPage = new ManageEventsPage(context);
+            manageEventsPage = new ManageEventsPage(context);
             manageEventsPage.VerifyHeadingText(expectedText);
         }
 
         [Then(@"the text ""([^""]*)"" is displayed")]
         public void ThenTheTextIsDisplayed(string expectedText)
         {
-            var manageEventsPage = new ManageEventsPage(context);
+            manageEventsPage = new ManageEventsPage(context);
             manageEventsPage.VerifyBodyText(expectedText);
+        }
+
+        [When(@"the user navigates to Manage Events")]
+        public void WhenTheUserNavigatesToManageEvents()
+        {
+            manageEventsPage = new AdminAdministratorHubPage(context).AccessManageEvents();
+        }
+
+
+        [When(@"the user filters events by Cancelled status")]
+        public void WhenTheFiltersEventsByCancelledEventType()
+        {
+            manageEventsPage = new ManageEventsPage(context);
+            manageEventsPage.FilterEventByEventStatus_Cancelled();
+        }
+
+        [When(@"the user filters events by Training event type")]
+        public void WhenTheUserFiltersEventsByTrainingEventType()
+        {
+            manageEventsPage = new ManageEventsPage(context);
+            manageEventsPage.FilterEventByEventType_TrainingEvent();
         }
     }
 }

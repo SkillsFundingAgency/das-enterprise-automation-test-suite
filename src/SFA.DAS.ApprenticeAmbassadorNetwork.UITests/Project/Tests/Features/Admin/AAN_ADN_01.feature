@@ -41,3 +41,14 @@ Scenario: AAN_ADN_01c admin user filter events by a location that does not exist
     When the user filters events within 10 miles of "Lilliput"
     Then the heading text "We cannot find the location you entered" is displayed
     And the text "We do not recognise Lilliput" is displayed
+
+@aan
+@aanadmin
+@aanadn01d
+@regression
+Scenario: AAN_ADN_01d admin user filter events and finds no matching results
+    Given an admin logs into the AAN portal
+    When the user navigates to Manage Events
+    And the user filters events by Cancelled status
+    And the user filters events by Training event type
+    Then the heading text "No events currently match your filters" is displayed
