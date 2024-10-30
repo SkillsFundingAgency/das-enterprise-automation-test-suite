@@ -71,7 +71,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         {
             var stepsHelper = context.Get<AanAdminStepsHelper>();
 
-            var events = table.CreateSet<NetworkEvent>().ToList();
+            var events = table.CreateSet<NetworkEventWithLocation>().ToList();
 
             foreach(var e in events)
             {

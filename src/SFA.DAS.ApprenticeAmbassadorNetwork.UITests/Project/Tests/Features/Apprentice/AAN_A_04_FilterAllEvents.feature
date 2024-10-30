@@ -31,3 +31,5 @@ Scenario: AAN_A_04b_Apprentice user filters events by location
     And the following events can not be found within the search results:
     | Event Title                  |
     | Location Filter Test Event 3 |
+    When the user filters events Across England centered on "YO11 1QB"
+    And the user orders the results by Closest

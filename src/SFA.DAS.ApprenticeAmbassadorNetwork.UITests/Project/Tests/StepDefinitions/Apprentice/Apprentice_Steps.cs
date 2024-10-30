@@ -122,7 +122,7 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
 
         var stepsHelper = context.Get<AanAdminStepsHelper>();
 
-        var events = table.CreateSet<NetworkEvent>().ToList();
+        var events = table.CreateSet<NetworkEventWithLocation>().ToList();
 
         foreach (var e in events)
         {
@@ -144,6 +144,18 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
         var stepsHelper = context.Get<ApprenticeStepsHelper>();
         stepsHelper.ClearEventTitleCache();
     }
+
+    [When(@"the user filters events Across England centered on ""([^""]*)""")]
+    public void WhenTheUserFiltersEventsAcrossEnglandCenteredOn(string location)
+    {
+        var searchNetworkEventsPage = new SearchNetworkEventsPage(context);
+
+        searchNetworkEventsPage.FilterEventsByLocation(location, 0);
+
+        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        stepsHelper.ClearEventTitleCache();
+    }
+
 
     [Then(@"the following events can be found within the search results:")]
     public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
@@ -171,5 +183,12 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
         {
             titles.Should().NotContain(unexpected.EventTitle);
         }
+    }
+
+    [When(@"the user orders the results by Closest")]
+    public void WhenTheUserOrdersTheResultsByClosest()
+    {
+        var searchNetworkEventsPage = new SearchNetworkEventsPage(context);
+        searchNetworkEventsPage.SelectOrderByClosest();
     }
 }

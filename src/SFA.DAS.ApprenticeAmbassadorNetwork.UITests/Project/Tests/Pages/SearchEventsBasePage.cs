@@ -34,12 +34,18 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
         protected static By Location => By.CssSelector("#location");
         protected static By Radius => By.CssSelector("#Radius");
+        protected static By OrderBy => By.CssSelector("#OrderBy");
 
         protected static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
 
         public void FilterEventFromTomorrow() => FilterEventByDate(null);
 
         public void FilterEventByOneMonth() => FilterEventByDate(DateTime.Now.AddDays(30));
+
+        public void SelectOrderByClosest()
+        {
+            SelectOrderBy("Closest");
+        }
 
         public void FilterEventsByLocation(string location, int radius)
         {
@@ -102,6 +108,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         protected void VerifyRole_Regionalchair_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Regionalchair));
 
+        protected void SelectOrderBy(string selectedValue)
+        {
+            formCompletionHelper.SelectFromDropDownByText(OrderBy, selectedValue);
+        }
+
         private void FilterEventByDate(DateTime? endDate)
         {
             EnterDate(DateTime.Now.AddDays(1), FromDateField);
@@ -125,7 +136,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         private void EnterRadius(int radius)
         {
-            formCompletionHelper.SelectFromDropDownByText(Radius, $"{radius} miles");
+            formCompletionHelper.SelectFromDropDownByText(Radius, radius == 0 ? $"Across England" : $"{radius} miles");
         }
 
         private void ApplyFilter(string x) { SelectCheckBoxByText(x); ApplyFilter(); }
