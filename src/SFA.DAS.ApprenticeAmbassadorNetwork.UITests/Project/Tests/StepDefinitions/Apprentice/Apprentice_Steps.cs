@@ -161,7 +161,7 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
     {
         var stepsHelper = context.Get<ApprenticeStepsHelper>();
-        var titles = stepsHelper.GetAllEventTitles();
+        var titles = stepsHelper.GetAllEventTitles().Select(x => x.EventTitle).ToList();
 
         var expectedEvents = table.CreateSet<NetworkEvent>().ToList();
 
@@ -175,7 +175,7 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     public void ThenTheFollowingEventsCanNotBeFoundWithinTheSearchResults(Table table)
     {
         var stepsHelper = context.Get<ApprenticeStepsHelper>();
-        var titles = stepsHelper.GetAllEventTitles();
+        var titles = stepsHelper.GetAllEventTitles().Select(x => x.EventTitle).ToList();
 
         var unexpectedEvents = table.CreateSet<NetworkEvent>().ToList();
 

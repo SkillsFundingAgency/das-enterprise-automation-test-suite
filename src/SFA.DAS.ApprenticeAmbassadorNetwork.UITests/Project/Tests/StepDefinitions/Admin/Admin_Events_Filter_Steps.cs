@@ -95,7 +95,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
         {
             var stepsHelper = context.Get<AanAdminStepsHelper>();
-            var titles = stepsHelper.GetAllEventTitles();
+            var titles = stepsHelper.GetAllSearchResults().Select(x => x.EventTitle).ToList();
 
             var expectedEvents = table.CreateSet<NetworkEvent>().ToList();
 
@@ -109,7 +109,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
         public void ThenTheFollowingEventsCanNotBeFoundWithingTheSearchResults(Table table)
         {
             var stepsHelper = context.Get<AanAdminStepsHelper>();
-            var titles = stepsHelper.GetAllEventTitles();
+            var titles = stepsHelper.GetAllSearchResults().Select(x => x.EventTitle).ToList();
 
             var unexpectedEvents = table.CreateSet<NetworkEvent>().ToList();
 

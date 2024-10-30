@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
@@ -7,15 +8,15 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
     {
         private readonly SharedStepsHelper _sharedStepsHelper = new SharedStepsHelper(context);
 
-        public List<string> GetAllEventTitles()
+        public List<NetworkEventSearchResult> GetAllEventTitles()
         {
             var manageEvents = new SearchNetworkEventsPage(context);
-            return _sharedStepsHelper.GetAllEventTitles(manageEvents);
+            return _sharedStepsHelper.GetAllSearchResults(manageEvents);
         }
 
         public void ClearEventTitleCache()
         {
-            _sharedStepsHelper.ClearEventTitleCache();
+            _sharedStepsHelper.ClearSearchResultsCache();
         }
     }
 }

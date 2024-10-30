@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using NUnit.Framework.Internal.Execution;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
@@ -143,9 +144,15 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         private void ApplyFilter() => formCompletionHelper.ClickElement(ApplyFilterButton);
 
-        protected List<string> GetAllEventTitles()
+        public List<NetworkEventSearchResult> GetSearchResults()
         {
-            return pageInteractionHelper.FindElements(EventTitle).Select(x => x.Text).ToList();
+            return pageInteractionHelper.FindElements(EventTitle)
+                .Select(x => x.Text)
+                .Select(x => new NetworkEventSearchResult
+                {
+                    EventTitle = x
+                })
+                .ToList();
         }
 
         protected bool HasNextPageLink()
@@ -163,11 +170,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         protected void ClickNextPageLink()
         {
             formCompletionHelper.Click(NextPageLink);
-        }
-
-        public List<string> GetEventTitles()
-        {
-            return GetAllEventTitles();
         }
 
         public void ClickNextPage()

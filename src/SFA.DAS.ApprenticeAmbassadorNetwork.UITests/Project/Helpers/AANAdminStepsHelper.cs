@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
@@ -64,15 +65,15 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
             else return isEventAtSchoolPage.SubmitIsEventAtSchoolAsNo();
         }
 
-        public List<string> GetAllEventTitles()
+        public List<NetworkEventSearchResult> GetAllSearchResults()
         {
             var manageEvents = new ManageEventsPage(context);
-            return _sharedStepsHelper.GetAllEventTitles(manageEvents);
+            return _sharedStepsHelper.GetAllSearchResults(manageEvents);
         }
 
         public void ClearEventTitleCache()
         {
-            _sharedStepsHelper.ClearEventTitleCache();
+            _sharedStepsHelper.ClearSearchResultsCache();
         }
     }
 }
