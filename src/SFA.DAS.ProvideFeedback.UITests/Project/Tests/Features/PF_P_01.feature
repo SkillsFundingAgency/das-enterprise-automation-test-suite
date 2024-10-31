@@ -77,3 +77,4 @@ When they select the employer feedback tab for the current academic year
 Then their employer feedback score for that year is 'Good'
 When they select the employer feedback tab for the previous academic year
 Then their employer feedback score for that year is 'Excellent'
+#Feedback consolidation for previous year (23/24) is different from current year (24/25) onwards
