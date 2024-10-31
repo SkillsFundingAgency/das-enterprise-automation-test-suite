@@ -1,13 +1,9 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service.Project;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
-using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -15,22 +11,14 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmpProRelationSteps(ScenarioContext context)
+    public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBaseSteps(context)
     {
-        private readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
-
-        private readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper = new(context);
-
-        private readonly ProviderConfig providerConfig = context.GetProviderConfig<ProviderConfig>();
-
-        private (AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions;
-
         [Given(@"Levy employer grants all permission to a provider")]
         public void LevyEmployerGrantsAllPermissionToAProvider()
         {
             permissions = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
 
-            EPRLogin();
+            EPRLevyUserLogin();
 
             _employerPermissionsStepsHelper.SetAllProviderPermissions(providerConfig);
         }
@@ -50,7 +38,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         [Then(@"an employer has to select at least one permission")]
         public void ThenAnEmployerHasToSelectAtLeastOnePermission()
         {
-            EPRLogin();
+            EPRLevyUserLogin();
 
             new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
                 .SelectAddATrainingProvider()
@@ -83,24 +71,37 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
             new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
                 .SelectAddATrainingProvider()
                 .SearchForAnExistingTrainingProvider(providerConfig);
+
             new AlreadyLinkedToTrainingProviderPage(context).CannotAddExistingTrainingProvider();
-
         }
 
-
-        private void UpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
+        [Then(@"the employer accepts the request")]
+        public void TheEmployerAcceptsTheRequest()
         {
-            this.permissions = permissions;
+            EPRReLogin();
 
-            _employerPermissionsStepsHelper.UpdateProviderPermission(providerConfig, permissions);
+            AcceptOrDeclineProviderPermissionsRequest(true);
         }
 
-        private void EPRLogin()
+        [Then(@"the employer declines the request")]
+        public void TheEmployerDeclinesTheRequest()
         {
-            _employerLoginHelper.Login(context.GetUser<EPRLevyUser>(), true);
+            EPRReLogin();
 
-            new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation();
+            AcceptOrDeclineProviderPermissionsRequest(false);
         }
+
+
+        [Then(@"the employer accepts the updated request")]
+        public void TheEmployerAcceptsTheUpdatedRequest()
+        {
+            
+        }
+
+        private void AcceptOrDeclineProviderPermissionsRequest(bool doesAllow)
+        {
+            _employerPermissionsStepsHelper.AcceptOrDeclineProviderPermissionsRequest(providerConfig, eprDataHelper.RequestId, doesAllow);
+        }
+
     }
 }
-
