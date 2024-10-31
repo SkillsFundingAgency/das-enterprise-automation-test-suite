@@ -126,6 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.CategoryAttribute("aan")]
         [NUnit.Framework.CategoryAttribute("aanaprenticeevents")]
         [NUnit.Framework.CategoryAttribute("aanaprentice")]
+        [NUnit.Framework.CategoryAttribute("aanapprentice04b")]
         [NUnit.Framework.CategoryAttribute("regression")]
         public void AAN_A_04B_ApprenticeUserFiltersEventsByLocation()
         {
@@ -133,10 +134,11 @@ this.ScenarioInitialize(scenarioInfo);
                     "aan",
                     "aanaprenticeevents",
                     "aanaprentice",
+                    "aanapprentice04b",
                     "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_04b_Apprentice user filters events by location", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 19
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -150,44 +152,59 @@ this.ScenarioInitialize(scenarioInfo);
                             "Event Title",
                             "Location"});
                 table4.AddRow(new string[] {
-                            "Location Filter Test Event 1",
-                            "1 Paradise, Scarborough, YO11 1RB"});
+                            "Location Filter Apprentice Test Event 1",
+                            "The Maids Head, King\'s Lynn, PE32 1NG"});
                 table4.AddRow(new string[] {
-                            "Location Filter Test Event 2",
-                            "5 East Terrace, Whitby, YO21 3HB"});
+                            "Location Filter Apprentice Test Event 2",
+                            "Eagles Golf Club, 37-39 School Road, King\'s Lynn, PE34 4RS"});
                 table4.AddRow(new string[] {
-                            "Location Filter Test Event 3",
-                            "23 Shambles, York, YO1 7LZ"});
-#line 20
+                            "Location Filter Apprentice Test Event 3",
+                            "Spalding United Football Club, Sir Halley Stewart Field, Spalding, PE11 1DA"});
+#line 21
     testRunner.Given("the following events have been created:", ((string)(null)), table4, "Given ");
 #line hidden
-#line 25
+#line 26
     testRunner.When("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
-    testRunner.And("the user filters events within 20 miles of \"YO11 1QB\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+    testRunner.And("the user filters events within 10 miles of \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Event Title"});
                 table5.AddRow(new string[] {
-                            "Location Filter Test Event 1"});
+                            "Location Filter Apprentice Test Event 1"});
                 table5.AddRow(new string[] {
-                            "Location Filter Test Event 2"});
-#line 27
+                            "Location Filter Apprentice Test Event 2"});
+#line 28
     testRunner.Then("the following events can be found within the search results:", ((string)(null)), table5, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Event Title"});
                 table6.AddRow(new string[] {
-                            "Location Filter Test Event 3"});
-#line 31
+                            "Location Filter Apprentice Test Event 3"});
+#line 32
     testRunner.And("the following events can not be found within the search results:", ((string)(null)), table6, "And ");
 #line hidden
-#line 34
-    testRunner.When("the user filters events Across England centered on \"YO11 1QB\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 35
+    testRunner.When("the user filters events Across England centered on \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 36
     testRunner.And("the user orders the results by Closest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title",
+                            "Order"});
+                table7.AddRow(new string[] {
+                            "Location Filter Apprentice Test Event 1",
+                            "1"});
+                table7.AddRow(new string[] {
+                            "Location Filter Apprentice Test Event 2",
+                            "2"});
+                table7.AddRow(new string[] {
+                            "Location Filter Apprentice Test Event 3",
+                            "3"});
+#line 37
+    testRunner.Then("the following events can be found within the search results in the given order:", ((string)(null)), table7, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -8,7 +8,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
     {
         private readonly SharedStepsHelper _sharedStepsHelper = new SharedStepsHelper(context);
 
-        public List<NetworkEventSearchResult> GetAllEventTitles()
+        public List<NetworkEventSearchResult> GetAllSearchResults()
         {
             var manageEvents = new SearchNetworkEventsPage(context);
             return _sharedStepsHelper.GetAllSearchResults(manageEvents);

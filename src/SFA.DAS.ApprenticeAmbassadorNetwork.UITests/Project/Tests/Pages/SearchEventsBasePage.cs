@@ -33,6 +33,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static By SelectedFilter(string x) => By.XPath($"//a[contains(@title,'{x}')]");
 
         protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
+        protected static By Keyword => By.CssSelector("#keyword");
         protected static By Location => By.CssSelector("#location");
         protected static By Radius => By.CssSelector("#Radius");
         protected static By OrderBy => By.CssSelector("#OrderBy");
@@ -53,6 +54,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
             EnterLocation(location);
             EnterRadius(radius);
             ApplyFilter();
+        }
+
+        public void EnterKeywordFilter(string keyword)
+        {
+            EnterKeyword(keyword);
         }
 
         protected void FilterEventBy(DateTime startDate, DateTime endDate, string type, string region)
@@ -130,8 +136,15 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(by, formattedDate);
         }
 
+        private void EnterKeyword(string keyword)
+        {
+            formCompletionHelper.ClearText(Keyword);
+            formCompletionHelper.EnterText(Keyword, keyword);
+        }
+
         private void EnterLocation(string location)
         {
+            formCompletionHelper.ClearText(Location);
             formCompletionHelper.EnterText(Location, location);
         }
 
@@ -146,11 +159,13 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         public List<NetworkEventSearchResult> GetSearchResults()
         {
+            var index = 0;
             return pageInteractionHelper.FindElements(EventTitle)
                 .Select(x => x.Text)
                 .Select(x => new NetworkEventSearchResult
                 {
-                    EventTitle = x
+                    EventTitle = x,
+                    Index = index++
                 })
                 .ToList();
         }

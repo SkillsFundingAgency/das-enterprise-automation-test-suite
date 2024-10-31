@@ -83,5 +83,4 @@ public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBase
         base.VerifyEventRegion_London_Filter();
         return this;
     }
-
 }

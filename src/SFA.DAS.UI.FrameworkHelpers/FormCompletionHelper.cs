@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.BiDi.Modules.BrowsingContext;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -146,5 +147,11 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
         element.Clear();
 
         element.SendKeys(text);
+    }
+
+    public void ClearText(By by)
+    {
+        var element = webDriver.FindElement(by);
+        element.Clear();
     }
 }

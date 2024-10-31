@@ -3,6 +3,6 @@
     public class NetworkEventSearchResult
     {
         public string EventTitle { get; set; }
-
+        public int Index { get; set; }
     }
 }

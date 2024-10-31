@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System.Diagnostics;
+using FluentAssertions;
+using NUnit.Framework;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
@@ -126,9 +128,12 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
 
         foreach (var e in events)
         {
-            var confirmationPage = stepsHelper.CheckYourEvent(EventFormat.InPerson, false, false, e.EventTitle, e.Location).SubmitEvent();
+            var confirmationPage = stepsHelper
+                .CheckYourEvent(EventFormat.InPerson, false, false, e.EventTitle, e.Location).SubmitEvent();
             confirmationPage.AccessHub();
-        };
+        }
+
+        ;
 
         tabHelper.GoToUrl(UrlConfig.AAN_Apprentice_BaseUrl);
     }
@@ -139,6 +144,8 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
         var searchNetworkEventsPage = networkHubPage.AccessEventsHub()
             .AccessAllNetworkEvents();
 
+        searchNetworkEventsPage.EnterKeywordFilter("Location Filter Apprentice Test Event");
+        
         searchNetworkEventsPage.FilterEventsByLocation(location, radius);
 
         var stepsHelper = context.Get<ApprenticeStepsHelper>();
@@ -150,6 +157,7 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     {
         var searchNetworkEventsPage = new SearchNetworkEventsPage(context);
 
+        searchNetworkEventsPage.EnterKeywordFilter("Location Filter Apprentice Test Event");
         searchNetworkEventsPage.FilterEventsByLocation(location, 0);
 
         var stepsHelper = context.Get<ApprenticeStepsHelper>();
@@ -161,7 +169,7 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
     {
         var stepsHelper = context.Get<ApprenticeStepsHelper>();
-        var titles = stepsHelper.GetAllEventTitles().Select(x => x.EventTitle).ToList();
+        var titles = stepsHelper.GetAllSearchResults().Select(x => x.EventTitle).ToList();
 
         var expectedEvents = table.CreateSet<NetworkEvent>().ToList();
 
@@ -170,12 +178,12 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
             titles.Should().Contain(expected.EventTitle);
         }
     }
-    
+
     [Then(@"the following events can not be found within the search results:")]
     public void ThenTheFollowingEventsCanNotBeFoundWithinTheSearchResults(Table table)
     {
         var stepsHelper = context.Get<ApprenticeStepsHelper>();
-        var titles = stepsHelper.GetAllEventTitles().Select(x => x.EventTitle).ToList();
+        var titles = stepsHelper.GetAllSearchResults().Select(x => x.EventTitle).ToList();
 
         var unexpectedEvents = table.CreateSet<NetworkEvent>().ToList();
 
@@ -190,5 +198,27 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     {
         var searchNetworkEventsPage = new SearchNetworkEventsPage(context);
         searchNetworkEventsPage.SelectOrderByClosest();
+    }
+
+    [Then(@"the following events can be found within the search results in the given order:")]
+    public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResultsInTheGivenOrder(Table table)
+    {
+        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        var eventSearchResults = stepsHelper.GetAllSearchResults();
+        var expectedEvents = table.CreateSet<NetworkEventWithOrdinal>().OrderBy(e => e.Order).ToList();
+
+        var filteredSearchResults = eventSearchResults
+            .Where(x => expectedEvents.Select(y => y.EventTitle).Contains(x.EventTitle))
+            .OrderBy(x => x.Index)
+            .ToList();
+        
+        for (var i = 0; i < expectedEvents.Count; i++)
+        {
+            var expectedEvent = expectedEvents[i];
+            var actualEvent = filteredSearchResults.ElementAtOrDefault(i);
+
+            Assert.NotNull(actualEvent, $"Expected event with index {i} was not found.");
+            Assert.AreEqual(expectedEvent.EventTitle, actualEvent.EventTitle, $"Event at index {i + 1} does not match the expected title.");
+        }
     }
 }

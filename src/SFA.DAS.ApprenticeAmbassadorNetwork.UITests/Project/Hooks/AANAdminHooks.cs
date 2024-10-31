@@ -38,7 +38,7 @@ public class AANAdminHooks(ScenarioContext context) : AANBaseHooks(context)
     {
         context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
         {
-            context.Get<AANSqlHelper>().DeleteLocationFilterEvents();
+            context.Get<AANSqlHelper>().DeleteLocationFilterEventsBeginning("Location Filter Test");
         });
     }
 }
