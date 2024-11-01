@@ -20,6 +20,7 @@ public static class UrlConfig
     public static string FAT_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-findapprenticeshiptraining.apprenticeships.education.gov.uk";
     public static string Manage_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-manageapprenticeship.apprenticeships.education.gov.uk/";
     public static string Provider_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/";
+    public static string ProviderRelations_BaseUrl(string ukprn) => $"https://relationships.{EnvironmentConfig.EnvironmentName}-pas.apprenticeships.education.gov.uk/{ukprn}";
     public static string RAAQA_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-review.apprenticeships.education.gov.uk/";
     public static string Recruit_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}.recruit-apprentice.service.gov.uk/";
     public static string SupportConsole_BaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-console.apprenticeships.education.gov.uk/";
