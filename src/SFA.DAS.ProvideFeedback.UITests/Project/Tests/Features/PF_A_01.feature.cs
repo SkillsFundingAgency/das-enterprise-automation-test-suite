@@ -74,18 +74,18 @@ namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("PF_A_01 Apprenitce provides feedback for a provider")]
+        [NUnit.Framework.DescriptionAttribute("PF_A_01 Apprentice provides feedback for a provider")]
         [NUnit.Framework.CategoryAttribute("providefeedback")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("apprenticefeedback")]
-        public void PF_A_01ApprenitceProvidesFeedbackForAProvider()
+        public void PF_A_01ApprenticeProvidesFeedbackForAProvider()
         {
             string[] tagsOfScenario = new string[] {
                     "providefeedback",
                     "regression",
                     "apprenticefeedback"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_A_01 Apprenitce provides feedback for a provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("PF_A_01 Apprentice provides feedback for a provider", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
