@@ -103,23 +103,23 @@ this.ScenarioInitialize(scenarioInfo);
 #line 8
  testRunner.Given("the Employer logins using existing NonLevy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
                             "agreed_price"});
-                table20.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "1",
                             "131",
                             "2004/05/01",
-                            "StartPreviousMonth",
+                            "Today",
                             "24",
                             "6000"});
 #line 9
  testRunner.And("the Employer uses the reservation to create and approve apprentices with the foll" +
-                        "owing details", ((string)(null)), table20, "And ");
+                        "owing details", ((string)(null)), table21, "And ");
 #line hidden
 #line 12
  testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -133,7 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 15
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "is_pilot",
                             "price_episode_from_date_str",
@@ -141,18 +141,18 @@ this.ScenarioInitialize(scenarioInfo);
                             "price_episode_cost",
                             "training_price",
                             "endpoint_assessment_price"});
-                table21.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "1",
                             "true",
-                            "StartPreviousMonth",
+                            "Today",
                             "Null",
                             "6000",
                             "4800",
                             "1200"});
 #line 16
- testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table21, "Then ");
+ testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table22, "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "funding_platform",
                             "start_date_str",
@@ -160,29 +160,29 @@ this.ScenarioInitialize(scenarioInfo);
                             "agreed_price",
                             "funding_type",
                             "funding_band_maximum"});
-                table22.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "1",
                             "1",
-                            "StartPreviousMonth",
-                            "+23Months",
+                            "Today",
+                            "+24Months",
                             "6000",
                             "1",
                             "18000"});
 #line 19
- testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table22, "And ");
+ testRunner.And("validate the following data in Earnings Apprenticeship database", ((string)(null)), table23, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "total_on_program_payment",
                             "monthly_on_program_payment",
                             "number_of_delivery_months"});
-                table23.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "1",
                             "4800",
                             "200",
                             "24"});
 #line 22
- testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table23, "And ");
+ testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table24, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

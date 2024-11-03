@@ -109,7 +109,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/20",
-                            "StartPreviousMonth",
+                            "StartCurrentMonth",
                             "12",
                             "15000",
                             "true"});
@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
                         " data", ((string)(null)), table6, "Given ");
 #line hidden
 #line 13
-    testRunner.And("Employer searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.When("Employer proceeds to create a Change of Price request for flexi payments pilot le" +

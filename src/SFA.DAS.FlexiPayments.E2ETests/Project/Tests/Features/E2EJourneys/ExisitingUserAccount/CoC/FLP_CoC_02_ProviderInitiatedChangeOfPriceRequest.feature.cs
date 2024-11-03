@@ -183,7 +183,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/20",
-                            "StartPreviousMonth",
+                            "StartCurrentMonth",
                             "12",
                             "15000",
                             "true"});
@@ -246,7 +246,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/20",
-                            "StartPreviousMonth",
+                            "StartCurrentMonth",
                             "12",
                             "18000",
                             "true"});

@@ -1,17 +1,20 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
+﻿using Polly;
+using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Diagnostics;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class ManageFundingEmployerStepsHelper
     {
-        private readonly ScenarioContext _context;
+        private static ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly ReservationsSqlDataHelper _reservationsSqlDataHelper;
 
@@ -91,11 +94,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public static SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
-            return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
-                .ClickYesRadioButton()
-                .EnterSelectForACourseAndSubmit()
-                .ClickSaveAndContinueButton()
-                .ClickMonthRadioButton()
+            var whenWillTheApprenticeStartTheirApprenticeshipTrainingPage = doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
+            .ClickYesRadioButton()
+            .EnterSelectForACourseAndSubmit()
+            .ClickSaveAndContinueButton();
+
+            if (_context.ScenarioInfo.Tags.Contains("flexi-payments"))
+            {
+                whenWillTheApprenticeStartTheirApprenticeshipTrainingPage.ClickCurrentMonthRadioButton();
+            }
+            else
+            {
+                whenWillTheApprenticeStartTheirApprenticeshipTrainingPage.ClickMonthRadioButton();
+            }
+
+            return whenWillTheApprenticeStartTheirApprenticeshipTrainingPage
                 .ClickSaveAndContinueButton()
                 .ClickYesReserveFundingNowRadioButton()
                 .ClickConfirmButton();

@@ -98,7 +98,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
@@ -106,20 +106,20 @@ this.ScenarioInitialize(scenarioInfo);
                             "duration_in_months",
                             "agreed_price",
                             "pilot_status"});
-                table25.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/06/20",
-                            "StartPreviousMonth",
+                            "StartCurrentMonth",
                             "12",
                             "15000",
                             "true"});
 #line 10
  testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
-                        " data", ((string)(null)), table25, "Given ");
+                        " data", ((string)(null)), table26, "Given ");
 #line hidden
 #line 13
-    testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
@@ -145,7 +145,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("validate Effective From Date cannot be after Training End Date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
-    testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
+ testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
                         "00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22

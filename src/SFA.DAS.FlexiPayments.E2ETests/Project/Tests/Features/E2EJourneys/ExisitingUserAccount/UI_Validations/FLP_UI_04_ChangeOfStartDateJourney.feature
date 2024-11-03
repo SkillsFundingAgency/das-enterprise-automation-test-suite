@@ -8,8 +8,8 @@ Change of Start Date initiated by Training Provider. The employer used in this t
 @flexi-payments
 Scenario: FLP_UI_04 Change Of Start Date Journey
 	Given NonLevy Employer and Pilot provider have a fully approved apprentices with the below data
-		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
-		| 1       | 91            | 2000/11/20    | StartPreviousMonth | 12                 | 18000        | true         |
+		| ULN_Key | training_code | date_of_birth | start_date_str    | duration_in_months | agreed_price | pilot_status |
+		| 1       | 91            | 2000/11/20    | StartCurrentMonth | 12                 | 18000        | true         |
 	And Provider searches for the learner on Manage your apprentice page
 	When Provider proceeds to create a Change of Start Date request for flexi payments pilot learner
 	And Provider submits change of start date form without changing input fields
