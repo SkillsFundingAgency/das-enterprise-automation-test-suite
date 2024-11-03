@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.RAA.DataGenerator;
+
+namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
 
 public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(context)
 {
@@ -11,6 +13,15 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
     private static By ApplyButton => By.CssSelector("button[class='govuk-button govuk-!-margin-bottom-0']");
 
     private static By ViewSubmittedApplicationLink => By.CssSelector("a[href*='Submitted']");
+
+    private static By SaveVacancyLink => By.XPath("//span[normalize-space()='Save vacancy']");
+
+    private static By SavedVacanciesNavBar => By.XPath("//a[normalize-space()='Saved vacancies']");
+    private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
+    private static By VacancyName => By.XPath("//span[@itemprop='title']");
+
+    private static By ApplyLink => By.XPath("//li[@class='das-search-results__list-item']//li[1]//form[1]//button[1]");
+
 
     public FAA_ApplicationOverviewPage Apply()
     {
@@ -28,5 +39,16 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
     {
         pageInteractionHelper.VerifyText(ApplyButton, "Continue your application");
         return this;
+    }
+
+    public FAA_ApprenticeSummaryPage SaveAndApplyForVacancy()
+    {
+        var savedVacancyName = pageInteractionHelper.GetText(VacancyName);
+
+        formCompletionHelper.Click(SaveVacancyLink);
+        formCompletionHelper.Click(SavedVacanciesNavBar);
+        formCompletionHelper.ClickLinkByText(SavedVacancyLink, vacancyTitleDataHelper.VacancyTitle);
+        
+        return new FAA_ApprenticeSummaryPage(context);
     }
 }

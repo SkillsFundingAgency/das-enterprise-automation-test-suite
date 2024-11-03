@@ -10,4 +10,9 @@ public class FAASteps(ScenarioContext context)
     {
         _faaStepsHelper.VerifyApplicationStatus(expectedStatus == "successful");
     }
+    
+
+    [Then(@"the applicant can save before applying for the vacancy")]
+    public void ThenTheApplicantCanSaveBeforeApplyingForTheVacancy() => _faaStepsHelper.GoToFAAHomePageAndSearchThenSaveBeforeApplying();
+
 }

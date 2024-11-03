@@ -54,6 +54,7 @@ public class FAAStepsHelper(ScenarioContext context)
         return applicationFormPage;
     }
 
+    public FAA_ApplicationOverviewPage GoToFAAHomePageAndSearchThenSaveBeforeApplying() => GoToFAAHomePage().SearchByReferenceNumber().SaveAndApplyForVacancy().Apply();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
