@@ -101,22 +101,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("the Employer logins using existing Levy Account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "training_code",
                             "date_of_birth",
                             "start_date_str",
                             "duration_in_months",
                             "agreed_price"});
-                table12.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "1",
                             "154",
                             "2004/02/01",
-                            "2022/08/01",
+                            "StartCurrentMonth",
                             "11",
                             "15000"});
 #line 8
- testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table12, "And ");
+ testRunner.And("Employer adds apprentices to the cohort with the following details", ((string)(null)), table13, "And ");
 #line hidden
 #line 11
  testRunner.And("the Employer approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -131,7 +131,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.When("Provider successfully approves the cohort", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key",
                             "is_pilot",
                             "price_episode_from_date_str",
@@ -139,30 +139,30 @@ this.ScenarioInitialize(scenarioInfo);
                             "price_episode_cost",
                             "training_price",
                             "endpoint_assessment_price"});
-                table13.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "1",
                             "false",
-                            "2022/08/01",
+                            "StartCurrentMonth",
                             "Null",
                             "15000",
                             "",
                             ""});
 #line 15
- testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table13, "Then ");
-#line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "ULN_Key"});
-                table14.AddRow(new string[] {
-                            "1"});
-#line 18
- testRunner.And("validate there is no data in Apprenticeship database", ((string)(null)), table14, "And ");
+ testRunner.Then("validate the following data is created in the commitments database", ((string)(null)), table14, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "ULN_Key"});
                 table15.AddRow(new string[] {
                             "1"});
+#line 18
+ testRunner.And("validate there is no data in Apprenticeship database", ((string)(null)), table15, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN_Key"});
+                table16.AddRow(new string[] {
+                            "1"});
 #line 21
- testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table15, "And ");
+ testRunner.And("validate earnings are not generated for the learners", ((string)(null)), table16, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
