@@ -2,6 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
@@ -221,4 +222,46 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
             Assert.AreEqual(expectedEvent.EventTitle, actualEvent.EventTitle, $"Event at index {i + 1} does not match the expected title.");
         }
     }
+
+    [Then(@"the heading text ""([^""]*)"" is displayed")]
+    public void ThenTheHeadingTextIsDisplayed(string expectedText)
+    {
+        searchNetworkEventsPage = new SearchNetworkEventsPage(context);
+        searchNetworkEventsPage.VerifyHeadingText(expectedText);
+    }
+
+    [Then(@"the text ""([^""]*)"" is displayed")]
+    public void ThenTheTextIsDisplayed(string expectedText)
+    {
+        searchNetworkEventsPage = new SearchNetworkEventsPage(context);
+        searchNetworkEventsPage.VerifyBodyText(expectedText);
+    }
+
+    [When(@"the user navigates to Network Events")]
+    public void WhenTheUserNavigatesToNetworkEvents()
+    {
+        searchNetworkEventsPage = networkHubPage.AccessEventsHub().AccessAllNetworkEvents();
+    }
+
+    [When(@"the user filters events by Cancelled status")]
+    public void WhenTheFiltersEventsByCancelledEventType()
+    {
+        searchNetworkEventsPage = new SearchNetworkEventsPage(context);
+        searchNetworkEventsPage.FilterEventByEventStatus_Cancelled();
+    }
+
+    [When(@"the user filters events by Training event type")]
+    public void WhenTheUserFiltersEventsByTrainingEventType()
+    {
+        searchNetworkEventsPage = new SearchNetworkEventsPage(context);
+        searchNetworkEventsPage.FilterEventByEventType_TrainingEvent();
+    }
+
+    [When(@"the user filters events so that there are no results")]
+    public void WhenTheUserFiltersEventsSoThatThereAreNoResults()
+    {
+        searchNetworkEventsPage = new SearchNetworkEventsPage(context);
+        searchNetworkEventsPage.FilterEventsWithNoResults();
+    }
+
 }

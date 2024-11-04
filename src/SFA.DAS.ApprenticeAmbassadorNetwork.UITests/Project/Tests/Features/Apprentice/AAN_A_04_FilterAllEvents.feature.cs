@@ -209,6 +209,92 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_04c apprentice user filters events by a location that does not exist")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanaprenticeevents")]
+        [NUnit.Framework.CategoryAttribute("aanaprentice")]
+        [NUnit.Framework.CategoryAttribute("aanapprentice04c")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_A_04CApprenticeUserFiltersEventsByALocationThatDoesNotExist()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanaprenticeevents",
+                    "aanaprentice",
+                    "aanapprentice04c",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_04c apprentice user filters events by a location that does not exist", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 50
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 51
+    testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 52
+    testRunner.When("the user filters events within 10 miles of \"Lilliput\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 53
+    testRunner.Then("the heading text \"We cannot find the location you entered\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 54
+    testRunner.And("the text \"We do not recognise Lilliput\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_04d apprentice user filters events and finds no matching results")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanaprenticeevents")]
+        [NUnit.Framework.CategoryAttribute("aanaprentice")]
+        [NUnit.Framework.CategoryAttribute("aanapprentice04d")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_A_04DApprenticeUserFiltersEventsAndFindsNoMatchingResults()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanaprenticeevents",
+                    "aanaprentice",
+                    "aanapprentice04d",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_04d apprentice user filters events and finds no matching results", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 61
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 62
+    testRunner.Given("an onboarded apprentice logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 63
+    testRunner.When("the user navigates to Network Events", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 64
+    testRunner.And("the user filters events so that there are no results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 65
+    testRunner.Then("the heading text \"No events currently match your filters\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

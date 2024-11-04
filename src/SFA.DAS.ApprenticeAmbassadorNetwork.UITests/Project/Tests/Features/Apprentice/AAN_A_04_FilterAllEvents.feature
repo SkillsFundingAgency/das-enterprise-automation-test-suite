@@ -39,3 +39,27 @@ Scenario: AAN_A_04b_Apprentice user filters events by location
     | Location Filter Apprentice Test Event 1 | 1     |
     | Location Filter Apprentice Test Event 2 | 2     |
     | Location Filter Apprentice Test Event 3 | 3     |
+
+
+
+@aan
+@aanaprenticeevents
+@aanaprentice
+@aanapprentice04c
+@regression
+Scenario:AAN_A_04c apprentice user filters events by a location that does not exist
+    Given an onboarded apprentice logs into the AAN portal
+    When the user filters events within 10 miles of "Lilliput"
+    Then the heading text "We cannot find the location you entered" is displayed
+    And the text "We do not recognise Lilliput" is displayed
+
+@aan
+@aanaprenticeevents
+@aanaprentice
+@aanapprentice04d
+@regression
+Scenario:AAN_A_04d apprentice user filters events and finds no matching results
+    Given an onboarded apprentice logs into the AAN portal
+    When the user navigates to Network Events
+    And the user filters events so that there are no results
+    Then the heading text "No events currently match your filters" is displayed
