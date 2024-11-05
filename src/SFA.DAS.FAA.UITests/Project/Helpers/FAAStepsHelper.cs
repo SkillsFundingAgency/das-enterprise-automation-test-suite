@@ -1,4 +1,5 @@
-﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
+﻿using Microsoft.Identity.Client;
+using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers;
@@ -16,6 +17,36 @@ public class FAAStepsHelper(ScenarioContext context)
 
         return new FAASignedInLandingBasePage(context);
     }
+
+
+    public FAASignedInLandingBasePage GoToFAAToCreateAnAccount(string idOrUserRef, string email)
+    {
+        if (string.IsNullOrEmpty(email))
+        {
+            email = context.Get<string>("UserEmail") ??
+                    $"user{Guid.NewGuid()}@mailosaur.com";
+
+            context.Set("UserEmail", email);
+        }
+
+        if (string.IsNullOrEmpty(idOrUserRef))
+        {
+            idOrUserRef = context.Get<string>("UserRef") ?? $"User-{Guid.NewGuid()}";
+
+            context.Set("UserRef", idOrUserRef);
+        }
+
+        context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
+
+        if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
+        {
+            new FAASignedOutLandingpage(context)
+                .GoToSignInPage().CreateAccount(idOrUserRef, email).Continue();
+        }
+
+        return new FAASignedInLandingBasePage(context);
+    }
+
 
     public void VerifyApplicationStatus(bool IsSucessful)
     {
@@ -53,9 +84,19 @@ public class FAAStepsHelper(ScenarioContext context)
 
         return applicationFormPage;
     }
-
-    public FAA_ApplicationOverviewPage GoToFAAHomePageAndSearchThenSaveBeforeApplying() => GoToFAAHomePage().SearchByReferenceNumber().SaveAndApplyForVacancy().Apply();
+    public FAA_ApplicationOverviewPage GoToVacancyDetailsPageThenSaveBeforeApplying() => GoToFAAHomePage().SearchByReferenceNumber().SaveAndApplyForVacancy().Apply();
+    public FAA_ApplicationOverviewPage GoToSearchResultsPagePageAndSaveBeforeApplying() => GoToFAAHomePage().SearchAndSaveVacancyByReferenceNumber().SaveFromSearchResultsAndApplyForVacancy();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
+
+    public FAASignedInLandingBasePage CreateNewUserLogin()
+    {
+        string user = "user";
+        string domain = "mailosaur.com";
+        string idOrUserRef = $"User-{Guid.NewGuid()}";
+
+        string email = RandomDataGenerator.GenerateRandomEmail(user, domain);
+        return new FAAStepsHelper(context).GoToFAAToCreateAnAccount(idOrUserRef, email);
+    }
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
@@ -164,5 +205,12 @@ public class FAAStepsHelper(ScenarioContext context)
         }
 
         return applicationFormPage;
+    }
+    public void DeleteAccountFromSettings()
+    {
+        var email = context.Get<string>("UserEmail");
+
+        var apprenticeLandingPage = new FAASearchApprenticeLandingPage(context);
+        apprenticeLandingPage.PerformDeleteAccount();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -146,5 +147,17 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
         element.Clear();
 
         element.SendKeys(text);
+    }
+
+    public void ClickDropdownAndSelectFromDropDown(By locator)
+    {
+        webDriverWaitHelper.WaitForElementToBeClickable(locator);
+
+        ClickElement(locator);
+
+        Actions actions = new Actions(webDriver);
+
+        actions.SendKeys(Keys.ArrowDown).Perform();
+        actions.SendKeys(Keys.Enter).Perform();
     }
 }

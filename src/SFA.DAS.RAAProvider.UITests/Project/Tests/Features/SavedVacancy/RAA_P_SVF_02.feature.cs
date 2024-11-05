@@ -20,22 +20,22 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.SavedVacancy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RAA_P_SVF_01")]
-    public partial class RAA_P_SVF_01Feature
+    [NUnit.Framework.DescriptionAttribute("RAA_P_SVF_02")]
+    public partial class RAA_P_SVF_02Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "RAA_P_SVF_01.feature"
+#line 1 "RAA_P_SVF_02.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/SavedVacancy", "RAA_P_SVF_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/SavedVacancy", "RAA_P_SVF_02", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,12 +74,12 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.SavedVacancy
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RAA_P_SVF_01 - Save a vacancy on vacancy details page")]
+        [NUnit.Framework.DescriptionAttribute("RAA_P_SVF_02 - Save a vacancy on search results page")]
         [NUnit.Framework.CategoryAttribute("raa")]
         [NUnit.Framework.CategoryAttribute("raaprovider")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("faa")]
-        public void RAA_P_SVF_01_SaveAVacancyOnVacancyDetailsPage()
+        public void RAA_P_SVF_02_SaveAVacancyOnSearchResultsPage()
         {
             string[] tagsOfScenario = new string[] {
                     "raa",
@@ -87,7 +87,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Features.SavedVacancy
                     "regression",
                     "faa"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_P_SVF_01 - Save a vacancy on vacancy details page", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RAA_P_SVF_02 - Save a vacancy on search results page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,7 +105,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("the Reviewer Approves the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("the applicant can save on vacancy details page before applying for the vacancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the applicant can save vacancy on search results page before applying for the vac" +
+                        "ancy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
  testRunner.And("the Applicant can apply for a Vacancy in FAA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

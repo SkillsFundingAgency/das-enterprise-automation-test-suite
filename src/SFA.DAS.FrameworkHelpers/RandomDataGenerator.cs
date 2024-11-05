@@ -25,6 +25,7 @@
             return startDate.AddDays(addDays);
         }
 
+        public static string RandomPostCode() => GetRandomElementFromListOfElements(["SW1H 9NA", "SW1A 2AA", "SE1 8UG", "E14 4PU", "SW1A 1AA", "SW1P 3BT"]);
         public static string RandomTown() => GetRandomElementFromListOfElements(["London", "Coventry", "Harrow", "Manchester", "York", "Temple"]);
 
         public static string RandonSchool() => GetRandomElementFromListOfElements(["Church", "Grange", "Primary", "Academy", "Catholic"]);
@@ -94,5 +95,10 @@
         }
 
         private static string GenerateRandomString(string characters, int length) => new(Enumerable.Repeat(characters, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
+
+        public static string GenerateRandomPhoneNumber(int length)
+        {
+            return $"0{GenerateRandomString(Numbers, length - 1)}";
+        }
     }
 }
