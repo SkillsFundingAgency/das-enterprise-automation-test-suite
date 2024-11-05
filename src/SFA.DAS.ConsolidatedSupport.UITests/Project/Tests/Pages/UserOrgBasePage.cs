@@ -36,7 +36,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             if (navigate) NavigateTo();
 
-            VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
+            VerifyFromMultipleElements(PageHeader, PageTitle);
         }
 
         public void SelectOptions(string question, string answer)

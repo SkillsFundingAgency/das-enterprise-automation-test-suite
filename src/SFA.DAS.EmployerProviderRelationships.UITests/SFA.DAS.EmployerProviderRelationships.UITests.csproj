@@ -34,6 +34,7 @@
 		<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ProviderLogin.Service\SFA.DAS.ProviderLogin.Service.csproj" />
 	</ItemGroup>
+	
 	<ItemGroup>
 	  <None Update="appsettings.Environment.json">
 	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
