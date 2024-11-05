@@ -1,6 +1,4 @@
-﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
-
-namespace SFA.DAS.FAA.UITests.Project.Pages.ApplicationOverview;
+﻿namespace SFA.DAS.FAA.UITests.Project.Tests.Pages.ApplicationOverview;
 
 public class ApplicationSubmittedPage(ScenarioContext context) : FAABasePage(context)
 {

@@ -7,6 +7,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages
     {
         protected override string PageTitle => "S2";
 
-        protected override List<string> ExpectedPageTitles => new() { SignInPageTitle, PageNotFoundPageTitle, AccessDeniedPageTitle };
+        protected override List<string> ExpectedPageTitles => [SignInPageTitle, PageNotFoundPageTitle, AccessDeniedPageTitle];
     }
 }

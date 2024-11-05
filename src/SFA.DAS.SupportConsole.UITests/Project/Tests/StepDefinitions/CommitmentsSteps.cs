@@ -22,14 +22,14 @@ public class CommitmentsSteps(ScenarioContext context)
 
     [Then(@"appropriate ULN error message is shown to the user")]
     public void ThenAppropriateUlnErrorMessageIsShownToTheUser() =>
-        Assert.AreEqual(new CommitmentsSearchPage(context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UlnSearchErrorMessage, "Uln search Error message mismatch in CommitmentsSearchPage");
+        Assert.AreEqual(CommitmentsSearchPage.UlnSearchErrorMessage, new CommitmentsSearchPage(context).GetCommitmentsSearchPageErrorText(), "Uln search Error message mismatch in CommitmentsSearchPage");
 
     [When(@"the User searches with a invalid Cohort Ref")]
     public void WhenTheUserSearchesWithAInvalidCohortRef() => _stepsHelper.SearchWithInvalidCohort(false);
 
     [Then(@"appropriate Cohort error message is shown to the user")]
     public void ThenAppropriateCohortErrorMessageIsShownToTheUser() =>
-        Assert.AreEqual(new CommitmentsSearchPage(context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.CohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
+        Assert.AreEqual(CommitmentsSearchPage.CohortSearchErrorMessage, new CommitmentsSearchPage(context).GetCommitmentsSearchPageErrorText(), "Cohort search Error message mismatch in CommitmentsSearchPage");
 
     [When(@"the User searches with a invalid Cohort Ref having special characters")]
     public void WhenTheUserSearchesWithAInvalidCohortRefHavingSpecialCharacters() => _stepsHelper.SearchWithInvalidCohort(true);
@@ -39,7 +39,7 @@ public class CommitmentsSteps(ScenarioContext context)
 
     [Then(@"unauthorised Cohort access error message is shown to the user")]
     public void ThenUnauthorisedCohortAccessErrorMessageIsShownToTheUser() =>
-        Assert.AreEqual(new CommitmentsSearchPage(context).GetCommitmentsSearchPageErrorText(), CommitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, "Cohort search Error message mismatch in CommitmentsSearchPage");
+        Assert.AreEqual(CommitmentsSearchPage.UnauthorisedCohortSearchErrorMessage, new CommitmentsSearchPage(context).GetCommitmentsSearchPageErrorText(), "Cohort search Error message mismatch in CommitmentsSearchPage");
 
 
 }

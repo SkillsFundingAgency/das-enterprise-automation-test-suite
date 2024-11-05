@@ -50,7 +50,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                     .VerifyChangeOfEmployerHasBeenRequested();
         }
 
-        public ProviderCoEOverlappingTrainingDateThereMayBeProblemPage StartChangeOfEmployerOLTDJourney(bool isApprenticeshipStopped = false)
+        public ProviderCoEOverlappingTrainingDateConfirmDatesPage StartChangeOfEmployerOLTDJourney(bool isApprenticeshipStopped = false)
         {
             return CurrentApprenticeDetails()
                     .ClickChangeEmployerLink()

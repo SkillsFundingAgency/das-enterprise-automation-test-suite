@@ -51,6 +51,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class NonLevyUser : EasAccountUser { }
 
+    public class NonLevyUserAtMaxReservationLimit : EasAccountUser { }
+
     public class EINoApplicationUser : EasAccountUser { }
 
     public class EIAmendVrfUser : EasAccountUser { }
@@ -71,7 +73,13 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class AanEmployerUser : EasAccountUser { }
 
-    public class RATOwnerUser : EasAccountUser { }
+    public abstract class RatEmployerBaseUser : EasAccountUser { }
+
+    public class RatEmployerUser : RatEmployerBaseUser { }
+
+    public class RatMultiEmployerUser : RatEmployerBaseUser { }
+
+    public class RatCancelEmployerUser : RatEmployerBaseUser { }
 
     public class AddMultiplePayeLevyUser : EasAccountUser
     {
