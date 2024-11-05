@@ -61,8 +61,12 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
     }
     public FAASearchApprenticeLandingPage CompleteApprenticeSignUpDetails()
     {
-
-        EnterApprenticeFirstAndLastName().EnterApprenticeDateOfBirth().EnterApprenticePostCode().EnterApprenticeTelephoneNumber().SelectRemindersNotification().ClickCreateYourAccountConfirmation();
+        EnterApprenticeFirstAndLastName()
+            .EnterApprenticeDateOfBirth()
+            .EnterApprenticePostCode()
+            .EnterApprenticeTelephoneNumber()
+            .SelectRemindersNotification()
+            .ClickCreateYourAccountConfirmation();
         return new(context); 
     }
 }

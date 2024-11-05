@@ -1,5 +1,7 @@
-﻿using Polly;
+﻿using NUnit.Framework;
+using Polly;
 using SFA.DAS.FAA.UITests.Project.Tests.Pages.SignUp;
+using System.Collections.Generic;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
 
@@ -11,35 +13,19 @@ public class FAASearchApprenticeLandingPage(ScenarioContext context) : FAASigned
 
     private static By SettingsLink => By.LinkText("Settings");
     private static By EmailAddress => By.Id("Email");
-    private static By DeleteMyAccount => By.Id("Email");
-
-
-
-    //public FAASearchApprenticeLandingPage PerformDeleteAccount()
-    //{
-
-    //    string email = context.Get<string>("UserEmail");
-
-    //    formCompletionHelper.Click(SettingsLink);
-    //    formCompletionHelper.ClickLinkByText("Delete my account");
-    //    Continue();
-    //    formCompletionHelper.EnterText(EmailAddress, email);
-    //    formCompletionHelper.Click(DeleteMyAccount);
-
-    //    return new FAASearchApprenticeLandingPage(context);
-    //}
-
+    private static By DeleteMyAccount => By.CssSelector(".govuk-button.govuk-button--warning");
+    private static By DeleteConfirmatioBanner => By.CssSelector(".govuk-notification-banner__heading");
 
     public void PerformDeleteAccount()
         {
-
             string email = context.Get<string>("UserEmail");
-
-            formCompletionHelper.Click(SettingsLink);
+        
+        formCompletionHelper.Click(SettingsLink);
             formCompletionHelper.ClickLinkByText("Delete my account");
             Continue();
             formCompletionHelper.EnterText(EmailAddress, email);
             formCompletionHelper.Click(DeleteMyAccount);
-        }
+        Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(DeleteConfirmatioBanner), "Find an apprenticeship account deleted.");
+    }
 
 }

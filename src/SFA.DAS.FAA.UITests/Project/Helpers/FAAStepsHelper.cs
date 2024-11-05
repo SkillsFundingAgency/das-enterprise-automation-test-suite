@@ -1,6 +1,7 @@
 ﻿using Microsoft.Identity.Client;
 using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project;
+using System.Collections.Generic;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers;
 
@@ -88,15 +89,19 @@ public class FAAStepsHelper(ScenarioContext context)
     public FAA_ApplicationOverviewPage GoToSearchResultsPagePageAndSaveBeforeApplying() => GoToFAAHomePage().SearchAndSaveVacancyByReferenceNumber().SaveFromSearchResultsAndApplyForVacancy();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
 
+
     public FAASignedInLandingBasePage CreateNewUserLogin()
     {
         string user = "user";
         string domain = "mailosaur.com";
         string idOrUserRef = $"User-{Guid.NewGuid()}";
-
         string email = RandomDataGenerator.GenerateRandomEmail(user, domain);
+
+        context.Set(email, "UserEmail");
+
         return new FAAStepsHelper(context).GoToFAAToCreateAnAccount(idOrUserRef, email);
     }
+
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
@@ -206,6 +211,7 @@ public class FAAStepsHelper(ScenarioContext context)
 
         return applicationFormPage;
     }
+   
     public void DeleteAccountFromSettings()
     {
         var email = context.Get<string>("UserEmail");
@@ -213,4 +219,5 @@ public class FAAStepsHelper(ScenarioContext context)
         var apprenticeLandingPage = new FAASearchApprenticeLandingPage(context);
         apprenticeLandingPage.PerformDeleteAccount();
     }
+
 }
