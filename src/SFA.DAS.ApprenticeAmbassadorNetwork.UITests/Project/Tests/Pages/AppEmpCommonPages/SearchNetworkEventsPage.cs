@@ -24,7 +24,8 @@ public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBase
 
     public new SearchNetworkEventsPage FilterEventsWithNoResults()
     {
-        base.EnterKeywordFilter(Guid.NewGuid().ToString());
+        EnterKeywordFilter(Guid.NewGuid().ToString());
+        ApplyFilter();
         return this;
     }
 

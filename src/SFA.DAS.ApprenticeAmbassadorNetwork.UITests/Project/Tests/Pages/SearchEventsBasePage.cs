@@ -155,7 +155,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         private void ApplyFilter(string x) { SelectCheckBoxByText(x); ApplyFilter(); }
 
-        private void ApplyFilter() => formCompletionHelper.ClickElement(ApplyFilterButton);
+        public void ApplyFilter() => formCompletionHelper.ClickElement(ApplyFilterButton);
 
         public List<NetworkEventSearchResult> GetSearchResults()
         {
