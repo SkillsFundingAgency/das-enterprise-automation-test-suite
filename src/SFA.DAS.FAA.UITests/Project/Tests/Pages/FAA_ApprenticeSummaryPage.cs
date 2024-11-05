@@ -18,7 +18,7 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 
     private static By SavedVacanciesNavBar => By.XPath("//a[normalize-space()='Saved vacancies']");
     private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
-    private static By VacancyName => By.ClassName("das-search-results__link");
+    private static By VacancyName => By.CssSelector(".govuk-heading-l faa-vacancy__title");
 
 
     public FAA_ApplicationOverviewPage Apply()
@@ -41,8 +41,6 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 
     public FAA_ApprenticeSummaryPage SaveAndApplyForVacancy()
     {
-        var savedVacancyName = pageInteractionHelper.GetText(VacancyName);
-
         formCompletionHelper.Click(SaveVacancyLink);
         formCompletionHelper.Click(SavedVacanciesNavBar);
         formCompletionHelper.ClickLinkByText(SavedVacancyLink, vacancyTitleDataHelper.VacancyTitle);
