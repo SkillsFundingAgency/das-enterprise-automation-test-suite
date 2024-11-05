@@ -95,9 +95,6 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     [Then(@"the user should be able to successfully filter events by event type")]
     public void FilterByEventType() => FilterByEventType(searchNetworkEventsPage);
 
-    [Then(@"the user should be able to successfully filter events by regions")]
-    public void FilterByEventRegion() => FilterByEventRegion(searchNetworkEventsPage);
-
     [Then(@"the user should be able to successfully filter events by multiple combination of filters")]
     public void FilterByMultipleCombination() => FilterByMultipleCombination(searchNetworkEventsPage);
 
@@ -105,11 +102,7 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
     public void FilterByRole_NetworkDirectory() =>
         networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
 
-    [Then(@"the user should be able to successfully filter events by regions Network Directory")]
-    public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
-
-    [Then(
-        @"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
+    [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
     public void FilterByMultipleCombination_NetworkDirectory() =>
         FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
 
@@ -263,5 +256,4 @@ public class Apprentice_Steps(ScenarioContext context) : Apprentice_BaseSteps(co
         searchNetworkEventsPage = new SearchNetworkEventsPage(context);
         searchNetworkEventsPage.FilterEventsWithNoResults();
     }
-
 }

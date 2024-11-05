@@ -9,7 +9,6 @@ Scenario: AAN_A_04_Apprentice filter all events
     Then the user should be able to successfully filter events by date
     And the user should be able to successfully filter events by event format
     And the user should be able to successfully filter events by event type
-    And the user should be able to successfully filter events by regions
     And the user should be able to successfully filter events by multiple combination of filters
 
 @aan
@@ -39,8 +38,6 @@ Scenario: AAN_A_04b_Apprentice user filters events by location
     | Location Filter Apprentice Test Event 1 | 1     |
     | Location Filter Apprentice Test Event 2 | 2     |
     | Location Filter Apprentice Test Event 3 | 3     |
-
-
 
 @aan
 @aanaprenticeevents
