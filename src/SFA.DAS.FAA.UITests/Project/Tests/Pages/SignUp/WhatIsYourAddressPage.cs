@@ -1,22 +1,24 @@
-﻿using SFA.DAS.RAA.DataGenerator;
-
-namespace SFA.DAS.FAA.UITests.Project.Tests.Pages.SignUp;
+﻿namespace SFA.DAS.FAA.UITests.Project.Tests.Pages.SignUp;
 
 public class WhatIsYourAddressPage(ScenarioContext context) : FAABasePage(context)
 {
     protected override By PageHeader => By.CssSelector(".govuk-heading-l");
+
     protected override string PageTitle => "What is your address?";
 
-    private static By PostCode => By.Id("Postcode");
-    private static By Address => By.Id("SelectedAddress");
-    private static By FindAddressButton => By.Id("find-address-btn");
+    private static By PostCode => By.CssSelector("#Postcode");
+    private static By Address => By.CssSelector("#SelectedAddress");
+    private static By FindAddressButton => By.CssSelector("#find-address-btn");
 
-    public WhatIsYourTelephoneNumberPage EnterApprenticePostCode()
+    public WhatIsYourTelephoneNumberPage SubmitApprenticePostCode()
     {
+        formCompletionHelper.EnterText(PostCode, fAAUserNameDataHelper.FaaNewUserPostCode);
 
-        formCompletionHelper.EnterText(PostCode, RandomDataGenerator.RandomPostCode());
         formCompletionHelper.Click(FindAddressButton);
-        formCompletionHelper.ClickDropdownAndSelectFromDropDown(Address);
+
+        var allOptions = formCompletionHelper.GetAllDropDownOptions(Address).Where(x => x != "Select address").ToList();
+
+        formCompletionHelper.SelectFromDropDownByText(Address, RandomDataGenerator.GetRandomElementFromListOfElements(allOptions));
 
         Continue();
 

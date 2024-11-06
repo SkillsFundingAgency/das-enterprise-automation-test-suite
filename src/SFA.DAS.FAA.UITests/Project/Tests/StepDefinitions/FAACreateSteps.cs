@@ -1,4 +1,7 @@
-﻿namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
+using SFA.DAS.FAA.UITests.Project.Tests.Pages.Delete;
+
+namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class FAACreateSteps(ScenarioContext context)
@@ -8,14 +11,21 @@ public class FAACreateSteps(ScenarioContext context)
     [Given(@"appretince creates an account")]
     public void GivenAppretinceCreatesAnAccount()
     {
-        _faaStepsHelper.CreateNewUserLogin().CompleteApprenticeSignUpDetails();
+        _faaStepsHelper.SubmitNewUserDetails();
+        
+        new FAA_CreateAccountPage(context)
+            .CreateAnAccount()
+            .SubmitApprenticeName()
+            .SubmitApprenticeDateOfBirth()
+            .SubmitApprenticePostCode()
+            .SubmitApprenticeTelephoneNumber()
+            .SelectRemindersNotification()
+            .ClickCreateYourAccountConfirmation();
     }
-
 
     [Then(@"apprentice is able to delete account")]
     public void ThenApprenticeIsAbleToDeleteAccount()
     {
-        _faaStepsHelper.DeleteAccountFromSettings();
+        new SettingPage(context).DeleteMyAccount().ContinueDeleteMyAccount().ConfirmDeleteMyAccount().VerifyNotification();
     }
-    
 }

@@ -72,7 +72,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
         private void AddAnotherPayeDetails(FundType fundType, int index)
         {
-            _objectContext.SetDataHelper(new DataHelper(context.ScenarioInfo.Tags));
+            _objectContext.SetDataHelper(new EmployerUserNameDataHelper(context.ScenarioInfo.Tags));
 
             var anotherMongoDbDataGenerator = new MongoDbDataGenerator(context, string.Empty);
 

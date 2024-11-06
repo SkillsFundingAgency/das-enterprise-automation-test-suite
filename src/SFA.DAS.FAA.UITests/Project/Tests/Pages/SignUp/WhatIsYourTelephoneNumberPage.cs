@@ -7,10 +7,9 @@ public class WhatIsYourTelephoneNumberPage(ScenarioContext context) : FAABasePag
 
     private static By TelephoneNumber => By.Id("PhoneNumber");
 
-    public GetRemindersAboutYourUnfinishedApplicationsPage EnterApprenticeTelephoneNumber()
+    public GetRemindersAboutYourUnfinishedApplicationsPage SubmitApprenticeTelephoneNumber()
     {
-
-        formCompletionHelper.EnterText(TelephoneNumber, RandomDataGenerator.GenerateRandomPhoneNumber(11));
+        formCompletionHelper.EnterText(TelephoneNumber, fAAUserNameDataHelper.FaaNewUserMobilePhone);
 
         Continue();
 

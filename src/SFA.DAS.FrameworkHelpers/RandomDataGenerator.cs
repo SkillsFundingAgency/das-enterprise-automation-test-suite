@@ -26,6 +26,7 @@
         }
 
         public static string RandomPostCode() => GetRandomElementFromListOfElements(["SW1H 9NA", "SW1A 2AA", "SE1 8UG", "E14 4PU", "SW1A 1AA", "SW1P 3BT"]);
+
         public static string RandomTown() => GetRandomElementFromListOfElements(["London", "Coventry", "Harrow", "Manchester", "York", "Temple"]);
 
         public static string RandonSchool() => GetRandomElementFromListOfElements(["Church", "Grange", "Primary", "Academy", "Catholic"]);
@@ -48,8 +49,6 @@
             randomString += GenerateRandomString(SpecialChars, noOfSpecialChars);
             return randomString;
         }
-
-        public static string GenerateRandomEmail(string suffix, string domain) => $"{suffix}_{GenerateRandomAlphanumericString(5)}_{DateTime.Now.ToSeconds()}_{DateTime.Now.ToNanoSeconds()}@{domain}";
 
         public static int GenerateRandomDateOfMonth() => GenerateRandomNumberBetweenTwoValues(1, 28);
 
