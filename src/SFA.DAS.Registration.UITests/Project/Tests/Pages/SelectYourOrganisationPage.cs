@@ -21,28 +21,22 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
             switch (orgType)
             {
                 case OrgType.Company:
-                    formCompletionHelper.SelectRadioOptionByText("Company");
-                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CompanyTypeOrg));
+                    selectOrg("Company", registrationDataHelper.CompanyTypeOrg);
                     break;
                 case OrgType.Company2:
-                    formCompletionHelper.SelectRadioOptionByText("Company");
-                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CompanyTypeOrg2));
+                    selectOrg("Company", registrationDataHelper.CompanyTypeOrg2);
                     break;
                 case OrgType.PublicSector:
-                    formCompletionHelper.SelectRadioOptionByText("Public sector");
-                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.PublicSectorTypeOrg));
+                    selectOrg("Public sector", registrationDataHelper.PublicSectorTypeOrg);
                     break;
                 case OrgType.Charity:
-                    formCompletionHelper.SelectRadioOptionByText("Charity");
-                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg1Name));
+                    selectOrg("Charity", registrationDataHelper.CharityTypeOrg1Name);
                     break;
                 case OrgType.Charity2:
-                    formCompletionHelper.SelectRadioOptionByText("Charity");
-                    formCompletionHelper.ClickElement(SearchLinkUrl(registrationDataHelper.CharityTypeOrg2Name));
+                    selectOrg("Charity", registrationDataHelper.CharityTypeOrg2Name);
                     break;
                 case OrgType.Default:
-                    formCompletionHelper.SelectRadioOptionByText("Show all");
-                    formCompletionHelper.ClickElement(SearchLinkUrl(objectContext.GetOrganisationName()));
+                    selectOrg("Show all", objectContext.GetOrganisationName());
                     break;
             }
 
@@ -57,6 +51,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
         {
             objectContext.SetRecentlyAddedOrganisationName(searchText);
             return pageInteractionHelper.GetLink(OrganisationLink, searchText);
+        }
+
+        private void selectOrg(string orgType, string orgName)
+        {
+            formCompletionHelper.SelectRadioOptionByText(orgType);
+            formCompletionHelper.ClickElement(SearchLinkUrl(orgName));
         }
     }
 }
