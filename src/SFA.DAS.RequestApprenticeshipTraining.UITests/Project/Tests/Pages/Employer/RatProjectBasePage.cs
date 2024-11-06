@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
@@ -13,7 +14,7 @@ public abstract class RatProjectBasePage : VerifyBasePage
     {
         if (verifyPage) VerifyPage();
 
-        ratDataHelper = context.Get<RatDataHelper>();
+        ratDataHelper = context.GetValue<RatDataHelper>();
     }
 
     protected override By ContinueButton => By.CssSelector("[id='main-content'] button.govuk-button[type='submit']");
