@@ -25,9 +25,13 @@
             return startDate.AddDays(addDays);
         }
 
-        public static string RandomTown() => GetRandomElementFromListOfElements(["London", "Coventry", "Harrow", "Manchester", "York", "Temple"]);
+        public static string GenerateRandomTown() => GetRandomElementFromListOfElements(["London", "Coventry", "Harrow", "Manchester", "York", "Temple"]);
 
-        public static string RandonSchool() => GetRandomElementFromListOfElements(["Church", "Grange", "Primary", "Academy", "Catholic"]);
+        public static string GenerateRandomPostCode() => GetRandomElementFromListOfElements(["CV1", "NW1", "SW1"]);
+
+        public static string GenerateRandomApprenticeship() => GetRandomElementFromListOfElements(["Actuary", "Analyst", "Apprenticeship", "Tester"]);
+
+        public static string GenerateRandomSchool() => GetRandomElementFromListOfElements(["Church", "Grange", "Primary", "Academy", "Catholic"]);
 
         public static string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
 

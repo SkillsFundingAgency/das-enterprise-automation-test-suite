@@ -10,6 +10,12 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
     private static By ApplicationsHeader => By.CssSelector("[id='service-header__nav'] a[href='/applications']");
 
+    private static By What => By.CssSelector("[id='WhatSearchTerm']");
+
+    private static By Where => By.CssSelector("[id='WhereSearchTerm']");
+
+    private static By SearchFAA => By.XPath(".//button[text()='Search']");
+
     public FAA_ApplicationsPage GoToApplications()
     {
         formCompletionHelper.Click(ApplicationsHeader);
@@ -31,5 +37,25 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         GoToVacancyInFAA();
 
         return new FAA_ApprenticeSummaryPage(context);
+    }
+
+    public FAASearchApprenticeLandingPage SearchByWhatWhere(string whatText, string whereText)
+    {
+        formCompletionHelper.EnterText(What, whatText);
+
+        formCompletionHelper.EnterText(Where, whereText);
+
+        formCompletionHelper.Click(SearchFAA);
+
+        return new FAASearchApprenticeLandingPage(context);
+    }
+
+    public FAASearchApprenticeLandingPage SearchByWhat(string whatText)
+    {
+        formCompletionHelper.EnterText(What, whatText);
+
+        formCompletionHelper.Click(SearchFAA);
+
+        return new FAASearchApprenticeLandingPage(context);
     }
 }
