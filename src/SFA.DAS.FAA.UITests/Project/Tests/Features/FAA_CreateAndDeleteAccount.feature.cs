@@ -20,35 +20,22 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-<<<<<<<< HEAD:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAAWhatOnlySearch.feature.cs
-    [NUnit.Framework.DescriptionAttribute("FAAWhatOnlySearch")]
-    public partial class FAAWhatOnlySearchFeature
-========
     [NUnit.Framework.DescriptionAttribute("FAA_CreateAndDeleteAccount")]
     public partial class FAA_CreateAndDeleteAccountFeature
->>>>>>>> master:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAA_CreateAndDeleteAccount.feature.cs
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-<<<<<<<< HEAD:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAAWhatOnlySearch.feature.cs
-#line 1 "FAAWhatOnlySearch.feature"
-========
 #line 1 "FAA_CreateAndDeleteAccount.feature"
->>>>>>>> master:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAA_CreateAndDeleteAccount.feature.cs
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-<<<<<<<< HEAD:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAAWhatOnlySearch.feature.cs
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Search", "FAAWhatOnlySearch", "User searches for a vacancy using what only search field", ProgrammingLanguage.CSharp, featureTags);
-========
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "FAA_CreateAndDeleteAccount", null, ProgrammingLanguage.CSharp, featureTags);
->>>>>>>> master:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAA_CreateAndDeleteAccount.feature.cs
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -87,18 +74,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-<<<<<<<< HEAD:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAAWhatOnlySearch.feature.cs
-        [NUnit.Framework.DescriptionAttribute("FAA_USFV_01 User searches for a vacancy using both \'What\' only search fields")]
-        [NUnit.Framework.CategoryAttribute("faa")]
-        [NUnit.Framework.CategoryAttribute("raa")]
-        public void FAA_USFV_01UserSearchesForAVacancyUsingBothWhatOnlySearchFields()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "faa",
-                    "raa"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_USFV_01 User searches for a vacancy using both \'What\' only search fields", null, tagsOfScenario, argumentsOfScenario, featureTags);
-========
         [NUnit.Framework.DescriptionAttribute("FAA_CreateAndDeleteAccount")]
         [NUnit.Framework.CategoryAttribute("raa")]
         [NUnit.Framework.CategoryAttribute("regression")]
@@ -111,7 +86,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features
                     "faa"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_CreateAndDeleteAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
->>>>>>>> master:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAA_CreateAndDeleteAccount.feature.cs
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -123,20 +97,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
-<<<<<<<< HEAD:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAAWhatOnlySearch.feature.cs
- testRunner.Given("the candidate can login in to faa", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.When("the user does a what only search \'apprenticeship\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.Then("the user is presented with search results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-========
  testRunner.Given("appretince creates an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
  testRunner.Then("apprentice is able to delete account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
->>>>>>>> master:src/SFA.DAS.FAA.UITests/Project/Tests/Features/FAA_CreateAndDeleteAccount.feature.cs
 #line hidden
             }
             this.ScenarioCleanup();
