@@ -6,9 +6,8 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAAWWSStepDefinitions(ScenarioContext context)
     {
 
-        private readonly IWebDriver;
+        private readonly IWebDriver _driver;
         private readonly ScenarioContext _context = context;
-        private readonly FAASignedInLandingBasePage _signedInLandingPage;
 
         [Given(@"the candidate can login in to faa")]
         public void GivenTheCandidateCanLoginInToFaa()
@@ -26,8 +25,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         public void ThenTheUserIsPresentedWithSearchResults()
         {
             new FAASearchResultPage(_context).VerifySuccessfulResults();
-
-
         }
     }
 }

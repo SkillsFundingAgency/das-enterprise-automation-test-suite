@@ -61,7 +61,23 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
         return new FAASearchApprenticeLandingPage(context);
     }
-    
+
+    public FAASearchApprenticeLandingPage SearchByWhere(string whereText)
+    {
+        formCompletionHelper.EnterText(Where, whereText);
+
+        formCompletionHelper.Click(SearchFAA);
+
+        return new FAASearchApprenticeLandingPage(context);
+    }
+
+    public FAASearchApprenticeLandingPage SearchAtRandom()
+    {
+        formCompletionHelper.Click(SearchFAA);
+
+        return new FAASearchApprenticeLandingPage(context);
+    }
+
     public FAASearchResultPage SearchAndSaveVacancyByReferenceNumber()
     {
         SearchUsingVacancyTitle();
