@@ -9,9 +9,24 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
 
         protected override string PageTitle => "Add an employer";
 
+        private static By FirstName => By.CssSelector("#FirstName");
+
+        private static By LastName => By.CssSelector("#LastName");
+
         public SearchEmployerEmailPage StartNowToAddAnEmployer()
         {
             formCompletionHelper.Click(StartNowButton);
+
+            return new(context);
+        }
+
+        public CheckEmployerDetailsPage SubmitEmployerName()
+        {
+            formCompletionHelper.EnterText(FirstName, eprDataHelper.EmployerFirstName);
+
+            formCompletionHelper.EnterText(LastName, eprDataHelper.EmployerLastName);
+
+            Continue();
 
             return new(context);
         }

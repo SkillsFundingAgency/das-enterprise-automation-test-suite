@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Registration.UITests.Project;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 using SFA.DAS.UI.FrameworkHelpers;
@@ -95,7 +93,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         [Then(@"the employer accepts the updated request")]
         public void TheEmployerAcceptsTheUpdatedRequest()
         {
-            
+
         }
 
         private void AcceptOrDeclineProviderPermissionsRequest(bool doesAllow)

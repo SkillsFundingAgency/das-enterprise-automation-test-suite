@@ -5,21 +5,27 @@ using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.Registration.UITests.Project.Helpers
 {
-    internal class TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext, AornDataHelper aornDataHelper)
+    public class TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext, AornDataHelper aornDataHelper)
     {
-        public void CreateSingleOrgAornData() => CreateAornData("SingleOrg");
+        public (string paye, string aornNumber, string orgName) CreateAornData(bool isSingleOrg) => isSingleOrg ? CreateSingleOrgAornData() : CreateMultiOrgAORNData();
 
-        public void CreateMultiOrgAORNData() => CreateAornData("MultiOrg");
+        public (string paye, string aornNumber, string orgName) CreateSingleOrgAornData() => CreateAornData("SingleOrg");
 
-        private void CreateAornData(string orgType)
+        public (string paye, string aornNumber, string orgName) CreateMultiOrgAORNData() => CreateAornData("MultiOrg");
+
+        private (string paye, string aornNumber, string orgName) CreateAornData(string orgType)
         {
             var aornNumber = aornDataHelper.AornNumber;
 
-            var organisationName = new InsertTprDataHelper(objectContext, dbConfig).InsertTprData(aornNumber, objectContext.GetGatewayPaye(0), orgType);
+            var paye = objectContext.GetGatewayPaye(0);
+
+            var organisationName = new InsertTprDataHelper(objectContext, dbConfig).InsertTprData(aornNumber, paye, orgType);
 
             objectContext.UpdateOrganisationName(organisationName);
 
             objectContext.UpdateAornNumber(aornNumber, 0);
+
+            return (paye, aornNumber, organisationName);
         }
     }
 }

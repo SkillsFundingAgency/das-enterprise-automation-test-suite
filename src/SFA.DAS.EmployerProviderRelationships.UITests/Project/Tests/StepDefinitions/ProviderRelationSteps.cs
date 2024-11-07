@@ -1,10 +1,7 @@
 ﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
-using SFA.DAS.UI.Framework;
-using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
 
@@ -13,7 +10,6 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
     [Binding]
     public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBaseSteps(context)
     {
-        private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper = new(context);
 
         [Given(@"a provider requests all permission from an employer")]
         public void AProviderRequestsAllPermissionFromAnEmployer()
@@ -28,7 +24,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
 
             eprDataHelper.EmployerEmail = employerUser.Username;
 
-            eprDataHelper.EmployerName = employerUser.OrganisationName;
+            eprDataHelper.EmployerOrganisationName = employerUser.OrganisationName;
 
             var request = GoToEmailAccountFoundPage().ContinueToInvite().ProviderRequestPermissions(permissions);
 
@@ -77,15 +73,5 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefini
         }
 
 
-        private void GoToProviderRelationsHomePage()
-        {
-            _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
-
-            context.Get<TabHelper>().GoToUrl(UrlConfig.ProviderRelations_BaseUrl(providerConfig.Ukprn));
-        }
-
-        private SearchEmployerEmailPage GoToSearchEmployerEmailPage() => new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer();
-
-        private EmailAccountFoundPage GoToEmailAccountFoundPage() => GoToSearchEmployerEmailPage().EnterEmployerEmail();
     }
 }

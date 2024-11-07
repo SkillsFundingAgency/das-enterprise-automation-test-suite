@@ -26,7 +26,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
 
         public EmployerAccountDetailsPage ViewEmployer()
         {
-            formCompletionHelper.EnterText(SearchTerm, eprDataHelper.EmployerName);
+            formCompletionHelper.EnterText(SearchTerm, eprDataHelper.EmployerOrganisationName);
 
             formCompletionHelper.Click(ApplyFilter);
 
@@ -41,7 +41,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
 
             formCompletionHelper.Click(ApplyFilter);
 
-            VerifyFromMultipleElements(EmpLinks, eprDataHelper.EmployerName);
+            VerifyFromMultipleElements(EmpLinks, eprDataHelper.EmployerOrganisationName);
         }
     }
 }

@@ -16,6 +16,13 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Prov
             return new(context, email);
         }
 
+        public EmailAccountNotFoundPage EnterNewEmployerEmail()
+        {
+            var email = EnterEmail();
+
+            return new(context, email);
+        }
+
         public ContactEmployerShutterPage EnterEmployerEmailAndGoToShutterPage()
         {
             EnterEmail();
