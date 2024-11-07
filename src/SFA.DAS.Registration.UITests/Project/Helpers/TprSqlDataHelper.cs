@@ -9,11 +9,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers
     {
         public void CreateSingleOrgAornData() => CreateAornData("SingleOrg");
 
-        public void CreateMultiOrgAORNData()
-        {
-            CreateAornData("MultiOrg");
-            CreateAornData("MultiOrg");
-        }
+        public void CreateMultiOrgAORNData() => CreateAornData("MultiOrg");
 
         private void CreateAornData(string orgType)
         {
