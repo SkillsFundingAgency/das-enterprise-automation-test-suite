@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
+namespace SFA.DAS.FAA.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FATCheckBreadCrumbsInE2EJourneyNoLocationSelected_01")]
-    public partial class FATCheckBreadCrumbsInE2EJourneyNoLocationSelected_01Feature
+    [NUnit.Framework.DescriptionAttribute("FAA_CreateAndDeleteAccount")]
+    public partial class FAA_CreateAndDeleteAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FAT_CheckBreadCrumbsInE2EJourneyNoLocationSelected_01.feature"
+#line 1 "FAA_CreateAndDeleteAccount.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/BackLinks", "FATCheckBreadCrumbsInE2EJourneyNoLocationSelected_01", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "FAA_CreateAndDeleteAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,17 +74,19 @@ namespace SFA.DAS.FAT.UITests.Project.Tests.Features.BackLinks
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FATCBCIE2EJNLS_01_Navigate To HomePage In E2E Journey No Location Selected")]
-        [NUnit.Framework.CategoryAttribute("fat")]
+        [NUnit.Framework.DescriptionAttribute("FAA_CreateAndDeleteAccount")]
+        [NUnit.Framework.CategoryAttribute("raa")]
         [NUnit.Framework.CategoryAttribute("regression")]
-        public void FATCBCIE2EJNLS_01_NavigateToHomePageInE2EJourneyNoLocationSelected()
+        [NUnit.Framework.CategoryAttribute("faa")]
+        public void FAA_CreateAndDeleteAccount()
         {
             string[] tagsOfScenario = new string[] {
-                    "fat",
-                    "regression"};
+                    "raa",
+                    "regression",
+                    "faa"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FATCBCIE2EJNLS_01_Navigate To HomePage In E2E Journey No Location Selected", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_CreateAndDeleteAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,11 +96,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
- testRunner.Given("user navigates to provider details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.Given("appretince creates an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
- testRunner.Then("user is able to navigate to homepage using the breadcrumbs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.Then("apprentice is able to delete account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

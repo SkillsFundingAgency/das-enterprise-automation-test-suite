@@ -14,8 +14,12 @@ public class FAASignedOutLandingpage(ScenarioContext context) : FAABasePage(cont
     public static By FAASignedOutPageHeader => By.CssSelector(".one-login-header__nav__link");
 
     private static By SignIn => By.CssSelector("a[href*='signin?']");
+
     private static By AcceptAdditionalCookies => By.CssSelector("button[onclick='acceptCookies(true);']");
+
     private static By HideAdditionalCookies => By.CssSelector("button[onclick='hideAcceptBanner();']");
+
+    private static By DeleteConfirmatioBanner => By.CssSelector(".govuk-notification-banner__heading");
 
 
     public StubSignInFAAPage GoToSignInPage()
@@ -25,6 +29,11 @@ public class FAASignedOutLandingpage(ScenarioContext context) : FAABasePage(cont
         formCompletionHelper.Click(SignIn);
 
         return new StubSignInFAAPage(context);
+    }
+
+    public void VerifyNotification()
+    {
+        VerifyPage(DeleteConfirmatioBanner, "Find an apprenticeship account deleted.");
     }
 }
 
