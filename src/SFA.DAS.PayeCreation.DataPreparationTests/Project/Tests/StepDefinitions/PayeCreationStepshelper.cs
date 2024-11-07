@@ -55,7 +55,7 @@ public class PayeCreationStepshelper(ScenarioContext context, PayeDetails payeDe
 
     private MongoDbDataGenerator AddGatewayUsers(int index)
     {
-        _objectContext.SetDataHelper(new DataHelper(context.ScenarioInfo.Tags));
+        _objectContext.SetDataHelper(new EmployerUserNameDataHelper(context.ScenarioInfo.Tags));
 
         var mongodbGenerator = new MongoDbDataGenerator(context, payeDetails.EmpRef);
 

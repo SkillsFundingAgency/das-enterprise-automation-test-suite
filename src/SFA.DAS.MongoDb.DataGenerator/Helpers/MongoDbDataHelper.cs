@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
-    public class MongoDbDataHelper(DataHelper dataHelper, string empref)
+    public class MongoDbDataHelper(EmployerUserNameDataHelper dataHelper, string empref)
     {
         public string GatewayId => dataHelper.GatewayUsername;
 

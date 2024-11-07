@@ -5,7 +5,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Tests.Pages.Influencers
 {
     public abstract class InfluencersBasePage(ScenarioContext context) : HubBasePage(context)
     {
-        private static By HowDoTheyWork => By.CssSelector("a[href= '/influencers/how-apprenticeships-work']");
+        private static By HowDoTheyWork => By.CssSelector("a[href= '/influencers/how-apprenticeships-work-influencers']");
 
         private static By RequestSupport => By.CssSelector("a[href= '/influencers/request-ask-support']");
 

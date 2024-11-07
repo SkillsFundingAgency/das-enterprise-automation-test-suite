@@ -14,6 +14,12 @@ public class Hooks(ScenarioContext context)
 
         context.Set(new VacancyTitleDatahelper(isCloneVacancy));
 
+        var mailosaurUser = context.Get<MailosaurUser>();
+
+        var mailosaurEmaildomain = mailosaurUser.DomainName;
+
+        context.Set(new FAAUserNameDataHelper(mailosaurEmaildomain));
+
         context.Set(new FAADataHelper());
 
         context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext));

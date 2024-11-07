@@ -15,6 +15,9 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
     private static By Where => By.CssSelector("[id='WhereSearchTerm']");
 
     private static By SearchFAA => By.XPath(".//button[text()='Search']");
+    private static By VacancyName => By.CssSelector("span[itemprop='title']");
+
+    private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
 
     public FAA_ApplicationsPage GoToApplications()
     {
@@ -57,5 +60,12 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         formCompletionHelper.Click(SearchFAA);
 
         return new FAASearchApprenticeLandingPage(context);
+    }
+    
+    public FAASearchResultPage SearchAndSaveVacancyByReferenceNumber()
+    {
+        SearchUsingVacancyTitle();
+
+        return new FAASearchResultPage(context);
     }
 }

@@ -25,6 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.RequestApprenticeshipTraining.UITests\SFA.DAS.RequestApprenticeshipTraining.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.TransferMatching.UITests\SFA.DAS.TransferMatching.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.RAAEmployer.UITests\SFA.DAS.RAAEmployer.UITests.csproj" />

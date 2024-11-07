@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project
         {
             var tags = context.ScenarioInfo.Tags;
 
-            var dataHelper = new DataHelper(tags);
+            var dataHelper = new EmployerUserNameDataHelper(tags);
 
             _objectContext.SetDataHelper(dataHelper);
 
