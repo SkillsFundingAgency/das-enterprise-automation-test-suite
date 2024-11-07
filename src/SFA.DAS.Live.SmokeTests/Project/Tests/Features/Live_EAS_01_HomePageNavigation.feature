@@ -10,7 +10,7 @@ Scenario: Live_EAS_01_HomePageNavigation
 	And Your apprenticeship adverts link should direct user to Create an advert page
 	And Your training providers link should direct user to Your training providers page
 	And Your finances link should direct user to Finance page	
-	And Your transfers link should direct user to Manage transfers page	
+	And Your transfers link should lead user to Manage transfers pages	
 	And Your organisations and agreements link should direct user to Your organisations and agreements page	
 	And Your team link should direct user to Your team page	
 	And PAYE schemes link should direct user to PAYE schemes page	
