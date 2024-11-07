@@ -5,7 +5,7 @@ namespace SFA.DAS.FAA.UITests
     [Binding]
     public class FAAWhatOnlySearchStepDefinitions(ScenarioContext context)
     {
-        private readonly IWebDriver _driver;
+        private readonly IWebDriver;
         private readonly ScenarioContext _context = context;
         private readonly FAASignedInLandingBasePage _signedInLandingPage;
 

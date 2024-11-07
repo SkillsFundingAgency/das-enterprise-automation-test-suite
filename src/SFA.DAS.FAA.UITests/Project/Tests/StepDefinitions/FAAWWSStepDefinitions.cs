@@ -6,7 +6,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     public class FAAWWSStepDefinitions(ScenarioContext context)
     {
 
-        private readonly IWebDriver _driver;
+        private readonly IWebDriver;
         private readonly ScenarioContext _context = context;
         private readonly FAASignedInLandingBasePage _signedInLandingPage;
 
