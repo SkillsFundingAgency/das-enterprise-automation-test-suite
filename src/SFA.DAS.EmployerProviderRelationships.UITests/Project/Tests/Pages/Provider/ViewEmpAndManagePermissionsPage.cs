@@ -1,47 +1,43 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider
+public class ViewEmpAndManagePermissionsPage(ScenarioContext context) : ProviderRelationshipsBasePage(context)
 {
-    public class ViewEmpAndManagePermissionsPage(ScenarioContext context) : ProviderRelationshipsBasePage(context)
+    private static By AddAnEmployerSelector => By.LinkText("Add an employer");
+
+    private static By SearchTerm => By.CssSelector("input#SearchTerm");
+
+    private static By HasPendingRequest => By.CssSelector(".govuk-checkboxes__label[for='HasPendingRequest']");
+
+    private static By ApplyFilter => By.CssSelector("button[id='filters-submit-second'][type='submit']");
+
+    private static By EmpLinks => By.CssSelector("a.govuk-link.app-search-result-link");
+
+    protected override string PageTitle => "View employers and manage permissions";
+
+    public AddAnEmployerPage ClickAddAnEmployer()
     {
-        private static By AddAnEmployerSelector => By.LinkText("Add an employer");
+        formCompletionHelper.Click(AddAnEmployerSelector);
 
-        private static By SearchTerm => By.CssSelector("input#SearchTerm");
+        return new(context);
+    }
 
-        private static By HasPendingRequest => By.CssSelector(".govuk-checkboxes__label[for='HasPendingRequest']");
+    public EmployerAccountDetailsPage ViewEmployer()
+    {
+        formCompletionHelper.EnterText(SearchTerm, eprDataHelper.EmployerOrganisationName);
 
-        private static By ApplyFilter => By.CssSelector("button[id='filters-submit-second'][type='submit']");
+        formCompletionHelper.Click(ApplyFilter);
 
-        private static By EmpLinks => By.CssSelector("a.govuk-link.app-search-result-link");
+        formCompletionHelper.Click(By.CssSelector($"a[href*='{eprDataHelper.AgreementId}']"));
 
-        protected override string PageTitle => "View employers and manage permissions";
+        return new(context);
+    }
 
-        public AddAnEmployerPage ClickAddAnEmployer()
-        {
-            formCompletionHelper.Click(AddAnEmployerSelector);
+    public void VerifyPendingRequest()
+    {
+        formCompletionHelper.Click(HasPendingRequest);
 
-            return new(context);
-        }
+        formCompletionHelper.Click(ApplyFilter);
 
-        public EmployerAccountDetailsPage ViewEmployer()
-        {
-            formCompletionHelper.EnterText(SearchTerm, eprDataHelper.EmployerOrganisationName);
-
-            formCompletionHelper.Click(ApplyFilter);
-
-            formCompletionHelper.Click(By.CssSelector($"a[href*='{eprDataHelper.AgreementId}']"));
-
-            return new(context);
-        }
-
-        public void VerifyPendingRequest()
-        {
-            formCompletionHelper.Click(HasPendingRequest);
-
-            formCompletionHelper.Click(ApplyFilter);
-
-            VerifyFromMultipleElements(EmpLinks, eprDataHelper.EmployerOrganisationName);
-        }
+        VerifyFromMultipleElements(EmpLinks, eprDataHelper.EmployerOrganisationName.ToUpper());
     }
 }
