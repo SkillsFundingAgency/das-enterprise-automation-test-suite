@@ -36,6 +36,8 @@ public class ViewEmpAndManagePermissionsPage(ScenarioContext context) : Provider
     {
         formCompletionHelper.Click(HasPendingRequest);
 
+        formCompletionHelper.EnterText(SearchTerm, eprDataHelper.EmployerOrganisationName);
+
         formCompletionHelper.Click(ApplyFilter);
 
         VerifyFromMultipleElements(EmpLinks, eprDataHelper.EmployerOrganisationName.ToUpper());
