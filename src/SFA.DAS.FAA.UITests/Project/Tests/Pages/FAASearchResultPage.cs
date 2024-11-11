@@ -20,7 +20,7 @@ public class FAASearchResultPage : FAASignedInLandingBasePage
         VerifyPage(RefreshPage);     
     }
 
-    public void VerifySuccessfulResults() 
+    public void VerifySuccessfulResults()
     {
         pageInteractionHelper.IsElementDisplayed(ResultsFound);
     }

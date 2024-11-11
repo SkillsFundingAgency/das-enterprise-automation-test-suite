@@ -53,29 +53,4 @@ public abstract class FAABasePage : VerifyBasePage
         return new(context);
     }
 
-    protected void GoToSearchResultsInFAA()
-    {
-        objectContext.SetVacancyReference("apprenticeship");
-
-        var searchTerm = objectContext.GetVacancyReference();
-
-        var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"apprenticeships?searchTerm={searchTerm}&sort=AgeAsc");
-
-        tabHelper.GoToUrl(uri.AbsoluteUri);
-    }
-
-    protected FAASearchResultPage SearchUsingTitle()
-    {
-        objectContext.SetVacancyReference("apprenticeship");
-
-        var searchTerm = objectContext.GetVacancyReference();
-
-        //var uri = new Uri(new Uri(UrlConfig.FAA_BaseUrl), $"apprenticeships?searchTerm={searchTerm}&sort=AgeAsc");
-
-        //tabHelper.GoToUrl(uri.AbsoluteUri);
-
-        return new(context);
-    }
-
-
 }

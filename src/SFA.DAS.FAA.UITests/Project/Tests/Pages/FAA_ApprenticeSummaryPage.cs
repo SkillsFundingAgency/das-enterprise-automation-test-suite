@@ -1,6 +1,4 @@
-﻿using SFA.DAS.RAA.DataGenerator;
-
-namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
+﻿namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
 
 public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(context)
 {
@@ -44,7 +42,7 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
         formCompletionHelper.Click(SaveVacancyLink);
         formCompletionHelper.Click(SavedVacanciesNavBar);
         formCompletionHelper.ClickLinkByText(SavedVacancyLink, vacancyTitleDataHelper.VacancyTitle);
-        
+
         return new FAA_ApprenticeSummaryPage(context);
     }
 }

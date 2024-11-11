@@ -24,7 +24,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [Then(@"the user is presented with search results")]
         public void ThenTheUserIsPresentedWithSearchResults()
         {
-            new FAASearchResultPage(_context).VerifySuccessfulResults();
+            new FAA_ApprenticeSummaryPage(_context).VerifySuccessfulResults();
         }
     }
 }
