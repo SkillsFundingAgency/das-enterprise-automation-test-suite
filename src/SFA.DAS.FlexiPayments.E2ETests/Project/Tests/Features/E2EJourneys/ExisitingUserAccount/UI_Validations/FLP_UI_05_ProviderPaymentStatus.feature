@@ -7,8 +7,8 @@ A short summary of the feature
 @flexi-payments
 Scenario: FLP_UI_05 Provider payment status journey
 	Given NonLevy Employer and Pilot provider have a fully approved apprentices with the below data
-		| ULN_Key | training_code | date_of_birth | start_date_str    | duration_in_months | agreed_price | pilot_status |
-		| 1       | 91            | 2005/11/20    | StartCurrentMonth | 24                 | 15000        | true         |
+		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
+		| 1       | 91            | 2005/11/20    | StartPreviousMonth | 24                 | 15000        | true         |
 	When Provider searches for the learner on Manage your apprentice page
 	Then display a Provider payments status row with Active status to Provider
 	And Employer searches for learner on Manage your apprentices page

@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "91",
                             "2005/11/20",
-                            "StartCurrentMonth",
+                            "StartPreviousMonth",
                             "24",
                             "15000",
                             "true"});

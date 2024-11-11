@@ -8,9 +8,9 @@ for a learner opted in the pilot.
 @flexi-payments
 Scenario: FLP_CoC_04 Change Of Start Date Journey - Happy Path
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
-		| ULN_Key | training_code | date_of_birth | start_date_str    | duration_in_months | agreed_price | pilot_status |
-		| 1       | 154           | 2004/06/20    | StartCurrentMonth | 12                 | 18000        | true         |
-	And Provider searches for the learner on Manage your apprentice page
+		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
+		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 18000        | true         |
+    And Provider searches for the learner on Manage your apprentice page
 	When Provider proceeds to create a Change of Start Date request for flexi payments pilot learner
 	And Provider successfully creates a Change of Start Date request
 	And Change of Start Date request details are saved in the StartDateChange table

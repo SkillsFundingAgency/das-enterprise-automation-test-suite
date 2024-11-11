@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/20",
-                            "StartCurrentMonth",
+                            "StartPreviousMonth",
                             "12",
                             "15000",
                             "true"});
@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
                         " data", ((string)(null)), table25, "Given ");
 #line hidden
 #line 13
- testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
@@ -145,7 +145,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("validate Effective From Date cannot be after Training End Date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
+    testRunner.And("Provider creates a Change of Price request where Training Price is increased by 5" +
                         "00", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22

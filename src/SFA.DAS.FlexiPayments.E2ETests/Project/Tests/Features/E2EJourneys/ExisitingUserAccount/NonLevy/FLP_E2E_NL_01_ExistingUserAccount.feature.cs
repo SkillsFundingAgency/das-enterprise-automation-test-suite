@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "131",
                             "2004/05/01",
-                            "Today",
+                            "StartPreviousMonth",
                             "24",
                             "6000"});
 #line 9
@@ -144,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table21.AddRow(new string[] {
                             "1",
                             "true",
-                            "Today",
+                            "StartPreviousMonth",
                             "Null",
                             "6000",
                             "4800",
@@ -163,8 +163,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table22.AddRow(new string[] {
                             "1",
                             "1",
-                            "Today",
-                            "+24Months",
+                            "StartPreviousMonth",
+                            "+23Months",
                             "6000",
                             "1",
                             "18000"});

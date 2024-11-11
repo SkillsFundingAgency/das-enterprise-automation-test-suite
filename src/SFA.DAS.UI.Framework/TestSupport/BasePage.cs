@@ -13,7 +13,6 @@ public abstract class BasePage(ScenarioContext context) : InitialiseBasePage(con
     protected virtual By ContinueButton => By.CssSelector(".govuk-button");
     protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
     protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
-    protected virtual By CurrentMonthRadioButton => By.XPath("//label[@for='StartDate-alreadyStarted']/following::label[1]");
     protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");
 
     protected static By PanelTitle => By.CssSelector(".govuk-panel__title");
