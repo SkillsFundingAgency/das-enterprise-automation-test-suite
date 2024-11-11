@@ -14,7 +14,7 @@ namespace SFA.DAS.MongoDb.DataGenerator
         #endregion
 
         public static void SetMongoDbDataHelper(this ObjectContext objectContext, MongoDbDataHelper dataHelper, string empRef) => objectContext.Set<MongoDbDataHelper>(MongoDbDataHelperKey(empRef), dataHelper);
-        public static void SetDataHelper(this ObjectContext objectContext, DataHelper dataHelper) => objectContext.Replace<DataHelper>(DataHelperKey, dataHelper);
+        public static void SetDataHelper(this ObjectContext objectContext, EmployerUserNameDataHelper dataHelper) => objectContext.Replace<EmployerUserNameDataHelper>(DataHelperKey, dataHelper);
         public static void SetGatewayCreds(this ObjectContext objectContext, string gatewayid, string gatewaypassword, string paye, int index) =>
             objectContext.Replace<GatewayCreds>(GatewayCredsKey(index), new GatewayCreds(gatewayid, gatewaypassword, paye, index));
 
@@ -23,7 +23,7 @@ namespace SFA.DAS.MongoDb.DataGenerator
 
         public static IEnumerable<GatewayCreds> GetGatewayCreds(this ObjectContext objectContext) => objectContext.GetAll<GatewayCreds>();
         public static string GetGatewayPaye(this ObjectContext objectContext, int index) => objectContext.GetGatewayCreds(index).Paye;
-        public static DataHelper GetDataHelper(this ObjectContext objectContext) => objectContext.Get<DataHelper>(DataHelperKey);
+        public static EmployerUserNameDataHelper GetDataHelper(this ObjectContext objectContext) => objectContext.Get<EmployerUserNameDataHelper>(DataHelperKey);
         public static IEnumerable<MongoDbDataHelper> GetMongoDbDataHelpers(this ObjectContext objectContext) => objectContext.GetAll<MongoDbDataHelper>();
     }
 }

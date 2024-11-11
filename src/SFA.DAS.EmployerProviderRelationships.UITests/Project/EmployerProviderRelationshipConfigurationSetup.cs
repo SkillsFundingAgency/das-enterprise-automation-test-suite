@@ -1,7 +1,25 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Project;
-using SFA.DAS.Login.Service.Project.Helpers;
-using TechTalk.SpecFlow;
+﻿global using NUnit.Framework;
+global using OpenQA.Selenium;
+global using SFA.DAS.ConfigurationBuilder;
+global using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
+global using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
+global using SFA.DAS.FrameworkHelpers;
+global using SFA.DAS.Login.Service.Project;
+global using SFA.DAS.Login.Service.Project.Helpers;
+global using SFA.DAS.ProviderLogin.Service.Project;
+global using SFA.DAS.ProviderLogin.Service.Project.Helpers;
+global using SFA.DAS.Registration.UITests.Project;
+global using SFA.DAS.Registration.UITests.Project.Helpers;
+global using SFA.DAS.Registration.UITests.Project.Tests.Pages;
+global using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
+global using SFA.DAS.TestDataExport.Helper;
+global using SFA.DAS.UI.Framework;
+global using SFA.DAS.UI.Framework.TestSupport;
+global using SFA.DAS.UI.FrameworkHelpers;
+global using System.Linq;
+global using TechTalk.SpecFlow;
+global using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Employer;
+global using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project;
 

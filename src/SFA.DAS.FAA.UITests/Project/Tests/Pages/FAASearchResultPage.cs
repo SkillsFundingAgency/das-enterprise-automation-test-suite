@@ -6,8 +6,26 @@ public class FAASearchResultPage : FAASignedInLandingBasePage
 
     protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
+    private static By VacancyName => By.ClassName("das-search-results__link");
+    private static By FavouriteIcon => By.CssSelector("[data-add-favourite=true]");
+    private static By SavedVacancyNavBarLink => By.LinkText("Saved vacancies");
+    private static By ApplyNow => By.CssSelector(".das-button--inline-link");
+
+
+
     public FAASearchResultPage(ScenarioContext context) : base(context, false)
     {
         VerifyPage(RefreshPage);     
+    }
+
+    public FAA_ApplicationOverviewPage SaveFromSearchResultsAndApplyForVacancy()
+    {
+        var savedVacancyName = pageInteractionHelper.GetText(VacancyName);
+
+        formCompletionHelper.Click(FavouriteIcon);
+        formCompletionHelper.Click(SavedVacancyNavBarLink);
+        formCompletionHelper.Click(ApplyNow);
+
+        return new FAA_ApplicationOverviewPage(context);
     }
 }
