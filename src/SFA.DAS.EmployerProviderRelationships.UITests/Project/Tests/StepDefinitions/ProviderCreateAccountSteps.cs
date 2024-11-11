@@ -8,11 +8,11 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
     [Given(@"a provider requests employer to create account with all permission")]
     public void AProviderRequestsEmployerToCreateAccountWithAllPermission()
     {
-        GoToProviderRelationsHomePage();
+        GoToProviderAddAnEmployer();
 
         eprDataHelper.EmployerEmail = objectContext.GetRegisteredEmail();
 
-        GoToEmailAccountNotFoundPage().ContinueToInvite().SubmitEmployerName().SendInvitation().GoToViewEmployersPage().VerifyPendingRequest();
+        new AddAnEmployerPage(context).StartNowToAddAnEmployer().EnterNewEmployerEmail().ContinueToInvite().SubmitEmployerName().SendInvitation().GoToViewEmployersPage().VerifyPendingRequest();
     }
 
     [Then(@"the employer declines the create account request")]
