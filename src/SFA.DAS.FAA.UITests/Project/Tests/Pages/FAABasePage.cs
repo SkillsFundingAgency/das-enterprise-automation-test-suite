@@ -52,5 +52,4 @@ public abstract class FAABasePage : VerifyBasePage
 
         return new(context);
     }
-
 }
