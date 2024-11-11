@@ -3,7 +3,7 @@ using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class FAAWWSStepDefinitions(ScenarioContext context)
+    public class FAAWhatWhereSearchStepDefinitions(ScenarioContext context)
     {
 
         private readonly IWebDriver _driver;
@@ -24,7 +24,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         [Then(@"the user is presented with search results")]
         public void ThenTheUserIsPresentedWithSearchResults()
         {
-            new FAA_ApprenticeSummaryPage(_context).VerifySuccessfulResults();
+            new FAASearchResultPage(_context).VerifySuccessfulResults();
         }
     }
 }

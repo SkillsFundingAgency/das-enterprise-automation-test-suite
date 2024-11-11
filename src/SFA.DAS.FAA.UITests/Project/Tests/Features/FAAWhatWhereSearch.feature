@@ -1,4 +1,4 @@
-﻿Feature: FAAWWS
+﻿Feature: FAAWhatWhereSearch
 
 User searches for a vacancy using search fields
 
