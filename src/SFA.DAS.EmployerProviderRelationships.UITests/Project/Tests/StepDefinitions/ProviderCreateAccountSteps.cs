@@ -1,5 +1,4 @@
 ﻿
-
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
@@ -18,10 +17,22 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
     [Then(@"the employer declines the create account request")]
     public void TheEmployerDeclinesTheCreateAccountRequest()
     {
+        OpenEmpInviteFromProviderAndRegister().DoNotCreateAccount().ConfirmDoNotCreateAccount();
+    }
+
+    [Then(@"the employer accepts the create account request")]
+    public void TheEmployerAcceptsTheCreateAccountRequest()
+    {
+        OpenEmpInviteFromProviderAndRegister().ChangeName().ChangeName(eprDataHelper.EmployerFirstName, eprDataHelper.EmployerLastName).CreateAccount().GoToHomePage();
+    }
+
+
+    private CreateYourApprenticeshipServiceAccount OpenEmpInviteFromProviderAndRegister()
+    {
         OpenEmpInviteFromProvider();
 
         new StubSignInEmployerPage(context).Register().Continue();
 
-        new CreateYourApprenticeshipServiceAccount(context).DoNotCreateAccount().ConfirmDoNotCreateAccount();
+        return new CreateYourApprenticeshipServiceAccount(context);
     }
 }

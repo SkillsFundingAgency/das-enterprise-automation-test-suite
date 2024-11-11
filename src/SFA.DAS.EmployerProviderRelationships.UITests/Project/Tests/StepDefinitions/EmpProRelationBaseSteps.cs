@@ -1,8 +1,4 @@
-﻿
-
-using SFA.DAS.UI.FrameworkHelpers;
-
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
 
 public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 {
