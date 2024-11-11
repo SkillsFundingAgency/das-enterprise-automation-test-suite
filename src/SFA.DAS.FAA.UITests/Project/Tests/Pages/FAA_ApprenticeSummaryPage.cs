@@ -42,7 +42,6 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
         formCompletionHelper.Click(SaveVacancyLink);
         formCompletionHelper.Click(SavedVacanciesNavBar);
         formCompletionHelper.ClickLinkByText(SavedVacancyLink, vacancyTitleDataHelper.VacancyTitle);
-
         return new FAA_ApprenticeSummaryPage(context);
     }
 }
