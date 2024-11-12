@@ -3,6 +3,7 @@
 @employerproviderrelationships
 @addlevyfunds
 @createemployeraccount
+@deleterequest
 @singleorgaorn
 @regression
 Scenario: EPR_06_ProviderRequestsEmployerDeclinesCreateAccount
