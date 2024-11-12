@@ -1,7 +1,9 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using NUnit.Framework.Internal;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
 {
@@ -46,9 +48,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
                 $" GROUP BY UKPRN, AcademicYear " +
                 $" ) B," +
                 $" ( " +
-                $" SELECT Ukprn, SUM(Amount) as NonLevyEarnings, SUM(Amount) * 0.95 as NonLevyGovernmentContribution, SUM(Amount) * 0.05 as NonLevyEmployerContribution " +
-                $" FROM [Query].[Earning] " +
-                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND FundingType = 'NonLevy' GROUP BY UKPRN, AcademicYear " +
+                $" SELECT Ukprn,SUM(Amount) AS NonLevyEarnings, " +
+                $" SUM(CASE WHEN IsNonLevyFullyFunded = 1 THEN Amount ELSE Amount * 0.95 END) AS NonLevyGovernmentContribution, " +
+                $" SUM(CASE WHEN IsNonLevyFullyFunded = 1 THEN 0 ELSE Amount * 0.05 END) AS NonLevyEmployerContribution " +
+                $" FROM[Query].[Earning] " +
+                $" WHERE UKPRN = @Ukprn AND AcademicYear = @AcademicYear AND FundingType = 'NonLevy' " +
+                $" GROUP BY UKPRN "+
                 $" )C " +
                 $" WHERE A.Ukprn=B.Ukprn AND A.Ukprn=C.Ukprn " +
                 $" COMMIT TRANSACTION;";
