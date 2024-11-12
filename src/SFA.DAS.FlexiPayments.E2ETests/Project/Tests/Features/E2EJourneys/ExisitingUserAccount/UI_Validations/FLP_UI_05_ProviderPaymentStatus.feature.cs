@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("employer is able to successfully freeze provider payments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("display a Provider payments status row with Inactive status to Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("display a Provider payments status row with Withheld status to Employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
  testRunner.And("provider payment status is successfully updated to Inactive in apprenticeships db" +
