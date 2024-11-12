@@ -9,6 +9,8 @@ public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig co
         ReTryExecuteSqlCommand(sqlQuery);
     }
 
+    public void DeleteProviderRequest(string requestId) => ReTryExecuteSqlCommand($"delete from Requests where id = '{requestId}'");
+    
     public (string requestId, string requestStatus) GetRequestId(string ukprn, string empemail)
     {
         var data = GetData($"select id, [Status] from Requests where ukprn = {ukprn} and EmployerContactEmail = '{empemail}'");

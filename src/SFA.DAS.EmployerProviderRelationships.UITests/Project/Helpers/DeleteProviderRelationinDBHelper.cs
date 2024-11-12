@@ -8,4 +8,6 @@ public class DeleteProviderRelationinDbHelper(ScenarioContext context)
 
     public void DeleteProviderRelation() => context.Get<RelationshipsSqlDataHelper>().DeleteProviderRelation(ProviderConfig.Ukprn, ObjectContext.GetDBAccountId(), ObjectContext.GetRegisteredEmail());
 
+    public void DeleteProviderRequest(string requestId) => context.Get<RelationshipsSqlDataHelper>().DeleteProviderRequest(requestId);
+
 }
