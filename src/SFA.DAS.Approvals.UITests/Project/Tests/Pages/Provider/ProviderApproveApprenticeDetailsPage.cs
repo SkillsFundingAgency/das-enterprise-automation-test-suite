@@ -180,7 +180,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             VerifyPage(NotificationBanner, "One or more training courses is not on your declared list");
 
-            VerifyPage(() => pageInteractionHelper.FindElements(InsertText), "This training course has not been declared. You can change it or add it ");
+            VerifyFromMultipleElements(InsertText, "This training course has not been declared. You can change it or add it ");
 
             VerifyProviderCanNotApprove();
         }

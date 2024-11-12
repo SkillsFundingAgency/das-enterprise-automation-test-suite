@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.ExisitingUserAccount.DLockJourney
+namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FLP_DLock_01_PriceAndCourseMismatch_Pilot")]
-    public partial class FLP_DLock_01_PriceAndCourseMismatch_PilotFeature
+    [NUnit.Framework.DescriptionAttribute("EPR_05_ShutterForMultiOrgEmployer")]
+    public partial class EPR_05_ShutterForMultiOrgEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "FLP_DLock_01_PriceAndCourseMismatch_Pilot.feature"
+#line 1 "EPR_05_ShutterForMultiOrgEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/E2EJourneys/ExisitingUserAccount/DLockJourney", "FLP_DLock_01_PriceAndCourseMismatch_Pilot", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_05_ShutterForMultiOrgEmployer", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,21 +74,17 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_DLock_01_PriceAndCourseMismatch_Pilot - Display Pilot DLock Message")]
-        [NUnit.Framework.CategoryAttribute("regression")]
-        [NUnit.Framework.CategoryAttribute("liveapprentice")]
-        [NUnit.Framework.CategoryAttribute("dlockscenarios")]
-        [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_DLock_01_PriceAndCourseMismatch_Pilot_DisplayPilotDLockMessage()
+        [NUnit.Framework.DescriptionAttribute("EPR_05_ShutterForMultiOrgEmployer")]
+        [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
+        [NUnit.Framework.CategoryAttribute("multiaccount")]
+        public void EPR_05_ShutterForMultiOrgEmployer()
         {
             string[] tagsOfScenario = new string[] {
-                    "regression",
-                    "liveapprentice",
-                    "dlockscenarios",
-                    "flexi-payments"};
+                    "employerproviderrelationships",
+                    "multiaccount"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_DLock_01_PriceAndCourseMismatch_Pilot - Display Pilot DLock Message", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_05_ShutterForMultiOrgEmployer", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -98,17 +94,9 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 8
- testRunner.Given("the Employer has an approved Pilot apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.When("the provider submit an ILR with price mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
- testRunner.And("the provider submit another ILR with course mismatch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 11
- testRunner.Then("validate provider can view Pilot DataLock message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Then("the provider should be shown a shutter page where an employer has multiple organi" +
+                        "sations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

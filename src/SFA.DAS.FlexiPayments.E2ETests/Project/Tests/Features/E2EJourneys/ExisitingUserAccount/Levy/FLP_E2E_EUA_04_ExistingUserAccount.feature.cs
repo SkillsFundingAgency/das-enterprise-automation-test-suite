@@ -112,14 +112,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/01",
-                            "2023/08/15",
+                            "Today",
                             "12",
                             "15000"});
                 table16.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/06/01",
-                            "2023/09/30",
+                            "Today",
                             "12",
                             "18000"});
 #line 8
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table17.AddRow(new string[] {
                             "1",
                             "true",
-                            "2023/08/15",
+                            "Today",
                             "Null",
                             "15000",
                             "12000",
@@ -150,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table17.AddRow(new string[] {
                             "2",
                             "true",
-                            "2023/09/30",
+                            "Today",
                             "Null",
                             "18000",
                             "14400",
@@ -169,16 +169,16 @@ this.ScenarioInitialize(scenarioInfo);
                 table18.AddRow(new string[] {
                             "1",
                             "1",
-                            "2023/08/15",
-                            "2024/08/15",
+                            "Today",
+                            "+12Months",
                             "15000",
                             "0",
                             "15000"});
                 table18.AddRow(new string[] {
                             "2",
                             "1",
-                            "2023/09/30",
-                            "2024/09/30",
+                            "Today",
+                            "+12Months",
                             "18000",
                             "0",
                             "18000"});
@@ -198,8 +198,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table19.AddRow(new string[] {
                             "2",
                             "14400",
-                            "1108",
-                            "13"});
+                            "1200",
+                            "12"});
 #line 22
  testRunner.And("validate the following data is created in the earnings database", ((string)(null)), table19, "And ");
 #line hidden

@@ -1,15 +1,18 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
+public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.PermissionsDbConnectionString)
 {
-    public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.PermissionsDbConnectionString)
+    public void DeleteProviderRelation(string ukprn, string accountid, string empemail)
     {
-        public void DeleteProviderRelation(string ukprn, string accountid)
-        {
-            var sqlQuery = $"DECLARE @ukprn INT = {ukprn}, @accountid INT = {accountid};" + FileHelper.GetSql("DeleteProviderRelation");
+        var sqlQuery = $"DECLARE @ukprn INT = {ukprn}, @accountid INT = {accountid}, @empemail NVARCHAR(255) = '{empemail}';" + FileHelper.GetSql("DeleteProviderRelation");
 
-            ReTryExecuteSqlCommand(sqlQuery);
-        }
+        ReTryExecuteSqlCommand(sqlQuery);
+    }
+
+    public (string requestId, string requestStatus) GetRequestId(string ukprn, string empemail)
+    {
+        var data = GetData($"select id, [Status] from Requests where ukprn = {ukprn} and EmployerContactEmail = '{empemail}'");
+
+        return (data[0], data[1]);
     }
 }

@@ -31,8 +31,8 @@ public class TrainingRequestDetailPage : RatProjectBasePage
     {
         MultipleVerifyPage(
         [
-            () => VerifyPage(() => pageInteractionHelper.FindElements(SummaryAnswers), ratDataHelper.ProviderEmail),
-            () => VerifyPage(() => pageInteractionHelper.FindElements(SummaryAnswers), ratDataHelper.ProviderName)
+            () => VerifyFromMultipleElements(SummaryAnswers, ratDataHelper.ProviderEmail),
+            () => VerifyFromMultipleElements(SummaryAnswers, ratDataHelper.ProviderName)
         ]);
     }
 }
