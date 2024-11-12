@@ -114,14 +114,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/20",
-                            "2023/08/01",
+                            "Today",
                             "12",
                             "15000"});
                 table8.AddRow(new string[] {
                             "2",
                             "91",
                             "2004/06/27",
-                            "2023/09/29",
+                            "Today",
                             "12",
                             "18000"});
 #line 11
@@ -151,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table9.AddRow(new string[] {
                             "1",
                             "true",
-                            "2023/08/01",
+                            "Today",
                             "Null",
                             "15000",
                             "12000",
@@ -159,7 +159,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table9.AddRow(new string[] {
                             "2",
                             "true",
-                            "2023/09/29",
+                            "Today",
                             "Null",
                             "18000",
                             "14400",
@@ -178,16 +178,16 @@ this.ScenarioInitialize(scenarioInfo);
                 table10.AddRow(new string[] {
                             "1",
                             "1",
-                            "2023/08/01",
-                            "2024/08/01",
+                            "Today",
+                            "+12Months",
                             "15000",
                             "0",
                             "15000"});
                 table10.AddRow(new string[] {
                             "2",
                             "1",
-                            "2023/09/29",
-                            "2024/09/29",
+                            "Today",
+                            "+12Months",
                             "18000",
                             "0",
                             "18000"});

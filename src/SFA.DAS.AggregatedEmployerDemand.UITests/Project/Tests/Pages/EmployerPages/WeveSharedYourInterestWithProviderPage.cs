@@ -8,5 +8,5 @@ public class WeveSharedYourInterestWithProviderPage(ScenarioContext context) : A
 
     private static By GovBody => By.CssSelector(".govuk-body");
 
-    public void VerifyContent(string content) => VerifyPage(() => pageInteractionHelper.FindElements(GovBody), content);
+    public void VerifyContent(string content) => VerifyFromMultipleElements(GovBody, content);
 }

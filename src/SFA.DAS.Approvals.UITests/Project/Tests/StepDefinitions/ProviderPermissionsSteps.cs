@@ -39,7 +39,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _employerLoginHelper.Login(_context.GetUser<ProviderPermissionLevyUser>(), true);
 
-            new DeleteProviderRelationinDbHelper(_context).DeleteProviderRelation(_providerPermissionConfig);
+            _context.SetProviderConfig(_providerPermissionConfig);
+
+            new DeleteProviderRelationinDbHelper(_context).DeleteProviderRelation();
 
             _employerPermissionsStepsHelper.SetCreateCohortProviderPermissions(_providerPermissionConfig);
 

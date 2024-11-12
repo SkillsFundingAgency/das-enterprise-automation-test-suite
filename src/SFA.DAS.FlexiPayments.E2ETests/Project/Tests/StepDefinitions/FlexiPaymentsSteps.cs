@@ -297,7 +297,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage.ValidateEmployerEditApprovedApprentice(action == "can");
         }
 
-        [Then(@"display a Provider payments status row with (Active|Inactive) status to Employer")]
+        [Then(@"display a Provider payments status row with (Active|Withheld) status to Employer")]
         public void DisplayAProviderPaymentsStatusRowWithStatus(string providerPaymentStatus)
         {
             _apprenticeDetailsPage.ValidateProviderPaymentStatus(providerPaymentStatus);
@@ -308,7 +308,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _apprenticeDetailsPage.ClickChangeProviderPaymentStatusLink();
 
-            _apprenticeDetailsPage = new EmployerFreezeProviderPaymentsPage(_context).FreezeFuturePayments();
+            _apprenticeDetailsPage = new EmployerWithholdProviderPaymentsPage(_context).WithholdFuturePayments();
         }
 
         [Then(@"employer is able to successfully unfreeze provider payments")]
@@ -316,7 +316,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             _apprenticeDetailsPage.ClickChangeProviderPaymentStatusLink();
 
-            _apprenticeDetailsPage = new EmployerUnfreezeProviderPaymentsPage(_context).UnfreezeFuturePayments();
+            _apprenticeDetailsPage = new EmployerActivateProviderPaymentsPage(_context).ActivateFuturePayments();
         }
     }
 }

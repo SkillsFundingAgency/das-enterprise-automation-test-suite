@@ -17,10 +17,27 @@ public class FAAStepsHelper(ScenarioContext context)
         return new FAASignedInLandingBasePage(context);
     }
 
+    public FAASignedInLandingBasePage SubmitNewUserDetails()
+    {
+        context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
+
+        if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
+        {
+            var faaUser = context.Get<FAAUserNameDataHelper>();
+
+            var faaApplyUser = new FAAApplyUser { Username = faaUser.FaaNewUserEmail, IdOrUserRef = faaUser.FaaNewUserPassword, MobilePhone = faaUser.FaaNewUserMobilePhone };
+
+            new FAASignedOutLandingpage(context).GoToSignInPage().SubmitNewUserDetails(faaApplyUser).Continue();
+        }
+
+        return new FAASignedInLandingBasePage(context);
+    }
+
+
     public void VerifyApplicationStatus(bool IsSucessful)
     {
         var page = GoToFAAHomePage().GoToApplications();
-         
+
         if (IsSucessful) page.OpenSuccessfulApplicationPage().ViewApplication();
 
         else page.OpenUnSuccessfulApplicationPage().ViewApplication();
@@ -42,7 +59,7 @@ public class FAAStepsHelper(ScenarioContext context)
 
         applicationFormPage = applicationFormPage.Access_Section3_2Interests().SelectSectionCompleted().VerifyApplicationsQuestions_2();
 
-        
+
         applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
 
         applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
@@ -54,6 +71,8 @@ public class FAAStepsHelper(ScenarioContext context)
         return applicationFormPage;
     }
 
+    public FAA_ApplicationOverviewPage GoToVacancyDetailsPageThenSaveBeforeApplying() => GoToFAAHomePage().SearchByReferenceNumber().SaveAndApplyForVacancy().Apply();
+    public FAA_ApplicationOverviewPage GoToSearchResultsPagePageAndSaveBeforeApplying() => GoToFAAHomePage().SearchAndSaveVacancyByReferenceNumber().SaveFromSearchResultsAndApplyForVacancy();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)

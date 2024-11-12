@@ -9,7 +9,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 {
     public class StubYouHaveSignedInEmployerPage : StubYouHaveSignedInBasePage
     {
-
         public StubYouHaveSignedInEmployerPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : base(context, username, idOrUserRef, newUser)
         {
             if (newUser)
@@ -50,12 +49,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
         {
             Continue();
             return new StubAddYourUserDetailsPage(context);
-        }
-
-        public CreateYourEmployerAccountPage ContinueToCreateYourEmployerAccountPage()
-        {
-            Continue();
-            return new CreateYourEmployerAccountPage(context);
         }
 
         public new void Continue() => base.Continue();

@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/02/01",
-                            "2022/08/01",
+                            "StartCurrentMonth",
                             "11",
                             "15000"});
 #line 8
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table13.AddRow(new string[] {
                             "1",
                             "false",
-                            "2022/08/01",
+                            "StartCurrentMonth",
                             "Null",
                             "15000",
                             "",
