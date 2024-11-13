@@ -74,16 +74,16 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FAA_USFV_01 User searches for a vacancy using both \'What\' only search fields")]
+        [NUnit.Framework.DescriptionAttribute("FAA_USFV_01 User searches for a vacancy using \'What\' only search field")]
         [NUnit.Framework.CategoryAttribute("faa")]
         [NUnit.Framework.CategoryAttribute("raa")]
-        public void FAA_USFV_01UserSearchesForAVacancyUsingBothWhatOnlySearchFields()
+        public void FAA_USFV_01UserSearchesForAVacancyUsingWhatOnlySearchField()
         {
             string[] tagsOfScenario = new string[] {
                     "faa",
                     "raa"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_USFV_01 User searches for a vacancy using both \'What\' only search fields", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FAA_USFV_01 User searches for a vacancy using \'What\' only search field", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
