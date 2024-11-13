@@ -13,7 +13,7 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
 
         permissions = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
 
-        GoToProviderRelationsHomePage();
+        GoToProviderViewEmployersAndManagePermissions();
 
         eprDataHelper.EmployerEmail = employerUser.Username;
 
@@ -27,7 +27,7 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
     [When(@"the provider update the permission")]
     public void TheProviderUpdateThePermission()
     {
-        GoToProviderRelationsHomePage();
+        GoToProviderViewEmployersAndManagePermissions();
 
         new ViewEmpAndManagePermissionsPage(context).ViewEmployer();
     }
@@ -35,7 +35,7 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
     [Then(@"the provider should be shown a shutter page where relationship already exists")]
     public void TheProviderShouldBeShownAShutterPageWhereRelationshipAlreadyExists()
     {
-        GoToProviderRelationsHomePage();
+        GoToProviderViewEmployersAndManagePermissions();
 
         GoToEmailAccountFoundPage().VerifyAlreadyLinkedToThisEmployer();
     }
@@ -60,10 +60,8 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
     {
         eprDataHelper.EmployerEmail = username;
 
-        GoToProviderRelationsHomePage();
+        GoToProviderViewEmployersAndManagePermissions();
 
         GoToSearchEmployerEmailPage().EnterEmployerEmailAndGoToShutterPage();
     }
-
-
 }
