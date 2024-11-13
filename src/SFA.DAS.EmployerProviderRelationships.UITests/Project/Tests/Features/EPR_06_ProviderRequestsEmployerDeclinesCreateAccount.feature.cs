@@ -76,21 +76,23 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("EPR_06_ProviderRequestsEmployerDeclinesCreateAccount")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
-        [NUnit.Framework.CategoryAttribute("deletepermission")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("createemployeraccount")]
+        [NUnit.Framework.CategoryAttribute("deleterequest")]
         [NUnit.Framework.CategoryAttribute("singleorgaorn")]
+        [NUnit.Framework.CategoryAttribute("regression")]
         public void EPR_06_ProviderRequestsEmployerDeclinesCreateAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "employerproviderrelationships",
-                    "deletepermission",
                     "addlevyfunds",
                     "createemployeraccount",
-                    "singleorgaorn"};
+                    "deleterequest",
+                    "singleorgaorn",
+                    "regression"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_06_ProviderRequestsEmployerDeclinesCreateAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,10 +102,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("a provider requests employer to create account with all permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("the employer declines the create account request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

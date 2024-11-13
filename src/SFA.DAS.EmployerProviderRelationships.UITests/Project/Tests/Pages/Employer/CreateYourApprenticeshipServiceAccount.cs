@@ -10,6 +10,10 @@ public class CreateYourApprenticeshipServiceAccount : RegistrationBasePage
 
     private static By Decline => By.CssSelector("a[href*='createaccount/decline']");
 
+    private static By HasAcceptedTerms => By.CssSelector(".govuk-checkboxes__label[for='HasAcceptedTerms']");
+
+    private static By Accept => By.CssSelector("#main-content button.govuk-button[type='submit']");
+
     public CreateYourApprenticeshipServiceAccount(ScenarioContext context) : base(context) => VerifyPage();
 
     public ChangeEmployerName ChangeName()
@@ -17,6 +21,15 @@ public class CreateYourApprenticeshipServiceAccount : RegistrationBasePage
         formCompletionHelper.Click(ChangeNameSelector);
 
         return new ChangeEmployerName(context);
+    }
+
+    public ApprenticeshipServiceAccountCreatedPage CreateAccount()
+    {
+        formCompletionHelper.Click(HasAcceptedTerms);
+
+        formCompletionHelper.Click(Accept);
+
+        return new ApprenticeshipServiceAccountCreatedPage(context);
     }
 
     public DoNotCreateAccountPage DoNotCreateAccount()

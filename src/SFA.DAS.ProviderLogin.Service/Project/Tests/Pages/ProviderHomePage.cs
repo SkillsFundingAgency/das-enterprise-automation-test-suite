@@ -19,6 +19,10 @@ public class ProviderHomePage : InterimProviderBasePage
 
     protected static By AddNewApprenticesLink => By.LinkText("Add new apprentices");
 
+    protected static By AddAnEmployerLink => By.LinkText("Add an employer");
+
+    protected static By ViewEmployersAndManagePermissionsLink => By.LinkText("View employers and manage permissions");
+
     protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
 
     protected static By GetFundingLink => By.LinkText("Get funding for non-levy employers");
@@ -39,5 +43,9 @@ public class ProviderHomePage : InterimProviderBasePage
     protected static By ViewEmployerRequestsForTraining => By.LinkText("View employer requests for training");
 
     public ProviderHomePage(ScenarioContext context, bool navigate = false) : base(context, navigate) => AcceptCookies();
+
+    public void ClickAddAnEmployerLink() => formCompletionHelper.ClickElement(AddAnEmployerLink);
+
+    public void ClickViewEmployersAndManagePermissionsLink() => formCompletionHelper.ClickElement(ViewEmployersAndManagePermissionsLink);
 
 }
