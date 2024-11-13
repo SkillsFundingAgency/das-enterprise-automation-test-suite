@@ -8,7 +8,6 @@ global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.FrameworkHelpers;
 global using System.Linq;
 global using TechTalk.SpecFlow;
-using OpenQA.Selenium.DevTools.V127.WebAudio;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Hooks;
 

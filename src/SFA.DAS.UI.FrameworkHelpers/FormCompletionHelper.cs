@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.BiDi.Modules.BrowsingContext;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
