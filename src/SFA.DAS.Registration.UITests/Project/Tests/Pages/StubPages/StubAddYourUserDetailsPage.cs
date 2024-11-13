@@ -12,11 +12,5 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages
 
             return new ConfirmYourUserDetailsPage(context);
         }
-
-        public ConfirmYourUserDetailsPage DoNotEnterNameAndContinue()
-        {
-            Continue();
-            return new ConfirmYourUserDetailsPage(context);
-        }
     }
 }

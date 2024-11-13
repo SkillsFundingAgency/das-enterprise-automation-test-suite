@@ -17,7 +17,7 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
     [Then(@"the employer declines the create account request")]
     public void TheEmployerDeclinesTheCreateAccountRequest()
     {
-        OpenEmpInviteFromProviderAndRegister().DoNotCreateAccount().ConfirmDoNotCreateAccount();
+        OpenEmpInviteFromProviderAndRegister().ReadAgreement(eprDataHelper.EmployerOrganisationName).ReturnToCreateYourApprenticeshipServiceAccountr().DoNotCreateAccount().ConfirmDoNotCreateAccount();
     }
 
     [Then(@"the employer accepts the create account request")]
