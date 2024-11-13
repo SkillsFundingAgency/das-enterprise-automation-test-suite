@@ -80,6 +80,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         [NUnit.Framework.CategoryAttribute("singleorgaorn")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("providerleadregistration")]
+        [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
         public void EPR_07_ProviderRequestsEmployerAcceptCreateAccount()
         {
             string[] tagsOfScenario = new string[] {
@@ -87,10 +88,11 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
                     "createemployeraccount",
                     "singleorgaorn",
                     "regression",
-                    "providerleadregistration"};
+                    "providerleadregistration",
+                    "employerproviderrelationships"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_07_ProviderRequestsEmployerAcceptCreateAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 8
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -100,10 +102,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
+#line 10
  testRunner.Given("a provider requests employer to create account with all permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.Then("the employer accepts the create account request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
