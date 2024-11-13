@@ -10,17 +10,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeshipDetails.UITests.Tests.Pages.Employer
 {
-    public class EmployerFreezeProviderPaymentsPage(ScenarioContext context) : EmployerChangeTheTotalPricePage(context)
+    public class EmployerWithholdProviderPaymentsPage(ScenarioContext context) : EmployerChangeTheTotalPricePage(context)
     {
-        protected override string PageTitle => "Freeze provider payments";
+        protected override string PageTitle => "Withhold provider payments";
         private static By PriceHintText => By.Id("apprenticeship-price-hint");
-        private static By FreezeFuturePaymentsRadioButton => By.Id("freezePayments-true");
+        private static By WithholdFuturePaymentsRadioButton => By.Id("freezePayments-true");
         internal static By ConfirmChangesButton => By.Id("buttonSubmitForm");
 
 
-        public ApprenticeDetailsPage FreezeFuturePayments()
+        public ApprenticeDetailsPage WithholdFuturePayments()
         {
-            formCompletionHelper.SelectRadioOptionByLocator(FreezeFuturePaymentsRadioButton);
+            formCompletionHelper.SelectRadioOptionByLocator(WithholdFuturePaymentsRadioButton);
             formCompletionHelper.Click(ConfirmChangesButton);
             return new ApprenticeDetailsPage(context);
         }

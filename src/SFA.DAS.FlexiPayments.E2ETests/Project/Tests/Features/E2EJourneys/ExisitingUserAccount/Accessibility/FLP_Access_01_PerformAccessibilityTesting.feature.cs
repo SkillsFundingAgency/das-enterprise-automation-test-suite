@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "154",
                             "2004/06/20",
-                            "2023/08/01",
+                            "StartCurrentMonth",
                             "12",
                             "15000",
                             "true"});
@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "2",
                             "91",
                             "2004/06/27",
-                            "2022/09/01",
+                            "StartCurrentMonth",
                             "12",
                             "18000",
                             "false"});

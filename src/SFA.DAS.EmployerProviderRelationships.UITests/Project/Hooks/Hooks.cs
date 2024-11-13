@@ -25,13 +25,13 @@ public class Hooks(ScenarioContext context)
     {
         var tprSqlDataHelper = context.Get<TprSqlDataHelper>();
 
-        var data = tprSqlDataHelper.CreateAornData(context.ScenarioInfo.Tags.Contains("singleorgaorn"));
+        var (paye, aornNumber, orgName) = tprSqlDataHelper.CreateAornData(context.ScenarioInfo.Tags.Contains("singleorgaorn"));
 
-        _eprDataHelper.EmployerPaye = data.paye;
+        _eprDataHelper.EmployerPaye = paye;
 
-        _eprDataHelper.EmployerAorn = data.aornNumber;
+        _eprDataHelper.EmployerAorn = aornNumber;
 
-        _eprDataHelper.EmployerOrganisationName = data.orgName;
+        _eprDataHelper.EmployerOrganisationName = orgName;
 
         var randomPersonNameHelper = new RandomPersonNameHelper();
 
@@ -43,4 +43,9 @@ public class Hooks(ScenarioContext context)
     [AfterScenario(Order = 22)]
     [Scope(Tag = "deletepermission")]
     public void DeleteProviderRelation() => _tryCatch.AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation());
+
+
+    [AfterScenario(Order = 22)]
+    [Scope(Tag = "deleterequest")]
+    public void DeleteProviderRequest() => _tryCatch.AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRequest(_eprDataHelper.RequestId));
 }
