@@ -32,7 +32,7 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     {
         EPRLevyUserLogin();
 
-        new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
+        new ManageTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
             .SelectAddATrainingProvider()
             .SearchForATrainingProvider(providerConfig)
             .VerifyDoNotAllowPermissions();
@@ -60,7 +60,7 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     [Then(@"the employer is unable to add an existing provider")]
     public void ThenTheEmployerIsUnableToAddAnExistingProvider()
     {
-        new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
+        new ManageTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions()
             .SelectAddATrainingProvider()
             .SearchForAnExistingTrainingProvider(providerConfig);
 

@@ -28,7 +28,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
         protected override string PageTitle => $"Add {providerConfig.Name} as a training provider";
     }
 
-    public class YourTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
+    public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
     {
         protected override string PageTitle => "Manage training providers";
 
@@ -40,14 +40,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         private static By TableRows => By.ClassName("govuk-table__row");
 
-        public YourTrainingProvidersPage VerifyYouHaveAddedNotification()
+        public ManageTrainingProvidersPage VerifyYouHaveAddedNotification()
         {
             VerifyPage(NotificationBanner, "You've added");
 
             return this;
         }
 
-        public YourTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
+        public ManageTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
         {
             VerifyPage(NotificationBanner, "You've set permissions for");
 
