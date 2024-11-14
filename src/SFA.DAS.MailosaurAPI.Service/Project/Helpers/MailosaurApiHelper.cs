@@ -44,6 +44,41 @@ public class MailosaurApiHelper(ScenarioContext context)
         return link.Href;
     }
 
+    public bool ValidateEmailBodyContainsText(string email, string subject, string emailText)
+    {
+        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {dateTime:HH:mm:ss}");
+
+        var mailosaurAPIUser = GetMailosaurAPIUser(email);
+
+        var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
+
+        var criteria = new SearchCriteria()
+        {
+            SentTo = email,
+            Subject = subject
+        };
+
+        try
+        {
+            var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
+            if (message.Text.Body.Contains(emailText))
+            {
+                _objectContext.SetDebugInformation($"Text found in the email body");
+                return true;
+            }
+            else
+            {
+                _objectContext.SetDebugInformation($"Text not found in the email body");
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _objectContext.SetDebugInformation($"Error retrieving email: {ex.Message}");
+            return false;
+        }
+    }
+
     internal async Task DeleteInbox()
     {
         var inboxToDelete = context.Get<MailosaurUser>().GetEmailList();

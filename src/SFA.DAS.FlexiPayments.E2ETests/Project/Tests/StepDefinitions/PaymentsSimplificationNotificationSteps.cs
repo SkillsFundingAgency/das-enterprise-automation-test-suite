@@ -5,6 +5,7 @@ using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.ConfigurationBuilder;
+using NUnit.Framework;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 {
@@ -15,6 +16,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         private readonly TabHelper _tabHelper;
         private readonly ProviderConfig _providerConfig;
         private readonly ObjectContext _objectContext;
+        private MailosaurApiHelper _mailosaurApiHelper;
 
 
         public PaymentsSimplificationNotificationSteps(ScenarioContext context)
@@ -23,6 +25,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _tabHelper = _context.Get<TabHelper>();
             _providerConfig = _context.GetProviderConfig<ProviderConfig>();
             _objectContext = _context.Get<ObjectContext>();
+            _mailosaurApiHelper = _context.Get<MailosaurApiHelper>();
         }
 
         [When(@"Employer is notified that a provider has requested a price change through email")]
@@ -34,9 +37,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             var mailosaurHelper = new MailosaurApiHelper(_context);
 
+            var emailText = $"{_providerConfig.Name} has requested a change to the total agreed apprenticeship price for";
+
             string subject = $"{_providerConfig.Name} requested a price change";
 
-            _tabHelper.OpenInNewTab(_context.Get<MailosaurApiHelper>().GetLinkBySubject(userDetails.Email, subject, $"https://approvals.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/{userDetails.HashedId}/apprentices/"));
+            Assert.IsTrue(_mailosaurApiHelper.ValidateEmailBodyContainsText(userDetails.Email, subject, emailText));
+
+            _tabHelper.OpenInNewTab(_mailosaurApiHelper.GetLinkBySubject(userDetails.Email, subject, $"https://approvals.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/{userDetails.HashedId}/apprentices/"));
         }
     }
 }
