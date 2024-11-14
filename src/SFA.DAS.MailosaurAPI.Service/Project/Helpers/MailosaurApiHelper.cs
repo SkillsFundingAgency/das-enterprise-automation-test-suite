@@ -58,6 +58,8 @@ public class MailosaurApiHelper(ScenarioContext context)
             Subject = subject
         };
 
+        _objectContext.SetDebugInformation($"Mailosaur details used are, Token: {mailosaurAPIUser.ApiToken}, serverName: {mailosaurAPIUser.ServerName}, serverId: {mailosaurAPIUser.ServerId}");
+
         try
         {
             var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
