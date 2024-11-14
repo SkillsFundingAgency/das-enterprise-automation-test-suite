@@ -4,15 +4,15 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-public class YourTrainingProvidersLinkHomePage(ScenarioContext context) : HomePage(context)
+public class ManageTrainingProvidersLinkHomePage(ScenarioContext context) : HomePage(context)
 {
-    private static By YourTrainingProvidersLink => By.LinkText("Your training providers");
+    private static By ManageTrainingProvidersLink => By.LinkText("Manage training providers");
 
-    public YourTrainingProvidersPage OpenRelationshipPermissions()
+    public ManageTrainingProvidersPage OpenRelationshipPermissions()
     {
-        formCompletionHelper.ClickElement(YourTrainingProvidersLink);
+        formCompletionHelper.ClickElement(ManageTrainingProvidersLink);
 
-        return new YourTrainingProvidersPage(context);
+        return new ManageTrainingProvidersPage(context);
     }
 }
 
