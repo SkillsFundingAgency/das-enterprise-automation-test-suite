@@ -43,9 +43,9 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     {
         var page = _employerPermissionsStepsHelper.OpenProviderPermissions();
 
-        var providersOnthePage = context.Get<TableRowHelper>().GetTableRows();
+        var providersOnthePage = context.Get<TableRowHelper>().GetTableRows(linkcolumnName: "Permissions");
 
-        var actual = providersOnthePage.Single(x => x["Training provider"] == providerConfig.Name);
+        var actual = providersOnthePage.Single(x => x["Permissions"].ContainsCompareCaseInsensitive(providerConfig.Ukprn));
 
         Assert.Multiple(() =>
         {

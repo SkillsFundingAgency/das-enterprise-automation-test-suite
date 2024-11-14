@@ -30,7 +30,7 @@ internal static class SetProviderCredsHelper
 
         t.Password = provider.Password;
 
-        t.Name = providerName?.Name;
+        t.Name = providerName?.Name.Trim();
 
         return t;
     }

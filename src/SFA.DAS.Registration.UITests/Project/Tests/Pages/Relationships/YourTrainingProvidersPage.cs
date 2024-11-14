@@ -25,7 +25,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
     public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : PermissionBasePageForTrainingProviderPage(context)
     {
-        protected override string PageTitle => $"Add {providerConfig.Name} as a training provider";
+        protected override string PageTitle => $"Add {providerConfig.Name.ToUpperInvariant()} as a training provider";
     }
 
     public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)

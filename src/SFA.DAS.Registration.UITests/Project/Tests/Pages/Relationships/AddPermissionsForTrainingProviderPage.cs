@@ -5,7 +5,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 {
     public class AddPermissionsForTrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : PermissionBasePageForTrainingProviderPage(context)
     {
-        protected override string PageTitle => $"Add {providerConfig.Name} and set permissions";
+        protected override string PageTitle => $"Add {providerConfig.Name.ToUpperInvariant()} and set permissions";
 
         public void VerifyDoNotAllowPermissions()
         {
