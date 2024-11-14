@@ -35,7 +35,7 @@ public class ReadTheEmployerAgreementPage : RegistrationBasePage
 
     protected override By ContinueButton => By.CssSelector("button.govuk-button[id='continue'][type='submit']");
 
-    private static By ReturnToPreviousPage => By.LinkText("Return to previous page");
+    private static By ReturnToPreviousPage => By.PartialLinkText("Return to previous page");
 
     public ReadTheEmployerAgreementPage(ScenarioContext context, string orgName) : base(context)
     {
