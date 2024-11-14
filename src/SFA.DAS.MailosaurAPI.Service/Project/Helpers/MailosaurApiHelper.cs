@@ -52,13 +52,13 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
 
+        _objectContext.SetDebugInformation($"Mailosaur details used are, Token: {mailosaurAPIUser.ApiToken}, serverName: {mailosaurAPIUser.ServerName}, serverId: {mailosaurAPIUser.ServerId}");
+
         var criteria = new SearchCriteria()
         {
             SentTo = email,
             Subject = subject
         };
-
-        _objectContext.SetDebugInformation($"Mailosaur details used are, Token: {mailosaurAPIUser.ApiToken}, serverName: {mailosaurAPIUser.ServerName}, serverId: {mailosaurAPIUser.ServerId}");
 
         try
         {
