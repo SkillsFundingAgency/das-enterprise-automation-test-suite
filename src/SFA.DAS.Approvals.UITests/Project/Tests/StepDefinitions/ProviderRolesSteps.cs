@@ -95,13 +95,5 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerNotification = _providerNotification.ChooseNotToReceiveEmails();
             Assert.IsTrue(_providerNotification.IsSettingsUpdated(), $"Choose not to receive notification emails success message is not displayed");
         }
-
-        [Then(@"the user can view organisations and agreements")]
-        public void ThenTheUserCanViewOrganisationsAndAgreements()
-        {
-            _providerStepsHelper.NavigateToProviderHomePage()
-                .GoToOrganisationsAndAgreementsPage();
-        }
-
     }
 }

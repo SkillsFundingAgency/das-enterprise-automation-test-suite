@@ -22,14 +22,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
         private readonly TabHelper _tabHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
-        private readonly PregSqlDataHelper _pregSqlDataHelper;
 
         public ProviderRegistrationSteps(ScenarioContext context)
         {
             _context = context;
             _objectContext = context.Get<ObjectContext>();
             _tabHelper = context.Get<TabHelper>();
-            _pregSqlDataHelper = context.Get<PregSqlDataHelper>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
         }
@@ -58,18 +56,6 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
                 .ClickEmployerFirstNameChange()
                 .UpdateEmployerFirstNameAndContinue("NewFirstName")
                 .InviteEmployer();
-        }
-
-        [When(@"the employer sets up the user")]
-        public void WhenTheEmployerSetsUpTheUser()
-        {
-            string email = _objectContext.GetRegisteredEmail();
-
-            var uri = new Uri(new Uri($"https://{new Uri(UrlConfig.EmployerApprenticeshipService_BaseUrl).Host}"), $"/service/register/{_pregSqlDataHelper.GetReference(email)}").AbsoluteUri;
-
-            _tabHelper.OpenInNewTab(uri);
-
-            AccountCreationStepsHelper.RegisterUserAccount(new StubSignInEmployerPage(_context), email).DoNotEnterNameAndContinue().ConfirmNameAndContinue().ClickContinueButtonToAcknowledge();
         }
 
         [When(@"the employer adds PAYE from TaskList Page")]

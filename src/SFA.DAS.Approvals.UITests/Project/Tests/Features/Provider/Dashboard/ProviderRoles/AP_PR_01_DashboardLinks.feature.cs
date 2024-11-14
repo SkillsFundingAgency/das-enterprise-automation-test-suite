@@ -73,19 +73,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.Provider.Dashboard.Pr
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings(string user, string[] exampleTags)
+        public virtual void VerifyLoginForUserCanAccessAndUpdateNotificationSettings(string userRole, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Pasproviderrole"};
+                    "approvals",
+                    "regression",
+                    "pasproviderrole"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("User", user);
+            argumentsOfScenario.Add("UserRole", userRole);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for user can access and update notification settings", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 4
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -95,16 +97,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
- testRunner.Given(string.Format("the provider logs in as a {0}", user), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 6
- testRunner.When("the user navigates to notification settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 7
- testRunner.Then("the user is able to choose to receive notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("the provider logs in as a {0}", userRole), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
+ testRunner.When("the user navigates to notification settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 9
+ testRunner.Then("the user is able to choose to receive notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
  testRunner.And("the user is able to choose No notification emails", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -113,115 +115,50 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: Viewer")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_Viewer()
         {
-#line 4
+#line 6
 this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Viewer", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: Contributor")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_Contributor()
         {
-#line 4
+#line 6
 this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: Contributor wi" +
-            "th approval")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
+        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: ContributorWit" +
+            "hApproval")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_ContributorWithApproval()
         {
-#line 4
-this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Contributor with approval", ((string[])(null)));
+#line 6
+this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("ContributorWithApproval", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: Account Owner")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
+        [NUnit.Framework.DescriptionAttribute("Verify login for user can access and update notification settings: AccountOwner")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerifyLoginForUserCanAccessAndUpdateNotificationSettings_AccountOwner()
         {
-#line 4
-this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("Account Owner", ((string[])(null)));
-#line hidden
-        }
-        
-        public virtual void VerifyLoginForUserCanAccessOrganisationsAndAgreements(string user, string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "Pasproviderrole"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("User", user);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for user can access organisations and agreements", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 18
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 19
- testRunner.Given(string.Format("the provider logs in as a {0}", user), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 20
- testRunner.Then("the user can view organisations and agreements", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: Viewer")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
-        public void VerifyLoginForUserCanAccessOrganisationsAndAgreements_Viewer()
-        {
-#line 18
-this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Viewer", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: Contributor")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
-        public void VerifyLoginForUserCanAccessOrganisationsAndAgreements_Contributor()
-        {
-#line 18
-this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: Contributor with a" +
-            "pproval")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
-        public void VerifyLoginForUserCanAccessOrganisationsAndAgreements_ContributorWithApproval()
-        {
-#line 18
-this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Contributor with approval", ((string[])(null)));
-#line hidden
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify login for user can access organisations and agreements: Account Owner")]
-        [NUnit.Framework.CategoryAttribute("Pasproviderrole")]
-        public void VerifyLoginForUserCanAccessOrganisationsAndAgreements_AccountOwner()
-        {
-#line 18
-this.VerifyLoginForUserCanAccessOrganisationsAndAgreements("Account Owner", ((string[])(null)));
+#line 6
+this.VerifyLoginForUserCanAccessAndUpdateNotificationSettings("AccountOwner", ((string[])(null)));
 #line hidden
         }
     }
