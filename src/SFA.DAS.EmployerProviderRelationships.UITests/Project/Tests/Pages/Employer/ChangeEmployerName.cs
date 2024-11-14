@@ -31,9 +31,7 @@ public class ReadTheEmployerAgreementPage : RegistrationBasePage
 {
     protected override string PageTitle => "Read the employer agreement";
 
-    private static By FirstName => By.CssSelector("input#EmployerContactFirstName");
-
-    private static By LastName => By.CssSelector("input#EmployerContactLastName");
+    private static By AgreementHeader => By.CssSelector("#agreement-list .govuk-heading-l");
 
     protected override By ContinueButton => By.CssSelector("button.govuk-button[id='continue'][type='submit']");
 
@@ -43,7 +41,7 @@ public class ReadTheEmployerAgreementPage : RegistrationBasePage
     {
         VerifyPage();
 
-        VerifyPage(PageHeader, $"Agreement between {orgName.ToUpperInvariant()} and");
+        VerifyPage(AgreementHeader, $"Agreement between {orgName.ToUpperInvariant()} and");
     }
 
     public CreateYourApprenticeshipServiceAccount ReturnToCreateYourApprenticeshipServiceAccountr()
