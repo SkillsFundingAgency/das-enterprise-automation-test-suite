@@ -27,7 +27,6 @@ namespace SFA.DAS.ConfigurationBuilder
                 ReservationsDbConnectionString = GetConnectionString(dbDevConfig.ReservationsDbName),
                 PermissionsDbConnectionString = GetConnectionString(dbDevConfig.PermissionsDbName),
                 PublicSectorReportingConnectionString = GetConnectionString(dbDevConfig.PublicSectorReportingDbName),
-                PregDbConnectionString = GetConnectionString(dbDevConfig.PregDbName),
                 TPRDbConnectionString = GetConnectionString(dbDevConfig.TPRDbName),
                 UsersDbConnectionString = GetConnectionString(dbDevConfig.UsersDbName),
                 TMDbConnectionString = GetConnectionString(dbDevConfig.TMDbName),
