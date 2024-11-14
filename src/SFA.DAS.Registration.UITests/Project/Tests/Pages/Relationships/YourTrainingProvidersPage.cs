@@ -56,7 +56,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         public AddAsATrainingProviderPage ViewProviderRequests(ProviderConfig providerConfig, string requestId)
         {
-            VerifyFromMultipleElements(TableRows, providerConfig.Name);
+            VerifyFromMultipleElements(TableRows, providerConfig.Name.ToUpperInvariant());
 
             formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
 
