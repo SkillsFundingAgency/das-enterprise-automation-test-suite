@@ -133,12 +133,15 @@ this.ScenarioInitialize(scenarioInfo);
                         "table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.Then("Employer can review the Change of Price request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Employer is notified that a provider has requested a price change through email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.And("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Employer can review the Change of Price request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 19
+ testRunner.And("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 20
  testRunner.And("validate earnings instalments are updated to reflect the new agreed price of 1500" +
                         "0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -161,7 +164,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_02_2 Provider Initiated Change Of Price Request - Auto-Approve - Total Pr" +
                     "ice Decreased", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 24
+#line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -187,22 +190,22 @@ this.ScenarioInitialize(scenarioInfo);
                             "12",
                             "15000",
                             "true"});
-#line 25
+#line 26
  testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
                         " data", ((string)(null)), table4, "Given ");
 #line hidden
-#line 28
+#line 29
  testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 29
+#line 30
  testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
                         "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 30
+#line 31
  testRunner.And("Provider creates a Change of Price request where Training Price for the apprentic" +
                         "eship is reduced by 500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 31
+#line 32
  testRunner.Then("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -224,7 +227,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_CoC_02_3 Provider Initiated Change Of Price Request - Auto-Approve - Total Pr" +
                     "ice remains the same", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 36
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -250,21 +253,21 @@ this.ScenarioInitialize(scenarioInfo);
                             "12",
                             "18000",
                             "true"});
-#line 37
+#line 38
  testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
                         " data", ((string)(null)), table5, "Given ");
 #line hidden
-#line 40
+#line 41
  testRunner.And("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 41
+#line 42
  testRunner.When("Provider proceeds to create a Change of Price request for flexi payments pilot le" +
                         "arner", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 42
+#line 43
  testRunner.And("Provider creates a Change of Price request where Total price remains the same", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 43
+#line 44
  testRunner.Then("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

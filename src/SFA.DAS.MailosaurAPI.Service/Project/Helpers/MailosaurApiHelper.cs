@@ -16,9 +16,21 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     private readonly DateTime dateTime = DateTime.Now;
 
-    public string GetLinkBySubject(string email, string subject, string linkText)
+    public string GetLinkFromMessage(Message message, string linkText)
     {
-        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and link text '{linkText}' after {dateTime:HH:mm:ss}");
+        foreach (var linkFound in message.Html.Links)
+        {
+            _objectContext.SetDebugInformation($"Message links found with text '{linkFound.Text}', href {linkFound.Href}");
+        }
+
+        var link = message.Html.Links.FirstOrDefault(x => x.Href.ContainsCompareCaseInsensitive("https://") && (linkText == string.Empty || x.Text.ContainsCompareCaseInsensitive(linkText)));
+
+        return link.Href;
+    }
+
+    public Message GetEmailBody(string email, string subject, string emailText)
+    {
+        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {dateTime:HH:mm:ss}");
 
         var mailosaurAPIUser = GetMailosaurAPIUser(email);
 
@@ -32,16 +44,9 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
 
-        _objectContext.SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss}");
+        _objectContext.SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss} with body {message.Text.Body}");
 
-        foreach (var linkFound in message.Html.Links)
-        {
-            _objectContext.SetDebugInformation($"Message links found with text '{linkFound.Text}', href {linkFound.Href}");
-        }
-
-        var link = message.Html.Links.FirstOrDefault(x => x.Href.ContainsCompareCaseInsensitive("https://") && (linkText == string.Empty || x.Text.ContainsCompareCaseInsensitive(linkText)));
-
-        return link.Href;
+        return message;
     }
 
     internal async Task DeleteInbox()
