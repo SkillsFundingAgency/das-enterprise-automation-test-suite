@@ -4,7 +4,6 @@ using SFA.DAS.MongoDb.DataGenerator;
 using SFA.DAS.MongoDb.DataGenerator.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers;
-using SFA.DAS.TestDataExport.Helper;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
@@ -16,9 +15,9 @@ namespace SFA.DAS.Registration.UITests.Project
     public class Hooks(ScenarioContext context)
     {
         private readonly DbConfig _dbConfig = context.Get<DbConfig>();
+
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
-        private readonly TryCatchExceptionHelper _tryCatch = context.Get<TryCatchExceptionHelper>();
-        private PregSqlDataHelper _pregSqlDataHelper;
+
 
         [BeforeScenario(Order = 21)]
         public void Navigate() => context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
@@ -36,8 +35,7 @@ namespace SFA.DAS.Registration.UITests.Project
 
             var mailosaurEmaildomain = mailosaurUser.DomainName;
 
-            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "asperfautomation.com" :
-                tags.Any(x => x.ContainsCompareCaseInsensitive("providerleadregistration")) ? "mailinator.com" : mailosaurEmaildomain;
+            var emaildomain = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "asperfautomation.com" : mailosaurEmaildomain;
 
             var aornDataHelper = new AornDataHelper();
 
@@ -54,7 +52,9 @@ namespace SFA.DAS.Registration.UITests.Project
             context.Set(new TprSqlDataHelper(_dbConfig, _objectContext, aornDataHelper));
 
             context.Set(new CommitmentsSqlHelper(_objectContext, _dbConfig));
+
             context.Set(new EmployerFinanceSqlHelper(_objectContext, _dbConfig));
+
             context.Set(new TransferMatchingSqlDataHelper(_objectContext, _dbConfig));
 
             var randomEmail = registrationDatahelpers.RandomEmail;
@@ -63,13 +63,5 @@ namespace SFA.DAS.Registration.UITests.Project
 
             if (randomEmail.Contains(mailosaurEmaildomain)) mailosaurUser.AddToEmailList(randomEmail);
         }
-
-        [BeforeScenario(Order = 23)]
-        [Scope(Tag = "providerleadregistration")]
-        public void SetUpProviderLeadRegistrationDataHelpers() => context.Set(_pregSqlDataHelper = new PregSqlDataHelper(_objectContext, _dbConfig));
-
-        [AfterScenario(Order = 22)]
-        [Scope(Tag = "providerleadregistration")]
-        public void ClearInvitation() => _tryCatch.AfterScenarioException(() => _pregSqlDataHelper.DeleteInvitation(_objectContext.GetRegisteredEmail()));
     }
 }

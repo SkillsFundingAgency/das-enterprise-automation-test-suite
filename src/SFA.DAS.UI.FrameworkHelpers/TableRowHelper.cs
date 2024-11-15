@@ -8,8 +8,10 @@ namespace SFA.DAS.UI.FrameworkHelpers;
 
 public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCompletionHelper formCompletionHelper)
 {
-    public List<Dictionary<string, string>> GetTableRows(string tableSelector = "table", string tableRowSelector = "tbody tr", int tablePosition = 0)
+    public List<Dictionary<string, string>> GetTableRows(string tableSelector = "table", string tableRowSelector = "tbody tr", int tablePosition = 0, string linkcolumnName = "")
     {
+        formCompletionHelper.SetDebugInformation($"GetTableRows using '{tableSelector}', '{tableRowSelector}' and position '{tablePosition}' ");
+
         var table = pageInteractionHelper.FindElements(By.CssSelector(tableSelector)).ElementAtOrDefault(tablePosition);
 
         var headerRow = table?.FindElements(By.CssSelector("thead th"));
@@ -19,6 +21,8 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
         List<Dictionary<string, string>> tableData = [];
 
         List<string> headerData = headerRow.Select(x => x.Text).ToList();
+
+        formCompletionHelper.SetDebugInformation($"Table Headers - '{string.Join(",", headerData)}'");
 
         foreach (var row in rows)
         {
@@ -36,7 +40,14 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
 
                 var cellValue = cell.Text.Trim();
 
+                if (columnName == linkcolumnName)
+                {
+                    cellValue = $"{cellValue}({cell.FindElement(By.CssSelector("a")).GetAttribute("href")})";
+                }
+
                 rowData.Add(columnName, cellValue);
+
+                formCompletionHelper.SetDebugInformation($"Found '{columnName} - {cellValue}'");
             }
 
             tableData.Add(rowData);

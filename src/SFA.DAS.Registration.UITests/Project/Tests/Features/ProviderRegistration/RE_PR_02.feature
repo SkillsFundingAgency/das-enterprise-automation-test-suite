@@ -9,7 +9,6 @@ Scenario: RE_PR_02 Provider Lead Registration
 	Then the invited employer status is "Account creation not started"
 	When the provider resends the invite after editing details
 	Then the email address is not editable
-	When the employer sets up the user
 	Then the invited employer status is "Account creation started"
 	And view status "Account creation started:" is "today"
 	And view status "PAYE scheme added:" is "PAYE scheme not added"

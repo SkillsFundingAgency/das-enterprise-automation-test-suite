@@ -25,10 +25,10 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
     public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : PermissionBasePageForTrainingProviderPage(context)
     {
-        protected override string PageTitle => $"Add {providerConfig.Name} as a training provider";
+        protected override string PageTitle => $"Add {providerConfig.Name.ToUpperInvariant()} as a training provider";
     }
 
-    public class YourTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
+    public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
     {
         protected override string PageTitle => "Manage training providers";
 
@@ -40,14 +40,14 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         private static By TableRows => By.ClassName("govuk-table__row");
 
-        public YourTrainingProvidersPage VerifyYouHaveAddedNotification()
+        public ManageTrainingProvidersPage VerifyYouHaveAddedNotification()
         {
             VerifyPage(NotificationBanner, "You've added");
 
             return this;
         }
 
-        public YourTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
+        public ManageTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
         {
             VerifyPage(NotificationBanner, "You've set permissions for");
 
@@ -56,7 +56,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         public AddAsATrainingProviderPage ViewProviderRequests(ProviderConfig providerConfig, string requestId)
         {
-            VerifyFromMultipleElements(TableRows, providerConfig.Name);
+            VerifyFromMultipleElements(TableRows, providerConfig.Name.ToUpperInvariant());
 
             formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
 
