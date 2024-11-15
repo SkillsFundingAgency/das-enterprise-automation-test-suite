@@ -45,9 +45,6 @@
 	  <None Update="Project\Helpers\SqlScripts\EasAppfbTestDataCleanUp.sql">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Project\Helpers\SqlScripts\EasPregTestDataCleanUp.sql">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </None>
 	  <None Update="Project\Helpers\SqlScripts\EasPfbeTestDataCleanUp.sql">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </None>

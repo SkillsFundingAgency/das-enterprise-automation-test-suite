@@ -4,8 +4,6 @@ using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.ProviderLeadRegistration;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
@@ -18,16 +16,12 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
     public class ProviderRegistrationSteps
     {
         private readonly ScenarioContext _context;
-        private readonly ObjectContext _objectContext;
-        private readonly TabHelper _tabHelper;
         private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper;
         private readonly EmployerHomePageStepsHelper _homePageStepsHelper;
 
         public ProviderRegistrationSteps(ScenarioContext context)
         {
             _context = context;
-            _objectContext = context.Get<ObjectContext>();
-            _tabHelper = context.Get<TabHelper>();
             _providerHomePageStepsHelper = new ProviderHomePageStepsHelper(_context);
             _homePageStepsHelper = new EmployerHomePageStepsHelper(context);
         }

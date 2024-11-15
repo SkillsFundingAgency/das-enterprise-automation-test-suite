@@ -2,6 +2,8 @@
 
 public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 {
+    protected readonly ScenarioContext context = context;
+
     protected readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
 
     protected readonly EmployerHomePageStepsHelper _employerHomePageHelper = new(context);

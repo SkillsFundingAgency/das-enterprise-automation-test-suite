@@ -22,7 +22,6 @@
         public string UsersDbConnectionString { get; set; }
         public string PermissionsDbConnectionString { get; set; }
         public string PublicSectorReportingConnectionString { get; set; }
-        public string PregDbConnectionString { get; set; }
         public string TPRDbConnectionString { get; set; }
         public string TMDbConnectionString { get; set; }
         public string CRSDbConnectionString { get; set; }
