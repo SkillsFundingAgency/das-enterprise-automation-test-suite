@@ -248,3 +248,4 @@ SFA.DAS.Learners/Tools/PhantomJS/tools/phantomjs/ChangeLog
 /src/SFA.DAS.Approvals.UITests/*.csv
 
 src/.idea/.idea.SFA.DAS.TestAutomation/.idea/
+src/SFA.DAS.EmplomentChecks.APITests/Project/Tests/Features/OutputInterface_ResultIsRegisteredWithEmployerIncentives/EC_API_201_OutputInterface_ResultIsRegisteredWithEmployerIncentives.feature.cs
