@@ -1,25 +1,21 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class YouAccountNameHasBeenChangeToPage : RegistrationBasePage
 {
-    public class YouAccountNameHasBeenChangeToPage : RegistrationBasePage
+    private string NewAccountName { get; set; }
+
+    protected override string PageTitle => $"Your account name has been changed to {NewAccountName}";
+    protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
+
+    public YouAccountNameHasBeenChangeToPage(ScenarioContext context, string newAccountName) : base(context)
     {
-        private string NewAccountName { get; set; }
+        NewAccountName = newAccountName;
+        VerifyPage();
+    }
 
-        protected override string PageTitle => $"Your account name has been changed to {NewAccountName}";
-        protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
-
-        public YouAccountNameHasBeenChangeToPage(ScenarioContext context, string newAccountName) : base(context)
-        {
-            NewAccountName = newAccountName;
-            VerifyPage();
-        }
-
-        public CreateYourEmployerAccountPage ContinueToCreateYourEmployerAccountPage()
-        {
-            Continue();
-            return new CreateYourEmployerAccountPage(context);
-        }
+    public CreateYourEmployerAccountPage ContinueToCreateYourEmployerAccountPage()
+    {
+        Continue();
+        return new CreateYourEmployerAccountPage(context);
     }
 }

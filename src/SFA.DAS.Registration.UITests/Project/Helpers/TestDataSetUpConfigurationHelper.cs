@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.Registration.UITests.Project.Helpers;
+﻿namespace SFA.DAS.Registration.UITests.Project.Helpers;
 
 public class TestDataSetUpConfigurationHelper(ScenarioContext context)
 {
