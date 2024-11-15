@@ -53,31 +53,24 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
 
-        _objectContext.SetDebugInformation($"Mailosaur details used are, Token: {mailosaurAPIUser.ApiToken}, serverName: {mailosaurAPIUser.ServerName}, serverId: {mailosaurAPIUser.ServerId}");
-
         var criteria = new SearchCriteria()
         {
             SentTo = email,
             Subject = subject
         };
 
-        try
+        var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
+
+        _objectContext.SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss} with body {message.Text.Body}");
+
+        if (message.Text.Body.Contains(emailText))
         {
-            var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
-            if (message.Text.Body.Contains(emailText))
-            {
-                _objectContext.SetDebugInformation($"Text found in the email body");
-                return true;
-            }
-            else
-            {
-                _objectContext.SetDebugInformation($"Text not found in the email body");
-                return false;
-            }
+            _objectContext.SetDebugInformation($"Text found in the email body");
+            return true;
         }
-        catch (Exception ex)
+        else
         {
-            _objectContext.SetDebugInformation($"Error retrieving email: {ex.Message}");
+            _objectContext.SetDebugInformation($"Text not found in the email body");
             return false;
         }
     }
@@ -113,8 +106,6 @@ public class MailosaurApiHelper(ScenarioContext context)
     private MailosaurApiConfig GetMailosaurAPIUser(string email)
     {
         var serveId = email.Split('@')[1].Split(".")[0];
-
-        _objectContext.SetDebugInformation($" Pipeline ServerId: ${mailosaurApiUsers.First().ServerId} ");
 
         return mailosaurApiUsers.Single(x => x.ServerId == serveId);
     }
