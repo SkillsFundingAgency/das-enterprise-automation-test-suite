@@ -1,6 +1,5 @@
 ﻿using Mailosaur;
 using Mailosaur.Models;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
@@ -17,24 +16,8 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     private readonly DateTime dateTime = DateTime.Now;
 
-    public string GetLinkBySubject(string email, string subject, string linkText)
+    public string GetLinkFromMessage(Message message, string linkText)
     {
-        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and link text '{linkText}' after {dateTime:HH:mm:ss}");
-
-        var mailosaurAPIUser = GetMailosaurAPIUser(email);
-
-        var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
-
-        var criteria = new SearchCriteria()
-        {
-            SentTo = email,
-            Subject = subject
-        };
-
-        var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
-
-        _objectContext.SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss}");
-
         foreach (var linkFound in message.Html.Links)
         {
             _objectContext.SetDebugInformation($"Message links found with text '{linkFound.Text}', href {linkFound.Href}");
@@ -45,7 +28,7 @@ public class MailosaurApiHelper(ScenarioContext context)
         return link.Href;
     }
 
-    public bool ValidateEmailBodyContainsText(string email, string subject, string emailText)
+    public Message GetEmailBody(string email, string subject, string emailText)
     {
         _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {dateTime:HH:mm:ss}");
 
@@ -63,16 +46,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         _objectContext.SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss} with body {message.Text.Body}");
 
-        if (message.Text.Body.Contains(emailText))
-        {
-            _objectContext.SetDebugInformation($"Text found in the email body");
-            return true;
-        }
-        else
-        {
-            _objectContext.SetDebugInformation($"Text not found in the email body");
-            return false;
-        }
+        return message;
     }
 
     internal async Task DeleteInbox()

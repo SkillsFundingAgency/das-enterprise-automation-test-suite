@@ -1,49 +1,45 @@
-﻿using TechTalk.SpecFlow;
-using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
-using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.FrameworkHelpers;
+﻿using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
-using NUnit.Framework;
+using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using SFA.DAS.ProviderLogin.Service.Project;
+using SFA.DAS.Registration.UITests.Project;
+using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class PaymentsSimplificationNotificationSteps
+    public class PaymentsSimplificationNotificationSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly TabHelper _tabHelper;
-        private readonly ProviderConfig _providerConfig;
-        private readonly ObjectContext _objectContext;
-        private MailosaurApiHelper _mailosaurApiHelper;
-
-
-        public PaymentsSimplificationNotificationSteps(ScenarioContext context)
-        {
-            _context = context;
-            _tabHelper = _context.Get<TabHelper>();
-            _providerConfig = _context.GetProviderConfig<ProviderConfig>();
-            _objectContext = _context.Get<ObjectContext>();
-            _mailosaurApiHelper = _context.Get<MailosaurApiHelper>();
-        }
+        private readonly ScenarioContext context = context;
 
         [When(@"Employer is notified that a provider has requested a price change through email")]
         public void EmployerIsNotifiedThatAProviderHasRequestedAPriceChangeThroughEmail()
         {
-            var loggedInEmployerDetails = new LoggedInEmployerDetails(_objectContext);
+            var tabHelper = context.Get<TabHelper>();
 
-            var userDetails = loggedInEmployerDetails.GetLoggedInEmployerUserDetails();
+            var objectContext = context.Get<ObjectContext>();
 
-            var mailosaurHelper = new MailosaurApiHelper(_context);
+            var providerConfig = context.GetProviderConfig<ProviderConfig>();
 
-            var emailText = $"{_providerConfig.Name} has requested a change to the total agreed apprenticeship price for";
+            var mailosaurApiHelper = context.Get<MailosaurApiHelper>();
 
-            string subject = $"{_providerConfig.Name} requested a price change";
+            var emailText = $"{providerConfig.Name} has requested a change to the total agreed apprenticeship price for";
 
-            Assert.IsTrue(_mailosaurApiHelper.ValidateEmailBodyContainsText(userDetails.Email, subject, emailText));
+            string subject = $"{providerConfig.Name} requested a price change";
 
-            _tabHelper.OpenInNewTab(_mailosaurApiHelper.GetLinkBySubject(userDetails.Email, subject, $"https://approvals.{EnvironmentConfig.EnvironmentName}-eas.apprenticeships.education.gov.uk/{userDetails.HashedId}/apprentices/"));
+            var email = objectContext.GetRegisteredEmail();
+
+            var emailMessage = mailosaurApiHelper.GetEmailBody(email, subject, emailText);
+
+            StringAssert.Contains(emailText, emailMessage.Text.Body);
+
+            var link = mailosaurApiHelper.GetLinkFromMessage(emailMessage, $"/{objectContext.GetHashedAccountId()}/apprentices/");
+
+            tabHelper.OpenInNewTab(link);
         }
     }
 }
