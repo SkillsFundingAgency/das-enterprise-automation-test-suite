@@ -26,7 +26,6 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
         OpenEmpInviteFromProviderAndRegister().ChangeName().ChangeName(eprDataHelper.EmployerFirstName, eprDataHelper.EmployerLastName).CreateAccount().GoToHomePage();
     }
 
-
     private CreateYourApprenticeshipServiceAccount OpenEmpInviteFromProviderAndRegister()
     {
         OpenEmpInviteFromProvider();

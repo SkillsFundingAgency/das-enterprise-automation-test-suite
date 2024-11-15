@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ProvideFeedback.UITests.Project.Tests.Pages.Provider;
 
-public class FeedbackOverviewPage(ScenarioContext context, bool navigate = false) : ProviderFeedbackBasePage(context, true)
+public class FeedbackOverviewPage(ScenarioContext context) : ProviderFeedbackBasePage(context, true)
 {
     public void VerifyApprenticeFeedbackRating(string period, string expectedRating)
     {
