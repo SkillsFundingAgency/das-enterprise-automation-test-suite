@@ -1,5 +1,6 @@
 ﻿using Mailosaur;
 using Mailosaur.Models;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Linq;
@@ -112,6 +113,8 @@ public class MailosaurApiHelper(ScenarioContext context)
     private MailosaurApiConfig GetMailosaurAPIUser(string email)
     {
         var serveId = email.Split('@')[1].Split(".")[0];
+
+        _objectContext.SetDebugInformation($" Pipeline ServerId: ${mailosaurApiUsers.First().ServerId} ");
 
         return mailosaurApiUsers.Single(x => x.ServerId == serveId);
     }
