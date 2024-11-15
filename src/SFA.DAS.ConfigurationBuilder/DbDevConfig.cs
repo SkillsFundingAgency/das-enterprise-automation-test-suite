@@ -26,7 +26,6 @@
         public string UsersDbName { get; set; }
         public string PublicSectorReportingDbName { get; set; }
         public string PermissionsDbName { get; set; }
-        public string PregDbName { get; set; }
         public string TPRDbName { get; set; }
         public string TMDbName { get; set; }
         public string CrsDbName { get; set; }
