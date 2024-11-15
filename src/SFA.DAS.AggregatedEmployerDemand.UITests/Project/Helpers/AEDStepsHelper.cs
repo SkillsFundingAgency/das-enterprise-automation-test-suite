@@ -1,7 +1,5 @@
-﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+﻿using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
-using System.Net.Mail;
 
 namespace SFA.DAS.AggregatedEmployerDemand.UITests.Project.Helpers;
 
