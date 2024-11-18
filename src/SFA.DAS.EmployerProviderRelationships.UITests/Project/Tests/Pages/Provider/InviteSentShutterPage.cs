@@ -12,12 +12,13 @@ public class InviteSentShutterPage : ProviderRelationshipsBasePage
 
     public InviteSentShutterPage(ScenarioContext context, bool verifyPayeandAorn) : base(context)
     {
-        MultipleVerifyPage([() => VerifyPage(GovBody, "Your organisation has already invited"),() => VerifyPage(GovBody, eprDataHelper.EmployerEmail)]);
-        
-        if (verifyPayeandAorn)
-        {
-            MultipleVerifyPage([() => VerifyPage(InsetText, eprDataHelper.EmployerPaye), () => VerifyPage(InsetText, eprDataHelper.EmployerAorn)]);
-        }
+        MultipleVerifyPage(
+            [
+              () => VerifyFromMultipleElements(GovBody, "Your organisation has already invited"),
+              () => VerifyFromMultipleElements(GovBody, eprDataHelper.EmployerEmail),
+              () => !verifyPayeandAorn || VerifyPage(InsetText, eprDataHelper.EmployerPaye),
+              () => !verifyPayeandAorn || VerifyPage(InsetText, eprDataHelper.EmployerAorn)
+            ]);
     }
 
     public EmployerAccountDetailsPage GoToEmpAccountDetails()

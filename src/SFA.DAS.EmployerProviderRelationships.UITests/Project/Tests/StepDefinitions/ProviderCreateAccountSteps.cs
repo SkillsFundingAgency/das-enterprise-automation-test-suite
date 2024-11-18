@@ -12,6 +12,8 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
         eprDataHelper.EmployerEmail = objectContext.GetRegisteredEmail();
 
         new AddAnEmployerPage(context).StartNowToAddAnEmployer().EnterNewEmployerEmail().SubmitPayeAndContinueToInvite().SubmitEmployerName().SendInvitation().GoToViewEmployersPage().VerifyPendingRequest();
+
+        SetRequestId(RequestType.CreateAccount);
     }
 
     [Then(@"the employer declines the create account request")]

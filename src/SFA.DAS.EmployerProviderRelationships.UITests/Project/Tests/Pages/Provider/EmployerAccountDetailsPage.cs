@@ -4,7 +4,7 @@ public class EmployerAccountDetailsPage(ScenarioContext context) : ProviderRelat
 {
     protected override By ContinueButton => By.CssSelector("button.govuk-button[type='submit']");
 
-    private static By ViewEmployersPage => By.LinkText("View employers and manage permissions page");
+    private static By ViewEmployersPage => By.LinkText("View employers and manage permissions");
 
     protected override string PageTitle => "Employer account details";
 
