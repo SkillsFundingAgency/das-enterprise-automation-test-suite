@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MF_PR_02_NonViewerRoles")]
-    [NUnit.Framework.IgnoreAttribute("Ignored feature")]
     public partial class MF_PR_02_NonViewerRolesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "ignore"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_MF_PR_02_NonViewerRoles.feature"
 #line hidden
@@ -78,7 +76,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         public virtual void VerfiyLoginForNonViewerUser(string user, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Securefundingproviderrole"};
+                    "approvals",
+                    "regression",
+                    "pasproviderrole"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -87,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("User", user);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verfiy login for non Viewer user", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -97,16 +97,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given(string.Format("the provider logs in as a {0}", user), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.Then("the user can create reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 8
+#line 9
  testRunner.And("the user can add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 9
+#line 10
  testRunner.And("the user can delete reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -115,31 +115,37 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Contributor")]
-        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerfiyLoginForNonViewerUser_Contributor()
         {
-#line 5
+#line 6
 this.VerfiyLoginForNonViewerUser("Contributor", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Contributor with approval")]
-        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: ContributorWithApproval")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerfiyLoginForNonViewerUser_ContributorWithApproval()
         {
-#line 5
-this.VerfiyLoginForNonViewerUser("Contributor with approval", ((string[])(null)));
+#line 6
+this.VerfiyLoginForNonViewerUser("ContributorWithApproval", ((string[])(null)));
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: Account Owner")]
-        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        [NUnit.Framework.DescriptionAttribute("Verfiy login for non Viewer user: AccountOwner")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerfiyLoginForNonViewerUser_AccountOwner()
         {
-#line 5
-this.VerfiyLoginForNonViewerUser("Account Owner", ((string[])(null)));
+#line 6
+this.VerfiyLoginForNonViewerUser("AccountOwner", ((string[])(null)));
 #line hidden
         }
     }

@@ -29,10 +29,10 @@ public class HomePageNavigationSteps(ScenarioContext context)
        new YourApprenticeshipAdvertsHomePage(context, true, false).GoToHomePage();
     }
 
-    [Then(@"Your training providers link should direct user to Your training providers page")]
-    public void YourTrainingProvidersLinkShouldDirectUserToYourTrainingProvidersPage()
+    [Then(@"Manage training providers link should direct user to manage training providers page")]
+    public void ManageTrainingProvidersLinkShouldDirectUserToManageTrainingProvidersPage()
     {
-        new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions().GoToHomePage();
+        new ManageTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions().GoToHomePage();
     }
 
     [Then(@"Your finances link should direct user to Finance page")]

@@ -1,22 +1,16 @@
-﻿using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Helpers;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+public class MultipleAccountsLoginHelper(ScenarioContext context, MultipleEasAccountUser multipleAccountUser) : EmployerPortalLoginHelper(context)
 {
-    public class MultipleAccountsLoginHelper(ScenarioContext context, MultipleEasAccountUser multipleAccountUser) : EmployerPortalLoginHelper(context)
-    {
 
-        public string OrganisationName { get; set; } = multipleAccountUser.OrganisationName;
+    public string OrganisationName { get; set; } = multipleAccountUser.OrganisationName;
 
-        protected override void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) =>
-            loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, OrganisationName, isLevy);
+    protected override void SetLoginCredentials(EasAccountUser loginUser, bool isLevy) =>
+        loginCredentialsHelper.SetLoginCredentials(loginUser.Username, loginUser.IdOrUserRef, OrganisationName, isLevy);
 
-        protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(context).GoToStubSignInPage().Login(loginUser).ContinueToYourAccountsPage().GoToHomePage(objectContext.GetOrganisationName());
+    protected override HomePage Login(EasAccountUser loginUser) => new CreateAnAccountToManageApprenticeshipsPage(context).GoToStubSignInPage().Login(loginUser).ContinueToYourAccountsPage().GoToHomePage(objectContext.GetOrganisationName());
 
-        public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(StubSignInEmployerPage signInPage) => signInPage.Login(GetLoginCredentials()).ContinueToMyAccountTransferFundingPage();
+    public MyAccountTransferFundingPage LoginToMyAccountTransferFunding(StubSignInEmployerPage signInPage) => signInPage.Login(GetLoginCredentials()).ContinueToMyAccountTransferFundingPage();
 
-        public new HomePage ReLogin() => Login(GetLoginCredentials());
-    }
+    public new HomePage ReLogin() => Login(GetLoginCredentials());
 }
