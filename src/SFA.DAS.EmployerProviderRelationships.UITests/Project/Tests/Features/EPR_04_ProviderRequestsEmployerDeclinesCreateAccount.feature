@@ -1,4 +1,4 @@
-﻿Feature: EPR_06_ProviderRequestsEmployerDeclinesCreateAccount
+﻿Feature: EPR_04_ProviderRequestsEmployerDeclinesCreateAccount
 
 @addlevyfunds
 @createemployeraccount
@@ -7,6 +7,6 @@
 @regression
 @providerleadregistration
 @employerproviderrelationships
-Scenario: EPR_06_ProviderRequestsEmployerDeclinesCreateAccount
+Scenario: EPR_04_ProviderRequestsEmployerDeclinesCreateAccount
 	Given a provider requests employer to create account with all permission
 	Then the employer declines the create account request

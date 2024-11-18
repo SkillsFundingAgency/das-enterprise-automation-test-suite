@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
+namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features.Shutter
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPR_05_ShutterForMultiOrgEmployer")]
-    public partial class EPR_05_ShutterForMultiOrgEmployerFeature
+    [NUnit.Framework.DescriptionAttribute("EPR_01_ShutterForMultiAccountEmployer")]
+    public partial class EPR_01_ShutterForMultiAccountEmployerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EPR_05_ShutterForMultiOrgEmployer.feature"
+#line 1 "EPR_01_ShutterForMultiAccountEmployer.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_05_ShutterForMultiOrgEmployer", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features/Shutter", "EPR_01_ShutterForMultiAccountEmployer", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPR_05_ShutterForMultiOrgEmployer")]
+        [NUnit.Framework.DescriptionAttribute("EPR_01_ShutterForMultiAccountEmployer")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
         [NUnit.Framework.CategoryAttribute("multiaccount")]
-        public void EPR_05_ShutterForMultiOrgEmployer()
+        public void EPR_01_ShutterForMultiAccountEmployer()
         {
             string[] tagsOfScenario = new string[] {
                     "employerproviderrelationships",
                     "multiaccount"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_05_ShutterForMultiOrgEmployer", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01_ShutterForMultiAccountEmployer", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -95,8 +95,8 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Then("the provider should be shown a shutter page where an employer has multiple organi" +
-                        "sations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the provider should be shown a shutter page where an employer has multiple accoun" +
+                        "ts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
