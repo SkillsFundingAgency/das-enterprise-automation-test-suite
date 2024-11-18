@@ -28,3 +28,4 @@ Scenario: FLP_UI_03 Change Of Price Employer Initiated Journey
 	And Provider is able to view the pending Change of Price request
 	And Provider can view the details of the Change of Price request 
 	And Provider is able to successfully reject the Change of Price request
+	And Employer is notified that the provider has rejected a price change through email

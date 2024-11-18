@@ -26,7 +26,13 @@ public class AedStepsHelper
 
         var email = _context.Get<AedDataHelper>().Email;
 
-        _tabHelper.OpenInNewTab(_context.Get<MailosaurApiHelper>().GetLinkBySubject(email, "Confirm your contact email address", "registerdemand"));
+        var mailosaurApiHelper = _context.Get<MailosaurApiHelper>();
+
+        var emailBody = mailosaurApiHelper.GetEmailBody(email, "Confirm your contact email address", "registerdemand");
+
+        var link = mailosaurApiHelper.GetLinkFromMessage(emailBody, $"registerdemand");
+
+        _tabHelper.OpenInNewTab(link);
 
         new WeveSharedYourInterestWithProviderPage(_context).VerifyContent(email);
     }

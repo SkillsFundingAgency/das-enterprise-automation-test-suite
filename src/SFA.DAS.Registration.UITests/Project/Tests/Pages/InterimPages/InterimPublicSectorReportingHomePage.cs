@@ -1,32 +1,27 @@
-﻿using SFA.DAS.UI.FrameworkHelpers;
-using System;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
+public class InterimPublicSectorReportingHomePage(ScenarioContext context, bool navigate) : InterimEmployerBasePage(context, OpenPublicSectorReporting(context, navigate), false)
 {
-    public class InterimPublicSectorReportingHomePage(ScenarioContext context, bool navigate) : InterimEmployerBasePage(context, OpenPublicSectorReporting(context, navigate), false)
+    protected override string PageTitle => "Annual apprenticeship return";
+
+    protected override string Linktext => Link;
+
+    private static string Link => "Report public sector apprenticeship target";
+
+    private static Action OpenPublicSectorReporting(ScenarioContext context, bool navigate)
     {
-        protected override string PageTitle => "Annual apprenticeship return";
-
-        protected override string Linktext => Link;
-
-        private static string Link => "Report public sector apprenticeship target";
-
-        private static Action OpenPublicSectorReporting(ScenarioContext context, bool navigate)
+        if (navigate)
         {
-            if (navigate)
+            return () =>
             {
-                return () =>
-                {
-                    _ = new InterimApprenticesHomePage(context, false);
+                _ = new InterimApprenticesHomePage(context, false);
 
-                    var helper = context.Get<FormCompletionHelper>();
+                var helper = context.Get<FormCompletionHelper>();
 
-                    helper.ClickLinkByText(Link);
-                };
-            }
-            return null;
+                helper.ClickLinkByText(Link);
+            };
         }
+        return null;
     }
 }
 

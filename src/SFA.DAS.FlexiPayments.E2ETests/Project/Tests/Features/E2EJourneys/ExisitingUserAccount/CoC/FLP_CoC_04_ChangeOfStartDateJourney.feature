@@ -14,6 +14,7 @@ Scenario: FLP_CoC_04 Change Of Start Date Journey - Happy Path
 	When Provider proceeds to create a Change of Start Date request for flexi payments pilot learner
 	And Provider successfully creates a Change of Start Date request
 	And Change of Start Date request details are saved in the StartDateChange table
+	And Employer is notified that the provider has requested a change of Start Date through email
 	Then Employer can review the Change of Start Date request and approve it
 	And the approved Change of Start Date request is saved in the StartDateChange table of Apprenticeship db
 	And validate the new training dates have been updated in the Apprenticeship table of Apprenticeship db
