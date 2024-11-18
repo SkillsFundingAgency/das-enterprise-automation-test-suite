@@ -15,5 +15,6 @@ Scenario: FLP_CoC_03 Employer Initiated Change Of Price Request
 	And Employer successfully creates a Change of Price request to reduce the agreed price to 14500
 	And Employer initiated Change of Price request details are saved in the PriceHistory table
 	Then Provider can review the Change of Price request and approve it
+	And Employer is notified that the provider has approved a price change through email
 	And the approved Change of Price request is saved in the PriceHistory table
 	And validate instalments amounts have been updated in the earnings db to reflect the new agreed price of 14500

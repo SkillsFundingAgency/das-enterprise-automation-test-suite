@@ -131,17 +131,21 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Change of Start Date request details are saved in the StartDateChange table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.Then("Employer can review the Change of Start Date request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Employer is notified that the provider has requested a change of Start Date throu" +
+                        "gh email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
+ testRunner.Then("Employer can review the Change of Start Date request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 19
  testRunner.And("the approved Change of Start Date request is saved in the StartDateChange table o" +
                         "f Apprenticeship db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 19
+#line 20
  testRunner.And("validate the new training dates have been updated in the Apprenticeship table of " +
                         "Apprenticeship db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 20
+#line 21
  testRunner.And("validate the new training dates have been updated in the Apprenticeship table of " +
                         "Commitment db", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
