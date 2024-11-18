@@ -3,9 +3,10 @@ using NUnit.Framework;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.EmployerIncentives.PaymentProcessTests.Models;
 using System;
-using System.Data.SqlClient;
+
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 
 namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 {

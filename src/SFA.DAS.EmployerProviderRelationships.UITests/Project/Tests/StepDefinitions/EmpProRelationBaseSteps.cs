@@ -1,9 +1,9 @@
-﻿
-
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
 
 public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 {
+    protected readonly ScenarioContext context = context;
+
     protected readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
 
     protected readonly EmployerHomePageStepsHelper _employerHomePageHelper = new(context);
@@ -28,14 +28,9 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
     protected EmailAccountFoundPage GoToEmailAccountFoundPage() => GoToSearchEmployerEmailPage().EnterEmployerEmail();
 
-    protected EmailAccountNotFoundPage GoToEmailAccountNotFoundPage() => GoToSearchEmployerEmailPage().EnterNewEmployerEmail();
+    protected void GoToProviderAddAnEmployer() => GoToProviderRelationsHomePage(true);
 
-    protected void GoToProviderRelationsHomePage()
-    {
-        _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
-
-        GoToUrl(UrlConfig.Relations_Provider_BaseUrl(providerConfig.Ukprn));
-    }
+    protected void GoToProviderViewEmployersAndManagePermissions() => GoToProviderRelationsHomePage(false);
 
     protected void OpenEmpInviteFromProvider()
     {
@@ -83,12 +78,21 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
     private void SetRequestId()
     {
-        var request = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, eprDataHelper.EmployerEmail);
+        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, eprDataHelper.EmployerEmail);
 
-        objectContext.SetDebugInformation($"fetched request id from db - '{request.requestId}' with status '{request.requestStatus}'");
+        objectContext.SetDebugInformation($"fetched request id from db - '{requestId}' with status '{requestStatus}'");
 
-        eprDataHelper.RequestId = request.requestId;
+        eprDataHelper.RequestId = requestId;
 
-        eprDataHelper.RequestStatus = request.requestStatus;
+        eprDataHelper.RequestStatus = requestStatus;
+    }
+
+    private void GoToProviderRelationsHomePage(bool addAnEmployer)
+    {
+        var providerHomepage = _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
+
+        if (addAnEmployer) providerHomepage.ClickAddAnEmployerLink();
+
+        else providerHomepage.ClickViewEmployersAndManagePermissionsLink();
     }
 }

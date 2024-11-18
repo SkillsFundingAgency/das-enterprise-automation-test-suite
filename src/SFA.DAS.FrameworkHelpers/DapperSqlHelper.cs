@@ -1,6 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 
 namespace SFA.DAS.FrameworkHelpers;
 

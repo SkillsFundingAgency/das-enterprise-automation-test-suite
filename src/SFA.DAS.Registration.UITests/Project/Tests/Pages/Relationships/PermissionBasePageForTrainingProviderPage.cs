@@ -18,7 +18,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
 
         protected static By ErrorMsg => By.CssSelector(".govuk-error-summary");
 
-        public YourTrainingProvidersPage AcceptProviderRequest()
+        public ManageTrainingProvidersPage AcceptProviderRequest()
         {
             ContinueToConfirm(AllowRequestOption);
 
@@ -32,7 +32,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
             return new(context);
         }
 
-        public YourTrainingProvidersPage AddOrSetPermissions((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
+        public ManageTrainingProvidersPage AddOrSetPermissions((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
         {
             SetAddApprentice(permisssion.cohortpermission);
 

@@ -14,6 +14,7 @@ Scenario: FLP_CoC_02_1 Provider Initiated Change Of Price Request - Total Price 
 	When Provider proceeds to create a Change of Price request for flexi payments pilot learner
 	And Provider creates a Change of Price request where Training Price is increased by 500
 	And Provider initiated Change of Price request details are saved in the PriceHistory table
+	And Employer is notified that a provider has requested a price change through email 
 	Then Employer can review the Change of Price request and approve it
 	And the approved Change of Price request is saved in the PriceHistory table
 	And validate earnings instalments are updated to reflect the new agreed price of 15000
