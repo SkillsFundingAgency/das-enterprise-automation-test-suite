@@ -33,6 +33,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
             return (int)funding != 1 ? new DateTime(endDate.Year, endDate.Month, 1) : endDate;
         }
 
+        public static DateTime GetQualifyingPeriodStartDate()
+        {
+            return DateTime.Today.AddDays(-43);
+        }
+
         public static DateTime GetFirstDateOfCurrentMonth()
         {
             DateTime today = DateTime.Today;

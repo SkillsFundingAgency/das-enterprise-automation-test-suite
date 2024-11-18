@@ -76,18 +76,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.Features.E2EJourneys.Exis
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("FLP_UI_04 Change Of Start Date Journey")]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_04_01 Change Of Start Date Journey")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
         [NUnit.Framework.CategoryAttribute("flexi-payments")]
-        public void FLP_UI_04ChangeOfStartDateJourney()
+        public void FLP_UI_04_01ChangeOfStartDateJourney()
         {
             string[] tagsOfScenario = new string[] {
                     "regression",
                     "flexi-manage-coc",
                     "flexi-payments"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_04 Change Of Start Date Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_04_01 Change Of Start Date Journey", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -162,6 +162,59 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 26
  testRunner.And("Employer is able to successfully reject the Change of Start Date request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("FLP_UI_04_02 Prevent Change Of Start Date after qualifying period")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("flexi-manage-coc")]
+        [NUnit.Framework.CategoryAttribute("flexi-payments")]
+        public void FLP_UI_04_02PreventChangeOfStartDateAfterQualifyingPeriod()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "flexi-manage-coc",
+                    "flexi-payments"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FLP_UI_04_02 Prevent Change Of Start Date after qualifying period", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 32
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                            "ULN_Key",
+                            "training_code",
+                            "date_of_birth",
+                            "start_date_str",
+                            "duration_in_months",
+                            "agreed_price",
+                            "pilot_status"});
+                table28.AddRow(new string[] {
+                            "1",
+                            "91",
+                            "2000/11/20",
+                            "QualifyingPeriodStartDate",
+                            "12",
+                            "18000",
+                            "true"});
+#line 33
+ testRunner.Given("Levy Employer and Pilot provider have a fully approved apprentices with the below" +
+                        " data", ((string)(null)), table28, "Given ");
+#line hidden
+#line 36
+ testRunner.When("Provider searches for the learner on Manage your apprentice page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
+ testRunner.Then("do not display an option to change the actual training start date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

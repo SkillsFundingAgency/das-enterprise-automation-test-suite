@@ -6,7 +6,7 @@ Change of Start Date initiated by Training Provider. The employer used in this t
 @regression
 @flexi-manage-coc
 @flexi-payments
-Scenario: FLP_UI_04 Change Of Start Date Journey
+Scenario: FLP_UI_04_01 Change Of Start Date Journey
 	Given NonLevy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
 		| 1       | 91            | 2000/11/20    | StartPreviousMonth | 12                 | 18000        | true         |
@@ -24,3 +24,14 @@ Scenario: FLP_UI_04 Change Of Start Date Journey
 	And Employer is able to view the pending Change of Start Date request
 	And Employer can view the details of the Change of Start Date request
 	And Employer is able to successfully reject the Change of Start Date request
+
+
+@regression
+@flexi-manage-coc
+@flexi-payments
+Scenario: FLP_UI_04_02 Prevent Change Of Start Date after qualifying period
+	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
+		| ULN_Key | training_code | date_of_birth | start_date_str            | duration_in_months | agreed_price | pilot_status |
+		| 1       | 91            | 2000/11/20    | QualifyingPeriodStartDate | 12                 | 18000        | true         |
+	When Provider searches for the learner on Manage your apprentice page
+	Then do not display an option to change the actual training start date
