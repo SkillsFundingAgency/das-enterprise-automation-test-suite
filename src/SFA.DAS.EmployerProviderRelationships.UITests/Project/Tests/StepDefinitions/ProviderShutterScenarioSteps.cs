@@ -1,16 +1,20 @@
-﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
-
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class ProviderShutterScenarioSteps(ScenarioContext context) : EmpProRelationBaseSteps(context)
 {
-    private ViewEmpAndManagePermissionsPage page;
+    [Then(@"the provider can not send an invite to a different email from same account")]
+    public void TheProviderCanNotSendAnInviteToADifferentEmailFromSameAccount()
+    {
+        eprDataHelper.EmployerEmail = context.GetUser<EPRDeclineRequestUser>().AnotherEmail;
+
+        new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmailAndGoToInviteSent();
+    }
 
     [Then(@"the provider can not re send the invite to the same email")]
     public void TheProviderCanNotReSendTheInviteToTheSameEmail()
     {
-        page = new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmailAndGoToInviteSent().GoToEmpAccountDetails().ViewEmployersAndManagePermissionsPage();
+        new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmailAndGoToInviteSent().GoToEmpAccountDetails().ViewEmployersAndManagePermissionsPage();
     }
 
     [Then(@"the provider can not send an invite to a different email using same aorn and paye")]
@@ -18,7 +22,7 @@ public class ProviderShutterScenarioSteps(ScenarioContext context) : EmpProRelat
     {
         eprDataHelper.EmployerEmail = $"A_{eprDataHelper.EmployerEmail}";
 
-        page = page.ClickAddAnEmployer().StartNowToAddAnEmployer().EnterNewEmployerEmail().SubmitPayeAndContinueToInviteSent().GoToEmpAccountDetails().ViewEmployersAndManagePermissionsPage();
+        new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterNewEmployerEmail().SubmitPayeAndContinueToInviteSent().GoToEmpAccountDetails().ViewEmployersAndManagePermissionsPage();
     }
 
     [Then(@"the provider should be shown a shutter page where relationship already exists")]

@@ -26,8 +26,12 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
     [When(@"the provider update the permission")]
     public void TheProviderUpdateThePermission()
     {
-        GoToProviderViewEmployersAndManagePermissions();
+        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.AllowConditional));
+    }
 
-        new ViewEmpAndManagePermissionsPage(context).ViewEmployer();
+    [When(@"the provider update the permission again")]
+    public void TheProviderUpdateThePermissionAgain()
+    {
+        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
     }
 }

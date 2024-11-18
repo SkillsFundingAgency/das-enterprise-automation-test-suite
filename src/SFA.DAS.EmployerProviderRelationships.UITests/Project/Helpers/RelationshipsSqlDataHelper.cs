@@ -10,10 +10,10 @@ public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig co
     }
 
     public void DeleteProviderRequest(string requestId) => ReTryExecuteSqlCommand($"delete from Requests where id = '{requestId}'");
-    
-    public (string requestId, string requestStatus) GetRequestId(string ukprn, string empemail)
+
+    public (string requestId, string requestStatus) GetRequestId(string ukprn, string empemail, RequestType requestType)
     {
-        var data = GetData($"select id, [Status] from Requests where ukprn = {ukprn} and EmployerContactEmail = '{empemail}'");
+        var data = GetData($"select id, [Status] from Requests where ukprn = {ukprn} and EmployerContactEmail = '{empemail}' and RequestType = '{EnumToString.GetStringValue(requestType)}'");
 
         return (data[0], data[1]);
     }

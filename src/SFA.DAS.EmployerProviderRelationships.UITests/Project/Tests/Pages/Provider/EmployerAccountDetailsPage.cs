@@ -8,9 +8,11 @@ public class EmployerAccountDetailsPage(ScenarioContext context) : ProviderRelat
 
     protected override string PageTitle => "Employer account details";
 
-    public void ChangePermissions()
+    public RequestPermissionsPage ChangePermissions()
     {
         Continue();
+
+        return new(context);
     }
 
     public ViewEmpAndManagePermissionsPage ViewEmployersAndManagePermissionsPage()

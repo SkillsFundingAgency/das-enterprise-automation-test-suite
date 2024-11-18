@@ -1,5 +1,16 @@
 ﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 
+public enum RequestType
+{
+    [ToString("CreateAccount")]
+    CreateAccount,
+    [ToString("AddAccount")]
+    AddAccount,
+    [ToString("Permission")]
+    Permission
+}
+
+
 public record EprDataHelper
 {
     public string EmployerEmail { get; set; }

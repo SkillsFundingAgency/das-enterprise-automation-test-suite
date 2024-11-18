@@ -72,6 +72,6 @@ public abstract class PermissionBasePageForTrainingProviderPage(ScenarioContext 
     {
         javaScriptHelper.ClickElement(by);
 
-        formCompletionHelper.ClickButtonByText(ContinueButton, "Confirm");
+        Continue();
     }
 }

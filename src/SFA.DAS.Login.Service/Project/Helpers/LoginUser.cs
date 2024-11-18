@@ -198,7 +198,10 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     public class EPRAcceptRequestUser : EPRBaseUser { }
 
-    public class EPRDeclineRequestUser : EPRBaseUser { }
+    public class EPRDeclineRequestUser : EPRBaseUser 
+    {
+        public string AnotherEmail { get; set; }
+    }
 
     public class EPRMultiOrgUser : EPRBaseUser { }
 

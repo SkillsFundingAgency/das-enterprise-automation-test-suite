@@ -36,7 +36,7 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
     {
         _assertHelper.RetryOnNUnitException(() =>
         {
-            SetRequestId();
+            SetRequestId(RequestType.CreateAccount);
 
             var expected = "Sent";
 
@@ -49,7 +49,17 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
         GoToUrl(UrlConfig.Relations_Employer_Invite(eprDataHelper.RequestId));
     }
 
-    protected void UpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
+    protected void ProviderUpdatePermission((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
+    {
+        GoToProviderViewEmployersAndManagePermissions();
+
+        var request = new ViewEmpAndManagePermissionsPage(context).ViewEmployer().ChangePermissions().ProviderRequestPermissions(permisssion);
+
+        request.GoToViewCurrentEmployersPage().VerifyPendingRequest();
+    }
+
+
+    protected void EmployerUpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
     {
         this.permissions = permissions;
 
@@ -58,11 +68,11 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
     protected void EPRLevyUserLogin() => EPRLogin(context.GetUser<EPRLevyUser>());
 
-    protected void EPRReLogin()
+    protected void EPRReLogin(RequestType requestType)
     {
         _employerHomePageHelper.GotoEmployerHomePage();
 
-        SetRequestId();
+        SetRequestId(requestType);
 
         eprDataHelper.AgreementId = objectContext.GetAleAgreementId();
     }
@@ -76,9 +86,9 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
     private void GoToUrl(string url) => context.Get<TabHelper>().GoToUrl(url);
 
-    private void SetRequestId()
+    private void SetRequestId(RequestType requestType)
     {
-        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, eprDataHelper.EmployerEmail);
+        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, eprDataHelper.EmployerEmail, requestType);
 
         objectContext.SetDebugInformation($"fetched request id from db - '{requestId}' with status '{requestStatus}'");
 

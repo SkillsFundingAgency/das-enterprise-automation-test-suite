@@ -6,9 +6,18 @@ public class RequestSentToEmployerPage(ScenarioContext context) : ProviderRelati
 
     private static By ViewEmployersPage => By.LinkText("View employers and manage permissions page");
 
+    private static By ViewCurrentEmployersPage => By.LinkText("View current employers and permissions");
+
     public ViewEmpAndManagePermissionsPage GoToViewEmployersPage()
     {
         formCompletionHelper.Click(ViewEmployersPage);
+
+        return new(context);
+    }
+
+    public ViewEmpAndManagePermissionsPage GoToViewCurrentEmployersPage()
+    {
+        formCompletionHelper.Click(ViewCurrentEmployersPage);
 
         return new(context);
     }
