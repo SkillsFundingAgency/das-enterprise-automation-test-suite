@@ -1,18 +1,13 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public abstract class DoYouNeedToCreateAnAdvertBasePage : VerifyBasePage
 {
-    public abstract class DoYouNeedToCreateAnAdvertBasePage : VerifyBasePage
-    {
-        protected override string PageTitle => "Do you need to create an advert for this apprenticeship?";
-        protected override By PageHeader => By.Id("heading-continue-setup-create-advert");
+    protected override string PageTitle => "Do you need to create an advert for this apprenticeship?";
+    protected override By PageHeader => By.Id("heading-continue-setup-create-advert");
 
-        protected override By ContinueButton => By.Id("accept");
-        protected static By NoRadioButtonOption => By.Id("choice2-no");
-        protected static By YesRadioButtonOption => By.Id("choice1-yes");
+    protected override By ContinueButton => By.Id("accept");
+    protected static By NoRadioButtonOption => By.Id("choice2-no");
+    protected static By YesRadioButtonOption => By.Id("choice1-yes");
 
-        public DoYouNeedToCreateAnAdvertBasePage(ScenarioContext context) : base(context) => VerifyPage();
-    }
+    public DoYouNeedToCreateAnAdvertBasePage(ScenarioContext context) : base(context) => VerifyPage();
 }

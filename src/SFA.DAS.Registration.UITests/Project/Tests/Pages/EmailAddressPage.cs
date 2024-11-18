@@ -1,17 +1,13 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class EmailAddressPage : RegistrationBasePage
 {
-    public class EmailAddressPage : RegistrationBasePage
-    {
-        protected override string PageTitle => "Email address";
+    protected override string PageTitle => "Email address";
 
-        #region Locators
-        protected override By ContinueButton => By.Id("forgottenpassword-button");
-        #endregion
+    #region Locators
+    protected override By ContinueButton => By.Id("forgottenpassword-button");
+    #endregion
 
-        public EmailAddressPage(ScenarioContext context) : base(context) => VerifyPage();
+    public EmailAddressPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    }
 }

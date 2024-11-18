@@ -21,12 +21,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderNotificationSettingsPage(context);
         }
 
-        public ProviderOrganisationsAndAgreementsPage GoToOrganisationsAndAgreementsPage()
-        {
-            formCompletionHelper.ClickElement(OrganisationsAndAgreementsLink);
-            return new ProviderOrganisationsAndAgreementsPage(context);
-        }
-
         public ProviderAddApprenticeDetailsEntryMothod GotoSelectJourneyPage()
         {
             AddNewApprentices();

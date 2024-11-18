@@ -1,30 +1,17 @@
-﻿using System.Collections.Generic;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿
+namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
+public class CommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.CommitmentsDbConnectionString)
 {
-    public class CommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.CommitmentsDbConnectionString)
+
+    public int GetNumberOfCohortsReadyToReview(string employerAccountId)
     {
-        public (string trainingName, string traningDate) GetTrainingNameAndStartDate(string email)
+        Dictionary<string, string> sqlParameters = new()
         {
-            Dictionary<string, string> sqlParameters = new()
-            {
-                { "@Email", email }
-            };
-            var query = "SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '@Email'";
-            var data = GetData(query, sqlParameters);
-            return (data[0], data[1]);
-        }
+            { "@EmployerAccountId", employerAccountId }
+        };
 
-        public int GetNumberOfCohortsReadyToReview(string employerAccountId)
-        {
-            Dictionary<string, string> sqlParameters = new()
-            {
-                { "@EmployerAccountId", employerAccountId }
-            };
-
-            string query = @"WITH CohortsFiltered AS (
+        string query = @"WITH CohortsFiltered AS (
 								SELECT 
 								[c].[Id]
 							FROM [Commitment] AS [c]
@@ -55,17 +42,17 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
 							FROM CohortsFiltered;
 							";
 
-            return (int)GetDataAsObject(query, sqlParameters);
-        }
+        return (int)GetDataAsObject(query, sqlParameters);
+    }
 
-        public int GetNumberOfTransferRequestToReview(string employerAccountId)
+    public int GetNumberOfTransferRequestToReview(string employerAccountId)
+    {
+        Dictionary<string, string> sqlParameters = new()
         {
-            Dictionary<string, string> sqlParameters = new()
-            {
-                { "@EmployerAccountId", employerAccountId }
-            };
+            { "@EmployerAccountId", employerAccountId }
+        };
 
-            string query = @"WITH TransferRequestsFiltered AS (
+        string query = @"WITH TransferRequestsFiltered AS (
                                 SELECT [t].Id
                                 FROM [TransferRequest] AS [t]
                                     INNER JOIN
@@ -85,17 +72,17 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
                                 FROM TransferRequestsFiltered;
 							";
 
-            return (int)GetDataAsObject(query, sqlParameters);
-        }
+        return (int)GetDataAsObject(query, sqlParameters);
+    }
 
-        public int GetNumberOfApprenticesToReview(string employerAccountId)
+    public int GetNumberOfApprenticesToReview(string employerAccountId)
+    {
+        Dictionary<string, string> sqlParameters = new()
         {
-            Dictionary<string, string> sqlParameters = new()
-            {
-                { "@EmployerAccountId", employerAccountId }
-            };
+            { "@EmployerAccountId", employerAccountId }
+        };
 
-            string query = @"select COUNT(aup.Id)
+        string query = @"select COUNT(aup.Id)
                             from [dbo].[ApprenticeshipUpdate] aup
                                 inner join [dbo].[Apprenticeship] app
                                     on app.Id = aup.ApprenticeshipId
@@ -106,29 +93,28 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
                                   AND aup.Originator = 1
 							";
 
-            return (int)GetDataAsObject(query, sqlParameters);
-        }
-
-
-        public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) 
-        {
-            Dictionary<string, string> sqlParameters = new()
-            {
-                { "@Email", email },
-                { "@Apprenticeshipid", apprenticeshipid.ToString() }
-            };
-            ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '@Email' WHERE Id = @Apprenticeshipid", sqlParameters);
-        }
-
-        public void ResetEmailForApprenticeshipRecord(string email)
-        {
-            Dictionary<string, string> sqlParameters = new()
-            {
-                { "@Email", email }
-            };
-
-            ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Email = '@Email'", sqlParameters);
-        }
-
+        return (int)GetDataAsObject(query, sqlParameters);
     }
+
+
+    public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid)
+    {
+        Dictionary<string, string> sqlParameters = new()
+        {
+            { "@Email", email },
+            { "@Apprenticeshipid", apprenticeshipid.ToString() }
+        };
+        ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '@Email' WHERE Id = @Apprenticeshipid", sqlParameters);
+    }
+
+    public void ResetEmailForApprenticeshipRecord(string email)
+    {
+        Dictionary<string, string> sqlParameters = new()
+        {
+            { "@Email", email }
+        };
+
+        ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = NULL, EmailAddressConfirmed = NULL WHERE Email = '@Email'", sqlParameters);
+    }
+
 }

@@ -173,6 +173,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 30
  testRunner.And("Provider is able to successfully reject the Change of Price request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 31
+ testRunner.And("Employer is notified that the provider has rejected a price change through email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

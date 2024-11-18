@@ -136,9 +136,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Provider can review the Change of Price request and approve it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
- testRunner.And("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Employer is notified that the provider has approved a price change through email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
+ testRunner.And("the approved Change of Price request is saved in the PriceHistory table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 20
  testRunner.And("validate instalments amounts have been updated in the earnings db to reflect the " +
                         "new agreed price of 14500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

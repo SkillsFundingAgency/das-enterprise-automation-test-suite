@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class ManageFundingHomePage(ScenarioContext context, bool navigate) : InterimManageFundingHomePage(context, navigate)
+    public class ManageFundingHomePage(ScenarioContext context, bool navigate) : InterimManageFundingHomePage(context, navigate, false)
     {
         private static By ReserveFundingLink => By.LinkText("Reserve funding");
         private static By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
