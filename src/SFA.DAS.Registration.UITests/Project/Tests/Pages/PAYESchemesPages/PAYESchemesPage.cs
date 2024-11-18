@@ -1,44 +1,38 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.PAYESchemesPages
+public class PAYESchemesPage : InterimPAYESchemesPage
 {
-    public class PAYESchemesPage : InterimPAYESchemesPage
+
+    #region Locators
+    private static By AddNewSchemeButton => By.Id("addNewPaye");
+    private By PayeDetailsLink => By.XPath($"//td[contains(text(),'{SecondPaye}')]/following-sibling::td//a");
+    private static By PAYERemovedHeaderInfo => By.CssSelector("h3.das-notification__heading");
+    private string SecondPaye => objectContext.GetGatewayPaye(1);
+    #endregion
+
+    public PAYESchemesPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
+
+    public UsingYourGovtGatewayDetailsPage ClickAddNewSchemeButton()
     {
+        formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddNewSchemeButton));
+        return new UsingYourGovtGatewayDetailsPage(context);
+    }
 
-        #region Locators
-        private static By AddNewSchemeButton => By.Id("addNewPaye");
-        private By PayeDetailsLink => By.XPath($"//td[contains(text(),'{SecondPaye}')]/following-sibling::td//a");
-        private static By PAYERemovedHeaderInfo => By.CssSelector("h3.das-notification__heading");
-        private string SecondPaye => objectContext.GetGatewayPaye(1);
-        #endregion
+    public AccessDeniedPage ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage()
+    {
+        formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddNewSchemeButton));
+        return new AccessDeniedPage(context);
+    }
 
-        public PAYESchemesPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
+    public PAYESchemeDetailsPage ClickNewlyAddedPayeDetailsLink()
+    {
+        formCompletionHelper.Click(PayeDetailsLink);
+        return new PAYESchemeDetailsPage(context);
+    }
 
-        public UsingYourGovtGatewayDetailsPage ClickAddNewSchemeButton()
-        {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddNewSchemeButton));
-            return new UsingYourGovtGatewayDetailsPage(context);
-        }
-
-        public AccessDeniedPage ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage()
-        {
-            formCompletionHelper.ClickElement(pageInteractionHelper.FindElement(AddNewSchemeButton));
-            return new AccessDeniedPage(context);
-        }
-
-        public PAYESchemeDetailsPage ClickNewlyAddedPayeDetailsLink()
-        {
-            formCompletionHelper.Click(PayeDetailsLink);
-            return new PAYESchemeDetailsPage(context);
-        }
-
-        public PAYESchemesPage VerifyPayeSchemeRemovedInfoMessage()
-        {
-            VerifyElement(PAYERemovedHeaderInfo, $"You've removed {SecondPaye}");
-            return this;
-        }
+    public PAYESchemesPage VerifyPayeSchemeRemovedInfoMessage()
+    {
+        VerifyElement(PAYERemovedHeaderInfo, $"You've removed {SecondPaye}");
+        return this;
     }
 }

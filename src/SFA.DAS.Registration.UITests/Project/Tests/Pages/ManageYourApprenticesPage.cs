@@ -1,14 +1,11 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class ManageYourApprenticesPage : RegistrationBasePage
 {
-    public class ManageYourApprenticesPage : RegistrationBasePage
-    {
-        protected override string PageTitle => "Manage your apprentices";
+    protected override string PageTitle => "Manage your apprentices";
 
-        protected override bool TakeFullScreenShot => false;
+    protected override bool TakeFullScreenShot => false;
 
-        public ManageYourApprenticesPage(ScenarioContext context) : base(context) => VerifyPage();
+    public ManageYourApprenticesPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    }
 }
