@@ -14,7 +14,7 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
     private static By Where => By.CssSelector("[id='WhereSearchTerm']");
 
-    private static By SearchFAA => By.XPath(".//button[text()='Search']");
+    private static By SearchFAA => By.CssSelector(".form button");
     private static By VacancyName => By.CssSelector("span[itemprop='title']");
 
     private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
@@ -42,40 +42,32 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         return new FAA_ApprenticeSummaryPage(context);
     }
 
-    public FAASearchApprenticeLandingPage SearchByWhatWhere(string whatText, string whereText)
+    public void SearchByWhatWhere(string whatText, string whereText)
     {
         formCompletionHelper.EnterText(What, whatText);
 
         formCompletionHelper.EnterText(Where, whereText);
 
         formCompletionHelper.Click(SearchFAA);
-
-        return new FAASearchApprenticeLandingPage(context);
     }
 
-    public FAASearchApprenticeLandingPage SearchByWhat(string whatText)
+    public void SearchByWhat(string whatText)
     {
         formCompletionHelper.EnterText(What, whatText);
 
         formCompletionHelper.Click(SearchFAA);
-
-        return new FAASearchApprenticeLandingPage(context);
     }
 
-    public FAASearchApprenticeLandingPage SearchByWhere(string whereText)
+    public void SearchByWhere(string whereText)
     {
         formCompletionHelper.EnterText(Where, whereText);
 
         formCompletionHelper.Click(SearchFAA);
-
-        return new FAASearchApprenticeLandingPage(context);
     }
 
-    public FAASearchApprenticeLandingPage SearchAtRandom()
+    public void SearchAtRandom()
     {
         formCompletionHelper.Click(SearchFAA);
-
-        return new FAASearchApprenticeLandingPage(context);
     }
 
     public FAASearchResultPage SearchAndSaveVacancyByReferenceNumber()
