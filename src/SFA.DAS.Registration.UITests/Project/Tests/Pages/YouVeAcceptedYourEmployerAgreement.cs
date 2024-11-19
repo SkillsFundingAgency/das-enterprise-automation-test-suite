@@ -1,18 +1,14 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class YouVeAcceptedYourEmployerAgreement : RegistrationBasePage
 {
-    public class YouVeAcceptedYourEmployerAgreement : RegistrationBasePage
-    {
-        protected override string PageTitle => "You've accepted your employer agreement";
-        protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
-        public YouVeAcceptedYourEmployerAgreement(ScenarioContext context) : base(context) => VerifyPage();
+    protected override string PageTitle => "You've accepted your employer agreement";
+    protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
+    public YouVeAcceptedYourEmployerAgreement(ScenarioContext context) : base(context) => VerifyPage();
 
-        public CreateYourEmployerAccountPage SelectContinueToCreateYourEmployerAccount()
-        {
-            Continue();
-            return new CreateYourEmployerAccountPage(context);
-        }
+    public CreateYourEmployerAccountPage SelectContinueToCreateYourEmployerAccount()
+    {
+        Continue();
+        return new CreateYourEmployerAccountPage(context);
     }
 }

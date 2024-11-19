@@ -1,9 +1,6 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class AuthTestUserHomePage(ScenarioContext context) : HomePage(context)
 {
-    public class AuthTestUserHomePage(ScenarioContext context) : HomePage(context)
-    {
-        protected override bool CaptureUrl => false;
-    }
+    protected override bool CaptureUrl => false;
 }

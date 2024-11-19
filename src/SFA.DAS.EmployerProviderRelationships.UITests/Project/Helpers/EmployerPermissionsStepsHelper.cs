@@ -35,6 +35,6 @@ public class EmployerPermissionsStepsHelper(ScenarioContext context)
                .GoToHomePage();
     }
 
-    internal YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions();
+    internal ManageTrainingProvidersPage OpenProviderPermissions() => new ManageTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions();
 
 }

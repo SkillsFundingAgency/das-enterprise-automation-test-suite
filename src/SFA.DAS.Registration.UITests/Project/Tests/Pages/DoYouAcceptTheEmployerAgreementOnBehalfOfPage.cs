@@ -1,67 +1,49 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class DoYouAcceptTheEmployerAgreementOnBehalfOfPage : RegistrationBasePage
 {
-    public class DoYouAcceptTheEmployerAgreementOnBehalfOfPage : RegistrationBasePage
+    protected override string PageTitle => "Do you accept the employer agreement on behalf of";
+
+    #region Locators
+    private static By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
+    private static By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
+    private static By ContinueToYourAgreementButton => By.LinkText("Continue to your agreement");
+    protected override By ContinueButton => By.XPath("//input[@class='govuk-button govuk-!-margin-top-6']");
+    #endregion
+
+    public DoYouAcceptTheEmployerAgreementOnBehalfOfPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public YouVeAcceptedYourEmployerAgreement SignAgreement()
     {
-        protected override string PageTitle => "Do you accept the employer agreement on behalf of";
+        Sign();
+        return new YouVeAcceptedYourEmployerAgreement(context);
+    }
 
-        #region Locators
-        private static By WantToSignRadioButton => By.CssSelector("label[for=want-to-sign]");
-        private static By DoNotWantToSignRadioButton => By.CssSelector("label[for=do-not-want-to-sign]");
-        private static By ContinueToYourAgreementButton => By.LinkText("Continue to your agreement");
-        protected override By ContinueButton => By.XPath("//input[@class='govuk-button govuk-!-margin-top-6']");
-        #endregion
+    public CreateYourEmployerAccountPage DoNotSignAgreement()
+    {
+        DoNotSign();
+        return new CreateYourEmployerAccountPage(context);
+    }
 
-        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage(ScenarioContext context) : base(context) => VerifyPage();
+    public AccessDeniedPage ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage()
+    {
+        SelectRadioOptionByText("Yes, I accept the agreement");
+        formCompletionHelper.Click(ContinueButton);
+        return new AccessDeniedPage(context);
+    }
 
-        public EmployerAccountCreatedPage SignAgreementAndGoToEmployerAccountCreatedPage()
-        {
-            Sign();
+    private void Sign() => Continue(WantToSignRadioButton);
 
-            return new EmployerAccountCreatedPage(context);
-        }
+    private void DoNotSign() => Continue(DoNotWantToSignRadioButton);
 
-        public YouVeAcceptedYourEmployerAgreement SignAgreement()
-        {
-            Sign();
-            return new YouVeAcceptedYourEmployerAgreement(context);
-        }
-
-        public CreateYourEmployerAccountPage DoNotSignAgreement()
-        {
-            DoNotSign();
-            return new CreateYourEmployerAccountPage(context);
-        }
-
-        public EmployerAccountCreatedPage DoNotSignAgreementAndGoToEmployerAccountCreatedPage()
-        {
-            DoNotSign();
-
-            return new EmployerAccountCreatedPage(context);
-        }
-
-        public AccessDeniedPage ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage()
-        {
-            SelectRadioOptionByText("Yes, I accept the agreement");
-            formCompletionHelper.Click(ContinueButton);
-            return new AccessDeniedPage(context);
-        }
-
-        private void Sign() => Continue(WantToSignRadioButton);
-
-        private void DoNotSign() => Continue(DoNotWantToSignRadioButton);
-
-        private void Continue(By by)
-        {
-            formCompletionHelper.ClickElement(by);
-            formCompletionHelper.ClickElement(ContinueButton);
-        }
-        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
-        {
-            formCompletionHelper.Click(ContinueToYourAgreementButton);
-            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage(context);
-        }
+    private void Continue(By by)
+    {
+        formCompletionHelper.ClickElement(by);
+        formCompletionHelper.ClickElement(ContinueButton);
+    }
+    public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickAcceptYourAgreementAndAndRedirectedToAccessDeniedPage()
+    {
+        formCompletionHelper.Click(ContinueToYourAgreementButton);
+        return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage(context);
     }
 }

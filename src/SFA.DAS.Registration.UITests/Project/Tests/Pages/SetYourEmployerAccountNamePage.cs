@@ -1,40 +1,36 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class SetYourEmployerAccountNamePage : RegistrationBasePage
 {
-    public class SetYourEmployerAccountNamePage : RegistrationBasePage
+    protected override string PageTitle => "Confirm your employer account name";
+    protected override By ContinueButton => By.CssSelector("#accept");
+    protected static By NewNameTextBox => By.Id("NewName");
+
+    public SetYourEmployerAccountNamePage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public YourAccountNameHasBeenChangedPage SelectoptionYes()
     {
-        protected override string PageTitle => "Confirm your employer account name";
-        protected override By ContinueButton => By.CssSelector("#accept");
-        protected static By NewNameTextBox => By.Id("NewName");
+        formCompletionHelper.SelectRadioOptionByText("Yes, I want to use my organisation name as my employer account name");
+        Continue();
+        return new YourAccountNameHasBeenChangedPage(context);
+    }
 
-        public SetYourEmployerAccountNamePage(ScenarioContext context) : base(context) => VerifyPage();
+    public ConfirmYourNewAccountNamePage SelectoptionNo(string newAccountName)
+    {
+        formCompletionHelper.SelectRadioOptionByText("No, I want to change my employer account name");
 
-        public YourAccountNameHasBeenChangedPage SelectoptionYes()
-        {
-            formCompletionHelper.SelectRadioOptionByText("Yes, I want to use my organisation name as my employer account name");
-            Continue();
-            return new YourAccountNameHasBeenChangedPage(context);
-        }
+        formCompletionHelper.EnterText(NewNameTextBox, newAccountName);
 
-        public ConfirmYourNewAccountNamePage SelectoptionNo(string newAccountName)
-        {
-            formCompletionHelper.SelectRadioOptionByText("No, I want to change my employer account name");
+        objectContext.UpdateOrganisationName(newAccountName);
 
-            formCompletionHelper.EnterText(NewNameTextBox, newAccountName);
+        Continue();
 
-            objectContext.UpdateOrganisationName(newAccountName);
+        return new ConfirmYourNewAccountNamePage(context);
+    }
 
-            Continue();
-
-            return new ConfirmYourNewAccountNamePage(context);
-        }
-
-        public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
-        {
-            formCompletionHelper.Click(BackLink);
-            return new CreateYourEmployerAccountPage(context);
-        }
+    public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
+    {
+        formCompletionHelper.Click(BackLink);
+        return new CreateYourEmployerAccountPage(context);
     }
 }
