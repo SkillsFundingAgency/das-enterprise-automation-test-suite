@@ -1,5 +1,4 @@
 using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
-using SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
@@ -10,10 +9,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         private readonly EarlyConnectStepsHelper _stepsHelper = new(context);
 
         [Given(@"I am on the landing page for a region")]
-        public void GivenIAmOnTheLandingPageForARegion()
-        {
-            _stepsHelper.GoToEarlyConnectHomePage();
-        }
+        public void GivenIAmOnTheLandingPageForARegion() => _stepsHelper.GoToEarlyConnectHomePage();
 
         [Given(@"I selected North East Advisor Page")]
         public void GivenIISelectedNorthEastAdvisorPage()
@@ -52,11 +48,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"I check my answers, accept and submit")]
-        public void WhenICheckMyAnswersAcceptAndSubmit()
-        {
-            _stepsHelper.GoToCheckYourAnswerPage();
-        }
-
+        public void WhenICheckMyAnswersAcceptAndSubmit() => _stepsHelper.GoToCheckYourAnswerPage();
 
     }
 }
