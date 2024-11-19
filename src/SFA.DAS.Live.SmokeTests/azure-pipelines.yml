@@ -1,7 +1,7 @@
 parameters:
 - name: TestFilter
   type: string
-  default: TestCategory=coursesapi
+  default: TestCategory=livesmoketest
 
 trigger: none
 pr: none
