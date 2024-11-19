@@ -18,7 +18,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     public string GetCodeInEmail(string email, string subject, string text)
     {
-        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and link text '{text}' after {dateTime:HH:mm:ss}");
+        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and confirmation text '{text}' after {dateTime:HH:mm:ss}");
 
         var mailosaurAPIUser = GetMailosaurAPIUser(email);
         var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
@@ -26,6 +26,7 @@ public class MailosaurApiHelper(ScenarioContext context)
         {
             SentTo = email,
             Subject = subject,
+            Body = text
         };
         criteria.SentTo = email;
         var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;

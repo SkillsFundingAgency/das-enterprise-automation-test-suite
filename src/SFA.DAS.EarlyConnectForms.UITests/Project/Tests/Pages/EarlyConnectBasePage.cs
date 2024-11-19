@@ -18,8 +18,6 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             earlyConnectDataHelper = context.Get<EarlyConnectDataHelper>();
             if (verifypage) { VerifyPage(); }
             context.Set(mailosaurApiHelper = new MailosaurApiHelper(context));
-            //mailosaurApiHelper = new MailosaurApiHelper(context);
-            //context.Set(mailosaurApiHelper);
         }
 
     }
