@@ -74,16 +74,16 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPR_01A_EmployerGrantPermission")]
+        [NUnit.Framework.DescriptionAttribute("EPR_01A_EmployerAddAndUpdateProviderPermissions")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
         [NUnit.Framework.CategoryAttribute("deletepermission")]
-        public void EPR_01A_EmployerGrantPermission()
+        public void EPR_01A_EmployerAddAndUpdateProviderPermissions()
         {
             string[] tagsOfScenario = new string[] {
                     "employerproviderrelationships",
                     "deletepermission"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01A_EmployerGrantPermission", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01A_EmployerAddAndUpdateProviderPermissions", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -114,16 +114,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPR_01B_EmployerDoesNotGrantPermission")]
+        [NUnit.Framework.DescriptionAttribute("EPR_01B_EmployerMustSelectAtLeastOnePermission")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
         [NUnit.Framework.CategoryAttribute("deletepermission")]
-        public void EPR_01B_EmployerDoesNotGrantPermission()
+        public void EPR_01B_EmployerMustSelectAtLeastOnePermission()
         {
             string[] tagsOfScenario = new string[] {
                     "employerproviderrelationships",
                     "deletepermission"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01B_EmployerDoesNotGrantPermission", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_01B_EmployerMustSelectAtLeastOnePermission", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

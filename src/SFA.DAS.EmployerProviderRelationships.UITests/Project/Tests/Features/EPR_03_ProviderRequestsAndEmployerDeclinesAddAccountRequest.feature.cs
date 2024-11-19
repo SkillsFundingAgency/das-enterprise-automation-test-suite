@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPR_03_ProviderRequestsEmployerDecline")]
-    public partial class EPR_03_ProviderRequestsEmployerDeclineFeature
+    [NUnit.Framework.DescriptionAttribute("EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest")]
+    public partial class EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequestFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EPR_03_ProviderRequestsEmployerDecline.feature"
+#line 1 "EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_03_ProviderRequestsEmployerDecline", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,16 +74,16 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPR_03_ProviderRequestsEmployerDecline")]
+        [NUnit.Framework.DescriptionAttribute("EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
         [NUnit.Framework.CategoryAttribute("deletepermission")]
-        public void EPR_03_ProviderRequestsEmployerDecline()
+        public void EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest()
         {
             string[] tagsOfScenario = new string[] {
                     "employerproviderrelationships",
                     "deletepermission"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_03_ProviderRequestsEmployerDecline", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -96,6 +96,9 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 7
  testRunner.Given("a provider requests all permission from an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 8
+ testRunner.Then("the provider can not send an invite to a different email from same account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 9
  testRunner.Then("the employer declines the add account request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
