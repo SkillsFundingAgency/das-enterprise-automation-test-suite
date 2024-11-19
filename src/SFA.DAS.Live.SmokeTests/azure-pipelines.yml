@@ -1,0 +1,13 @@
+parameters:
+- name: TestFilter
+  type: string
+  default: TestCategory=coursesapi
+
+trigger: none
+pr: none
+
+extends:
+  template: ../../pipeline-templates/resource-template.yml
+  parameters:
+    TestFilter: ${{ parameters.TestFilter }}
+    TestDlls: $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Live.SmokeTests/SFA.DAS.Live.SmokeTests.dll
