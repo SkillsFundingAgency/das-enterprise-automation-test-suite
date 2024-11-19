@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
+﻿using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
