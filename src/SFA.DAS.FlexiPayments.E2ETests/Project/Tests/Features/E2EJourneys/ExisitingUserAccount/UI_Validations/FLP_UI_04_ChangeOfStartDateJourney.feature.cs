@@ -202,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1",
                             "91",
                             "2000/11/20",
-                            "QualifyingPeriodStartDate",
+                            "QualifyingPeriodOuterBoundaryDate",
                             "12",
                             "18000",
                             "true"});

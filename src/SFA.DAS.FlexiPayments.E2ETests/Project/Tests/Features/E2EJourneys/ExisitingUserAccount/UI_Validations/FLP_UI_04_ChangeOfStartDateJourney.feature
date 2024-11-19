@@ -31,7 +31,7 @@ Scenario: FLP_UI_04_01 Change Of Start Date Journey
 @flexi-payments
 Scenario: FLP_UI_04_02 Prevent Change Of Start Date after qualifying period
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
-		| ULN_Key | training_code | date_of_birth | start_date_str            | duration_in_months | agreed_price | pilot_status |
-		| 1       | 91            | 2000/11/20    | QualifyingPeriodStartDate | 12                 | 18000        | true         |
+		| ULN_Key | training_code | date_of_birth | start_date_str                    | duration_in_months | agreed_price | pilot_status |
+		| 1       | 91            | 2000/11/20    | QualifyingPeriodOuterBoundaryDate | 12                 | 18000        | true         |
 	When Provider searches for the learner on Manage your apprentice page
 	Then do not display an option to change the actual training start date
