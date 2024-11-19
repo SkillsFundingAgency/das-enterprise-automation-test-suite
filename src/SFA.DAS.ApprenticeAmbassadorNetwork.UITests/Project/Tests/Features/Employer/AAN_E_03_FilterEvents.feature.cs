@@ -120,6 +120,181 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_03b_Employer user filters events by location")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanemployerevents")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
+        [NUnit.Framework.CategoryAttribute("aanemployer03b")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_A_03B_EmployerUserFiltersEventsByLocation()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanemployerevents",
+                    "aanemployer",
+                    "aanemployer03b",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03b_Employer user filters events by location", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 21
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title",
+                            "Location"});
+                table8.AddRow(new string[] {
+                            "Location Filter Employer Test Event 1",
+                            "The Maids Head, King\'s Lynn, PE32 1NG"});
+                table8.AddRow(new string[] {
+                            "Location Filter Employer Test Event 2",
+                            "Eagles Golf Club, 37-39 School Road, King\'s Lynn, PE34 4RS"});
+                table8.AddRow(new string[] {
+                            "Location Filter Employer Test Event 3",
+                            "Spalding United Football Club, Sir Halley Stewart Field, Spalding, PE11 1DA"});
+#line 22
+    testRunner.Given("the following events have been created:", ((string)(null)), table8, "Given ");
+#line hidden
+#line 27
+    testRunner.When("an onboarded Employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+    testRunner.And("the user filters events within 10 miles of \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title"});
+                table9.AddRow(new string[] {
+                            "Location Filter Employer Test Event 1"});
+                table9.AddRow(new string[] {
+                            "Location Filter Employer Test Event 2"});
+#line 29
+    testRunner.Then("the following events can be found within the search results:", ((string)(null)), table9, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title"});
+                table10.AddRow(new string[] {
+                            "Location Filter Employer Test Event 3"});
+#line 33
+    testRunner.And("the following events can not be found within the search results:", ((string)(null)), table10, "And ");
+#line hidden
+#line 36
+    testRunner.When("the user filters events Across England centered on \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
+    testRunner.And("the user orders the results by Closest", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title",
+                            "Order"});
+                table11.AddRow(new string[] {
+                            "Location Filter Employer Test Event 1",
+                            "1"});
+                table11.AddRow(new string[] {
+                            "Location Filter Employer Test Event 2",
+                            "2"});
+                table11.AddRow(new string[] {
+                            "Location Filter Employer Test Event 3",
+                            "3"});
+#line 38
+    testRunner.Then("the following events can be found within the search results in the given order:", ((string)(null)), table11, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_03c Employer user filters events by a location that does not exist")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanemployerevents")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
+        [NUnit.Framework.CategoryAttribute("aanemployer03b")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_A_03CEmployerUserFiltersEventsByALocationThatDoesNotExist()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanemployerevents",
+                    "aanemployer",
+                    "aanemployer03b",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03c Employer user filters events by a location that does not exist", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 49
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 50
+    testRunner.Given("an onboarded employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 51
+    testRunner.When("the user filters events within 10 miles of \"Lilliput\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 52
+    testRunner.Then("the heading text \"We cannot find the location you entered\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 53
+    testRunner.And("the text \"We do not recognise Lilliput\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_A_03d Employer user filters events and finds no matching results")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanemployerevents")]
+        [NUnit.Framework.CategoryAttribute("aanemployer")]
+        [NUnit.Framework.CategoryAttribute("aanemployer03b")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_A_03DEmployerUserFiltersEventsAndFindsNoMatchingResults()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanemployerevents",
+                    "aanemployer",
+                    "aanemployer03b",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_A_03d Employer user filters events and finds no matching results", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 60
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 61
+    testRunner.Given("an onboarded employer logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 62
+    testRunner.When("the user navigates to Network Events", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 63
+    testRunner.And("the user filters events so that there are no results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 64
+    testRunner.Then("the heading text \"No events currently match your filters\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
