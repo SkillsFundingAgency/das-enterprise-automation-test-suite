@@ -4,6 +4,7 @@ Feature: EPR_02_ProviderRequestsEmployerAccept
 @employerproviderrelationships
 @deletepermission
 @acceptrequest
+@deleterequest
 Scenario: EPR_02_ProviderRequestsEmployerAccept
 	Given a provider requests all permission from an employer
 	Then the employer accepts the add account request

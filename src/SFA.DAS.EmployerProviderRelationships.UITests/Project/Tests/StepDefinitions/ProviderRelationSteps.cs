@@ -8,6 +8,8 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
     {
         EPRBaseUser employerUser = tags.Contains("acceptrequest") ? context.GetUser<EPRAcceptRequestUser>() : context.GetUser<EPRDeclineRequestUser>();
 
+        context.Set(employerUser);
+
         EPRLogin(employerUser);
 
         permissions = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
@@ -32,6 +34,6 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
     [When(@"the provider update the permission again")]
     public void TheProviderUpdateThePermissionAgain()
     {
-        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
+        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.AllowConditional));
     }
 }

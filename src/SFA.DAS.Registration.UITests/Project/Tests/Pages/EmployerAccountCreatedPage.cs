@@ -19,6 +19,7 @@ public class EmployerAccountCreatedPage : RegistrationBasePage
     public HomePage SelectGoToYourEmployerAccountHomepage()
     {
         formCompletionHelper.Click(GoToYourEmployerAccountHomepage);
+
         return new HomePage(context);
     }
 

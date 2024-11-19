@@ -85,7 +85,24 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
     protected void SetRequestId(RequestType requestType)
     {
-        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, eprDataHelper.EmployerEmail, requestType);
+        string ukprn = providerConfig.Ukprn;
+
+        string empemail = eprDataHelper.EmployerEmail;
+
+        var query = $"and EmployerContactEmail = '{empemail}'";
+
+        if (requestType == RequestType.Permission)
+        {
+            var user = context.Get<EPRBaseUser>();
+
+            var accountLegalEntityId = user.UserCreds.SingleOrDefault(x => x.EmailAddress == empemail).AccountDetails.SingleOrDefault().Aleid;
+
+            query = $"and AccountLegalEntityId = '{accountLegalEntityId}'";
+        }
+
+        query = $"select id, [Status] from Requests where ukprn = {ukprn} and RequestType = '{EnumToString.GetStringValue(requestType)}' {query} order by RequestedDate desc";
+
+        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(query);
 
         objectContext.SetDebugInformation($"fetched request id from db - '{requestId}' with status '{requestStatus}'");
 

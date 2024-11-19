@@ -1,5 +1,34 @@
 ﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 
+public abstract class AddOrReviewRequestFromProvider(ScenarioContext context) : PermissionBasePageForTrainingProviderPage(context)
+{
+    protected abstract By AllowRequestOption {  get; }
+
+    protected abstract By DeclineRequestOption { get; }
+
+    public ManageTrainingProvidersPage AcceptProviderRequest()
+    {
+        ContinueToConfirm(AllowRequestOption);
+
+        return new(context);
+    }
+
+    public AreYouSureYouDoNotWantToAddPage DeclineAddRequest()
+    {
+        ContinueToConfirm(DeclineRequestOption);
+
+        return new(context);
+    }
+
+    public ManageTrainingProvidersPage DeclinePermissionRequest()
+    {
+        ContinueToConfirm(DeclineRequestOption);
+
+        return new(context);
+    }
+}
+
+
 public abstract class PermissionBasePageForTrainingProviderPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
 {
     protected static By ApprenticeAllowRadioOption => By.Id("addRecords-1");
@@ -9,25 +38,7 @@ public abstract class PermissionBasePageForTrainingProviderPage(ScenarioContext 
     protected static By RecruitAllowConditionalRadioOption => By.Id("recruitApprentices-2");
     protected static By RecruitDoNotAllowRadioOption => By.Id("recruitApprentices-3");
 
-
-    protected static By AllowRequestOption => By.Id("acceptAddAccountRequestYes");
-    protected static By DeclineRequestOption => By.Id("acceptAddAccountRequestNo");
-
     protected static By ErrorMsg => By.CssSelector(".govuk-error-summary");
-
-    public ManageTrainingProvidersPage AcceptProviderRequest()
-    {
-        ContinueToConfirm(AllowRequestOption);
-
-        return new(context);
-    }
-
-    public AreYouSureYouDoNotWantToAddPage DeclineRequest()
-    {
-        ContinueToConfirm(DeclineRequestOption);
-
-        return new(context);
-    }
 
     public ManageTrainingProvidersPage AddOrSetPermissions((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
     {
@@ -68,7 +79,7 @@ public abstract class PermissionBasePageForTrainingProviderPage(ScenarioContext 
         };
     }
 
-    private void ContinueToConfirm(By by)
+    protected void ContinueToConfirm(By by)
     {
         javaScriptHelper.ClickElement(by);
 

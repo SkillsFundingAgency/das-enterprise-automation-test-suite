@@ -31,6 +31,8 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string OrganisationName => LegalEntities?.FirstOrDefault();
 
         public List<string> LegalEntities { get; set; }
+
+        public List<UserCreds> UserCreds { get; set; }
     }
 
     #region SingleAccountEasUser

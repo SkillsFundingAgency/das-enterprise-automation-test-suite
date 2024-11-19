@@ -18,16 +18,25 @@ public enum RecruitApprenticePermissions
     DoNotAllow
 }
 
-public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : PermissionBasePageForTrainingProviderPage(context)
+public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : AddOrReviewRequestFromProvider(context)
 {
     protected override string PageTitle => $"Add {providerConfig.Name.ToUpperInvariant()} as a training provider";
+
+    protected override By AllowRequestOption => By.CssSelector("#acceptAddAccountRequestYes");
+    protected override By DeclineRequestOption => By.CssSelector("#acceptAddAccountRequestNo");
+}
+
+public class ReviewPermissionsFromProviderPage(ScenarioContext context, ProviderConfig providerConfig) : AddOrReviewRequestFromProvider(context)
+{
+    protected override string PageTitle => $"Review permissions request from {providerConfig.Name.ToUpperInvariant()}";
+
+    protected override By AllowRequestOption => By.CssSelector("#acceptPermissionsYes");
+    protected override By DeclineRequestOption => By.CssSelector("#acceptPermissionsNo");
 }
 
 public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
 {
     protected override string PageTitle => "Manage training providers";
-
-    private static By SetPermissionsLink => By.PartialLinkText("Set permissions");
 
     private static By ChangePermissionsLink(string ukprn) => By.CssSelector($"a[href*='providers/{ukprn}/changePermissions?']");
 
@@ -42,6 +51,20 @@ public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProv
         return this;
     }
 
+    public ManageTrainingProvidersPage VerifyYouHaveDeclinedNotification()
+    {
+        VerifyPage(NotificationBanner, "You've declined");
+
+        return this;
+    }
+
+    public ManageTrainingProvidersPage VerifyYouHaveSetPermissionNotification(string providerName)
+    {
+        VerifyPage(NotificationBanner, $"You've set {providerName}’s permissions.");
+
+        return this;
+    }
+
     public ManageTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
     {
         VerifyPage(NotificationBanner, "You've set permissions for");
@@ -51,9 +74,14 @@ public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProv
 
     public AddAsATrainingProviderPage ViewProviderRequests(ProviderConfig providerConfig, string requestId)
     {
-        VerifyFromMultipleElements(TableRows, providerConfig.Name.ToUpperInvariant());
+        OpenRequest(providerConfig, requestId);
 
-        formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
+        return new(context, providerConfig);
+    }
+
+    public ReviewPermissionsFromProviderPage ReviewProviderRequests(ProviderConfig providerConfig, string requestId)
+    {
+        OpenRequest(providerConfig, requestId);
 
         return new(context, providerConfig);
     }
@@ -65,16 +93,6 @@ public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProv
         return new(context);
     }
 
-    public SetPermissionsForTrainingProviderPage SelectSetPermissions(string orgName)
-    {
-        if (string.IsNullOrEmpty(orgName))
-            formCompletionHelper.ClickElement(SetPermissionsLink);
-        else
-            tableRowHelper.SelectRowFromTable("Set permissions", orgName);
-
-        return new(context);
-    }
-
     public SetPermissionsForTrainingProviderPage SelectChangePermissions(string ukprn)
     {
         formCompletionHelper.ClickElement(ChangePermissionsLink(ukprn));
@@ -82,10 +100,10 @@ public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProv
         return new SetPermissionsForTrainingProviderPage(context);
     }
 
-    public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
+    private void OpenRequest(ProviderConfig providerConfig, string requestId)
     {
-        formCompletionHelper.Click(BackLink);
+        VerifyFromMultipleElements(TableRows, providerConfig.Name.ToUpperInvariant());
 
-        return new CreateYourEmployerAccountPage(context);
+        formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
     }
 }
