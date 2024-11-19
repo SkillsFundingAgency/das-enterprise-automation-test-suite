@@ -9,7 +9,7 @@ public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig co
         ReTryExecuteSqlCommand(sqlQuery);
     }
 
-    public void DeleteProviderRequest(string requestId) => ReTryExecuteSqlCommand($"delete from Requests where id = '{requestId}'");
+    public void DeleteProviderRequest(string requestId) => ReTryExecuteSqlCommand($"delete from PermissionRequests where RequestId ='{requestId}'; delete from Requests where id = '{requestId}'");
 
     public (string requestId, string requestStatus) GetRequestId(string ukprn, string empemail, RequestType requestType)
     {

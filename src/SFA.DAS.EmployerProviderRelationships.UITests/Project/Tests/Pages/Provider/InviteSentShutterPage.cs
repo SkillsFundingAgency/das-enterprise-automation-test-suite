@@ -6,7 +6,7 @@ public class InviteSentShutterPage : ProviderRelationshipsBasePage
 
     protected override string PageTitle => "Invitation sent";
 
-    private static By EmplAccDetails => By.PartialLinkText("Employer account details");
+    private static By EmplAccDetails(string orgName) => By.LinkText($"Employer account details for {orgName.ToUpper()}");
 
     private static By InsetText => By.CssSelector("#main-content .govuk-inset-text");
 
@@ -23,7 +23,7 @@ public class InviteSentShutterPage : ProviderRelationshipsBasePage
 
     public EmployerAccountDetailsPage GoToEmpAccountDetails()
     {
-        formCompletionHelper.Click(EmplAccDetails);
+        formCompletionHelper.Click(EmplAccDetails(eprDataHelper.EmployerOrganisationName));
 
         return new EmployerAccountDetailsPage(context);
     }

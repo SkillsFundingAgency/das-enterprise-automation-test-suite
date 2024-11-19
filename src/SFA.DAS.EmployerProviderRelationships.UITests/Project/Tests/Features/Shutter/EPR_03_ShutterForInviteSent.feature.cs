@@ -77,19 +77,19 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features.S
         [NUnit.Framework.DescriptionAttribute("EPR_03_ShutterForInviteSent")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("createemployeraccount")]
-        [NUnit.Framework.CategoryAttribute("deleterequest")]
         [NUnit.Framework.CategoryAttribute("singleorgaorn")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
+        [NUnit.Framework.CategoryAttribute("deleterequest")]
         public void EPR_03_ShutterForInviteSent()
         {
             string[] tagsOfScenario = new string[] {
                     "addlevyfunds",
                     "createemployeraccount",
-                    "deleterequest",
                     "singleorgaorn",
                     "regression",
-                    "employerproviderrelationships"};
+                    "employerproviderrelationships",
+                    "deleterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_03_ShutterForInviteSent", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 9

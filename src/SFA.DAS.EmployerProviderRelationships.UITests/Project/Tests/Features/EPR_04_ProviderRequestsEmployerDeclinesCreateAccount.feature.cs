@@ -77,21 +77,21 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         [NUnit.Framework.DescriptionAttribute("EPR_04_ProviderRequestsEmployerDeclinesCreateAccount")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("createemployeraccount")]
-        [NUnit.Framework.CategoryAttribute("deleterequest")]
         [NUnit.Framework.CategoryAttribute("singleorgaorn")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("providerleadregistration")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
+        [NUnit.Framework.CategoryAttribute("deleterequest")]
         public void EPR_04_ProviderRequestsEmployerDeclinesCreateAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "addlevyfunds",
                     "createemployeraccount",
-                    "deleterequest",
                     "singleorgaorn",
                     "regression",
                     "providerleadregistration",
-                    "employerproviderrelationships"};
+                    "employerproviderrelationships",
+                    "deleterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_04_ProviderRequestsEmployerDeclinesCreateAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
