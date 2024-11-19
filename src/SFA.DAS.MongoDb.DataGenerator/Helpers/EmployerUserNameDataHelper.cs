@@ -11,7 +11,7 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         {
             LevyOrNonLevy = tags.Contains("addlevyfunds") || tags.Contains("addtransferslevyfunds") ? "LE" : "NL";
 
-            UserNamePrefix = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "PerfTest" : tags.Contains("providerleadregistration") ? "Plr" : "Test";
+            UserNamePrefix = tags.Any(x => x.ContainsCompareCaseInsensitive("perftest")) ? "PerfTest" : "Test";
             EmpRefDigits = DateTimeToNanoSeconds;
             
             GatewayUsername = GenerateRandomUserName();

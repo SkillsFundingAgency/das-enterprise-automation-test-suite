@@ -4,6 +4,7 @@ Feature: EPR_02_ProviderAddAccountAndAcceptDeclineNewPermissionRequests
 @employerproviderrelationships
 @deletepermission
 @acceptrequest
+@deletepermission
 @deleterequest
 Scenario: EPR_02_ProviderAddAccountAndAcceptDeclineNewPermissionRequests
 	Given a provider requests all permission from an employer

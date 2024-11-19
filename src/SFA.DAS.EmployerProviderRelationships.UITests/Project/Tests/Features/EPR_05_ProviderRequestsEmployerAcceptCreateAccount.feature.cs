@@ -81,7 +81,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("providerleadregistration")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
-        [NUnit.Framework.CategoryAttribute("deletepermission")]
+        [NUnit.Framework.CategoryAttribute("deleterequest")]
         public void EPR_05_ProviderRequestsEmployerAcceptCreateAccount()
         {
             string[] tagsOfScenario = new string[] {
@@ -91,7 +91,7 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
                     "regression",
                     "providerleadregistration",
                     "employerproviderrelationships",
-                    "deletepermission"};
+                    "deleterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_05_ProviderRequestsEmployerAcceptCreateAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10

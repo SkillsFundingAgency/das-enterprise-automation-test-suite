@@ -42,10 +42,10 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
             var actual = eprDataHelper.RequestStatus;
 
-            Assert.AreEqual(expected, actual, $"Waiting for Invite status to be '{expected}' for requestid - '{eprDataHelper.RequestId}', email - {eprDataHelper.EmployerEmail}");
+            Assert.AreEqual(expected, actual, $"Waiting for Invite status to be '{expected}' for requestid - '{eprDataHelper.LatestRequestId}', email - {eprDataHelper.EmployerEmail}");
         }, RetryTimeOut.GetTimeSpan([60, 60, 60, 45, 45, 45, 45, 45, 45]));
 
-        context.Get<TabHelper>().GoToUrl(UrlConfig.Relations_Employer_Invite(eprDataHelper.RequestId));
+        context.Get<TabHelper>().GoToUrl(UrlConfig.Relations_Employer_Invite(eprDataHelper.LatestRequestId));
     }
 
     protected void ProviderUpdatePermission((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
@@ -106,7 +106,9 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
         objectContext.SetDebugInformation($"fetched request id from db - '{requestId}' with status '{requestStatus}'");
 
-        eprDataHelper.RequestId = requestId;
+        eprDataHelper.LatestRequestId = requestId;
+
+        eprDataHelper.RequestIds.Add(requestId);
 
         eprDataHelper.RequestStatus = requestStatus;
     }

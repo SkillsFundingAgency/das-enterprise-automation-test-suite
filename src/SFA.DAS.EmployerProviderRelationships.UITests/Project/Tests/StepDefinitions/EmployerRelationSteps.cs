@@ -95,7 +95,7 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     {
         EPRReLogin(requestType);
 
-        _employerPermissionsStepsHelper.AcceptOrDeclineProviderRequest(requestType, providerConfig, eprDataHelper.RequestId, doesAllow);
+        _employerPermissionsStepsHelper.AcceptOrDeclineProviderRequest(requestType, providerConfig, eprDataHelper.LatestRequestId, doesAllow);
     }
 
 }

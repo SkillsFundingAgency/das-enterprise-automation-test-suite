@@ -47,5 +47,5 @@ public class Hooks(ScenarioContext context)
 
     [AfterScenario(Order = 22)]
     [Scope(Tag = "deleterequest")]
-    public void DeleteProviderRequest() => _tryCatch.AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRequest(_eprDataHelper.RequestId));
+    public void DeleteProviderRequest() => _tryCatch.AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRequest(_eprDataHelper.RequestIds));
 }
