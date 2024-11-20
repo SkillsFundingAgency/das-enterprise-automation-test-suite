@@ -20,9 +20,6 @@ jobs:
           inputs:
             FolderPath: '$(Pipeline.Workspace)/**/tests.zip'
             FileType: json
-            TargetFiles: |
-              **/*.json
-              !src/SFA.DAS.ApprenticeshipDetails.UITests/appsettings.Project.json
         - task: ExtractFiles@1
           displayName: 'Extract files'
           inputs:
