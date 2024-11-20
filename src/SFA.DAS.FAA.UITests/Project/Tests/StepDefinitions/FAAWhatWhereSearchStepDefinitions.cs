@@ -5,8 +5,6 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class FAAWhatWhereSearchStepDefinitions(ScenarioContext context)
     {
-
-        private readonly IWebDriver _driver;
         private readonly ScenarioContext _context = context;
 
         [Given(@"the candidate can login in to faa")]
