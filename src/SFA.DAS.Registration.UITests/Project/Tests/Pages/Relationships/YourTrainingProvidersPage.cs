@@ -51,9 +51,9 @@ public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProv
         return this;
     }
 
-    public ManageTrainingProvidersPage VerifyYouHaveDeclinedNotification()
+    public ManageTrainingProvidersPage VerifyYouHaveDeclinedNotification(string providerName)
     {
-        VerifyPage(NotificationBanner, "You've declined");
+        VerifyPage(NotificationBanner, $"You've declined {providerName}’s permission request.");
 
         return this;
     }

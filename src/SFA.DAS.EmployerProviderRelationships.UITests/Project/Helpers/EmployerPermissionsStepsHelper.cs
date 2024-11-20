@@ -26,7 +26,7 @@ public class EmployerPermissionsStepsHelper(ScenarioContext context)
         AddOrReviewRequestFromProvider page1 = requestType == RequestType.Permission ? page.ReviewProviderRequests(providerConfig, requestId) : page.ViewProviderRequests(providerConfig, requestId);
 
         RegistrationBasePage registrationBasePage = requestType == RequestType.Permission ? 
-            accept ? page1.AcceptProviderRequest().VerifyYouHaveSetPermissionNotification(providerConfig.Name) : page1.DeclinePermissionRequest().VerifyYouHaveDeclinedNotification() :
+            accept ? page1.AcceptProviderRequest().VerifyYouHaveSetPermissionNotification(providerConfig.Name) : page1.DeclinePermissionRequest().VerifyYouHaveDeclinedNotification(providerConfig.Name) :
             accept ? page1.AcceptProviderRequest().VerifyYouHaveAddedNotification(providerConfig.Name) : page1.DeclineAddRequest().ConfirmDeclineRequest();
 
         return registrationBasePage.GoToHomePage();
