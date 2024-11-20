@@ -17,14 +17,26 @@ public class EmailAccountNotFoundPage : ProviderRelationshipsBasePage
         VerifyPage(GovBody, $"We cannot find an account linked to");
     }
 
-    public AddAnEmployerPage ContinueToInvite()
+    public AddAnEmployerPage SubmitPayeAndContinueToInvite()
+    {
+        EnterPayeAndContinue(); 
+
+        return new(context);
+    }
+
+    public InviteSentShutterPage SubmitPayeAndContinueToInviteSent()
+    {
+        EnterPayeAndContinue();
+
+        return new(context, true);
+    }
+
+    private void EnterPayeAndContinue()
     {
         formCompletionHelper.EnterText(PayeSelector, eprDataHelper.EmployerPaye);
 
         formCompletionHelper.EnterText(AornSelector, eprDataHelper.EmployerAorn);
 
         Continue();
-
-        return new(context);
     }
 }

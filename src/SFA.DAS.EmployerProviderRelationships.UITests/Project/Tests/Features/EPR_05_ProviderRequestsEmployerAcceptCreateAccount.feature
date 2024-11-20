@@ -1,4 +1,4 @@
-﻿Feature: EPR_07_ProviderRequestsEmployerAcceptCreateAccount
+﻿Feature: EPR_05_ProviderRequestsEmployerAcceptCreateAccount
 
 @addlevyfunds
 @createemployeraccount
@@ -6,6 +6,7 @@
 @regression
 @providerleadregistration
 @employerproviderrelationships
-Scenario: EPR_07_ProviderRequestsEmployerAcceptCreateAccount
+@deleterequest
+Scenario: EPR_05_ProviderRequestsEmployerAcceptCreateAccount
 	Given a provider requests employer to create account with all permission
 	Then the employer accepts the create account request

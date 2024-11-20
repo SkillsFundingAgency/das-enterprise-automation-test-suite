@@ -11,6 +11,8 @@ public class TestDataCleanUp(ScenarioContext context)
     {
         if (context.TestError == null && context.ScenarioInfo.Tags.Contains("regression"))
         {
+            context.Get<ObjectContext>().SetDebugInformation("*********** Cleaning test data from all db **********");
+
             context.Get<TryCatchExceptionHelper>().AfterScenarioException(() =>
             {
                 var dbNameToTearDown = context.Get<ObjectContext>().GetDbNameToTearDown();
@@ -19,7 +21,12 @@ public class TestDataCleanUp(ScenarioContext context)
                 {
                     if (dbNameToTearDown.TryGetValue(CleanUpDbName.EasUsersTestDataCleanUp, out HashSet<string> emails))
 
+                    {
+                        context.Get<ObjectContext>().SetDebugInformation($"****** cleaning test data related to emails - {string.Join(",", emails.ToList())}");
+
                         new TestdataCleanupStepsHelper(context).CleanUpAllDbTestData(emails);
+                    }
+                        
                 }
             });
         }

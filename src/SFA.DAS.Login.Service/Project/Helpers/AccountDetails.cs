@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.Registration.UITests.Project.Helpers;
+﻿namespace SFA.DAS.Login.Service.Project.Helpers;
 
 public class AccountDetails
 {
@@ -12,7 +12,7 @@ public class AccountDetails
     public string AleAccountid { get; private set; }
     public string AleAgreementid { get; private set; }
 
-    internal AccountDetails(int index, string accountId, string hashedId, string orgName, string publicHashedId, string alename, string aleid, string aleAccountid, string aleAgreementid)
+    public AccountDetails(int index, string accountId, string hashedId, string orgName, string publicHashedId, string alename, string aleid, string aleAccountid, string aleAgreementid)
     {
         AccountIndex = index;
         AccountId = accountId;
