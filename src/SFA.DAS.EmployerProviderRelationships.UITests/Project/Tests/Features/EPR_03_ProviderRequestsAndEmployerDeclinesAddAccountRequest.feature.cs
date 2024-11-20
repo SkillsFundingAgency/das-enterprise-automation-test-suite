@@ -97,7 +97,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("a provider requests all permission from an employer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
+#line 8
+ testRunner.Then("the provider can not send a request to the same email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 10
  testRunner.Then("the employer declines the add account request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

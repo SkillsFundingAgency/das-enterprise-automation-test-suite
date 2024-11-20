@@ -3,20 +3,20 @@
 [Binding]
 public class ProviderShutterScenarioSteps(ScenarioContext context) : EmpProRelationBaseSteps(context)
 {
-    [Then(@"the provider can not send an invite to a different email from same account")]
-    public void TheProviderCanNotSendAnInviteToADifferentEmailFromSameAccount()
+    [Then(@"the provider can not send a request to the same email")]
+    public void TheProviderCanNotSendARequestToTheSameEmail() => InviteSent();
+
+    [Then(@"the provider can not send a request to a different email from the same account")]
+    public void TheProviderCanNotSendARequestToADifferentEmailFromTheSameAccount()
     {
         eprDataHelper.EmployerEmail = context.GetUser<EPRDeclineRequestUser>().AnotherEmail;
 
-        new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmailAndGoToInviteSent();
+        InviteSent();
     }
 
     [Then(@"the provider can not re send the invite to the same email")]
-    public void TheProviderCanNotReSendTheInviteToTheSameEmail()
-    {
-        new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmailAndGoToInviteSent().GoToEmpAccountDetails().ViewEmployersAndManagePermissionsPage();
-    }
-
+    public void TheProviderCanNotReSendTheInviteToTheSameEmail() => InviteSent();
+  
     [Then(@"the provider can not send an invite to a different email using same aorn and paye")]
     public void TheProviderCanNotSendAnInviteToADifferentEmailUsingSameAornAndPaye()
     {
@@ -56,5 +56,10 @@ public class ProviderShutterScenarioSteps(ScenarioContext context) : EmpProRelat
         GoToProviderViewEmployersAndManagePermissions();
 
         GoToSearchEmployerEmailPage().EnterEmployerEmailAndGoToContactEmployer();
+    }
+
+    private void InviteSent()
+    {
+        new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer().EnterEmployerEmailAndGoToInviteSent().GoToEmpAccountDetails().ViewEmployersAndManagePermissionsPage();
     }
 }
