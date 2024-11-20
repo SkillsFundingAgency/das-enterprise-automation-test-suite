@@ -14,7 +14,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             DateOfBirthMonth = RandomDataGenerator.GenerateRandomMonth();             
             DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
             TelephoneNumber  = $"077{RandomDataGenerator.GenerateRandomNumber(8)}";
-            Email = $"{GetDateTimeValue()}@{user.DomainName}";
+            Email = $"{Firstname}.{Lastname}{GetDateTimeValue()}@{user.DomainName}";
             user.AddToEmailList(Email);
         }
         private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToLower();
