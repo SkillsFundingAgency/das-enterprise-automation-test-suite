@@ -10,7 +10,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
         public TelephonePage EnterValidPostcode()
         {
-            formCompletionHelper.SendKeys(PostcodeField, "GU10 0HU");
+            formCompletionHelper.SendKeys(PostcodeField, earlyConnectDataHelper.PostCode);
             formCompletionHelper.ClickElement(ContinueButton);
             return new TelephonePage(context);
         }
