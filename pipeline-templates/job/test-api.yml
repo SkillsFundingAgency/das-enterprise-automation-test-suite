@@ -22,7 +22,7 @@ jobs:
             FileType: json
             TargetFiles: |
               **/*.json
-              !**/SFA.DAS.ApprenticeshipDetails.UITests/appsettings.Project.json
+              !src/SFA.DAS.ApprenticeshipDetails.UITests/appsettings.Project.json
         - task: ExtractFiles@1
           displayName: 'Extract files'
           inputs:
