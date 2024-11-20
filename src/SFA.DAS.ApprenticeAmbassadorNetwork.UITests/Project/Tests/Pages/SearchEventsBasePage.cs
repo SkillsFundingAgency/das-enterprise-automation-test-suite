@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using NUnit.Framework.Internal.Execution;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
