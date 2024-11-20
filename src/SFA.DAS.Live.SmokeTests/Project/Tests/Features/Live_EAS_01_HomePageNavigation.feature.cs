@@ -110,13 +110,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Your apprenticeship adverts link should direct user to Create an advert page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.And("Your training providers link should direct user to Your training providers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Manage training providers link should direct user to manage training providers pa" +
+                        "ge", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.And("Your finances link should direct user to Finance page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And("Your transfers link should direct user to Manage transfers page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Your transfers link should lead user to Manage transfers pages", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.And("Your organisations and agreements link should direct user to Your organisations a" +

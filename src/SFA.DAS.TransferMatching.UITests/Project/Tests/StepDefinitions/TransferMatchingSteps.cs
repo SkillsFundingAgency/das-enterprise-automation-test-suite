@@ -167,7 +167,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             UpdateOrganisationName(receiverLogin.OrganisationName);
             LoginAsReceiver(receiverLogin);
 
-            OpenPledgeApplication("APPROVED, AWAITING YOUR ACCEPTANCE");
+            OpenPledgeApplication("Approved, awaiting your acceptance");
         }
 
         [Then(@"the non levy employer can open awaiting approval pledge application")]

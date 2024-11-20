@@ -1,59 +1,124 @@
-﻿using SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.Login.Service.Project;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.Registration.UITests.Project;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.StepDefinitions
+public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 {
-    public abstract class EmpProRelationBaseSteps(ScenarioContext context)
+    protected readonly ScenarioContext context = context;
+
+    protected readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
+
+    protected readonly EmployerHomePageStepsHelper _employerHomePageHelper = new(context);
+
+    protected readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper = new(context);
+
+    private readonly ProviderHomePageStepsHelper _providerHomePageStepsHelper = new(context);
+
+    protected readonly ProviderConfig providerConfig = context.GetProviderConfig<ProviderConfig>();
+
+    protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
+
+    protected readonly EprDataHelper eprDataHelper = context.Get<EprDataHelper>();
+
+    private readonly RetryAssertHelper _assertHelper = context.Get<RetryAssertHelper>();
+
+    protected readonly string[] tags = context.ScenarioInfo.Tags;
+
+    protected (AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions;
+
+    protected SearchEmployerEmailPage GoToSearchEmployerEmailPage() => new ViewEmpAndManagePermissionsPage(context).ClickAddAnEmployer().StartNowToAddAnEmployer();
+
+    protected EmailAccountFoundPage GoToEmailAccountFoundPage() => GoToSearchEmployerEmailPage().EnterEmployerEmail();
+
+    protected void GoToProviderAddAnEmployer() => GoToProviderRelationsHomePage(true);
+
+    protected void GoToProviderViewEmployersAndManagePermissions() => GoToProviderRelationsHomePage(false);
+
+    protected void OpenEmpInviteFromProvider()
     {
-        protected readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
-
-        protected readonly EmployerHomePageStepsHelper _employerHomePageHelper = new(context);
-
-        protected readonly EmployerPermissionsStepsHelper _employerPermissionsStepsHelper = new(context);
-
-        protected readonly ProviderConfig providerConfig = context.GetProviderConfig<ProviderConfig>();
-
-        protected readonly ObjectContext objectContext = context.Get<ObjectContext>();
-
-        protected readonly EprDataHelper eprDataHelper = context.Get<EprDataHelper>();
-
-        protected readonly string[] tags = context.ScenarioInfo.Tags;
-
-        protected (AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions;
-
-        protected void UpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
+        _assertHelper.RetryOnNUnitException(() =>
         {
-            this.permissions = permissions;
+            SetRequestId(RequestType.CreateAccount);
 
-            _employerPermissionsStepsHelper.UpdateProviderPermission(providerConfig, permissions);
+            var expected = "Sent";
+
+            var actual = eprDataHelper.RequestStatus;
+
+            Assert.AreEqual(expected, actual, $"Waiting for Invite status to be '{expected}' for requestid - '{eprDataHelper.LatestRequestId}', email - {eprDataHelper.EmployerEmail}");
+        }, RetryTimeOut.GetTimeSpan([60, 60, 60, 45, 45, 45, 45, 45, 45]));
+
+        context.Get<TabHelper>().GoToUrl(UrlConfig.Relations_Employer_Invite(eprDataHelper.LatestRequestId));
+    }
+
+    protected void ProviderUpdatePermission((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
+    {
+        GoToProviderViewEmployersAndManagePermissions();
+
+        var request = new ViewEmpAndManagePermissionsPage(context).ViewEmployer().ChangePermissions().ProviderRequestPermissions(permisssion);
+
+        request.GoToViewCurrentEmployersPage().VerifyPendingRequest();
+    }
+
+
+    protected void EmployerUpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
+    {
+        this.permissions = permissions;
+
+        _employerPermissionsStepsHelper.UpdateProviderPermission(providerConfig, permissions);
+    }
+
+    protected void EPRLevyUserLogin() => EPRLogin(context.GetUser<EPRLevyUser>());
+
+    protected void EPRReLogin(RequestType requestType)
+    {
+        _employerHomePageHelper.GotoEmployerHomePage();
+
+        SetRequestId(requestType);
+
+        eprDataHelper.AgreementId = objectContext.GetAleAgreementId();
+    }
+
+    protected void EPRLogin(EPRBaseUser user)
+    {
+        _employerLoginHelper.Login(user, true);
+
+        new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation();
+    }
+
+    protected void SetRequestId(RequestType requestType)
+    {
+        string ukprn = providerConfig.Ukprn;
+
+        string empemail = eprDataHelper.EmployerEmail;
+
+        var query = $"and EmployerContactEmail = '{empemail}'";
+
+        if (requestType == RequestType.Permission)
+        {
+            var user = context.Get<EPRBaseUser>();
+
+            var accountLegalEntityId = user.UserCreds.SingleOrDefault(x => x.EmailAddress == empemail).AccountDetails.SingleOrDefault().Aleid;
+
+            query = $"and AccountLegalEntityId = '{accountLegalEntityId}'";
         }
 
-        protected void EPRLevyUserLogin() => EPRLogin(context.GetUser<EPRLevyUser>());
+        query = $"select id, [Status] from Requests where ukprn = {ukprn} and RequestType = '{EnumToString.GetStringValue(requestType)}' {query} order by RequestedDate desc";
 
-        protected void EPRReLogin()
-        {
-            _employerHomePageHelper.GotoEmployerHomePage();
+        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(query);
 
-            var requestId = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, eprDataHelper.EmployerEmail);
+        objectContext.SetDebugInformation($"fetched request id from db - '{requestId}' with status '{requestStatus}'");
 
-            eprDataHelper.RequestId = requestId;
+        eprDataHelper.LatestRequestId = requestId;
 
-            eprDataHelper.AgreementId = objectContext.GetAleAgreementId();
-        }
+        eprDataHelper.RequestIds.Add(requestId);
 
-        protected void EPRLogin(EPRBaseUser user)
-        {
-            _employerLoginHelper.Login(user, true);
+        eprDataHelper.RequestStatus = requestStatus;
+    }
 
-            new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation();
-        }
+    private void GoToProviderRelationsHomePage(bool addAnEmployer)
+    {
+        var providerHomepage = _providerHomePageStepsHelper.GoToProviderHomePage(providerConfig, true);
+
+        if (addAnEmployer) providerHomepage.ClickAddAnEmployerLink();
+
+        else providerHomepage.ClickViewEmployersAndManagePermissionsLink();
     }
 }

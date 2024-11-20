@@ -1,14 +1,11 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
+public class InterimFinanceHomePage(ScenarioContext context, bool navigate, bool gotourl) : InterimEmployerBasePage(context, navigate, gotourl)
 {
-    public class InterimFinanceHomePage(ScenarioContext context, bool navigate, bool gotourl) : InterimEmployerBasePage(context, navigate, gotourl)
-    {
-        protected override string PageTitle => "Finance";
+    protected override string PageTitle => "Finance";
 
-        protected override string Linktext => "Finance";
+    protected override string Linktext => "Finance";
 
-        public InterimFinanceHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
-    }
+    public InterimFinanceHomePage(ScenarioContext context, bool navigate) : this(context, navigate, false) { }
 }
 

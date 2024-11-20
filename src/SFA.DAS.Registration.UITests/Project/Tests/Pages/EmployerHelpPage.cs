@@ -1,16 +1,12 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class EmployerHelpPage : RegistrationBasePage
 {
-    public class EmployerHelpPage : RegistrationBasePage
-    {
-        protected override string PageTitle { get; }
+    protected override string PageTitle { get; }
 
-        protected override By PageHeader => By.CssSelector("body");
+    protected override By PageHeader => By.CssSelector("body");
 
-        protected override bool CanAnalyzePage => false;
+    protected override bool CanAnalyzePage => false;
 
-        public EmployerHelpPage(ScenarioContext context) : base(context) => VerifyPage(PageHeader);
-    }
+    public EmployerHelpPage(ScenarioContext context) : base(context) => VerifyPage(PageHeader);
 }

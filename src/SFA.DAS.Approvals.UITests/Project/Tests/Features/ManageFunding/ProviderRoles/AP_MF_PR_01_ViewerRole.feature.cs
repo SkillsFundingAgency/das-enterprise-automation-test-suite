@@ -21,14 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("MF_PR_01_ViewerRole")]
-    [NUnit.Framework.IgnoreAttribute("Ignored feature")]
     public partial class MF_PR_01_ViewerRoleFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private static string[] featureTags = new string[] {
-                "ignore"};
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "AP_MF_PR_01_ViewerRole.feature"
 #line hidden
@@ -77,14 +75,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Features.ManageFunding.Provide
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify login for Viewer user can not delete a reservation")]
-        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerifyLoginForViewerUserCanNotDeleteAReservation()
         {
             string[] tagsOfScenario = new string[] {
-                    "Securefundingproviderrole"};
+                    "approvals",
+                    "regression",
+                    "pasproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for Viewer user can not delete a reservation", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 5
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -94,13 +96,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 7
  testRunner.Given("the provider logs in as a Viewer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 7
+#line 8
  testRunner.And("a reservation exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 8
+#line 9
  testRunner.Then("the user can not delete the reservation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -109,14 +111,18 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify login for Viewer user can not add an apprentice")]
-        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerifyLoginForViewerUserCanNotAddAnApprentice()
         {
             string[] tagsOfScenario = new string[] {
-                    "Securefundingproviderrole"};
+                    "approvals",
+                    "regression",
+                    "pasproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for Viewer user can not add an apprentice", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -126,13 +132,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 15
  testRunner.Given("the provider logs in as a Viewer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 16
  testRunner.And("a reservation exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
+#line 17
  testRunner.Then("the user can not add an apprentice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -141,14 +147,18 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify login for Viewer user can not reserve some funding")]
-        [NUnit.Framework.CategoryAttribute("Securefundingproviderrole")]
+        [NUnit.Framework.CategoryAttribute("approvals")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        [NUnit.Framework.CategoryAttribute("pasproviderrole")]
         public void VerifyLoginForViewerUserCanNotReserveSomeFunding()
         {
             string[] tagsOfScenario = new string[] {
-                    "Securefundingproviderrole"};
+                    "approvals",
+                    "regression",
+                    "pasproviderrole"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify login for Viewer user can not reserve some funding", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 17
+#line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -158,10 +168,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 18
+#line 23
  testRunner.Given("the provider logs in as a Viewer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 19
+#line 24
  testRunner.Then("the user can not reserve the funding", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

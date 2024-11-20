@@ -1,97 +1,109 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.ProviderLogin.Service.Project;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships
+public enum AddApprenticePermissions
 {
-    public enum AddApprenticePermissions
+    [ToString("Yes, employer will review records")]
+    AllowConditional,
+    [ToString("No")]
+    DoNotAllow
+}
+
+public enum RecruitApprenticePermissions
+{
+    [ToString("Yes")]
+    Allow,
+    [ToString("Yes, employer will review adverts")]
+    AllowConditional,
+    [ToString("No")]
+    DoNotAllow
+}
+
+public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : AddOrReviewRequestFromProvider(context)
+{
+    protected override string PageTitle => $"Add {providerConfig.Name.ToUpperInvariant()} as a training provider";
+
+    protected override By AllowRequestOption => By.CssSelector("#acceptAddAccountRequestYes");
+    protected override By DeclineRequestOption => By.CssSelector("#acceptAddAccountRequestNo");
+}
+
+public class ReviewPermissionsFromProviderPage(ScenarioContext context, ProviderConfig providerConfig) : AddOrReviewRequestFromProvider(context)
+{
+    protected override string PageTitle => $"Review permissions request from {providerConfig.Name.ToUpperInvariant()}";
+
+    protected override By AllowRequestOption => By.CssSelector("#acceptPermissionsYes");
+    protected override By DeclineRequestOption => By.CssSelector("#acceptPermissionsNo");
+}
+
+public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
+{
+    protected override string PageTitle => "Manage training providers";
+
+    private static By ChangePermissionsLink(string ukprn) => By.CssSelector($"a[href*='providers/{ukprn}/changePermissions?']");
+
+    private static By NotificationBanner => By.CssSelector($".govuk-notification-banner");
+
+    private static By TableRows => By.ClassName("govuk-table__row");
+
+    public ManageTrainingProvidersPage VerifyYouHaveAddedNotification(string providerName)
     {
-        [ToString("Yes, employer will review records")]
-        AllowConditional,
-        [ToString("No")]
-        DoNotAllow
+        VerifyPage(NotificationBanner, $"You've added {providerName} and set their permissions.");
+
+        return this;
     }
 
-    public enum RecruitApprenticePermissions
+    public ManageTrainingProvidersPage VerifyYouHaveDeclinedNotification(string providerName)
     {
-        [ToString("Yes")]
-        Allow,
-        [ToString("Yes, employer will review adverts")]
-        AllowConditional,
-        [ToString("No")]
-        DoNotAllow
+        VerifyPage(NotificationBanner, $"You've declined {providerName}’s permission request.");
+
+        return this;
     }
 
-    public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : PermissionBasePageForTrainingProviderPage(context)
+    public ManageTrainingProvidersPage VerifyYouHaveSetPermissionNotification(string providerName)
     {
-        protected override string PageTitle => $"Add {providerConfig.Name} as a training provider";
+        VerifyPage(NotificationBanner, $"You've set {providerName}’s permissions.");
+
+        return this;
     }
 
-    public class YourTrainingProvidersPage(ScenarioContext context) : EmployerProviderRelationshipsBasePage(context)
+    public ManageTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
     {
-        protected override string PageTitle => "Manage training providers";
+        VerifyPage(NotificationBanner, "You've set permissions for");
 
-        private static By SetPermissionsLink => By.PartialLinkText("Set permissions");
+        return this;
+    }
 
-        private static By ChangePermissionsLink(string ukprn) => By.CssSelector($"a[href*='providers/{ukprn}/changePermissions?']");
+    public AddAsATrainingProviderPage ViewProviderRequests(ProviderConfig providerConfig, string requestId)
+    {
+        OpenRequest(providerConfig, requestId);
 
-        private static By NotificationBanner => By.CssSelector($".govuk-notification-banner");
+        return new(context, providerConfig);
+    }
 
-        private static By TableRows => By.ClassName("govuk-table__row");
+    public ReviewPermissionsFromProviderPage ReviewProviderRequests(ProviderConfig providerConfig, string requestId)
+    {
+        OpenRequest(providerConfig, requestId);
 
-        public YourTrainingProvidersPage VerifyYouHaveAddedNotification()
-        {
-            VerifyPage(NotificationBanner, "You've added");
+        return new(context, providerConfig);
+    }
 
-            return this;
-        }
+    public EnterYourTrainingProviderNameReferenceNumberUKPRNPage SelectAddATrainingProvider()
+    {
+        formCompletionHelper.ClickButtonByText(ContinueButton, "Add a training provider");
 
-        public YourTrainingProvidersPage VerifyYouHaveSetPermissionNotification()
-        {
-            VerifyPage(NotificationBanner, "You've set permissions for");
+        return new(context);
+    }
 
-            return this;
-        }
+    public SetPermissionsForTrainingProviderPage SelectChangePermissions(string ukprn)
+    {
+        formCompletionHelper.ClickElement(ChangePermissionsLink(ukprn));
 
-        public AddAsATrainingProviderPage ViewProviderRequests(ProviderConfig providerConfig, string requestId)
-        {
-            VerifyFromMultipleElements(TableRows, providerConfig.Name);
+        return new SetPermissionsForTrainingProviderPage(context);
+    }
 
-            formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
+    private void OpenRequest(ProviderConfig providerConfig, string requestId)
+    {
+        VerifyFromMultipleElements(TableRows, providerConfig.Name.ToUpperInvariant());
 
-            return new(context, providerConfig);
-        }
-
-        public EnterYourTrainingProviderNameReferenceNumberUKPRNPage SelectAddATrainingProvider()
-        {
-            formCompletionHelper.ClickButtonByText(ContinueButton, "Add a training provider");
-
-            return new (context);
-        }
-
-        public SetPermissionsForTrainingProviderPage SelectSetPermissions(string orgName)
-        {
-            if (string.IsNullOrEmpty(orgName))
-                formCompletionHelper.ClickElement(SetPermissionsLink);
-            else
-                tableRowHelper.SelectRowFromTable("Set permissions", orgName);
-
-            return new (context);
-        }
-
-        public SetPermissionsForTrainingProviderPage SelectChangePermissions(string ukprn)
-        {
-            formCompletionHelper.ClickElement(ChangePermissionsLink(ukprn));
-
-            return new SetPermissionsForTrainingProviderPage(context);
-        }
-
-        public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
-        {
-            formCompletionHelper.Click(BackLink);
-
-            return new CreateYourEmployerAccountPage(context);
-        }
+        formCompletionHelper.Click(By.CssSelector($"a[href*='{requestId}']"));
     }
 }

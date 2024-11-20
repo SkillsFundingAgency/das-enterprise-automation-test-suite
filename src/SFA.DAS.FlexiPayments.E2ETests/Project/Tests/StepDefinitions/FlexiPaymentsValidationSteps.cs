@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions.Execution;
+using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
@@ -56,12 +57,28 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             Assert.Multiple(() =>
             {
-                //Assert.That(dbStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(new DateTime(expectedActualStartDate.Year, expectedActualStartDate.Month, 1).ToString("yyyy-MM-dd")), "Incorrect Start Date found in Apprenticeship table, Commitment db");
+                Assert.That(dbStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(new DateTime(expectedActualStartDate.Year, expectedActualStartDate.Month, 1).ToString("yyyy-MM-dd")), "Incorrect Start Date found in Apprenticeship table, Commitment db");
                 Assert.That(dbActualStartDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate.ToString("yyyy-MM-dd")), "Incorrect Actual Start Date found in Apprenticeship table, Commitment db");
                 Assert.That(dbFromDate.ToString("yyyy-MM-dd"), Is.EqualTo(expectedActualStartDate.ToString("yyyy-MM-dd")), "Incorrect From Date found in PriceHistory table, Commitment db");
             });
         }
 
+        [Then(@"validate the approved Change of Price values have been updated in the Apprenticeship table of Commitment db")]
+        public void ValidateTheApprovedChangeOfPriceValuesHaveBeenUpdatedInTheApprenticeshipTableOfCommitmentDb()
+        {
+            var (StartDate, ActualStartDate, EndDate, isPilot, trainingPrice, endpointAssessmentPrice, fromDate, toDate, cost) = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(GetApprenticeULN(1));
+
+            var newTrainingPrice = context.Get<Decimal>("NewTrainingPrice");
+
+            var newTotalPrice = newTrainingPrice + Decimal.Parse(_apprenticeDataHelper.EndpointAssessmentPrice);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(Decimal.Parse(trainingPrice), Is.EqualTo(newTrainingPrice), "Incorrect Training price found in Commitments db");
+                Assert.That(Decimal.Parse(endpointAssessmentPrice), Is.EqualTo(Decimal.Parse(_apprenticeDataHelper.EndpointAssessmentPrice)), "Incorrect End-point Assessment price found in Commitments db");
+                Assert.That(Decimal.Parse(cost), Is.EqualTo(newTotalPrice), "Incorrect Total Price found in Commitments db");
+            });
+        }
 
         [Then(@"validate the following data is created in the earnings database")]
         public void ValidateTheFollowingDataIsCreatedInTheEarningsDatabase(Table table)

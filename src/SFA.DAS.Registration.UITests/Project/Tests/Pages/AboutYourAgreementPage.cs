@@ -1,30 +1,26 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class AboutYourAgreementPage(ScenarioContext context) : InterimYourOrganisationsAndAgreementsPage(context, false)
 {
-    public class AboutYourAgreementPage(ScenarioContext context) : InterimYourOrganisationsAndAgreementsPage(context, false)
+    protected override string PageTitle => "About your agreement";
+
+    protected override By ContinueButton => By.CssSelector("input[value='Continue']");
+
+    public SignAgreementPage ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
     {
-        protected override string PageTitle => "About your agreement";
+        Continue();
+        return new SignAgreementPage(context);
+    }
 
-        protected override By ContinueButton => By.CssSelector("input[value='Continue']");
+    public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
+    {
+        Continue();
+        return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage(context);
+    }
 
-        public SignAgreementPage ClickContinueToYourAgreementButtonInAboutYourAgreementPage()
-        {
-            Continue();
-            return new SignAgreementPage(context);
-        }
-
-        public DoYouAcceptTheEmployerAgreementOnBehalfOfPage ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
-        {
-            Continue();
-            return new DoYouAcceptTheEmployerAgreementOnBehalfOfPage(context);
-        }
-
-        public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
-        {
-            tabHelper.NavigateBrowserBack();
-            return new CreateYourEmployerAccountPage(context);
-        }
+    public CreateYourEmployerAccountPage GoBackToCreateYourEmployerAccountPage()
+    {
+        tabHelper.NavigateBrowserBack();
+        return new CreateYourEmployerAccountPage(context);
     }
 }

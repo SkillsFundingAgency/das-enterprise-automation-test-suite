@@ -29,10 +29,10 @@ public class HomePageNavigationSteps(ScenarioContext context)
        new YourApprenticeshipAdvertsHomePage(context, true, false).GoToHomePage();
     }
 
-    [Then(@"Your training providers link should direct user to Your training providers page")]
-    public void YourTrainingProvidersLinkShouldDirectUserToYourTrainingProvidersPage()
+    [Then(@"Manage training providers link should direct user to manage training providers page")]
+    public void ManageTrainingProvidersLinkShouldDirectUserToManageTrainingProvidersPage()
     {
-        new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions().GoToHomePage();
+        new ManageTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions().GoToHomePage();
     }
 
     [Then(@"Your finances link should direct user to Finance page")]
@@ -41,11 +41,12 @@ public class HomePageNavigationSteps(ScenarioContext context)
        new HomePageFinancesSection_YourFinance(context).NavigateToFinancePage().GoToHomePage();
     }
 
-    [Then(@"Your transfers link should direct user to Manage transfers page")]
-    public void YourTransfersLinkShouldDirectUserToManageTransfersPage()
+    [Then(@"Your transfers link should lead user to Manage transfers pages")]
+    public void ThenYourTransfersLinkShouldLeadUserToManageTransfersPages()
     {
-        new HomePageFinancesSection_YourTransfers(context).NavigateToTransferMatchingPage().GoToAccountHomePage();
+        new HomePageFinancesSection_YourTransfers(context).NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage();
     }
+
 
     [Then(@"Your organisations and agreements link should direct user to Your organisations and agreements page")]
     public void YourOrganisationsAndAgreementsLinkShouldDirectUserToYourOrganisationsAndAgreementsPage()

@@ -1,11 +1,8 @@
-﻿using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages
+public class InterimPAYESchemesPage(ScenarioContext context, bool navigate) : InterimEmployerBasePage(context, navigate)
 {
-    public class InterimPAYESchemesPage(ScenarioContext context, bool navigate) : InterimEmployerBasePage(context, navigate)
-    {
-        protected override string PageTitle => "PAYE schemes";
+    protected override string PageTitle => "PAYE schemes";
 
-        protected override string Linktext => "PAYE schemes";
-    }
+    protected override string Linktext => "PAYE schemes";
 }

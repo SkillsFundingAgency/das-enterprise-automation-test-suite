@@ -20,7 +20,7 @@ public abstract class CheckMultipleHomePage(ScenarioContext context) : CheckPage
         {
             SetDebugInformation($"Check that {string.Join(" OR ", PageTitles.Select(x => $"'{x}'"))} is displayed using Page title");
 
-            (bool result, string actualPage) = checkPageInteractionHelper.VerifyPage(() => checkPageInteractionHelper.FindElements(Identifier), PageTitles.ToList());
+            (bool result, string actualPage) = checkPageInteractionHelper.VerifyPage(() => checkPageInteractionHelper.FindElements(Identifier), [.. PageTitles]);
 
             displayedPage = actualPage;
 
