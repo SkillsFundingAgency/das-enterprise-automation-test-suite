@@ -8,7 +8,7 @@ Scenario: EPR_01A_EmployerAddAndUpdateProviderPermissions
 	Then the provider should be added with the correct permissions
 	When the employer changes recruit apprentice permission
 	Then the provider should be added with the correct permissions
-	When the provider does not grant any permission
+	When the employer does not grant any permission
 
 
 @employerproviderrelationships

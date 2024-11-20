@@ -21,8 +21,8 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
         EmployerUpdatePermission((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.AllowConditional));
     }
 
-    [When(@"the provider does not grant any permission")]
-    public void WhenTheProviderDoesNotGrantAnyPermission()
+    [When(@"the employer does not grant any permission")]
+    public void TheEmployerDoesNotGrantAnyPermission()
     {
         EmployerUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
     }
