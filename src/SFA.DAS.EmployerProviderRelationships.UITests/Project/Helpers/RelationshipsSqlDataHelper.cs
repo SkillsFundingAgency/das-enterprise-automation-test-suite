@@ -11,7 +11,7 @@ public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig co
 
     public void DeleteProviderRequest(List<string> requestId)
     {
-        var requestIdquery = string.Join(",", $"'{requestId}'");
+        var requestIdquery = string.Join(',', requestId.ToHashSet().Select(x => $"'{x}'"));
 
         ReTryExecuteSqlCommand($"delete from PermissionRequests where RequestId in ({requestIdquery}); delete from Requests where id in ({requestIdquery});");
     }
