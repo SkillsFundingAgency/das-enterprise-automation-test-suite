@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Models;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 {
@@ -17,19 +19,45 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static string Employer => "Employer";
         private static string Regionalchair => "Regional chair";
 
+        private static By NextPageLink => By.LinkText("Next »");
+        private static By EventTitle => By.CssSelector(".das-search-results__heading");
         private static By FromDateField => By.CssSelector("#fromDate");
         private static By ToDateField => By.CssSelector("#toDate");
         private static By ApplyFilterButton => By.CssSelector("#filters-submit");
+        private static By SearchResultsHeading = By.ClassName("das-search-results__heading");
+        private static By BodyText = By.ClassName("govuk-body");
+
 
         private static By SelectedFilter(string x) => By.XPath($"//a[contains(@title,'{x}')]");
 
         protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
+        protected static By Keyword => By.CssSelector("#keyword");
+        protected static By Location => By.CssSelector("#location");
+        protected static By Radius => By.CssSelector("#Radius");
+        protected static By OrderBy => By.CssSelector("#OrderBy");
 
         protected static By FirstEventLink => By.CssSelector("li.das-search-results__list-item a");
 
         public void FilterEventFromTomorrow() => FilterEventByDate(null);
 
         public void FilterEventByOneMonth() => FilterEventByDate(DateTime.Now.AddDays(30));
+
+        public void SelectOrderByClosest()
+        {
+            SelectOrderBy("Closest");
+        }
+
+        public void FilterEventsByLocation(string location, int radius)
+        {
+            EnterLocation(location);
+            EnterRadius(radius);
+            ApplyFilter();
+        }
+
+        public void EnterKeywordFilter(string keyword)
+        {
+            EnterKeyword(keyword);
+        }
 
         protected void FilterEventBy(DateTime startDate, DateTime endDate, string type, string region)
         {
@@ -85,6 +113,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
 
         protected void VerifyRole_Regionalchair_Filter() => pageInteractionHelper.IsElementDisplayed(SelectedFilter(Regionalchair));
 
+        protected void SelectOrderBy(string selectedValue)
+        {
+            formCompletionHelper.SelectFromDropDownByText(OrderBy, selectedValue);
+        }
+
         private void FilterEventByDate(DateTime? endDate)
         {
             EnterDate(DateTime.Now.AddDays(1), FromDateField);
@@ -101,8 +134,75 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(by, formattedDate);
         }
 
+        private void EnterKeyword(string keyword)
+        {
+            formCompletionHelper.ClearText(Keyword);
+            formCompletionHelper.EnterText(Keyword, keyword);
+        }
+
+        private void EnterLocation(string location)
+        {
+            formCompletionHelper.ClearText(Location);
+            formCompletionHelper.EnterText(Location, location);
+        }
+
+        private void EnterRadius(int radius)
+        {
+            formCompletionHelper.SelectFromDropDownByText(Radius, radius == 0 ? $"Across England" : $"{radius} miles");
+        }
+
         private void ApplyFilter(string x) { SelectCheckBoxByText(x); ApplyFilter(); }
 
-        private void ApplyFilter() => formCompletionHelper.ClickElement(ApplyFilterButton);
+        public void ApplyFilter() => formCompletionHelper.ClickElement(ApplyFilterButton);
+
+        public List<NetworkEventSearchResult> GetSearchResults()
+        {
+            var index = 0;
+            return pageInteractionHelper.FindElements(EventTitle)
+                .Select(x => x.Text)
+                .Select(x => new NetworkEventSearchResult
+                {
+                    EventTitle = x,
+                    Index = index++
+                })
+                .ToList();
+        }
+
+        protected bool HasNextPageLink()
+        {
+            try
+            {
+                return pageInteractionHelper.FindElement(NextPageLink) != null;
+            }
+            catch(NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        protected void ClickNextPageLink()
+        {
+            formCompletionHelper.Click(NextPageLink);
+        }
+
+        public void ClickNextPage()
+        {
+            ClickNextPageLink();
+        }
+
+        public bool HasNextPage()
+        {
+            return HasNextPageLink();
+        }
+
+        public void VerifyHeadingText(string expectedText)
+        {
+            pageInteractionHelper.VerifyText(SearchResultsHeading, expectedText);
+        }
+
+        public void VerifyBodyText(string expectedText)
+        {
+            pageInteractionHelper.VerifyText(BodyText, expectedText);
+        }
     }
 }

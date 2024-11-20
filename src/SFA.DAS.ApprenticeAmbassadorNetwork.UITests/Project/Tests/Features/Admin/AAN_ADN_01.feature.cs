@@ -120,6 +120,157 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_01b admin user filter events")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanadmin")]
+        [NUnit.Framework.CategoryAttribute("aanadn01b")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_ADN_01BAdminUserFilterEvents()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanadmin",
+                    "aanadn01b",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_01b admin user filter events", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 20
+    testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title",
+                            "Location"});
+                table1.AddRow(new string[] {
+                            "Location Filter Test Event 1",
+                            "The Maids Head, King\'s Lynn, PE32 1NG"});
+                table1.AddRow(new string[] {
+                            "Location Filter Test Event 2",
+                            "Eagles Golf Club, 37-39 School Road, King\'s Lynn, PE34 4RS"});
+                table1.AddRow(new string[] {
+                            "Location Filter Test Event 3",
+                            "Spalding United Football Club, Sir Halley Stewart Field, Spalding, PE11 1DA"});
+#line 21
+    testRunner.And("the following events have been created:", ((string)(null)), table1, "And ");
+#line hidden
+#line 26
+    testRunner.When("the user filters events within 10 miles of \"PE30 5HF\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title"});
+                table2.AddRow(new string[] {
+                            "Location Filter Test Event 1"});
+                table2.AddRow(new string[] {
+                            "Location Filter Test Event 2"});
+#line 27
+    testRunner.Then("the following events can be found within the search results:", ((string)(null)), table2, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Event Title"});
+                table3.AddRow(new string[] {
+                            "Location Filter Test Event 3"});
+#line 31
+    testRunner.And("the following events can not be found within the search results:", ((string)(null)), table3, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_01c admin user filter events by a location that does not exist")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanadmin")]
+        [NUnit.Framework.CategoryAttribute("aanadn01c")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_ADN_01CAdminUserFilterEventsByALocationThatDoesNotExist()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanadmin",
+                    "aanadn01c",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_01c admin user filter events by a location that does not exist", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 39
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 40
+    testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 41
+    testRunner.When("the user filters events within 10 miles of \"Lilliput\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 42
+    testRunner.Then("the heading text \"We cannot find the location you entered\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 43
+    testRunner.And("the text \"We do not recognise Lilliput\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("AAN_ADN_01d admin user filter events and finds no matching results")]
+        [NUnit.Framework.CategoryAttribute("aan")]
+        [NUnit.Framework.CategoryAttribute("aanadmin")]
+        [NUnit.Framework.CategoryAttribute("aanadn01d")]
+        [NUnit.Framework.CategoryAttribute("regression")]
+        public void AAN_ADN_01DAdminUserFilterEventsAndFindsNoMatchingResults()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "aan",
+                    "aanadmin",
+                    "aanadn01d",
+                    "regression"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AAN_ADN_01d admin user filter events and finds no matching results", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 49
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 50
+    testRunner.Given("an admin logs into the AAN portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 51
+    testRunner.When("the user navigates to Manage Events", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 52
+    testRunner.And("the user filters events by Cancelled status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 53
+    testRunner.And("the user filters events by Training event type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 54
+    testRunner.Then("the heading text \"No events currently match your filters\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
