@@ -25,8 +25,7 @@ public class MailosaurApiHelper(ScenarioContext context)
         var criteria = new SearchCriteria()
         {
             SentTo = email,
-            Subject = subject,
-            Body = text
+            Subject = subject
         };
         criteria.SentTo = email;
         var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
