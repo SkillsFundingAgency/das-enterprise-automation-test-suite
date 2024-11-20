@@ -4,11 +4,22 @@ public class EmployerAccountDetailsPage(ScenarioContext context) : ProviderRelat
 {
     protected override By ContinueButton => By.CssSelector("button.govuk-button[type='submit']");
 
+    private static By ViewEmployersPage => By.LinkText("View employers and manage permissions");
+
     protected override string PageTitle => "Employer account details";
 
-    public void ChangePermissions()
+    public RequestPermissionsPage ChangePermissions()
     {
         Continue();
+
+        return new(context);
+    }
+
+    public ViewEmpAndManagePermissionsPage ViewEmployersAndManagePermissionsPage()
+    {
+        formCompletionHelper.Click(ViewEmployersPage);
+
+        return new(context);
     }
 
 }

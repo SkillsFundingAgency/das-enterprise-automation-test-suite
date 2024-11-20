@@ -20,22 +20,22 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EPR_07_ProviderRequestsEmployerAcceptCreateAccount")]
-    public partial class EPR_07_ProviderRequestsEmployerAcceptCreateAccountFeature
+    [NUnit.Framework.DescriptionAttribute("EPR_05_ProviderRequestsEmployerAcceptCreateAccount")]
+    public partial class EPR_05_ProviderRequestsEmployerAcceptCreateAccountFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "EPR_07_ProviderRequestsEmployerAcceptCreateAccount.feature"
+#line 1 "EPR_05_ProviderRequestsEmployerAcceptCreateAccount.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_07_ProviderRequestsEmployerAcceptCreateAccount", null, ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "Project/Tests/Features", "EPR_05_ProviderRequestsEmployerAcceptCreateAccount", null, ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,14 +74,15 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("EPR_07_ProviderRequestsEmployerAcceptCreateAccount")]
+        [NUnit.Framework.DescriptionAttribute("EPR_05_ProviderRequestsEmployerAcceptCreateAccount")]
         [NUnit.Framework.CategoryAttribute("addlevyfunds")]
         [NUnit.Framework.CategoryAttribute("createemployeraccount")]
         [NUnit.Framework.CategoryAttribute("singleorgaorn")]
         [NUnit.Framework.CategoryAttribute("regression")]
         [NUnit.Framework.CategoryAttribute("providerleadregistration")]
         [NUnit.Framework.CategoryAttribute("employerproviderrelationships")]
-        public void EPR_07_ProviderRequestsEmployerAcceptCreateAccount()
+        [NUnit.Framework.CategoryAttribute("deleterequest")]
+        public void EPR_05_ProviderRequestsEmployerAcceptCreateAccount()
         {
             string[] tagsOfScenario = new string[] {
                     "addlevyfunds",
@@ -89,10 +90,11 @@ namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Features
                     "singleorgaorn",
                     "regression",
                     "providerleadregistration",
-                    "employerproviderrelationships"};
+                    "employerproviderrelationships",
+                    "deleterequest"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_07_ProviderRequestsEmployerAcceptCreateAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("EPR_05_ProviderRequestsEmployerAcceptCreateAccount", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -102,10 +104,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 11
  testRunner.Given("a provider requests employer to create account with all permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then("the employer accepts the create account request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
