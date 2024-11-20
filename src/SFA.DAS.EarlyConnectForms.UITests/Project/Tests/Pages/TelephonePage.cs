@@ -10,7 +10,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
         public AreasOfWorkInterestPage EnterValidTelephoneNumber()
         {
-            formCompletionHelper.SendKeys(TelephoneField, "01423554896");
+            formCompletionHelper.SendKeys(TelephoneField, earlyConnectDataHelper.TelephoneNumber);
             formCompletionHelper.ClickElement(ContinueButton);
             return new AreasOfWorkInterestPage(context);
         }
