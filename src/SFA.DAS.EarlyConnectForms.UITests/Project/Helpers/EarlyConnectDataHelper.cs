@@ -1,8 +1,5 @@
 ﻿using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
-using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
 {
@@ -10,9 +7,9 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
     {
         public EarlyConnectDataHelper(MailosaurUser user) 
         {
-            Firstname = RandomDataGenerator.GenerateRandomAlphabeticString(6);
-            Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);
-            FullName = $"{Firstname} {Lastname}";
+            var randomPersonNameHelper = new RandomPersonNameHelper();
+            Firstname = randomPersonNameHelper.FirstName;
+            Lastname = randomPersonNameHelper.LastName;
             DateOfBirthDay = RandomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = RandomDataGenerator.GenerateRandomMonth();             
             DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
@@ -20,17 +17,15 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
             Email = $"{GetDateTimeValue()}@{user.DomainName}";
             user.AddToEmailList(Email);
         }
-
+        private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToLower();
         public string TelephoneNumber { get;}
-        public string FullName { get; }
         public string Firstname { get; }
         public string Lastname { get; }
         public string Email { get; }
         public int DateOfBirthDay { get; set; }
         public int DateOfBirthMonth { get; set; }
         public int DateOfBirthYear { get; set; }
-        private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToLower();
-        public string PostCode { get; init; } = "Tw14 9py";
-        public string SchoolCollege { get; init; } = "Testing College";
+        public string PostCode { get; set; } = "Tw14 9py";
+        public string SchoolCollege { get; set; } = "Testing College";
     }
 }
