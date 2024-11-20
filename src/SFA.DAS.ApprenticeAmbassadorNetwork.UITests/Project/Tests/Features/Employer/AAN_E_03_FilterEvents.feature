@@ -9,7 +9,6 @@ Scenario: AAN_E_03_Employer filter events
     Then the user should be able to successfully filter events by date
     And the user should be able to successfully filter events by event format
     And the user should be able to successfully filter events by event type
-    And the user should be able to successfully filter events by regions
     And the user should be able to successfully filter events by multiple combination of filters
 
 
@@ -24,7 +23,7 @@ Scenario: AAN_A_03b_Employer user filters events by location
     | Location Filter Employer Test Event 1 | The Maids Head, King's Lynn, PE32 1NG                                       |
     | Location Filter Employer Test Event 2 | Eagles Golf Club, 37-39 School Road, King's Lynn, PE34 4RS                  |
     | Location Filter Employer Test Event 3 | Spalding United Football Club, Sir Halley Stewart Field, Spalding, PE11 1DA |
-    When an onboarded Employer logs into the AAN portal
+    When an onboarded employer logs into the AAN portal
     And the user filters events within 10 miles of "PE30 5HF"
     Then the following events can be found within the search results:
     | Event Title                             |

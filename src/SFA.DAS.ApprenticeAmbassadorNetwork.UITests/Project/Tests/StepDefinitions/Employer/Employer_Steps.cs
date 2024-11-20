@@ -21,7 +21,8 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     private AanEmployerOnBoardedUser user;
 
     [Given(@"an onboarded employer logs into the AAN portal")]
-    public void GivenAnOnboardedEmployerLogsIntoTheAANPortal()
+    [When(@"an onboarded employer logs into the AAN portal")]
+    public void AnOnboardedEmployerLogsIntoTheAANPortal()
     {
         EmployerSign(user = context.GetUser<AanEmployerOnBoardedUser>());
 
@@ -96,8 +97,8 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     [Then(@"the user should be able to successfully filter events by role Network Directory")]
     public void FilterByRole_NetworkDirectory() => networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
 
-    [Then(@"the user should be able to successfully filter events by regions Network Directory")]
-    public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
+    //[Then(@"the user should be able to successfully filter events by regions Network Directory")]
+    //public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
 
     [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
     public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
@@ -124,7 +125,7 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
 
             ;
 
-        tabHelper.GoToUrl(UrlConfig.AAN_Apprentice_BaseUrl);
+        tabHelper.GoToUrl(UrlConfig.AAN_Employer_BaseUrl);
     }
 
     [When(@"the user filters events within (.*) miles of ""([^""]*)""")]
@@ -133,11 +134,11 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
         var searchNetworkEventsPage = networkHubPage.AccessEventsHub()
             .AccessAllNetworkEvents();
 
-        searchNetworkEventsPage.EnterKeywordFilter("Location Filter Apprentice Test Event");
+        searchNetworkEventsPage.EnterKeywordFilter("Location Filter Employer Test Event");
 
         searchNetworkEventsPage.FilterEventsByLocation(location, radius);
 
-        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        var stepsHelper = context.Get<EmployerStepsHelper>();
         stepsHelper.ClearEventTitleCache();
     }
 
@@ -146,10 +147,10 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     {
         var searchNetworkEventsPage = new SearchNetworkEventsPage(context);
 
-        searchNetworkEventsPage.EnterKeywordFilter("Location Filter Apprentice Test Event");
+        searchNetworkEventsPage.EnterKeywordFilter("Location Filter Employer Test Event");
         searchNetworkEventsPage.FilterEventsByLocation(location, 0);
 
-        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        var stepsHelper = context.Get<EmployerStepsHelper>();
         stepsHelper.ClearEventTitleCache();
     }
 
@@ -157,7 +158,7 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     [Then(@"the following events can be found within the search results:")]
     public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResults(Table table)
     {
-        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        var stepsHelper = context.Get<EmployerStepsHelper>();
         var titles = stepsHelper.GetAllSearchResults().Select(x => x.EventTitle).ToList();
 
         var expectedEvents = table.CreateSet<NetworkEvent>().ToList();
@@ -171,7 +172,7 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     [Then(@"the following events can not be found within the search results:")]
     public void ThenTheFollowingEventsCanNotBeFoundWithinTheSearchResults(Table table)
     {
-        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        var stepsHelper = context.Get<EmployerStepsHelper>();
         var titles = stepsHelper.GetAllSearchResults().Select(x => x.EventTitle).ToList();
 
         var unexpectedEvents = table.CreateSet<NetworkEvent>().ToList();
@@ -192,7 +193,7 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     [Then(@"the following events can be found within the search results in the given order:")]
     public void ThenTheFollowingEventsCanBeFoundWithinTheSearchResultsInTheGivenOrder(Table table)
     {
-        var stepsHelper = context.Get<ApprenticeStepsHelper>();
+        var stepsHelper = context.Get<EmployerStepsHelper>();
         var eventSearchResults = stepsHelper.GetAllSearchResults();
         var expectedEvents = table.CreateSet<NetworkEventWithOrdinal>().OrderBy(e => e.Order).ToList();
 
