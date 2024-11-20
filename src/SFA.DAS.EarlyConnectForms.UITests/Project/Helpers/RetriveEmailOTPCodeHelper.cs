@@ -1,29 +1,17 @@
-﻿using Mailosaur;
-using Mailosaur.Models;
-using System;
+﻿using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
 {
-    public class RetriveEmailOTPCodeHelper
+    public class RetriveEmailOTPCodeHelper(ScenarioContext context)
     {
-        public RetriveEmailOTPCodeHelper()
+        public string AuthCode { get; set; }
+
+        public string GetOPT()
         {
-            var apiKey = "yvODYD5LfqCcF7hG6hjsS3999aYqC0L5";
-            var serverId = "szs3qaml";
-
-            var mailosaur = new MailosaurClient(apiKey);
-
-            var criteria = new SearchCriteria()
-            {
-                Subject = "Confirm your email address – Department for education"
-               
-            };
-            var email = mailosaur.Messages.Get(serverId, criteria);
-            Console.WriteLine(email.Html.Codes[0].Value);
-            AuthCodes = email.Html.Codes[0].Value;
-
+            var email = context.Get<EarlyConnectDataHelper>().Email;
+            AuthCode = context.Get<MailosaurApiHelper>().GetCodeInEmail(email, "Confirm your email address – Department for education", "Your confirmation code is:");
+            return AuthCode;
         }
-        public string AuthCodes { get; set; }
-      
     }
 }

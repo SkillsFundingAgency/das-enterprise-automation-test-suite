@@ -10,23 +10,33 @@ namespace SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 
 public class MailosaurApiHelper(ScenarioContext context)
 {
+    private readonly FrameworkList<MailosaurApiConfig> mailosaurApiUsers = context.Get<FrameworkList<MailosaurApiConfig>>();
+
+    private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+
     private readonly DateTime dateTime = DateTime.Now;
 
-    public string GetLinkFromMessage(Message message, string linkText)
+    public string GetCodeInEmail(string email, string subject, string text)
     {
-        foreach (var linkFound in message.Html.Links)
+        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and confirmation text '{text}' after {dateTime:HH:mm:ss}");
+
+        var mailosaurAPIUser = GetMailosaurAPIUser(email);
+        var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
+        var criteria = new SearchCriteria()
         {
-            SetDebugInformation($"Message links found with text '{linkFound.Text}', href {linkFound.Href}");
-        }
+            SentTo = email,
+            Subject = subject,
+            Body = text
+        };
+        criteria.SentTo = email;
+        var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
 
-        var link = message.Html.Links.FirstOrDefault(x => x.Href.ContainsCompareCaseInsensitive("https://") && (linkText == string.Empty || x.Text.ContainsCompareCaseInsensitive(linkText)));
-
-        return link.Href;
+        return message.Html.Codes[0].Value;
     }
 
-    public Message GetEmailBody(string email, string subject, string emailText)
+    public string GetLinkBySubject(string email, string subject, string linkText)
     {
-        SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {dateTime:HH:mm:ss}");
+        _objectContext.SetDebugInformation($"Check email received to '{email}' using subject '{subject}' and link text '{linkText}' after {dateTime:HH:mm:ss}");
 
         var mailosaurAPIUser = GetMailosaurAPIUser(email);
 
@@ -40,9 +50,16 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
 
-        SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss} with body {Environment.NewLine}{message.Text.Body}");
+        _objectContext.SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss}");
 
-        return message;
+        foreach (var linkFound in message.Html.Links)
+        {
+            _objectContext.SetDebugInformation($"Message links found with text '{linkFound.Text}', href {linkFound.Href}");
+        }
+
+        var link = message.Html.Links.FirstOrDefault(x => x.Href.ContainsCompareCaseInsensitive("https://") && (linkText == string.Empty || x.Text.ContainsCompareCaseInsensitive(linkText)));
+
+        return link.Href;
     }
 
     internal async Task DeleteInbox()
@@ -51,7 +68,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         foreach (var (Email, ReceviedAfter) in inboxToDelete)
         {
-            SetDebugInformation($"Deleting emails received to {Email} after {ReceviedAfter:HH:mm:ss}");
+            _objectContext.SetDebugInformation($"Deleting emails received to {Email} after {ReceviedAfter:HH:mm:ss}");
 
             var mailosaurAPIUser = GetMailosaurAPIUser(Email);
 
@@ -66,7 +83,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
             foreach (var message in messageresult.Items)
             {
-                SetDebugInformation($"Deleting emails received to {Email} at {message.Received:HH:mm:ss} with subject {message.Subject}");
+                _objectContext.SetDebugInformation($"Deleting emails received to {Email} at {message.Received:HH:mm:ss} with subject {message.Subject}");
 
                 await mailosaur.Messages.DeleteAsync(message.Id);
             }
@@ -77,8 +94,6 @@ public class MailosaurApiHelper(ScenarioContext context)
     {
         var serveId = email.Split('@')[1].Split(".")[0];
 
-        return context.Get<FrameworkList<MailosaurApiConfig>>().Single(x => x.ServerId == serveId);
+        return mailosaurApiUsers.Single(x => x.ServerId == serveId);
     }
-
-    private void SetDebugInformation(string message) => context.Get<ObjectContext>().SetDebugInformation(message);
 }

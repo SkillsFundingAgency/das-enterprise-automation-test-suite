@@ -1,21 +1,23 @@
 ﻿using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
-using System.Security.Cryptography;
+using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
 {
     public class EarlyConnectDataHelper
     {
-        public EarlyConnectDataHelper() 
+        public EarlyConnectDataHelper(MailosaurUser user) 
         {
             Firstname = RandomDataGenerator.GenerateRandomAlphabeticString(6);
             Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);
             FullName = $"{Firstname} {Lastname}";
-            Email = $"{Firstname}.{Lastname}@szs3qaml.mailosaur.net";
             DateOfBirthDay = RandomDataGenerator.GenerateRandomDateOfMonth();
             DateOfBirthMonth = RandomDataGenerator.GenerateRandomMonth();             
             DateOfBirthYear = RandomDataGenerator.GenerateRandomDobYear();
-
+            Email = $"{GetDateTimeValue()}@{user.DomainName}";
+            user.AddToEmailList(Email);
         }
         public string FullName { get; }
         public string Firstname { get; }
@@ -24,5 +26,6 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         public int DateOfBirthDay { get; set; }
         public int DateOfBirthMonth { get; set; }
         public int DateOfBirthYear { get; set; }
+        private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToLower();
     }
 }
