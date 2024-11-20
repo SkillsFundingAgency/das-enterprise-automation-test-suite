@@ -31,5 +31,6 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         public int DateOfBirthYear { get; set; }
         private static string GetDateTimeValue() => DateTime.Now.ToString("ddMMMyyyyHHmmss").ToLower();
         public string PostCode { get; init; } = "Tw14 9py";
+        public string SchoolCollege { get; init; } = "Testing College";
     }
 }
