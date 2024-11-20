@@ -44,9 +44,9 @@ public class ManageTrainingProvidersPage(ScenarioContext context) : EmployerProv
 
     private static By TableRows => By.ClassName("govuk-table__row");
 
-    public ManageTrainingProvidersPage VerifyYouHaveAddedNotification()
+    public ManageTrainingProvidersPage VerifyYouHaveAddedNotification(string providerName)
     {
-        VerifyPage(NotificationBanner, "You've added");
+        VerifyPage(NotificationBanner, $"You've added {providerName} and set their permissions.");
 
         return this;
     }

@@ -18,7 +18,7 @@ public class AddEmployerAndRequestPermissionsPage(ScenarioContext context) : Per
 
 public class RequestPermissionsPage(ScenarioContext context) : PermissionBasePageForTrainingProviderPage(context)
 {
-    protected override string PageTitle => $"Request Permissions";
+    protected override string PageTitle => $"Request permissions";
 
     public RequestSentToEmployerPage ProviderRequestPermissions((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
     {

@@ -15,7 +15,7 @@ public class EmployerPermissionsStepsHelper(ScenarioContext context)
             .SelectAddATrainingProvider()
             .SearchForATrainingProvider(providerConfig)
             .AddOrSetPermissions(permissions)
-            .VerifyYouHaveAddedNotification()
+            .VerifyYouHaveAddedNotification(providerConfig.Name)
             .GoToHomePage();
     }
 
@@ -27,7 +27,7 @@ public class EmployerPermissionsStepsHelper(ScenarioContext context)
 
         RegistrationBasePage registrationBasePage = requestType == RequestType.Permission ? 
             accept ? page1.AcceptProviderRequest().VerifyYouHaveSetPermissionNotification(providerConfig.Name) : page1.DeclinePermissionRequest().VerifyYouHaveDeclinedNotification() :
-            accept ? page1.AcceptProviderRequest().VerifyYouHaveAddedNotification() : page1.DeclineAddRequest().ConfirmDeclineRequest();
+            accept ? page1.AcceptProviderRequest().VerifyYouHaveAddedNotification(providerConfig.Name) : page1.DeclineAddRequest().ConfirmDeclineRequest();
 
         return registrationBasePage.GoToHomePage();
     }
