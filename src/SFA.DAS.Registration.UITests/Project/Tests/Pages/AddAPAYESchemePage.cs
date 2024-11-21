@@ -1,44 +1,40 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class AddAPAYESchemePage : RegistrationBasePage
 {
-    public class AddAPAYESchemePage : RegistrationBasePage
+    protected override string PageTitle => "Add a PAYE Scheme";
+
+    #region Locators
+    private static By AddPayeRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme]");
+    private static By UseAORNRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme-aorn]");
+    protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
+    #endregion
+
+    public AddAPAYESchemePage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public UsingYourGovtGatewayDetailsPage AddPaye()
     {
-        protected override string PageTitle => "Add a PAYE Scheme";
+        SelectAddPaye().Continue();
 
-        #region Locators
-        private static By AddPayeRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme]");
-        private static By UseAORNRadioButton => By.CssSelector("label[for=want-to-add-paye-scheme-aorn]");
-        protected override By ContinueButton => By.Id("submit-add-a-paye-scheme-button");
-        #endregion
+        return new UsingYourGovtGatewayDetailsPage(context);
+    }
 
-        public AddAPAYESchemePage(ScenarioContext context) : base(context) => VerifyPage();
+    public EnterYourPAYESchemeDetailsPage AddAORN()
+    {
+        SelectAORN().Continue();
 
-        public UsingYourGovtGatewayDetailsPage AddPaye()
-        {
-            SelectAddPaye().Continue();
+        return new EnterYourPAYESchemeDetailsPage(context);
+    }
 
-            return new UsingYourGovtGatewayDetailsPage(context);
-        }
+    private AddAPAYESchemePage SelectAddPaye()
+    {
+        formCompletionHelper.ClickElement(AddPayeRadioButton);
+        return this;
+    }
 
-        public EnterYourPAYESchemeDetailsPage AddAORN()
-        {
-            SelectAORN().Continue();
-
-            return new EnterYourPAYESchemeDetailsPage(context);
-        }
-
-        private AddAPAYESchemePage SelectAddPaye()
-        {
-            formCompletionHelper.ClickElement(AddPayeRadioButton);
-            return this;
-        }
-
-        private AddAPAYESchemePage SelectAORN()
-        {
-            formCompletionHelper.ClickElement(UseAORNRadioButton);
-            return this;
-        }
+    private AddAPAYESchemePage SelectAORN()
+    {
+        formCompletionHelper.ClickElement(UseAORNRadioButton);
+        return this;
     }
 }

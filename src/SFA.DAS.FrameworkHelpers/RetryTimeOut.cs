@@ -8,7 +8,7 @@
 
         public static TimeSpan[] ShorterTimeout() => GetTimeSpan(1, 1, 1);
 
-        internal static TimeSpan[] Timeout() => new TimeSpan[] { TimeSpan.FromSeconds(1) };
+        internal static TimeSpan[] Timeout() => [TimeSpan.FromSeconds(1)];
 
         internal static TimeSpan[] GetTimeSpan(int a, int b, int c) => GetTimeSpan([a, b, c]);
 

@@ -1,45 +1,46 @@
-﻿using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.Relationships;
-using TechTalk.SpecFlow;
+﻿
+namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Helpers
+public class EmployerPermissionsStepsHelper(ScenarioContext context)
 {
-    public class EmployerPermissionsStepsHelper(ScenarioContext context)
+    public HomePage SetAllProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow));
+
+    public HomePage SetCreateCohortProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.DoNotAllow));
+
+    public HomePage RemoveAllProviderPermission(ProviderConfig providerConfig) => UpdateProviderPermission(providerConfig, (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
+
+    private HomePage SetProviderPermissions(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)
     {
-        public HomePage SetAllProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow));
-
-        public HomePage SetCreateCohortProviderPermissions(ProviderConfig providerConfig) => SetProviderPermissions(providerConfig, (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.DoNotAllow));
-
-        public HomePage RemoveAllProviderPermission(ProviderConfig providerConfig) => UpdateProviderPermission(providerConfig, (AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
-
-        private HomePage SetProviderPermissions(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)
-        {
-            return OpenProviderPermissions()
-                .SelectAddATrainingProvider()
-                .SearchForATrainingProvider(providerConfig)
-                .AddOrSetPermissions(permissions)
-                .VerifyYouHaveAddedNotification()
-                .GoToHomePage();
-        }
-
-        public HomePage AcceptOrDeclineProviderPermissionsRequest(ProviderConfig providerConfig, string requestId, bool doesAllow)
-        {
-            var page = OpenProviderPermissions().ViewProviderRequests(providerConfig, requestId);
-
-            return doesAllow ? page.AcceptProviderRequest().GoToHomePage() : page.DeclineRequest().ConfirmDeclineRequest().GoToHomePage();
-        }
-
-        internal HomePage UpdateProviderPermission(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)
-        {
-            return OpenProviderPermissions()
-                   .SelectChangePermissions(providerConfig.Ukprn)
-                   .AddOrSetPermissions(permissions)
-                   .VerifyYouHaveSetPermissionNotification()
-                   .GoToHomePage();
-        }
-
-        internal YourTrainingProvidersPage OpenProviderPermissions() => new YourTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions();
-
+        return OpenProviderPermissions()
+            .SelectAddATrainingProvider()
+            .SearchForATrainingProvider(providerConfig)
+            .AddOrSetPermissions(permissions)
+            .VerifyYouHaveAddedNotification(providerConfig.Name)
+            .GoToHomePage();
     }
+
+    public HomePage AcceptOrDeclineProviderRequest(RequestType requestType, ProviderConfig providerConfig, string requestId, bool accept)
+    {
+        var page = OpenProviderPermissions();
+
+        AddOrReviewRequestFromProvider page1 = requestType == RequestType.Permission ? page.ReviewProviderRequests(providerConfig, requestId) : page.ViewProviderRequests(providerConfig, requestId);
+
+        RegistrationBasePage registrationBasePage = requestType == RequestType.Permission ? 
+            accept ? page1.AcceptProviderRequest().VerifyYouHaveSetPermissionNotification(providerConfig.Name) : page1.DeclinePermissionRequest().VerifyYouHaveDeclinedNotification(providerConfig.Name) :
+            accept ? page1.AcceptProviderRequest().VerifyYouHaveAddedNotification(providerConfig.Name) : page1.DeclineAddRequest().ConfirmDeclineRequest();
+
+        return registrationBasePage.GoToHomePage();
+    }
+
+    internal HomePage UpdateProviderPermission(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)
+    {
+        return OpenProviderPermissions()
+               .SelectChangePermissions(providerConfig.Ukprn)
+               .AddOrSetPermissions(permissions)
+               .VerifyYouHaveSetPermissionNotification()
+               .GoToHomePage();
+    }
+
+    internal ManageTrainingProvidersPage OpenProviderPermissions() => new ManageTrainingProvidersLinkHomePage(context).OpenRelationshipPermissions();
+
 }

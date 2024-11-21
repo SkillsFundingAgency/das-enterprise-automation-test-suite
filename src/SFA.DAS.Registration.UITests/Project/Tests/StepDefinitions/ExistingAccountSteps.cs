@@ -1,93 +1,84 @@
-﻿using SFA.DAS.Login.Service.Project;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
-using TechTalk.SpecFlow;
-using static SFA.DAS.Registration.UITests.Project.Helpers.EnumHelper;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.StepDefinitions
+[Binding]
+public class ExistingAccountSteps
 {
-    [Binding]
-    public class ExistingAccountSteps
+    private readonly ScenarioContext _context;
+    private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
+    private readonly CreateAccountEmployerPortalLoginHelper _createAccountEmployerPortalLoginHelper;
+    private HomePage _homePage;
+
+    public ExistingAccountSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private readonly EmployerPortalLoginHelper _employerPortalLoginHelper;
-        private readonly CreateAccountEmployerPortalLoginHelper _createAccountEmployerPortalLoginHelper;
-        private HomePage _homePage;
-
-        public ExistingAccountSteps(ScenarioContext context)
-        {
-            _context = context;
-            _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
-            _createAccountEmployerPortalLoginHelper = new CreateAccountEmployerPortalLoginHelper(_context);
-        }
-
-        [Given(@"the Employer logins using existing (Levy|NonLevy) Account")]
-        [When(@"the Employer logins using existing (Levy|NonLevy) Account")]
-        public void GivenTheEmployerLoginsUsingExistingAccount(string employerType = "NonLevy")
-        {
-            if (employerType == "Levy")
-                _homePage = _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>());
-            else
-                _homePage = _createAccountEmployerPortalLoginHelper.Login(_context.GetUser<NonLevyUser>());
-        }
-
-        [Given(@"the Employer logins using existing transactor user account")]
-        public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => _homePage = _createAccountEmployerPortalLoginHelper.Login(_context.GetUser<TransactorUser>(), true);
-
-        [Given(@"the Employer logins using existing view user account")]
-        [When(@"the Employer logins using existing view user account")]
-        [Given(@"the levy employer login using existing view user account")]
-        public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _createAccountEmployerPortalLoginHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
-
-        [Then(@"Employer is able to navigate to all the link under Settings")]
-        public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
-                .GoToYourAccountsPage().OpenAccount().GoToHomePage()
-                .GoToRenameAccountPage().GoToHomePage()
-                .GoToNotificationSettingsPage().ClickBackLink();
-
-        [Then(@"Employer is able to navigate to Help Page")]
-        public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage();
-
-        [Then(@"the employer can navigate to home page")]
-        public void ThenTheEmployerCanNavigateToHomePage() => _ = new HomePage(_context, true);
-
-        [Then(@"the user can not add an organisation")]
-        public void ThenTheUserCanNotAddAnOrganisation()
-        {
-            _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage()
-                .ClickAddNewOrganisationButton()
-                .SearchForAnOrganisation(OrgType.Company2)
-                .SelectYourOrganisation(OrgType.Company2)
-                .ClickYesContinueButtonAndRedirectedToAccessDeniedPage());
-        }
-
-        [Then(@"the user can not remove the organisation")]
-        public void ThenTheUserCanNotRemoveTheOrganisation() => _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage().ClickToRemoveAnOrg());
-
-        [Then(@"the user can not add Payee Scheme")]
-        public void ThenTheUserCanNotAddPayeeScheme() => _homePage = GoBackToTheServiceHomePage(_homePage.GotoPAYESchemesPage().ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage());
-
-        [Then(@"the user can not invite a team members")]
-        public void ThenTheUserCanNotInviteATeamMembers() => _homePage = GoBackToTheServiceHomePage(_homePage.GotoYourTeamPage().ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage());
-
-        [Then(@"the user can not accept agreement")]
-        public void ThenTheUserCanNotAcceptAgreement()
-        {
-            _homePage = GoBackToTheServiceHomePage(_homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
-                .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
-                .ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage());
-        }
-
-        [Then(@"the user can not add an apprentices")]
-        public void ThenTheUserCanNotAddAnApprentices()
-        {
-            InterimApprenticesAccessDeniedPage _interimApprenticesAccessDeniedPage = new(_context);
-            _interimApprenticesAccessDeniedPage.GoBackToTheEASServiceHomePage();
-            _homePage = new HomePage(_context, true);
-        }
-
-        private HomePage GoBackToTheServiceHomePage(AccessDeniedPage accessDeniedPage) => accessDeniedPage.GoBackToTheServiceHomePage(_employerPortalLoginHelper.GetLoginCredentials().OrganisationName);
+        _context = context;
+        _employerPortalLoginHelper = new EmployerPortalLoginHelper(context);
+        _createAccountEmployerPortalLoginHelper = new CreateAccountEmployerPortalLoginHelper(_context);
     }
+
+    [Given(@"the Employer logins using existing (Levy|NonLevy) Account")]
+    [When(@"the Employer logins using existing (Levy|NonLevy) Account")]
+    public void GivenTheEmployerLoginsUsingExistingAccount(string employerType = "NonLevy")
+    {
+        if (employerType == "Levy")
+            _homePage = _employerPortalLoginHelper.Login(_context.GetUser<LevyUser>());
+        else
+            _homePage = _createAccountEmployerPortalLoginHelper.Login(_context.GetUser<NonLevyUser>());
+    }
+
+    [Given(@"the Employer logins using existing transactor user account")]
+    public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => _homePage = _createAccountEmployerPortalLoginHelper.Login(_context.GetUser<TransactorUser>(), true);
+
+    [Given(@"the Employer logins using existing view user account")]
+    [When(@"the Employer logins using existing view user account")]
+    [Given(@"the levy employer login using existing view user account")]
+    public void GivenTheEmployerLoginsUsingExistingViewUserAccount() => _homePage = _createAccountEmployerPortalLoginHelper.Login(_context.GetUser<ViewOnlyUser>(), true);
+
+    [Then(@"Employer is able to navigate to all the link under Settings")]
+    public void ThenEmployerIsAbleToNavigateToAllTheLinkUnderSettings() => _homePage = _homePage
+            .GoToYourAccountsPage().OpenAccount().GoToHomePage()
+            .GoToRenameAccountPage().GoToHomePage()
+            .GoToNotificationSettingsPage().ClickBackLink();
+
+    [Then(@"Employer is able to navigate to Help Page")]
+    public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage();
+
+    [Then(@"the employer can navigate to home page")]
+    public void ThenTheEmployerCanNavigateToHomePage() => _ = new HomePage(_context, true);
+
+    [Then(@"the user can not add an organisation")]
+    public void ThenTheUserCanNotAddAnOrganisation()
+    {
+        _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage()
+            .ClickAddNewOrganisationButton()
+            .SearchForAnOrganisation(OrgType.Company2)
+            .SelectYourOrganisation(OrgType.Company2)
+            .ClickYesContinueButtonAndRedirectedToAccessDeniedPage());
+    }
+
+    [Then(@"the user can not remove the organisation")]
+    public void ThenTheUserCanNotRemoveTheOrganisation() => _homePage = GoBackToTheServiceHomePage(_homePage.GoToYourOrganisationsAndAgreementsPage().ClickToRemoveAnOrg());
+
+    [Then(@"the user can not add Payee Scheme")]
+    public void ThenTheUserCanNotAddPayeeScheme() => _homePage = GoBackToTheServiceHomePage(_homePage.GotoPAYESchemesPage().ClickAddNewSchemeButtonAndRedirectedToAccessDeniedPage());
+
+    [Then(@"the user can not invite a team members")]
+    public void ThenTheUserCanNotInviteATeamMembers() => _homePage = GoBackToTheServiceHomePage(_homePage.GotoYourTeamPage().ClickInviteANewMemberButtonAndRedirectedToAccessDeniedPage());
+
+    [Then(@"the user can not accept agreement")]
+    public void ThenTheUserCanNotAcceptAgreement()
+    {
+        _homePage = GoBackToTheServiceHomePage(_homePage.ClickAcceptYourAgreementLinkInHomePagePanel()
+            .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage()
+            .ClickYesAndContinueDoYouAcceptTheEmployerAgreementOnBehalfOfPage());
+    }
+
+    [Then(@"the user can not add an apprentices")]
+    public void ThenTheUserCanNotAddAnApprentices()
+    {
+        InterimApprenticesAccessDeniedPage _interimApprenticesAccessDeniedPage = new(_context);
+        _interimApprenticesAccessDeniedPage.GoBackToTheEASServiceHomePage();
+        _homePage = new HomePage(_context, true);
+    }
+
+    private HomePage GoBackToTheServiceHomePage(AccessDeniedPage accessDeniedPage) => accessDeniedPage.GoBackToTheServiceHomePage(_employerPortalLoginHelper.GetLoginCredentials().OrganisationName);
 }

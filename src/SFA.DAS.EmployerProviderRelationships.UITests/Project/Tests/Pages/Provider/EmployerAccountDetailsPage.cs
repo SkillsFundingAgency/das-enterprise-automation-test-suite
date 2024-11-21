@@ -1,18 +1,25 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider
+public class EmployerAccountDetailsPage(ScenarioContext context) : ProviderRelationshipsBasePage(context)
 {
-    public class EmployerAccountDetailsPage(ScenarioContext context) : ProviderRelationshipsBasePage(context)
+    protected override By ContinueButton => By.CssSelector("button.govuk-button[type='submit']");
+
+    private static By ViewEmployersPage => By.LinkText("View employers and manage permissions");
+
+    protected override string PageTitle => "Employer account details";
+
+    public RequestPermissionsPage ChangePermissions()
     {
-        protected override By ContinueButton => By.CssSelector("button.govuk-button[type='submit']");
+        Continue();
 
-        protected override string PageTitle => "Employer account details";
-
-        public void ChangePermissions()
-        {
-            Continue();
-        }
-
+        return new(context);
     }
+
+    public ViewEmpAndManagePermissionsPage ViewEmployersAndManagePermissionsPage()
+    {
+        formCompletionHelper.Click(ViewEmployersPage);
+
+        return new(context);
+    }
+
 }

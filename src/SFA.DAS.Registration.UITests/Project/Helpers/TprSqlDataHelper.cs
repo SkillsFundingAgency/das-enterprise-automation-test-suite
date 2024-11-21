@@ -1,29 +1,27 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.MongoDb.DataGenerator;
-using SFA.DAS.UI.FrameworkHelpers;
+﻿
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers
+namespace SFA.DAS.Registration.UITests.Project.Helpers;
+
+public class TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext, AornDataHelper aornDataHelper)
 {
-    internal class TprSqlDataHelper(DbConfig dbConfig, ObjectContext objectContext, AornDataHelper aornDataHelper)
+    public (string paye, string aornNumber, string orgName) CreateAornData(bool isSingleOrg) => isSingleOrg ? CreateSingleOrgAornData() : CreateMultiOrgAORNData();
+
+    public (string paye, string aornNumber, string orgName) CreateSingleOrgAornData() => CreateAornData("SingleOrg");
+
+    public (string paye, string aornNumber, string orgName) CreateMultiOrgAORNData() => CreateAornData("MultiOrg");
+
+    private (string paye, string aornNumber, string orgName) CreateAornData(string orgType)
     {
-        public void CreateSingleOrgAornData() => CreateAornData("SingleOrg");
+        var aornNumber = aornDataHelper.AornNumber;
 
-        public void CreateMultiOrgAORNData()
-        {
-            CreateAornData("MultiOrg");
-            CreateAornData("MultiOrg");
-        }
+        var paye = objectContext.GetGatewayPaye(0);
 
-        private void CreateAornData(string orgType)
-        {
-            var aornNumber = aornDataHelper.AornNumber;
+        var organisationName = new InsertTprDataHelper(objectContext, dbConfig).InsertTprData(aornNumber, paye, orgType);
 
-            var organisationName = new InsertTprDataHelper(objectContext, dbConfig).InsertTprData(aornNumber, objectContext.GetGatewayPaye(0), orgType);
+        objectContext.UpdateOrganisationName(organisationName);
 
-            objectContext.UpdateOrganisationName(organisationName);
+        objectContext.UpdateAornNumber(aornNumber, 0);
 
-            objectContext.UpdateAornNumber(aornNumber, 0);
-        }
+        return (paye, aornNumber, organisationName);
     }
 }

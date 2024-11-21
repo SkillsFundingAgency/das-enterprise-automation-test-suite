@@ -1,19 +1,24 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider
+public class RequestSentToEmployerPage(ScenarioContext context) : ProviderRelationshipsBasePage(context)
 {
-    public class RequestSentToEmployerPage(ScenarioContext context) : ProviderRelationshipsBasePage(context)
+    protected override string PageTitle => "Request sent to employer";
+
+    private static By ViewEmployersPage => By.LinkText("View employers and manage permissions page");
+
+    private static By ViewCurrentEmployersPage => By.LinkText("View current employers and permissions");
+
+    public ViewEmpAndManagePermissionsPage GoToViewEmployersPage()
     {
-        protected override string PageTitle => "Request sent to employer";
+        formCompletionHelper.Click(ViewEmployersPage);
 
-        private static By ViewEmployersPage => By.LinkText("View employers and manage permissions page");
+        return new(context);
+    }
 
-        public ViewEmpAndManagePermissionsPage GoToViewEmployersPage()
-        {
-            formCompletionHelper.Click(ViewEmployersPage);
+    public ViewEmpAndManagePermissionsPage GoToViewCurrentEmployersPage()
+    {
+        formCompletionHelper.Click(ViewCurrentEmployersPage);
 
-            return new(context);
-        }
+        return new(context);
     }
 }

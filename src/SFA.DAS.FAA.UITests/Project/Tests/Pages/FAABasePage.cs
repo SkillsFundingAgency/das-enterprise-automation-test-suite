@@ -4,6 +4,7 @@ public abstract class FAABasePage : VerifyBasePage
 {
     #region Helpers and Context
     protected readonly FAADataHelper faaDataHelper;
+    protected readonly FAAUserNameDataHelper fAAUserNameDataHelper;
     protected readonly AdvertDataHelper advertDataHelper;
     protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
     #endregion
@@ -11,12 +12,14 @@ public abstract class FAABasePage : VerifyBasePage
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
     protected virtual By SubmitSectionButton => By.CssSelector("button.govuk-button[id='submit-button']");
-    
+
     protected FAABasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
         vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
 
         faaDataHelper = context.Get<FAADataHelper>();
+
+        fAAUserNameDataHelper = context.Get<FAAUserNameDataHelper>();
 
         advertDataHelper = context.GetValue<AdvertDataHelper>();
 

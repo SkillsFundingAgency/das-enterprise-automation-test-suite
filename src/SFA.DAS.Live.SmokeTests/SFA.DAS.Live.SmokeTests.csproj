@@ -19,12 +19,13 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
 		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 		<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\SFA.DAS.RequestApprenticeshipTraining.UITests\SFA.DAS.RequestApprenticeshipTraining.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.TransferMatching.UITests\SFA.DAS.TransferMatching.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.EmployerFinance.UITests\SFA.DAS.EmployerFinance.UITests.csproj" />
 		<ProjectReference Include="..\SFA.DAS.RAAEmployer.UITests\SFA.DAS.RAAEmployer.UITests.csproj" />

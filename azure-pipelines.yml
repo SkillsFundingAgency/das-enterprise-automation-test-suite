@@ -25,17 +25,10 @@ steps:
 - template: azure-pipelines-templates/build/step/gitversion.yml@das-platform-building-blocks
 
 - task: DotNetCoreCLI@2
-  displayName: dotnet restore
-  inputs:
-    command: restore
-    projects: 'src/**/*.csproj'
-    noCache: true
-
-- task: DotNetCoreCLI@2
   displayName: dotnet build
   inputs:
     projects: 'src/**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --no-restore'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: dotnet unit test

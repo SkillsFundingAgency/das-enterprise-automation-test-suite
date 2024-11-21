@@ -1,35 +1,31 @@
-﻿using OpenQA.Selenium;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 
-namespace SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider
+public class EmailAccountFoundPage : ProviderRelationshipsBasePage
 {
-    public class EmailAccountFoundPage : ProviderRelationshipsBasePage
+    protected override By ContinueButton => By.CssSelector("a.govuk-button[href*='addEmployer']");
+
+    private static By GovBody => By.CssSelector(".govuk-body");
+
+    protected override string PageTitle => "Account found";
+
+    private readonly string email;
+
+    public EmailAccountFoundPage(ScenarioContext context, string email) : base(context)
     {
-        protected override By ContinueButton => By.CssSelector("a.govuk-button[href*='addEmployer']");
+        this.email = email;
 
-        private static By GovBody => By.CssSelector(".govuk-body");
+        VerifyPage(GovBody, email);
+    }
 
-        protected override string PageTitle => "Account found";
+    public void VerifyAlreadyLinkedToThisEmployer()
+    {
+        VerifyPage(GovBody, $"We’ve found an apprenticeship service account linked to {email}. Your organisation is already linked to this employer.");
+    }
 
-        private readonly string email;
+    public AddEmployerAndRequestPermissionsPage ContinueToInvite()
+    {
+        Continue();
 
-        public EmailAccountFoundPage(ScenarioContext context, string email) : base(context)
-        {
-            this.email = email;
-
-            VerifyPage(GovBody, email);
-        }
-
-        public void VerifyAlreadyLinkedToThisEmployer()
-        {
-            VerifyPage(GovBody, $"We’ve found an apprenticeship service account linked to {email}. Your organisation is already linked to this employer.");
-        }
-
-        public ProviderRequestPermissionsPage ContinueToInvite()
-        {
-            Continue();
-
-            return new(context);
-        }
+        return new(context);
     }
 }
