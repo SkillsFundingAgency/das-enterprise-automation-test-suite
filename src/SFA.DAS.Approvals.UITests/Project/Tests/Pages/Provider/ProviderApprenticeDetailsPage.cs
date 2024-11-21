@@ -177,6 +177,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public void ClickChangeStartDateLink() => formCompletionHelper.Click(ChangeStartDateLink);
 
+        public ProviderApprenticeDetailsPage VerifyChangeStartDateLinkNotDisplayed()
+        {
+            Assert.IsFalse(pageInteractionHelper.IsElementDisplayedAfterPageLoad(ChangeStartDateLink), "Change of start date link is displayed after qualifying period");
+            return this;
+        }
+
         public void ClickViewPriceChangesRequestedLink() => formCompletionHelper.Click(ViewPriceChangesLink);
 
         public void ClickViewPendingStartDateLink() => formCompletionHelper.Click(ViewPendingStartDateLink);

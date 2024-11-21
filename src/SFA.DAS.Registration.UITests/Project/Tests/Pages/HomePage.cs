@@ -1,153 +1,147 @@
-﻿using System;
-using OpenQA.Selenium;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class HomePage : InterimHomeBasePage
 {
-    public class HomePage : InterimHomeBasePage
+    #region Locators
+
+    protected static By FindApprenticeshipLink => By.LinkText("Find apprenticeship training and manage requests");
+    protected static By StartNowButton => By.LinkText("Start now");
+    protected static By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+    protected static By YourTransfersLink => By.LinkText("Your transfers");
+    private static By SucessSummary => By.CssSelector(".das-notification");
+    private static By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
+    private static By ContinueTo => By.LinkText("Continue");
+    private static By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
+    protected static By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
+    protected static By YourFinancesLink => By.LinkText("Your finances");
+    protected static By AANLink => By.LinkText("Join the Apprentice Ambassador Network");
+    private static By TransferRequestViewDetailsLink => By.XPath("//li[contains(span, 'Transfer request received')]/span/a[text()='View details']");
+    private static By TransferConnectionRequestViewDetailsLink => By.XPath("//li[contains(span, 'connection requests to review')]/span/a[text()='View details']");
+    #endregion
+
+    protected override string AccessibilityPageTitle => "Employer home page";
+
+    public HomePage(ScenarioContext context, bool navigate) : base(context, navigate) => AcceptCookies();
+
+    public HomePage(ScenarioContext context) : this(context, false) { }
+
+    public void GoToAanHomePage() => formCompletionHelper.Click(AANLink);
+
+    public HomePage VerifySucessSummary(string message)
     {
-        #region Locators
+        pageInteractionHelper.VerifyText(SucessSummary, message);
+        return this;
+    }
 
-        protected static By FindApprenticeshipLink => By.LinkText("Find apprenticeship training and manage requests");
-        protected static By StartNowButton => By.LinkText("Start now");
-        protected static By YourFundingReservationsLink => By.LinkText("Your funding reservations");
-        protected static By YourTransfersLink => By.LinkText("Your transfers");
-        private static By SucessSummary => By.CssSelector(".das-notification");
-        private static By AcceptYourAgreementLink => By.LinkText("Accept your agreement");
-        private static By ContinueTo => By.LinkText("Continue");
-        private static By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
-        protected static By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
-        protected static By YourFinancesLink => By.LinkText("Your finances");
-        protected static By AANLink => By.LinkText("Join the Apprentice Ambassador Network");
-        private static By TransferRequestViewDetailsLink => By.XPath("//li[contains(span, 'Transfer request received')]/span/a[text()='View details']");
-        private static By TransferConnectionRequestViewDetailsLink => By.XPath("//li[contains(span, 'connection requests to review')]/span/a[text()='View details']");
-        #endregion
+    public HomePage VerifyAccountName(string name)
+    {
+        pageInteractionHelper.VerifyText(PageHeader, name);
+        return this;
+    }
 
-        protected override string AccessibilityPageTitle => "Employer home page";
+    public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
+    {
+        formCompletionHelper.Click(AcceptYourAgreementLink);
+        return new AboutYourAgreementPage(context);
+    }
 
-        public HomePage(ScenarioContext context, bool navigate) : base(context, navigate) => AcceptCookies();
+    public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
 
-        public HomePage(ScenarioContext context) : this(context, false) { }
+    public void VerifySetupAnApprenticeshipSection()
+    {
+        VerifyElement(SetUpAnApprenticeshipSectionHeader);
+        VerifyElement(StartNowButton);
+    }
 
-        public void GoToAanHomePage() => formCompletionHelper.Click(AANLink);
+    public void VerifyLevyDeclarationDueTaskMessageShown()
+    {
+        var messageText = $"Levy declaration due by 19 {DateTime.Now:MMMM}";
+        var xpath = $"//span[contains(text(), '{messageText}')]";
+        var levyDeclarationDue = By.XPath(xpath);
 
-        public HomePage VerifySucessSummary(string message)
-        {
-            pageInteractionHelper.VerifyText(SucessSummary, message);
-            return this;
-        }
+        VerifyElement(levyDeclarationDue);
+    }
 
-        public HomePage VerifyAccountName(string name)
-        {
-            pageInteractionHelper.VerifyText(PageHeader, name);
-            return this;
-        }
+    public void VerifyApprenticeChangeToReviewMessageShown(int numberOfChanges)
+    {
+        var messageText = numberOfChanges == 1 ? "1 apprentice change to review" : $"{numberOfChanges} apprentice changes to review";
+        var xpath = $"//span[contains(text(), '{messageText}')]";
+        var apprenticeChangeToReviewMessage = By.XPath(xpath);
 
-        public AboutYourAgreementPage ClickAcceptYourAgreementLinkInHomePagePanel()
-        {
-            formCompletionHelper.Click(AcceptYourAgreementLink);
-            return new AboutYourAgreementPage(context);
-        }
+        VerifyElement(apprenticeChangeToReviewMessage);
+    }
 
-        public void ContinueToCreateAdvert() => formCompletionHelper.ClickElement(ContinueTo);
+    public void VerifyCohortsReadyToReviewMessageShown(int numberOfChanges)
+    {
+        var messageText = numberOfChanges == 1 ? "1 cohort ready for approval" : $"{numberOfChanges} cohorts ready for approval";
+        var xpath = $"//span[contains(text(), '{messageText}')]";
+        var cohortsToReviewMessage = By.XPath(xpath);
 
-        public void VerifySetupAnApprenticeshipSection()
-        {
-            VerifyElement(SetUpAnApprenticeshipSectionHeader);
-            VerifyElement(StartNowButton);
-        }
+        VerifyElement(cohortsToReviewMessage);
+    }
 
-        public void VerifyLevyDeclarationDueTaskMessageShown()
-        {
-            var messageText = $"Levy declaration due by 19 {DateTime.Now:MMMM}";
-            var xpath = $"//span[contains(text(), '{messageText}')]";
-            var levyDeclarationDue = By.XPath(xpath);
+    public void VerifyTransferPledgeApplicationsToReviewMessageShown(int numberOfChanges)
+    {
+        var messageText = numberOfChanges == 1 ? "1 transfer pledge application awaiting your approval" : $"{numberOfChanges} transfer pledge applications awaiting your approval";
+        var xpath = $"//span[contains(text(), '{messageText}')]";
+        var transferApplicationsToReviewMessage = By.XPath(xpath);
 
-            VerifyElement(levyDeclarationDue);
-        }
+        VerifyElement(transferApplicationsToReviewMessage);
+    }
 
-        public void VerifyApprenticeChangeToReviewMessageShown(int numberOfChanges)
-        {
-            var messageText = numberOfChanges == 1 ? "1 apprentice change to review" : $"{numberOfChanges} apprentice changes to review";
-            var xpath = $"//span[contains(text(), '{messageText}')]";
-            var apprenticeChangeToReviewMessage = By.XPath(xpath);
+    public void VerifyTransferRequestReceivedMessageShown()
+    {
+        var xpath = "//span[contains(text(), 'Transfer request received')]";
+        var transferRequestMessage = By.XPath(xpath);
 
-            VerifyElement(apprenticeChangeToReviewMessage);
-        }
+        VerifyElement(transferRequestMessage);
+    }
 
-        public void VerifyCohortsReadyToReviewMessageShown(int numberOfChanges)
-        {
-            var messageText = numberOfChanges == 1 ? "1 cohort ready for approval" : $"{numberOfChanges} cohorts ready for approval";
-            var xpath = $"//span[contains(text(), '{messageText}')]";
-            var cohortsToReviewMessage = By.XPath(xpath);
+    public void VerifyTransferConnectionRequestsMessageShown(int numberOfChanges)
+    {
+        var messageText = numberOfChanges == 1 ? "1 connection request to review" : $"{numberOfChanges} connection requests to review";
+        var xpath = $"//span[contains(text(), '{messageText}')]";
+        var cohortsToReviewMessage = By.XPath(xpath);
 
-            VerifyElement(cohortsToReviewMessage);
-        }
+        VerifyElement(cohortsToReviewMessage);
+    }
 
-        public void VerifyTransferPledgeApplicationsToReviewMessageShown(int numberOfChanges)
-        {
-            var messageText = numberOfChanges == 1 ? "1 transfer pledge application awaiting your approval" : $"{numberOfChanges} transfer pledge applications awaiting your approval";
-            var xpath = $"//span[contains(text(), '{messageText}')]";
-            var transferApplicationsToReviewMessage = By.XPath(xpath);
+    public ManageYourApprenticesPage ClickViewChangesForApprenticeChangesToReview(int numberOfChanges)
+    {
+        var linkText = numberOfChanges == 1 ? "change" : "changes";
+        var apprenticeChangeToReviewLink = By.XPath($"//a[contains(., 'View') and contains(., 'apprentice') and contains(., '{linkText}')]");
 
-            VerifyElement(transferApplicationsToReviewMessage);
-        }
+        formCompletionHelper.Click(apprenticeChangeToReviewLink);
+        return new ManageYourApprenticesPage(context);
+    }
 
-        public void VerifyTransferRequestReceivedMessageShown()
-        {
-            var xpath = "//span[contains(text(), 'Transfer request received')]";
-            var transferRequestMessage = By.XPath(xpath);
+    public ApprenticeRequestsPage ClickViewCohortsForCohortsReadyToReview(int numberOfChanges)
+    {
+        var linkText = numberOfChanges == 1 ? "View cohort" : "View cohorts";
+        var cohortsToApproveLink = By.LinkText(linkText);
 
-            VerifyElement(transferRequestMessage);
-        }
+        formCompletionHelper.Click(cohortsToApproveLink);
+        return new ApprenticeRequestsPage(context);
+    }
 
-        public void VerifyTransferConnectionRequestsMessageShown(int numberOfChanges)
-        {
-            var messageText = numberOfChanges == 1 ? "1 connection request to review" : $"{numberOfChanges} connection requests to review";
-            var xpath = $"//span[contains(text(), '{messageText}')]";
-            var cohortsToReviewMessage = By.XPath(xpath);
+    public TransfersPage ClickViewDetailsForTransferRequests()
+    {
+        formCompletionHelper.Click(TransferRequestViewDetailsLink);
+        return new TransfersPage(context);
+    }
 
-            VerifyElement(cohortsToReviewMessage);
-        }
+    public TransfersPage ClickViewDetailsForTransferConnectionRequests()
+    {
+        formCompletionHelper.Click(TransferConnectionRequestViewDetailsLink);
+        return new TransfersPage(context);
+    }
 
-        public ManageYourApprenticesPage ClickViewChangesForApprenticeChangesToReview(int numberOfChanges)
-        {
-            var linkText = numberOfChanges == 1 ? "change" : "changes";
-            var apprenticeChangeToReviewLink = By.XPath($"//a[contains(., 'View') and contains(., 'apprentice') and contains(., '{linkText}')]");
+    public MyTransferPledgesPage ClickViewTransferPledgeApplications(int numberOfChanges)
+    {
+        var linkText = numberOfChanges == 1 ? "application" : "applications";
+        var transferPledgeApplicationsLink = By.XPath($"//a[contains(., 'View') and contains(., 'transfer pledge') and contains(., '{linkText}')]");
 
-            formCompletionHelper.Click(apprenticeChangeToReviewLink);
-            return new ManageYourApprenticesPage(context);
-        }
-
-        public ApprenticeRequestsPage ClickViewCohortsForCohortsReadyToReview(int numberOfChanges)
-        {
-            var linkText = numberOfChanges == 1 ? "View cohort" : "View cohorts";
-            var cohortsToApproveLink = By.LinkText(linkText);
-
-            formCompletionHelper.Click(cohortsToApproveLink);
-            return new ApprenticeRequestsPage(context);
-        }
-
-        public TransfersPage ClickViewDetailsForTransferRequests()
-        {
-            formCompletionHelper.Click(TransferRequestViewDetailsLink);
-            return new TransfersPage(context);
-        }
-
-        public TransfersPage ClickViewDetailsForTransferConnectionRequests()
-        {
-            formCompletionHelper.Click(TransferConnectionRequestViewDetailsLink);
-            return new TransfersPage(context);
-        }
-
-        public MyTransferPledgesPage ClickViewTransferPledgeApplications(int numberOfChanges)
-        {
-            var linkText = numberOfChanges == 1 ? "application" : "applications";
-            var transferPledgeApplicationsLink = By.XPath($"//a[contains(., 'View') and contains(., 'transfer pledge') and contains(., '{linkText}')]");
-
-            formCompletionHelper.Click(transferPledgeApplicationsLink);
-            return new MyTransferPledgesPage(context);
-        }
+        formCompletionHelper.Click(transferPledgeApplicationsLink);
+        return new MyTransferPledgesPage(context);
     }
 }

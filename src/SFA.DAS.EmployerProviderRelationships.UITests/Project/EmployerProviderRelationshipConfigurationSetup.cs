@@ -20,6 +20,8 @@ global using System.Linq;
 global using TechTalk.SpecFlow;
 global using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Employer;
 global using SFA.DAS.Registration.UITests.Project.Tests.Pages.StubPages;
+global using System.Collections.Generic;
+
 
 namespace SFA.DAS.EmployerProviderRelationships.UITests.Project;
 

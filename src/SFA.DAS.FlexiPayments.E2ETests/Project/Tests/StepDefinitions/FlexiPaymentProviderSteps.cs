@@ -127,6 +127,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Provider proceeds to create a Change of Start Date request for flexi payments pilot learner")]
         public void ProviderProceedsToCreateAChangeOfStartDateRequestForFlexiPaymentsPilotLearner() => _providerApprenticeDetailsPage.ClickChangeStartDateLink();
 
+        [Then(@"do not display an option to change the actual training start date")]
+        public void ThenDoNotDisplayAnOptionToChangeTheActualTrainingStartDate() => _providerApprenticeDetailsPage.VerifyChangeStartDateLinkNotDisplayed();
 
         [When(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]
         [Then(@"Provider creates a Change of Price request where Training Price is increased by (.*)")]

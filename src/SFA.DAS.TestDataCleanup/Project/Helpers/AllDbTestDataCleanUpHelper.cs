@@ -1,6 +1,4 @@
-﻿using Polly;
-
-namespace SFA.DAS.TestDataCleanup.Project.Helpers;
+﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers;
 
 public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig dbConfig)
 {

@@ -1,76 +1,71 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.MongoDb.DataGenerator;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class CheckYourDetailsPage : RegistrationBasePage
 {
-    public class CheckYourDetailsPage : RegistrationBasePage
+    protected override string PageTitle => "Check your details";
+
+    #region Locators
+    protected override By ContinueButton => By.Id("continue-check-details");
+    private static By YesContinueButton => By.XPath("//input[@value='Yes, continue']");
+    private static By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
+    private static By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
+    private static By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
+    private static By PayeScheme => By.XPath("//th[contains(text(),'Employer PAYE reference')]/following-sibling::td//dt");
+    private By OrganisationChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetOrganisationName()}')]/..//a");
+    private By AornChangeLink => By.XPath($"//td[contains(text(), '{registrationDataHelper.AornNumber}')]/..//a");
+    private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye(0)}')]/../../following-sibling::td/a");
+    #endregion
+
+    public CheckYourDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+
+    public YouHaveAddedYourOrgAndPAYEScheme ContinueToSetAccountName()
     {
-        protected override string PageTitle => "Check your details";
+        Continue();
+        return new YouHaveAddedYourOrgAndPAYEScheme(context);
+    }
 
-        #region Locators
-        protected override By ContinueButton => By.Id("continue-check-details");
-        private static By YesContinueButton => By.XPath("//input[@value='Yes, continue']");
-        private static By OrganisationName => By.XPath("//th[contains(text(),'Organisation')]/following-sibling::td");
-        private static By OrganisationAddress => By.XPath("//th[text()='Organisation address']/following-sibling::td");
-        private static By OrganisationNumber => By.XPath("//th[text()='Organisation number']/following-sibling::td");
-        private static By PayeScheme => By.XPath("//th[contains(text(),'Employer PAYE reference')]/following-sibling::td//dt");
-        private By OrganisationChangeLink => By.XPath($"//td[contains(text(), '{objectContext.GetOrganisationName()}')]/..//a");
-        private By AornChangeLink => By.XPath($"//td[contains(text(), '{registrationDataHelper.AornNumber}')]/..//a");
-        private By PayeSchemeChangeLink => By.XPath($"//dt[contains(text(), '{objectContext.GetGatewayPaye(0)}')]/../../following-sibling::td/a");
-        #endregion
+    public OrganisationHasBeenAddedPage ClickYesContinueButton()
+    {
+        formCompletionHelper.ClickElement(YesContinueButton);
+        return new OrganisationHasBeenAddedPage(context);
+    }
 
-        public CheckYourDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
+    public YouHaveAddedYourOrgAndPAYEScheme ClickYesThisIsMyOrg()
+    {
+        formCompletionHelper.SelectRadioOptionByText("Yes, this is my organisation");
+        Continue();
+        return new YouHaveAddedYourOrgAndPAYEScheme(context);
+    }
 
-        public YouHaveAddedYourOrgAndPAYEScheme ContinueToSetAccountName()
-        {
-            Continue();
-            return new YouHaveAddedYourOrgAndPAYEScheme(context);
-        }
+    public AccessDeniedPage ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
+    {
+        formCompletionHelper.Click(YesContinueButton);
+        return new AccessDeniedPage(context);
+    }
 
-        public OrganisationHasBeenAddedPage ClickYesContinueButton()
-        {
-            formCompletionHelper.ClickElement(YesContinueButton);
-            return new OrganisationHasBeenAddedPage(context);
-        }
+    public string GetOrganisationName() => pageInteractionHelper.GetText(OrganisationName);
 
-        public YouHaveAddedYourOrgAndPAYEScheme ClickYesThisIsMyOrg()
-        {
-            formCompletionHelper.SelectRadioOptionByText("Yes, this is my organisation");
-            Continue();
-            return new YouHaveAddedYourOrgAndPAYEScheme(context);
-        }
+    public string GetOrganisationAddress() => pageInteractionHelper.GetText(OrganisationAddress);
 
-        public AccessDeniedPage ClickYesContinueButtonAndRedirectedToAccessDeniedPage()
-        {
-            formCompletionHelper.Click(YesContinueButton);
-            return new AccessDeniedPage(context);
-        }
+    public string GetOrganisationNumber() => pageInteractionHelper.GetText(OrganisationNumber);
 
-        public string GetOrganisationName() => pageInteractionHelper.GetText(OrganisationName);
+    public string GetPayeScheme() => pageInteractionHelper.GetText(PayeScheme);
 
-        public string GetOrganisationAddress() => pageInteractionHelper.GetText(OrganisationAddress);
+    public SearchForYourOrganisationPage ClickOrganisationChangeLink()
+    {
+        formCompletionHelper.Click(OrganisationChangeLink);
+        return new SearchForYourOrganisationPage(context);
+    }
 
-        public string GetOrganisationNumber() => pageInteractionHelper.GetText(OrganisationNumber);
+    public EnterYourPAYESchemeDetailsPage ClickAornChangeLink()
+    {
+        formCompletionHelper.Click(AornChangeLink);
+        return new EnterYourPAYESchemeDetailsPage(context);
+    }
 
-        public string GetPayeScheme() => pageInteractionHelper.GetText(PayeScheme);
-
-        public SearchForYourOrganisationPage ClickOrganisationChangeLink()
-        {
-            formCompletionHelper.Click(OrganisationChangeLink);
-            return new SearchForYourOrganisationPage(context);
-        }
-
-        public EnterYourPAYESchemeDetailsPage ClickAornChangeLink()
-        {
-            formCompletionHelper.Click(AornChangeLink);
-            return new EnterYourPAYESchemeDetailsPage(context);
-        }
-
-        public AddAPAYESchemePage ClickPayeSchemeChangeLink()
-        {
-            formCompletionHelper.Click(PayeSchemeChangeLink);
-            return new AddAPAYESchemePage(context);
-        }
+    public AddAPAYESchemePage ClickPayeSchemeChangeLink()
+    {
+        formCompletionHelper.Click(PayeSchemeChangeLink);
+        return new AddAPAYESchemePage(context);
     }
 }

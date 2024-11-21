@@ -147,4 +147,10 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
         element.SendKeys(text);
     }
+
+    public void ClearText(By by)
+    {
+        var element = webDriver.FindElement(by);
+        element.Clear();
+    }
 }

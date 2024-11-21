@@ -18,6 +18,7 @@ Scenario: FLP_CoC_02_1 Provider Initiated Change Of Price Request - Total Price 
 	Then Employer can review the Change of Price request and approve it
 	And the approved Change of Price request is saved in the PriceHistory table
 	And validate earnings instalments are updated to reflect the new agreed price of 15000
+	And validate the approved Change of Price values have been updated in the Apprenticeship table of Commitment db
 
 @regression
 @flexi-manage-coc

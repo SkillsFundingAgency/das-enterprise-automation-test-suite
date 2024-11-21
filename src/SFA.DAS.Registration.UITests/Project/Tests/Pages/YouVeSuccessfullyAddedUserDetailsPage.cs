@@ -1,28 +1,24 @@
-﻿using SFA.DAS.Registration.UITests.Project.Tests.Pages.YourTeamPages;
-using TechTalk.SpecFlow;
+﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 
-namespace SFA.DAS.Registration.UITests.Project.Tests.Pages
+public class YouVeSuccessfullyAddedUserDetailsPage : RegistrationBasePage
 {
-    public class YouVeSuccessfullyAddedUserDetailsPage : RegistrationBasePage
+    protected override string PageTitle { get; }
+
+    public YouVeSuccessfullyAddedUserDetailsPage(ScenarioContext context, bool updated = false) : base(context)
     {
-        protected override string PageTitle { get; }
+        PageTitle = updated ? "You have successfully changed user details" : "You have successfully added user details";
+        VerifyPage();
+    }
 
-        public YouVeSuccessfullyAddedUserDetailsPage(ScenarioContext context, bool updated = false) : base(context)
-        {
-            PageTitle = updated ? "You have successfully changed user details" : "You have successfully added user details";
-            VerifyPage();
-        }
+    public CreateYourEmployerAccountPage ClickContinueButtonToAcknowledge()
+    {
+        Continue();
+        return new CreateYourEmployerAccountPage(context);
+    }
 
-        public CreateYourEmployerAccountPage ClickContinueButtonToAcknowledge()
-        {
-            Continue();
-            return new CreateYourEmployerAccountPage(context);
-        }
-
-        public InvitationsPage ClickContinueToInvitationsPage()
-        {
-            Continue();
-            return new InvitationsPage(context);
-        }
+    public InvitationsPage ClickContinueToInvitationsPage()
+    {
+        Continue();
+        return new InvitationsPage(context);
     }
 }

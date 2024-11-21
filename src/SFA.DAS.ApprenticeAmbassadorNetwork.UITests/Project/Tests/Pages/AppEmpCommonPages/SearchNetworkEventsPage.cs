@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
+﻿using System;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
 public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBasePage(context)
 {
@@ -16,6 +18,13 @@ public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBase
     public new SearchNetworkEventsPage FilterEventByOneMonth()
     {
         base.FilterEventByOneMonth();
+        return this;
+    }
+
+    public SearchNetworkEventsPage FilterEventsWithNoResults()
+    {
+        EnterKeywordFilter(Guid.NewGuid().ToString());
+        ApplyFilter();
         return this;
     }
 
@@ -46,6 +55,12 @@ public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBase
     public new SearchNetworkEventsPage FilterEventByEventRegion_London()
     {
         base.FilterEventByEventRegion_London();
+        return this;
+    }
+
+    public new SearchNetworkEventsPage FilterEventByEventStatus_Cancelled()
+    {
+        base.FilterEventByEventStatus_Cancelled();
         return this;
     }
 
@@ -83,5 +98,4 @@ public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBase
         base.VerifyEventRegion_London_Filter();
         return this;
     }
-
 }

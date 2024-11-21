@@ -8,4 +8,10 @@ public abstract class AdminNotificationBasePage(ScenarioContext context) : AanAd
 
         return new ManageEventsPage(context);
     }
+
+    public AdminAdministratorHubPage AccessHub()
+    {
+        formCompletionHelper.ClickLinkByText("Manage AAN service");
+        return new AdminAdministratorHubPage(context);
+    }
 }
