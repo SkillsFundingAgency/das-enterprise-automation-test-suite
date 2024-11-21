@@ -4,6 +4,8 @@ public class FAASearchResultPage : FAASignedInLandingBasePage
 {
     protected override By PageHeader => By.CssSelector(".das-search-results__link");
 
+    protected By ResultsFound => By.CssSelector("h1.govuk-heading-l.govuk-!-margin-bottom-8");
+
     protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
     private static By VacancyName => By.ClassName("das-search-results__link");
@@ -15,9 +17,13 @@ public class FAASearchResultPage : FAASignedInLandingBasePage
 
     public FAASearchResultPage(ScenarioContext context) : base(context, false)
     {
-        VerifyPage(RefreshPage);     
+        
     }
 
+    public void VerifySuccessfulResults()
+    {
+        pageInteractionHelper.IsElementDisplayed(ResultsFound);
+    }
     public FAA_ApplicationOverviewPage SaveFromSearchResultsAndApplyForVacancy()
     {
         var savedVacancyName = pageInteractionHelper.GetText(VacancyName);

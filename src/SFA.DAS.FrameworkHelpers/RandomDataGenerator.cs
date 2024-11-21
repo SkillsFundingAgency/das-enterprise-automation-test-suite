@@ -29,7 +29,7 @@
 
         public static string RandomTown() => GetRandomElementFromListOfElements(["London", "Coventry", "Harrow", "Manchester", "York", "Temple"]);
 
-        public static string RandonSchool() => GetRandomElementFromListOfElements(["Church", "Grange", "Primary", "Academy", "Catholic"]);
+        public static string GenerateRandomSchool() => GetRandomElementFromListOfElements(["Church", "Grange", "Primary", "Academy", "Catholic"]);
 
         public static string GenerateRandomAlphabeticString(int length) => GenerateRandomString(Alphabets, length);
 

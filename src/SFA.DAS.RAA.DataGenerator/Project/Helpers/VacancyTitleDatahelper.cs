@@ -13,7 +13,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
             var part1 = isCloneVacancy ? $"Clone {RandomDataGenerator.GenerateRandomAlphabeticString(4)}" : $"{RandomDataGenerator.GenerateRandomAlphabeticString(10)}";
 
-            SetVacancyTitile($"{part1}_{VacancyTitleDateElement}_{VacancyTitleDate:HHmmssfffff}");
+            SetVacancyTitle($"{part1}_{VacancyTitleDateElement}_{VacancyTitleDate:HHmmssfffff}");
         }
 
         public DateTime VacancyTitleDate { get; }
@@ -22,7 +22,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public string VacancyTitle { get; private set; }
 
-        public void SetVacancyTitile(string vacancyTitle) => VacancyTitle = vacancyTitle;
+        public void SetVacancyTitle(string vacancyTitle) => VacancyTitle = vacancyTitle;
 
     }
 }

@@ -15,7 +15,7 @@ public class FAATestDataPrepApplySteps(ScenarioContext context)
     {
         context.Get<ObjectContext>().SetVacancyReference("1000079780");
 
-        context.Get<VacancyTitleDatahelper>().SetVacancyTitile("AmcqCwjaNa_22May2024_00261048235");
+        context.Get<VacancyTitleDatahelper>().SetVacancyTitle("AmcqCwjaNa_22May2024_00261048235");
 
         context.Get<AdvertDataHelper>().SetAdditionalQuestion1("rWmVeUPzTPZtbnzLVGnP");
 
