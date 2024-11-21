@@ -52,7 +52,7 @@ jobs:
             ResourceEnvironmentName: $(ResourceEnvironmentName)
           inputs:
             command: 'test'
-            arguments: '--filter "${{ parameters.TestFilter }}" --logger trx;logfilename=${{ parameters.Environment }}_testResults.trx'
+            arguments: '--filter "${{ parameters.TestFilter }}" --logger trx;logfilename=${{ parameters.Environment }}_testResults.trx --verbosity detailed'
             projects: |
               ${{ parameters.TestDlls }}
         - task: PowerShell@2
