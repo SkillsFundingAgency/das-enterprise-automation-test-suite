@@ -24,9 +24,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static By FromDateField => By.CssSelector("#fromDate");
         private static By ToDateField => By.CssSelector("#toDate");
         private static By ApplyFilterButton => By.CssSelector("#filters-submit");
-        private static By SearchResultsHeading = By.ClassName("das-search-results__heading");
-        private static By BodyText = By.ClassName("govuk-body");
 
+        private static By SearchResultsHeading => By.ClassName("das-search-results__heading");
+
+        private static By BodyText => By.ClassName("govuk-body");
 
         private static By SelectedFilter(string x) => By.XPath($"//a[contains(@title,'{x}')]");
 

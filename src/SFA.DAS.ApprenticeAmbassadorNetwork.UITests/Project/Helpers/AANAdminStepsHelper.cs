@@ -6,11 +6,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
 {
     public class AanAdminStepsHelper(ScenarioContext context)
     {
-        private readonly SharedStepsHelper _sharedStepsHelper = new SharedStepsHelper(context);
+        private readonly SharedStepsHelper _sharedStepsHelper = new(context);
 
-        private string EventTitlesKey = "AanAdminStepsHelper.EventTitlesKey";
-
-        protected SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
         public CheckYourEventPage CheckYourEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent, string pageTitle = null, string location = null)
         {
             EventOrganiserNamePage eventOrganiserNamePage;
@@ -53,11 +50,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
             return eventFormat;
         }
 
-        public SucessfullyPublisedEventPage SubmitEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
-        {
-            return sucessfullyPublisedEventPage = CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent).GoToEventPreviewPage(eventFormat).GoToCheckYourEventPage().SubmitEvent();
-        }
-
         public static EventOrganiserNamePage GetEventOrgNamePage(IsEventAtSchoolPage isEventAtSchoolPage, bool isSchoolEvent)
         {
             if (isSchoolEvent) return isEventAtSchoolPage.SubmitIsEventAtSchoolAsYes().SubmitSchoolName();
@@ -71,9 +63,6 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
             return _sharedStepsHelper.GetAllSearchResults(manageEvents);
         }
 
-        public void ClearEventTitleCache()
-        {
-            _sharedStepsHelper.ClearSearchResultsCache();
-        }
+        public void ClearEventTitleCache() => _sharedStepsHelper.ClearSearchResultsCache();
     }
 }
