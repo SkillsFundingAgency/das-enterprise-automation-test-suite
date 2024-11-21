@@ -15,7 +15,7 @@ jobs:
         steps:
         - checkout: self
         - checkout: das-platform-automation
-        - task: FileTransform@1
+        - task: FileTransform@2
           displayName: 'Tokenization: Transform file *.json'
           inputs:
             FolderPath: '$(Pipeline.Workspace)/**/tests.zip'
