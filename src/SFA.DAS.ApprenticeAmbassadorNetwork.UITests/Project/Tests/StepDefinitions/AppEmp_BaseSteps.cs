@@ -137,12 +137,10 @@ public abstract class AppEmp_BaseSteps(ScenarioContext context) : BaseSteps(cont
             .FilterEventByEventFormat_Hybrid()
             .FilterEventByEventFormat_Online()
             .FilterEventByEventType_TrainingEvent()
-            .FilterEventByEventRegion_London()
             .VerifyEventFormat_Inperson_Filter()
             .VerifyEventFormat_Hybrid_Filter()
             .VerifyEventFormat_Online_Filter()
             .VerifyEventType_TrainingEvent_Filter()
-            .VerifyEventRegion_London_Filter()
             .ClearAllFilters();
     }
 

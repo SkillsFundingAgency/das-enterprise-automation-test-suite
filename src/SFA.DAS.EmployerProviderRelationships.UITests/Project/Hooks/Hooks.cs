@@ -40,12 +40,12 @@ public class Hooks(ScenarioContext context)
         _eprDataHelper.EmployerLastName = randomPersonNameHelper.LastName;
     }
 
-    [AfterScenario(Order = 22)]
+    [AfterScenario(Order = 23)]
     [Scope(Tag = "deletepermission")]
     public void DeleteProviderRelation() => _tryCatch.AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation());
 
 
     [AfterScenario(Order = 22)]
     [Scope(Tag = "deleterequest")]
-    public void DeleteProviderRequest() => _tryCatch.AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRequest(_eprDataHelper.RequestId));
+    public void DeleteProviderRequest() => _tryCatch.AfterScenarioException(() => new DeleteProviderRelationinDbHelper(context).DeleteProviderRequest(_eprDataHelper.RequestIds));
 }

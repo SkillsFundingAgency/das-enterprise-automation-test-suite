@@ -11,13 +11,15 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
 
         eprDataHelper.EmployerEmail = objectContext.GetRegisteredEmail();
 
-        new AddAnEmployerPage(context).StartNowToAddAnEmployer().EnterNewEmployerEmail().ContinueToInvite().SubmitEmployerName().SendInvitation().GoToViewEmployersPage().VerifyPendingRequest();
+        new AddAnEmployerPage(context).StartNowToAddAnEmployer().EnterNewEmployerEmail().SubmitPayeAndContinueToInvite().SubmitEmployerName().SendInvitation().GoToViewEmployersPage().VerifyPendingRequest();
+
+        SetRequestId(RequestType.CreateAccount);
     }
 
     [Then(@"the employer declines the create account request")]
     public void TheEmployerDeclinesTheCreateAccountRequest()
     {
-        OpenEmpInviteFromProviderAndRegister().DoNotCreateAccount().ConfirmDoNotCreateAccount();
+        OpenEmpInviteFromProviderAndRegister().ReadAgreement(eprDataHelper.EmployerOrganisationName).ReturnToCreateYourApprenticeshipServiceAccountr().DoNotCreateAccount().ConfirmDoNotCreateAccount();
     }
 
     [Then(@"the employer accepts the create account request")]
@@ -25,7 +27,6 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
     {
         OpenEmpInviteFromProviderAndRegister().ChangeName().ChangeName(eprDataHelper.EmployerFirstName, eprDataHelper.EmployerLastName).CreateAccount().GoToHomePage();
     }
-
 
     private CreateYourApprenticeshipServiceAccount OpenEmpInviteFromProviderAndRegister()
     {

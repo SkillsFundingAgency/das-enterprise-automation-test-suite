@@ -1,19 +1,15 @@
-﻿using System.Collections.Generic;
-using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
+﻿namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers;
 
-namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
+public class EmployerFinanceSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.FinanceDbConnectionString)
 {
-    public class EmployerFinanceSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.FinanceDbConnectionString)
+    public int GetNumberOfPendingTransferConnections(string employerAccountId)
     {
-        public int GetNumberOfPendingTransferConnections(string employerAccountId)
+        Dictionary<string, string> sqlParameters = new()
         {
-            Dictionary<string, string> sqlParameters = new()
-            {
-                { "@EmployerAccountId", employerAccountId }
-            };
+            { "@EmployerAccountId", employerAccountId }
+        };
 
-            string query = @"WITH Invitations AS (
+        string query = @"WITH Invitations AS (
                             SELECT [t].[Id]
                             FROM [employer_financial].[TransferConnectionInvitation] AS [t]
                                 INNER JOIN [employer_financial].[Account] AS [a]
@@ -48,8 +44,7 @@ namespace SFA.DAS.Registration.UITests.Project.Helpers.SqlDbHelpers
                             SELECT COUNT(*) AS TotalInvitations
                             FROM Invitations;";
 
-            return (int)GetDataAsObject(query, sqlParameters);
-        }
-
+        return (int)GetDataAsObject(query, sqlParameters);
     }
+
 }

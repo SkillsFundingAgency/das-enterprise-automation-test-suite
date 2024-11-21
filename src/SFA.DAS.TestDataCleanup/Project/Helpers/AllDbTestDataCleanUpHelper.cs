@@ -1,6 +1,4 @@
-﻿using Polly;
-
-namespace SFA.DAS.TestDataCleanup.Project.Helpers;
+﻿namespace SFA.DAS.TestDataCleanup.Project.Helpers;
 
 public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig dbConfig)
 {
@@ -52,7 +50,7 @@ public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig db
         {
             var accountIdsListArray = easAccDbSqlDataHelper.GetAccountIds(userEmailList);
 
-            var noOfRowsDeleted = CleanUpUsersDbTestData(userEmailList) + CleanUpPregDbTestData(userEmailList);
+            var noOfRowsDeleted = CleanUpUsersDbTestData(userEmailList);
 
             var appaccdbNameToTearDown = objectContext.GetDbNameToTearDown();
 
@@ -210,15 +208,6 @@ public class AllDbTestDataCleanUpHelper(ObjectContext objectContext, DbConfig db
         SetDetails(helper);
 
         return SetDebugMessage(() => helper.CleanUpRsvrTestData(accountidsTodelete));
-    }
-
-    private int CleanUpPregDbTestData(List<string> emailsToDelete)
-    {
-        var helper = new TestDataCleanUpPregDbSqlDataHelper(objectContext, dbConfig);
-
-        SetDetails(helper);
-
-        return SetDebugMessage(() => helper.CleanUpPregDbTestData(emailsToDelete));
     }
 
     private int CleanUpUsersDbTestData(List<string> emailsToDelete)

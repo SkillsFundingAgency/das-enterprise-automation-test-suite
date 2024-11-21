@@ -2,6 +2,8 @@
 
 public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 {
+    protected readonly ScenarioContext context = context;
+
     protected readonly EmployerPortalLoginHelper _employerLoginHelper = new(context);
 
     protected readonly EmployerHomePageStepsHelper _employerHomePageHelper = new(context);
@@ -34,20 +36,29 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
     {
         _assertHelper.RetryOnNUnitException(() =>
         {
-            SetRequestId();
+            SetRequestId(RequestType.CreateAccount);
 
             var expected = "Sent";
 
             var actual = eprDataHelper.RequestStatus;
 
-            Assert.AreEqual(expected, actual, $"Waiting for Invite status to be '{expected}' for requestid - '{eprDataHelper.RequestId}', email - {eprDataHelper.EmployerEmail}");
+            Assert.AreEqual(expected, actual, $"Waiting for Invite status to be '{expected}' for requestid - '{eprDataHelper.LatestRequestId}', email - {eprDataHelper.EmployerEmail}");
         }, RetryTimeOut.GetTimeSpan([60, 60, 60, 45, 45, 45, 45, 45, 45]));
 
-
-        GoToUrl(UrlConfig.Relations_Employer_Invite(eprDataHelper.RequestId));
+        context.Get<TabHelper>().GoToUrl(UrlConfig.Relations_Employer_Invite(eprDataHelper.LatestRequestId));
     }
 
-    protected void UpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
+    protected void ProviderUpdatePermission((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
+    {
+        GoToProviderViewEmployersAndManagePermissions();
+
+        var request = new ViewEmpAndManagePermissionsPage(context).ViewEmployer().ChangePermissions().ProviderRequestPermissions(permisssion);
+
+        request.GoToViewCurrentEmployersPage().VerifyPendingRequest();
+    }
+
+
+    protected void EmployerUpdatePermission((AddApprenticePermissions AddApprentice, RecruitApprenticePermissions RecruitApprentice) permissions)
     {
         this.permissions = permissions;
 
@@ -56,11 +67,11 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
 
     protected void EPRLevyUserLogin() => EPRLogin(context.GetUser<EPRLevyUser>());
 
-    protected void EPRReLogin()
+    protected void EPRReLogin(RequestType requestType)
     {
         _employerHomePageHelper.GotoEmployerHomePage();
 
-        SetRequestId();
+        SetRequestId(requestType);
 
         eprDataHelper.AgreementId = objectContext.GetAleAgreementId();
     }
@@ -72,15 +83,32 @@ public abstract class EmpProRelationBaseSteps(ScenarioContext context)
         new DeleteProviderRelationinDbHelper(context).DeleteProviderRelation();
     }
 
-    private void GoToUrl(string url) => context.Get<TabHelper>().GoToUrl(url);
-
-    private void SetRequestId()
+    protected void SetRequestId(RequestType requestType)
     {
-        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(providerConfig.Ukprn, eprDataHelper.EmployerEmail);
+        string ukprn = providerConfig.Ukprn;
+
+        string empemail = eprDataHelper.EmployerEmail;
+
+        var query = $"and EmployerContactEmail = '{empemail}'";
+
+        if (requestType == RequestType.Permission)
+        {
+            var user = context.Get<EPRBaseUser>();
+
+            var accountLegalEntityId = user.UserCreds.SingleOrDefault(x => x.EmailAddress == empemail).AccountDetails.SingleOrDefault().Aleid;
+
+            query = $"and AccountLegalEntityId = '{accountLegalEntityId}'";
+        }
+
+        query = $"select id, [Status] from Requests where ukprn = {ukprn} and RequestType = '{EnumToString.GetStringValue(requestType)}' {query} order by RequestedDate desc";
+
+        var (requestId, requestStatus) = context.Get<RelationshipsSqlDataHelper>().GetRequestId(query);
 
         objectContext.SetDebugInformation($"fetched request id from db - '{requestId}' with status '{requestStatus}'");
 
-        eprDataHelper.RequestId = requestId;
+        eprDataHelper.LatestRequestId = requestId;
+
+        eprDataHelper.RequestIds.Add(requestId);
 
         eprDataHelper.RequestStatus = requestStatus;
     }

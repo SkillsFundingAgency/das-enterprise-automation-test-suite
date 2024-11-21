@@ -22,7 +22,7 @@ public class EmailAccountFoundPage : ProviderRelationshipsBasePage
         VerifyPage(GovBody, $"We’ve found an apprenticeship service account linked to {email}. Your organisation is already linked to this employer.");
     }
 
-    public ProviderRequestPermissionsPage ContinueToInvite()
+    public AddEmployerAndRequestPermissionsPage ContinueToInvite()
     {
         Continue();
 
