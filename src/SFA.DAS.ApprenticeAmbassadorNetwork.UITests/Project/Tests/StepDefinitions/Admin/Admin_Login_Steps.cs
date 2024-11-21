@@ -8,6 +8,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefiniti
 public class Admin_Login_Steps(ScenarioContext context) : Admin_BaseSteps(context)
 {
     [Given(@"an admin logs into the AAN portal")]
+    [When(@"an admin logs into the AAN portal")]
     public void AnAdminLogsIntoTheAANPortal() => SubmitValidLoginDetails(context.GetUser<AanAdminUser>());
 
     [Given(@"a super admin logs into the AAN portal")]

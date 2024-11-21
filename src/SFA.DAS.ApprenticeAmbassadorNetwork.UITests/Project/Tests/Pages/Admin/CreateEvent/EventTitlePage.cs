@@ -6,9 +6,9 @@ public class EventTitlePage(ScenarioContext context) : AanAdminBasePage(context)
 
     private static By EventTitleSelector => By.CssSelector("input#EventTitle");
 
-    public EventOutlinePage SubmitEventTitle()
+    public EventOutlinePage SubmitEventTitle(string pageTitle = null)
     {
-        EnterEventTitle(aanAdminCreateEventDatahelper);
+        EnterEventTitle(aanAdminCreateEventDatahelper, pageTitle);
 
         return new(context);
     }
@@ -20,9 +20,9 @@ public class EventTitlePage(ScenarioContext context) : AanAdminBasePage(context)
         return new(context);
     }
 
-    private void EnterEventTitle(AanAdminCreateEventBaseDatahelper dataHelper)
+    private void EnterEventTitle(AanAdminCreateEventBaseDatahelper dataHelper, string pageTitle = null)
     {
-        string eventTitle = dataHelper.EventTitle;
+        var eventTitle = pageTitle ?? dataHelper.EventTitle;
 
         formCompletionHelper.EnterText(EventTitleSelector, eventTitle);
 

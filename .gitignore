@@ -248,3 +248,6 @@ SFA.DAS.Learners/Tools/PhantomJS/tools/phantomjs/ChangeLog
 /src/SFA.DAS.Approvals.UITests/*.csv
 
 src/.idea/.idea.SFA.DAS.TestAutomation/.idea/
+
+# SpecFlow generated files
+*.feature.cs
