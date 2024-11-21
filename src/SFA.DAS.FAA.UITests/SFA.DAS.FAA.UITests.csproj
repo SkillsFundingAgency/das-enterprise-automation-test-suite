@@ -8,14 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Project\Tests\Features\Search\**" />
-	  <EmbeddedResource Remove="Project\Tests\Features\Search\**" />
-	  <None Remove="Project\Tests\Features\Search\**" />
-	  <SpecFlowFeatureFiles Remove="Project\Tests\Features\Search\**" />
-	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Features\Search\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
