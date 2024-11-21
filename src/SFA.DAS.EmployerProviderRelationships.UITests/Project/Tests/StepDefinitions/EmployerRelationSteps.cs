@@ -21,8 +21,8 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
         EmployerUpdatePermission((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.AllowConditional));
     }
 
-    [When(@"the employer does not grant any permission")]
-    public void TheEmployerDoesNotGrantAnyPermission()
+    [When(@"the employer revokes all provider permissions")]
+    public void TheEmployerRevokesAllProviderPermissions()
     {
         EmployerUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
     }
@@ -38,8 +38,8 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
             .VerifyDoNotAllowPermissions();
     }
 
-    [Then(@"the provider should be added with the correct permissions")]
-    public void TheProviderShouldBeAddedWithTheCorrectPermissions()
+    [Then(@"the correct permissions should be displayed in the employer portal")]
+    public void TheCorrectPermissionsShouldBeDisplayedInTheEmployerPortal()
     {
         var page = _employerPermissionsStepsHelper.OpenProviderPermissions();
 

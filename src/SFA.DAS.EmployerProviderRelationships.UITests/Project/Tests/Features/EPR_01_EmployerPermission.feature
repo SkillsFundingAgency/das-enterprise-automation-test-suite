@@ -5,10 +5,10 @@ Feature: EPR_01_EmployerGrantPermission
 @deletepermission
 Scenario: EPR_01A_EmployerAddAndUpdateProviderPermissions
 	Given Levy employer grants all permission to a provider
-	Then the provider should be added with the correct permissions
+	Then the correct permissions should be displayed in the employer portal
 	When the employer changes recruit apprentice permission
-	Then the provider should be added with the correct permissions
-	When the employer does not grant any permission
+	Then the correct permissions should be displayed in the employer portal
+	When the employer revokes all provider permissions
 
 
 @employerproviderrelationships
@@ -20,5 +20,5 @@ Scenario: EPR_01B_EmployerMustSelectAtLeastOnePermission
 @deletepermission
 Scenario: EPR_01C_EmployerTrysToAddExistingProvider
 	Given Levy employer grants all permission to a provider
-	Then the provider should be added with the correct permissions
+	Then the correct permissions should be displayed in the employer portal
 	And the employer is unable to add an existing provider
