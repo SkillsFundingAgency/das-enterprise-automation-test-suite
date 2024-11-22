@@ -97,11 +97,9 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     [Then(@"the user should be able to successfully filter events by role Network Directory")]
     public void FilterByRole_NetworkDirectory() => networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
 
-    //[Then(@"the user should be able to successfully filter events by regions Network Directory")]
-    //public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
-
     [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
     public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
+
     [Given(@"the following events have been created:")]
     public void GivenTheFollowingEventsHaveBeenCreated(Table table)
     {
@@ -122,8 +120,6 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
                 .CheckYourEvent(EventFormat.InPerson, false, false, e.EventTitle, e.Location).SubmitEvent();
             confirmationPage.AccessHub();
         }
-
-            ;
 
         tabHelper.GoToUrl(UrlConfig.AAN_Employer_BaseUrl);
     }
