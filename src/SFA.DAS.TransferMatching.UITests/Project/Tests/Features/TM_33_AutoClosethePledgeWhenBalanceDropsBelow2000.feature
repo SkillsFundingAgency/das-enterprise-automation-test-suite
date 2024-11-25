@@ -9,4 +9,5 @@ Scenario: TM_33_AutoClose the Pledge When Balance Drops Below 2000
     When the non levy employer applies for the pledge
     Then the levy employer can approve the application         
     Then the Pledge balance drops below £2,000 Pledge should be auto closed
-    Then Pledge wont be shown publicly
+    Then the levy employer confirms the pledge displays as closed
+    Then Pledge wont be shown publicly  

@@ -217,6 +217,19 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         { NavigateToTransferMatchingPage().CanCreateTransferPledge(); }
 
 
+        [Then(@"the levy employer confirms the pledge displays as closed")]
+        public void ThenLevyEmployerCanViewClosedPledge()
+        {
+            var sender = _context.Get<TransferMatchingUser>();
+            UpdateOrganisationName(sender.OrganisationName);
+
+            _employerHomePageStepsHelper.GotoEmployerHomePage();
+            _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
+
+            _manageTransferMatchingPage.GoToViewMyTransferPledgePage().ConfirmStatus("Closed")
+                .GoToTransferPledgePage().VerifyClosePledgeButtonIsNotDisplayed();
+        }
+
         [Given(@"the levy employer can create pledge using default criteria")]
         [Then(@"the levy employer can create pledge using default criteria")]
         public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
@@ -384,7 +397,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         {
             _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo5WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
         }
-        
+
         [Then(@"the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'")]
         public void ApplicationStatusShowsDateDueToAutoApprove()
         {

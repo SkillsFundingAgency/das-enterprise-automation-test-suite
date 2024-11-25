@@ -36,6 +36,12 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new TransferPledgePage(context);
         }
 
+        public TransferPledgePage VerifyClosePledgeButtonIsNotDisplayed()
+        {
+            pageInteractionHelper.IsElementPresent(ClosePLedgeSelector).Should().BeFalse();
+            return new TransferPledgePage(context);
+        }
+
         public TransferPledgePage VerifyCostingModel()
         {
             var estimatedcost = tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail().CurrencyStringToInt();
