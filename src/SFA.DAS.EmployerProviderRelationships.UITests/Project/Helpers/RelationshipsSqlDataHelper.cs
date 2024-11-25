@@ -13,7 +13,7 @@ public class RelationshipsSqlDataHelper(ObjectContext objectContext, DbConfig co
     {
         var requestIdquery = string.Join(',', requestId.ToHashSet().Select(x => $"'{x}'"));
 
-        ReTryExecuteSqlCommand($"delete from PermissionRequests where RequestId in ({requestIdquery}); delete from Requests where id in ({requestIdquery});");
+        ReTryExecuteSqlCommand($"delete from notifications where RequestId in ({requestIdquery}); delete from PermissionRequests where RequestId in ({requestIdquery}); delete from Requests where id in ({requestIdquery});");
     }
 
     public (string requestId, string requestStatus) GetRequestId(string query)
