@@ -35,7 +35,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void SubmitValidTrainingDetails(bool checkStartDateNotEmpty)
         {
-            var courseStartDate = GetCourseStartDate();
+          var courseStartDate = GetCourseStartDate();
 
             ClickStartMonth();
 

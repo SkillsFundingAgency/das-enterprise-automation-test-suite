@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -20,5 +21,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
+
+        public ProviderApproveApprenticeDetailsPage NavigateToDraftApprenticePage()
+        {
+            string currenturl = pageInteractionHelper.GetUrl();
+            string newurl = currenturl.Replace("OverlappingTrainingDateRequest/", "").Replace("employer-notified", "details");
+            context.Get<TabHelper>().GoToUrl(newurl);
+
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
+        
     }
 }
