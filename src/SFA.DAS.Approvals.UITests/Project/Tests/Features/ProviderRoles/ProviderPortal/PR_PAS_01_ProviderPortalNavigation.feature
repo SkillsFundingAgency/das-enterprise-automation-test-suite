@@ -1,9 +1,9 @@
-﻿Feature: PAS_PR_01_ProviderPortalNavigation
+﻿Feature: PR_PAS_01_ProviderPortalNavigation
 
 @approvals
 @regression
 @pasproviderrole
-Scenario Outline: PAS_PR_01_ProviderPortalNavigation
+Scenario: PR_PAS_01_ProviderPortalNavigation
 	Given the provider logs in as a <UserRole>
 	Then user can access <NotificationSettings> page as defined in the table below
 	And user can access <OrgsAndAgreements> page as defined in the table below
