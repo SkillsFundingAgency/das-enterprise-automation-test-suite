@@ -2,7 +2,7 @@
 
 public class YouveLoggedOutPage : RegistrationBasePage
 {
-    protected override string PageTitle => "You've signed out";
+    protected override string PageTitle => "You have signed out";
 
     protected override bool TakeFullScreenShot => false;
 
