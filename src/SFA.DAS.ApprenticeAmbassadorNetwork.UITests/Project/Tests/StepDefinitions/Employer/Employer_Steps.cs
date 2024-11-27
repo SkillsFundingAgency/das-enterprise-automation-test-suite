@@ -97,6 +97,9 @@ public class Employer_Steps(ScenarioContext context) : Employer_BaseSteps(contex
     [Then(@"the user should be able to successfully filter events by role Network Directory")]
     public void FilterByRole_NetworkDirectory() => networkDirectoryPage = FilterByEventRoleNetworkDirectory(networkHubPage);
 
+    [Then(@"the user should be able to successfully filter events by regions Network Directory")]
+    public void FilterByEventRegion_NetworkDirectory() => FilterByEventRegionNetworkDirectory(networkDirectoryPage);
+
     [Then(@"the user should be able to successfully filter events by multiple combination of filters Network Directory")]
     public void FilterByMultipleCombination_NetworkDirectory() => FilterByMultipleCombinationNetworkDirectory(networkDirectoryPage);
 
