@@ -1,6 +1,5 @@
 ﻿Feature: PR_PAS_01_ProviderPortalNavigation
 
-@approvals
 @regression
 @pasproviderrole
 Scenario: PR_PAS_01_ProviderPortalNavigation
