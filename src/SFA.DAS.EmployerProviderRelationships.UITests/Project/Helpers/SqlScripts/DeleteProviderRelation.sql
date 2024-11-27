@@ -5,6 +5,7 @@ delete from permissions where AccountProviderLegalEntityId in (select id from #a
 delete from AccountProviderLegalEntities where id in (select id from #apleids)
 delete from permissionsaudit where AccountLegalEntityId in (select AccountLegalEntityId from #apleids)
 delete from notifications where AccountLegalEntityId in (select AccountLegalEntityId from #apleids)
+delete from notifications where RequestId in (select id from #requestids)
 delete from accountProviders where id in (select id from #apids)
 delete from PermissionRequests where RequestId in (select id from #requestids)
 delete from Requests where id in (select id from #requestids)

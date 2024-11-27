@@ -22,7 +22,9 @@ public class SqlDbBaseHelper(ObjectContext objectContext, string connectionStrin
 
     public int ExecuteSqlCommand(string queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {
-        SetDebugInformation($"ExecuteSqlCommand : {SqlDbConfigHelper.GetDbName(connectionString)}{Environment.NewLine}{queryToExecute}");
+        string dbName = SqlDbConfigHelper.GetDbName(connectionString);
+
+        SetDebugInformation($"ExecuteSqlCommand : {dbName}{Environment.NewLine}{queryToExecute}");
 
         try
         {
@@ -38,7 +40,11 @@ public class SqlDbBaseHelper(ObjectContext objectContext, string connectionStrin
                 }
             }
 
-            return command.ExecuteNonQuery();
+            int noOfrowsaffected = command.ExecuteNonQuery();
+
+            SetDebugInformation($"{noOfrowsaffected} rows affected in {dbName}");
+
+            return noOfrowsaffected;
         }
         catch (Exception exception)
         {
