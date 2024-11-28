@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -126,7 +127,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
 
                     var inputElement = pageInteractionHelper.FindElement(TicketDropdownInput(forvalue));
 
-                    return inputElement.GetDomAttribute("value");
+                    return inputElement.GetValueAttribute();
                 }, RefreshPage);
 
                 if (!string.IsNullOrEmpty(incidentNumber)) { break; }

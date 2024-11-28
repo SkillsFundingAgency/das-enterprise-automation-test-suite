@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.UI.FrameworkHelpers;
+
+namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
 
 public class StopApprenticeshipsPage(ScenarioContext context) : ToolSupportBasePage(context)
 {
@@ -39,7 +41,7 @@ public class StopApprenticeshipsPage(ScenarioContext context) : ToolSupportBaseP
 
     public StopApprenticeshipsPage ValidateStopDateApplied()
     {
-        var actualDate = pageInteractionHelper.FindElement(DateInputBox).GetDomAttribute("value");
+        var actualDate = pageInteractionHelper.FindElement(DateInputBox).GetValueAttribute();
         string expectedDate1 = DateTime.Now.Year + "-" + DateTime.Now.Month.ToString("00") + "-01";
         string expectedDate2 = DateTime.Now.Year + "-01-" + DateTime.Now.Month.ToString("00");
         Assert.IsTrue(expectedDate1 == actualDate || expectedDate2 == actualDate, "Validate correct stop date has been set in the table");

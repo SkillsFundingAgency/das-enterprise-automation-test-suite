@@ -2,6 +2,7 @@
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.Service.Project.Helpers;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -65,7 +66,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 
         private List<(string hashedid, string value)> GetEmpDetails()
         {
-            var value = pageInteractionHelper.FindElements(SelectItemList).Select(x => x.GetDomAttribute("value")).ToList();
+            var value = pageInteractionHelper.FindElements(SelectItemList).Select(x => x.GetValueAttribute()).ToList();
 
             return value.Select(x => (x?.Split('|')[1], x)).ToList();
         }

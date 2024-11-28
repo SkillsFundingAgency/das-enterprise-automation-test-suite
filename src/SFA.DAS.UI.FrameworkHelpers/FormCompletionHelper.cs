@@ -50,9 +50,9 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
     public List<string> GetAllDropDownOptions(By bySelect) => GetAllDropDown(bySelect, (x) => x.Text);
 
-    public List<string> GetAllDropDownValue(By bySelect) => GetAllDropDown(bySelect, (x) => x.GetDomAttribute("value"));
+    public List<string> GetAllDropDownValue(By bySelect) => GetAllDropDown(bySelect, (x) => x.GetValueAttribute());
 
-    private List<string> GetAllDropDown(By bySelect, Func<IWebElement, string> func) => SelectElement(bySelect).Options.Where(x => !string.IsNullOrEmpty(x.GetDomAttribute("value"))).Select(x => func(x)).ToList();
+    private List<string> GetAllDropDown(By bySelect, Func<IWebElement, string> func) => SelectElement(bySelect).Options.Where(x => !string.IsNullOrEmpty(x.GetValueAttribute())).Select(x => func(x)).ToList();
 
     public string GetSelectedOption(By bySelect) => SelectElement(bySelect).SelectedOption.Text;
 

@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.UI.FrameworkHelpers;
+﻿using OpenQA.Selenium;
+
+namespace SFA.DAS.UI.FrameworkHelpers;
 
 public static class AttributeHelper
 {
@@ -10,7 +12,11 @@ public static class AttributeHelper
 
     public static string Value => "value";
 
+    public static string Id => "id";
+
     public static string DataCount => "data-count";
 
     public static string Disabled => "disabled";
+
+    public static string GetValueAttribute(this IWebElement webElement) => webElement.GetDomProperty(Value);
 }
