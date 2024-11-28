@@ -19,4 +19,6 @@ public static class AttributeHelper
     public static string Disabled => "disabled";
 
     public static string GetValueAttribute(this IWebElement webElement) => webElement.GetDomProperty(Value);
+
+    public static string GetInnerTextAttribute(this IWebElement webElement) => webElement.GetDomProperty(InnerText);
 }

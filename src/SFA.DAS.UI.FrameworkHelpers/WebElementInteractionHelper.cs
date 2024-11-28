@@ -22,7 +22,7 @@ public abstract class WebElementInteractionHelper(IWebDriver webDriver)
 
     protected static By CheckBoxCssSelector => By.CssSelector("label.selection-button-checkbox");
 
-    public List<IWebElement> GetElementsByText(By locator, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetDomAttribute(AttributeHelper.InnerText));
+    public List<IWebElement> GetElementsByText(By locator, string expectedvalue) => GetElementsByAttribute(locator, expectedvalue, (IWebElement e) => e.Text ?? e.GetInnerTextAttribute());
 
     public IWebElement GetElementByText(By locator, string expectedvalue) => GetElementsByText(locator, expectedvalue).FirstOrDefault();
 

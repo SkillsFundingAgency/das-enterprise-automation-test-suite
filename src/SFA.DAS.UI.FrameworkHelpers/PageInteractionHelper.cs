@@ -288,10 +288,6 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public string GetTextFromPlaceholderAttributeOfAnElement(By by) => FindElement(by).GetDomAttribute(AttributeHelper.Placeholder);
 
-    public string GetTextFromValueAttributeOfAnElement(By by) => FindElement(by).GetDomAttribute(AttributeHelper.Value);
-
-    public int GetDataCountOfAnElement(By by) => int.Parse(FindElement(by).GetDomAttribute(AttributeHelper.DataCount));
-
     public static string GetText(IWebElement webElement) => webElement.Text;
 
     public IWebElement GetLink(By by, string linkText) => GetLink(by, (x) => x == linkText);
@@ -318,15 +314,15 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetDomAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
 
-    public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetDomAttribute(AttributeHelper.InnerText)));
+    public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetInnerTextAttribute()));
 
-    public List<IWebElement> GetLinks(By by, string linkText) => FindElements(by).Where(x => x.GetDomAttribute(AttributeHelper.InnerText) == linkText).ToList();
+    public List<IWebElement> GetLinks(By by, string linkText) => FindElements(by).Where(x => x.GetInnerTextAttribute() == linkText).ToList();
 
-    public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetDomAttribute(AttributeHelper.InnerText).ContainsCompareCaseInsensitive(linkText)).ToList();
+    public List<IWebElement> GetLinks(string linkText) => FindElements(LinkCssSelector).Where(x => x.GetInnerTextAttribute().ContainsCompareCaseInsensitive(linkText)).ToList();
 
     public List<string> GetAvailableSelectOptions(By @by) => SelectElement(FindElement(by)).Options.Where(t => !string.IsNullOrEmpty(t.Text)).Select(x => x.Text).ToList();
 
-    public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetDomAttribute(AttributeHelper.InnerText)).ToList();
+    public List<string> GetAvailableRadioOptions() => FindElements(RadioButtonLabelCssSelector).Select(p => p.GetInnerTextAttribute()).ToList();
 
     public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
 
@@ -350,7 +346,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
     {
         bool func(Func<IWebElement> webelement)
         {
-            var actual = webelement().GetDomAttribute(attribute);
+            var actual = webelement().GetDomProperty(attribute);
 
             if (actual.Contains(value)) return true;
 
