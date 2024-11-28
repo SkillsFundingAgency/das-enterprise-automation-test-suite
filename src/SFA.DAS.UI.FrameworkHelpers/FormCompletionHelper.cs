@@ -103,8 +103,6 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
     public void SelectCheckBoxByText(By locator, string text) => ClickElementByText(locator, text);
 
-    public void SelectCheckBoxByText(string text) => ClickElementByText(CheckBoxCssSelector, text);
-
     public void SelectRadioOptionByForAttribute(By locator, string forAttribute)
     {
         IList<IWebElement> radios = webDriver.FindElements(locator);
