@@ -312,7 +312,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         return result;
     }
 
-    public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetDomAttribute("href").ContainsCompareCaseInsensitive(hrefContains));
+    public IWebElement GetLinkByHref(string hrefContains) => FindElements(LinkCssSelector).First(x => x.GetHrefAttribute().ContainsCompareCaseInsensitive(hrefContains));
 
     public IWebElement GetLink(By by, Func<string, bool> func) => FindElements(by).First(x => func(x.GetInnerTextAttribute()));
 

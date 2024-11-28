@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,7 +9,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
     {
         private static By Links => By.CssSelector("a");
         protected override string PageTitle => "";
-        public void VerifyLinks() => VerifyLinks(Links, "href", (x) => x.Text);
+        public void VerifyLinks() => VerifyLinks(Links, AttributeHelper.Href, (x) => x.Text);
      
         public void VerifyLinks(By locator, string attributeName, Func<IWebElement, string> func)
         {

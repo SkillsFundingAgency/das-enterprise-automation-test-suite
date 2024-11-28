@@ -93,7 +93,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 {
                     var labelElements = element.FindElements(TicketDropdownLabel).ToList();
 
-                    if (labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetDomAttribute("innerText").ContainsCompareCaseInsensitive(question)))
+                    if (labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetInnerTextAttribute().ContainsCompareCaseInsensitive(question)))
                     {
                         var forvalue = labelElements.Single().GetDomAttribute("for");
 

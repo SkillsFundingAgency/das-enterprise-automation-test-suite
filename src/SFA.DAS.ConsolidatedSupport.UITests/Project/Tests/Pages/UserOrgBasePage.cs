@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,7 +108,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             var labelElements = element.FindElements(UserLabel).ToList();
 
-            return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetDomAttribute("innerText").ContainsCompareCaseInsensitive(question));
+            return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetInnerTextAttribute().ContainsCompareCaseInsensitive(question));
         }
 
         private new void NavigateTo() { if (PageType == PageTypeEnum.User) NavigateToUser(); else NavigateToOrganisation(); }

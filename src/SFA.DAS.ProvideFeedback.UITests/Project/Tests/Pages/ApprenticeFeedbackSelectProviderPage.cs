@@ -13,7 +13,7 @@ public class ApprenticeFeedbackSelectProviderPage(ScenarioContext context) : App
         {
             var element = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(SelectTrainingProvider));
 
-            var href = element.GetDomAttribute("href");
+            var href = element.GetHrefAttribute();
 
             var items = href?.Split("/");
 

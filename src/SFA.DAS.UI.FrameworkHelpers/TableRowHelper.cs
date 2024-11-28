@@ -42,7 +42,7 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
 
                 if (columnName == linkcolumnName)
                 {
-                    cellValue = $"{cellValue}({cell.FindElement(By.CssSelector("a")).GetDomAttribute("href")})";
+                    cellValue = $"{cellValue}({cell.FindElement(By.CssSelector("a")).GetHrefAttribute()})";
                 }
 
                 rowData.Add(columnName, cellValue);
@@ -77,7 +77,7 @@ public class TableRowHelper(PageInteractionHelper pageInteractionHelper, FormCom
     {
         var element = FindElementInTable(byLinkText, [byKey], tableSelector);
 
-        var href = element?.GetDomAttribute("href");
+        var href = element?.GetHrefAttribute();
 
         formCompletionHelper.ClickElement(element);
 
