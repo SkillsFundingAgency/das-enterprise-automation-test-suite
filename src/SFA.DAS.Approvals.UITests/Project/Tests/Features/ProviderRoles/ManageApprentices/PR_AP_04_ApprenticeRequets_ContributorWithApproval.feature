@@ -1,9 +1,9 @@
-﻿Feature: AP_PAS_PR_04_ApprenticeRequets_ContributorWithApproval
+﻿Feature: PR_AP_04_ApprenticeRequets_ContributorWithApproval
 
 @approvals
 @regression
 @Approvalproviderrole
-Scenario: AP_PAS_PR_04_Provider Roles Contributor with approval Apprentice Requests
+Scenario: PR_AP_04_Provider Roles Contributor with approval Apprentice Requests
 Given the provider logs in as a ContributorWithApproval
 When the user clicks on apprentice request link from homepage or apprentice request link
 Then the user can view apprentice details ready for review page when user clicks on with employer box
