@@ -65,7 +65,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 
         private List<(string hashedid, string value)> GetEmpDetails()
         {
-            var value = pageInteractionHelper.FindElements(SelectItemList).Select(x => x.GetAttribute("value")).ToList();
+            var value = pageInteractionHelper.FindElements(SelectItemList).Select(x => x.GetDomAttribute("value")).ToList();
 
             return value.Select(x => (x?.Split('|')[1], x)).ToList();
         }

@@ -103,8 +103,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void VerifyStartDateIsPrePopulated()
         {
-            var startMonth = pageInteractionHelper.FindElement(StartDateMonth).GetAttribute("value");
-            var startYear = pageInteractionHelper.FindElement(StartDateYear).GetAttribute("value");
+            var startMonth = pageInteractionHelper.FindElement(StartDateMonth).GetDomAttribute("value");
+            var startYear = pageInteractionHelper.FindElement(StartDateYear).GetDomAttribute("value");
 
             Assert.IsNotEmpty(startMonth, "Failed to validate startMonth field is pre-populated");
             Assert.IsNotEmpty(startYear, "Failed to validate startYear field is pre-populated");

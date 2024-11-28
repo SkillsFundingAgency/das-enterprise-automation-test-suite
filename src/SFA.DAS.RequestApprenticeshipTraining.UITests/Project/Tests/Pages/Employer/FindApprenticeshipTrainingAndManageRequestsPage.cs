@@ -15,7 +15,7 @@ public class FindApprenticeshipTrainingAndManageRequestsPage(ScenarioContext con
 
         var link = By.LinkText(trainingCourseName);
 
-        string href = pageInteractionHelper.FindElement(link).GetAttribute("href");
+        string href = pageInteractionHelper.FindElement(link).GetDomAttribute("href");
 
         SetDebugInformation($"Active request href - {href}");
 

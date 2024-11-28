@@ -107,7 +107,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             var labelElements = element.FindElements(UserLabel).ToList();
 
-            return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question));
+            return labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetDomAttribute("innerText").ContainsCompareCaseInsensitive(question));
         }
 
         private new void NavigateTo() { if (PageType == PageTypeEnum.User) NavigateToUser(); else NavigateToOrganisation(); }

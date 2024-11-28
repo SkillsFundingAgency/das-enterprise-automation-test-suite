@@ -32,7 +32,7 @@ public class SearchForAnEmployerPage(ScenarioContext context, bool verifyPage = 
         pageInteractionHelper.WaitForElementToBeClickable(PaginationInfo);
         formCompletionHelper.ClickElement(SelectAllChkBox);
 
-        var isChecked = pageInteractionHelper.FindElement(SelectAllChkBox).GetAttribute("checked");
+        var isChecked = pageInteractionHelper.FindElement(SelectAllChkBox).GetDomAttribute("checked");
 
         if (isChecked == "false" || isChecked == null)
         {

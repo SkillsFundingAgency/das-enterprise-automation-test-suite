@@ -50,9 +50,9 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
 
     public List<string> GetAllDropDownOptions(By bySelect) => GetAllDropDown(bySelect, (x) => x.Text);
 
-    public List<string> GetAllDropDownValue(By bySelect) => GetAllDropDown(bySelect, (x) => x.GetAttribute("value"));
+    public List<string> GetAllDropDownValue(By bySelect) => GetAllDropDown(bySelect, (x) => x.GetDomAttribute("value"));
 
-    private List<string> GetAllDropDown(By bySelect, Func<IWebElement, string> func) => SelectElement(bySelect).Options.Where(x => !string.IsNullOrEmpty(x.GetAttribute("value"))).Select(x => func(x)).ToList();
+    private List<string> GetAllDropDown(By bySelect, Func<IWebElement, string> func) => SelectElement(bySelect).Options.Where(x => !string.IsNullOrEmpty(x.GetDomAttribute("value"))).Select(x => func(x)).ToList();
 
     public string GetSelectedOption(By bySelect) => SelectElement(bySelect).SelectedOption.Text;
 
@@ -109,7 +109,7 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
     {
         IList<IWebElement> radios = webDriver.FindElements(locator);
 
-        var radioToSelect = radios.FirstOrDefault(radio => radio.GetAttribute("for") == forAttribute);
+        var radioToSelect = radios.FirstOrDefault(radio => radio.GetDomAttribute("for") == forAttribute);
 
         if (radioToSelect != null) { ClickElement(radioToSelect); SetDebugInformation($"Clicked 'for='{forAttribute}''"); }
     }

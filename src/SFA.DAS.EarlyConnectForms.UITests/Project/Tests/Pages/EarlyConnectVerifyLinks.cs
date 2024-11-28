@@ -16,11 +16,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 
             foreach (var item in internalLinks)
             {
-                var attributeValue = item.GetAttribute(attributeName);
+                var attributeValue = item.GetDomAttribute(attributeName);
                 var text = func(item);
                 objectContext.Replace(text, $"{attributeName}:{attributeValue}");
 
-                if (string.IsNullOrEmpty(attributeValue) && !string.IsNullOrEmpty(text) && (item.GetAttribute("asp-action") == null))
+                if (string.IsNullOrEmpty(attributeValue) && !string.IsNullOrEmpty(text) && (item.GetDomAttribute("asp-action") == null))
                     throw new Exception($"'{text}' element's '{attributeName}' attribute is broken - attributeValue : '{attributeValue}'");
 
             }
