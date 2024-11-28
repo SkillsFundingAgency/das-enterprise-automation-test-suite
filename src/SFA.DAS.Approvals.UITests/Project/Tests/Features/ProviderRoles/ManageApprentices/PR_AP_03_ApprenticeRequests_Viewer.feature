@@ -1,10 +1,10 @@
-﻿Feature: AP_PAS_PR_01_ApprenticeRequests_AccountOwner	
+﻿Feature: PR_AP_03_ApprenticeRequests_Viewer
 
 @approvals
 @regression
 @Approvalproviderrole
-Scenario: AP_PAS_PR_01_Provider Roles Account Owner Apprentice Requests
-Given the provider logs in as a AccountOwner
+Scenario: PR_AP_03_Provider Roles Viewer Apprentice Requests
+Given the provider logs in as a Viewer
 When the user clicks on apprentice request link from homepage or apprentice request link
 Then the user can view apprentice details ready for review page when user clicks on with employer box
 And the user can view apprentice details ready for review page when user clicks on drafts box
@@ -13,10 +13,7 @@ And the user can view view your cohort page by clicking view link on view your c
 And the user can view view your cohort page by clicking view link on view your cohort page selecting with transfer sending employers box
 And the user can view review your cohort page when user clicks on details link from apprentice details ready for review page selecting with employers box
 And the user can view review your cohort page when user clicks on details link from apprentice details ready for review page selecting drafts box
-And the user can create a cohort
-And the user can add apprentice to a cohort
-And the user can bulk upload apprentices
-And the user can edit an existing apprenticeship record by selecting edit apprentice link selecting with employers or drafts boxes
-And the user can delete an apprentice in a cohort
-And the user can delete a cohort
-And the user can send a cohort to employer
+And the user cannot bulk upload apprentices via csv file
+And the user cannot send a cohort to employer
+And the user cannot delete a cohort
+And the user cannot edit an apprentice in a cohort
