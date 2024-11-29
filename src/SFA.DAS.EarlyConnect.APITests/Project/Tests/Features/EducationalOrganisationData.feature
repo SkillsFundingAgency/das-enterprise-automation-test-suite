@@ -23,10 +23,10 @@ Scenario Outline: Verify Api GET Educational Organisation Data finds schools by 
 @earlyconapi
 @earlyconnecteducationalorgansationsdata
 @regression
-Scenario Outline: Verify invalid or absent leps code returns 400 Bad request 
+Scenario Outline: Verify invalid leps code returns 400 Bad request 
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
 	Then api <ResponseStatus> response is received
 
    Examples: 
- | Method | Endpoint										   | Payload | ResponseStatus |
- | GET    | /early-connect/educational-organisations-data      |         | Bad Request    |
+ | Method | Endpoint															 | Payload | ResponseStatus |
+ | GET    | /early-connect/educational-organisations-data?LepCode=E22000012      |         | Bad Request    |
