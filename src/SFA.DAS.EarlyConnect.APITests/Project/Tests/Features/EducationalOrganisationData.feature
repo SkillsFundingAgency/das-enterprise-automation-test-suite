@@ -29,4 +29,4 @@ Scenario Outline: Verify invalid or absent leps code returns 400 Bad request
 
    Examples: 
  | Method | Endpoint										   | Payload | ResponseStatus |
- | GET    | /early-connect/educational-organisations-data      | Payload | Bad Request    |
+ | GET    | /early-connect/educational-organisations-data      |         | Bad Request    |
