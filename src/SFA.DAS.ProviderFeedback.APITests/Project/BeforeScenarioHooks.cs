@@ -7,7 +7,7 @@ namespace SFA.DAS.ProviderFeedback.APITests.Project;
 [Binding]
 public class BeforeScenarioHooks(ScenarioContext context)
 {
-    [BeforeScenario(Order = 1)] // order ?
+    [BeforeScenario(Order = 32)]
     public void SetUpHelpers()
     {
         var objectContext = context.Get<ObjectContext>();
