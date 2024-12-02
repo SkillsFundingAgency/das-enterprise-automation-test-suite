@@ -26,8 +26,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         public int DateOfBirthMonth { get; set; }
         public int DateOfBirthYear { get; set; }
         public string PostCode { get; set; } = "Tw14 9py";
-        public string SchoolCollege { get; set; } = "Testing College";
-
-        public string SearchSchoolCollege { get; set; } = "Gateshead College";
+        public string SchoolCollege { get; set; } = "Grace College";
+        public string SearchSchoolCollege { get; set; } = "College";
     }
 }
