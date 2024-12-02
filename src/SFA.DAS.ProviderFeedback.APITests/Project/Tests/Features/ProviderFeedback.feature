@@ -9,5 +9,7 @@ Scenario: Verify ProviderFeedbackOuterApi returns expected response
 	And verify response body contains correct information for Ukprn '<Ukprn>'
 
 	Examples: 
-| Method | Endpoint                   | ResponseStatus | Ukprn    |
-| GET    | /providerFeedback/10000528 | OK             | 10000528 |
+| Method | Endpoint                                 | ResponseStatus | Ukprn    |
+| GET    | /providerFeedback/10000528               | OK             | 10000528 |
+| GET    | /providerFeedback/10000528/annual        | OK             | 10000528 |
+| GET    | /providerFeedback/10000528/annual/AY2324 | OK             | 10000528 |

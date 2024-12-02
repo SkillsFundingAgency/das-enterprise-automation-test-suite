@@ -7,7 +7,7 @@ using System.Net;
 
 namespace SFA.DAS.ProviderFeedback.APITests.Project
 {
-    public class Outer_ProviderFeedbackApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config.ProviderFeedback_Apim_SubscriptionKey)
+    public class Outer_ProviderFeedbackApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config.Apim_SubscriptionKey)
     {
         protected override string ApiName => "/provider-feedback";
         protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;

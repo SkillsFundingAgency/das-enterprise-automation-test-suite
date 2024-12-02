@@ -5,6 +5,4 @@ public class Outer_ApiAuthTokenConfig
     public string Apim_SubscriptionKey { get; set; }
 
     public string NAS_Apim_SubscriptionKey { get; set; }
-
-    public string ProviderFeedback_Apim_SubscriptionKey { get; set; }
 }
