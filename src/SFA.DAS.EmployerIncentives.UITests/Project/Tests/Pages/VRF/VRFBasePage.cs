@@ -21,6 +21,6 @@ namespace SFA.DAS.EmployerIncentives.UITests.Project.Tests.Pages.VRF
 
         protected void SelectCheckBoxByText(string forvalue, string text) => formCompletionHelper.ClickElement(SelectByText(CheckboxOptions, forvalue, text), false);
 
-        private IWebElement SelectByText(By by, string forvalue, string text) => pageInteractionHelper.FindElements(by).Single(x => x.GetAttribute("for").Contains(forvalue) && x.Text == text);
+        private IWebElement SelectByText(By by, string forvalue, string text) => pageInteractionHelper.FindElements(by).Single(x => x.GetDomAttribute("for").Contains(forvalue) && x.Text == text);
     }
 }
