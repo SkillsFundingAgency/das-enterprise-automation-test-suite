@@ -346,7 +346,9 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
     {
         bool func(Func<IWebElement> webelement)
         {
-            var actual = webelement().GetDomProperty(attribute);
+            var element = webelement();
+
+            var actual = element.GetDomProperty(attribute) ?? element.GetDomAttribute(attribute);
 
             if (actual.Contains(value)) return true;
 
