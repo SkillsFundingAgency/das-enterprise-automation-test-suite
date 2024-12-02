@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class AddTrainingProviderDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Select your training provider";
-        protected override By PageHeader => By.ClassName("govuk-label--l");
+        protected override By PageHeader => By.ClassName("govuk-label-l");
 
         protected override bool TakeFullScreenShot => false;
         private static By UKProviderReferenceNumberText => By.Id("Ukprn");
