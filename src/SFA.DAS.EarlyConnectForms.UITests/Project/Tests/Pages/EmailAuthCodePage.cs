@@ -10,11 +10,19 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override string PageTitle => "Check your email";
         private static By EmailAuthCodeField => By.CssSelector("#authcode");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
+
         public WhatsYourNamePage EnterValidAuthCode()
         {
             formCompletionHelper.EnterText(EmailAuthCodeField, retriveEmailOTPCodeHelper.GetOPT());
             formCompletionHelper.ClickElement(ContinueButton);
             return new WhatsYourNamePage(context);
+        }
+
+        public AlreadyCompletedFormPage EnterValidAuthCodeForUsedEmail()
+        {
+            formCompletionHelper.EnterText(EmailAuthCodeField, retriveEmailOTPCodeHelper.GetOPT());
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new AlreadyCompletedFormPage(context);
         }
     }
 }

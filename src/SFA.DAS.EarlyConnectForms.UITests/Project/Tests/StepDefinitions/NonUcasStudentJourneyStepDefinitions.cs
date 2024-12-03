@@ -50,5 +50,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         [Then(@"I check my answers, accept and submit")]
         public void WhenICheckMyAnswersAcceptAndSubmit() => _stepsHelper.GoToCheckYourAnswerPage();
 
+        [Given(@"I enter an already used email")]
+        public void GivenIEnterAnAlreadyUsedEmail()
+        {
+            _stepsHelper.GoToAddAlreadyUsedEmailAddressPage();
+        }
+
+        [Then(@"I get the Already Completed Form Page")]
+        public void ThenIGetTheAlreadyCompletedFormPage() => _stepsHelper.GoToCheckUsedEmailAuthCodePage();
+
     }
 }

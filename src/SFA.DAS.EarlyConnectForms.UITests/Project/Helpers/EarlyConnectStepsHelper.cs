@@ -30,9 +30,20 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return  new EmailAddressPage(context).EnterNewEmailAddress();
         }
+
+        public EmailAuthCodePage GoToAddAlreadyUsedEmailAddressPage()
+        {
+            return new EmailAddressPage(context).EnterAlreadyUsedEmailAddress();
+        }
+
         public WhatsYourNamePage GoToCheckEmailAuthCodePage()
         {
             return new EmailAuthCodePage(context).EnterValidAuthCode();
+        }
+
+        public AlreadyCompletedFormPage GoToCheckUsedEmailAuthCodePage()
+        {
+            return new EmailAuthCodePage(context).EnterValidAuthCodeForUsedEmail();
         }
 
         public DateOfBirthPage GoToWhatYourNamePage()

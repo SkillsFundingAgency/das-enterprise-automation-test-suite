@@ -15,6 +15,17 @@ Scenario: Verify Non Ucas Student journey for NorthEast Region
 
 @ec-v1
 @earlyconnect
+@alreadyusedemail
+@regression
+
+Scenario: Verify Non Ucas Student journey for already used email for NorthEast Region
+	Given I am on the landing page for a region
+	And I selected North East Advisor Page
+	And I enter an already used email
+	Then I get the Already Completed Form Page
+
+@ec-v1
+@earlyconnect
 @regression
 @ignore
 #Lancashire region and London region is paused till January 2025
