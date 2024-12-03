@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 {
     public abstract class AddAndEditApprenticeDetailsBasePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-l");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl ");
         private static By Uln => By.Name("Uln");
         private static By FirstNameField => By.Name("FirstName");
         private static By LastNameField => By.Name("LastName");
