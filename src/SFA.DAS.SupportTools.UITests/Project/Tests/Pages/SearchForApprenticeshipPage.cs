@@ -71,7 +71,7 @@ public class SearchForApprenticeshipPage(ScenarioContext context, bool verifyPag
         pageInteractionHelper.WaitForElementToBeClickable(PageSelector);
         formCompletionHelper.ClickElement(SelectAllChkBox);
 
-        var isChecked = pageInteractionHelper.FindElement(SelectAllChkBox).GetAttribute("checked");
+        var isChecked = pageInteractionHelper.FindElement(SelectAllChkBox).GetDomAttribute("checked");
 
         if (isChecked == "false" || isChecked == null)
         {

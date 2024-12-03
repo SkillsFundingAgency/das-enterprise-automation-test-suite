@@ -5,7 +5,6 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -15,8 +14,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly EmployerPortalLoginHelper _loginHelper;
-        private ApprenticesHomePage _apprenticesHomePage;
-        private NotificationSettingsPage _employerNotification;
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
         private ProviderNotificationSettingsPage _providerNotification;
 
@@ -32,32 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            _apprenticesHomePage = new ApprenticesHomePage(_context);
-        }
-
-        [Then(@"Employer should be able to navigate to help page")]
-        public void EmployerShouldBeAbleToNavigateToHelpPage() => _apprenticesHomePage.GoToHelpPage();
-
-        [Then(@"Employer should be able to navigate to Rename account page")]
-        public void EmployerShouldBeAbleToNavigateToRenameAccountPage() => _apprenticesHomePage.GoToRenameAccountPage();
-
-        [When(@"Employer navigates to notification settings page")]
-        public void EmployerNavigatesToNotificationSettingsPage() => _employerNotification = _apprenticesHomePage.GoToNotificationSettingsPage();
-
-        [Then(@"Employer is able to choose to receive notification emails")]
-        public void EmployerIsAbleToChooseToReceiveNotificationEmails()
-        {
-            _employerNotification = _employerNotification.ChooseToReceiveEmails();
-
-            Assert.IsTrue(_employerNotification.IsSettingsUpdated(), $"Choose to receive notification emails success message is not displayed");
-        }
-
-        [Then(@"Employer is able to choose No notification emails")]
-        public void EmployerIsAbleToChooseNoNotificationEmails()
-        {
-            _employerNotification = _employerNotification.ChooseNotToReceiveEmails();
-
-            Assert.IsTrue(_employerNotification.IsSettingsUpdated(), $"Choose not to receive notification emails success message is not displayed");
+            _ = new ApprenticesHomePage(_context);
         }
 
         [Given(@"Provider navigates to notification settings page")]
