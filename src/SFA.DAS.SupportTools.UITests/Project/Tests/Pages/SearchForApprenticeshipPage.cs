@@ -14,7 +14,6 @@ public class SearchForApprenticeshipPage(ScenarioContext context, bool verifyPag
     private static By ApprenticeshipStatus => By.Id("SelectedStatus");
     private static By DataTable => By.Id("apprenticeshipResultsTable");
     private static By PaginationInfo => By.ClassName("pagination-info");
-    private static By SelectAllInput => By.CssSelector("input[name='btSelectAll'][type='checkbox']");
     private static By SubmitButton => By.Id("submitSearchFormButton");
     private static By PauseButton => By.CssSelector("#searchResultsForm .govuk-button");
     private static By ResumeButton => By.XPath("//button[contains(text(),'Resume apprenticeship(s)')]");
@@ -67,7 +66,7 @@ public class SearchForApprenticeshipPage(ScenarioContext context, bool verifyPag
 
     public SearchForApprenticeshipPage SelectAllRecords()
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(SelectAllInput));
+        ClickSelectAllCheckBox();
 
         return this;
     }

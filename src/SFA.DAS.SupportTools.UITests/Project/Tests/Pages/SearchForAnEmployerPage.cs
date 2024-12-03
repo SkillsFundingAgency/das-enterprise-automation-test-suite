@@ -8,7 +8,6 @@ public class SearchForAnEmployerPage(ScenarioContext context, bool verifyPage = 
     private static By InternalAccountId => By.Id("internalAccountId");
     private static By HashedAccountId => By.Id("hashedAccountId");
     private static By PaginationInfo => By.ClassName("pagination-info");
-    private static By SelectAllChkBox => By.Name("btSelectAll");
     private static By SubmitButton => By.Id("submitSearchFormButton");
     private static By SuspendUserButton => By.XPath("//button[contains(text(),'Suspend user(s)')]");
     private static By ReinstateUserButton => By.XPath("//button[contains(text(),'Reinstate user(s)')]");
@@ -29,16 +28,7 @@ public class SearchForAnEmployerPage(ScenarioContext context, bool verifyPage = 
 
     public SearchForAnEmployerPage SelectAllRecords()
     {
-        pageInteractionHelper.WaitForElementToBeClickable(PaginationInfo);
-        formCompletionHelper.ClickElement(SelectAllChkBox);
-
-        var isChecked = pageInteractionHelper.FindElement(SelectAllChkBox).GetDomAttribute("checked");
-
-        if (isChecked == "false" || isChecked == null)
-        {
-            pageInteractionHelper.WaitForElementToBeClickable(PaginationInfo);
-            formCompletionHelper.ClickElement(SelectAllChkBox);
-        }
+        ClickSelectAllCheckBox();
 
         return this;
     }
