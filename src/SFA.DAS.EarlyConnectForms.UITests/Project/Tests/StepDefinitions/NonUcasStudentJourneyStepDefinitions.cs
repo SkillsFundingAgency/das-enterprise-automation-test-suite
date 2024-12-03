@@ -59,5 +59,16 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         [Then(@"I get the Already Completed Form Page")]
         public void ThenIGetTheAlreadyCompletedFormPage() => _stepsHelper.GoToCheckUsedEmailAuthCodePage();
 
+        [Given(@"I selected the 'How apprenticeships work' link")]
+        public void GivenISelectedTheHowApprenticeshipsWorkLink()
+        {
+            _stepsHelper.GoToBecomeAnApprenticePage();
+        }
+
+        [Given(@"I selected the 'Find an apprenticeship' link")]
+        public void GivenISelectedTheFindAnApprenticeshipWorkLink()
+        {
+            _stepsHelper.GoToFindAnApprenticeshipPage();
+        }
     }
 }

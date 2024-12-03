@@ -97,5 +97,15 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new CheckYourAnswerPage(context).AcceptAndSubmitForm();
         }
+
+        public BecomeAnApprenticePage GoToBecomeAnApprenticePage()
+        {
+            return new EarlyConnectHomePage(context).SelectHowApprenticeshipsWorkLink();
+        }
+
+        public FindAnApprenticeshipPage GoToFindAnApprenticeshipPage()
+        {
+            return new EarlyConnectHomePage(context).SelectFindAnApprenticeshipLink();
+        }
     }
 }

@@ -4,6 +4,7 @@ so that my data will be available for futher progress
 
 @ec-v1
 @earlyconnect
+@non-ucas
 @regression
 
 Scenario: Verify Non Ucas Student journey for NorthEast Region
@@ -15,6 +16,7 @@ Scenario: Verify Non Ucas Student journey for NorthEast Region
 
 @ec-v1
 @earlyconnect
+@non-ucas
 @alreadyusedemail
 @regression
 
@@ -26,7 +28,30 @@ Scenario: Verify Non Ucas Student journey for already used email for NorthEast R
 
 @ec-v1
 @earlyconnect
+@non-ucas
+@ec-links-verification-01
 @regression
+
+Scenario: Verify How Apprenticeships Work link for Non Ucas Student
+	Given I am on the landing page for a region
+	And I selected the 'How apprenticeships work' link
+	Then I am navigated to "Become an apprentice" page
+
+@ec-v1
+@earlyconnect
+@non-ucas
+@ec-links-verification-01
+@regression
+
+Scenario: Verify Find an Apprenticeship link for Non Ucas Student
+	Given I am on the landing page for a region
+	And I selected the 'Find an apprenticeship' link
+	Then I am navigated to "Find an apprenticeship" page
+
+@ec-v1
+@earlyconnect
+@regression
+@non-ucas
 @ignore
 #Lancashire region and London region is paused till January 2025
 Scenario: Verify Non Ucas Student journey for Lancashire Region

@@ -16,6 +16,8 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 
         protected static By GetAnAdvisorInLancashire => By.CssSelector("li:nth-child(1) a:nth-child(1)");
         protected static By GetAnAdvisorInNorthEast => By.XPath("//a[normalize-space()='Get an adviser in North East']");
+        protected static By HowApprenticeshipsWorkLink => By.XPath("//a[normalize-space()='how apprenticeships work']");
+        protected static By FindAnApprenticeshipLink => By.XPath("//a[normalize-space()='Find an apprenticeship']");
 
         public EarlyConnectHomePage AcceptCookieAndAlert()
         {
@@ -36,6 +38,18 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         {
             formCompletionHelper.Click(GetAnAdvisorInLancashire);
             return new EarlyConnectHomePage(context);
+        }
+
+        public BecomeAnApprenticePage SelectHowApprenticeshipsWorkLink()
+        {
+            formCompletionHelper.Click(HowApprenticeshipsWorkLink);
+            return new BecomeAnApprenticePage(context);
+        }
+
+        public FindAnApprenticeshipPage SelectFindAnApprenticeshipLink()
+        {
+            formCompletionHelper.Click(FindAnApprenticeshipLink);
+            return new FindAnApprenticeshipPage(context);
         }
     }
 }
