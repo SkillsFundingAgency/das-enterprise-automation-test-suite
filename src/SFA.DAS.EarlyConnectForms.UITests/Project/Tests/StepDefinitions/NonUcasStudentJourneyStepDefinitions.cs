@@ -94,5 +94,17 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoBackToWhatIsYourDateOfBirthPage();
             _stepsHelper.GoBackToWhatYourNamePage();
         }
+
+        [Given(@"I enter invalid auth code")]
+        public void GivenIEnterInvalidAutCode()
+        {
+            _stepsHelper.EnterInvalidAuthCode();
+        }
+
+        [Then(@"I get the error summary")]
+        public void ThenIGetTheErrorSummary()
+        {
+            _stepsHelper.VerifyErrorSummaryForInvalidAuthCode();
+        }
     }
 }

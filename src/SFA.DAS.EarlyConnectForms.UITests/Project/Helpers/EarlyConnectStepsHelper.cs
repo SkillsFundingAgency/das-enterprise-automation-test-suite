@@ -153,5 +153,16 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new SupportPage(context).SelectBackButton();
         }
+
+        // Invalid Auth Code Helper
+        public void EnterInvalidAuthCode()
+        {
+            new EmailAuthCodePage(context).EnterInvalidAuthCode();
+        }
+
+        public EmailAuthCodePage VerifyErrorSummaryForInvalidAuthCode()
+        {
+            return new EmailAuthCodePage(context).VerifyInvalidAuthCodeDisplaysError();
+        }
     }
 }

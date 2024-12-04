@@ -63,6 +63,18 @@ Scenario: Verify Back buttons
 
 @ec-v1
 @earlyconnect
+@non-ucas
+@ec-invalid-auth-code
+@regression
+
+Scenario: Verify invalid AuthCode valid code does not continue the student journey
+	Given I am on the landing page for a region
+	And I selected North East Advisor Page
+	And I enter invalid auth code
+	Then I get the error summary
+
+@ec-v1
+@earlyconnect
 @regression
 @non-ucas
 @ignore
