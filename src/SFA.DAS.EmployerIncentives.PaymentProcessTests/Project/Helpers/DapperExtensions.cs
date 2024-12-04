@@ -25,7 +25,7 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
 
             var columns = new StringBuilder();
             var values = new StringBuilder();
-            var tableName = ((TableAttribute)entityToInsert.GetType().GetCustomAttribute(typeof(TableAttribute)))?.Name;
+            var tableName = entityToInsert.GetType().GetCustomAttribute<TableAttribute>()?.Name;
             var relevantProperties = entityToInsert.GetType().GetProperties().Where(x =>
                 !Attribute.IsDefined(x, typeof(ComputedAttribute)) && HasNoWriteFalseAttribute(x)).ToList();
 
@@ -59,10 +59,9 @@ namespace SFA.DAS.EmployerIncentives.PaymentProcessTests.Project.Helpers
             return connection.ExecuteAsync($"Insert Into {tableName} ({columns}) values ({values})", propertyValuesMap, transaction, commandTimeout);
         }
 
-        private static bool HasNoWriteFalseAttribute(ICustomAttributeProvider propertyInfo)
+        private static bool HasNoWriteFalseAttribute(PropertyInfo propertyInfo)
         {
-            var writeAttribute = propertyInfo.GetCustomAttributes(typeof(WriteAttribute), false).FirstOrDefault() as WriteAttribute;
-            return writeAttribute == null || writeAttribute.Write;
+            return propertyInfo.GetCustomAttributes(typeof(WriteAttribute), false).FirstOrDefault() is not WriteAttribute writeAttribute || writeAttribute.Write;
         }
     }
 }

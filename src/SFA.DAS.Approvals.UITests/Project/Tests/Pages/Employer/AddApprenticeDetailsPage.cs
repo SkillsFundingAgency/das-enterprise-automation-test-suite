@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -103,8 +104,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private void VerifyStartDateIsPrePopulated()
         {
-            var startMonth = pageInteractionHelper.FindElement(StartDateMonth).GetAttribute("value");
-            var startYear = pageInteractionHelper.FindElement(StartDateYear).GetAttribute("value");
+            var startMonth = pageInteractionHelper.FindElement(StartDateMonth).GetValueAttribute();
+            var startYear = pageInteractionHelper.FindElement(StartDateYear).GetValueAttribute();
 
             Assert.IsNotEmpty(startMonth, "Failed to validate startMonth field is pre-populated");
             Assert.IsNotEmpty(startYear, "Failed to validate startYear field is pre-populated");
