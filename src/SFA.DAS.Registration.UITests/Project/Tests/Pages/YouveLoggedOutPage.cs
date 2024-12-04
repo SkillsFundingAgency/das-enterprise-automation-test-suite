@@ -2,9 +2,10 @@
 
 public class YouveLoggedOutPage : RegistrationBasePage
 {
-    protected override string PageTitle => "You've signed out";
-
+    protected override By PageHeader => By.ClassName("govuk-heading-l");
+    protected override string PageTitle => "You have signed out";
     protected override bool TakeFullScreenShot => false;
+    private static By SigninLink => By.LinkText("sign in");
 
     #region Locators
     protected override By ContinueButton => By.LinkText("Continue");
@@ -18,9 +19,11 @@ public class YouveLoggedOutPage : RegistrationBasePage
 
     }, () => pageInteractionHelper.WaitUntilAnyElements(ContinueButton));
 
-    public CreateAnAccountToManageApprenticeshipsPage CickContinueInYouveLoggedOutPage()
+
+    public SignInToYourApprenticeshipServiceAccountPage CickContinueInYouveLoggedOutPage()
     {
-        Continue();
-        return new CreateAnAccountToManageApprenticeshipsPage(context);
+        formCompletionHelper.ClickElement(SigninLink);
+        return new SignInToYourApprenticeshipServiceAccountPage(context);
     }
+
 }
