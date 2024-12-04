@@ -12,7 +12,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         protected virtual By FirstResultLink => By.ClassName("das-search-results__link");
         #endregion
 
-        protected FindEPAOBasePage(ScenarioContext context) : base(context) => VerifyPage();
+        protected FindEPAOBasePage(ScenarioContext context) : base(context) => VerifyWithoutRefresh();
 
         public void SearchApprenticeshipStandard(string searchTerm)
         {
