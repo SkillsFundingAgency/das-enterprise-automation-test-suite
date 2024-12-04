@@ -8,8 +8,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
     {
         #region Locators
         protected override By BackLink => By.CssSelector("a.link-back");
-        protected static By SearchTextField => By.Id("SelectedCourseId");
-        protected virtual By SearchButton => By.ClassName("govuk-button");
+        protected override By ContinueButton => By.CssSelector("button.govuk-button[type='submit']");
         protected virtual By FirstResultLink => By.ClassName("das-search-results__link");
         #endregion
 
@@ -17,8 +16,21 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
 
         public void SearchApprenticeshipStandard(string searchTerm)
         {
-            formCompletionHelper.EnterText(SearchTextField, searchTerm);
-            formCompletionHelper.Click(SearchButton);
+            new ApprenticeshipTrainningCourseAutoCompleteHelper(context).SelectFromAutoCompleteList(searchTerm);
+
+            Continue();
         }
+    }
+
+
+    public class ApprenticeshipTrainningCourseAutoCompleteHelper(ScenarioContext context) : AutoCompleteHelper(context)
+    {
+        protected override string SearchPage => "What is the apprenticeship training course?";
+
+        protected override By SearchTextInput => By.CssSelector("input[id='SelectedCourseId']");
+
+        protected override By AutoCompleteMenu => By.CssSelector("[id='SelectedCourseId__listbox']");
+
+        protected override By NthOption(int i) => By.CssSelector($"[id='SelectedCourseId__option--{i}']");
     }
 }
