@@ -62,7 +62,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
 
         public ApprenticeshipsLevelPage GoToNameOfSchoolCollegePage()
         {
-            return new SchoolCollegePage(context).EnterValidSchoolOrCollegeName();
+            return new SchoolCollegePage(context).EnterInvalidSchoolOrCollegeName();
         }
         public HaveYouAppliedPage GoToApprencticeshipLevelPage()
         {

@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 {
@@ -11,9 +12,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override string PageTitle => "What is the name of your school or college?";
         private static By SearchTerm => By.CssSelector("#schoolsearchterm");
         private static By SearchList => By.XPath("//*[contains(@id, 'schoolsearchterm__option')]");
-        private static By SchoolManualEntryLink => By.CssSelector("#schoolmanualentry > a"); 
+        private static By SchoolManualEntryLink => By.CssSelector("#schoolmanualentry > a");
+        private static By ErrorMessage => By.CssSelector("#error-message-SchoolSearchTerm");
+        private static new By Continue => By.CssSelector("button[type='submit']");
+        private static By SchoolCollegeName => By.CssSelector("#schoolname");
         protected override By ContinueButton => By.CssSelector("#searchschoolsubmit");
-
 
         protected void SelectAutoDropDown(string text, bool selectFirstOption = false)
         {
@@ -39,10 +42,24 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
                 return element;
             });
         }
-        public ApprenticeshipsLevelPage EnterValidSchoolOrCollegeName()
+        //public ApprenticeshipsLevelPage EnterValidSchoolOrCollegeName()
+        //{
+        //    SelectAutoDropDown(earlyConnectDataHelper.SearchSchoolCollege, true);
+        //    formCompletionHelper.ClickElement(ContinueButton);
+        //    return new ApprenticeshipsLevelPage(context);
+        //}
+
+        public ApprenticeshipsLevelPage EnterInvalidSchoolOrCollegeName()
         {
-            SelectAutoDropDown(earlyConnectDataHelper.SearchSchoolCollege, true);
+            formCompletionHelper.EnterText(SearchTerm, earlyConnectDataHelper.SearchInvalidSchoolCollege);
             formCompletionHelper.ClickElement(ContinueButton);
+
+            if (pageInteractionHelper.IsElementPresent(ErrorMessage))
+            {
+                formCompletionHelper.Click(SchoolManualEntryLink);
+                formCompletionHelper.EnterText(SchoolCollegeName, earlyConnectDataHelper.SchoolCollege);
+                formCompletionHelper.ClickElement(Continue);
+            }
             return new ApprenticeshipsLevelPage(context);
         }
     }
