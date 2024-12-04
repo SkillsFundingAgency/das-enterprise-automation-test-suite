@@ -10,6 +10,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By FindingApprenticeshipCheckBox => By.CssSelector("label[for='Question_Answers_1__IsSelected']");
         private static By ApplingApprenticeshipCheckBox => By.CssSelector("label[for='Question_Answers_2__IsSelected']");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
+        private static By BackButton => By.CssSelector(".govuk-back-link");
         public CheckYourAnswerPage SelectAnySupportThatAppliesToYou()
         {
             formCompletionHelper.SelectCheckbox(UnderstandingApprenticeshipCheckBox);
@@ -17,6 +18,12 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             formCompletionHelper.SelectCheckbox(ApplingApprenticeshipCheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
             return new CheckYourAnswerPage(context);
-        } 
+        }
+
+        public AreaOfEnglandPage SelectBackButton()
+        {
+            formCompletionHelper.ClickElement(BackButton);
+            return new AreaOfEnglandPage(context);
+        }
     }
 }

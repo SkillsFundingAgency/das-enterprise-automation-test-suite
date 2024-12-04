@@ -93,6 +93,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new SupportPage(context).SelectAnySupportThatAppliesToYou();
         }
+
         public ApplicantSurveySummitedPage GoToCheckYourAnswerPage()
         {
             return new CheckYourAnswerPage(context).AcceptAndSubmitForm();
@@ -106,6 +107,51 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         public FindAnApprenticeshipPage GoToFindAnApprenticeshipPage()
         {
             return new EarlyConnectHomePage(context).SelectFindAnApprenticeshipLink();
+        }
+
+        // Back Navigation Step Helpers
+        public WhatsYourNamePage GoBackToWhatYourNamePage()
+        {
+            return new DateOfBirthPage(context).SelectBackButton();
+        }
+
+        public DateOfBirthPage GoBackToWhatIsYourDateOfBirthPage()
+        {
+            return new PostcodePage(context).SelectBackButton();
+        }
+
+        public PostcodePage GoBackToPostCodePage()
+        {
+            return new TelephonePage(context).SelectBackButton();
+        }
+
+        public TelephonePage GoBackToWhatYourTelephonePage()
+        {
+            return new AreasOfWorkInterestPage(context).SelectBackButton();
+        }
+
+        public AreasOfWorkInterestPage GoBackToAreasOfWorkInterestPage()
+        {
+            return new SchoolCollegePage(context).SelectBackButton();
+        }
+
+        public SchoolCollegePage GoBackToNameOfSchoolCollegePage()
+        {
+            return new ApprenticeshipsLevelPage(context).SelectBackButton();
+        }
+        public ApprenticeshipsLevelPage GoBackToApprencticeshipLevelPage()
+        {
+            return new HaveYouAppliedPage(context).SelectBackButton();
+        }
+
+        public HaveYouAppliedPage GoBackToHaveYouAppliedPage()
+        {
+            return new AreaOfEnglandPage(context).SelectBackButton();
+        }
+
+        public AreaOfEnglandPage GoBackToAreaOfEnglandPage()
+        {
+            return new SupportPage(context).SelectBackButton();
         }
     }
 }

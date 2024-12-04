@@ -50,6 +50,19 @@ Scenario: Verify Find an Apprenticeship link for Non Ucas Student
 
 @ec-v1
 @earlyconnect
+@non-ucas
+@ec-links-verification-01
+@regression
+
+Scenario: Verify Back buttons
+	Given I am on the landing page for a region
+	And I selected North East Advisor Page
+	And I enter valid details
+	And I answer the triage questions up to the Support Page
+	Then I can navigate back to the first question
+
+@ec-v1
+@earlyconnect
 @regression
 @non-ucas
 @ignore

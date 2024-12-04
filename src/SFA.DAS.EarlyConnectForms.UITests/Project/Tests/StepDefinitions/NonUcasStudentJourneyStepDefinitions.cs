@@ -70,5 +70,29 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         {
             _stepsHelper.GoToFindAnApprenticeshipPage();
         }
+
+        [Given(@"I answer the triage questions up to the Support Page")]
+        public void GivenIAnswerTheTriageQuestionsUpToTheSupportPage()
+        {
+            _stepsHelper.GoToAreasOfWorkInterestPage();
+            _stepsHelper.GoToNameOfSchoolCollegePage();
+            _stepsHelper.GoToApprencticeshipLevelPage();
+            _stepsHelper.GoToHaveYouAppliedPage();
+            _stepsHelper.GoToAreaOfEnglandPage();
+        }
+
+        [Then(@"I can navigate back to the first question")]
+        public void ThenICanNavigateBackToTheFirstQuestion()
+        {
+            _stepsHelper.GoBackToAreaOfEnglandPage();
+            _stepsHelper.GoBackToHaveYouAppliedPage();
+            _stepsHelper.GoBackToApprencticeshipLevelPage();
+            _stepsHelper.GoBackToNameOfSchoolCollegePage();
+            _stepsHelper.GoBackToAreasOfWorkInterestPage();
+            _stepsHelper.GoBackToWhatYourTelephonePage();
+            _stepsHelper.GoBackToPostCodePage();
+            _stepsHelper.GoBackToWhatIsYourDateOfBirthPage();
+            _stepsHelper.GoBackToWhatYourNamePage();
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By Level3CheckBox => By.CssSelector("label[for='Question_Answers_1__IsSelected']");
         private static By NotSureCheckBox => By.CssSelector("label[for='Question_Answers_4__IsSelected']");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
+        private static By BackButton => By.CssSelector(".govuk-back-link");
         public HaveYouAppliedPage SelectAnyApprenticeshipLevelInterestToYou()
         {
             formCompletionHelper.SelectCheckbox(Level2Checbox);
@@ -23,6 +24,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             formCompletionHelper.SelectCheckbox(NotSureCheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
             return new HaveYouAppliedPage(context);
+        }
+        public SchoolCollegePage SelectBackButton()
+        {
+            formCompletionHelper.ClickElement(BackButton);
+            return new SchoolCollegePage(context);
         }
     }
 }

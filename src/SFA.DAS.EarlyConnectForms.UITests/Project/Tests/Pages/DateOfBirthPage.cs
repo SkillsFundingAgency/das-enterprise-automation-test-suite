@@ -13,6 +13,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By MonthInputField => By.CssSelector("#Month");
         private static By YearInputField => By.CssSelector("#Year");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
+        private static By BackButton => By.CssSelector(".govuk-back-link");
         public PostcodePage EnterValidDateOfBirth()
         {
             formCompletionHelper.EnterText(DayInputField, earlyConnectDataHelper.DateOfBirthDay);
@@ -20,6 +21,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             formCompletionHelper.EnterText(YearInputField, earlyConnectDataHelper.DateOfBirthYear);
             formCompletionHelper.ClickElement(ContinueButton);
             return new PostcodePage(context);
+        }
+        public WhatsYourNamePage SelectBackButton()
+        {
+            formCompletionHelper.ClickElement(BackButton);
+            return new WhatsYourNamePage(context);
         }
     }
 }

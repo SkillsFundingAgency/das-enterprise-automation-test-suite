@@ -8,11 +8,17 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         protected override string PageTitle => "What's your telephone number? (optional)";
         private static By TelephoneField => By.CssSelector("#telephone");
         protected override By ContinueButton => By.CssSelector("button[type='submit']");
+        private static By BackButton => By.CssSelector(".govuk-back-link");
         public AreasOfWorkInterestPage EnterValidTelephoneNumber()
         {
             formCompletionHelper.SendKeys(TelephoneField, earlyConnectDataHelper.TelephoneNumber);
             formCompletionHelper.ClickElement(ContinueButton);
             return new AreasOfWorkInterestPage(context);
+        }
+        public PostcodePage SelectBackButton()
+        {
+            formCompletionHelper.ClickElement(BackButton);
+            return new PostcodePage(context);
         }
     }
 }
