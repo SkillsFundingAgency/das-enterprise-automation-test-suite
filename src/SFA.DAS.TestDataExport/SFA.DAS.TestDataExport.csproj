@@ -5,6 +5,12 @@
     <RootNamespace>SFA.DAS.TestDataExport</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="Selenium.Support" Version="4.25.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.25.0" />
+  </ItemGroup>
   
   <ItemGroup>
 	<ProjectReference Include="..\SFA.DAS.TestDataCleanup\SFA.DAS.TestDataCleanup.csproj" />
