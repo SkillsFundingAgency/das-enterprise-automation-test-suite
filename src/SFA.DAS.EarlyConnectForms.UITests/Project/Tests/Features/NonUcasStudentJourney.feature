@@ -40,7 +40,7 @@ Scenario: Verify How Apprenticeships Work link for Non Ucas Student
 @ec-v1
 @earlyconnect
 @non-ucas
-@ec-links-verification-01
+@ec-links-verification-02
 @regression
 
 Scenario: Verify Find an Apprenticeship link for Non Ucas Student
@@ -51,7 +51,7 @@ Scenario: Verify Find an Apprenticeship link for Non Ucas Student
 @ec-v1
 @earlyconnect
 @non-ucas
-@ec-links-verification-01
+@ec-back-buttons
 @regression
 
 Scenario: Verify Back buttons
