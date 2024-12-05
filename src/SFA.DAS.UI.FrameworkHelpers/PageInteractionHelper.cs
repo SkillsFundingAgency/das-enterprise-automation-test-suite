@@ -350,7 +350,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
             var actual = element.GetDomProperty(attribute) ?? element.GetDomAttribute(attribute);
 
-            if (actual.Contains(value)) return true;
+            if (actual.ContainsCompareCaseInsensitive(value)) return true;
 
             throw new WebDriverException($"Expected {attribute}=\"{value}\", Actual {attribute}=\"{actual}\"");
         }
