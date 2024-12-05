@@ -13,7 +13,6 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         public SchoolCollegePage SelectAnyAreaInterestToYou()
         {
             formCompletionHelper.SelectCheckbox(AgricultureCheckBox);
-            formCompletionHelper.SelectCheckbox(BusinessSalesLegalCheckBox);
             formCompletionHelper.ClickElement(ContinueButton);
             return new SchoolCollegePage(context);
         }
@@ -21,6 +20,13 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickElement(BackButton);
             return new TelephonePage(context);
+        }
+        public CheckYourAnswerPage ChangeIndustry()
+        {
+            formCompletionHelper.SelectCheckbox(AgricultureCheckBox);
+            formCompletionHelper.SelectCheckbox(BusinessSalesLegalCheckBox);
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new CheckYourAnswerPage(context);
         }
     }
 }

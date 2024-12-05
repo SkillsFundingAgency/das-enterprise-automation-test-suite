@@ -164,5 +164,62 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         {
             return new EmailAuthCodePage(context).VerifyInvalidAuthCodeDisplaysError();
         }
+
+        // change details from check your answers
+        public WhatsYourNamePage ChangeNameFromCheckYourAnswers()
+        {
+            return new CheckYourAnswerPage(context).ChangeName();
+        }
+
+        public DateOfBirthPage ChangeDoBFromCheckYourAnswers()
+        {
+            return new CheckYourAnswerPage(context).ChangeDoB();
+        }
+
+        public TelephonePage ChangeTelFromCheckYourAnswers()
+        {
+            return new CheckYourAnswerPage(context).ChangeTel();
+        }
+
+        public PostcodePage ChangePostcodeFromCheckYourAnswers()
+        {
+            return new CheckYourAnswerPage(context).ChangePostcode();
+        }
+
+        public SchoolCollegePage ChangeSchoolFromCheckYourAnswers()
+        {
+            return new CheckYourAnswerPage(context).ChangeSchool();
+        }
+
+        public AreasOfWorkInterestPage ChangeIndustryFromCheckYourAnswers()
+        {
+            return new CheckYourAnswerPage(context).ChangeIndustry();
+        }
+
+        // change details
+        public CheckYourAnswerPage ChangeFirstAndLastName()
+        {
+            return new WhatsYourNamePage(context).ChangeFirstAndLastNames();
+        }
+        public CheckYourAnswerPage ChangeDoB()
+        {
+            return new DateOfBirthPage(context).ChangeDoB();
+        }
+        public CheckYourAnswerPage ChangeTel()
+        {
+            return new TelephonePage(context).ChangeTel();
+        }
+        public CheckYourAnswerPage ChangePostcode()
+        {
+            return new PostcodePage(context).ChangePostcode();
+        }
+        public CheckYourAnswerPage ChangeSchool()
+        {
+            return new SchoolCollegePage(context).ChangeSchool();
+        }
+        public CheckYourAnswerPage ChangeIndustry()
+        {
+            return new AreasOfWorkInterestPage(context).ChangeIndustry();
+        }
     }
 }

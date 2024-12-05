@@ -20,5 +20,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(BackButton);
             return new DateOfBirthPage(context);
         }
+        public CheckYourAnswerPage ChangePostcode()
+        {
+            formCompletionHelper.SendKeys(PostcodeField, earlyConnectDataHelper.PostCode);
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new CheckYourAnswerPage(context);
+        }
     }
 }

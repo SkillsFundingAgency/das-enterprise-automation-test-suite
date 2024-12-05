@@ -12,6 +12,7 @@ Scenario: Verify Non Ucas Student journey for NorthEast Region
 	And I selected North East Advisor Page
 	And I enter valid details
 	And I answer the triage questions related to me
+	And I change details from check your answers page
 	Then I check my answers, accept and submit
 
 @ec-v1

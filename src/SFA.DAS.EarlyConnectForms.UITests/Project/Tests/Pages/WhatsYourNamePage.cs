@@ -17,7 +17,13 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(ContinueButton);
             return new DateOfBirthPage(context);
         }
+
+        public CheckYourAnswerPage ChangeFirstAndLastNames()
+        {
+            formCompletionHelper.EnterText(FirstNameTextField, earlyConnectDataHelper.Firstname);
+            formCompletionHelper.EnterText(LastNameTextField, earlyConnectDataHelper.Lastname);
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new CheckYourAnswerPage(context);
+        }
     }
-
-
 }

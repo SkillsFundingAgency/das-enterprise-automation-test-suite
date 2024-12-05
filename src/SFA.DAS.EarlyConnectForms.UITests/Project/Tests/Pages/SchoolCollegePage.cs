@@ -20,5 +20,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
             formCompletionHelper.ClickElement(BackButton);
             return new AreasOfWorkInterestPage(context);
         }
+        public CheckYourAnswerPage ChangeSchool()
+        {
+            formCompletionHelper.EnterText(SchoolCollegeField, earlyConnectDataHelper.SchoolCollege);
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new CheckYourAnswerPage(context);
+        }
     }
 }

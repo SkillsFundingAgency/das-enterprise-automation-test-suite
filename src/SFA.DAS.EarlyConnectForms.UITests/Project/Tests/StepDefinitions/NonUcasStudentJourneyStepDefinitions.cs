@@ -106,5 +106,22 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         {
             _stepsHelper.VerifyErrorSummaryForInvalidAuthCode();
         }
+        
+        [Then(@"I change details from check your answers page")]
+        public void ThenIChangeDetailsFromCheckYourAnswersPage()
+        {
+            _stepsHelper.ChangeNameFromCheckYourAnswers();
+            _stepsHelper.ChangeFirstAndLastName();
+            _stepsHelper.ChangeDoBFromCheckYourAnswers();
+            _stepsHelper.ChangeDoB();
+            _stepsHelper.ChangeTelFromCheckYourAnswers();
+            _stepsHelper.ChangeTel();
+            _stepsHelper.ChangePostcodeFromCheckYourAnswers();
+            _stepsHelper.ChangePostcode();
+            _stepsHelper.ChangeSchoolFromCheckYourAnswers();
+            _stepsHelper.ChangeSchool();
+            _stepsHelper.ChangeIndustryFromCheckYourAnswers();
+            _stepsHelper.ChangeIndustry();
+        }
     }
 }
