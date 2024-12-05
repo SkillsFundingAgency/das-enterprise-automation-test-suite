@@ -42,12 +42,12 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
                 return element;
             });
         }
-        //public ApprenticeshipsLevelPage EnterValidSchoolOrCollegeName()
-        //{
-        //    SelectAutoDropDown(earlyConnectDataHelper.SearchSchoolCollege, true);
-        //    formCompletionHelper.ClickElement(ContinueButton);
-        //    return new ApprenticeshipsLevelPage(context);
-        //}
+        public ApprenticeshipsLevelPage SearchValidSchoolOrCollegeName()
+        {
+            SelectAutoDropDown(earlyConnectDataHelper.SearchSchoolCollege, true);
+            formCompletionHelper.ClickElement(ContinueButton);
+            return new ApprenticeshipsLevelPage(context);
+        }
 
         public ApprenticeshipsLevelPage EnterInvalidSchoolOrCollegeName()
         {
