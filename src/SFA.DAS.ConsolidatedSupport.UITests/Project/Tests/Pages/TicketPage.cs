@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
@@ -72,7 +73,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
         {
             var label = pageInteractionHelper.FindElement(MacroLabel);
 
-            var forvalue = label.GetAttribute("for");
+            var forvalue = label.GetDomAttribute("for");
 
             formCompletionHelper.SendKeys(MacroInput(forvalue), answer);
 
@@ -92,9 +93,9 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 {
                     var labelElements = element.FindElements(TicketDropdownLabel).ToList();
 
-                    if (labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetAttribute("innerText").ContainsCompareCaseInsensitive(question)))
+                    if (labelElements.Count == 1 && (labelElements.Single().Text == question || labelElements.Single().GetInnerTextAttribute().ContainsCompareCaseInsensitive(question)))
                     {
-                        var forvalue = labelElements.Single().GetAttribute("for");
+                        var forvalue = labelElements.Single().GetDomAttribute("for");
 
                         element.FindElement(TicketDropdownSelect).Click();
 
@@ -122,11 +123,11 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 {
                     var label = pageInteractionHelper.FindElements(TicketDropdownLabel).First(x => x.Text.ContainsCompareCaseInsensitive("Service Now Incident Number"));
 
-                    var forvalue = label.GetAttribute("for");
+                    var forvalue = label.GetDomAttribute("for");
 
                     var inputElement = pageInteractionHelper.FindElement(TicketDropdownInput(forvalue));
 
-                    return inputElement.GetAttribute("value");
+                    return inputElement.GetValueAttribute();
                 }, RefreshPage);
 
                 if (!string.IsNullOrEmpty(incidentNumber)) { break; }
@@ -173,7 +174,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Tests.Pages
                 var elements = pageInteractionHelper.FindElements(MenuList).Where(x => x?.Text == text).ToList();
                 foreach (var element in elements)
                 {
-                    var outterHtml = element.GetAttribute("outerHTML");
+                    var outterHtml = element.GetDomAttribute("outerHTML");
                     if (!string.IsNullOrEmpty(outterHtml) && outterHtml.Contains(attribute) && !outterHtml.ContainsCompareCaseInsensitive("tooltip"))
                     {
                         return element;

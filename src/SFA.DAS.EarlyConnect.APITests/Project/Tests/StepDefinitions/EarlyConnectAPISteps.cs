@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EarlyConnect.APITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class StudentDataStepDefinitions(ScenarioContext context)
+public class EarlyConnectAPISteps(ScenarioContext context)
 {
     private readonly Outer_EarlyConnectAPIClient _restClient = context.GetRestClient<Outer_EarlyConnectAPIClient>();
 
@@ -36,28 +36,28 @@ public class StudentDataStepDefinitions(ScenarioContext context)
     }
 
     [Then(@"api (OK) response is received")]
-    public void ThenApiOKResponseIsReceived(HttpStatusCode responsecode)
+    public void ThenApiOKResponseIsReceived(HttpStatusCode responseCode)
     {
-        _restResponse = Execute(responsecode);
+        _restResponse = Execute(responseCode);
     }
 
     [Then(@"api (Created) response is received")]
-    public void ThenApiCreatedResponseIsReceived(HttpStatusCode responsecode)
+    public void ThenApiCreatedResponseIsReceived(HttpStatusCode responseCode)
     {
-        _restResponse = Execute(responsecode);
+        _restResponse = Execute(responseCode);
     }
 
     [Then(@"api (Bad Request) response is received")]
-    public void ThenApiBadRequestResponseIsReceived(HttpStatusCode responsecode)
+    public void ThenApiBadRequestResponseIsReceived(HttpStatusCode responseCode)
     {
-        _restResponse = Execute(responsecode);
+        _restResponse = Execute(responseCode);
     }
 
     [Then(@"verify response body displays correct '([^']*)' information")]
-    public void ThenVerifyResponseBodyDisplaysCorrectInformation(string Region)
+    public void ThenVerifyResponseBodyDisplaysCorrectInformation(string region)
     {
-        Assert.IsTrue(_restResponse.Content.Contains(Region));
+        Assert.IsTrue(_restResponse.Content.Contains(region));
     }
 
-    private RestResponse Execute(HttpStatusCode responsecode) => _restClient.Execute(responsecode);
+    private RestResponse Execute(HttpStatusCode responseCode) => _restClient.Execute(responseCode);
 }

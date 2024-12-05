@@ -5,7 +5,7 @@ The API system should allow valid student data to be posted successfully
 @earlyconapi
 @earlyconnectstudent
 @regression
-Scenario Outline: Verify valid student data post returns 201 Created
+Scenario Outline: EC_GAA_STUDENT_DATA_01 - Valid student data post returns 201 Created
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
 	Then api <ResponseStatus> response is received
 
@@ -18,7 +18,7 @@ Scenario Outline: Verify valid student data post returns 201 Created
 @earlyconapi
 @earlyconnectstudent
 @regression
-Scenario Outline: Verify invalid student data post returns 400 Bad request
+Scenario Outline: EC_GAA_STUDENT_DATA_02 - Invalid student data post returns 400 Bad request
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
 	Then api <ResponseStatus> response is received
 

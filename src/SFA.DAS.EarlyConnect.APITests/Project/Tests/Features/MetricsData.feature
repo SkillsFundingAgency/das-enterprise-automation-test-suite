@@ -6,7 +6,7 @@ The API system should allow valid metric data to be posted successfully and also
 @api
 @earlyconapi
 @regression
-Scenario Outline: Verify api GET Metrics Data 
+Scenario Outline: EC_GAA_METRICS_DATA_01 - GET Metrics Data 
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
 	Then api <ResponseStatus> response is received
 	And verify response body displays correct '<Region>' information
@@ -20,7 +20,7 @@ Scenario Outline: Verify api GET Metrics Data
 @api
 @earlyconapi
 @regression
-Scenario Outline: Verify valid metris data post returns 201 Created 
+Scenario Outline: EC_GAA_METRICS_DATA_02 - Valid metrics data post returns 201 Created 
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
 	Then api <ResponseStatus> response is received
 
@@ -31,7 +31,7 @@ Scenario Outline: Verify valid metris data post returns 201 Created
 @api
 @earlyconapi
 @regression
-Scenario Outline: Verify invalid metris data post returns 400 Bad request 
+Scenario Outline: EC_GAA_METRICS_DATA_03 - Invalid metrics data post returns 400 Bad request 
 	When the user sends <Method> request to <Endpoint> with payload <Payload>
 	Then api <ResponseStatus> response is received
 
