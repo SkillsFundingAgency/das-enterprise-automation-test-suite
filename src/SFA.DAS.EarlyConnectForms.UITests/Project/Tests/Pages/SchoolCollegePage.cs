@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using System.Linq;
 using TechTalk.SpecFlow;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 {
