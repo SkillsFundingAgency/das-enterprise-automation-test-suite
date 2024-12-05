@@ -1,6 +1,4 @@
-﻿using Azure;
-using Newtonsoft.Json.Linq;
-using RestSharp;
+﻿using RestSharp;
 using SFA.DAS.API.Framework;
 using SFA.DAS.ProviderFeedback.APITests.Project.Tests.Responses;
 using System.Net;
@@ -12,8 +10,7 @@ namespace SFA.DAS.ProviderFeedback.APITests.Project.Tests.StepDefinitions;
 public class ProviderFeedbackApiSteps(ScenarioContext context)
 {
     private readonly Outer_ProviderFeedbackApiClient _restClient = context.GetRestClient<Outer_ProviderFeedbackApiClient>();
-
-    private RestResponse _restResponse = null;
+    private RestResponse _restResponse = new RestResponse();
 
     [When(@"the user sends (GET) request to (.*) without payload")]
     public void TheUserSendsGETRequestTo(Method method, string endpoint, string payload) => _restClient.CreateRestRequest(method, endpoint, payload);
@@ -29,6 +26,7 @@ public class ProviderFeedbackApiSteps(ScenarioContext context)
     {
         var jsonResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<ProviderFeedbackApiResponse>(_restResponse.Content);
 
-        Assert.That(jsonResponse.ProviderFeedback.ProviderId, Is.EqualTo(ukprn), "Unexpected UKPRN in response.");
+        Assert.That(jsonResponse, Is.Not.Null);
+        Assert.That(jsonResponse?.ProviderFeedback.ProviderId, Is.EqualTo(ukprn), "Unexpected UKPRN in response.");
     }
 }
