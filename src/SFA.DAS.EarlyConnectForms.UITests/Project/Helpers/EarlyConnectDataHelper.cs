@@ -25,9 +25,8 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers
         public int DateOfBirthDay { get; set; }
         public int DateOfBirthMonth { get; set; }
         public int DateOfBirthYear { get; set; }
-        public string PostCode { get; set; } = "Tw14 9py";
-        public string SchoolCollege { get; set; } = "Grace College";
-        public string SearchSchoolCollege { get; set; } = "College";
-        public string SearchInvalidSchoolCollege { get; set; } = "Lilliput";
+        public string PostCode { get; init; } = RandomDataGenerator.RandomPostCode();
+        public string SchoolOrCollegeName { get; init; } = RandomDataGenerator.GenerateRandomSchool();
+        public string SearchInvalidSchoolCollege { get; set; } = "Invalid selection";
     }
 }
