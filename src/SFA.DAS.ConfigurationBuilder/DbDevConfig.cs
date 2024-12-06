@@ -36,7 +36,7 @@
         public string RofjaaDbName { get; set; }
         public string AANDbName { get; set; }
         public string CanAccDbName { get; set; }
-
         public string RatDbName { get; set; }
+        public string EarlyConnectDbName { get; set; }
     }
 }
