@@ -4,9 +4,16 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class NonUcasStudentJourneyStepDefinitions(ScenarioContext context)
+    public class NonUcasStudentJourneyStepDefinitions
     {
-        private readonly EarlyConnectStepsHelper _stepsHelper = new(context);
+        private readonly EarlyConnectStepsHelper _stepsHelper;
+        private readonly EarlyConnectDataHelper _earlyConnectDataHelper;
+
+        public NonUcasStudentJourneyStepDefinitions(ScenarioContext context)
+        {
+            _stepsHelper = new(context);
+            _earlyConnectDataHelper = context.Get<EarlyConnectDataHelper>();
+        }
 
         [Given(@"I am on the landing page for a region")]
         public void GivenIAmOnTheLandingPageForARegion() => _stepsHelper.GoToEarlyConnectHomePage();
@@ -28,7 +35,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         [Given(@"I enter valid details")]
         public void GivenIEnterValidDetails()
         {
-            _stepsHelper.GoToAddUniqueEmailAddressPage();
+            _stepsHelper.GoToAddUniqueEmailAddressPage(_earlyConnectDataHelper.Email);
             _stepsHelper.GoToCheckEmailAuthCodePage();
             _stepsHelper.GoToWhatYourNamePage();
             _stepsHelper.GoToWhatIsYourDateOfBirthPage();
