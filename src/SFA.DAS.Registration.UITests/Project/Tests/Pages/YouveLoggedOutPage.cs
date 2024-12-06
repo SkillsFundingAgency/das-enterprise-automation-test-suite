@@ -17,7 +17,7 @@ public class YouveLoggedOutPage : RegistrationBasePage
 
         return result.Item1 ? result.Item1 : throw new Exception(MessageHelper.GetExceptionMessage("Page", PageTitle, result.Item2));
 
-    }, () => pageInteractionHelper.WaitUntilAnyElements(ContinueButton));
+    }, () => pageInteractionHelper.WaitUntilAnyElements(SigninLink));
 
 
     public SignInToYourApprenticeshipServiceAccountPage CickContinueInYouveLoggedOutPage()
