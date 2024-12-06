@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>SFA.DAS.EmployerIncentives.PaymentProcessTests</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
@@ -9,23 +9,25 @@
     <PackageReference Include="AutoFixture" Version="4.18.*" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     <PackageReference Include="ExcelMapper" Version="5.2.*" />
-    <PackageReference Include="FluentAssertions" Version="6.12.2" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.66.*" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.0" />
-    <PackageReference Include="NServiceBus.UniformSession" Version="2.1.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-    <PackageReference Include="SFA.DAS.Api.Common" Version="1.0.28" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="SFA.DAS.Api.Common" Version="17.1.112" />
     <PackageReference Include="SFA.DAS.Common.Domain" Version="1.4.283" />
-    <PackageReference Include="SFA.DAS.EmployerIncentives.Messages" Version="0.1.313" />
-    <PackageReference Include="SFA.DAS.EmploymentCheck.Types" Version="1.1.92" />
+    <PackageReference Include="SFA.DAS.EmployerIncentives.Messages" Version="0.1.318" />
+    <PackageReference Include="SFA.DAS.EmploymentCheck.Types" Version="1.1.95" />
     <PackageReference Include="SFA.DAS.NServiceBus" Version="17.0.49" />
 	<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.18.*" />
+	<PackageReference Include="SixLabors.ImageSharp" Version="3.1.6" />
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+	  <PackageReference Include="System.Formats.Asn1" Version="9.0.0" />
+	  <PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.0" />
+	  <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />

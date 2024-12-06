@@ -3,11 +3,12 @@
 [Binding]
 public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBaseSteps(context)
 {
-
     [Given(@"a provider requests all permission from an employer")]
     public void AProviderRequestsAllPermissionFromAnEmployer()
     {
         EPRBaseUser employerUser = tags.Contains("acceptrequest") ? context.GetUser<EPRAcceptRequestUser>() : context.GetUser<EPRDeclineRequestUser>();
+
+        context.Set(employerUser);
 
         EPRLogin(employerUser);
 
@@ -27,41 +28,12 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
     [When(@"the provider update the permission")]
     public void TheProviderUpdateThePermission()
     {
-        GoToProviderViewEmployersAndManagePermissions();
-
-        new ViewEmpAndManagePermissionsPage(context).ViewEmployer();
+        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.AllowConditional));
     }
 
-    [Then(@"the provider should be shown a shutter page where relationship already exists")]
-    public void TheProviderShouldBeShownAShutterPageWhereRelationshipAlreadyExists()
+    [When(@"the provider update the permission again")]
+    public void TheProviderUpdateThePermissionAgain()
     {
-        GoToProviderViewEmployersAndManagePermissions();
-
-        GoToEmailAccountFoundPage().VerifyAlreadyLinkedToThisEmployer();
-    }
-
-    [Then(@"the provider should be shown a shutter page where an employer has multiple accounts")]
-    public void TheProviderShouldBeShownAShutterPageWhereAnEmployerHasMultipleAccounts()
-    {
-        var user = context.GetUser<EPRMultiAccountUser>();
-
-        EnterEmployerEmailAndGoToShutterPage(user.Username);
-    }
-
-    [Then(@"the provider should be shown a shutter page where an employer has multiple organisations")]
-    public void ThenTheProviderShouldBeShownAShutterPageWhereAnEmployerHasMultipleOrganisations()
-    {
-        var user = context.GetUser<EPRMultiOrgUser>();
-
-        EnterEmployerEmailAndGoToShutterPage(user.Username);
-    }
-
-    private void EnterEmployerEmailAndGoToShutterPage(string username)
-    {
-        eprDataHelper.EmployerEmail = username;
-
-        GoToProviderViewEmployersAndManagePermissions();
-
-        GoToSearchEmployerEmailPage().EnterEmployerEmailAndGoToShutterPage();
+        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.AllowConditional));
     }
 }

@@ -8,23 +8,26 @@ public class SearchEmployerEmailPage(ScenarioContext context) : ProviderRelation
 
     public EmailAccountFoundPage EnterEmployerEmail()
     {
-        var email = EnterEmail();
-
-        return new(context, email);
+        return new(context, EnterEmail());
     }
 
     public EmailAccountNotFoundPage EnterNewEmployerEmail()
     {
-        var email = EnterEmail();
-
-        return new(context, email);
+        return new(context, EnterEmail());
     }
 
-    public ContactEmployerShutterPage EnterEmployerEmailAndGoToShutterPage()
+    public ContactEmployerShutterPage EnterEmployerEmailAndGoToContactEmployer()
     {
         EnterEmail();
 
         return new(context);
+    }
+
+    public InviteSentShutterPage EnterEmployerEmailAndGoToInviteSent()
+    {
+        EnterEmail();
+
+        return new(context, false);
     }
 
     private string EnterEmail()

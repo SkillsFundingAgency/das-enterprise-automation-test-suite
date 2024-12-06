@@ -1,19 +1,18 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin.CreateEvent;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.StepDefinitions.Admin;
 
-public class Admin_CreateEvent_BaseSteps(ScenarioContext context) : Admin_BaseSteps(context)
+public class AdminCreateEventBaseSteps(ScenarioContext context) : Admin_BaseSteps(context)
 {
-
     protected SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
 
     protected AanAdminCreateEventDatahelper aanAdminDatahelper = context.Get<AanAdminCreateEventDatahelper>();
+    protected AanAdminStepsHelper stepsHelper = context.Get<AanAdminStepsHelper>();
 
     protected string AssertEventStatus(bool status)
     {
-        string eventTitle = objectContext.GetAanEventTitle();
+        var eventTitle = objectContext.GetAanEventTitle();
 
         var expected = status ? "True" : "False";
 
@@ -32,48 +31,11 @@ public class Admin_CreateEvent_BaseSteps(ScenarioContext context) : Admin_BaseSt
 
     protected CheckYourEventPage CheckYourEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
     {
-        EventOrganiserNamePage eventOrganiserNamePage;
-
-        var page = new InPersonOrOnlinePage(context, SubmitEventDate(eventFormat, guestSpeakers));
-
-        if (eventFormat == EventFormat.Online) eventOrganiserNamePage = page.SubmitOnlineDetails();
-
-        else if (eventFormat == EventFormat.InPerson) eventOrganiserNamePage = GetEventOrgNamePage(page.SubmitInPersonDetails(), isSchoolEvent);
-
-        else eventOrganiserNamePage = GetEventOrgNamePage(page.SubmitHybridDetails(), isSchoolEvent);
-
-        return eventOrganiserNamePage.SubmitOrganiserName().SubmitEventAttendees();
+        return stepsHelper.CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent);
     }
 
     private SucessfullyPublisedEventPage SubmitEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent)
     {
-        return sucessfullyPublisedEventPage = CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent).GoToEventPreviewPage(eventFormat).GoToCheckYourEventPage().SubmitEvent();
-    }
-
-    private static EventOrganiserNamePage GetEventOrgNamePage(IsEventAtSchoolPage isEventAtSchoolPage, bool isSchoolEvent)
-    {
-        if (isSchoolEvent) return isEventAtSchoolPage.SubmitIsEventAtSchoolAsYes().SubmitSchoolName();
-
-        else return isEventAtSchoolPage.SubmitIsEventAtSchoolAsNo();
-    }
-
-    private EventFormat SubmitEventDate(EventFormat eventFormat, bool guestSpeakers)
-    {
-        EventDatePage eventDatePage;
-
-        var page = new AdminAdministratorHubPage(context)
-            .AccessManageEvents()
-            .CreateEvent()
-            .SubmitEventFormat(eventFormat)
-            .SubmitEventTitle()
-            .SubmitEventOutline();
-
-        if (guestSpeakers) eventDatePage = page.SubmitGuestSpeakerAsYes().AddAndDeleteGuestSpeakers(5);
-
-        else eventDatePage = page.SubmitGuestSpeakerAsNo();
-
-        eventDatePage.SubmitEventDate();
-
-        return eventFormat;
+        return sucessfullyPublisedEventPage = stepsHelper.CheckYourEvent(eventFormat, guestSpeakers, isSchoolEvent).GoToEventPreviewPage(eventFormat).GoToCheckYourEventPage().SubmitEvent();
     }
 }
