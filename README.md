@@ -2,12 +2,12 @@
 
 # DAS-ENTERPRISE-AUTOMATION-TEST-SUITE
 
-This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core 8.0) in SpecFlow BDD methodology and Page Object Pattern.
+This is a SpecFlow-Selenium functional testing framework created using Selenium WebDriver with NUnit and C# (.Net core 9.0) in SpecFlow BDD methodology and Page Object Pattern.
 
 ## Prerequisites to run the application:
-1. Download and install 'Visual Studio 2022'  (V17.9.3 or higher including **Azure sdk** package). Please update visual studio if necessary.
-2. Download and install 'Dot Net Core 8.0.0' or [latest 8.0.x ](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) version matching Visual Studio version (If its not automatically installed as part of VS2022 installation / upgrade). And make sure the system has only one instance of Dotnet core.<br />
-3. Download and install 'Specflow Extension for Visual Studio' [latest version v2022.1.93 (.NET 8 support)](https://github.com/SpecFlowOSS/SpecFlow.VS/releases)
+1. Download and install 'Visual Studio 2022'  (V17.12.3 or higher including **Azure sdk** package). Please update visual studio if necessary.
+2. Download and install '[Dot Net Core 9.0.x](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)' version matching Visual Studio version (If its not automatically installed as part of VS2022 installation / upgrade). And make sure the system has only one instance of Dotnet core.<br />
+3. Download and install '[Reqnroll for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=Reqnroll.ReqnrollForVisualStudio2022)'.
 4. Download and install 'Browsers. (Chrome, Firefox, Edge) and update it if necessary
 5. Clone the repository under ```c:\das-enterprise-automation-test-suite```. Please create the folder if necessary.
 
@@ -28,7 +28,7 @@ You should also use ```Azure Active Directory - Universal with MFA support``` to
 	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
 	```text
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>SFA.DAS.YourProjectName.UITests</RootNamespace>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
@@ -103,7 +103,7 @@ Note: This API framework is built with all standard libraries and ready to write
 	- update ```<PropertyGroup>``` node in the .csproj file to include ```<RootNamespace>``` 
 	```text
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>SFA.DAS.YourProjectName.APITests</RootNamespace>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
@@ -264,9 +264,9 @@ Once the solution is imported and built, open Test Explorer window ```(Test->Win
 ### To Execute tests from your desktop via Command Prompt:
 
 ```
-c:\> dotnet test C:\SFA\DFE-Standardised-Test-Automation-Framework\src\ESFA.UI.Specflow.TestProject\ESFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
+c:\> dotnet test c:\das-enterprise-automation-test-suite\src\SFA.UI.Specflow.TestProject\SFA.UI.Specflow.TestProject.csproj --filter "TestCategory=regression|TestCategory=anotherregression"
 
-c:\> dotnet vstest C:\SFA\DFE-Standardised-Test-Automation-Framework\src\SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.dll /TestCaseFilter:"TestCategory=regression|FullyQualifiedName=Namespace.ClassName.MethodName"
+c:\> dotnet vstest c:\das-enterprise-automation-test-suite\src\SFA.DAS.PocProject.UITests\SFA.DAS.PocProject.UITests.dll /TestCaseFilter:"TestCategory=regression|FullyQualifiedName=Namespace.ClassName.MethodName"
 ```
 
 ## Build and Release process:
@@ -327,8 +327,6 @@ The framework has the following helper classes under ```SFA.DAS.UI.FrameworkHelp
 3. RandomDataGenerator - Helps creating random data to use
 4. HttpClientRequestHelper - Helps making some HTTP requests (POST, PUT, GET, DELETE, PATCH)
 5. SqlDatabaseConnectionHelper - Helps connecting to the SQL Database to read and write the data from Database
-6. CosmosActionPerformerHelper - Helps connecting to Cosmos DB to read and write the data
-7. CosmosConnectionHelper - Provides assistance to CosmosActionPerformerHelper by creating DocumentClient and DocumentRepository
 
 ## Some selenium best practices:
 1. Use PageObject pattern
@@ -342,7 +340,7 @@ The framework has the following helper classes under ```SFA.DAS.UI.FrameworkHelp
 
 This framework supports Feature Level parallelization (tests under different feature file will run in parallel) not Scenario Level parallelization (tests under same feature file will not execute in parallel).
 
-Note : referenced from https://github.com/techtalk/SpecFlow/issues/1599, https://github.com/techtalk/SpecFlow/issues/1535
+Note : referenced from https://github.com/techtalk/SpecFlow/issues/1599, https://github.com/techtalk/SpecFlow/issues/1535 and https://github.com/SpecFlowOSS/SpecFlow/issues/2225
 
 ## Parallel Test Execution in Azure DevOps:
 
