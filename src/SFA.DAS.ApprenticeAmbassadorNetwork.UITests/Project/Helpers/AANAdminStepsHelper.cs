@@ -6,11 +6,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Helpers
 {
     public class AanAdminStepsHelper(ScenarioContext context)
     {
-        private readonly SharedStepsHelper _sharedStepsHelper = new SharedStepsHelper(context);
-
-        private string EventTitlesKey = "AanAdminStepsHelper.EventTitlesKey";
+        private readonly SharedStepsHelper _sharedStepsHelper = new(context);
 
         protected SucessfullyPublisedEventPage sucessfullyPublisedEventPage;
+
         public CheckYourEventPage CheckYourEvent(EventFormat eventFormat, bool guestSpeakers, bool isSchoolEvent, string pageTitle = null, string location = null)
         {
             EventOrganiserNamePage eventOrganiserNamePage;

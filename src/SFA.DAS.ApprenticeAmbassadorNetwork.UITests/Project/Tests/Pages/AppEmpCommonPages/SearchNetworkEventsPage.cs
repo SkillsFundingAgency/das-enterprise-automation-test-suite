@@ -1,5 +1,4 @@
 ﻿using System;
-using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Admin;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.AppEmpCommonPages;
 
@@ -22,7 +21,7 @@ public class SearchNetworkEventsPage(ScenarioContext context) : SearchEventsBase
         return this;
     }
 
-    public new SearchNetworkEventsPage FilterEventsWithNoResults()
+    public SearchNetworkEventsPage FilterEventsWithNoResults()
     {
         EnterKeywordFilter(Guid.NewGuid().ToString());
         ApplyFilter();
