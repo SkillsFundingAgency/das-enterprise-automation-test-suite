@@ -23,21 +23,21 @@ public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config)
     public void DeleteStudentDataAndAnswersByEmail(string email)
     {
         string sqlQuery = $@"
-        IF EXISTS(SELECT 1 FROM Student WHERE Email = '{email}')
+        IF EXISTS(SELECT 1 FROM StudentData WHERE Email = '{email}')
         BEGIN
             DECLARE @StudentId INT;
-            SELECT @StudentId = StudentId FROM Student WHERE Email = '{email}';
+            SELECT @StudentId = Id FROM StudentData WHERE Email = '{email}';
             -- Delete related StudentAnswers
             DELETE sa
-            FROM StudentAnswers sa
-            JOIN StudentSurveys ss ON sa.StudentSurveyId = ss.StudentSurveyId
+            FROM StudentAnswer sa
+            JOIN StudentSurvey ss ON sa.StudentSurveyId = ss.Id
             WHERE ss.StudentId = @StudentId;
             -- Delete related StudentSurveys
             DELETE ss
-            FROM StudentSurveys ss
+            FROM StudentSurvey ss
             WHERE ss.StudentId = @StudentId;
-            -- Delete the student record
-            DELETE FROM Student WHERE Email = '{email}';
+            -- Delete the StudentData record
+            DELETE FROM StudentData WHERE Email = '{email}';
         END";
 
         ExecuteSqlCommand(sqlQuery);
