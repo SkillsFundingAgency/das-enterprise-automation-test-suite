@@ -326,6 +326,19 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
     public bool GetElementSelectedStatus(By locator) => FindElement(locator).Selected;
 
+    public bool ElementHasClass (By locator, string className)
+    {
+        var element = FindElement(locator);
+
+        var classAttribute = element.GetDomAttribute("class");
+
+        if (string.IsNullOrEmpty(classAttribute))
+            return false;
+
+        var classes = classAttribute.Split(' ');
+        return classes.Contains(className);
+    }
+
     private void SetDebugInformation(string x) => objectContext.SetDebugInformation(x);
 
     private Func<bool> Func(By locator)

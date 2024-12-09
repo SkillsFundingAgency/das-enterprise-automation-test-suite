@@ -93,6 +93,11 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _providerApprenticeDetailsPage.ValidateProviderPaymentStatus(providerPaymentStatus);
         }
 
+        [Then(@"Provider can see a Learner Status row with (InLearning|WaitingToStart) status for the Apprentice")]
+        public void ThenDisplayALearnerStatusRowWithInLearningStatusForTheApprentice(string learnerStatus)
+        {
+            _providerApprenticeDetailsPage.ValidateLearnerStatus(learnerStatus);
+        }
 
         [Then(@"Provider can review the Change of Price request and approve it")]
         public void ThenProviderCanReviewTheChangeOfPriceRequestAndApproveIt()
