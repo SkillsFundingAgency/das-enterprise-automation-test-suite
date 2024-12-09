@@ -3,6 +3,8 @@ using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
 using System.Linq;
 
+namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
+
 public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.EarlyConnectConnectionString)
 {
     public string GetAnEducationalOrganisation()
@@ -22,23 +24,13 @@ public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config)
 
     public void DeleteStudentDataAndAnswersByEmail(string email)
     {
-        string sqlQuery = $@"
-        IF EXISTS(SELECT 1 FROM StudentData WHERE Email = '{email}')
-        BEGIN
-            DECLARE @StudentId INT;
-            SELECT @StudentId = Id FROM StudentData WHERE Email = '{email}';
-            -- Delete related StudentAnswers
-            DELETE sa
-            FROM StudentAnswer sa
-            JOIN StudentSurvey ss ON sa.StudentSurveyId = ss.Id
-            WHERE ss.StudentId = @StudentId;
-            -- Delete related StudentSurveys
-            DELETE ss
-            FROM StudentSurvey ss
-            WHERE ss.StudentId = @StudentId;
-            -- Delete the StudentData record
-            DELETE FROM StudentData WHERE Email = '{email}';
-        END";
+        string sqlQuery = $@"select id into #StudentId from StudentData where email = '{email}';
+        select Id into #StudentSurveyId from StudentSurvey where StudentId in (select id from #StudentId);
+        delete from StudentAnswer where StudentSurveyId in (select id from #StudentSurveyId)
+        delete from StudentSurvey where StudentId in (select id from #StudentId)
+        delete from StudentData where Id in (select id from #StudentId)
+        drop table #StudentId
+        drop table #StudentSurveyId";
 
         ExecuteSqlCommand(sqlQuery);
     }

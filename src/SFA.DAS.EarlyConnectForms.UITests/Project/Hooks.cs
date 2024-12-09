@@ -3,6 +3,7 @@ using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project
@@ -12,38 +13,37 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project
     {
         private readonly ObjectContext _objectContext;
         private readonly DbConfig _dbConfig;
-        private readonly ScenarioContext _scenarioContext;
+        private readonly ScenarioContext _context;
         private readonly EarlyConnectSqlHelper _sqlHelper;
 
         public Hooks(ScenarioContext context)
         {
-            _scenarioContext = context;
+            _context = context;
             _objectContext = context.Get<ObjectContext>();
             _dbConfig = context.Get<DbConfig>();
             _sqlHelper = new EarlyConnectSqlHelper(_objectContext, _dbConfig);
         }
 
-        [BeforeScenario(Order = 21)]
-        public void FirstBeforeScenario()
+        [BeforeScenario(Order = 31)]
+        public void SetUpHelpers()
         {
-            var name = _sqlHelper.GetAnEducationalOrganisation();
+            var name = new EarlyConnectSqlHelper(_objectContext, _dbConfig).GetAnEducationalOrganisation();
 
-            var datahelper = new EarlyConnectDataHelper(_scenarioContext.Get<MailosaurUser>(), name);
+            var email = _context.Get<MailosaurUser>().GetEmailList().FirstOrDefault().Email;
 
-            _scenarioContext.Set(datahelper);
+            var datahelper = new EarlyConnectDataHelper(email, name);
+
+            _context.Set(datahelper);
 
             _objectContext.SetDebugInformation($"'{datahelper.Email}' is used");
 
-            _scenarioContext.Get<TabHelper>().GoToUrl(UrlConfig.EarlyConnect_BaseUrl());
+            _context.Get<TabHelper>().GoToUrl(UrlConfig.EarlyConnect_BaseUrl());
         }
 
-        [AfterScenario]
-        public void AfterScenario()
+        [AfterScenario(Order = 31)]
+        public void DeleteStudentData()
         {
-            var datahelper = _scenarioContext.Get<EarlyConnectDataHelper>();
-            var email = datahelper.Email;
-
-            _sqlHelper.DeleteStudentDataAndAnswersByEmail(email);
+            _sqlHelper.DeleteStudentDataAndAnswersByEmail(_context.Get<EarlyConnectDataHelper>().Email);
         }
     }
 }
