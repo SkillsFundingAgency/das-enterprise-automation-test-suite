@@ -1,6 +1,11 @@
 ﻿Feature: FLP_UI_06_LearnerStatusJourney
 
-A short summary of the feature
+The purpose of the below tests is to validate that the Learner Status is correct 
+for learners opted in the pilot by training providers.
+
+First test validates that Learner Status is "In learning" when the apprenticeship
+start date is in the past. The second test, validates Learner status is "Waiting to start"
+when start date is in future.
 
 @regression
 @flexi-payments
