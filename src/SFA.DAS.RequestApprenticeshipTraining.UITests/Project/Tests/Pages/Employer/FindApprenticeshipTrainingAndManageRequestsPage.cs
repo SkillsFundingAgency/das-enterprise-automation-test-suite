@@ -1,5 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using DnsClient;
+using Mailosaur.Models;
+using OpenQA.Selenium;
 using SFA.DAS.FAT.UITests.Project;
+using SFA.DAS.FAT.UITests.Project.Tests.Pages;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
@@ -9,6 +12,8 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Empl
 public class FindApprenticeshipTrainingAndManageRequestsPage(ScenarioContext context) : RatProjectBasePage(context)
 {
     protected override string PageTitle => "Find apprenticeship training and manage requests";
+
+    private static By FindAppTraining => By.CssSelector("a[href*='/courses']");
 
     public TrainingRequestDetailPage SelectActiveRequest()
     {
@@ -31,5 +36,12 @@ public class FindApprenticeshipTrainingAndManageRequestsPage(ScenarioContext con
         ratDataHelper.RequestId = requestId;
 
         return new(context, trainingCourseName);
+    }
+
+    public ApprenticeshipTrainingCoursesPage GoToApprenticeshipTrainingCourses()
+    {
+        formCompletionHelper.Click(FindAppTraining);
+
+        return new(context);
     }
 }

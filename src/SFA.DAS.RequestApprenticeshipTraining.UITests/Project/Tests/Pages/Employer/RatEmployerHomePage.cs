@@ -5,7 +5,7 @@ namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Empl
 
 public class RatEmployerHomePage(ScenarioContext context) : HomePage(context)
 {
-    public FindApprenticeshipTrainingAndManageRequestsPage NavigateToFindApprenticeshipPage()
+    public FindApprenticeshipTrainingAndManageRequestsPage GoToRatHomePage()
     {
         formCompletionHelper.Click(FindApprenticeshipLink);
 
