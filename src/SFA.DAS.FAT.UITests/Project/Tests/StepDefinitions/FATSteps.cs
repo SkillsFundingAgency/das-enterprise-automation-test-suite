@@ -5,8 +5,8 @@ public class FATSteps
 {
     private readonly ScenarioContext _context;
     private readonly FATStepsHelper _fATV2StepsHelper;
-    private TrainingCourseSearchResultsPage _trainingCourseSearchResultsPage;
-    private TrainingCourseSummaryPage _trainingCourseSummaryPage;
+    private ApprenticeshipTrainingCoursesPage _trainingCourseSearchResultsPage;
+    private ApprenticeshipTrainingCourseSummaryPage _trainingCourseSummaryPage;
     private ProviderSearchResultsPage _providerSearchResultsPage;
     private ProviderSummaryPage _providerSummaryPage;
     private ProviderShortlistPage _providerShortlistPage;

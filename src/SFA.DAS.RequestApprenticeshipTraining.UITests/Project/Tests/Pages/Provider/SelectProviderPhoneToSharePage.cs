@@ -1,9 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Provider;
+﻿namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Provider;
 
 public class SelectProviderPhoneToSharePage(ScenarioContext context) : RatProjectBasePage(context)
 {

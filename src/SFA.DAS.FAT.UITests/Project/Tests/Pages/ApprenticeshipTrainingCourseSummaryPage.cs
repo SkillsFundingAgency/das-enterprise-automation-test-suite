@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-public class TrainingCourseSummaryPage(ScenarioContext context) : FATBasePage(context)
+public class ApprenticeshipTrainingCourseSummaryPage(ScenarioContext context) : FATBasePage(context)
 {
     protected override string PageTitle => objectContext.GetTrainingCourseName();
 
@@ -39,15 +39,15 @@ public class TrainingCourseSummaryPage(ScenarioContext context) : FATBasePage(co
         return new ProviderSearchResultsPage(context);
     }
 
-    public TrainingCourseSearchResultsPage NavigateBackFromCourseSummaryPage()
+    public ApprenticeshipTrainingCoursesPage NavigateBackFromCourseSummaryPage()
     {
         NavigateBackToCourseSummary();
-        return new TrainingCourseSearchResultsPage(context);
+        return new ApprenticeshipTrainingCoursesPage(context);
     }
 
-    public TrainingCourseSearchResultsPage NavigateBackToCourseSummary()
+    public ApprenticeshipTrainingCoursesPage NavigateBackToCourseSummary()
     {
         formCompletionHelper.Click(BackToCourseSearchPage);
-        return new TrainingCourseSearchResultsPage(context);
+        return new ApprenticeshipTrainingCoursesPage(context);
     }
 }
