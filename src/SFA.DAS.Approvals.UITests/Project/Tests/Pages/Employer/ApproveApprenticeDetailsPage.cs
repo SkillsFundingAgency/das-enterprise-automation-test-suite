@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ApproveApprenticeDetailsPage : ReviewYourCohort
     {
-        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl");
 
         private static By ApproveMessage => By.CssSelector("#approve-details");
         private static By ReviewMessage => By.CssSelector("#send-details");

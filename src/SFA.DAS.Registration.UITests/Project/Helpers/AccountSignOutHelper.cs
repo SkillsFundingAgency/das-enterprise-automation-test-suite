@@ -2,7 +2,7 @@
 
 public class AccountSignOutHelper(ScenarioContext context)
 {
-    public CreateAnAccountToManageApprenticeshipsPage SignOut() => new HomePage(context, true).SignOut().CickContinueInYouveLoggedOutPage();
+    public CreateAnAccountToManageApprenticeshipsPage SignOut() => new HomePage(context, true).SignOut().CickContinueInYouveLoggedOutPage().GoManageApprenticeLandingPage();
 
     public static YouveLoggedOutPage SignOut(HomePage page) => page.SignOut();
 
