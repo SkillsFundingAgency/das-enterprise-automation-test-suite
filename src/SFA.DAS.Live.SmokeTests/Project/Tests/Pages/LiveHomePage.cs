@@ -35,7 +35,7 @@ public class LiveHomePage(ScenarioContext context) : HomePage(context)
 
     public FindApprenticeshipTrainingAndManageRequestsPage GoToFatHomePage()
     {
-        tabHelper.OpenInNewTab(() => formCompletionHelper.Click(FindApprenticeshipTrainingLink));
+        formCompletionHelper.Click(FindApprenticeshipTrainingLink);
 
         return new FindApprenticeshipTrainingAndManageRequestsPage(context);
     }
