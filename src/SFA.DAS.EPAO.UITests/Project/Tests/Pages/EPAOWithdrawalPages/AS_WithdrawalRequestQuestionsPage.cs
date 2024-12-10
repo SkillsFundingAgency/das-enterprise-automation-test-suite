@@ -26,7 +26,7 @@ public class AS_WithdrawalRequestQuestionsPage : EPAO_BasePage
         return new(context);
     }
 
-    public AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
+    public AS_WhatIsTheMainReasonYouWantToWithdrawFromAllStandardsPage ClickGoToReasonForWithdrawingFromRegisterQuestionLink()
     {
         formCompletionHelper.Click(GoToReasonForWithdrawingQuestionsLink);
         return new(context);

@@ -13,7 +13,7 @@ public class EPAOWithdrawalHelper(ScenarioContext context)
         if (_ePAOSqlDataHelper.HasWithdrawals(context.GetUser<EPAOWithdrawalUser>().Username))
         {
             aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
-               .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
+               .ClickContinueOnWithdrawFromStandardsPageWhenWithdrawalsExist()
                .ClickStartNewWithdrawalNotification()
                .ClickAssessingASpecificStandard()
                .ClickASpecificStandardToWithdraw()
@@ -22,7 +22,7 @@ public class EPAOWithdrawalHelper(ScenarioContext context)
         else
         {
             aS_LoggedInHomePage.ClickWithdrawFromAStandardLink()
-                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()
+                .ClickContinueOnWithdrawFromStandardsPageWhenNoWithdrawalsExist()
                 .ClickAssessingASpecificStandard()
                 .ClickASpecificStandardToWithdraw()
                 .ContinueWithWithdrawalRequest();
@@ -36,7 +36,7 @@ public class EPAOWithdrawalHelper(ScenarioContext context)
         if (_ePAOSqlDataHelper.HasWithdrawals(context.GetUser<EPAOWithdrawalUser>().Username))
         {
             aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
-                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
+                .ClickContinueOnWithdrawFromStandardsPageWhenWithdrawalsExist()
                 .ClickStartNewWithdrawalNotification()
                 .ClickWithdrawFromRegister()
                 .ContinueWithWithdrawalRequest();
@@ -44,7 +44,7 @@ public class EPAOWithdrawalHelper(ScenarioContext context)
         else
         {
             aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
-                .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenNoWithdrawalsExist()
+                .ClickContinueOnWithdrawFromStandardsPageWhenNoWithdrawalsExist()
                 .ClickWithdrawFromRegister()
                 .ContinueWithWithdrawalRequest();
         }
@@ -83,7 +83,7 @@ public class EPAOWithdrawalHelper(ScenarioContext context)
     {
         new AS_LoggedInHomePage(context)
             .ClickWithdrawFromAStandardLink()
-            .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
+            .ClickContinueOnWithdrawFromStandardsPageWhenWithdrawalsExist()
             .ValidateStatus("In progress");
     }
 
@@ -144,7 +144,7 @@ public class EPAOWithdrawalHelper(ScenarioContext context)
     {
         AS_LoggedInHomePage aS_LoggedInHomePage = new(context);
         aS_LoggedInHomePage.ClickWithdrawFromTheRegisterLink()
-                           .ClickContinueOnWithdrawFromAStandardOrTheRegisterPageWhenWithdrawalsExist()
+                           .ClickContinueOnWithdrawFromStandardsPageWhenWithdrawalsExist()
                            .ClickViewOnRegisterWithdrawalWithFeedbackAdded()
                            .ClickContinueButton()
                            .ClickSupportingCurrentLearnersFeedback()

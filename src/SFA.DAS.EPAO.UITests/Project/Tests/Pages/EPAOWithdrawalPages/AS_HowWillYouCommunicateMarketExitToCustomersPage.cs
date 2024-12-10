@@ -18,7 +18,7 @@ public class AS_HowWillYouCommunicateMarketExitToCustomersPage : EPAO_BasePage
         return new(context);
     }
 
-    public AS_WhenDoYouWantToWithdrawFromTheRegisterPage EnterSupportingInformationForRegisterWithdrawal()
+    public AS_WhenDoYouWantToWithdrawFromAllStandardsPage EnterSupportingInformationForRegisterWithdrawal()
     {
         formCompletionHelper.Click(SupportInfoTextArea);
         formCompletionHelper.EnterText(SupportInfoTextArea, Helpers.DataHelpers.EPAOApplyStandardDataHelper.GenerateRandomAlphanumericString(250));
