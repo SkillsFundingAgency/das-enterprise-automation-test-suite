@@ -303,6 +303,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage.ValidateProviderPaymentStatus(providerPaymentStatus);
         }
 
+        [Then(@"Employer can see a Learner Status row with (InLearning|WaitingToStart) status for the Apprentice")]
+        public void ThenEmployerCanSeeALearnerStatusRowWithInLearningStatusForTheApprentice(string learnerStatus)
+        {
+            _apprenticeDetailsPage.ValidateLearnerStatus(learnerStatus);
+        }
+
+
         [Then(@"employer is able to successfully freeze provider payments")]
         public void EmployerSuccessfullyFreezesProviderPayments()
         {

@@ -47,6 +47,17 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToSupportPage();
         }
 
+        [Given(@"I enter invalid details for school autosearch")]
+        public void GivenIEnterInvalidDetailsForSchoolAutosearch()
+        {
+            _stepsHelper.GoToAreasOfWorkInterestPage();
+            _stepsHelper.GoToEnterNameOfSchoolCollegePage();
+            _stepsHelper.GoToApprencticeshipLevelPage();
+            _stepsHelper.GoToHaveYouAppliedPage();
+            _stepsHelper.GoToAreaOfEnglandPage();
+            _stepsHelper.GoToSupportPage();
+        }
+
         [Then(@"I check my answers, accept and submit")]
         public void WhenICheckMyAnswersAcceptAndSubmit() => _stepsHelper.GoToCheckYourAnswerPage();
 
