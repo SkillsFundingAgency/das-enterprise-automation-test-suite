@@ -1,7 +1,7 @@
 userName: gabrielpeterthom_ubAsv1
 accessKey: sZpPBSSmmXnyqW8aRmTK
 projectName: "ApprenticeshipService"
-buildName: "version1"
+buildName: "Approvals"
 buildIdentifier: ${DATE_TIME}
 platforms:
   - os: Windows
