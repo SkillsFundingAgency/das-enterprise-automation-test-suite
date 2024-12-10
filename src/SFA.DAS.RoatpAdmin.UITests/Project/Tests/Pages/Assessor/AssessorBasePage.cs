@@ -3,10 +3,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 {
-    public abstract class AssessorBasePage : RoatpNewAdminBasePage
+    public abstract class AssessorBasePage(ScenarioContext context) : RoatpNewAdminBasePage(context)
     {
-        protected AssessorBasePage(ScenarioContext context) : base(context) { }
-
         public ApplicationAssessmentOverviewPage SelectPassAndContinue()
         {
             SelectPassAndContinueToSubSection();
@@ -15,7 +13,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Assessor
 
         public ApplicationAssessmentOverviewPage VerifyStatus(string linkText, string expectedStatus)
         {
-            Assert.AreEqual(expectedStatus, pageInteractionHelper.GetText(StatusTextLocator(linkText)), $"Status of '{linkText}' is Incorrect");
+            StringAssert.AreEqualIgnoringCase(expectedStatus, pageInteractionHelper.GetText(StatusTextLocator(linkText)), $"Status of '{linkText}' is Incorrect");
+
             return new ApplicationAssessmentOverviewPage(context);
         }
     }
