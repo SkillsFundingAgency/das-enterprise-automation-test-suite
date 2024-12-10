@@ -1,14 +1,14 @@
 ﻿namespace SFA.DAS.EPAO.UITests.Project.Tests.Pages.EPAOWithdrawalPages;
 
-public class AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage : EPAO_BasePage
+public class AS_WhatIsTheMainReasonYouWantToWithdrawFromAllStandardsPage : EPAO_BasePage
 {
-    protected override string PageTitle => "What's the main reason you want to withdraw from the register?";
+    protected override string PageTitle => "What's the main reason you want to withdraw from all standards?";
 
     #region Locators
     private static By AssesmentPlanHasChangedTextArea => By.Id("WR-01.1");
     #endregion
 
-    public AS_WhatIsTheMainReasonYouWantToWithdrawFromTheRegisterPage(ScenarioContext context) : base(context) => VerifyPage();
+    public AS_WhatIsTheMainReasonYouWantToWithdrawFromAllStandardsPage(ScenarioContext context) : base(context) => VerifyPage();
 
     public AS_WillYouCompleteEPAOForAllRegisteredLearnersPage ClickAssessmentPlanHasChangedAndEnterOptionalReason()
     {
