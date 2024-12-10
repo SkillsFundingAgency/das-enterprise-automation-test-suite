@@ -1,11 +1,4 @@
-﻿using DnsClient;
-using Mailosaur.Models;
-using OpenQA.Selenium;
-using SFA.DAS.FAT.UITests.Project;
-using SFA.DAS.FAT.UITests.Project.Tests.Pages;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.UI.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
