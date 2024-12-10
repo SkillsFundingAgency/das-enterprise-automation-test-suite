@@ -9,9 +9,6 @@ public class YourAgreementsWithTheEducationAndSkillsFundingAgencyPage : Registra
 
     private static By ExpandButton => By.CssSelector(".govuk-accordion__section-button");
 
-    private static By AgreementId => By.CssSelector("h3.govuk-heading-l");
-
-    private static By ViewAgreementButton => By.XPath("//*[@id='main-content']/form/input");     //By.XPath("//input[contains(text(),'View agreement')]");
     #endregion
 
     public YourAgreementsWithTheEducationAndSkillsFundingAgencyPage(ScenarioContext context, Action action) : base(context) => VerifyPage(PageHeader, PageTitle, action);
@@ -36,7 +33,7 @@ public class YourAgreementsWithTheEducationAndSkillsFundingAgencyPage : Registra
     {
         var e = pageInteractionHelper.FindElement(ExpandButton);
 
-        var expand = e.GetAttribute(AttributeHelper.AriaExpanded);
+        var expand = e.GetDomAttribute(AttributeHelper.AriaExpanded);
 
         if (expand != null && expand == "false") formCompletionHelper.Click(ExpandButton);
     }

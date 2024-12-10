@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.FAT.UITests.Project;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
@@ -15,7 +16,7 @@ public class FindApprenticeshipTrainingAndManageRequestsPage(ScenarioContext con
 
         var link = By.LinkText(trainingCourseName);
 
-        string href = pageInteractionHelper.FindElement(link).GetAttribute("href");
+        string href = pageInteractionHelper.FindElement(link).GetHrefAttribute();
 
         SetDebugInformation($"Active request href - {href}");
 

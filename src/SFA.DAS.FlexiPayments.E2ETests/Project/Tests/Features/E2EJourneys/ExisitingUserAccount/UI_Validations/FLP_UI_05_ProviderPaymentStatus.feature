@@ -1,6 +1,8 @@
 ﻿Feature: FLP_UI_05_ProviderPaymentStatus
 
-A short summary of the feature
+The purpose of this test is to validate the UI journeys alongside db validations for 
+Provider payment status functionality. The employer will Withhold the payment and then 
+Activate it allowing for the validation checks to be completed.
 
 @regression
 @flexi-manage-coc
