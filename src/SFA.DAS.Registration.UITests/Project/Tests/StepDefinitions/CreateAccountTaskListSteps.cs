@@ -39,6 +39,7 @@ public class CreateAccountTaskListSteps
 
         _createYourEmployerAccountPage.SignOut()
             .CickContinueInYouveLoggedOutPage()
+            .GoManageApprenticeLandingPage()
             .GoToStubSignInPage()
             .Login(loggedInAccountUser.Username, loggedInAccountUser.IdOrUserRef).Continue();
     }
