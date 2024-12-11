@@ -35,8 +35,8 @@ public class InsertTprDataHelper(ObjectContext objectContext, DbConfig dbConfig)
                 "SELECT @orgSK = [OrgSK] FROM [Tpr].[Organisation] where [TPRUniqueId] = @tprUniqueId;" +
                 "INSERT INTO [Tpr].[OrganisationAddress] ([OrgSK],[TPRUniqueID],[OrganisationFullAddress],[AddressLine1],[AddressLine2],[AddressLine3],[PostCode],[RecordCreatedDate]) " +
                 "VALUES (@orgSK, @tprUniqueId, @organisationName + 'Address', @tprUniqueId, 'Test Street', 'Coventry', 'CV1 2WT', GETDATE());" +
-                "INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate]) " +
-                $"VALUES (@orgSK, @tprUniqueId, '{payescheme}', '{datetime.Year}-{datetime.Month}-{datetime.Day}', GETDATE()); " +
+                "INSERT INTO [Tpr].[OrganisationPAYEScheme] ([OrgSK],[TPRUniqueID],[PAYEScheme],[SchemeStartDate],[RecordCreatedDate], [SchemeEndDateCodeDesc]) " +
+                $"VALUES (@orgSK, @tprUniqueId, '{payescheme}', '{datetime.Year}-{datetime.Month}-{datetime.Day}', GETDATE()), 'Not Closed'; " +
                 "SELECT @organisationName;";
 
     }
