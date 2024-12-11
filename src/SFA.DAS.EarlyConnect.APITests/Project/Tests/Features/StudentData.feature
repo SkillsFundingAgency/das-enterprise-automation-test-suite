@@ -12,7 +12,7 @@ Scenario Outline: EC_GAA_STUDENT_DATA_01 - Valid student data post returns 201 C
 
 	Examples: 
 | Method | Endpoint                        | Payload			| ResponseStatus   |
-| POST   | /early-connect/student-data/add |  StudentData.json | Created		   |	
+| POST   | /early-connect/student-data/add |  StudentData.json  | Created		   |	
 
 @api
 @earlyconapi
