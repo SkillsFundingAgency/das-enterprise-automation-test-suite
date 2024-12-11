@@ -11,10 +11,11 @@ namespace SFA.DAS.ProviderFeedback.APITests.Project.Tests.StepDefinitions;
 public class ProviderFeedbackApiSteps(ScenarioContext context)
 {
     private readonly Outer_ProviderFeedbackApiClient _restClient = context.GetRestClient<Outer_ProviderFeedbackApiClient>();
-    private RestResponse _restResponse = new RestResponse();
 
-    [When(@"the user sends (GET) request to (.*) without payload")]
-    public void TheUserSendsGETRequestTo(Method method, string endpoint, string payload) => _restClient.CreateRestRequest(method, endpoint, payload);
+    private RestResponse _restResponse = new();
+
+    [Given("the user sends GET request to (.*) without payload")]
+    public void TheUserSendsGETRequestToWithoutPayload(string endpoint) => _restClient.CreateRestRequest(Method.Get, endpoint, string.Empty);
 
     [Then(@"api (OK) response is received")]
     public void ThenApiOKResponseIsReceived(HttpStatusCode responseCode)
