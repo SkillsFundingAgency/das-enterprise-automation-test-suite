@@ -15,16 +15,16 @@ jobs:
         steps:
         - checkout: self
         - checkout: das-platform-automation
-        - task: FileTransform@1
-          displayName: 'Tokenization: Transform file *.json'
-          inputs:
-            FolderPath: '$(Pipeline.Workspace)/**/tests.zip'
-            FileType: json
         - task: ExtractFiles@1
           displayName: 'Extract files'
           inputs:
             archiveFilePatterns: '$(Pipeline.Workspace)/**/tests.zip'
             destinationFolder: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
+        - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
+          displayName: 'Tokenization: Transform file *.json'
+          inputs:
+            SourcePath: '$(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests'
+            TargetFileNames: '*.json'
         - template: azure-pipelines-templates/deploy/step/sql-whitelist-ip.yml@das-platform-building-blocks
           parameters:
             ServiceConnection: ${{ parameters.ServiceConnection }}
