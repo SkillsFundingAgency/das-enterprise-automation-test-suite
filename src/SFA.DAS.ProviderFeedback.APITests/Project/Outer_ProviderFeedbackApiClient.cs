@@ -9,8 +9,8 @@ namespace SFA.DAS.ProviderFeedback.APITests.Project
 {
     public class Outer_ProviderFeedbackApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config.Apim_SubscriptionKey)
     {
-        protected override string ApiName => "/provider-feedback";
+        protected override string ApiName => "/providerFeedback";
         protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
-        public void GetProviderFeedback(long ukprn, HttpStatusCode expectedResponse) => Execute(Method.Get, $"/api/providerFeedback/{ukprn}", string.Empty, expectedResponse);
+        public void GetProviderFeedback(long ukprn, HttpStatusCode expectedResponse) => Execute(Method.Get, $"/{ukprn}", string.Empty, expectedResponse);
     }
 }
