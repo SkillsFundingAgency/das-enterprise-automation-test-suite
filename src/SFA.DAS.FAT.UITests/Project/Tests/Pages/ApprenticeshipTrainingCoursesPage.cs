@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.FAT.UITests.Project.Tests.Pages;
 
-public class TrainingCourseSearchResultsPage(ScenarioContext context) : ApprenticeshipTrainingCourseBasePage(context)
+public class ApprenticeshipTrainingCoursesPage : FATBasePage
 {
     #region Locators
     private static By UpdateResultsButton => By.Id("filters-submit");
@@ -13,14 +13,39 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
 
     #endregion
 
-    public TrainingCourseSearchResultsPage SelectLevelAndFilterResults(string level)
+    protected override string PageTitle => "Apprenticeship training courses";
+
+    protected override bool TakeFullScreenShot => false;
+
+    public ApprenticeshipTrainingCoursesPage(ScenarioContext context) : base(context)
+    {
+        var environmentName = EnvironmentName.ToLower() + "-";
+
+        var currentURL = GetUrl();
+
+        if (!currentURL.Contains(environmentName, System.StringComparison.CurrentCultureIgnoreCase))
+        {
+            var newURL = currentURL.Insert(8, environmentName);
+
+            tabHelper.GoToUrl(newURL);
+        }
+    }
+
+    public ApprenticeshipTrainingCoursesPage SearchApprenticeshipInApprenticeshipTrainingCoursesPage(string searchTerm)
+    {
+        SearchApprenticeship(searchTerm);
+
+        return new ApprenticeshipTrainingCoursesPage(context);
+    }
+
+    public ApprenticeshipTrainingCoursesPage SelectLevelAndFilterResults(string level)
     {
         SelectLevelCheckBox(level);
         formCompletionHelper.Click(UpdateResultsButton);
         return this;
     }
 
-    public TrainingCourseSearchResultsPage VerifyLevelInfoFromSearchResults(string level)
+    public ApprenticeshipTrainingCoursesPage VerifyLevelInfoFromSearchResults(string level)
     {
         pageInteractionHelper.VerifyText(LevelText, level);
         UnselectLevelCheckBox(level);
@@ -28,13 +53,13 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
         return this;
     }
 
-    public TrainingCourseSearchResultsPage VerifySortByInfoFromSearchResults(string relevance)
+    public ApprenticeshipTrainingCoursesPage VerifySortByInfoFromSearchResults(string relevance)
     {
         pageInteractionHelper.VerifyText(SortByInfoText, relevance);
         return this;
     }
 
-    public TrainingCourseSummaryPage SelectFirstTrainingResult()
+    public ApprenticeshipTrainingCourseSummaryPage SelectFirstTrainingResult()
     {
         var firstLinkText = pageInteractionHelper.GetText(FirstSearchResult).Replace("\r\n", " ");
 
@@ -44,7 +69,7 @@ public class TrainingCourseSearchResultsPage(ScenarioContext context) : Apprenti
 
         formCompletionHelper.ClickLinkByText(firstLinkText);
 
-        return new TrainingCourseSummaryPage(context);
+        return new ApprenticeshipTrainingCourseSummaryPage(context);
     }
 
     public FATIndexPage NavigateBackToHompage()

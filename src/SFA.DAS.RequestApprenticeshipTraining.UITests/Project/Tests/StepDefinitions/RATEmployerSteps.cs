@@ -1,13 +1,4 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
-using SFA.DAS.FAT.UITests.Project.Helpers;
-using SFA.DAS.Login.Service.Project;
-using SFA.DAS.Login.Service.Project.Helpers;
-using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.Registration.UITests.Project.Helpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefinitions;
 
@@ -21,6 +12,17 @@ public class RatEmployerSteps(ScenarioContext context)
     private TrainingRequestDetailPage trainingRequestDetailPage;
 
     private readonly EmployerHomePageStepsHelper _homePageStepsHelper = new(context);
+
+    [Given("an employer user can login to EAS")]
+    public void AnEmployerUserCanLoginToEAS()
+    {
+        context.Get<TabHelper>().GoToUrl(UrlConfig.EmployerApprenticeshipService_BaseUrl);
+
+        new EmployerPortalLoginHelper(context).Login(context.GetUser<RatEmployerUser>(), true);
+    }
+
+    [Then("the employer requests apprenticeship training")]
+    public void TheEmployerRequestsApprenticeshipTraining() => GoToRatHomePage().GoToApprenticeshipTrainingCourses();
 
     [Given(@"an employer requests apprenticeship training")]
     public void AnEmployerRequestsApprenticeshipTraining() => RequestTrainingProvider(false);
@@ -66,7 +68,7 @@ public class RatEmployerSteps(ScenarioContext context)
     {
         _homePageStepsHelper.GotoEmployerHomePage();
 
-        new RatEmployerHomePage(context).NavigateToFindApprenticeshipPage().SelectActiveRequest().VerifyProviderResponse();
+        GoToRatHomePage().SelectActiveRequest().VerifyProviderResponse();
     }
 
     private void LoginViaRat(RatEmployerBaseUser loginUser) => landingPage = new EmployerPortalViaRatLoginHelper(context).LoginViaRat(loginUser);
@@ -79,5 +81,7 @@ public class RatEmployerSteps(ScenarioContext context)
 
         _fATV2StepsHelper.SearchForTrainingCourse(title).SelectFirstTrainingResult().ViewProvidersForThisCourse(filterLocation, string.Empty).RequestTrainingProvider();
     }
+
+    private FindApprenticeshipTrainingAndManageRequestsPage GoToRatHomePage() => new RatEmployerHomePage(context).GoToRatHomePage();
 
 }

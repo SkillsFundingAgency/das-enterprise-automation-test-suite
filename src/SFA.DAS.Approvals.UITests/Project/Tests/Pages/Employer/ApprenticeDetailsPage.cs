@@ -48,8 +48,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ViewPriceChangeLink => By.Id("linkViewPendingPrice");
         private static By PriceChangeCancelledBanner => By.Id("cancelled-price-change-banner");
         private static By PriceChangeCancelBannerMessage => By.CssSelector("#cancelled-price-change-banner h3");
-        private static By ProviderPaymentStatusRow => By.XPath("//td[@id='provider-payments-status']/preceding-sibling::th");
+        private static By ProviderPaymentStatusRowHeading => By.XPath("//td[@id='provider-payments-status']/preceding-sibling::th");
         private static By ProviderPaymentStatusValue => By.Id("provider-payments-status");
+        private static By LearnerStatusRowHeading => By.XPath("//th[text()='Learner Status']");
+        private static By LearnerStatusValue => By.XPath("//th[text()='Learner Status']/parent::tr/td/strong");
         private static By ChangeProviderPaymentStatusLink => By.Id("linkChangePaymentStatus");
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
@@ -256,8 +258,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApprenticeDetailsPage ValidateProviderPaymentStatus(string status)
         {
-            Assert.AreEqual("Provider payments status", pageInteractionHelper.GetText(ProviderPaymentStatusRow), "Provider Payment status label not displayed");
+            Assert.AreEqual("Provider payments status", pageInteractionHelper.GetText(ProviderPaymentStatusRowHeading), "Provider Payment status label not displayed");
             Assert.AreEqual(status, pageInteractionHelper.GetText(ProviderPaymentStatusValue), "Incorrect Provider payment status found!");
+
+            return this;
+        }
+
+        public ApprenticeDetailsPage ValidateLearnerStatus(string status)
+        {
+            string expectedLearnerStatus = status.ToUpper() switch
+            {
+                "INLEARNING" => "In learning",
+                "WAITINGTOSTART" => "Waiting to start",
+                _ => status
+            };
+
+            Assert.AreEqual("Learner Status", pageInteractionHelper.GetText(LearnerStatusRowHeading), "Learner Status label not displayed");
+            Assert.AreEqual(expectedLearnerStatus, pageInteractionHelper.GetText(LearnerStatusValue), "Incorrect Learner status found!");
+
+            string expectedClass = status.ToUpper() switch
+            {
+                "INLEARNING" => "govuk-tag--blue",
+                "WAITINGTOSTART" => "govuk-tag--green",
+                _ => "govuk-tag--blue"
+            };
+
+            Assert.IsTrue(pageInteractionHelper.ElementHasClass(LearnerStatusValue, expectedClass),
+                $"The element does not have the expected class '{expectedClass}' for status '{status}'.");
 
             return this;
         }

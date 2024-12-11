@@ -25,7 +25,7 @@ public class AS_WithdrawalRequestOverviewPage : EPAO_BasePage
 
     public AS_WithdrawalRequestQuestionsPage ClickGoToRegisterWithdrawalQuestions()
     {
-        VerifyElement(PageCaptionXl, "Withdrawing from register");
+        VerifyElement(PageCaptionXl, "Withdrawing from all standards");
         VerifyElement(InitialQuestionsCompletedVerification, "0 of 4 questions completed");
         formCompletionHelper.Click(StartOrganisationWithdrawalQuestions);
         return new(context);

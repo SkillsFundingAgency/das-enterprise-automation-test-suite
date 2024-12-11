@@ -11,7 +11,7 @@ public class AS_LoggedInHomePage(ScenarioContext context) : EPAO_BasePage(contex
     private static By CompletedAssessmentsTopMenuLink => By.Id("Completed assessments");
     private static By OrganisationDetailsTopMenuLink => By.LinkText("Organisation details");
     private static By WithdrawFromAStandardLink => By.LinkText("Withdraw from a standard");
-    private static By WithdrawFromTheRegisterLink => By.LinkText("Withdraw from the register");
+    private static By WithdrawFromAllStandardsLink => By.LinkText("Withdraw from all standards");
     private static By ManageUsersLink => By.LinkText("Manage users");
     private static By HomeTopMenuLink => By.Id("Home");
     private static By SignedInUserNameText => By.CssSelector(".das-user-panel__content");
@@ -69,15 +69,15 @@ public class AS_LoggedInHomePage(ScenarioContext context) : EPAO_BasePage(contex
         formCompletionHelper.Click(SignOutLink);
         return new(context);
     }
-    public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromAStandardLink()
+    public AS_WithdrawFromAStandardsPage ClickWithdrawFromAStandardLink()
     {
         formCompletionHelper.Click(WithdrawFromAStandardLink);
         return new(context);
     }
 
-    public AS_WithdrawFromAStandardOrTheRegisterPage ClickWithdrawFromTheRegisterLink()
+    public AS_WithdrawFromAStandardsPage ClickWithdrawFromTheRegisterLink()
     {
-        formCompletionHelper.Click(WithdrawFromTheRegisterLink);
+        formCompletionHelper.Click(WithdrawFromAllStandardsLink);
         return new(context);
     }
 }
