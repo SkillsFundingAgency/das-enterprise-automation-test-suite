@@ -16,10 +16,11 @@ public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config)
 
     public void DeleteMetricsData()
     {
-        string sqlQuery = $@"
-            SELECT Id INTO #MetricIds FROM MetricsData WHERE logId = 1;
-            DELETE FROM MetricsData WHERE Id IN (SELECT Id FROM #MetricIds);
-            DROP TABLE #MetricIds;";
+        string sqlQuery = $@"SELECT Id INTO #MetricIds FROM ApprenticeMetricsData WHERE DateAdded >= DATEADD(MINUTE, -15, GETDATE());
+                DELETE FROM ApprenticeMetricsData
+                WHERE Id IN (SELECT Id FROM #MetricIds);
+                DROP TABLE #MetricIds;";
+
 
         ExecuteSqlCommand(sqlQuery);
     }
