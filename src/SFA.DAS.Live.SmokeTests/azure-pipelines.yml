@@ -6,11 +6,8 @@ parameters:
 trigger: none
 pr: none
 
-variables:
-- group: LIVE das-live-smoke-test-suite
-
 extends:
-  template: ../../pipeline-templates/resource-template.yml
+  template: pipeline-templates/resource-template.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
-    TestDlls: $(Pipeline.Workspace)/$(VariableFromGroup)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Live.SmokeTests/SFA.DAS.Live.SmokeTests.dll
+    TestDlls: $(Pipeline.Workspace)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.Live.SmokeTests/SFA.DAS.Live.SmokeTests.dll
