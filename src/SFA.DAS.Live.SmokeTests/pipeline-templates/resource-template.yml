@@ -37,7 +37,7 @@ resources:
       - Deploy_PP
 
 stages:
-- template: $(Build.ArtifactStagingDirectory)/das-enterprise-automation-test-suite/pipeline-templates/stage/test.yml
+- template: ./pipeline-templates/stage/test.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
