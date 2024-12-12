@@ -13,6 +13,7 @@ variables:
   value: local
 - group: Release Automation Suite Variables
 - group: Release Automation Suite Variables (Db)
+- group: LIVE das-live-smoke-test-suite
 resources:
   repositories:
   - repository: self
@@ -36,7 +37,7 @@ resources:
       - Deploy_PP
 
 stages:
-- template: ../../../../pipeline-templates/stage/test.yml
+- template: $(Build.ArtifactStagingDirectory)/das-enterprise-automation-test-suite/pipeline-templates/stage/test.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
