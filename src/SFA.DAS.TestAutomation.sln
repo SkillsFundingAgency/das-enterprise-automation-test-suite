@@ -148,7 +148,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EarlyConnectForms.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RequestApprenticeshipTraining.UITests", "SFA.DAS.RequestApprenticeshipTraining.UITests\SFA.DAS.RequestApprenticeshipTraining.UITests.csproj", "{CF075431-1F2A-41DF-B3D3-320174E2ED82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ProviderFeedback.APITests", "SFA.DAS.ProviderFeedback.APITests\SFA.DAS.ProviderFeedback.APITests.csproj", "{874970DA-70DA-471D-A693-0E4376854B71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ProvideFeedback.APITests", "SFA.DAS.ProvideFeedback.APITests\SFA.DAS.ProvideFeedback.APITests.csproj", "{874970DA-70DA-471D-A693-0E4376854B71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

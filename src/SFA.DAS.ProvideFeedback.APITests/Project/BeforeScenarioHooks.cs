@@ -1,8 +1,4 @@
-﻿using SFA.DAS.API.Framework;
-using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.ProviderFeedback.APITests.Project;
+﻿namespace SFA.DAS.ProvideFeedback.APITests.Project;
 
 [Binding]
 public class BeforeScenarioHooks(ScenarioContext context)
