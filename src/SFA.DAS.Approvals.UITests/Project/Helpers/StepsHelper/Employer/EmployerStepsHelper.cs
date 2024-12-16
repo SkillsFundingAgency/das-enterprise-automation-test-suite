@@ -105,18 +105,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public static DynamicHomePages DynamicHomePageStartToAddApprentice(AddAnApprenitcePage addAnApprenitcePage)
         {
-            return addAnApprenitcePage.StartNowToAddTrainingProvider()
-                 .SubmitValidUkprn()
-                 .ConfirmProviderDetailsAreCorrect()
-                 .DynamicHomePageNonLevyEmployerAddsApprentices()
-                 .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
-                 .DraftDynamicHomePageAddValidApprenticeDetails()
-                 .DraftReturnToHomePage()
-                 .CheckDraftStatusAndAddDetails()
-                 .ContinueToAddValidApprenticeDetails()
-                 .DynamicHomePageChangeRequestFromTrainingProvider()
-                 .ClickHomeLink()
-                 .CheckWithTrainingProviderStatus();
+            return addAnApprenitcePage
+                    .StartNowToSelectFunding()
+                    .SelectCurrentLevyFundsAsFundingType()
+                    .SubmitValidUkprn()
+                    .ConfirmProviderDetailsAreCorrect()
+                    .DynamicHomePageNonLevyEmployerAddsApprentices()
+                    .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+                    .DraftDynamicHomePageAddValidApprenticeDetails()
+                    .DraftReturnToHomePage()
+                    .CheckDraftStatusAndAddDetails()
+                    .ContinueToAddValidApprenticeDetails()
+                    .DynamicHomePageChangeRequestFromTrainingProvider()
+                    .ClickHomeLink()
+                    .CheckWithTrainingProviderStatus();
         }
 
         public DynamicHomePages DynamicHomePageFinishToAddApprenticeJourney()
@@ -258,7 +260,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
 
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaSelectFundingFunc();
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
 
