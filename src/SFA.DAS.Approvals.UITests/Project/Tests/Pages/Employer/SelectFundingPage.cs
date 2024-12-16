@@ -21,6 +21,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddTrainingProviderDetailsPage(context);
         }
 
+        public AddTrainingProviderDetailsPage SelectDirectTransferFundsFromConnectionAsFundingType()
+        {
+            SelectRadioOptionByForAttribute("FundingType-1");
+            Continue();
+            return new AddTrainingProviderDetailsPage(context);
+        }
 
     }
 }
