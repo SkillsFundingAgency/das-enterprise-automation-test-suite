@@ -1,1 +1,0 @@
-UPDATE incentives.EmploymentCheck SET Result = @result WHERE Id = @id
