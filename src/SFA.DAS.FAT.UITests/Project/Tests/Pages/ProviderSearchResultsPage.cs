@@ -34,15 +34,15 @@ public class ProviderSearchResultsPage(ScenarioContext context) : FATBasePage(co
         formCompletionHelper.ClickLinkByText(firstProviderLinkText);
         return new ProviderSummaryPage(context);
     }
-    public TrainingCourseSummaryPage NavigateBackFromTrainingProvidersPage()
+    public ApprenticeshipTrainingCourseSummaryPage NavigateBackFromTrainingProvidersPage()
     {
         NavigateBackToTrainingProviders();
-        return new TrainingCourseSummaryPage(context);
+        return new ApprenticeshipTrainingCourseSummaryPage(context);
     }
-    public TrainingCourseSummaryPage NavigateBackToTrainingProviders()
+    public ApprenticeshipTrainingCourseSummaryPage NavigateBackToTrainingProviders()
     {
         formCompletionHelper.Click(BackToCourseSummaryPage);
-        return new TrainingCourseSummaryPage(context);
+        return new ApprenticeshipTrainingCourseSummaryPage(context);
     }
     public ProviderShortListedResultPage ShortlistAProviderFromProviderList()
     {

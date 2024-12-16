@@ -1,11 +1,8 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.FrameworkHelpers;
-
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
+﻿namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
 
 public class RatSqlHelper(ObjectContext objectContext, DbConfig config) : SqlDbHelper(objectContext, config.RatDbConnectionString)
 {
-    public void ClearDownRatData(string accountid,  string requestId)
+    public void ClearDownRatData(string accountid, string requestId)
     {
         //--List of the ProviderResponseIds that can be deleted as they are responses *only * to the specified account
         //--Delete from ProviderResponseEmployerRequest* all*responses for the given account

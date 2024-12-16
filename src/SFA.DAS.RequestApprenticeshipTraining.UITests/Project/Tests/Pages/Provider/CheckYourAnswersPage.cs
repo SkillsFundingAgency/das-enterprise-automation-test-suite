@@ -1,7 +1,4 @@
-﻿using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Provider;
+﻿namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Provider;
 
 public class CheckYourAnswersPage(ScenarioContext context) : RatProjectBasePage(context)
 {
