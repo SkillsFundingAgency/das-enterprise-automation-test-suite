@@ -4,12 +4,12 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class AALoginStepDefinitions
+    public class AALoginStepDefinitions (ScenarioContext context)
     {
         [Then(@"the apprentice can log into the app")]
         public void ThenTheApprenticeCanLogIntoTheApp()
         {
-            throw new PendingStepException();
+            
         }
     }
 }

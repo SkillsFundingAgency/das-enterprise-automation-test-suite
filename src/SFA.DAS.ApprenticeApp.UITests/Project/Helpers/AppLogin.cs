@@ -6,9 +6,9 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
 {
     public class AppLogin : Steps
     {
-        protected By PageHeader => By.CssSelector("svg.govuk-header__logotype");
+        protected static By PageHeader => By.CssSelector("svg.govuk-header__logotype");
 
-        protected By SignIn => By.CssSelector(".app-button[onclick*='/Account/Authenticated']");
+        protected static By SignIn => By.CssSelector(".app-button[onclick*='/Account/Authenticated']");
 
         public AppLogin(ScenarioContext context)
         {
