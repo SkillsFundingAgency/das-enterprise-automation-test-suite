@@ -22,7 +22,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        public ProviderCoEOverlappingTrainingDateStopDateRequestSentPage SendStopEmail()
+        public ProviderOverlappingTrainingDateEmployerNotifiedPage SendStopEmail()
+        {
+            formCompletionHelper.SelectRadioOptionByLocator(SendStopEmailButton);
+            Continue();
+            return new ProviderOverlappingTrainingDateEmployerNotifiedPage(context);
+        }
+
+        public ProviderCoEOverlappingTrainingDateStopDateRequestSentPage CoESendStopEmail()
         {
             formCompletionHelper.SelectRadioOptionByLocator(SendStopEmailButton);
             Continue();

@@ -135,7 +135,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderCoEOverlappingTrainingDateConfirmDatesPage(_context)
                 .SaveAndSend()
-                .SendStopEmail();
+                .CoESendStopEmail();
         }
 
         [When(@"provider selects to contact the employer themselves")]
