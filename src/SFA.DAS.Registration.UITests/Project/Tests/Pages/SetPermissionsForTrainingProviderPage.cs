@@ -27,7 +27,7 @@ public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
 
         return permission switch
         {
-            AddApprenticePermissions.AllowConditional => Continue(ApprenticeAllowRadioOption),
+            AddApprenticePermissions.YesAddApprenticeRecords => Continue(ApprenticeAllowRadioOption),
             _ => Continue(ApprenticeDoNotAllowRadioOption),
         };
     }
@@ -43,8 +43,8 @@ public class SetPermissionsForTrainingProviderPage : RegistrationBasePage
 
         return permission switch
         {
-            RecruitApprenticePermissions.Allow => ContinueToConfirm(RecruitAllowRadioOption),
-            RecruitApprenticePermissions.AllowConditional => ContinueToConfirm(RecruitAllowConditionalRadioOption),
+            RecruitApprenticePermissions.YesRecruitApprentices => ContinueToConfirm(RecruitAllowRadioOption),
+            RecruitApprenticePermissions.YesRecruitApprenticesButEmployerWillReview => ContinueToConfirm(RecruitAllowConditionalRadioOption),
             _ => ContinueToConfirm(RecruitDoNotAllowRadioOption),
         };
     }
