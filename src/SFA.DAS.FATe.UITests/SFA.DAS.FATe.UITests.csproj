@@ -10,6 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+	<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>
 	
 	<ItemGroup>
@@ -19,15 +21,10 @@
 		</Compile>
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Update="specflow.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-	</ItemGroup>
-
   <ItemGroup>
     <None Update="appsettings.Environment.json">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
     <None Update="specflow.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
