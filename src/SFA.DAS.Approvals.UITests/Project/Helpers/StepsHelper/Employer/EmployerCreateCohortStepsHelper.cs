@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public StartAddingApprenticesPage NonLevyEmployerTriesToAddApprentice()
         {
             return _confirmProviderDetailsHelper
-               .ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
+               .ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFuncWithoutSelectFundingOption());
         }
 
         public void NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
@@ -65,5 +65,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         }
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaSelectFundingFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFuncWithoutSelectFundingOption() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
     }
 }
