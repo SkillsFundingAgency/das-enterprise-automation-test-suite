@@ -24,20 +24,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(this.context);
         }
 
-        public void EmployerCreateCohortAndSendsToProvider()
-        {
-            var cohortSentYourTrainingProviderPage = EmployerCreateCohort(false);
-
-            var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
-
-            _cohortReferenceHelper.SetCohortReference(cohortReference);
-        }
-
-        public void EmployerCreateCohortsAndSendsToProvider(int numberOfCohorts, bool isTransferReciverEmployer)
+        public void EmployerCreateCohortViaLevyFundsAndSendsToProvider(int numberOfCohorts = 1)
         {
             for (var i = 1; i <= numberOfCohorts; i++)
             {
-                var cohortSentYourTrainingProviderPage = EmployerCreateCohort(isTransferReciverEmployer);
+                var cohortSentYourTrainingProviderPage = EmployerCreateCohortViaLevyFunds(false);
 
                 var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
 
@@ -45,10 +36,50 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             }
         }
 
-        private CohortSentYourTrainingProviderPage EmployerCreateCohort(bool isTransferReceiverEmployer)
+        public void EmployerCreateCohortsViaDirectTransferAndSendsToProvider(int numberOfCohorts = 1)
+        {
+            for (var i = 1; i <= numberOfCohorts; i++)
+            {
+                var cohortSentYourTrainingProviderPage = EmployerCreateCohortsViaDirectTransfer();
+
+                var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+
+                _objectContext.SetCohortReferenceList(cohortReference);
+            }
+        }
+
+        public void EmployerCreateCohortsViaReserveNewFundsOptionAndSendsToProvider(int numberOfCohorts = 1)
+        {
+            for (var i = 1; i <= numberOfCohorts; i++)
+            {
+                var cohortSentYourTrainingProviderPage = EmployerCreateCohortsViaReserveNewFundsOption();
+
+                var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+
+                _objectContext.SetCohortReferenceList(cohortReference);
+            }
+        }
+
+        private CohortSentYourTrainingProviderPage EmployerCreateCohortViaLevyFunds(bool isTransferReceiverEmployer)
         {
             return _confirmProviderDetailsHelper
                .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFunc())
+               .EmployerSendsToProviderToAddApprentices()
+               .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+        }
+
+        private CohortSentYourTrainingProviderPage EmployerCreateCohortsViaDirectTransfer()
+        {
+            return _confirmProviderDetailsHelper
+               .ConfirmProviderDetailsAreCorrect(true, AddTrainingProviderDetailsViaDirectTransfersRouteFunc())
+               .EmployerSendsToProviderToAddApprentices()
+               .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+        }
+
+        private CohortSentYourTrainingProviderPage EmployerCreateCohortsViaReserveNewFundsOption()
+        {
+            return _confirmProviderDetailsHelper
+               .ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsViaCreateReservationsRouteFunc())
                .EmployerSendsToProviderToAddApprentices()
                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
         }
@@ -64,7 +95,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             new StartAddingApprenticesPage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
         }
 
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaSelectFundingFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFuncWithoutSelectFundingOption() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsViaCreateReservationsRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaReserveNewFundsFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsViaDirectTransfersRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingDirectTransfersFunc();
     }
 }

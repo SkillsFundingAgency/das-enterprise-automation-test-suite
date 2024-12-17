@@ -107,7 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         {
             return addAnApprenitcePage
                     .StartNowToSelectFunding()
-                    .SelectCurrentLevyFundsAsFundingType()
+                    .SelectFundingType(FundingType.ReserveNewFunds)
                     .SubmitValidUkprn()
                     .ConfirmProviderDetailsAreCorrect()
                     .DynamicHomePageNonLevyEmployerAddsApprentices()
@@ -204,7 +204,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         {
             return new ApprenticesHomePage(context).AddAnApprentice()
                 .StartNowToSelectFunding()
-                .SelectCurrentLevyFundsAsFundingType()
+                .SelectFundingType(FundingType.CurrentLevyFunds)
                 .EnterUkprnForPortableFlexiJobPilotProvider()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
@@ -261,7 +261,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private ApproveApprenticeDetailsPage SetApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage, int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(employerReviewYourCohortPage, numberOfApprentices);
 
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaSelectFundingFunc();
+        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
 
         private StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect() => _confirmProviderDetailsHelper.ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFunc());
 

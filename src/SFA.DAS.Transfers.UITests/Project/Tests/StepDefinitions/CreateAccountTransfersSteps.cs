@@ -85,7 +85,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string _)
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _transfersCreateCohortStepsHelper.EmployerCreateCohortsAndSendsToProvider(2, true);
+            _transfersCreateCohortStepsHelper.EmployerCreateCohortsViaDirectTransferAndSendsToProvider(2);
         }
 
         [When(@"Receiver (First|Second|Third) sends approved cohort using transfer funds from Sender (First|Second|Third) with (.*) apprentices to the provider for review and approval")]

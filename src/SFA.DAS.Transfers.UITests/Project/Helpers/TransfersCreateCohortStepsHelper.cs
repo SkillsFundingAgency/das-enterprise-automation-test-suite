@@ -21,7 +21,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ValidateReadyToReviewCohortStatus(string status) => GoToApprenticeRequestsPage().GoToReadyToReview().SelectViewCurrentCohortDetails().ValidateCohortStatus(status);
 
-        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaSelectFundingFunc();
+        protected override Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
 
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()
         {

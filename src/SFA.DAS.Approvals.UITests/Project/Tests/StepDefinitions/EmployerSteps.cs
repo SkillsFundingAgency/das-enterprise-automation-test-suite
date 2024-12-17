@@ -174,17 +174,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer create a cohort and send to provider to add apprentices")]
         [When(@"the Employer create a cohort and send to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices() => _employerCreateCohortStepsHelper.EmployerCreateCohortViaLevyFundsAndSendsToProvider();
 
         [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
         [When(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortsAndSendsToProvider(numberOfCohorts, false);
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortViaLevyFundsAndSendsToProvider(numberOfCohorts);
 
         [Given(@"the Employer2 creates (\d) cohorts and sends them to provider to add apprentices")]
-        public void Employer2AddsApprenticesToCurrentCohort(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortsAndSendsToProvider(numberOfCohorts, true);
+        public void Employer2AddsApprenticesToCurrentCohort(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortsViaDirectTransferAndSendsToProvider(numberOfCohorts);
 
         [Given(@"the Employer3 creates (\d) cohorts and sends them to provider to add apprentices")]
-        public void Employer3AddsApprenticesToCurrentCohort(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortsAndSendsToProvider(numberOfCohorts, true);
+        public void Employer3AddsApprenticesToCurrentCohort(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortsViaReserveNewFundsOptionAndSendsToProvider(numberOfCohorts);
 
         [When(@"the Employer adds (\d) apprentices and sends to provider")]
         public void WhenTheEmployerAddsApprenticesAndSendsToProvider(int numberOfApprentices)
