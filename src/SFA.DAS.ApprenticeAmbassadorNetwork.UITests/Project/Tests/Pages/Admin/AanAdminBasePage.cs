@@ -10,7 +10,7 @@ public abstract class AanAdminBasePage(ScenarioContext context, bool verifyPage 
 
     protected override By ContinueButton => By.CssSelector("#continue");
 
-    private static By SearchTerm => By.CssSelector("input#SearchTerm");
+    protected static By SearchTerm => By.CssSelector("input#SearchTerm");
 
     private static By SearchList => By.CssSelector("#SearchTerm__listbox li");
 
@@ -23,7 +23,7 @@ public abstract class AanAdminBasePage(ScenarioContext context, bool verifyPage 
         Continue();
     }
 
-    protected void SelectAutoDropDown(string text)
+    protected void SelectAutoDropDown(string text, bool selectFirstOption = false)
     {
         formCompletionHelper.EnterText(SearchTerm, text);
 
@@ -38,7 +38,9 @@ public abstract class AanAdminBasePage(ScenarioContext context, bool verifyPage 
 
         formCompletionHelper.ClickElement(() =>
         {
-            var element = RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(SearchList));
+            var element = selectFirstOption
+                ? pageInteractionHelper.FindElements(SearchList).First()
+                : RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(SearchList));
 
             SetDebugInformation($"Clicked an auto dropdown element : '{element?.Text}'");
 

@@ -2,7 +2,7 @@
 
 public class FATStepsHelper(ScenarioContext context)
 {
-    public TrainingCourseSearchResultsPage SearchForTrainingCourse(string course) => new FATIndexPage(context).ClickStartButton().SearchApprenticeshipInFindApprenticeshipTrainingSearchPage(course);
+    public ApprenticeshipTrainingCoursesPage SearchForTrainingCourse(string course) => new FATIndexPage(context).ClickStartButton().SearchApprenticeshipInApprenticeshipTrainingCoursesPage(course);
 
     public ProviderSummaryPage SelectASpecificProvider(string provider) => new ProviderSearchResultsPage(context).ClickSpecifiedProvider(provider);
 

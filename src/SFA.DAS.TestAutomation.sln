@@ -88,13 +88,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.ApprenticeCommitmen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FindEPAO.UITests", "SFA.DAS.FindEPAO.UITests\SFA.DAS.FindEPAO.UITests.csproj", "{54CA22F5-BDDD-4ED7-B9B3-1E7489883758}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerIncentives.PaymentProcessTests", "SFA.DAS.EmployerIncentives.PaymentProcessTests\SFA.DAS.EmployerIncentives.PaymentProcessTests.csproj", "{B4DDE64A-D2EA-48BF-B682-264A2903C37E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.Transfers.UITests", "SFA.DAS.Transfers.UITests\SFA.DAS.Transfers.UITests.csproj", "{E116AF44-8D21-483E-B567-FA0091011F2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.AssessorCertification.APITests", "SFA.DAS.AssessorCertification.APITests\SFA.DAS.AssessorCertification.APITests.csproj", "{812AE8B5-626C-4EAD-AC08-43DB335A3633}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.AggregatedEmployerDemand.UITests", "SFA.DAS.AggregatedEmployerDemand.UITests\SFA.DAS.AggregatedEmployerDemand.UITests.csproj", "{687C80F1-8778-4809-A001-FA62B99028F9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.TestDataCleanup", "SFA.DAS.TestDataCleanup\SFA.DAS.TestDataCleanup.csproj", "{3EF33088-8375-45EF-A94E-335899F9CBCB}"
 EndProject
@@ -144,11 +140,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.FAA.UITests", "SFA.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EmployerProviderRelationships.UITests", "SFA.DAS.EmployerProviderRelationships.UITests\SFA.DAS.EmployerProviderRelationships.UITests.csproj", "{E8295751-BA32-4C50-841E-0162C8B103FE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.EarlyConnectForms.UITests", "SFA.DAS.EarlyConnectForms.UITests\SFA.DAS.EarlyConnectForms.UITests.csproj", "{5DE2AB1D-894E-4378-AD44-43E9524FE47A}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFA.DAS.RequestApprenticeshipTraining.UITests", "SFA.DAS.RequestApprenticeshipTraining.UITests\SFA.DAS.RequestApprenticeshipTraining.UITests.csproj", "{CF075431-1F2A-41DF-B3D3-320174E2ED82}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ApprenticeApp.UITests", "SFA.DAS.ApprenticeApp.UITests\SFA.DAS.ApprenticeApp.UITests.csproj", "{A46740F9-643A-45D9-8320-7A2092EEB164}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{7457AC0A-90AE-4000-AB2C-3F1D4988F553}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ProvideFeedback.APITests", "SFA.DAS.ProvideFeedback.APITests\SFA.DAS.ProvideFeedback.APITests.csproj", "{874970DA-70DA-471D-A693-0E4376854B71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.FATe.UITests", "SFA.DAS.FATe.UITests\SFA.DAS.FATe.UITests.csproj", "{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -343,12 +344,6 @@ Global
 		{54CA22F5-BDDD-4ED7-B9B3-1E7489883758}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{54CA22F5-BDDD-4ED7-B9B3-1E7489883758}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54CA22F5-BDDD-4ED7-B9B3-1E7489883758}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4DDE64A-D2EA-48BF-B682-264A2903C37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4DDE64A-D2EA-48BF-B682-264A2903C37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4DDE64A-D2EA-48BF-B682-264A2903C37E}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4DDE64A-D2EA-48BF-B682-264A2903C37E}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{B4DDE64A-D2EA-48BF-B682-264A2903C37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4DDE64A-D2EA-48BF-B682-264A2903C37E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E116AF44-8D21-483E-B567-FA0091011F2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E116AF44-8D21-483E-B567-FA0091011F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E116AF44-8D21-483E-B567-FA0091011F2A}.Development|Any CPU.ActiveCfg = Debug|Any CPU
@@ -361,12 +356,6 @@ Global
 		{812AE8B5-626C-4EAD-AC08-43DB335A3633}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{812AE8B5-626C-4EAD-AC08-43DB335A3633}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{812AE8B5-626C-4EAD-AC08-43DB335A3633}.Release|Any CPU.Build.0 = Release|Any CPU
-		{687C80F1-8778-4809-A001-FA62B99028F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{687C80F1-8778-4809-A001-FA62B99028F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{687C80F1-8778-4809-A001-FA62B99028F9}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{687C80F1-8778-4809-A001-FA62B99028F9}.Development|Any CPU.Build.0 = Debug|Any CPU
-		{687C80F1-8778-4809-A001-FA62B99028F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{687C80F1-8778-4809-A001-FA62B99028F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EF33088-8375-45EF-A94E-335899F9CBCB}.Development|Any CPU.ActiveCfg = Debug|Any CPU
@@ -505,6 +494,12 @@ Global
 		{E8295751-BA32-4C50-841E-0162C8B103FE}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{E8295751-BA32-4C50-841E-0162C8B103FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8295751-BA32-4C50-841E-0162C8B103FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE2AB1D-894E-4378-AD44-43E9524FE47A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF075431-1F2A-41DF-B3D3-320174E2ED82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF075431-1F2A-41DF-B3D3-320174E2ED82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF075431-1F2A-41DF-B3D3-320174E2ED82}.Development|Any CPU.ActiveCfg = Debug|Any CPU
@@ -517,6 +512,18 @@ Global
 		{A46740F9-643A-45D9-8320-7A2092EEB164}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{A46740F9-643A-45D9-8320-7A2092EEB164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46740F9-643A-45D9-8320-7A2092EEB164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{874970DA-70DA-471D-A693-0E4376854B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874970DA-70DA-471D-A693-0E4376854B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{874970DA-70DA-471D-A693-0E4376854B71}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{874970DA-70DA-471D-A693-0E4376854B71}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{874970DA-70DA-471D-A693-0E4376854B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874970DA-70DA-471D-A693-0E4376854B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -552,6 +559,7 @@ Global
 		{FEC44989-EBB3-4E8E-A6AF-C3A044B8BD65} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 		{6FFE7153-443E-46CB-8297-96DD97F60163} = {E6EFFBAD-598C-40B1-87C8-C9350158A15F}
 		{A46740F9-643A-45D9-8320-7A2092EEB164} = {7457AC0A-90AE-4000-AB2C-3F1D4988F553}
+		{874970DA-70DA-471D-A693-0E4376854B71} = {FA61C48C-A84C-421E-A639-76F3A08430F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B7E7F47-C08F-4B67-BB6A-FFCED573D7BF}

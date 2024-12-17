@@ -6,7 +6,7 @@ public class CommonSteps(ScenarioContext context)
     [Given(@"the Employer logins using existing Levy Account")]
     public void TheEmployerLoginsUsingExistingLevyAccount()
     {
-        new SignInToYourApprenticeshipServiceAccountPage(context)
+        new Pages.SignInToYourApprenticeshipServiceAccountPage(context)
             .SignInToYourApprenticeshipServiceAccount()
             .SignInToGovUkLogin()
             .EnterUsername()

@@ -52,5 +52,5 @@ public class AS_EditUserPermissionsPage : EPAO_BasePage
         return this;
     }
 
-    private string Getid(string labeltext) => pageInteractionHelper.FindElements(CheckBoxLabels).ToList().SingleOrDefault(x => x?.Text == labeltext).GetAttribute("for");
+    private string Getid(string labeltext) => pageInteractionHelper.FindElements(CheckBoxLabels).ToList().SingleOrDefault(x => x?.Text == labeltext).GetDomAttribute("for");
 }

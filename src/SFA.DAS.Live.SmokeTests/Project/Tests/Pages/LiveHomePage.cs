@@ -14,8 +14,6 @@ public class LiveHomePage(ScenarioContext context) : HomePage(context)
 
     private static By WebWidgetTitle => By.CssSelector("h1[id='widgetHeaderTitle']");
 
-    private static By FindApprenticeshipTrainingLink => By.LinkText("Find apprenticeship training and manage requests");
-
     public LiveHomePage VerifyHeaders() { VerifyElement(HeaderSelector); return this; }
 
     public void AccessHelpLauncher()
@@ -35,7 +33,7 @@ public class LiveHomePage(ScenarioContext context) : HomePage(context)
 
     public FindApprenticeshipTrainingAndManageRequestsPage GoToFatHomePage()
     {
-        tabHelper.OpenInNewTab(() => formCompletionHelper.Click(FindApprenticeshipTrainingLink));
+        formCompletionHelper.Click(FindApprenticeshipLink);
 
         return new FindApprenticeshipTrainingAndManageRequestsPage(context);
     }

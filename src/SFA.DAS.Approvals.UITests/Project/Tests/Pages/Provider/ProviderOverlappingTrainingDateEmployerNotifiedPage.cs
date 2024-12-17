@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
@@ -7,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        protected override string PageTitle => "Employer notified to confirm changes";
+        protected override string PageTitle => "Stop date request sent";
 
         private static By IWillAddAnotherApprenticeRadionButton => By.CssSelector("#radio-add-another-apprentice");
 
@@ -20,5 +21,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
+
+        public ProviderApproveApprenticeDetailsPage NavigateToDraftApprenticePage()
+        {
+            string currenturl = pageInteractionHelper.GetUrl();
+            string newurl = currenturl.Replace("OverlappingTrainingDateRequest/", "").Replace("employer-notified", "details");
+            context.Get<TabHelper>().GoToUrl(newurl);
+
+            return new ProviderApproveApprenticeDetailsPage(context);
+        }
+        
     }
 }

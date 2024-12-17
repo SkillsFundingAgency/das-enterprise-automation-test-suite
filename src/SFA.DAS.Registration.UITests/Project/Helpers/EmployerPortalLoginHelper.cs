@@ -35,7 +35,7 @@ public class EmployerPortalLoginHelper(ScenarioContext context) : IReLoginHelper
     {
         SetLoginCredentials(loginUser, isLevy);
 
-        objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
+        loginUser.UserCreds = objectContext.SetOrUpdateUserCreds(loginUser.Username, loginUser.IdOrUserRef, _registrationSqlDataHelper.CollectAccountDetails(loginUser.Username));
     }
 
     public HomePage Login(LevyUser nonLevyUser) => Login(nonLevyUser, true);

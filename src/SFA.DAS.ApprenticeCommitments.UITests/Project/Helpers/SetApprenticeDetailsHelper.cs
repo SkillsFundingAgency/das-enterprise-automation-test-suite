@@ -10,7 +10,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
     public class SetApprenticeDetailsHelper(ScenarioContext context)
     {
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
-        private readonly ApprenticeCommitmentsAccountsSqlDbHelper _appAccSqlDbHelper = context.Get<ApprenticeCommitmentsAccountsSqlDbHelper>();
 
         public (string firstName, string lastName) SetApprenticeDetails(ApprenticeUser user)
         {

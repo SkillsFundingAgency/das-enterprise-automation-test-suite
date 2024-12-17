@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FAT.UITests.Project;
-using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
+﻿
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
@@ -9,13 +6,15 @@ public class FindApprenticeshipTrainingAndManageRequestsPage(ScenarioContext con
 {
     protected override string PageTitle => "Find apprenticeship training and manage requests";
 
+    private static By FindAppTraining => By.CssSelector("a[href*='/courses']");
+
     public TrainingRequestDetailPage SelectActiveRequest()
     {
         string trainingCourseName = objectContext.GetTrainingCourseName();
 
         var link = By.LinkText(trainingCourseName);
 
-        string href = pageInteractionHelper.FindElement(link).GetAttribute("href");
+        string href = pageInteractionHelper.FindElement(link).GetHrefAttribute();
 
         SetDebugInformation($"Active request href - {href}");
 
@@ -30,5 +29,12 @@ public class FindApprenticeshipTrainingAndManageRequestsPage(ScenarioContext con
         ratDataHelper.RequestId = requestId;
 
         return new(context, trainingCourseName);
+    }
+
+    public ApprenticeshipTrainingCoursesPage GoToApprenticeshipTrainingCourses()
+    {
+        formCompletionHelper.Click(FindAppTraining);
+
+        return new(context);
     }
 }

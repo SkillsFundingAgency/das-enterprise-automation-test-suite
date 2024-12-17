@@ -15,6 +15,7 @@ using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Helpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -318,12 +319,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(editLinkVisible);
         }
 
-        [When(@"provider selects to edit the draft apprenticeship")]
-        public void WhenProviderSelectsToEditTheDraftApprenticeship()
+        [When(@"provider edit the draft apprenticeship")]
+        public void WhenProviderEditTheDraftApprenticeship()
         {
-            var providerApproveApprenticeDetailsPage = new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context).IWillAddAnotherApprentice();
+            var providerApproveApprenticeDetailsPage = new ProviderOverlappingTrainingDateEmployerNotifiedPage(_context).NavigateToDraftApprenticePage();
             providerApproveApprenticeDetailsPage.SelectEditApprentice(0);
         }
+
 
         [When(@"provider deletes start and end date from Draft cohort")]
         public void WhenProviderDeletesStartAndEndDateFromDraftCohort()

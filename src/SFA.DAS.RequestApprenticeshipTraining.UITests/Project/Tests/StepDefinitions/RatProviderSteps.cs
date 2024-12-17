@@ -1,9 +1,4 @@
-﻿using SFA.DAS.ProviderLogin.Service.Project;
-using SFA.DAS.ProviderLogin.Service.Project.Helpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Provider;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
+﻿
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.StepDefinitions;
 

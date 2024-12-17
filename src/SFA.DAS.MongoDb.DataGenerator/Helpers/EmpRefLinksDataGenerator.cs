@@ -1,11 +1,14 @@
 ﻿using MongoDB.Bson;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.MongoDb.DataGenerator.Helpers
 {
     public partial class EmpRefLinksDataGenerator : EmpRefFilterDefinition, IMongoDbDataGenerator
     {
         private readonly string _empRefLink;
+
+        private static string Href => AttributeHelper.Href;
 
         public EmpRefLinksDataGenerator(MongoDbDataHelper helper) : base(helper)
         {
@@ -17,10 +20,10 @@ namespace SFA.DAS.MongoDb.DataGenerator.Helpers
         public BsonDocument[] Data()
         {
 
-            BsonDocument selfHref = new() { { "href", $"/epaye/{_empRefLink}" } };
-            BsonDocument declarationsHref = new() { { "href", $"/epaye/{_empRefLink}/declarations" } };
-            BsonDocument franctionsHref = new() { { "href", $"/epaye/{_empRefLink}/fractions" } };
-            BsonDocument empCheckHref = new() { { "href", $"/epaye/{_empRefLink}/employed" } };
+            BsonDocument selfHref = new() { { Href, $"/epaye/{_empRefLink}" } };
+            BsonDocument declarationsHref = new() { { Href, $"/epaye/{_empRefLink}/declarations" } };
+            BsonDocument franctionsHref = new() { { Href, $"/epaye/{_empRefLink}/fractions" } };
+            BsonDocument empCheckHref = new() { { Href, $"/epaye/{_empRefLink}/employed" } };
 
 
             BsonDocument links = new()

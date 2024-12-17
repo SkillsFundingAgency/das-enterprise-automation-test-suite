@@ -1,9 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FAT.UITests.Project;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
-using System.Linq;
-using TechTalk.SpecFlow;
+﻿
 
 namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Provider;
 
@@ -39,6 +34,6 @@ public class EmployerRequestsForApprenticeshipTrainingPage(ScenarioContext conte
 
         formCompletionHelper.ClickElement(viewRequestElement);
 
-        return new (context);
+        return new(context);
     }
 }

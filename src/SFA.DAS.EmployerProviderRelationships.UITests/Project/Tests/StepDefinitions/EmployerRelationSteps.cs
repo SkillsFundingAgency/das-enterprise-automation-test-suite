@@ -18,13 +18,13 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     [When(@"the employer changes recruit apprentice permission")]
     public void TheEmployerChangesRecruitApprenticePermission()
     {
-        UpdatePermission((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.AllowConditional));
+        EmployerUpdatePermission((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.AllowConditional));
     }
 
-    [When(@"the provider does not grant any permission")]
-    public void WhenTheProviderDoesNotGrantAnyPermission()
+    [When(@"the employer revokes all provider permissions")]
+    public void TheEmployerRevokesAllProviderPermissions()
     {
-        UpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
+        EmployerUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
     }
 
     [Then(@"an employer has to select at least one permission")]
@@ -38,8 +38,8 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
             .VerifyDoNotAllowPermissions();
     }
 
-    [Then(@"the provider should be added with the correct permissions")]
-    public void TheProviderShouldBeAddedWithTheCorrectPermissions()
+    [Then(@"the correct permissions should be displayed in the employer portal")]
+    public void TheCorrectPermissionsShouldBeDisplayedInTheEmployerPortal()
     {
         var page = _employerPermissionsStepsHelper.OpenProviderPermissions();
 
@@ -67,32 +67,35 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
         new AlreadyLinkedToTrainingProviderPage(context).CannotAddExistingTrainingProvider();
     }
 
-    [Then(@"the employer accepts the request")]
-    public void TheEmployerAcceptsTheRequest()
+    [Then(@"the employer accepts the add account request")]
+    public void TheEmployerAcceptsTheAddAccountRequest()
     {
-        EPRReLogin();
-
-        AcceptOrDeclineProviderPermissionsRequest(true);
+        EPRReLoginAcceptOrDeclineProviderPermissionsRequest(RequestType.AddAccount, true);
     }
 
-    [Then(@"the employer declines the request")]
-    public void TheEmployerDeclinesTheRequest()
+    [Then(@"the employer declines the add account request")]
+    public void TheEmployerDeclinesTheAddAccountRequest()
     {
-        EPRReLogin();
-
-        AcceptOrDeclineProviderPermissionsRequest(false);
+        EPRReLoginAcceptOrDeclineProviderPermissionsRequest(RequestType.AddAccount, false);
     }
 
-
-    [Then(@"the employer accepts the updated request")]
-    public void TheEmployerAcceptsTheUpdatedRequest()
+    [Then(@"the employer declines the update permission request")]
+    public void TheEmployerDeclinesTheUpdatePermissionRequest()
     {
-
+        EPRReLoginAcceptOrDeclineProviderPermissionsRequest(RequestType.Permission, false);
     }
 
-    private void AcceptOrDeclineProviderPermissionsRequest(bool doesAllow)
+    [Then(@"the employer accepts the update permission request")]
+    public void TheEmployerAcceptsTheUpdatePermissionRequest()
     {
-        _employerPermissionsStepsHelper.AcceptOrDeclineProviderPermissionsRequest(providerConfig, eprDataHelper.RequestId, doesAllow);
+        EPRReLoginAcceptOrDeclineProviderPermissionsRequest(RequestType.Permission, true);
+    }
+
+    private void EPRReLoginAcceptOrDeclineProviderPermissionsRequest(RequestType requestType, bool doesAllow)
+    {
+        EPRReLogin(requestType);
+
+        _employerPermissionsStepsHelper.AcceptOrDeclineProviderRequest(requestType, providerConfig, eprDataHelper.LatestRequestId, doesAllow);
     }
 
 }

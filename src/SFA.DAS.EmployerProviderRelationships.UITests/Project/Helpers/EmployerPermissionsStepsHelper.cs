@@ -15,15 +15,21 @@ public class EmployerPermissionsStepsHelper(ScenarioContext context)
             .SelectAddATrainingProvider()
             .SearchForATrainingProvider(providerConfig)
             .AddOrSetPermissions(permissions)
-            .VerifyYouHaveAddedNotification()
+            .VerifyYouHaveAddedNotification(providerConfig.Name)
             .GoToHomePage();
     }
 
-    public HomePage AcceptOrDeclineProviderPermissionsRequest(ProviderConfig providerConfig, string requestId, bool doesAllow)
+    public HomePage AcceptOrDeclineProviderRequest(RequestType requestType, ProviderConfig providerConfig, string requestId, bool accept)
     {
-        var page = OpenProviderPermissions().ViewProviderRequests(providerConfig, requestId);
+        var page = OpenProviderPermissions();
 
-        return doesAllow ? page.AcceptProviderRequest().GoToHomePage() : page.DeclineRequest().ConfirmDeclineRequest().GoToHomePage();
+        AddOrReviewRequestFromProvider page1 = requestType == RequestType.Permission ? page.ReviewProviderRequests(providerConfig, requestId) : page.ViewProviderRequests(providerConfig, requestId);
+
+        RegistrationBasePage registrationBasePage = requestType == RequestType.Permission ? 
+            accept ? page1.AcceptProviderRequest().VerifyYouHaveSetPermissionNotification(providerConfig.Name) : page1.DeclinePermissionRequest().VerifyYouHaveDeclinedNotification(providerConfig.Name) :
+            accept ? page1.AcceptProviderRequest().VerifyYouHaveAddedNotification(providerConfig.Name) : page1.DeclineAddRequest().ConfirmDeclineRequest();
+
+        return registrationBasePage.GoToHomePage();
     }
 
     internal HomePage UpdateProviderPermission(ProviderConfig providerConfig, (AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permissions)

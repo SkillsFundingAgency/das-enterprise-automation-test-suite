@@ -7,7 +7,7 @@ public class AS_YourWithdrawalRequestsPage : EPAO_BasePage
     #region Locators
     private static By StandardNameVerification => By.XPath("//a[contains(text(),'Create a new withdrawal request')]");
     private static By Status(string status) => By.XPath($"//td[contains(text(),'{status}')]");
-    private static By ViewRegisterWithdrawalFeedbackLink => By.XPath("//tr/td[contains(text(),'Register')]/../td[contains(text(), 'Not applicable')]/../td[contains(text(),'Feedback added')]/../td/a");
+    private static By ViewRegisterWithdrawalFeedbackLink => By.XPath("//tr/td[contains(text(),'All standards')]/../td[contains(text(), 'All standards')]/../td[contains(text(),'Feedback added')]/../td/a");
     #endregion
 
     public AS_YourWithdrawalRequestsPage(ScenarioContext context) : base(context) => VerifyPage();

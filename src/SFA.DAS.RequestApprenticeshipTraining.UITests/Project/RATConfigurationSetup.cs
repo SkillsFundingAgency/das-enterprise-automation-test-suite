@@ -1,9 +1,4 @@
-﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.Login.Service.Project;
-using SFA.DAS.Login.Service.Project.Helpers;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project;
+﻿namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project;
 
 [Binding]
 public class RatConfigurationSetup(ScenarioContext context)

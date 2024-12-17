@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -39,7 +40,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 
             pageInteractionHelper.FocusTheElement(NoOfApprentice);
             formCompletionHelper.SendKeys(NoOfApprentice, Keys.Tab);
-            pageInteractionHelper.WaitForElementToChange(NoOfMonths, "value", "12");
+            pageInteractionHelper.WaitForElementToChange(NoOfMonths, AttributeHelper.Value, "12");
             pageInteractionHelper.FocusTheElement(NoOfMonths);
             formCompletionHelper.SendKeys(NoOfMonths, Keys.Tab);
 

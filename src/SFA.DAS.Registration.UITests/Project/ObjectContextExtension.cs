@@ -40,13 +40,15 @@ public static class ObjectContextExtension
     public static void SetAdditionalOrganisationName(this ObjectContext objectContext, string secondAccountOrganisationName, int index) => objectContext.Set(AdditionalOrganisation(index), secondAccountOrganisationName);
     internal static void SetRegisteredEmail(this ObjectContext objectContext, string value) => objectContext.Replace(RegisteredEmailAddress, value);
 
-    internal static void SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password, List<(string accountId, string hashedId, string orgName, string publicHashedId, string alename, string aleid, string aleAccountid, string aleAgreementid)> accDetails)
+    internal static List<UserCreds> SetOrUpdateUserCreds(this ObjectContext objectContext, string emailaddress, string password, List<(string accountId, string hashedId, string orgName, string publicHashedId, string alename, string aleid, string aleAccountid, string aleAgreementid)> accDetails)
     {
         var usercreds = objectContext.GetAllUserCreds();
 
         if (GetUserCreds(usercreds, emailaddress) is null) objectContext.SetUserCreds(emailaddress, password, usercreds.Count);
 
         objectContext.UpdateUserCreds(emailaddress, accDetails);
+
+        return objectContext.GetAllUserCreds();
     }
     public static string GetRegisteredEmail(this ObjectContext objectContext) => objectContext.Get(RegisteredEmailAddress);
     public static string GetHashedAccountId(this ObjectContext objectContext) => objectContext.GetAllUserCreds()[0].AccountDetails[0].HashedId;

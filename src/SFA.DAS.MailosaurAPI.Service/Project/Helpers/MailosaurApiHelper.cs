@@ -12,6 +12,11 @@ public class MailosaurApiHelper(ScenarioContext context)
 {
     private readonly DateTime dateTime = DateTime.Now;
 
+    public string GetCodeInEmail(string email, string subject, string emailText)
+    {
+        return GetEmailBody(email, subject, emailText).Html.Codes[0].Value;
+    }
+
     public string GetLinkFromMessage(Message message, string linkText)
     {
         foreach (var linkFound in message.Html.Links)
@@ -35,7 +40,8 @@ public class MailosaurApiHelper(ScenarioContext context)
         var criteria = new SearchCriteria()
         {
             SentTo = email,
-            Subject = subject
+            Subject = subject,
+            Body = emailText
         };
 
         var message = mailosaur.Messages.GetAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: dateTime).Result;
