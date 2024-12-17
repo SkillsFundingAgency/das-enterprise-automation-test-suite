@@ -72,6 +72,6 @@ public class AccountCreationTaskListStepsHelper(ScenarioContext context)
      createEmployerAccountPage.GoToTrainingProviderLink()
        .AddTrainingProviderNow()
        .SearchForATrainingProvider(providerConfig)
-       .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow))
+       .AddOrSetPermissionsAndCreateAccount((AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprentices))
        .SelectGoToYourEmployerAccountHomepage();
 }

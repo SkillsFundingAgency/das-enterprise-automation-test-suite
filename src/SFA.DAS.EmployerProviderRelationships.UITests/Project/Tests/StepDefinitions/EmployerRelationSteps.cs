@@ -8,7 +8,7 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     [Given(@"Levy employer grants all permission to a provider")]
     public void LevyEmployerGrantsAllPermissionToAProvider()
     {
-        permissions = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
+        permissions = (AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprentices);
 
         EPRLevyUserLogin();
 
@@ -18,13 +18,13 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     [When(@"the employer changes recruit apprentice permission")]
     public void TheEmployerChangesRecruitApprenticePermission()
     {
-        EmployerUpdatePermission((AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.AllowConditional));
+        EmployerUpdatePermission((AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprenticesButEmployerWillReview));
     }
 
     [When(@"the employer revokes all provider permissions")]
     public void TheEmployerRevokesAllProviderPermissions()
     {
-        EmployerUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.DoNotAllow));
+        EmployerUpdatePermission((AddApprenticePermissions.NoToAddApprenticeRecords, RecruitApprenticePermissions.NoToRecruitApprentices));
     }
 
     [Then(@"an employer has to select at least one permission")]
