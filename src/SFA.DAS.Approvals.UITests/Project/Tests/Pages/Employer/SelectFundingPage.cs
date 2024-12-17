@@ -31,6 +31,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             }
 
             Continue();
+
+            if (fundingType == FundingType.DirectTransferFundsFromConnection) { new SelectAConnectionToTransferFromPage(context).SelectTransferSenderAndContinue();}
+
             return new AddTrainingProviderDetailsPage(context);
         }
 

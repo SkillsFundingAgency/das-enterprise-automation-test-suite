@@ -12,6 +12,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Select a connection to transfer from";
         protected override By ContinueButton => By.Id("submit-transfer-connection");
+        private static By TransferConnectionRadioOption => By.ClassName("govuk-radios__label");
+
+        public AddTrainingProviderDetailsPage SelectTransferSenderAndContinue()
+        {
+            formCompletionHelper.Click(TransferConnectionRadioOption);
+            Continue();
+            return new AddTrainingProviderDetailsPage(context);
+        }
 
     }
 
