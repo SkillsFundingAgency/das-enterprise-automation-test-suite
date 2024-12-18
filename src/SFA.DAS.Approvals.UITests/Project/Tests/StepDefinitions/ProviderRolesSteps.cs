@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerNotification = _providerStepsHelper.NavigateToProviderHomePage()
                 .GoToProviderNotificationSettingsPage();
         }
-      
+
         [Then(@"the user is able to choose to receive notification emails")]
         public void ProviderIsAbleToChooseToReceiveNotificationEmails()
         {
@@ -149,11 +149,103 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .GoToProviderFooterTermsOfUsePage()
                 .GoToProviderHomePage();
         }
-        
+
         [Then(@"user can signout from their account")]
         public void UserCanSignoutFromTheirAccount()
         {
             _providerStepsHelper.NavigateToProviderHomePage().SignsOut();
+        }
+
+        [Then(@"user can view Add New Apprentices page as defined in the table below (.*)")]
+        public void UserCanOrCannotViewAddNewApprenticesPageAsDefinedInTable(bool canAccess)
+        {
+            if (canAccess)
+                _providerStepsHelper.NavigateToProviderHomePage().GotoSelectJourneyPage();
+            else
+                _providerStepsHelper.NavigateToProviderHomePage()
+                    .GotoSelectJourneyPageGoesToAccessDenied()
+                    .NavigateBrowserBackToProvderHomePage();
+        }
+
+        [Then(@"user can view Add An Employer page as defined in the table below (.*)")]
+        public void UserCanOrCannotViewAddAnEmployerPageAsDefinedInTable(bool canAccess)
+        {
+            if (canAccess)
+                _providerStepsHelper.NavigateToProviderHomePage().GotoAddNewEmployerStartPage();
+            else
+                _providerStepsHelper.NavigateToProviderHomePage()
+                    .GotoAddNewEmployerStartPageGoesToAccessDenied()
+                    .NavigateBrowserBackToProvderHomePage();
+        }
+
+        [Then(@"user can view Get Funding For NonLevy Employers page as defined in the table below (.*)")]
+        public void UserCanOrCannotViewGetFundingNonLevyEmployersPageAsDefinedInTable(bool canAccess)
+        {
+            if (canAccess)
+                _providerStepsHelper.NavigateToProviderHomePage().GoToProviderGetFunding();
+            else
+                _providerStepsHelper.NavigateToProviderHomePage()
+                    .GoToProviderGetFundingGoesToAccessDenied()
+                    .NavigateBrowserBackToProvderHomePage();
+        }
+
+        [Then(@"user can view View Employers And Manage Permissions page")]
+        public void UserCanViewEmployersAndManagePermissionsPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().GotoViewEmpAndManagePermissionsPage();
+        }
+
+        [Then(@"user can view Apprentice Requests page")]
+        public void UserCanViewApprenticeRequestsPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().GoToApprenticeRequestsPage();
+        }
+
+        [Then(@"user can view Manage Your Funding Reserved For NonLevy Employers page")]
+        public void UserCanViewManageYourFundingReservedForNonLevyEmployersPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().GoToManageYourFunding();
+        }
+
+        [Then(@"user can view Manage Your Apprentices page")]
+        public void UserCanViewManageYourApprenticesPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().GoToProviderManageYourApprenticePage();
+        }
+
+        [Then(@"user can view Recruit Apprentices page")]
+        public void UserCanViewRecruitApprenticesPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().GoToProviderRecruitApprenticesPage();
+        }
+
+        [Then(@"user can view Your Standards And Training Venues page")]
+        public void UserCanViewYourStandardsAndTrainingVenuesPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().NavigateToYourStandardsAndTrainingVenuesPage();
+        }
+
+        [Then(@"user can view Developer APIs page as defined in the table below (.*)")]
+        public void UserCanViewDeveloperAPIsPage(bool canAccess)
+        {
+            if (canAccess) 
+            _providerStepsHelper.NavigateToProviderHomePage().NavigateToDeveloperAPIsPage();
+            else
+                _providerStepsHelper.NavigateToProviderHomePage()
+                    .NavigateToDeveloperAPIsPageGoesToApimAccessDenied()
+                    .GoBackToTheServiceHomePage();
+        }
+
+        [Then(@"user can view Your Feedback page")]
+        public void UserCanViewYourFeedbackPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().NavigateToYourFeedback();
+        }
+
+        [Then(@"user can view View Employer Requests For Training page")]
+        public void UserCanViewEmployerRequestsForTrainingPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().NavigateToViewEmployerRequestsForTrainingPage();
         }
     }
 }

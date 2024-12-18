@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+using SFA.DAS.EmployerProviderRelationships.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project.Tests.Pages;
 using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
@@ -55,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.ClickElement(FeedbackFooterLink);
             var newTabHandle = webDriver.WindowHandles.First(handle => handle != originalTab);
             webDriver.SwitchTo().Window(newTabHandle);
-       
+
             pageInteractionHelper.GetUrl().Contains("dferesearch");
             tabHelper.OpenInNewTab(UrlConfig.Provider_BaseUrl);
             return new ApprovalsProviderHomePage(context);
@@ -89,6 +90,61 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             AddNewApprentices();
             return new ProviderAccessDeniedPage(context);
+        }
+
+        public ProviderAddEmployerStartPage GotoAddNewEmployerStartPage()
+        {
+            ClickAddAnEmployerLink();
+            return new ProviderAddEmployerStartPage(context);
+        }
+
+        public ProviderAccessDeniedPage GotoAddNewEmployerStartPageGoesToAccessDenied()
+        {
+            ClickAddAnEmployerLink();
+            return new ProviderAccessDeniedPage(context);
+        }
+
+
+        public ViewEmpAndManagePermissionsPage GotoViewEmpAndManagePermissionsPage()
+        {
+            ClickViewEmployersAndManagePermissionsLink();
+            return new ViewEmpAndManagePermissionsPage(context);
+        }
+
+        public ProviderCreateAVacancyPage GoToProviderRecruitApprenticesPage()
+        {
+            formCompletionHelper.ClickElement(ProviderRecruitApprenticesLink);
+            return new ProviderCreateAVacancyPage(context);
+        }
+
+        public ProviderYourStandardsAndTrainingVenuesPage NavigateToYourStandardsAndTrainingVenuesPage()
+        {
+            formCompletionHelper.ClickElement(YourStandardsAndTrainingVenues);
+            return new ProviderYourStandardsAndTrainingVenuesPage(context);
+        }
+
+        public ProviderAPIListPage NavigateToDeveloperAPIsPage()
+        {
+            formCompletionHelper.ClickElement(DeveloperAPIsLink);
+            return new ProviderAPIListPage(context);
+        }
+
+        public ApimAccessDeniedPage NavigateToDeveloperAPIsPageGoesToApimAccessDenied()
+        {
+            formCompletionHelper.ClickElement(DeveloperAPIsLink);
+            return new ApimAccessDeniedPage(context);
+        }
+
+        public ProviderYourFeebackPage NavigateToYourFeedback()
+        {
+            formCompletionHelper.Click(YourFeedback);
+            return new ProviderYourFeebackPage(context);
+        }
+
+        public ProviderViewEmployerRequestsForTrainingPage NavigateToViewEmployerRequestsForTrainingPage()
+        {
+            formCompletionHelper.Click(ViewEmployerRequestsForTraining);
+            return new ProviderViewEmployerRequestsForTrainingPage(context);
         }
 
         public ProviderReserveFundingForNonLevyEmployersPage GoToProviderGetFunding()
