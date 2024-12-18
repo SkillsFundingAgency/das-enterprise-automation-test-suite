@@ -178,7 +178,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
         [When(@"the Employer creates (\d) cohorts and sends them to provider to add apprentices")]
-        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortViaLevyFundsAndSendsToProvider(numberOfCohorts);
+        public void TheEmployerCreateACohortAndSendToProviderToAddApprentices(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateMultipleCohortsViaLevyFundsAndSendsToProvider(numberOfCohorts);
 
         [Given(@"the Employer2 creates (\d) cohorts and sends them to provider to add apprentices")]
         public void Employer2AddsApprenticesToCurrentCohort(int numberOfCohorts) => _employerCreateCohortStepsHelper.EmployerCreateCohortsViaDirectTransferAndSendsToProvider(numberOfCohorts);

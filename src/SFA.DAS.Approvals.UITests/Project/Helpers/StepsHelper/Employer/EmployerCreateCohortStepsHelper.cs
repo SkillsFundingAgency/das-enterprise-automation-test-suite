@@ -25,7 +25,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _confirmProviderDetailsHelper = new ConfirmProviderDetailsHelper(this.context);
         }
 
-        public void EmployerCreateCohortViaLevyFundsAndSendsToProvider(int numberOfCohorts = 1)
+        public void EmployerCreateCohortViaLevyFundsAndSendsToProvider()
+        {
+            var cohortSentYourTrainingProviderPage = EmployerCreateCohortViaLevyFunds(false);
+
+            var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+
+            _cohortReferenceHelper.SetCohortReference(cohortReference);
+        }
+
+        public void EmployerCreateMultipleCohortsViaLevyFundsAndSendsToProvider(int numberOfCohorts = 1)
         {
             for (var i = 1; i <= numberOfCohorts; i++)
             {
@@ -33,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
                 var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
 
-                _cohortReferenceHelper.SetCohortReference(cohortReference);
+                _objectContext.SetCohortReferenceList(cohortReference);
             }
 
         }
