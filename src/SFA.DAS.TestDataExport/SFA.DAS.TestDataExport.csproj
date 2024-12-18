@@ -5,6 +5,10 @@
     <RootNamespace>SFA.DAS.TestDataExport</RootNamespace>
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+  </ItemGroup>
   
   <ItemGroup>
 	<ProjectReference Include="..\SFA.DAS.TestDataCleanup\SFA.DAS.TestDataCleanup.csproj" />
