@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerNotification = _providerStepsHelper.NavigateToProviderHomePage()
                 .GoToProviderNotificationSettingsPage();
         }
-
+      
         [Then(@"the user is able to choose to receive notification emails")]
         public void ProviderIsAbleToChooseToReceiveNotificationEmails()
         {
@@ -94,6 +94,66 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerNotification = _providerNotification.ChooseNotToReceiveEmails();
             Assert.IsTrue(_providerNotification.IsSettingsUpdated(), $"Choose not to receive notification emails success message is not displayed");
+        }
+
+        [Then(@"user can access Notification Settings page")]
+        public void UserCanAccessNotificationSettingsPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToProviderNotificationSettingsPage().ClickCancel();
+        }
+
+        [Then(@"user can access Orgs And Agreements page")]
+        public void UserCanAccessProviderOrganisationsAndAgreementsPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToProviderOrganisationsAndAgreementsPage()
+                .GoToProviderHomePage();
+        }
+
+        [Then(@"user can access Help page")]
+        public void UserCanAccessHelpPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToManageApprenticeshipsServiceHelpPage()
+                .GoToProviderHomePage();
+        }
+
+        [Then(@"user can access Feedback page")]
+        public void UserCanAccessFeedbackPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .VerifyProviderFooterFeedbackPage();
+        }
+
+        [Then(@"user can access Privacy Statement page")]
+        public void UserCanAccessPrivacyStatementPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToProviderFooterPrivacyPage()
+                .GoToProviderHomePage();
+        }
+
+        [Then(@"user can access Cookies page")]
+        public void UserCanAccessCookiesPage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToProviderFooterCookiesPage()
+                .GoToProviderHomePage();
+        }
+
+        [Then(@"user can access Terms Of Use page")]
+        public void UserCanAccessTermsOfUsePage()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage()
+                .GoToProviderFooterTermsOfUsePage()
+                .GoToProviderHomePage();
+        }
+        
+        [Then(@"user can signout from their account")]
+        public void UserCanSignoutFromTheirAccount()
+        {
+            _providerStepsHelper.NavigateToProviderHomePage().SignsOut();
         }
     }
 }
