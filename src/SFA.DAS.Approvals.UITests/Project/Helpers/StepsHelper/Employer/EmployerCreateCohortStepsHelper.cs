@@ -3,6 +3,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
@@ -32,8 +33,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
                 var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
 
-                _objectContext.SetCohortReferenceList(cohortReference);
+                _cohortReferenceHelper.SetCohortReference(cohortReference);
             }
+
         }
 
         public void EmployerCreateCohortsViaDirectTransferAndSendsToProvider(int numberOfCohorts = 1)
