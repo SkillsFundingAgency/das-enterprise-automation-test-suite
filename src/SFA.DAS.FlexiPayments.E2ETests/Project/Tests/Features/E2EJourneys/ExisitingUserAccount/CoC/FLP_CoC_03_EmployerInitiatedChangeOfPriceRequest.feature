@@ -14,6 +14,7 @@ Scenario: FLP_CoC_03 Employer Initiated Change Of Price Request
 	When Employer proceeds to create a Change of Price request for flexi payments pilot learner
 	And Employer successfully creates a Change of Price request to reduce the agreed price to 14500
 	And Employer initiated Change of Price request details are saved in the PriceHistory table
+	And Provider is notified that provider has requested a price change through email
 	Then Provider can review the Change of Price request and approve it
 	And Employer is notified that the provider has approved a price change through email
 	And the approved Change of Price request is saved in the PriceHistory table
