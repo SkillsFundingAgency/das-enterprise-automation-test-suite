@@ -28,4 +28,19 @@ public class RequestPermissionsPage(ScenarioContext context) : PermissionBasePag
 
         return new(context);
     }
+
+}
+public class AccAccountRequestPermissionsPage(ScenarioContext context) : PermissionBasePageForTrainingProviderPage(context)
+{
+    protected override string PageTitle => $"Request permissions";
+    public CheckEmployerDetailsPage ProviderRequestNewPermissions((AddApprenticePermissions cohortpermission, RecruitApprenticePermissions recruitpermission) permisssion)
+    {
+        SetAddApprentice(permisssion.cohortpermission);
+
+        SetRecruitApprentice(permisssion.recruitpermission);
+
+        Continue();
+
+        return new(context);
+    }
 }

@@ -36,4 +36,27 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
 
         return new CreateYourApprenticeshipServiceAccount(context);
     }
+
+
+    [Given("a provider requests employer to create account with ChangeName NoToRecruit YesRecruitApprenticeButWithEmployerReview")]
+    public void GivenAProviderRequestsEmployerToCreateAccountWithChangeNameNoToRecruitYesRecruitApprenticeButWithEmployerReview()
+    {
+        GoToProviderAddAnEmployer();
+
+        eprDataHelper.EmployerEmail = objectContext.GetRegisteredEmail();
+
+        new AddAnEmployerPage(context).StartNowToAddAnEmployer()
+            .EnterNewEmployerEmail().SubmitPayeAndContinueToInvite()
+            .SubmitEmployerName()
+            .AccessChangeEmployerName()
+            .SubmitEmployerName()
+            .AccessChangePermissions();
+
+        new AccAccountRequestPermissionsPage(context).ProviderRequestNewPermissions
+            ((AddApprenticePermissions.NoToAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprenticesButEmployerWillReview));
+
+        new CheckEmployerDetailsPage(context).SendInvitation().GoToViewEmployersPage().VerifyPendingRequest();
+
+        SetRequestId(RequestType.CreateAccount);
+    }
 }
