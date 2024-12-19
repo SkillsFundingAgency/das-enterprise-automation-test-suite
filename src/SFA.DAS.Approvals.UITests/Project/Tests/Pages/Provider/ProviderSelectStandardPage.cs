@@ -40,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             SelectStandardAndContinue(LarsCode);
 
             return new EditApprenticeDetailsPage(context);
-        }
+        }        
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {

@@ -3,11 +3,15 @@
 @regression
 @pasproviderrole
 Scenario: PR_MF_01_ProviderUserRolesInManageFunding
-	Given the provider logs in as a <UserRole>
+	Given Provider Account Owner can make a reservation
+	Then user can signout from their account
+
+
+	When the provider logs in as a <UserRole>	
 	When user naviagates to 'Funding for non-levy employers' page
-	Then user can <ReserveNewFunding> as defined in the table below
-	And user can <DeleteExistingReservations> as defined in the table below
-	And user can <AddApprenticesToReservation> as defined in the table below
+	Then user can Reserve New Funding as defined in the table below <ReserveNewFunding>
+	And user can Delete Existing Reservations as defined in the table below <DeleteExistingReservations>
+	And user can Add Apprentices To Reservation as defined in the table below <AddApprenticesToReservation>
 	
 
 

@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
@@ -18,9 +18,9 @@ public class ProviderAccessDeniedPage : ApprovalsBasePage
         return new ApprovalsProviderHomePage(context);
     }
     
-    public ApprovalsProviderHomePage NavigateBrowserBackToProvderHomePage()
+    public ProviderFundingForNonLevyEmployersPage NavigateBrowserBackToProviderFundingForNonLevyEmployersPage()
     {
         tabHelper.NavigateBrowserBack();
-        return new ApprovalsProviderHomePage(context);
+        return new ProviderFundingForNonLevyEmployersPage(context);
     }
 }

@@ -16,36 +16,44 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         protected By AddApprenticeLink => By.CssSelector($"table a[href*='?reservationId={_reservationId}']");
 
         protected By DeleteFundingLink => By.CssSelector($"table a[href*='{_reservationId}/delete']");
+
+        private static By NextPageLink => By.XPath("//a[contains(text(),'Next')]");
+
         protected static By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
 
         public ProviderFundingForNonLevyEmployersPage(ScenarioContext context) : base(context) => _reservationId = objectContext.GetReservationId();
 
-        internal ProviderAddApprenticeDetailsPage AddApprenticeWithReservedFunding()
+        internal ProviderSelectStandardPage AddApprenticeWithReservedFunding()
         {
+            SearchForAnyReservation();
             formCompletionHelper.ClickElement(AddApprenticeLink);
-            return new ProviderAddApprenticeDetailsPage(context);
+            return new ProviderSelectStandardPage(context);
         }
 
         public ProviderAccessDeniedPage AddApprenticeWithReservedFundingGoesToAccessDenied()
         {
+            SearchForAnyReservation();
             formCompletionHelper.ClickElement(AddApprenticeLink);
             return new ProviderAccessDeniedPage(context);
         }
 
         internal DeleteReservationPage DeleteTheReservedFunding()
         {
+            SearchForAnyReservation();
             formCompletionHelper.ClickElement(DeleteFundingLink);
             return new DeleteReservationPage(context);
         }
 
         public ProviderAccessDeniedPage DeleteTheReservedFundingGoesToAccessDenied()
         {
+            SearchForAnyReservation();
             formCompletionHelper.ClickElement(DeleteFundingLink);
             return new ProviderAccessDeniedPage(context);
         }
 
         public ProviderFundingForNonLevyEmployersPage VerifyReservationExists()
         {
+            SearchForAnyReservation();
             VerifyElement(() => pageInteractionHelper.FindElement(DeleteFundingLink), "Delete", null);
             return this;
         }
@@ -54,6 +62,33 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         {
             formCompletionHelper.ClickElement(ReserveMoreFundingLink);
             return new ProviderReserveFundingForNonLevyEmployersPage(context);
+        }
+
+        public ProviderAccessDeniedPage ClickReserveMoreFundingLinkGoesToAccessDenied()
+        {
+            formCompletionHelper.ClickElement(ReserveMoreFundingLink);
+            return new ProviderAccessDeniedPage(context);
+        }
+
+        private void SearchForAnyReservation()
+        {
+            do
+            {
+                if (pageInteractionHelper.IsElementDisplayed(AddApprenticeLink))
+                    break;
+
+                if (pageInteractionHelper.IsElementDisplayed(NextPageLink))
+                {
+                    formCompletionHelper.ClickElement(NextPageLink);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            while (true);
+
+            VerifyElement(AddApprenticeLink);
         }
     }
 }
