@@ -15,13 +15,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BrowserStack.TestAdapter" Version="0.13.11" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="MonoMod.Core" Version="1.2.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+	  <PackageReference Include="System.Text.Json" Version="9.0.0" />
+	  <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>

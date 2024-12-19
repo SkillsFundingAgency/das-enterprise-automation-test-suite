@@ -12,7 +12,7 @@ platforms:
 accessibilityOptions:
   wcagVersion: wcag22aa
   includeTagsInTestingScope: 'accessibility'
-  excludeTagsInTestingScope: 'unittests'
+  excludeTagsInTestingScope: 'Unittests'
 logLevel: debug
 browserstackAutomation: true
 testObservability: true
