@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _employerPortalLoginHelper.Login(context.GetUser<LevyUser>(), true);
 
-            _employerCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
+            _employerCreateCohortStepsHelper.EmployerCreateCohortViaLevyFundsAndSendsToProvider();
 
             _providerStepsHelper.AddApprenticeAndSendToEmployerForApproval(1);
 

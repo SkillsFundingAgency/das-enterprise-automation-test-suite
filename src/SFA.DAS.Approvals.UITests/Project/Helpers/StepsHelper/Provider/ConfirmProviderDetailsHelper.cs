@@ -11,16 +11,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             var addAnApprenticePage = new ApprenticesHomePage(context).AddAnApprentice();
 
             AddTrainingProviderDetailsPage addTrainingProviderDetailsPage;
-            if (isTransferReceiverEmployer)
+            /*if (isTransferReceiverEmployer)
             {
-                addTrainingProviderDetailsPage = addAnApprenticePage.StartNowToCreateApprenticeViaTransfersFunds().SelectNoIDontWantToUseTransferFunds();
+                addTrainingProviderDetailsPage = addAnApprenticePage.StartNowToSelectFunding().SelectFundingType(FundingType.CurrentLevyFunds);
             }
             else
             {
                 addTrainingProviderDetailsPage = func is null ? addAnApprenticePage.StartNowToAddTrainingProvider() : func(addAnApprenticePage);
-            }
+            }*/
+
+            addTrainingProviderDetailsPage = func is null ? addAnApprenticePage.StartNowToAddTrainingProvider() : func(addAnApprenticePage);
 
             return addTrainingProviderDetailsPage.SubmitValidUkprn().ConfirmProviderDetailsAreCorrect();
         }
+
     }
 }

@@ -10,6 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
         CurrentAcademicYearStartDate,
         WaitingToStart,
         StartDateIsFewMonthsBeforeNow,
+        StartedInCurrentMonth,
         Random
     }
 
@@ -78,7 +79,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
                    apprenticeStatus == ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate ? GetOneMonthBeforeCurrentAcademicYearStartDate(randomStartDate) :
                    apprenticeStatus == ApprenticeStatus.CurrentAcademicYearStartDate ? _currentAcademicYearStartDate :
                    apprenticeStatus == ApprenticeStatus.WaitingToStart ? GetWaitingToStartApprenticeStartDate(randomStartDate) :
+                   apprenticeStatus == ApprenticeStatus.StartedInCurrentMonth ? DateTime.Now :
                    apprenticeStatus == ApprenticeStatus.StartDateIsFewMonthsBeforeNow ? GetStartDateFewMonthsBeforeNow() : randomStartDate;
+                    
         }
 
         private DateTime GenerateCourseStartDate() => GenerateCourseStartDate(_apprenticeStatus);
