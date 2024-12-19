@@ -66,7 +66,6 @@ steps:
      src/**/appsettings.TimeOutConfig.json
      src/**/appsettings.TestExecution.json
      src/**/appsettings.NServiceBusConfig.json
-     src/**/appsettings.BrowserStack.json
      src/**/appsettings.ApiFramework.json
     TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
     flattenFolders: true

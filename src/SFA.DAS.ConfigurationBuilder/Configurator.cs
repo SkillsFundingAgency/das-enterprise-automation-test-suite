@@ -56,7 +56,6 @@ namespace SFA.DAS.ConfigurationBuilder
                     "TimeOutConfig",
                     "TestExecution",
                     "NServiceBusConfig",
-                    "BrowserStack",
                     "ApiFramework"
                 ])
                 .AddProjectJsonFiles(
@@ -67,7 +66,6 @@ namespace SFA.DAS.ConfigurationBuilder
             if (!IsAdoExecution)
             {
                 builder
-                    .AddUserSecrets("BrowserStackSecrets")
                     .AddUserSecrets($"{EnvironmentName}_Secrets")
                     .AddUserSecrets($"{ProjectName}_Secrets")
                     .AddUserSecrets($"{ProjectName}_{EnvironmentName}_Secrets")
