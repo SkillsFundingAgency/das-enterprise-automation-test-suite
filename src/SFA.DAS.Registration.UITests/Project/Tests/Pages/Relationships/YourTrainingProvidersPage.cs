@@ -3,19 +3,19 @@
 public enum AddApprenticePermissions
 {
     [ToString("Yes, employer will review records")]
-    AllowConditional,
+    YesAddApprenticeRecords,
     [ToString("No")]
-    DoNotAllow
+    NoToAddApprenticeRecords
 }
 
 public enum RecruitApprenticePermissions
 {
     [ToString("Yes")]
-    Allow,
+    YesRecruitApprentices,
     [ToString("Yes, employer will review adverts")]
-    AllowConditional,
+    YesRecruitApprenticesButEmployerWillReview,
     [ToString("No")]
-    DoNotAllow
+    NoToRecruitApprentices
 }
 
 public class AddAsATrainingProviderPage(ScenarioContext context, ProviderConfig providerConfig) : AddOrReviewRequestFromProvider(context)
