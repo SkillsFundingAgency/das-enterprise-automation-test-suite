@@ -5,8 +5,6 @@
 Scenario: PR_MF_01_ProviderUserRolesInManageFunding
 	Given Provider Account Owner can make a reservation
 	Then user can signout from their account
-
-
 	When the provider logs in as a <UserRole>	
 	When user naviagates to 'Funding for non-levy employers' page
 	Then user can Reserve New Funding as defined in the table below <ReserveNewFunding>

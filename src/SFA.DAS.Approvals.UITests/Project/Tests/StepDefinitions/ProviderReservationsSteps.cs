@@ -7,7 +7,6 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -133,7 +132,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 _poviderFundingForNonLevyEmployersPage
                     .ClickReserveMoreFundingLinkGoesToAccessDenied()
                     .NavigateBrowserBackToProviderFundingForNonLevyEmployersPage();
-              
+
             }
         }
 
