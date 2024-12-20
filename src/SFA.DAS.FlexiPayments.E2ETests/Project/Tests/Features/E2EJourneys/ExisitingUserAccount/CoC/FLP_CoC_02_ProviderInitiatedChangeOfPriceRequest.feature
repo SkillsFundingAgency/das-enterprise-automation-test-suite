@@ -17,6 +17,7 @@ Scenario: FLP_CoC_02_1 Provider Initiated Change Of Price Request - Total Price 
 	And Employer is notified that a provider has requested a price change through email 
 	Then Employer can review the Change of Price request and approve it
 	And the approved Change of Price request is saved in the PriceHistory table
+	And Provider is notified that the employer has approved a price change through email
 	And validate earnings instalments are updated to reflect the new agreed price of 15000
 	And validate the approved Change of Price values have been updated in the Apprenticeship table of Commitment db
 
