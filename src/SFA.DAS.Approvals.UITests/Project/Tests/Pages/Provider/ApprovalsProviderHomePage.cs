@@ -111,10 +111,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ViewEmpAndManagePermissionsPage(context);
         }
 
-        public ProviderCreateAVacancyPage GoToProviderRecruitApprenticesPage()
+        public ProviderRecruitApprenticesHomePage GoToProviderRecruitApprenticesHomePage()
         {
             formCompletionHelper.ClickElement(ProviderRecruitApprenticesLink);
-            return new ProviderCreateAVacancyPage(context);
+            return new ProviderRecruitApprenticesHomePage(context);
         }
 
         public ProviderYourStandardsAndTrainingVenuesPage NavigateToYourStandardsAndTrainingVenuesPage()

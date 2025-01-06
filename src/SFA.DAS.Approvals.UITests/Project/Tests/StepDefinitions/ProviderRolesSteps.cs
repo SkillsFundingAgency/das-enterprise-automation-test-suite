@@ -175,7 +175,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else
                 _providerStepsHelper.NavigateToProviderHomePage()
                     .GotoAddNewEmployerStartPageGoesToAccessDenied()
-                    .GoBackToTheServiceHomePage();
+                    .NavigateBrowserBack();
         }
 
         [Then(@"user can view Get Funding For NonLevy Employers page as defined in the table below (.*)")]
@@ -186,7 +186,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else
                 _providerStepsHelper.NavigateToProviderHomePage()
                     .GoToProviderGetFundingGoesToAccessDenied()
-                    .GoBackToTheServiceHomePage();
+                    .NavigateBrowserBack();
         }
 
         [Then(@"user can view View Employers And Manage Permissions page")]
@@ -216,7 +216,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"user can view Recruit Apprentices page")]
         public void UserCanViewRecruitApprenticesPage()
         {
-            _providerStepsHelper.NavigateToProviderHomePage().GoToProviderRecruitApprenticesPage();
+            _providerStepsHelper.NavigateToProviderHomePage().GoToProviderRecruitApprenticesHomePage();
         }
 
         [Then(@"user can view Your Standards And Training Venues page")]
