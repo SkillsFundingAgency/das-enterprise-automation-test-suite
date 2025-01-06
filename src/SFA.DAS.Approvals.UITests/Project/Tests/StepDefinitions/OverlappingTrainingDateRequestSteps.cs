@@ -135,21 +135,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderCoEOverlappingTrainingDateConfirmDatesPage(_context)
                 .SaveAndSend()
-                .SendStopEmail();
+                .CoESendStopEmail();
         }
 
         [When(@"provider selects to contact the employer themselves")]
         public void WhenProviderSelectsToContactTheEmployerThemselves()
         {
-            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context)
+            new ProviderOverlappingTrainingDateConfirmDetailsPage(_context)
                 .SelectYesTheseDetailsAreCorrect()
-                .SelectContactTheEmployerThemselves();
+                .SelectIWillChangeEmployerLater();
         }
 
         [When(@"provider decides to send stop request email from service")]
         public void WhenProviderDecidesToSendStopRequestEmailFromService()
         {
-            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context)
+            new ProviderOverlappingTrainingDateConfirmDetailsPage(_context)
                 .SelectYesTheseDetailsAreCorrect()
                 .SendStopEmail();
         }
@@ -278,14 +278,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 .SelectEditApprentice()
                 .EditCost(_oldCost + 1)
                 .ClickSaveWhenOltd();
-        }
-
-        [When(@"provider selects to add apprentice details later")]
-        public void WhenProviderSelectsToAddApprenticeDetailsLater()
-        {
-            new ProviderOverlappingTrainingDateThereMayBeProblemPage(_context)
-              .SelectYesTheseDetailsAreCorrect()
-              .SelectIWillAddApprenticesLater();
         }
 
         [Then(@"Vaidate price update information is not stored in database")]
@@ -478,12 +470,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.AreEqual(2, numberOfApprenticesWithUln);
         }
 
-        [Then(@"price update information is not stored in the cohort")]
-        public void ThenPriceUpdateInformationIsNotStoredInTheCohort()
+        [Then(@"price update information is stored in the cohort")]
+        public void ThenPriceUpdateInformationIsStoredInTheCohort()
         {
             var newCostString = _commitmentsSqlDataHelper.GetLatestApprenticeshipForUln(GetUlnForOLTD()).cost;
             var newCost = int.Parse(newCostString);
-            Assert.AreEqual(_oldCost, newCost);
+            Assert.AreEqual(_oldCost+1, newCost);
         }
 
         private void SetUlnForOLTD() => _objectContext.SetUlnForOLTD(_commitmentsSqlDataHelper.GetApprenticeshipULN(_objectContext.GetCohortReference()));

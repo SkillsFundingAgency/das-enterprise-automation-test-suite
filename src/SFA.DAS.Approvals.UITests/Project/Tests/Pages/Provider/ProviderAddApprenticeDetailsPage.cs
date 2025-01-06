@@ -86,7 +86,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterDob();
         }
 
-        internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
+        internal ProviderOverlappingTrainingDateConfirmDetailsPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
         {
             EnterUln(objectContext.GetUlnForOLTD());
 
@@ -104,7 +104,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(AddButton);
 
-            return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
+            return new ProviderOverlappingTrainingDateConfirmDetailsPage(context);
         }
 
         internal ProviderApproveApprenticeDetailsPage SubmitNullTrainingDetails()

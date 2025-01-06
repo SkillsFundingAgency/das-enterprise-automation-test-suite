@@ -52,6 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project
                                    _tags.Contains("onemonthbeforecurrentacademicyearstartdate") ? ApprenticeStatus.OneMonthBeforeCurrentAcademicYearStartDate :
                                    _tags.Contains("currentacademicyearstartdate") ? ApprenticeStatus.CurrentAcademicYearStartDate :
                                    _tags.Contains("waitingtostartapprentice") ? ApprenticeStatus.WaitingToStart :
+                                   _tags.Contains("non-levy") ? ApprenticeStatus.StartedInCurrentMonth :
                                    _tags.Contains("startdateisfewmonthsbeforenow") ? ApprenticeStatus.StartDateIsFewMonthsBeforeNow : ApprenticeStatus.Random;
 
             List<(ApprenticeDataHelper apprenticeDataHelper, ApprenticeCourseDataHelper apprenticeCourseDataHelper)> listOfApprentices = SetProviderSpecificCourse(apprenticeStatus);
