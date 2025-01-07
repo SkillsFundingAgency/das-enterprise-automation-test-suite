@@ -12,7 +12,7 @@ public class ProviderLoginSteps(ScenarioContext context)
 
     [Given(@"the provider logs in as a (Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
     [When(@"the provider logs in as a (Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
-    public void GivenTheProviderLogsInAs(ProviderConfig config) => _providerHomePageStepsHelper.GoToProviderHomePage(config, false);
+    public void GivenTheProviderLogsInAs(ProviderConfig config) => _providerHomePageStepsHelper.GoToProviderHomePage(config, true);
 
     [StepArgumentTransformation(@"(Contributor|ContributorWithApproval|AccountOwner|Viewer)")]
     public ProviderConfig GetProviderUserRole(string providerUserRoles)
