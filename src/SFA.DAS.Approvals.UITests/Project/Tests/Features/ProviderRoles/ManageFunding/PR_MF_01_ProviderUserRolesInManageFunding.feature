@@ -1,5 +1,6 @@
 ﻿Feature: PR_MF_01_ProviderUserRolesInManageFunding
 
+@approvals
 @regression
 @pasproviderrole
 Scenario: PR_MF_01_ProviderUserRolesInManageFunding
