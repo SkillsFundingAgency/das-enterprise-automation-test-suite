@@ -3,6 +3,7 @@
 @approvals
 @regression
 @Approvalproviderrole
+@pasproviderrole
 Scenario Outline: PR_AP_08_Provider Roles Viewer  Manage your Apprentices
 Given the provider logs in as a Viewer
 When the user clicks on manage apprentice link from homepage or manage apprentices link

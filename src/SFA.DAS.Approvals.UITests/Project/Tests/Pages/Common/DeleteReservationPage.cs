@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
@@ -14,6 +15,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             SelectRadioOptionByForAttribute("Delete");
             Continue();
             return new ReservationSuccessfullyDeletedPage(context);
+        }
+
+        internal ProviderFundingForNonLevyEmployersPage NoGoBackToManageReservations()
+        {
+            SelectRadioOptionByForAttribute("Delete-no");
+            Continue();
+            return new ProviderFundingForNonLevyEmployersPage(context);
         }
     }
 }

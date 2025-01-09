@@ -3,6 +3,7 @@
 @approvals
 @regression
 @Approvalproviderrole
+@pasproviderrole
 Scenario: PR_AP_04_Provider Roles Contributor with approval Apprentice Requests
 Given the provider logs in as a ContributorWithApproval
 When the user clicks on apprentice request link from homepage or apprentice request link

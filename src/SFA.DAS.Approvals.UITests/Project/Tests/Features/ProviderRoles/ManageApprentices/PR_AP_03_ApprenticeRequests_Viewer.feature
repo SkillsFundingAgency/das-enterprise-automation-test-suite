@@ -3,6 +3,7 @@
 @approvals
 @regression
 @Approvalproviderrole
+@pasproviderrole
 Scenario: PR_AP_03_Provider Roles Viewer Apprentice Requests
 Given the provider logs in as a Viewer
 When the user clicks on apprentice request link from homepage or apprentice request link
