@@ -1,7 +1,7 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
+﻿using System;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.ProviderLogin.Service.Project;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
                 var page = providerApproveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().CreateANewReservation();
 
-                var page1 = VerifySucessMessage(page);
+                var page1 = VerifySuccessMessage(page);
 
                 providerApproveApprenticeDetailsPage = page1.GoToSelectStandardPage().ProviderSelectsAStandard().SubmitValidApprenticeDetails();
 
@@ -34,16 +34,21 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
         }
 
         public ProviderMakingChangesPage ProviderMakeReservation(ApprovalsProviderHomePage approvalsProviderHomePage)
-        {
-            return VerifySucessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));
+        {           
+            return VerifySuccessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));
         }
 
-        private static ProviderMakingChangesPage VerifySucessMessage(ProviderApprenticeshipTrainingPage page)
+        private static ProviderMakingChangesPage VerifySuccessMessage(ProviderApprenticeshipTrainingPage page)
         {
             return page.AddTrainingCourse().SelectDate().ClickSaveAndContinueButton().ConfirmReserveFunding().VerifySucessMessage();
         }
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
+        {
+            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToSelectStandardPage().ProviderSelectsAStandard();
+        }
+
+        public ProviderAddApprenticeDetailsPage ProviderAccountOwnerUserMakeReservation(ProviderAccountOwnerUser login)
         {
             return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToSelectStandardPage().ProviderSelectsAStandard();
         }
@@ -56,7 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                    .ChooseNonLevyEmployer()
                    .ConfirmNonLevyEmployer();
         }
-
+           
         public void VerifyReserveFromMonth(DateTime? reserveFromMonth)
         {
             _providerApprenticeshipTrainingPage.VerifyReserveFromMonth(reserveFromMonth);
@@ -67,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             _providerApprenticeshipTrainingPage.VerifySuggestedStartMonthOptions(firstMonth, secondMonth, thirdMonth);
         }
 
-        public void CompleteCreateReservationFromStartTrainingPage() => VerifySucessMessage(_providerApprenticeshipTrainingPage);
+        public void CompleteCreateReservationFromStartTrainingPage() => VerifySuccessMessage(_providerApprenticeshipTrainingPage);
 
         public void VerifyCreateReservationCannotBeCompleted()
         {

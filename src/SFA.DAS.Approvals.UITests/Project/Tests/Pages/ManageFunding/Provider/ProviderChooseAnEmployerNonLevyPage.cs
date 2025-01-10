@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         private ProviderConfirmEmployerPage ChooseAnEmployer(string employerType)
         {
-           
+
             EasAccountUser employerUser = employerType switch
             {
                 "NonLevy" => context.GetUser<NonLevyUser>(),

@@ -3,6 +3,7 @@
 @approvals
 @regression
 @Approvalproviderrole
+@pasproviderrole
 Scenario: PR_AP_07_Provider Roles Contributor with approval Manage your Apprentices
 Given the provider logs in as a ContributorWithApproval
 When the user clicks on manage apprentice link from homepage or manage apprentices link
