@@ -39,8 +39,6 @@ public class AccAccountRequestPermissionsPage(ScenarioContext context) : Permiss
 
         SetRecruitApprentice(permisssion.recruitpermission);
 
-        Continue();
-
         return new(context);
     }
 }
