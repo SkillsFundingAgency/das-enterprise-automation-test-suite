@@ -7,6 +7,6 @@
 @providerleadregistration
 @employerproviderrelationships
 @deleterequest
-Scenario: EPR_06_ProviderAbletoChangeNameChangePermissionsAndEmployerAbleToUpdateNameWhileCreatingAccount
-	Given a provider requests employer to create account with ChangeName NoToRecruit YesRecruitApprenticeButWithEmployerReview
+Scenario: EPR_06_ProviderAddAccountChangesNameEmployerAcceptsChangesName
+	Given a provider requests employer to create account with updated name and requests only RecruitApprenticeButWithEmployerReview
     Then the employer accepts the create account request

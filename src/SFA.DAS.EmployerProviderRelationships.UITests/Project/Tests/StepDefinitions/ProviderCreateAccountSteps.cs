@@ -38,8 +38,8 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
     }
 
 
-    [Given("a provider requests employer to create account with ChangeName NoToRecruit YesRecruitApprenticeButWithEmployerReview")]
-    public void GivenAProviderRequestsEmployerToCreateAccountWithChangeNameNoToRecruitYesRecruitApprenticeButWithEmployerReview()
+    [Given("a provider requests employer to create account with updated name and requests only RecruitApprenticeButWithEmployerReview")]
+    public void GivenAProviderRequestsEmployerToCreateAccountWithUpdatedNameAndRequestsOnlyRecruitApprenticeButWithEmployerReview()
     {
         GoToProviderAddAnEmployer();
 
@@ -57,6 +57,5 @@ public class ProviderCreateAccountSteps(ScenarioContext context) : EmpProRelatio
 
         new CheckEmployerDetailsPage(context).SendInvitation().GoToViewEmployersPage().VerifyPendingRequest();
 
-        SetRequestId(RequestType.CreateAccount);
     }
 }
