@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
+﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer.Onboarding;
+
+namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer
 {
     public class TermsAndConditionsOfEmployerPage(ScenarioContext context) : AanBasePage(context)
     {
@@ -6,10 +8,10 @@
 
         private static By ConfirmAndContinueButton => By.Id("confirm-continue");
 
-        public WhatAreasOfCountryYourOrganisationWorksInPage AcceptTermsAndConditions()
+        public Employer_FindYourRegionalNetworkPage AcceptTermsAndConditions()
         {
             formCompletionHelper.Click(ConfirmAndContinueButton);
-            return new WhatAreasOfCountryYourOrganisationWorksInPage(context);
+            return new Employer_FindYourRegionalNetworkPage(context);
         }
     }
 }

@@ -33,9 +33,10 @@ public class Employer_Onboarding_Steps(ScenarioContext context) : Employer_BaseS
     {
         employer_CheckTheInformationPage = employerAmbassadorApplicationPage.StartEmployerAmbassadorApplication()
             .AcceptTermsAndConditions()
-            .ConfirmAreasOfWorkAndContinue()
-            .SelectMeetOtherEmployerAmbassador_BuildProfileAndContinue()
-            .YesHaveEngagedWithAmbassadorAndContinue();
+            .SelectNorthEastRegion_Continue()
+            .ConfirmRegionalNetwork();
+            //.SelectMeetOtherEmployerAmbassador_BuildProfileAndContinue()
+            //.YesHaveEngagedWithAmbassadorAndContinue();
     }
 
     [Then(@"the employer onboarding process should be successfully completed")]
