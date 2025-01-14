@@ -8,10 +8,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
 
         private static By ConfirmAndContinueButton => By.Id("confirm-continue");
 
-        public Employer_FindYourRegionalNetworkPage AcceptTermsAndConditions()
+        public FindYourRegionalNetworkPage AcceptTermsAndConditions()
         {
             formCompletionHelper.Click(ConfirmAndContinueButton);
-            return new Employer_FindYourRegionalNetworkPage(context);
+            return new FindYourRegionalNetworkPage(context);
         }
     }
 }

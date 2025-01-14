@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer.Onboarding
 {
-    public class Employer_FindYourRegionalNetworkPage(ScenarioContext context) : AanBasePage(context)
+    public class FindYourRegionalNetworkPage(ScenarioContext context) : AanBasePage(context)
     {
         protected override string PageTitle => "Why do you want to join the network?";
 

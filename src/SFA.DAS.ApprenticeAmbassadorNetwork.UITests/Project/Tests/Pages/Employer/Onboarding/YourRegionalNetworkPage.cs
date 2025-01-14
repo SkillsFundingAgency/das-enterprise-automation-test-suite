@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer.Onboarding
+﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer.Onboarding
 {
     public class YourRegionalNetworkPage(ScenarioContext context) : AanBasePage(context)
     {
@@ -12,10 +6,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
 
         private static By ContinueButton => By.Id("continue");
 
-        public Employer_CheckTheInformationPage ConfirmRegionalNetwork()
+        public CreateYourAmbassadorProfilePage ConfirmRegionalNetwork()
         {
             formCompletionHelper.ClickElement(ContinueButton);
-            return new Employer_CheckTheInformationPage(context);
+            return new CreateYourAmbassadorProfilePage(context);
         }
     }
 }

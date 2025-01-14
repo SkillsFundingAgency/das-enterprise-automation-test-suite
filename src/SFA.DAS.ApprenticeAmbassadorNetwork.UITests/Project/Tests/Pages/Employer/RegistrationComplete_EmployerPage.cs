@@ -2,7 +2,7 @@
 
 public class RegistrationComplete_EmployerPage(ScenarioContext context) : AanBasePage(context)
 {
-    protected override string PageTitle => "Registration complete";
+    protected override string PageTitle => "Registration complete"; // to be changed?
 
     public Employer_NetworkHubPage ContinueToAmbassadorHub()
     {
