@@ -2,7 +2,7 @@
 
 public class EmployerAmbassadorApplicationPage(ScenarioContext context) : AanBasePage(context)
 {
-    protected override string PageTitle => "Register to become an employer ambassador for"; // might need to change this?
+    protected override string PageTitle => "Join the Apprentice Ambassador Network as an employer";
 
     private static By StartButton => By.Id("start-now");
 
