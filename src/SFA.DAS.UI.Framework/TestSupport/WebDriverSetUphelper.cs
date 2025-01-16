@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.Extensions.Options;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Chromium;
 using OpenQA.Selenium.Edge;
@@ -111,6 +112,14 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
         arguments.ForEach(chromeOptions.AddArgument);
 
         AddDownloadsDirectory(chromeOptions);
+
+        chromeOptions.AddExtension("C:\\das-enterprise-automation-test-suite\\src\\Playwright-CRX-Chrome-Web-Store.crx");
+
+        //var profilepath = @"C:\Users\arvin\AppData\Local\Google\Chrome\User Data\Profile 1";
+
+        //chromeOptions.AddArgument(@"user-data-dir=C:\Users\arvin\AppData\Local\Google\Chrome\User Data\Profile 1");
+
+        //chromeOptions.AddArgument($"profile-directory=Default");
 
         chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
 

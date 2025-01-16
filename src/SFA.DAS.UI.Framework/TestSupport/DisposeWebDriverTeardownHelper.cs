@@ -12,16 +12,16 @@ public class DisposeWebDriverTeardownHelper(ScenarioContext context)
 
     public void DisposeWebDriver()
     {
-        _tryCatch.AfterScenarioException(() =>
-        {
-            var WebDriver = context.GetWebDriver();
+        //_tryCatch.AfterScenarioException(() =>
+        //{
+        //    var WebDriver = context.GetWebDriver();
 
-            if (DoNotDisposeWebDriver() == false)
-            {
-                WebDriver?.Quit();
-                WebDriver?.Dispose();
-            }
-        });
+        //    if (DoNotDisposeWebDriver() == false)
+        //    {
+        //        WebDriver?.Quit();
+        //        WebDriver?.Dispose();
+        //    }
+        //});
     }
 
     private bool DoNotDisposeWebDriver()
