@@ -1,9 +1,6 @@
 ﻿using Desktop.Robot;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
-using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.UI.Framework.Hooks.BeforeScenario;
@@ -21,32 +18,19 @@ public class WebDriverSetup(ScenarioContext context) : WebDriverSetupBase(contex
         StartPlaywrightCrx(driver);
     }
 
-
-    public void StartPlaywrightCrx(IWebDriver driver)
+    public static void StartPlaywrightCrx(IWebDriver driver)
     {
-        driver.Navigate().GoToUrl("chrome://extensions/");
-
-        var element = context.GetWebDriver().FindElement(By.CssSelector("body"));
-
-        Actions actions = new(driver);
-
-        actions.ContextClick(element).Build().Perform();
-
-        actions.Pause(TimeSpan.FromMilliseconds(500)).Build().Perform();
+        driver.Navigate().GoToUrl("about:blank");
 
         var robot = new Robot
         {
             AutoDelay = 500
         };
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Down);
-        robot.KeyPress(Key.Enter);
+
+        robot.KeyDown(Key.Alt);
+        robot.KeyDown(Key.Shift);
+        robot.KeyPress(Key.R);
+        robot.KeyUp(Key.Alt);
+        robot.KeyUp(Key.Shift);
     }
 }

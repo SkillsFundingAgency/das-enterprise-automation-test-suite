@@ -8,5 +8,10 @@ public class EmployerHelpPage : RegistrationBasePage
 
     protected override bool CanAnalyzePage => false;
 
-    public EmployerHelpPage(ScenarioContext context) : base(context) => VerifyPage(PageHeader);
+    public EmployerHelpPage(ScenarioContext context) : base(context)
+    {
+        VerifyPage(PageHeader);
+
+        formCompletionHelper.EnterText(By.CssSelector("#query"), "playwright crx");
+    }
 }

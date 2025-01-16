@@ -3,6 +3,7 @@ using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 
 namespace SFA.DAS.UI.FrameworkHelpers;
 
@@ -13,6 +14,9 @@ public class TabHelper(IWebDriver webDriver, ObjectContext objectContext)
         var existingTabs = ExistingTabs();
 
         action.Invoke();
+        
+        // To assist playwright recording
+        Thread.Sleep(2000);
 
         var newtabs = ExistingTabs();
 
