@@ -1,6 +1,6 @@
 **Pipeline URL** - TBC
 
-# Awarding Organisation Digital Platform (Aodp)
+# Awarding Organisation Digital Platform (AODP)
 Platform for Awarding Organisations to submit applications for government funding
 ## Prerequisites to run the tests:
 1. General prerequisities from the Main read me
@@ -8,7 +8,7 @@ Platform for Awarding Organisations to submit applications for government fundin
 
 # Pipelines related to the project
 
-* Regression Automation SFA.DAS.Aodp.UITests
+* Regression Automation SFA.DAS.AODP.UITests
 * 
 * Integration API :- 
 * Outer API :- 
