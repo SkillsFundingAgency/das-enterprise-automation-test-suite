@@ -36,8 +36,9 @@ public class TabHelper(IWebDriver webDriver, ObjectContext objectContext)
         OpenNewTab();
 
         GoToUrl(url);
-
-        ClosePreviousTab();
+        
+        // To assist playwright recording
+        //ClosePreviousTab();
     }
 
     public void GoToUrl(string url)
