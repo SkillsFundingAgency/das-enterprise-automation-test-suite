@@ -9,7 +9,7 @@ namespace SFA.DAS.Campaigns.UITests.Project.Helpers
             Firstname = RandomDataGenerator.GenerateRandomAlphabeticString(6);
             Lastname = RandomDataGenerator.GenerateRandomAlphabeticString(9);
             FullName = $"{Firstname} {Lastname}";
-            Email = $"{Firstname}.{Lastname}@example.com";
+            Email = $"{Firstname}.{Lastname}@nshdzjik.mailosaur.net";
             Positions = RandomDataGenerator.GenerateRandomNumber(1);
             Course = $"Abattoir worker (Level 2)";
         }
