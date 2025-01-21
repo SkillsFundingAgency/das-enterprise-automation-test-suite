@@ -89,10 +89,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private CohortSentYourTrainingProviderPage EmployerCreateCohortsViaReserveNewFundsOption()
         {
-            return _confirmProviderDetailsHelper
-               .ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsViaCreateReservationsRouteFunc())
-               .EmployerSendsToProviderToAddApprentices()
-               .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+            return new ApprenticesHomePage(context)
+                .AddAnApprentice()
+                .StartNowToSelectFunding()
+                .SelectFundingType(FundingType.ReservedFunds)
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect()
+                .EmployerSendsToProviderToAddApprentices()
+                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+
         }
 
         public StartAddingApprenticesPage NonLevyEmployerTriesToAddApprentice()
