@@ -26,11 +26,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new EmployerSelectStandardPage(context);
         }
 
-        public AddApprenticeDetailsPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+        public AddTrainingProviderDetailsPage SelectAReservation()
         {
             formCompletionHelper.Click(ChooseCourseReservation);
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new AddTrainingProviderDetailsPage(context);
         }
     }
 }
