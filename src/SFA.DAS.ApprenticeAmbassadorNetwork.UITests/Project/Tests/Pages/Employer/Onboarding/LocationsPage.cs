@@ -6,13 +6,13 @@
 
         protected static By Location => By.Id("Location");
         protected static By AddButton => By.Id("add");
-        //private static By ContinueButton => By.Id("continue");
+        private static By SelectContinueButton => By.Id("continue");
 
         public EngagementWithApprenticeshipAmbassadorsPage AddLocation_And_Continue()
         {
             EnterLocation("Tamarside, Devon");
             formCompletionHelper.ClickElement(AddButton);
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(SelectContinueButton);
             return new EngagementWithApprenticeshipAmbassadorsPage(context);
         }
 
