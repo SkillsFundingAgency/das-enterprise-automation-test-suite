@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employ
     {
         protected override string PageTitle => "Create your ambassador profile";
 
-        private static By ContinueButton => By.Id("continue-button");
+       // private static By ContinueButton => By.Id("continue-button");
 
         public HowYouWantToBeInvolvedPage ConfirmYourAmbassadorProfile()
         {

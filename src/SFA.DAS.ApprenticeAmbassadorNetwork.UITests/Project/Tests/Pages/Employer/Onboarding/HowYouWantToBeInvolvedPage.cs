@@ -4,7 +4,7 @@
     {
         protected override string PageTitle => "How you want to be involved";
 
-        private static By ContinueButton => By.Id("continue-button");
+       // private static By ContinueButton => By.Id("continue-button");
         private static By ShareYourKnowledgeCheckbox => By.Id("42");
         private static By IncreaseEngagementCheckbox => By.Id("52");
         private static By AdditionalCheckbox => By.Id("43");
