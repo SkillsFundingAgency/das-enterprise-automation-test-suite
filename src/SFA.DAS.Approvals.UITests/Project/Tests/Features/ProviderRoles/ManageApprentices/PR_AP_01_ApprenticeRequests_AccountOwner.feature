@@ -3,6 +3,7 @@
 @approvals
 @regression
 @Approvalproviderrole
+@pasproviderrole
 Scenario: PR_AP_01_Provider Roles Account Owner Apprentice Requests
 Given the provider logs in as a AccountOwner
 When the user clicks on apprentice request link from homepage or apprentice request link

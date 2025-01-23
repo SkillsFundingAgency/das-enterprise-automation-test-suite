@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class SelectAConnectionToTransferFromPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Select a connection to transfer from";
+        protected override string PageTitle => "Select a connection";
         protected override By ContinueButton => By.Id("submit-transfer-connection");
         private static By TransferConnectionRadioOption => By.ClassName("govuk-radios__label");
 

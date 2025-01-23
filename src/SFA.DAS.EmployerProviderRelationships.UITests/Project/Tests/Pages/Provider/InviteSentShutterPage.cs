@@ -15,7 +15,7 @@ public class InviteSentShutterPage : ProviderRelationshipsBasePage
         MultipleVerifyPage(
             [
               () => VerifyFromMultipleElements(GovBody, "Your organisation has already invited"),
-              () => VerifyFromMultipleElements(GovBody, eprDataHelper.EmployerEmail),
+              () => VerifyFromMultipleElements(GovBody, "Your organisation has already invited this employer to create an account or add you as a training provider."),
               () => !verifyPayeandAorn || VerifyPage(InsetText, eprDataHelper.EmployerPaye),
               () => !verifyPayeandAorn || VerifyPage(InsetText, eprDataHelper.EmployerAorn)
             ]);
