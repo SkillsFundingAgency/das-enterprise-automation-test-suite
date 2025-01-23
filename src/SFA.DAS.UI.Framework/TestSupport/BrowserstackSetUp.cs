@@ -37,7 +37,7 @@ public static class BrowserStackSetup
     private static DriverOptions GetDriverOptions(BrowserStackSetting options)
     {
         string browser = options.Browser;
-        DriverOptions capabilities = true switch
+        DriverOptions capabilities = false switch
         {
             bool _ when browser.IsFirefox() => new FirefoxOptions(),
             bool _ when browser.IsEdge() => new EdgeOptions(),
@@ -45,13 +45,13 @@ public static class BrowserStackSetup
             _ => throw new Exception("Browserstack : Driver name - " + browser + " does not match OR this framework does not support the webDriver specified"),
         };
 
-        capabilities.BrowserVersion = options.BrowserVersion;
-        capabilities.AcceptInsecureCertificates = true;
-        capabilities.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
+        //capabilities.BrowserVersion = options.BrowserVersion;
+        //capabilities.AcceptInsecureCertificates = true;
+        //capabilities.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
 
-        options.Build = ProjectNameRegexHelper.ProjectNameRegex().Match(Assembly.GetExecutingAssembly().Location).Value;
+        //options.Build = ProjectNameRegexHelper.ProjectNameRegex().Match(Assembly.GetExecutingAssembly().Location).Value;
 
-        capabilities.AddAdditionalOption("bstack:options", SetBrowserstackCapabilities(options));
+        //capabilities.AddAdditionalOption("bstack:options", SetBrowserstackCapabilities(options));
 
         return capabilities;
     }
@@ -59,25 +59,25 @@ public static class BrowserStackSetup
     private static Dictionary<string, object> SetBrowserstackCapabilities(BrowserStackSetting options) =>
         new()
         {
-            { "userName", options.User },
-            { "accessKey", options.Key },
-            { "os", options.Os },
-            { "osVersion", options.Osversion },
-            { "resolution", options.Resolution },
-            { "projectName", $"{options.Project}_{_buildDate}" },
-            { "buildName", $"{options.Build}_{EnvironmentConfig.EnvironmentName.ToUpper()}_{_buildDateTime}" },
-            { "sessionName", options.Name },
-            { "debug", "true" },
-            { "networkLogs", options.EnableNetworkLogs },
-            { "timezone", BrowserStackSetting.TimeZone },
-            { "consoleLogs", "info" },
-            { "idleTimeout", "300" },
-            { "autoWait", "35" },
-            { "maskCommands", "setValues, getValues, setCookies, getCookies" }
+            //{ "userName", options.User },
+            //{ "accessKey", options.Key },
+            //{ "os", options.Os },
+            //{ "osVersion", options.Osversion },
+            //{ "resolution", options.Resolution },
+            //{ "projectName", $"{options.Project}_{_buildDate}" },
+            //{ "buildName", $"{options.Build}_{EnvironmentConfig.EnvironmentName.ToUpper()}_{_buildDateTime}" },
+            //{ "sessionName", options.Name },
+            //{ "debug", "true" },
+            //{ "networkLogs", options.EnableNetworkLogs },
+            //{ "timezone", BrowserStackSetting.TimeZone },
+            //{ "consoleLogs", "info" },
+            //{ "idleTimeout", "300" },
+            //{ "autoWait", "35" },
+            //{ "maskCommands", "setValues, getValues, setCookies, getCookies" }
         };
 
     private static void CheckBrowserStackLogin(BrowserStackSetting options)
     {
-        if (options.User == null || options.Key == null) throw new Exception("Please enter browserstack credentials");
+        //if (options.User == null || options.Key == null) throw new Exception("Please enter browserstack credentials");
     }
 }
