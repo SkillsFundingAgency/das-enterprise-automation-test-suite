@@ -2,7 +2,7 @@
 {
     public class FindYourRegionalNetworkPage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "Why do you want to join the network?";
+        protected override string PageTitle => "Find your regional network";
 
         private static By NorthEastCheckbox => By.Id("4");
 
