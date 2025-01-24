@@ -12,11 +12,11 @@ public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config)
 
         //var names = GetListOfData(query).Select(x => (string)x[0]).ToList();
 
-        List<string> names = ["Bishop ", "Cramlington ", "North East Futures ", "Haydon Bridge High School", "East Durham College"];
+        //List<string> names = ["Bishop ", "Cramlington ", "North East Futures ", "Haydon Bridge High School", "East Durham College"];
 
-        var name = RandomDataGenerator.GetRandomElementFromListOfElements(names);
+        var name = "college";
 
-        objectContext.SetDebugInformation($"'{name}' is selected from the table [Name]");
+        //objectContext.SetDebugInformation($"'{name}' is selected from the table [Name]");
 
         return name;
     }
