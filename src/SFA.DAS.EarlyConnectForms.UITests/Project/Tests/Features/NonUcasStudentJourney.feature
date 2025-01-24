@@ -6,7 +6,7 @@ so that my data will be available for futher progress
 @earlyconnect
 @regression
 
-Scenario: Verify Non Ucas Student journey for NorthEast Region
+Scenario: Verify Non Ucas Student journey for selected Region
 	Given I am on the landing page for a region
 	And I selected <County> Advisor Page
 	And I enter valid details
