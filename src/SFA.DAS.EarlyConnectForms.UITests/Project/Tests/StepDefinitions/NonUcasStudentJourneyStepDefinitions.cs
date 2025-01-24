@@ -1,6 +1,5 @@
 using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
 using System;
-using System.Diagnostics.Metrics;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
