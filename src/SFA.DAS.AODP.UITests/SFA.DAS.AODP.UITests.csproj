@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
@@ -35,14 +35,12 @@
 		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
 		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+		<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Project\Helpers\" />
-	  <Folder Include="Project\Hooks\" />
-	  <Folder Include="Project\Tests\Features\" />
-	  <Folder Include="Project\Tests\StepDefinitions\" />
-	  <Folder Include="Project\Tests\Pages\" />
+	  <Folder Include="Project\Tests\Pages\DfeUser\" />
 	</ItemGroup>
 
 </Project>
