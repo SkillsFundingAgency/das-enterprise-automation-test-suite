@@ -4,6 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;
@@ -376,6 +377,24 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
                 .EmployerSelectsAStandard()
                 .SubmitValidApprenticeDetails(false)
                 .EmployerFirstApproveAndNotifyTrainingProvider();
+
+            var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
+            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);
+        }
+
+        [Then(@"the non levy employer can add apprentice to the pledgeApplication via 'Add an apprentice' route")]
+        public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplicationViaAddAnApprenticeRoute()
+        {
+            var apprenticeDetailsApprovedPage = _apprenticeHomePageStepsHelper.GoToAddAnApprenticePage()
+                .StartNowToSelectFunding()
+                .SelectFundingType(FundingType.TransferFunds)
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect()
+                .EmployerAddsApprentices()
+                .EmployerSelectsAStandard()
+                .SubmitValidApprenticeDetails(false)
+                .EmployerFirstApproveAndNotifyTrainingProvider(); ;
 
             var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
             _objectContext.SetCohortReference(cohortReference);

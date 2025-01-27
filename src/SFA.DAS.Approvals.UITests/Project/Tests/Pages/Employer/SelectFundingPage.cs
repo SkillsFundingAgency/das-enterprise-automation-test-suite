@@ -40,6 +40,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                     break;
                 case FundingType.CurrentLevyFunds:
                     SelectRadioOptionByForAttribute("FundingType-4");
+                    break; 
+                case FundingType.TransferFunds:
+                    SelectRadioOptionByForAttribute("FundingType-5");
                     break;
                 default:
                     break;
@@ -50,6 +53,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (fundingType == FundingType.DirectTransferFundsFromConnection) { new SelectAConnectionToTransferFromPage(context).SelectTransferSenderAndContinue(); }
 
             if (fundingType == FundingType.ReservedFunds) { new ChooseAReservationPage(context).SelectAReservation(); }
+
+            if (fundingType == FundingType.TransferFunds) { new SelectTransferFundsPage(context).SelectTransferAndContinueToSelectProvider(); }
 
             return new AddTrainingProviderDetailsPage(context);
         }
@@ -62,6 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         DirectTransferFundsFromConnection,
         ReservedFunds,
         ReserveNewFunds,
-        CurrentLevyFunds
+        CurrentLevyFunds,
+        TransferFunds
     }
 }

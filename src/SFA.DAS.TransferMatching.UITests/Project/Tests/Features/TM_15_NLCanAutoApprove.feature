@@ -2,6 +2,7 @@
 
 @regression
 @transfermatching
+@approvals
 Scenario: TM_15_NL Can auto approve application when shown options
 	Given the levy employer logins using existing transfer matching account
 	Then the levy employer can create pledge using default criteria
@@ -9,6 +10,6 @@ Scenario: TM_15_NL Can auto approve application when shown options
 	When the non levy employer applies for the pledge
 	Then the levy employer can auto approve the application
 	And the non levy employer can accept funding
-	Then the non levy employer can add apprentice to the pledgeApplication
+	Then the non levy employer can add apprentice to the pledgeApplication via 'Add an apprentice' route
 	Then the provider adds Ulns and approves the cohorts
 	Then Verify a new live apprenticeship record is created
