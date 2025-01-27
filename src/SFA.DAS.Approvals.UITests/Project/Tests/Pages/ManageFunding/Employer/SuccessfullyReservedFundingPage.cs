@@ -34,6 +34,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new EmployerSelectStandardPage(context);
         }
 
+        internal SuccessfullyReservedFundingPage SaveReservationId(bool isSecondReservation = false)
+        {
+            SetCurrentReservationId(isSecondReservation);
+            return new SuccessfullyReservedFundingPage(context);
+        }
+
         private void ChooseToAddApprenticeRadioButton() => formCompletionHelper.ClickElement(AddApprenticeRadioButton);
     }
 }

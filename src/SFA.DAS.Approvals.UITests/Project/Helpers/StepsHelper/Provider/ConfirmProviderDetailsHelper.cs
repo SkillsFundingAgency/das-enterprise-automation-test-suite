@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
     {
         public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(bool isTransferReceiverEmployer, Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> func)
         {
-            var addAnApprenticePage = new ApprenticesHomePage(context).AddAnApprentice();
+            var addAnApprenticePage = new ApprenticesHomePage(context).ClickAddAnApprentice();
 
             AddTrainingProviderDetailsPage addTrainingProviderDetailsPage;
             /*if (isTransferReceiverEmployer)

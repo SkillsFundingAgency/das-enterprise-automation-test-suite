@@ -90,7 +90,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private CohortSentYourTrainingProviderPage EmployerCreateCohortsViaReserveNewFundsOption()
         {
             return new ApprenticesHomePage(context)
-                .AddAnApprentice()
+                .ClickAddAnApprentice()
                 .StartNowToSelectFunding()
                 .SelectFundingType(FundingType.ReservedFunds)
                 .SubmitValidUkprn()
