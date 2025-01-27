@@ -1,6 +1,12 @@
-﻿Feature: AODP_01
+﻿Feature: Notifications
+
+As a DfE User
+I want to be able to access landing pagr
+So that I can able to view qualifications dashboard
 
 @aodp
-Scenario: Dfe User lands on AODP service landing page
-	Given Aodp Admin lands on service landing page
+@regression
+Scenario: AODP_NO1 AS a DfE user Access AOdP and navigate to login page
+
+	Given Navigate to aodp portal
 

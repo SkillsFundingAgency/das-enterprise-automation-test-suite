@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
-using SFA.DAS.Login.Service.Project;
+using SFA.DAS.UI.Framework;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AODP.UITests.Project.Tests.StepDefinitions.DfeUserStepDefs
 
 {
     [Binding]
-    public class DfeUserSteps(ScenarioContext context)
+    public class DfeUserSteps : VerifyBasePage
     {
-        [Given("Aodp Admin lands on service landing page")]
-        public void GivenAodpAdminLandsOnServiceLandingPage()
+        public DfeUserSteps(ScenarioContext context) : base(context)
         {
-            
         }
 
+        protected override string PageTitle => "AODP Landing Page";
+
+        [Given(@"Navigate to aodp portal")]
+        public void NavigateToBaseUrl()
+        {
+            tabHelper.GoToUrl(UrlConfig.Aodp_BaseUrl);
+            Console.WriteLine("AODP launched  !!!!!!");
+        }
 
     }
 }
