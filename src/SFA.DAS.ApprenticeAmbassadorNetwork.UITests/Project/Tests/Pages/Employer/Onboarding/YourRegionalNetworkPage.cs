@@ -4,7 +4,7 @@
     {
         protected override string PageTitle => "Your regional network";
 
-        private static By ContinueButton => By.Id("continue");
+        //private static By ContinueButton => By.Id("continue");
 
         public CreateYourAmbassadorProfilePage ConfirmRegionalNetwork()
         {

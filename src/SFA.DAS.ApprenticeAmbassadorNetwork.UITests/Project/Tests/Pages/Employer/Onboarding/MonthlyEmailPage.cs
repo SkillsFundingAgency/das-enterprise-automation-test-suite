@@ -5,7 +5,7 @@
         protected override string PageTitle => "Do you want to receive a monthly email about upcoming events?";
 
         private static By RadioButtonYes => By.Id("ReceiveNotifications");
-        private static By ContinueButton => By.Id("continue");
+        //private static By ContinueButton => By.Id("continue");
 
         public EventTypesPage SelectReceiveNotifications()
         {
