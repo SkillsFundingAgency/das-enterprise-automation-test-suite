@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
@@ -41,6 +43,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private static By ReadOnyEmailField => By.CssSelector(".das-definition-list > dd#email,dd#Email");
         private static By ReadOnlyTrainingCost => By.CssSelector(".das-definition-list > dd#cost");
         private static By ReadOnlyTrainingCourse => By.CssSelector(".das-definition-list > dd#trainingName");
+
+        private readonly static By MinimumFundingBandCourseName = By.XPath("/html/body/div[2]/main/div/div/form/div[2]/div[7]/dl/div/dd[1]");
+
+        private readonly static By MinimumFundingBandCourseCost = By.XPath("//*[@id=\"addApprenticeship\"]/div[2]/div[7]/dl/div/dd[2]");
 
         public AddAndEditApprenticeDetailsBasePage VerifyCourseAndCostAreReadOnly()
         {
@@ -245,6 +251,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         {
             formCompletionHelper.Click(TrainingCourseEditLink);
             return new EmployerSelectStandardPage(context);
+        }
+
+        public void ValidateMaxFundingBand()
+        {
+            var (_, title, _, _, proposedMaxFunding) = apprenticeCourseDataHelper.CourseDetails.Course;
+
+            var actualCourseTitle = pageInteractionHelper.FindElement(MinimumFundingBandCourseName).Text;
+            actualCourseTitle.Should().Contain(title);
+
+            var actualCost = pageInteractionHelper.FindElement(MinimumFundingBandCourseCost).Text;
+            var actualCostAsInt = ConvertCourseCostToInt(actualCost);
+            actualCostAsInt.Should().Be(proposedMaxFunding);
+        }
+
+        private static int ConvertCourseCostToInt(string cost)
+        {
+            string cleanedCost = Regex.Replace(cost, @"[^0-9]", "");
+
+            if (int.TryParse(cleanedCost, out int result))
+            {
+                return result;
+            }
+            else
+            {
+                throw new FormatException("The input string is not in a valid format.");
+            }
         }
     }
 }

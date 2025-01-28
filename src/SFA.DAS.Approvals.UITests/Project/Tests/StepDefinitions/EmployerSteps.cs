@@ -167,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer approves the cohort and sends to provider")]
         public void WhenTheEmployerApprovesTheCohortAndSendsToProvider()
         {
-            _approveApprenticeDetailsPage = _employerStepsHelper.EmployerReviewCohort();
+            _approveApprenticeDetailsPage = _employerStepsHelper.EmployerReviewCohort(true);
 
             _approveApprenticeDetailsPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
