@@ -17,5 +17,7 @@ public class FAASteps(ScenarioContext context)
     [Then(@"the applicant can save vacancy on search results page before applying for the vacancy")]
     public void ThenTheApplicantCanSaveVacancyOnSearchResultsPageBeforeApplyingForTheVacancy() => _faaStepsHelper.GoToSearchResultsPagePageAndSaveBeforeApplying();
 
+    [Then("the Applicant can withdraw the application")]
+    public void ThenTheApplicantCanWithdrawTheApplication() => _faaStepsHelper.GoToYourApplicationsPageAndWithdrawAnApplication();
 
 }
