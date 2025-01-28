@@ -111,7 +111,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                     .SubmitValidUkprn()
                     .ConfirmProviderDetailsAreCorrect()
                     .DynamicHomePageNonLevyEmployerAddsApprentices()
-                    .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+                    .EmployerSelectsAStandard()
                     .DraftDynamicHomePageAddValidApprenticeDetails()
                     .DraftReturnToHomePage()
                     .CheckDraftStatusAndAddDetails()
