@@ -76,6 +76,8 @@ public class EmployerRelationSteps(ScenarioContext context) : EmpProRelationBase
     [Then(@"the employer declines the add account request")]
     public void TheEmployerDeclinesTheAddAccountRequest()
     {
+        eprDataHelper.EmployerEmail = context.GetUser<EPRDeclineRequestUser>().Username;
+
         EPRReLoginAcceptOrDeclineProviderPermissionsRequest(RequestType.AddAccount, false);
     }
 

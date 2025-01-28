@@ -1,4 +1,5 @@
 using SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
@@ -11,20 +12,31 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         [Given(@"I am on the landing page for a region")]
         public void GivenIAmOnTheLandingPageForARegion() => _stepsHelper.GoToEarlyConnectHomePage();
 
-        [Given(@"I selected North East Advisor Page")]
-        public void GivenIISelectedNorthEastAdvisorPage()
+        [Given(@"I selected (.*) Advisor Page")]
+        public void GivenISelectedCountyAdvisorPage(string county)
         {
-            _stepsHelper.GoToEarlyConnectNorthEastAdvisorPage();
-            _stepsHelper.GoToEarlyConnectEmailPage();
-        }
+            switch (county)
+            {
+                case "Lancashire":
+                    _stepsHelper.GoToEarlyConnectLancashireAdvisorPage();
+                    _stepsHelper.GoToEarlyConnectEmailPage();
+                    break;
 
-        [Given(@"I selected Lancashire Advisor Page")]
-        public void GivenIISelectedLancashireAdvisorPage()
-        {
-            _stepsHelper.GoToEarlyConnectLancashireAdvisorPage();
-            _stepsHelper.GoToEarlyConnectEmailPage();
-        }
+                case "North East":
+                    _stepsHelper.GoToEarlyConnectNorthEastAdvisorPage();
+                    _stepsHelper.GoToEarlyConnectEmailPage();
+                    break;
 
+                case "London":
+                    _stepsHelper.GoToEarlyConnectLondonAdvisorPage();
+                    _stepsHelper.GoToEarlyConnectEmailPage();
+                    break;
+
+                default:
+                    throw new ArgumentException("County link not found");
+            }   
+        }
+        
         [Given(@"I enter valid details")]
         public void GivenIEnterValidDetails()
         {
