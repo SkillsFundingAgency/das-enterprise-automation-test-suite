@@ -134,10 +134,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
         [Then(@"the levy employer can view the approved application")]
-        public void ThenTheLevyEmployerCanViewApprovedApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING ACCEPTANCE BY APPLICANT");
+        public void ThenTheLevyEmployerCanViewApprovedApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Auto approval: Awaiting acceptance by applicant");
 
         [Then(@"the levy employer can view the awaiting your approval application")]
-        public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING YOUR APPROVAL");
+        public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Awaiting your approval");
 
         [Then(@"the non levy employer can accept funding")]
         public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication(ApplicationStatus.Accepted.GetLabelForReceiver());
@@ -420,7 +420,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'")]
         public void ApplicationStatusShowsDateDueToAutoApprove()
         {
-            var approvalDate = "AUTO APPROVAL ON " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+            var approvalDate = "Auto approval on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
 
             GoToTransferPledgePageAsSender().ConfirmApplicationStatus(approvalDate);
         }
