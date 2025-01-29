@@ -21,9 +21,9 @@ public class EarlyConnectStepsHelper(ScenarioContext context)
         return new EarlyConnectHomePage(context).SelectLancashire();
     }
 
-    public EarlyConnectHomePage GoToEarlyConnectLondonAdvisorPage()
+    public EarlyConnectHomePage GoToEarlyConnectGreaterLondonAdvisorPage()
     {
-        return new EarlyConnectHomePage(context).SelectLondon();
+        return new EarlyConnectHomePage(context).SelectGreaterLondon();
     }
 
     public GetApprenticeshipAdviserPage GoToEarlyConnectEmailPage()
