@@ -5,7 +5,7 @@ Project: The service is about how UCAS and Non UCAS(Others) students will share 
 Currently triaged in three regions in England with their respective LepsCode
 North East  
 Lancashire 
-London*   
+London   
  
 
 ## **Prerequisites to run the tests**:
@@ -29,8 +29,6 @@ London*
 * das-(env)-earlycon-db (Earlyconnect)
 
 ## **FYI**
-* London region has been paused after trial exceeded expectations TBC
-* Lancashire region has been paused after trial exceeded expectations TBC in January 2025. Therfore tests for Lancashire journey is ignored
 * Testing requires a unique email address of students therefore make use of mailosaur account where an OTP is sent for authenication
 * UCAS students data is consumed from Earlyconnect APIs
 * Schedule email is sent to uncompleted applications as reminders
