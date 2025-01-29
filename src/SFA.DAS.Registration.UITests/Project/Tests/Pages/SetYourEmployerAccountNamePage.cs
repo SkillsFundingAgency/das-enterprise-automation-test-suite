@@ -2,7 +2,7 @@
 
 public class SetYourEmployerAccountNamePage : RegistrationBasePage
 {
-    protected override string PageTitle => "Confirm your employer account name";
+    protected override string PageTitle => "Set your account name";
     protected override By ContinueButton => By.CssSelector("#accept");
     protected static By NewNameTextBox => By.Id("NewName");
 
