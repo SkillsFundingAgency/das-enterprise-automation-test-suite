@@ -8,6 +8,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Project\Helpers\**" />
+	  <Compile Remove="Project\Tests\Pages\DfeUser\**" />
+	  <EmbeddedResource Remove="Project\Helpers\**" />
+	  <EmbeddedResource Remove="Project\Tests\Pages\DfeUser\**" />
+	  <None Remove="Project\Helpers\**" />
+	  <None Remove="Project\Tests\Pages\DfeUser\**" />
+	  <SpecFlowFeatureFiles Remove="Project\Helpers\**" />
+	  <SpecFlowFeatureFiles Remove="Project\Tests\Pages\DfeUser\**" />
+	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Helpers\**" />
+	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Pages\DfeUser\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
 		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
@@ -36,11 +49,6 @@
 		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 		<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Project\Helpers\" />
-	  <Folder Include="Project\Tests\Pages\DfeUser\" />
 	</ItemGroup>
 
 </Project>
