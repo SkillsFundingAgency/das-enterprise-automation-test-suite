@@ -25,6 +25,13 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToEarlyConnectEmailPage();
         }
 
+        [Given("I selected London Advisor Page")]
+        public void GivenISelectedLondonAdvisorPage()
+        {
+            _stepsHelper.GoToEarlyConnectLondonAdvisorPage();
+            _stepsHelper.GoToEarlyConnectEmailPage();
+        }
+
         [Given(@"I enter valid details")]
         public void GivenIEnterValidDetails()
         {

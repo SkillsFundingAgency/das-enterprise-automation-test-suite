@@ -16,6 +16,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
 
         protected static By GetAnAdvisorInLancashire => By.LinkText("Get an adviser in Lancashire");
         protected static By GetAnAdvisorInNorthEast => By.XPath("//a[normalize-space()='Get an adviser in North East']");
+        protected static By GetAnAdvisorInLondon => By.LinkText("Get an adviser in Greater London");
 
         public EarlyConnectHomePage AcceptCookieAndAlert()
         {
@@ -35,6 +36,11 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         public EarlyConnectHomePage SelectLancashire()
         {
             formCompletionHelper.Click(GetAnAdvisorInLancashire);
+            return new EarlyConnectHomePage(context);
+        }
+        public EarlyConnectHomePage SelectLondon()
+        {
+            formCompletionHelper.Click(GetAnAdvisorInLondon);
             return new EarlyConnectHomePage(context);
         }
     }

@@ -22,3 +22,10 @@ Scenario: Verify Non Ucas Student journey for Lancashire Region
 	And I enter valid details
 	And I answer the triage questions related to me
 	Then I check my answers, accept and submit
+
+Scenario: Verify Non Ucas Student journey for London Region
+	Given I am on the landing page for a region
+	And I selected London Advisor Page
+	And I enter valid details
+	And I answer the triage questions related to me
+	Then I check my answers, accept and submit
