@@ -15,7 +15,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.Pages
         private static By CloseCookieButton => By.CssSelector("#btn-hide-cookie-banner");
 
         protected static By GetAnAdvisorInLancashire => By.LinkText("Get an adviser in Lancashire");
-        protected static By GetAnAdvisorInNorthEast => By.XPath("//a[normalize-space()='Get an adviser in North East']");
+        protected static By GetAnAdvisorInNorthEast => By.LinkText("Get an adviser in North East");
         protected static By GetAnAdvisorInGreaterLondon => By.LinkText("Get an adviser in Greater London");
 
         public EarlyConnectHomePage AcceptCookieAndAlert()
