@@ -13,7 +13,7 @@ public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config)
         //var names = GetListOfData(query).Select(x => (string)x[0]).ToList();
 
         //List<string> names = ["Bishop ", "Cramlington ", "North East Futures ", "Haydon Bridge High School", "East Durham College"];
-        List<string> names = ["College"];
+        List<string> names = ["School", "High"];
 
         var name = RandomDataGenerator.GetRandomElementFromListOfElements(names);
 

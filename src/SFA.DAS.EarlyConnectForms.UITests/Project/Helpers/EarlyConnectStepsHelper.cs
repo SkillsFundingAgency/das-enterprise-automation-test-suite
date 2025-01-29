@@ -6,10 +6,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Helpers;
 
 public class EarlyConnectStepsHelper(ScenarioContext context)
 {
-    public EarlyConnectHomePage GoToEarlyConnectHomePage()
-    {
-        return new EarlyConnectHomePage(context).AcceptCookieAndAlert();
-    }
+    public EarlyConnectHomePage GoToEarlyConnectHomePage() => new EarlyConnectHomePage(context).AcceptCookieAndAlert();
 
     public EarlyConnectHomePage GoToEarlyConnectNorthEastAdvisorPage()
     {
