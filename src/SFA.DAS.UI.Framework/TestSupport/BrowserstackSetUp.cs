@@ -49,9 +49,9 @@ public static class BrowserStackSetup
         capabilities.AcceptInsecureCertificates = true;
         capabilities.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
 
-        options.Build = ProjectNameRegexHelper.ProjectNameRegex().Match(Assembly.GetExecutingAssembly().Location).Value;
+        //options.Build = ProjectNameRegexHelper.ProjectNameRegex().Match(Assembly.GetExecutingAssembly().Location).Value;
 
-        capabilities.AddAdditionalOption("bstack:options", SetBrowserstackCapabilities(options));
+        //capabilities.AddAdditionalOption("bstack:options", SetBrowserstackCapabilities(options));
 
         return capabilities;
     }
