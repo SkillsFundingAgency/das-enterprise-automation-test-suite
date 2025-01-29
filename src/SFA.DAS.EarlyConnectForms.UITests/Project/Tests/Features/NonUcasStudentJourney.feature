@@ -6,7 +6,7 @@ so that my data will be available for futher progress
 @earlyconnect
 @regression
 
-Scenario: Verify Non Ucas Student journey for NorthEast Region
+Scenario: EC_GAA_02_A_StudentSurvey - Non Ucas Student journey for NorthEast Region
 	Given I am on the landing page for a region
 	And I selected North East Advisor Page
 	And I enter valid details
@@ -16,14 +16,14 @@ Scenario: Verify Non Ucas Student journey for NorthEast Region
 @ec-v1
 @earlyconnect
 @regression
-Scenario: Verify Non Ucas Student journey for Lancashire Region
+Scenario: EC_GAA_02_B_StudentSurvey - Non Ucas Student journey for Lancashire Region
 	Given I am on the landing page for a region
 	And I selected Lancashire Advisor Page
 	And I enter valid details
 	And I answer the triage questions related to me
 	Then I check my answers, accept and submit
 
-Scenario: Verify Non Ucas Student journey for Greater London Region
+Scenario: EC_GAA_02_C_StudentSurvey - Non Ucas Student journey for Greater London Region
 	Given I am on the landing page for a region
 	And I selected Greater London Advisor Page
 	And I enter valid details
