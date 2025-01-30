@@ -8,16 +8,16 @@ public class SetYourEmployerAccountNamePage : RegistrationBasePage
 
     public SetYourEmployerAccountNamePage(ScenarioContext context) : base(context) => VerifyPage();
 
-    public YourAccountNameHasBeenChangedPage SelectoptionYes()
+    public YourAccountNameHasBeenChangedPage SelectoptionToSkipNameChange()
     {
-        formCompletionHelper.SelectRadioOptionByText("Yes, I want to use my organisation name as my employer account name");
+        formCompletionHelper.SelectRadioOptionByText("No, I don't need to change my account name");
         Continue();
         return new YourAccountNameHasBeenChangedPage(context);
     }
 
-    public ConfirmYourNewAccountNamePage SelectoptionNo(string newAccountName)
+    public ConfirmYourNewAccountNamePage SelectoptionToChangeAccountName(string newAccountName)
     {
-        formCompletionHelper.SelectRadioOptionByText("No, I want to change my employer account name");
+        formCompletionHelper.SelectRadioOptionByText("Yes, I want to change my account name");
 
         formCompletionHelper.EnterText(NewNameTextBox, newAccountName);
 
