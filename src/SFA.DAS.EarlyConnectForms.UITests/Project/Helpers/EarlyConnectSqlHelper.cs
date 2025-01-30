@@ -12,7 +12,7 @@ public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config)
 
         //var names = GetListOfData(query).Select(x => (string)x[0]).ToList();
 
-        List<string> names = ["High", "School", "College"];
+        List<string> names = ["High", "School"];
 
         var name = RandomDataGenerator.GetRandomElementFromListOfElements(names);
 
