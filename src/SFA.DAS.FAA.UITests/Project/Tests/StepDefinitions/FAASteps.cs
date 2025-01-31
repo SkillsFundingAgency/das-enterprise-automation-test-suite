@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages.Delete;
+
+namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class FAASteps(ScenarioContext context)
@@ -19,5 +21,12 @@ public class FAASteps(ScenarioContext context)
 
     [Then("the Applicant can withdraw the application")]
     public void ThenTheApplicantCanWithdrawTheApplication() => _faaStepsHelper.GoToYourApplicationsPageAndWithdrawAnApplication();
+
+    [Then("the apprentice attempts to delete their account they are notified of application withdrawal")]
+    public void WhenTheApprenticeAttemptsToDeleteTheirAccountTheyAreNotifiedOfApplicationWithdrawal()
+    {
+        new SettingPage(context).DeleteMyAccount().ContinueToDeleteMyAccounWithApplication().WithdrawBeforeDeletingMyAccount().ConfirmDeleteMyAccount().VerifyNotification();
+    }
+
 
 }

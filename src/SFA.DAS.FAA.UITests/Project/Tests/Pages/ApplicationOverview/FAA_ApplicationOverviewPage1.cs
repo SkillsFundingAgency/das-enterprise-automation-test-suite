@@ -1,10 +1,11 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.FAA.UITests.Project.Pages.ApplicationOverview;
 
 public partial class FAA_ApplicationOverviewPage(ScenarioContext context) : FAABasePage(context)
 {
-    protected override string PageTitle => $"Apply for {vacancyTitleDataHelper.VacancyTitle}";
+    protected override string PageTitle => $"Apply for {objectContext.Get<string>("vacancyTitle")}";
 
 }
 

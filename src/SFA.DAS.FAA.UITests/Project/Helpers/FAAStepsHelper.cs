@@ -71,10 +71,133 @@ public class FAAStepsHelper(ScenarioContext context)
         return applicationFormPage;
     }
 
+    public FAA_ApplicationOverviewPage ApplyForAVacancyWithNewAccount(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
+    {
+        var applicationFormPage = GoToFAASearchResultsPageToSelectAVacancyAndApply();
+
+        if (qualificationdetails)
+        {
+            applicationFormPage = applicationFormPage.Access_Section1_1SchoolCollegeQualifications()
+                .SelectYesAndContinue()
+                .SelectAQualificationAndContinue()
+                .AddQualificationDetailsAndContinue()
+                .SelectSectionCompleted()
+                .VerifyEducationHistory_1();
+        }
+        else
+        {
+            applicationFormPage = applicationFormPage.Access_Section1_1SchoolCollegeQualifications().SelectNoAndContinue().VerifyEducationHistory_1();
+        }
+
+        if (trainingCourse)
+        {
+            applicationFormPage = applicationFormPage.Access_Section1_2TrainingCourse()
+                .SelectYesAndContinue()
+                .SelectATrainingCourseAndContinue()
+                .SelectSectionCompleted()
+                .VerifyEducationHistory_2();
+        }
+        else
+        {
+            applicationFormPage = applicationFormPage.Access_Section1_2TrainingCourse()
+                .SelectNoAndContinue()
+                .VerifyEducationHistory_2();
+        }
+
+        if (job)
+        {
+            applicationFormPage = applicationFormPage.Access_Section2_1Jobs()
+                .SelectYesAndContinue()
+                .SelectAJobAndContinue()
+                .SelectSectionCompleted()
+                .VerifyWorkHistory_1();
+        }
+        else
+        {
+            applicationFormPage = applicationFormPage.Access_Section2_1Jobs()
+                .SelectNoAndContinue()
+                .VerifyWorkHistory_1();
+        }
+
+        if (workExperience)
+        {
+            applicationFormPage = applicationFormPage.Access_Section2_2VolunteeringAndWorkExperience()
+                .SelectYesAndContinue()
+                .SelectAVolunteeringAndWorkExperience()
+                .SelectSectionCompleted()
+                .VerifyWorkHistory_2();
+        }
+        else
+        {
+            applicationFormPage = applicationFormPage.Access_Section2_2VolunteeringAndWorkExperience()
+                .SelectNoAndContinue()
+                .VerifyEducationHistory_2();
+        }
+
+        applicationFormPage = applicationFormPage.Access_Section3_1SkillsAndStrengths()
+            .SelectYesAndCompleteSection()
+            .VerifyApplicationsQuestions_1()
+            .Access_Section3_2Interests()
+            .SelectYesAndCompleteSection()
+            .VerifyApplicationsQuestions_2()
+            .RespondToAdditionalQuestion1()
+            .SelectYesAndCompleteSection()
+            .VerifyApplicationsQuestions_3()
+            .RespondToAdditionalQuestion2()
+            .SelectYesAndCompleteSection()
+            .VerifyApplicationsQuestions_4();
+
+        if (interviewSupport)
+        {
+            applicationFormPage = applicationFormPage.Access_Section4_1Adjustment()
+                .SelectYesAndContinue()
+                .SelectSectionCompleted()
+                .VerifyInterviewAadjustments_1();
+        }
+        else
+        {
+            applicationFormPage = applicationFormPage.Access_Section4_1Adjustment()
+                .SelectNoAndContinue()
+                .SelectSectionCompleted()
+                .VerifyInterviewAadjustments_1();
+        }
+
+        if (disabilityConfident)
+        {
+            applicationFormPage = applicationFormPage.Access_Section5_1DisabilityConfidence()
+                .SelectYesAndContinue()
+                .SelectSectionCompleted()
+                .VerifyDisabilityConfidence_1();
+        }
+        else
+        {
+            applicationFormPage = applicationFormPage.Access_Section5_1DisabilityConfidence()
+                .SelectNoAndContinue()
+                .SelectSectionCompleted()
+                .VerifyDisabilityConfidence_1();
+        }
+
+        return applicationFormPage;
+    }
+
+
     public FAA_ApplicationOverviewPage GoToVacancyDetailsPageThenSaveBeforeApplying() => GoToFAAHomePage().SearchByReferenceNumber().SaveAndApplyForVacancy().Apply();
     public FAA_ApplicationOverviewPage GoToSearchResultsPagePageAndSaveBeforeApplying() => GoToFAAHomePage().SearchAndSaveVacancyByReferenceNumber().SaveFromSearchResultsAndApplyForVacancy();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
+
     public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndWithdrawAnApplication() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage().WithdrawSelectedApplication();
+
+    private FAA_ApplicationOverviewPage GoToFAASearchResultsPageToSelectAVacancyAndApply()
+    {
+        var landingPage = new FAASignedInLandingBasePage(context);
+
+        var searchResultsPage = landingPage.SearchRandomVacancyAndGetVacancyTitle();
+
+        var apprenticeSummaryPage = searchResultsPage.ClickFirstApprenticeshipThatCanBeAppliedFor();
+
+        return apprenticeSummaryPage.Apply();
+    }
+
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {

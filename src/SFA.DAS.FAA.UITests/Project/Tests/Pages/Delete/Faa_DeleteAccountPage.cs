@@ -10,4 +10,10 @@ public class DeleteAccountPage(ScenarioContext context) : FAABasePage(context)
 
         return new ConfirmDeleteAccountPage(context);
     }
+    public ConfirmWithdrawBeforeDeleteAccountPage ContinueToDeleteMyAccounWithApplication()
+    {
+        Continue();
+
+        return new ConfirmWithdrawBeforeDeleteAccountPage(context);
+    }
 }
