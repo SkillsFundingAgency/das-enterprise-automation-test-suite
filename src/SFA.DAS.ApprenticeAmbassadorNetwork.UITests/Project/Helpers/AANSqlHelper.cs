@@ -41,6 +41,8 @@ public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlD
          $"DELETE FROM MemberPreference WHERE MemberId = @MemberId;" +
          $"DELETE FROM Attendance WHERE MemberId = @MemberId;" +
          $"DELETE FROM Notification WHERE MemberId = @MemberId;" +
+         $"DELETE FROM MemberNotificationEventFormat WHERE MemberId = @MemberId;" +
+         $"DELETE FROM MemberNotificationLocation WHERE MemberId = @MemberId;" +
          $"DELETE FROM Member WHERE Id = @MemberId;" +
          $" END ");
 
@@ -57,6 +59,8 @@ public class AANSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlD
      $"DELETE FROM MemberPreference WHERE MemberId = @MemberId;" +
      $"DELETE FROM Attendance WHERE MemberId = @MemberId;" +
      $"DELETE FROM Notification WHERE MemberId = @MemberId;" +
+     $"DELETE FROM MemberNotificationEventFormat WHERE MemberId = @MemberId;" +
+     $"DELETE FROM MemberNotificationLocation WHERE MemberId = @MemberId;" +
      $"DELETE FROM Member WHERE Id = @MemberId;" +
      $" END ");
 

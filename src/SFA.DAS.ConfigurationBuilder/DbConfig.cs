@@ -33,5 +33,6 @@
         public string AANDbConnectionString { get; set; }
         public string CanAccDbConnectionString { get; set; }
         public string RatDbConnectionString { get; set; }
+        public string EarlyConnectConnectionString { get; set; }
     }
 }

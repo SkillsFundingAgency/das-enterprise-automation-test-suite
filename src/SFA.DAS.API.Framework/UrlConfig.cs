@@ -14,6 +14,8 @@ public static class UrlConfig
 
         public static string Outer_EmployerAccountsHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-empacc-api.apprenticeships.education.gov.uk";
 
+        public static string Outer_ProviderFeedbackApiBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-prvfb-api.apprenticeships.education.gov.uk";
+
         public static string Outer_AssessorCertificationApiBaseUrl => $"https://test-apis.apprenticeships.education.gov.uk/";
 
         private static string GetOuter_ApiBaseUrl(string envname) => $"https://{envname}.apprenticeships.education.gov.uk/";

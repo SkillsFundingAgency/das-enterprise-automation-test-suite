@@ -16,5 +16,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             formCompletionHelper.ClickElement(ReserveFundingButton);
             return new ProviderChooseAnEmployerNonLevyPage(context);
         }
+        public ProviderFundingForNonLevyEmployersPage NavigateBrowserBackToProviderFundingForNonLevyEmployersPage()
+        {
+            tabHelper.NavigateBrowserBack();
+            return new ProviderFundingForNonLevyEmployersPage(context);
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 public class EventAttendeesPage(ScenarioContext context) : AanAdminBasePage(context)
 {
-    protected override string PageTitle => "How many attendees do you expect at this event?";
+    protected override string PageTitle => "How many audience members do you expect at this event?";
 
     private static By NumberOfAttendees => By.CssSelector("input#NumberOfAttendees");
 

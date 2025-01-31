@@ -1,8 +1,4 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
+﻿namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
 public class SelectTrainingOptionsPage(ScenarioContext context) : RatProjectBasePage(context)
 {

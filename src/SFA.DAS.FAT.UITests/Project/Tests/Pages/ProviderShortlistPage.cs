@@ -16,9 +16,9 @@ public class ProviderShortlistPage(ScenarioContext context) : FATBasePage(contex
         return new ProviderShortlistPage(context);
     }
 
-    public TrainingCourseSearchResultsPage ReturnToTrainingCourseSearchResultsPage()
+    public ApprenticeshipTrainingCoursesPage ReturnToTrainingCourseSearchResultsPage()
     {
         formCompletionHelper.Click(ReturnToTrainingCoursePage);
-        return new TrainingCourseSearchResultsPage(context);
+        return new ApprenticeshipTrainingCoursesPage(context);
     }
 }

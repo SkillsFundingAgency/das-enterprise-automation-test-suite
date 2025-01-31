@@ -8,6 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Notification settings";
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Update')]");
+        protected By CancelButton => By.LinkText("Cancel");
 
         private static By NotificationOptions => By.CssSelector(".selection-button-radio");
 
@@ -24,6 +25,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             formCompletionHelper.SelectRadioOptionByForAttribute(NotificationOptions, option);
             Continue();
             return this;
+        }   
+        
+        public ApprovalsProviderHomePage ClickCancel()
+        {
+            formCompletionHelper.ClickElement(CancelButton);
+            return new ApprovalsProviderHomePage(context);
         }
     }
 }

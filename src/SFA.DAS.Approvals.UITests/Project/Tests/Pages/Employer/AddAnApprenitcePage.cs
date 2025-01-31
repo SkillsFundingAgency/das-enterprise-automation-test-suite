@@ -23,6 +23,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new DoYouWantToUseTransferFundsPage(context);
         }
 
+        public SelectFundingPage StartNowToSelectFunding()
+        {
+            StartNow();
+            return new SelectFundingPage(context);
+        }
+
         private void StartNow() => formCompletionHelper.ClickElement(StartNowButton);
     }
 }

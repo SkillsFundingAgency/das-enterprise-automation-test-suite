@@ -1,16 +1,10 @@
-﻿using OpenQA.Selenium;
-using SFA.DAS.FrameworkHelpers;
-using SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Helpers;
-using SFA.DAS.UI.Framework.TestSupport;
-using TechTalk.SpecFlow;
-
-namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
+﻿namespace SFA.DAS.RequestApprenticeshipTraining.UITests.Project.Tests.Pages.Employer;
 
 public abstract class RatProjectBasePage : VerifyBasePage
 {
     protected readonly RatDataHelper ratDataHelper;
 
-    protected RatProjectBasePage(ScenarioContext context, bool verifyPage = true) : base(context) 
+    protected RatProjectBasePage(ScenarioContext context, bool verifyPage = true) : base(context)
     {
         if (verifyPage) VerifyPage();
 

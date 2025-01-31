@@ -20,7 +20,7 @@ public class EventTitlePage(ScenarioContext context) : AanAdminBasePage(context)
         return new(context);
     }
 
-    private void EnterEventTitle(AanAdminCreateEventBaseDatahelper dataHelper, string? pageTitle = null)
+    private void EnterEventTitle(AanAdminCreateEventBaseDatahelper dataHelper, string pageTitle = null)
     {
         var eventTitle = pageTitle ?? dataHelper.EventTitle;
 

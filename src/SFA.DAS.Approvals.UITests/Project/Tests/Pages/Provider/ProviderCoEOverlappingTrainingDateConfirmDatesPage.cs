@@ -6,17 +6,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderCoEOverlappingTrainingDateConfirmDatesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and send')]");
+        protected override By ContinueButton => By.Id("confirm-button");
 
-        protected override string PageTitle => "Confirm dates before sending your request";
+        protected override string PageTitle => "Confirm details";
 
-        protected override bool TakeFullScreenShot => false;
-
-
-        public ProviderCoEOverlappingTrainingDatePlannedStartDateOverlapsPage SaveAndSend()
+        public ProviderOverlappingTrainingDatePlannedStartDateOverlapPage SaveAndSend()
         {
             Continue();
-            return new ProviderCoEOverlappingTrainingDatePlannedStartDateOverlapsPage(context);
+            return new ProviderOverlappingTrainingDatePlannedStartDateOverlapPage(context);
         }
 
     }

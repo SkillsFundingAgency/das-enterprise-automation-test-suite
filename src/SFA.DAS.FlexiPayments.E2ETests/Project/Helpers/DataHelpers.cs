@@ -54,6 +54,16 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
             return date;
         }
 
+        public static DateTime GetFirstDateOfNextMonth()
+        {
+            DateTime date = DateTime.Today;
+
+            if (date.Month == 12) date = new DateTime(date.Year + 1, 1, 1);
+            else date = new DateTime(date.Year, date.Month + 1, 1);
+
+            return date;
+        }
+
         public static T ToEnum<T>(this string value, bool ignoreCase = true)
         {
             return (T)Enum.Parse(typeof(T), value, ignoreCase);
