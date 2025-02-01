@@ -268,10 +268,10 @@ public class FAAStepsHelper(ScenarioContext context)
             .Access_Section3_2Interests()
             .SelectYesAndCompleteSection()
             .VerifyApplicationsQuestions_2()
-            .Access_Section3_3AdditionalQuestion1()
+            .RespondToAdditionalQuestion1()
             .SelectYesAndCompleteSection()
             .VerifyApplicationsQuestions_3()
-            .Access_Section3_4AdditionalQuestion2()
+            .RespondToAdditionalQuestion2()
             .SelectYesAndCompleteSection()
             .VerifyApplicationsQuestions_4();
 
