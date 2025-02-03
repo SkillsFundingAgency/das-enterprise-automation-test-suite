@@ -9,7 +9,7 @@ public class FrameworkConfig
 
     public TimeOutConfig TimeOutConfig { get; internal set; }
 
-    public BrowserStackSetting BrowserStackSetting { get; internal set; }
+    //public BrowserStackSetting BrowserStackSetting { get; internal set; }
 
     internal bool IsAdoExecution { get; set; }
 

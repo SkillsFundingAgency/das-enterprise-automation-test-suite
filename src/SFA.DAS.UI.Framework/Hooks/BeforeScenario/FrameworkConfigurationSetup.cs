@@ -36,7 +36,7 @@ public class FrameworkConfigurationSetup(ScenarioContext context)
         {
             NServiceBusConfig = _configSection.GetConfigSection<NServiceBusConfig>(),
             TimeOutConfig = _configSection.GetConfigSection<TimeOutConfig>(),
-            BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
+            //BrowserStackSetting = _configSection.GetConfigSection<BrowserStackSetting>(),
             IsAdoExecution = IsAdoExecution,
             CanCaptureUrl = IsAdoExecution && IsCurrrentUserAnAdmin(captureUrlAdmin),
             CanTakeFullScreenShot = canTakeFullScreenShot || IsCurrrentUserAnAdmin(fullscreenshotAdmin),

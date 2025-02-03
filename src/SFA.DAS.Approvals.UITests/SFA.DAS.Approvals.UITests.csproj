@@ -69,10 +69,5 @@
     </None>
   </ItemGroup>
 	
-  <ItemGroup>
-    <Folder Include="Project\Tests\Features\ProviderRoles\ManageApprentices\" />
-    <Folder Include="Project\Tests\Features\ProviderRoles\ManageFunding\" />
-    <Folder Include="Project\Tests\Features\ProviderRoles\ProviderPortal\" />
-  </ItemGroup>
 	
 </Project>

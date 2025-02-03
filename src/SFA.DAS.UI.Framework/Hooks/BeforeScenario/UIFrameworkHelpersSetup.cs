@@ -14,6 +14,6 @@ public class UIFrameworkHelpersSetup(ScenarioContext context)
     {
         _helpersSetup.SetupUIFrameworkHelpers(false);
 
-        context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
+        //context.Set(new BrowserStackReportingService(_config.BrowserStackSetting));
     }
 }

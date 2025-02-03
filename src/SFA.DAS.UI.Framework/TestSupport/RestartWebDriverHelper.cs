@@ -6,7 +6,7 @@ namespace SFA.DAS.UI.Framework.TestSupport;
 
 public class RestartWebDriverHelper(ScenarioContext context)
 {
-    private readonly BrowserStackTearDownHelper _browserStackTearDownHelper = new(context);
+    //private readonly BrowserStackTearDownHelper _browserStackTearDownHelper = new(context);
     private readonly DisposeWebDriverTeardownHelper _disposeWebDriverTeardownHelper = new(context);
     private readonly WebDriverSetupHelper _webDriverSetupHelper = new(context);
     private readonly UIFrameworkHelpersSetup _frameworkHelpersSetup = new(context);
@@ -16,9 +16,9 @@ public class RestartWebDriverHelper(ScenarioContext context)
 
     public void RestartWebDriver(string url, string applicationName)
     {
-        _browserStackTearDownHelper.MarkTestStatus();
+        //_browserStackTearDownHelper.MarkTestStatus();
 
-        _browserStackTearDownHelper.UpdateTestName(_objectContext.GetCurrentApplicationName());
+        //_browserStackTearDownHelper.UpdateTestName(_objectContext.GetCurrentApplicationName());
 
         var webDriver = RestartWebDriver();
 
