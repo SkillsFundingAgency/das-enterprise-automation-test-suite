@@ -434,7 +434,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer will be able to view auto rejected date of application under status tag 'Application expires on dd/mm/yy'")]
         public void ApplicationStatusShowsDateDueToAutoReject()
         {
-            var approvalDate = "APPLICATION EXPIRES ON " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+            var approvalDate = "Application expires on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
 
             var sender = _context.Get<TransferMatchingUser>();
             UpdateOrganisationName(sender.OrganisationName);
