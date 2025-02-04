@@ -11,7 +11,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
     {
         private string _employerName;
 
-        private static By LegalEntityName => By.CssSelector("label[for='new-trading-name']");
+        private static By LegalEntityName => By.CssSelector("label[for='legal-entity-name']");
 
         private static By NewTradingName => By.CssSelector("#NewTradingName");
 
