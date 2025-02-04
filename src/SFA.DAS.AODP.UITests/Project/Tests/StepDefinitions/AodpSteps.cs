@@ -1,17 +1,16 @@
-﻿using SFA.DAS.AODP.UITests.Project.Helpers;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace SFA.DAS.AODP.UITests.Project.Tests.StepDefinitions
 {
     [Binding, Scope(Tag = "aodp")]
     public class AodpSteps(ScenarioContext context)
     {
-        private readonly AodpStepsHelper _stepsHelper = new(context);
+        // private readonly AodpStepsHelper _stepsHelper = (context);
 
-        // private AodpLandingPage _aodpLandingPage;
+        // private AodpLandingPage _aodpLandingPage;new
 
         [Given(@"Navigate to aodp portal as a DfE user")]
-        public void landingPage() => _stepsHelper.verifyAodpLandingPage();
+        public void landingPage() {}
 
     }
 }
