@@ -2,11 +2,10 @@
 using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.AODP.UITests.Project.Tests.Pages
+namespace SFA.DAS.AODP.UITests.Project.Hooks
 {
-    public abstract class AodpBasePage(ScenarioContext context) : VerifyBasePage(context)
+    public abstract class BaseHooks(ScenarioContext context) : BasePage(context)
     {
         // Implement the logic common to all pages like navigations
-        
     }
 }

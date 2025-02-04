@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Tests",
+            "type": "coreclr",
+            "request": "launch",
+            // "preLaunchTask": "run-tests",
+            "program": "dotnet",
+            "args": ["test", "--no-build", "--logger:trx"],
+            "cwd": "${workspaceFolder}/src/SFA.DAS.AODP.UITests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Run AODP",
+            "type": "coreclr",
+            "request": "launch",
+            // "preLaunchTask": "Run Tests",
+            "program": "${workspaceFolder}/src/SFA.DAS.AODP.UITests/bin/Debug/net9.0/SFA.DAS.AODP.UITests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/SFA.DAS.AODP.UITests",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+        }
+    ]
+}
