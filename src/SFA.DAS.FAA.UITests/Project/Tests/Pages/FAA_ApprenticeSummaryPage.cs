@@ -8,15 +8,17 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
     {
         get
         {
-            if (objectContext.Equals("vacancyTitle"))
+            var vacancyTitle = objectContext.Get<string>("vacancyTitle");
+
+            if (!string.IsNullOrEmpty(vacancyTitle))
             {
-                return objectContext.Get<string>("vacancyTitle");
+                return vacancyTitle;
             }
 
-            var vacancyTitleFromPage = pageInteractionHelper.FindElement(PageHeader).Text;
-            objectContext.Set("vacancyTitle", vacancyTitleFromPage);
+            vacancyTitle = pageInteractionHelper.FindElement(PageHeader)?.Text;
+            objectContext.Set("vacancyTitle", vacancyTitle);
 
-            return vacancyTitleFromPage;
+            return vacancyTitle;
         }
     }
 
