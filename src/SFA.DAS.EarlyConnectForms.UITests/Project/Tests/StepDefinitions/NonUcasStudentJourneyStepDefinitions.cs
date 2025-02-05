@@ -19,17 +19,14 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
             {
                 case "Lancashire":
                     _stepsHelper.GoToEarlyConnectLancashireAdvisorPage();
-                    _stepsHelper.GoToEarlyConnectEmailPage();
                     break;
 
                 case "North East":
                     _stepsHelper.GoToEarlyConnectNorthEastAdvisorPage();
-                    _stepsHelper.GoToEarlyConnectEmailPage();
                     break;
 
                 case "London":
-                    _stepsHelper.GoToEarlyConnectLondonAdvisorPage();
-                    _stepsHelper.GoToEarlyConnectEmailPage();
+                    _stepsHelper.GoToEarlyConnectLondonAdvisorPage();   
                     break;
 
                 default:
@@ -40,6 +37,7 @@ namespace SFA.DAS.EarlyConnectForms.UITests.Project.Tests.StepDefinitions
         [Given(@"I enter valid details")]
         public void GivenIEnterValidDetails()
         {
+            _stepsHelper.GoToEarlyConnectEmailPage();
             _stepsHelper.GoToAddUniqueEmailAddressPage();
             _stepsHelper.GoToCheckEmailAuthCodePage();
             _stepsHelper.GoToWhatYourNamePage();
