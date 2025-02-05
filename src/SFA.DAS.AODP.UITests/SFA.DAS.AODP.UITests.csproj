@@ -6,18 +6,12 @@
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
-	  <Compile Remove="Project\Helpers\**" />
-	  <Compile Remove="Project\Tests\Pages\DfeUser\**" />
-	  <EmbeddedResource Remove="Project\Helpers\**" />
-	  <EmbeddedResource Remove="Project\Tests\Pages\DfeUser\**" />
-	  <None Remove="Project\Helpers\**" />
-	  <None Remove="Project\Tests\Pages\DfeUser\**" />
-	  <SpecFlowFeatureFiles Remove="Project\Helpers\**" />
-	  <SpecFlowFeatureFiles Remove="Project\Tests\Pages\DfeUser\**" />
-	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Helpers\**" />
-	  <SpecFlowObsoleteCodeBehindFiles Remove="Project\Tests\Pages\DfeUser\**" />
+		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,27 +22,31 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
-		</Compile>
+		<ProjectReference Include="..\SFA.DAS.Approvals.UITests\SFA.DAS.Approvals.UITests.csproj" />
+		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
+		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
+		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
+		<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
+		<ProjectReference Include="..\SFA.DAS.FrameworkHelpers\SFA.DAS.FrameworkHelpers.csproj" />
 	</ItemGroup>
+
 
 	<ItemGroup>
 		<None Update="appsettings.Environment.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
-			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</None>
+		<None Update="appsettings.Project.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 		</None>
 		<None Update="specflow.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
+
 	<ItemGroup>
-		<ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
-		<ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />
-		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
-		<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
+	  <Folder Include="Project\Helpers\" />
 	</ItemGroup>
 
 </Project>
