@@ -4,6 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using SFA.DAS.Approvals.UITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;
@@ -133,10 +134,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
         [Then(@"the levy employer can view the approved application")]
-        public void ThenTheLevyEmployerCanViewApprovedApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING ACCEPTANCE BY APPLICANT");
+        public void ThenTheLevyEmployerCanViewApprovedApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Auto approval: Awaiting acceptance by applicant");
 
         [Then(@"the levy employer can view the awaiting your approval application")]
-        public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("AWAITING YOUR APPROVAL");
+        public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Awaiting your approval");
 
         [Then(@"the non levy employer can accept funding")]
         public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication(ApplicationStatus.Accepted.GetLabelForReceiver());
@@ -382,6 +383,24 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _objectContext.SetNoOfApprentices(1);
         }
 
+        [Then(@"the non levy employer can add apprentice to the pledgeApplication via 'Add an apprentice' route")]
+        public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplicationViaAddAnApprenticeRoute()
+        {
+            var apprenticeDetailsApprovedPage = _apprenticeHomePageStepsHelper.GoToAddAnApprenticePage()
+                .StartNowToSelectFunding()
+                .SelectFundingType(FundingType.TransferFunds)
+                .SubmitValidUkprn()
+                .ConfirmProviderDetailsAreCorrect()
+                .EmployerAddsApprentices()
+                .EmployerSelectsAStandard()
+                .SubmitValidApprenticeDetails(false)
+                .EmployerFirstApproveAndNotifyTrainingProvider(); ;
+
+            var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
+            _objectContext.SetCohortReference(cohortReference);
+            _objectContext.SetNoOfApprentices(1);
+        }
+
         [Then(@"wait for 6 weeks")]
         public void ApplicationIsApprovedAfter6Weeks()
         {
@@ -401,7 +420,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'")]
         public void ApplicationStatusShowsDateDueToAutoApprove()
         {
-            var approvalDate = "AUTO APPROVAL ON " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+            var approvalDate = "Auto approval on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
 
             GoToTransferPledgePageAsSender().ConfirmApplicationStatus(approvalDate);
         }
@@ -415,7 +434,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         [Then(@"the levy employer will be able to view auto rejected date of application under status tag 'Application expires on dd/mm/yy'")]
         public void ApplicationStatusShowsDateDueToAutoReject()
         {
-            var approvalDate = "APPLICATION EXPIRES ON " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+            var approvalDate = "Application expires on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
 
             var sender = _context.Get<TransferMatchingUser>();
             UpdateOrganisationName(sender.OrganisationName);

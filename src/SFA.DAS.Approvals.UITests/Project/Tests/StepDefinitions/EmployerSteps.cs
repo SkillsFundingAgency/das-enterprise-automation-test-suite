@@ -167,7 +167,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Employer approves the cohort and sends to provider")]
         public void WhenTheEmployerApprovesTheCohortAndSendsToProvider()
         {
-            _approveApprenticeDetailsPage = _employerStepsHelper.EmployerReviewCohort();
+            _approveApprenticeDetailsPage = _employerStepsHelper.EmployerReviewCohort(true);
 
             _approveApprenticeDetailsPage.EmployerFirstApproveAndNotifyTrainingProvider();
         }
@@ -209,6 +209,38 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void TheEmployerUsesTheReservationToCreateAndApproveCohortAndSendsToProvider(int numberOfApprentices)
             => SetCohortReference(EmployerStepsHelper.EmployerApproveAndSendToProvider(NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, false)));
 
+        [When(@"the Employer creates 2 reservations")]
+        public void ThenEmployerCreatesTwoReservations()
+        {
+            NonLevyEmployerAddsTwoReservations();
+        }
+
+        [Then(@"the employer uses the reservation to add an apprentice")]
+        public void ThenEmployerUsesReservationToAddAnApprentice()
+        {
+            _approveApprenticeDetailsPage = _employerStepsHelper.GoToAddAnApprenticePage()
+                .StartNowToSelectFunding()
+                .SelectReservedFundingFromContext()
+                  .SubmitValidUkprn()
+                    .ConfirmProviderDetailsAreCorrect()
+                    .NonLevyEmployerAddsApprentices()
+                    .VerifyCourseIsPrePopulated()
+                    .SubmitValidApprenticeDetails(true);
+        }
+
+        [Then(@"the employer uses the second reservation to add another apprentice and approve the cohort and sends to provider")]
+        public void ThenEmployerUsesSecondReservationToAddApprenticeThenSendsToProvider()
+        {
+            _employerStepsHelper.ReplaceApprenticeDataInContext(1);
+            _objectContext.SetNoOfApprentices(2);
+            _approveApprenticeDetailsPage
+                .SelectAddAnApprenticeUsingReservation()
+                .ChooseSecondReservationFromContext()
+                .SubmitValidApprenticeDetails(true);
+
+            SetCohortReference(_approveApprenticeDetailsPage.EmployerSendsToTrainingProviderForReview().CohortReference());
+        }
+
         [When(@"the Employer uses the reservation and (.*) confirm only standard courses are selectable and adds (\d) cohort and sends to provider")]
         public void TheEmployerUsesTheReservationAndAddsCohortAndSendsToProvider(bool shouldConfirmOnlyStandardCoursesSelectable, int numberOfApprentices)
             => SetCohortReference(NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, shouldConfirmOnlyStandardCoursesSelectable).EmployerSendsToTrainingProviderForReview().CohortReference());
@@ -217,7 +249,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ANewLiveApprenticeRecordIsCreated() => _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
 
         [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(context).AddAnApprentice();
+        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(context).ClickAddAnApprentice();
 
         [Then(@"employer validates apprentice is Flexi-job and can edit Delivery Model")]
         public void ThenEmployerValidatesApprenticeIsFlexi_JobAndCanEditDeliveryModel() => _employerStepsHelper.EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable();
@@ -288,6 +320,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool condition)
             => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);
+
+        private void NonLevyEmployerAddsTwoReservations()
+           => _nonLevyReservationStepsHelper.NonLevyEmployerAddsTwoReservations();
 
         private void SetCohortReference(string cohortReference) => _cohortReferenceHelper.SetCohortReference(cohortReference);
     }

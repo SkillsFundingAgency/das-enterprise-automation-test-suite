@@ -8,7 +8,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         public MyApplicationsPage ViewMyApplications()
         {
-            formCompletionHelper.ClickLinkByText("View my applications");
+            formCompletionHelper.ClickLinkByText("View other applications");
             return new MyApplicationsPage(context);
         }
     }
