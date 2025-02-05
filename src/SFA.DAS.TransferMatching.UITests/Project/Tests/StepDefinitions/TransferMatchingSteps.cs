@@ -411,6 +411,17 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
         }
 
+        [Then(@"6 weeks have passed since the application was approved")]
+        public void WaitSixWeeksAfterApplicationWasApproved()
+        {
+            //update created on date to 6 weeks Ago
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+            _transferMatchingSqlDataHelper.UpdateApprovedDateToBeSixWeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+            Thread.Sleep(TimeSpan.FromSeconds(10));
+            // trigger auto decline job
+            _transferMatchingJobsHelper.RunApplicationsWithAutoDeclineJob();
+        }
+
         [Then(@"the application is seven days from being auto approved")]
         public void ApplicationIs7DaysFromBeingAutoApproved()
         {
