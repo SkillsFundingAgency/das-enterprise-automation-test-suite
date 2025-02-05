@@ -7,9 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     public class MyApplicationsPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "My applications";
-         
-        private By PledgeSelector => By.CssSelector($"a[href='/accounts/MDPB8K/applications/{GetPledgeId()}']");
-        
+        private By PledgeSelector => By.XPath($"//a[contains(text(),'{GetPledgeId()}')]");
         private static By NextPageLink => By.XPath("//a[contains(text(),'Next')]");
 
         public ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus)
@@ -42,3 +40,4 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
     }
 }
+
