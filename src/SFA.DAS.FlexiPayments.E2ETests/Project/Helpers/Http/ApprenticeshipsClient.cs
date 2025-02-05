@@ -18,7 +18,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.Http
     {
         private HttpClient _apiClient;
         private readonly string _functionKey;
-        private readonly ConfigSection _configSection;
 
         public ApprenticeshipsClient(ScenarioContext context)
         {

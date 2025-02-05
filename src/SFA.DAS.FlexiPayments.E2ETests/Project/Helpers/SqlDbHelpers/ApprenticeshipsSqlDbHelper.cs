@@ -34,7 +34,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1], data[2], data[3], data[4], data[5]);
         }
 
-        public (string ActualStartDate, string Reason, string RequestStatus) GetChangeOfStartDateRequestData (string uln)
+        public (string ActualStartDate, string Reason, string RequestStatus) GetChangeOfStartDateRequestData(string uln)
         {
             string query = $"SELECT top (1) st.ActualStartDate, st.Reason, st.RequestStatus " +
                 $" FROM [dbo].[StartDateChange] st " +
@@ -48,7 +48,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1], data[2]);
         }
 
-        public (string StartDate, string EndDate) GetApprenticeshipTrainingDates (string uln)
+        public (string StartDate, string EndDate) GetApprenticeshipTrainingDates(string uln)
         {
             string query = $"SELECT eppr.StartDate, eppr.EndDate " +
                 $" FROM [dbo].[Apprenticeship] app " +
@@ -63,7 +63,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             return (data[0], data[1]);
         }
 
-        public bool GetProviderPaymentStatus (string uln)
+        public bool GetProviderPaymentStatus(string uln)
         {
             string query = $"SELECT top (1) Unfrozen FROM [dbo].[FreezeRequest] fr " +
                 $" JOIN [dbo].[Apprenticeship] apprn ON fr.ApprenticeshipKey = apprn.[Key] " +
@@ -74,6 +74,21 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
             var data = GetData(query);
 
             return Convert.ToBoolean(data[0]);
+        }
+
+        public (string LearningStatus, string Reason, string LastDayOfLearning) GetWithdrawalRequestData(string uln)
+        {
+            string query = $" select ep.LearningStatus, wr.Reason, wr.LastDayOfLearning " +
+                $" from WithdrawalRequest wr " +
+                $" join Episode ep on ep.ApprenticeshipKey = wr.ApprenticeshipKey " +
+                $" where ep.ApprenticeshipKey in (select [key] from [dbo].[Apprenticeship] app" +
+                $" where app.Uln = {uln})";
+
+            waitForResults = true;
+
+            var data = GetData(query);
+
+            return (data[0], data[1], data[2]);
         }
     }
 }

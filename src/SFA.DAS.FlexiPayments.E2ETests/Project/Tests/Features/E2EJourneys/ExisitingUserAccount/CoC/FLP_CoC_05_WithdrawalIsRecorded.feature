@@ -9,4 +9,7 @@ Scenario: FLP_CoC_05 Withdrawal Is Recorded - Learner Opted Out of Beta
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
 		| 1       | 154           | 2004/06/20    | StartPreviousMonth | 12                 | 18000        | true         |
+	And Provider searches for the learner on Manage your apprentice page
 	When a withdrawal is recorded with reason as WithdrawFromBeta
+	Then apprenticeship is marked as withdrawn
+	And the approval of the apprenticeship is maintained but it is removed from private beta
