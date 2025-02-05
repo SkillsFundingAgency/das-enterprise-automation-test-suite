@@ -1,7 +1,8 @@
-﻿Feature: AALogin
+﻿Feature: AppLogin
 
 Apprentice can log into the Apprentice App
 
-@tag1
+@ApprenticeApp
+@regression
 Scenario: Apprentice logs into the app
 	Then the apprentice can log into the app
