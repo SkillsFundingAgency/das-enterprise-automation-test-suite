@@ -24,6 +24,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new AddApprenticeDetailsPage(context);
         }
 
+        public AddApprenticeDetailsPage VerifyCourseIsPrePopulated()
+        {
+            pageInteractionHelper.FindElement(FirstOption);
+            Continue();
+            return new AddApprenticeDetailsPage(context);
+        }
+
         public SelectDeliveryModelPage SelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
 
         public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();

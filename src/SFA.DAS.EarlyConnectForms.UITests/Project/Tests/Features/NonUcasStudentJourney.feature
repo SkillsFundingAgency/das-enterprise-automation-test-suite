@@ -6,21 +6,15 @@ so that my data will be available for futher progress
 @earlyconnect
 @regression
 
-Scenario: Verify Non Ucas Student journey for NorthEast Region
+Scenario: EC_GAA_02_StudentSurvey_Verify Non Ucas Student journey for selected Region
 	Given I am on the landing page for a region
-	And I selected North East Advisor Page
+	And I selected <County> Advisor Page
 	And I enter valid details
 	And I answer the triage questions related to me
 	Then I check my answers, accept and submit
 
-@ec-v1
-@earlyconnect
-@regression
-@ignore
-#Lancashire region and London region is paused till January 2025
-Scenario: Verify Non Ucas Student journey for Lancashire Region
-	Given I am on the landing page for a region
-	And I selected Lancashire Advisor Page
-	And I enter valid details
-	And I answer the triage questions related to me
-	Then I check my answers, accept and submit
+	Examples: 
+	|  County	 |
+	|  Lancashire|
+	|  North East|
+	|  London    |

@@ -64,12 +64,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public EditApprenticeDetailsPage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
-        public ApproveApprenticeDetailsPage EmployerReviewCohort()
+        public ApproveApprenticeDetailsPage EmployerReviewCohort(bool validateMaxFundingBand = false)
         {
             var employerReviewYourCohortPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
                 .ClickApprenticeRequestsLink()
                 .GoToReadyToReview()
                 .SelectViewCurrentCohortDetails();
+
+            if (validateMaxFundingBand) ValidateMaxFundingBandForEditApprenticeDetails(employerReviewYourCohortPage);
 
             _setApprenticeDetailsHelper.SetApprenticeTotalCost(employerReviewYourCohortPage);
 
@@ -82,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .ClickApprenticeRequestsLink()
                 .GoToReadyToReview()
                 .SelectSingleReadyForReviewRequestInTable();
-         
+
             return employerReviewYourCohortPage;
         }
 
@@ -111,7 +113,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                     .SubmitValidUkprn()
                     .ConfirmProviderDetailsAreCorrect()
                     .DynamicHomePageNonLevyEmployerAddsApprentices()
-                    .DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+                    .EmployerSelectsAStandard()
                     .DraftDynamicHomePageAddValidApprenticeDetails()
                     .DraftReturnToHomePage()
                     .CheckDraftStatusAndAddDetails()
@@ -149,6 +151,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                   .SelectYesAndContinue();
         }
 
+        public void ReplaceApprenticeDataInContext(int index)
+        {
+            _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(index);
+        }
+
         private ApproveApprenticeDetailsPage AddApprentices(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice)
         {
             _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(0);
@@ -168,9 +175,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private ApproveApprenticeDetailsPage AddApprentices(int numberOfApprentices)
             => AddApprentices(context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList());
         private ApproveApprenticeDetailsPage EmployerAddApprenticeFromHomePage()
-            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
+            => ConfirmProviderDetailsAreCorrect().EmployerAddsApprentices().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false, true);
 
         private static ApproveApprenticeDetailsPage SubmitValidTrainingDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage) => employerReviewYourCohortPage.SelectAddAnotherApprentice().EmployerSelectsAStandard().SubmitValidApprenticeDetails(false);
+
+        private static ApproveApprenticeDetailsPage ValidateMaxFundingBandForEditApprenticeDetails(ApproveApprenticeDetailsPage employerReviewYourCohortPage)
+        {
+            return employerReviewYourCohortPage
+                .SelectEditApprentice()
+                .ValidateMaxFundingBandForEditApprentice()
+                .SaveEditedTrainingDetails();
+        }
 
         public AddApprenticeDetailsPage FlexiEmployerAddsApprenticeAndSelectsFlexiJobAgencyDeliveryModel()
         {
@@ -202,7 +217,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
-            return new ApprenticesHomePage(context).AddAnApprentice()
+            return new ApprenticesHomePage(context).ClickAddAnApprentice()
                 .StartNowToSelectFunding()
                 .SelectFundingType(FundingType.CurrentLevyFunds)
                 .EnterUkprnForPortableFlexiJobPilotProvider()
@@ -220,6 +235,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         }
 
         public ApprenticeRequestsPage GoToApprenticeRequestsPage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickApprenticeRequestsLink();
+        public AddAnApprenitcePage GoToAddAnApprenticePage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickAddAnApprentice();
 
         public void EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable()
         {
@@ -333,6 +349,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                   .EmployerEditDeliveryModelToFlexiAndContinue()
                   .ClickUpdateDetailsButtonAfterChange()
                   .AcceptChangesAndSubmit();
-        }        
+        }
     }
 }

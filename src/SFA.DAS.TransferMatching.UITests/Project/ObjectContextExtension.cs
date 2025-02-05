@@ -3,6 +3,7 @@ using SFA.DAS.Registration.UITests.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static SFA.DAS.Approvals.UITests.Project.ObjectContextExtension;
 
 namespace SFA.DAS.TransferMatching.UITests.Project
 {
@@ -29,7 +30,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
 
         internal static void SetPledgeApplication(this ObjectContext objectContext, string pledgeId, string value) => objectContext.GetPledgeDetail(pledgeId).Applications.Add(value);
 
-        internal static void SetPledgeDetail(this ObjectContext objectContext, string pledgeId)
+        internal static void SetPledgeDetail(this ObjectContext objectContext, string pledgeId, string senderHashedAccountId = null)
         {
             var pledgeDetailList = objectContext.GetPledgeDetailList();
 
@@ -39,6 +40,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project
                 Amount = objectContext.GetPledgeAmount(),
                 CreatedOn = objectContext.GetPledgeCreatedOn(),
                 EmployerAccountId = objectContext.GetDBAccountId(),
+                SenderHashedAccountId = senderHashedAccountId,
                 Applications = []
             });
         }
@@ -54,16 +56,5 @@ namespace SFA.DAS.TransferMatching.UITests.Project
         private static int GetPledgeAmount(this ObjectContext objectContext) => objectContext.Get<int>(PledgeAmount);
 
         private static DateTime GetPledgeCreatedOn(this ObjectContext objectContext) => objectContext.Get<DateTime>(PledgeCreatedOn);
-    }
-
-    public class Pledge
-    {
-        public string PledgeId;
-        public int Amount;
-        public DateTime CreatedOn;
-        public string EmployerAccountId;
-        public List<string> Applications;
-
-        public override string ToString() => $"Pledge Id:'{PledgeId}', Amount:'{Amount}'";
-    }
+    }  
 }

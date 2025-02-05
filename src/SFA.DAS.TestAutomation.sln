@@ -151,6 +151,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.ProvideFeedback.API
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.FATe.UITests", "SFA.DAS.FATe.UITests\SFA.DAS.FATe.UITests.csproj", "{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.AODP.UITests", "SFA.DAS.AODP.UITests\SFA.DAS.AODP.UITests.csproj", "{1E3B43E9-BBD9-4FEC-B81D-3D5FA3437E80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -524,6 +526,12 @@ Global
 		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9E7CC2D-0230-4E3A-81B5-85C9874123FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E3B43E9-BBD9-4FEC-B81D-3D5FA3437E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E3B43E9-BBD9-4FEC-B81D-3D5FA3437E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E3B43E9-BBD9-4FEC-B81D-3D5FA3437E80}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E3B43E9-BBD9-4FEC-B81D-3D5FA3437E80}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{1E3B43E9-BBD9-4FEC-B81D-3D5FA3437E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E3B43E9-BBD9-4FEC-B81D-3D5FA3437E80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

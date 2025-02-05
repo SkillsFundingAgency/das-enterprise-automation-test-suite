@@ -26,11 +26,32 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new EmployerSelectStandardPage(context);
         }
 
-        public AddApprenticeDetailsPage DynamicHomePageClickSaveAndContinueToAddAnApprentices()
+        public AddTrainingProviderDetailsPage SelectAReservation()
         {
             formCompletionHelper.Click(ChooseCourseReservation);
             Continue();
+            return new AddTrainingProviderDetailsPage(context);
+        }
+
+        public AddTrainingProviderDetailsPage ChooseReservationFromContext()
+        {
+            var reservationId = objectContext.GetReservationId();
+            var chooseReservationById = By.Id($"SelectedReservationId-{reservationId}");
+
+            formCompletionHelper.SelectRadioOptionByLocator(chooseReservationById);
+            Continue();
+            return new AddTrainingProviderDetailsPage(context);
+        }
+
+        public AddApprenticeDetailsPage ChooseSecondReservationFromContext()
+        {
+            var reservationId = objectContext.GetSecondReservationId();
+            var chooseReservationById = By.Id($"SelectedReservationId-{reservationId}");
+
+            formCompletionHelper.SelectRadioOptionByLocator(chooseReservationById);
+            Continue();
             return new AddApprenticeDetailsPage(context);
         }
+
     }
 }

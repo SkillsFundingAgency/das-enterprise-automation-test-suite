@@ -10,4 +10,18 @@ public class CheckEmployerDetailsPage(ScenarioContext context) : ProviderRelatio
 
         return new(context);
     }
+
+    public AddAnEmployerPage AccessChangeEmployerName()
+    {
+        formCompletionHelper.ClickLinkByText("Change employer name");
+
+        return new(context);
+    }
+
+    public AccAccountRequestPermissionsPage AccessChangePermissions()
+    {
+        formCompletionHelper.ClickLinkByText("Change permissions");
+
+        return new(context);
+    }
 }

@@ -11,15 +11,15 @@ public class AssessmentOpportunitySteps(ScenarioContext context) : EPAOBaseSteps
         tabHelper.GoToUrl(UrlConfig.EPAOAssessmentService_BaseUrl, EPAOConfig.AssessmentOpportunityFinderPath);
         homePage = new AO_HomePage(_context);
     }
-
+    
     [Then(@"the Approved tab is displayed and selected")]
     public void ThenTheApprovedTabIsDisplayedAndSelected() => homePage.VerifyApprovedTab();
 
     [When(@"the User clicks on one of the standards listed under 'Approved' tab to view it")]
     public void WhenTheUserClicksOnOneOfTheStandardsListedUnderTab() => homePage.ClickOnAbattoirWorkerApprovedStandardLink();
 
-    [When(@"clicks on 'Apply to assess this Standard'")]
-    public void WhenTheUserClicksOnApplyToAssessThisStandard() => new AO_ApprovedStandardDetailsPage(_context).ClickApplyToThisStandardButton();
+    [Then(@"the selected Approved standard detail page is displayed")]
+    public void TheSelectedApprovedStandardDetailPageIsDisplayed() => new AO_ApprovedStandardDetailsPage(_context).IsApprovedStandardDetailsPageDisplayed();
 
     [Then(@"the User is redirected to 'Assessment Service' application")]
     public void ThenTheUserIsRedirectedToAssessmentServiceApplication() => _ = new AS_LandingPage(_context);

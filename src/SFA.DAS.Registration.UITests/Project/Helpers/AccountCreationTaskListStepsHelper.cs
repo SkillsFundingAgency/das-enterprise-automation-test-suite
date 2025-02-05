@@ -54,11 +54,11 @@ public class AccountCreationTaskListStepsHelper(ScenarioContext context)
         .ClickYesThisIsMyOrg().ContinueToConfirmationPage();
 
     internal static CreateYourEmployerAccountPage ConfirmEmployerAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
-       createEmployerAccountPage.GoToSetYourAccountNameLink().SelectoptionYes().ContinueToAcknowledge();
+       createEmployerAccountPage.GoToSetYourAccountNameLink().SelectoptionToSkipNameChange().ContinueToAcknowledge();
 
     internal CreateYourEmployerAccountPage UpdateEmployerAccountName(CreateYourEmployerAccountPage createEmployerAccountPage) =>
        createEmployerAccountPage.GoToSetYourAccountNameLink()
-        .SelectoptionNo(_registrationDataHelper.CompanyTypeOrg2)
+        .SelectoptionToChangeAccountName(_registrationDataHelper.CompanyTypeOrg2)
         .ContinueToAcknowledge(_registrationDataHelper.CompanyTypeOrg2)
         .ContinueToCreateYourEmployerAccountPage();
 
