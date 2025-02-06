@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
-using System;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
@@ -174,6 +174,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink), "Change Training Course Link is displayed");
             return this;
         }
+
+        public EditApprenticeDetailsPage ValidateMaxFundingBandForEditApprentice()
+        {
+            ValidateMaxFundingBand();
+            return this;
+        }
+
         public ApproveApprenticeDetailsPage UpdateTotalApprenticeshipPrice()
         {
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice + 500);

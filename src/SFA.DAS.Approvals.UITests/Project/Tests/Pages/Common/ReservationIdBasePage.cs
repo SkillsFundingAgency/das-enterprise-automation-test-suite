@@ -1,35 +1,40 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
+namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+
+public abstract class ReservationIdBasePage : ApprovalsBasePage
 {
-    public abstract class ReservationIdBasePage : ApprovalsBasePage
+    private static By MessageLocator => By.TagName("body");
+
+    protected ReservationIdBasePage(ScenarioContext context) : base(context) { }
+
+    public void VerifySucessMessage()
     {
-        private static By MessageLocator => By.TagName("body");
+        var expected = "You have successfully reserved funding for apprenticeship training";
 
-        protected ReservationIdBasePage(ScenarioContext context) : base(context) { }
+        var actual = pageInteractionHelper.GetText(MessageLocator);
 
-        public void VerifySucessMessage()
+        pageInteractionHelper.VerifyText(actual, expected);
+
+        SetCurrentReservationId();
+    }
+
+    public void SetCurrentReservationId(bool isSecondReservation = false)
+    {
+        var currentUrl = GetUrl();
+
+        int subStringIndexFrom = currentUrl.IndexOf("/reservations/") + "/reservations/".Length;
+        int subStringIndexTo = currentUrl.LastIndexOf("/completed");
+
+        var reservationId = currentUrl[subStringIndexFrom..subStringIndexTo];
+        if (isSecondReservation)
         {
-            var expected = "You have successfully reserved funding for apprenticeship training";
-
-            var actual = pageInteractionHelper.GetText(MessageLocator);
-
-            pageInteractionHelper.VerifyText(actual, expected);
-
-            SetCurrentReservationId();
+            objectContext.SetSecondReservationId(reservationId);
         }
-
-        private void SetCurrentReservationId()
+        else
         {
-            var currentUrl = GetUrl();
-
-            int subStringIndexFrom = currentUrl.IndexOf("/reservations/") + "/reservations/".Length;
-            int subStringIndexTo = currentUrl.LastIndexOf("/completed");
-
-            var reservationId = currentUrl[subStringIndexFrom..subStringIndexTo];
-
             objectContext.SetReservationId(reservationId);
-        }
+        }            
     }
 }
