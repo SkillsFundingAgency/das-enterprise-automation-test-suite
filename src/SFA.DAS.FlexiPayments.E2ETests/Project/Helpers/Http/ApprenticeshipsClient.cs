@@ -11,6 +11,7 @@ using TechTalk.SpecFlow;
 using SFA.DAS.UI.Framework.TestSupport;
 using SFA.DAS.Approvals.UITests.Project;
 using Newtonsoft.Json;
+using SFA.DAS.FrameworkHelpers;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.Http
 {
@@ -18,13 +19,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.Http
     {
         private HttpClient _apiClient;
         private readonly string _functionKey;
+        private ObjectContext _objectContext;
 
         public ApprenticeshipsClient(ScenarioContext context)
         {
             var _config = context.GetPaymentsSimplificationConfig<PaymentsSimplificationConfig>();
             var baseUrl = _config.ApprenticeshipAzureFunctionBaseUrl;
+
+            _objectContext = context.Get<ObjectContext>();
+            _objectContext.Set("ApprenticeshipsBaseUrl", baseUrl);
+
+
             _apiClient = HttpClientProvider.GetClient(baseUrl);
             _functionKey = _config.ApprenticeshipAzureFunctionKey;
+            _objectContext.Set("ApprenticeshipsFunctionKey", _functionKey.Length >= 5 ? _functionKey.Substring(0, 5) + "---" + _functionKey.Substring(Math.Max(0, _functionKey.Length - 5)) : _functionKey);
         }
 
         public async Task WithdrawApprenticeship(WithdrawApprenticeshipRequestBody body)
