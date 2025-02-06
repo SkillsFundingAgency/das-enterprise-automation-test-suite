@@ -30,7 +30,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages
         private static By BodyText = By.ClassName("govuk-body");
 
 
-        private static By SelectedFilter(string x) => By.XPath($"//a[contains(@title,'{x}')]");
+        private static By SelectedFilter(string x) => By.CssSelector($"href=\"/events\" [contains(@title,'{x}')]");
 
         protected static By ListOfEvents => By.CssSelector("li.das-search-results__list-item");
         protected static By Keyword => By.CssSelector("#keyword");
