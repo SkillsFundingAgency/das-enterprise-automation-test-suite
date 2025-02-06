@@ -19,7 +19,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         private void SearchPledge()
         {
             // Continue until either PledgeSelector is found or no more pages to go through
-            do
+            while (true)
             {
                 if (pageInteractionHelper.IsElementDisplayed(PledgeSelector))
                     break;
@@ -33,7 +33,6 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
                     break;
                 }
             }
-            while (true);
 
             VerifyElement(PledgeSelector);
         }
