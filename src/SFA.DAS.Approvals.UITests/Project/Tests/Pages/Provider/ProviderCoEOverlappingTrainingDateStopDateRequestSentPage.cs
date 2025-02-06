@@ -14,7 +14,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        protected override string PageTitle => "Stop date request has been sent";
+        protected override string PageTitle => "Request sent to employer";
 
         private static By IWillAddAnotherApprenticeRadionButton => By.CssSelector("#radio-add-another-apprentice");
 
