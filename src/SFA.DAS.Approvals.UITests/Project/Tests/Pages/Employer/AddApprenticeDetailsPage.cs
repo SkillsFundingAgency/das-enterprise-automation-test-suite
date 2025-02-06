@@ -20,8 +20,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override string PageTitle => "Add apprentice details";
 
-        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool checkStartDateNotEmpty)
+        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool checkStartDateNotEmpty, bool checkMaxFundingBand = false)
         {
+            if (checkMaxFundingBand)
+            {
+                ValidateMaxFundingBand();
+            }
             SubmitValidPersonalDetails();
             SubmitValidTrainingDetails(checkStartDateNotEmpty);
 
@@ -36,7 +40,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void SubmitValidTrainingDetails(bool checkStartDateNotEmpty)
         {
-          var courseStartDate = GetCourseStartDate();
+            var courseStartDate = GetCourseStartDate();
 
             ClickStartMonth();
 
