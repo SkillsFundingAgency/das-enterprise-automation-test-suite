@@ -82,7 +82,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
                 $" from WithdrawalRequest wr " +
                 $" join Episode ep on ep.ApprenticeshipKey = wr.ApprenticeshipKey " +
                 $" where ep.ApprenticeshipKey in (select [key] from [dbo].[Apprenticeship] app" +
-                $" where app.Uln = {uln})";
+                $" where app.Uln = '{uln}')";
 
             waitForResults = true;
 

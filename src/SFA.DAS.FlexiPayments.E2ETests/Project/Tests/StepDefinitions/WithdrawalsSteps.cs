@@ -38,7 +38,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
                 ULN = uln,
                 Reason = reason,
                 ReasonText = "",
-                LastDayOfLearning = DateTime.Now,
+                LastDayOfLearning = DateTime.Now.AddDays(-1),
                 ProviderApprovedBy = providerConfig.Name + " - Payments Simplification E2E Tests"
             };
             await apprenticeshipsClient.WithdrawApprenticeship(body);
