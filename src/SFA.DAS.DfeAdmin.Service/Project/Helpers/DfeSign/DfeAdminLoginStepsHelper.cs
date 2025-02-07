@@ -1,4 +1,5 @@
-﻿using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+﻿using System.Configuration;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
 using SFA.DAS.Login.Service.Project;
@@ -70,4 +71,6 @@ public class DfeAdminLoginStepsHelper(ScenarioContext context)
     private void SubmitValidLoginDetails(DfeAdminUser dfeAdminUser) => new DfeSignInPage(context).SubmitValidLoginDetails(dfeAdminUser);
 
     private AsAdminUser GetAsAdminUser() => context.GetUser<AsAdminUser>();
+
+    private AodpPortalDfeUser1 GetAodpAdminUser()=> context.GetUser<AodpPortalDfeUser1>();
 }
