@@ -37,7 +37,7 @@ resources:
       - Deploy_PP
 
 stages:
-- template: ../../../pipeline-templates/stage/test.yml
+- template: ../../../pipeline-templates/stage/live.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
