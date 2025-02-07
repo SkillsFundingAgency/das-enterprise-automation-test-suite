@@ -1,24 +1,15 @@
 ﻿namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
 
-public class FAASearchResultPage : FAASignedInLandingBasePage
+public class FAASearchResultPage(ScenarioContext context) : FAASignedInLandingBasePage(context)
 {
-    protected override By PageHeader => By.CssSelector(".das-search-results__link");
-
     protected By ResultsFound => By.CssSelector("h1.govuk-heading-l.govuk-!-margin-bottom-8");
-
-    protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
 
     private static By VacancyName => By.ClassName("das-search-results__link");
     private static By FavouriteIcon => By.CssSelector("[data-add-favourite=true]");
     private static By SavedVacancyNavBarLink => By.LinkText("Saved vacancies");
     private static By ApplyNow => By.CssSelector(".das-button--inline-link");
+    private static By FirstApplicationDisplayed => By.CssSelector("[id^='VAC'][id$='-vacancy-title']");
 
-
-
-    public FAASearchResultPage(ScenarioContext context) : base(context, false)
-    {
-        
-    }
 
     public void VerifySuccessfulResults()
     {
@@ -33,5 +24,16 @@ public class FAASearchResultPage : FAASignedInLandingBasePage
         formCompletionHelper.Click(ApplyNow);
 
         return new FAA_ApplicationOverviewPage(context);
+    }
+
+    public FAA_ApprenticeSummaryPage ClickFirstApprenticeshipThatCanBeAppliedFor()
+    {
+        var vacancyTitle = pageInteractionHelper.GetText(FirstApplicationDisplayed);
+
+        objectContext.Set("vacancytitle", vacancyTitle);
+
+        formCompletionHelper.Click(FirstApplicationDisplayed);
+
+        return new FAA_ApprenticeSummaryPage(context);
     }
 }
