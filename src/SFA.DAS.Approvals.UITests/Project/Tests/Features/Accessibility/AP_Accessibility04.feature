@@ -2,6 +2,7 @@
 Navigation journey through EAS and PAS 
 
 @accessibility
+@approvalsaccessibility
 @approvals
 @provideraddapprentice 
 @nonlevyproviderscenarios
