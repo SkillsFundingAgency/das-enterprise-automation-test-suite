@@ -138,6 +138,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanViewApprovedApplication()
         {
             GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Auto approval: Awaiting acceptance by applicant");
+            var sender = _context.Get<TransferMatchingUser>();
+            UpdateOrganisationName(sender.OrganisationName);
             SignOut();
         }
 
@@ -416,7 +418,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
         }
 
-        [Then(@"6 weeks have passed since the application was approved")]
+        [When(@"Six weeks have passed since the application was approved")]
         public void WaitSixWeeksAfterApplicationWasApproved()
         {
             _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
@@ -433,19 +435,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             UpdateOrganisationName(sender.OrganisationName);
             LoginAsSender(sender);
 
-            NavigateToTransferMatchingPage()
+            _transferPledgePage = NavigateToTransferMatchingPage()
                 .GoToViewMyTransferPledgePage()
                 .GoToTransferPledgePage()
                 .ConfirmApplicationStatus(ApplicationStatus.Declined.GetLabelForSender());
         }
 
-        [Then(@"the deducted funds should be automatically refunded to the sending employer's account ")]
+        [Then(@"the deducted funds should be automatically refunded to the sending employer's account")]
         public void TheDeductedFundsShouldBeRefundedToSendersEmployerAccount()
-        {
-            _transferPledgePage = NavigateToTransferMatchingPage()
-                .GoToViewMyTransferPledgePage()
-                .GoToTransferPledgePage();
-
+        {            
             var totalPledgeFunds = _transferPledgePage.GetTotalPledgeFunds();
             var remainingPledgeFunds = _transferPledgePage.GetEstimatedRemainingFunds();
 
@@ -631,7 +629,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            SubmitApplicationHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge ? "" : _objectContext.GetPledgeDetail().PledgeId);
+            SubmitApplicationHelper.SubmitApplication(page, _objectContext.GetPledgeDetail().PledgeId);
 
             return OpenPledgeApplication(_isImmediateAutoApprovalPledge ?
                 ApplicationStatus.Approved.GetLabelForReceiver()
