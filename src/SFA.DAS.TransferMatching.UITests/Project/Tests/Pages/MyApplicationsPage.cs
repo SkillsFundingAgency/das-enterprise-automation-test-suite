@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
+   
     public class MyApplicationsPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
         protected override string PageTitle => "My applications";
@@ -38,3 +39,4 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
         }
     }
 }
+

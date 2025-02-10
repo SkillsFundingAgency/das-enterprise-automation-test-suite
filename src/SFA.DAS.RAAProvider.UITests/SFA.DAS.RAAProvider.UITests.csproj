@@ -49,4 +49,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Project\Tests\Features\FAAJourney\" />
+  </ItemGroup>
+
 </Project>

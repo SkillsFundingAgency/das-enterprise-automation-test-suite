@@ -23,7 +23,7 @@ public class EventsHubPage(ScenarioContext context) : AanBasePage(context)
     {
         static string ToEventMonthFormat(DateTime date) => date.ToString("MMMM yyyy");
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 12; i++)
         {
             var eventMonth = pageInteractionHelper.GetText(EventMonth);
 

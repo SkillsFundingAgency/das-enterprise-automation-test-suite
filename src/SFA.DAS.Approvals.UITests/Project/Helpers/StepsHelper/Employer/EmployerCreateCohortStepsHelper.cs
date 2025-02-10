@@ -92,7 +92,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return new ApprenticesHomePage(context)
                 .ClickAddAnApprentice()
                 .StartNowToSelectFunding()
-                .SelectFundingType(FundingType.ReservedFunds)
+                .SelectFundingType(FundingType.ReserveNewFunds)
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerSendsToProviderToAddApprentices()
