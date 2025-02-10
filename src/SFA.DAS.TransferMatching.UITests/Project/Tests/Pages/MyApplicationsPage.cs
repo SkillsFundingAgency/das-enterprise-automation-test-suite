@@ -8,7 +8,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My applications";
         private By PledgeSelector => By.XPath($"//a[contains(text(),'{GetPledgeId()}')]");
-        private static By NextPageLink => By.XPath("//a[contains(text(),'Next')]");
+        private static By NextPageLink => By.LinkText("Next");
 
         public ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus)
         {
