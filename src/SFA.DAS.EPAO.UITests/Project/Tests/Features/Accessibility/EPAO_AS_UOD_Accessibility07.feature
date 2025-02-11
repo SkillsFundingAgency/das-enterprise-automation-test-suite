@@ -1,10 +1,10 @@
-﻿Feature: EPAO_AS_UOD_Accessibility07
+﻿Feature: EPAO_Accessibility_07
 
 @accessibility
 @epao
 @assessmentservice
 @regression
-Scenario: EPAO_AS_UOD_Accessibility07 - Update organisation details
+Scenario: EPAO_Accessibility_07 - Update organisation details
 	Given the Manage User is logged into Assessment Service Application
 	When the User navigates to Organisation details page
 	Then the User is able to change the Registered details

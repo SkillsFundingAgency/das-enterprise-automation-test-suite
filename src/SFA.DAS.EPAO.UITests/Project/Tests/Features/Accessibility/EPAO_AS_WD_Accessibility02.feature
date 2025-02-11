@@ -1,4 +1,4 @@
-﻿Feature: EPAO_AS_WD_Accessibility02
+﻿Feature: EPAO_Accessibility_02
 
 # Both the register and standard withdrawal scenarios are included in this feature because
 # a register withdrawal will decline any standard withdrawals for the same organisation
@@ -12,7 +12,7 @@
 @assessmentservice
 @registerwithdrawal
 @resetregisterwithdrawal
-Scenario: EPAO_AS_RWD_Accessibility02A - Register Withdrawal 
+Scenario: EPAO_Accessibility_02A - Register Withdrawal 
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
 	And   starts the journey to withdraw from the register
 	When  completes the Register withdrawal notification questions
@@ -28,7 +28,7 @@ Scenario: EPAO_AS_RWD_Accessibility02A - Register Withdrawal
 @assessmentservice
 @registerwithdrawal
 @resetregisterwithdrawal
-Scenario: EPAO_AS_RWD_Accessibility02B - Register Withdrawal with feedback
+Scenario: EPAO_Accessibility_02B - Register Withdrawal with feedback
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
 	And   starts the journey to withdraw from the register
 	When  completes the Register withdrawal notification questions
@@ -46,7 +46,7 @@ Scenario: EPAO_AS_RWD_Accessibility02B - Register Withdrawal with feedback
 @regression
 @assessmentservice
 @resetstandardwithdrawal
-Scenario: EPAO_AS_SWD_Accessibility02C - Standard Withdrawal 
+Scenario: EPAO_Accessibility_02C - Standard Withdrawal 
 	Given the EPAO Withdrawal User is logged into Assessment Service Application
 	And   starts the journey to withdraw a standard
 	When  completes the standard withdrawal notification questions
