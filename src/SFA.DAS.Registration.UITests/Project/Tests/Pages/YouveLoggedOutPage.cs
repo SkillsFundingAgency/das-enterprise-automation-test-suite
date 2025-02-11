@@ -3,7 +3,7 @@
 public class YouveLoggedOutPage : RegistrationBasePage
 {
     protected override By PageHeader => By.ClassName("govuk-heading-l");
-    protected override string PageTitle => "You have signed out";
+    protected override string PageTitle => "You have been signed out";
     protected override bool TakeFullScreenShot => false;
     private static By SigninLink => By.LinkText("sign in");
 

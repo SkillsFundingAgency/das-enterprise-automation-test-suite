@@ -7,6 +7,7 @@ public class FAA_ApplicationsPage(ScenarioContext context) : FAABasePage(context
     private static By SuccessfulLink => By.CssSelector("a[href='/applications?tab=Successful']");
 
     private static By UnsuccessfulLink => By.CssSelector("a[href='/applications?tab=Unsuccessful']");
+    private static By SubmittedlLink => By.CssSelector("a[href='/applications?tab=Submitted']");
 
     private static By SearchResultItem => By.CssSelector(".das-search-results__list-item");
 
@@ -22,6 +23,12 @@ public class FAA_ApplicationsPage(ScenarioContext context) : FAABasePage(context
     public FAA_UnSuccessfulApplicationPage OpenUnSuccessfulApplicationPage()
     {
         formCompletionHelper.Click(UnsuccessfulLink);
+
+        return new(context);
+    }
+    public FAA_SubmittedApplicationPage OpenSubmittedlApplicationPage()
+    {
+        formCompletionHelper.Click(SubmittedlLink);
 
         return new(context);
     }

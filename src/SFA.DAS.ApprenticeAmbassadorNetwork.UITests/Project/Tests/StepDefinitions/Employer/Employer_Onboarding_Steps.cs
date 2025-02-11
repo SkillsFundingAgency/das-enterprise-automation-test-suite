@@ -1,4 +1,5 @@
 ﻿using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer;
+using SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Employer.Onboarding;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
 
@@ -10,7 +11,7 @@ public class Employer_Onboarding_Steps(ScenarioContext context) : Employer_BaseS
 {
     private EmployerAmbassadorApplicationPage employerAmbassadorApplicationPage;
 
-    private Employer_CheckTheInformationPage employer_CheckTheInformationPage;
+    private RegistrationConfirmationPage RegistrationConfirmationPage;
 
     private RegistrationComplete_EmployerPage applicationSubmitted_EmployerPage;
 
@@ -31,17 +32,22 @@ public class Employer_Onboarding_Steps(ScenarioContext context) : Employer_BaseS
     [When(@"the employer provides all the required details for the employer onboarding journey")]
     public void WhenTheEmployerProvidesAllTheRequiredDetailsForTheEmployerOnboardingJourney()
     {
-        employer_CheckTheInformationPage = employerAmbassadorApplicationPage.StartEmployerAmbassadorApplication()
+        RegistrationConfirmationPage = employerAmbassadorApplicationPage.StartEmployerAmbassadorApplication()
             .AcceptTermsAndConditions()
-            .ConfirmAreasOfWorkAndContinue()
-            .SelectMeetOtherEmployerAmbassador_BuildProfileAndContinue()
-            .YesHaveEngagedWithAmbassadorAndContinue();
+            .SelectNorthEastRegion_Continue()
+            .ConfirmRegionalNetwork()
+            .ConfirmYourAmbassadorProfile()
+            .SelectHowYouWantToBeInvolved()
+            .SelectReceiveNotifications()
+            .SelectEventTypes()
+            .AddLocation_And_Continue()
+            .ConfirmEngagement();
     }
 
     [Then(@"the employer onboarding process should be successfully completed")]
     public void ThenTheEmployerOnboardingProcessShouldBeSuccessfullyCompleted()
     {
-        applicationSubmitted_EmployerPage = employer_CheckTheInformationPage.SubmitApplication();
+        applicationSubmitted_EmployerPage = RegistrationConfirmationPage.SubmitApplication();
     }
 
     [Then(@"the employer should be redirected to the employer Hub page")]
@@ -53,20 +59,18 @@ public class Employer_Onboarding_Steps(ScenarioContext context) : Employer_BaseS
     [When(@"the employer should be able to modify any of the provided answers")]
     public void WhenTheEmployerShouldBeAbleToModifyAnyOfTheProvidedAnswers()
     {
-        employer_CheckTheInformationPage = employerAmbassadorApplicationPage.StartEmployerAmbassadorApplication()
+        RegistrationConfirmationPage = employerAmbassadorApplicationPage.StartEmployerAmbassadorApplication()
             .AcceptTermsAndConditions()
-            .ConfirmAreasOfWorkAndContinue()
-            .SelectMeetOtherEmployerAmbassador_BuildProfileAndContinue()
-            .YesHaveEngagedWithAmbassadorAndContinue()
-            .ChangeRegionLocationAndPreferences()
-            .Add3MoreRegionsAndContinue()
-            .ChangeJourney_ConfirmLocalAsNorthEastAndContinue()
-            .ChangeReasonsForApply()
-            .Add_IncreasingEngagementWithSchoolsAndCollegesAndContinue()
-            .ChangeSupportNeeded()
-            .Add_ProjectManageAndContinue()
-            .ChangePreviousEngagement()
-            .NoHaveEngagedWithAmbassadorAndContinue();
+            .SelectNorthEastRegion_Continue()
+            .ConfirmRegionalNetwork()
+            .ConfirmYourAmbassadorProfile()
+            .SelectHowYouWantToBeInvolved()
+            .SelectReceiveNotifications()
+            .SelectEventTypes()
+            .AddLocation_And_Continue()
+            .ConfirmEngagement()
+            .ChangeWhatCanYouOffer()
+            .Add1MoreSelection();
     }
 
     [Then(@"the user can sign back in to the AAN Employer platform to verify the hub page")]
