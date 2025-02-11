@@ -7,7 +7,7 @@ public class RemoveAmbassadorPage(ScenarioContext context) : SearchEventsBasePag
     private static By BreachOfConductRadio => By.Id("breachCodeOfConduct");
     private static By InactivityRadio => By.Id("inActivity");
     private static By YesCheckbox = By.Id("hasRemoveConfirmed");
-    private static By CacnelLink = By.XPath("(//a[text()='Cancel'])");
+    private static By CacnelLink = By.LinkText("Cancel");
 
     public MemberProfilePage SelectReasonsToRemoveAndCancelRemoval()
     {

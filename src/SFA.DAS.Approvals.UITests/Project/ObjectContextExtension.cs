@@ -22,6 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string CohortReference = "cohortreference";
         private const string ApprenticeId = "apprenticeid";
         private const string ReservationId = "reservationid";
+        private const string SecondReservationId = "secondReservationId";
         private const string ProviderMakesReservationForNonLevyEmployers = "providermakesreservationfornonlevyemployers";
         private const string SameApprentice = "IsSameApprentice";
         private const string UpdateDynamicPauseGlobalRule = "updatedynamicpauseglobalrule";
@@ -30,6 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         private const string StartDate = "startDate";
         private const string UlnOltd = "UlnOltd";
         private const string EndDate = "endDate";
+        private const string PledgeDetailList = "pledgedetaillist";
 
         #endregion Constants
 
@@ -69,6 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void SetApprenticeId(this ObjectContext objectContext, int value) => objectContext.Set(ApprenticeId, value);
 
         internal static void SetReservationId(this ObjectContext objectContext, string value) => objectContext.Replace(ReservationId, value);
+        internal static void SetSecondReservationId(this ObjectContext objectContext, string value) => objectContext.Replace(SecondReservationId, value);
 
         internal static bool IsProviderMakesReservationForNonLevyEmployers(this ObjectContext objectContext) =>
             objectContext.KeyExists<bool>(ProviderMakesReservationForNonLevyEmployers);
@@ -85,6 +88,7 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static List<string> GetCohortReferenceList(this ObjectContext objectContext) => objectContext.Get<List<string>>(CohortReferenceList);
 
         internal static string GetReservationId(this ObjectContext objectContext) => objectContext.Get(ReservationId);
+        internal static string GetSecondReservationId(this ObjectContext objectContext) => objectContext.Get(SecondReservationId);
 
         internal static void SetIsSameApprentice(this ObjectContext objectContext) => objectContext.Replace(SameApprentice, true);
 
@@ -121,5 +125,20 @@ namespace SFA.DAS.Approvals.UITests.Project
         internal static void UpdateEndDate(this ObjectContext objectContext, string value) => objectContext.Update(EndDate, value);
 
         internal static void UpdateStartDate(this ObjectContext objectContext, string value) => objectContext.Update(StartDate, value);
+
+        internal static List<Pledge> GetPledgeDetailList(this ObjectContext objectContext) => objectContext.Get<List<Pledge>>(PledgeDetailList);
+        internal static Pledge GetPledgeDetail(this ObjectContext objectContext) => objectContext.GetPledgeDetailList().LastOrDefault();
+        private static Pledge GetPledgeDetail(this ObjectContext objectContext, string pledgeId) => objectContext.GetPledgeDetailList().FirstOrDefault(x => x.PledgeId == pledgeId);
+        internal static string GetPledgeApplication(this ObjectContext objectContext, string pledgeId) => objectContext.GetPledgeDetail(pledgeId).Applications.LastOrDefault();
+
+        public class Pledge
+        {
+            public string PledgeId;
+            public int Amount;
+            public DateTime CreatedOn;
+            public string EmployerAccountId;
+            public string SenderHashedAccountId;
+            public List<string> Applications;
+        }
     }
 }
