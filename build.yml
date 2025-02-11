@@ -1,0 +1,105 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+
+workspace:
+  clean: all
+
+variables:
+  buildConfiguration: 'release'
+
+resources:
+  repositories:
+    - repository: das-platform-building-blocks
+      type: github
+      name: SkillsFundingAgency/das-platform-building-blocks
+      ref: refs/tags/2.1.28
+      endpoint: SkillsFundingAgency
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+  - template: azure-pipelines-templates/build/step/gitversion.yml@das-platform-building-blocks
+
+  - task: DotNetCoreCLI@2
+    displayName: "Build Solution"
+    inputs:
+      command: 'build'
+      projects: 'src/**/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
+
+  - task: DotNetCoreCLI@2
+    displayName: "Run Unit Tests"
+    inputs:
+      command: 'test'
+      projects: 'src/**/*SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.csproj'
+      arguments: '--filter "TestCategory=Unittests" --logger trx;logfilename=UnittestResults.trx'
+
+  - task: DotNetCoreCLI@2
+    displayName: "Pack Project"
+    inputs:
+      command: 'pack'
+      projects: 'src/**/*.csproj'
+      packDirectory: '$(build.artifactstagingdirectory)/publish'
+      arguments: '--configuration $(buildConfiguration) --no-restore'
+
+  - task: DotNetCoreCLI@2
+    displayName: "Publish Tests"
+    inputs:
+      command: 'publish'
+      projects: 'src/**/*Tests.csproj'
+      arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
+      zipAfterPublish: false
+      publishWebProjects: false
+
+  - task: CopyFiles@2
+    displayName: "Copy Required Test Files"
+    inputs:
+      Contents: |
+        src/**/*.sql
+        src/**/html2canvas.js
+        src/**/appsettings.*.json
+      TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
+      flattenFolders: true
+      OverWrite: true
+
+  - task: CopyFiles@2
+    displayName: "Copy Project Settings"
+    inputs:
+      Contents: 'src/**/appsettings.Project.json'
+      TargetFolder: '$(build.artifactstagingdirectory)/tests/'
+      flattenFolders: false
+      OverWrite: true
+
+  - task: CopyFiles@2
+    displayName: "Copy PowerShell Scripts"
+    inputs:
+      Contents: |
+        src/**/Check-TestResults.ps1
+        src/**/UpdateNoofTestWorkers.ps1
+      TargetFolder: '$(build.artifactstagingdirectory)/publish'
+      OverWrite: true
+
+  - task: CopyFiles@2
+    displayName: "Copy Runsettings"
+    inputs:
+      Contents: 'src/**/*.runsettings'
+      TargetFolder: '$(build.artifactstagingdirectory)/publish/runsettings'
+      OverWrite: true
+
+  - task: ArchiveFiles@2
+    displayName: "Archive Test Files"
+    inputs:
+      rootFolderOrFile: '$(build.artifactstagingdirectory)/tests'
+      archiveFile: '$(build.artifactstagingdirectory)/publish/tests.zip'
+      archiveType: 'zip'
+      includeRootFolder: false
+      replaceExistingArchive: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Build Artifacts"
+    inputs:
+      pathtoPublish: '$(build.artifactstagingdirectory)/publish'

@@ -1,0 +1,82 @@
+steps:
+- task: ExtractFiles@1
+  displayName: 'Extract files '
+  inputs:
+    archiveFilePatterns: '**\tests.zip'
+    destinationFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
+
+- task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
+  displayName: 'Tokenization: Transform file *.json'
+  inputs:
+    SourcePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
+    TargetFileNames: '*.json'
+
+- task: PowerShell@2
+  displayName: 'Update NumberOfTestWorkers'
+  inputs:
+    targetType: filePath
+    filePath: './$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/src/UpdateNoofTestWorkers.ps1'
+    arguments: '-browser $(Browser)'
+
+- task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
+  displayName: 'Tokenization: Transform file *.runsettings'
+  inputs:
+    SourcePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/runsettings/src/'
+    TargetFileNames: '*.runsettings'
+
+- task: ms-autotest.screen-resolution-utility-task.screen-resolution-utlity-task.ScreenResolutionUtility@1
+  displayName: 'Set Screen Resolution'
+  inputs:
+    displaySettings: specific
+    width: 1920
+    height: 1080
+
+- task: AzurePowerShell@5
+  displayName: 'Get Agent''s IP Address'
+  inputs:
+    azureSubscription: '$(ARMServiceConnection)'
+    ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
+    ScriptArguments: '-WhatsMyIpUrl  "https://ifconfig.me/ip"'
+    azurePowerShellVersion: LatestVersion
+
+- task: AzurePowerShell@5
+  displayName: 'Whitelist agent''s IP address'
+  inputs:
+    azureSubscription: '$(ARMServiceConnection)'
+    ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
+    ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+    azurePowerShellVersion: LatestVersion
+
+- task: VSTest@2
+  displayName: 'VsTest - Test Execution '
+  inputs:
+    testAssemblyVer2: '**\SFA.DAS.EPAO.UITests.dll'
+    searchFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests/SFA.DAS.EPAO.UITests/'
+    testFiltercriteria: '$(TestCategory)'
+    runSettingsFile: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/runsettings/src/Parellel.runsettings'
+    runInParallel: true
+    otherConsoleOptions: '/logger:trx'
+    rerunFailedTests: true
+    rerunMaxAttempts: 2
+  continueOnError: true
+
+- task: AzurePowerShell@5
+  displayName: 'SQL - Remove Whitelisted Agent''s IP Address'
+  inputs:
+    azureSubscription: '$(ARMServiceConnection)'
+    ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
+    ScriptArguments: '-Name  $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+    azurePowerShellVersion: LatestVersion
+  condition: succeededOrFailed()
+
+- task: PowerShell@2
+  displayName: 'Check .trx File Exists'
+  inputs:
+    targetType: filePath
+    filePath: './$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/src/Check-TestResults.ps1'
+    arguments: '-SourcePath "$(Agent.TempDirectory)/TestResults"'  
+
+
+
+
+

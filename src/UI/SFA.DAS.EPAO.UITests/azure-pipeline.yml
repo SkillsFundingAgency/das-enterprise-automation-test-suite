@@ -1,0 +1,62 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - "main"
+
+variables:
+- name: BuildConfiguration
+  value: release
+- name: BuildPlatform
+  value: any cpu
+- group: RELEASE Management Resources
+- group: RELEASE das-epao-automation-test-suite
+- name: Deploy
+  value: $[or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['Build.Reason'], 'Manual'), eq(variables['Build.Reason'], 'PullRequest'))]
+
+
+resources:
+  repositories:
+  - repository: self
+  - repository: das-platform-automation
+    type: github
+    name: SkillsFundingAgency/das-platform-automation
+    ref: refs/tags/5.1.15
+    endpoint: SkillsFundingAgency
+
+stages:
+- stage: Deploy_TEST
+  dependsOn: Build
+  displayName: Execute Tests for TEST Enviroment
+  variables:
+  - group: DevTest Management Resources
+  - group: TEST DevTest Shared Resources
+  jobs:
+  - template: pipeline-templates/job/excute.yml
+    parameters:
+      Environment: TEST
+      ServiceConnection: SFA-DAS-DevTest-ARM
+
+- stage: Deploy_TEST2
+  dependsOn: Build
+  displayName: Execute Tests for TEST2 Enviroment
+  variables:
+  - group: DevTest Management Resources
+  - group: TEST2 DevTest Shared Resources
+  jobs:
+  - template: pipeline-templates/job/excute.yml
+    parameters:
+      Environment: TEST2
+      ServiceConnection: SFA-DAS-DevTest-ARM
+
+- stage: Deploy_PP
+  dependsOn: Build
+  displayName: Execute Tests for PP Enviroment
+  variables:
+  - group: PreProd Management Resources
+  - group: PreProd Shared Resources
+  jobs:
+  - template: pipeline-templates/job/excute.yml
+    parameters:
+      Environment: PP
+      ServiceConnection: SFA-DIG-PreProd-ARM
