@@ -6,7 +6,7 @@ public class EventPage(ScenarioContext context) : AppEmpCommonBasePage(context, 
 {
     protected override string PageTitle => "";
 
-    private static By CancelAttendanceLink => By.XPath("//button[text()='Cancel your attendance']");
+    private static By CancelAttendanceButton => By.XPath("//button[text()='Cancel your attendance']");
     private static By InPersonEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--InPerson')]");
     private static By OnlineEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Online')]");
     private static By HybridEventTag => By.XPath("//strong[contains(@class,'govuk-tag app-tag app-tag--Hybrid')]");
@@ -26,7 +26,7 @@ public class EventPage(ScenarioContext context) : AppEmpCommonBasePage(context, 
 
     public SignUpCancelledPage CancelYourAttendance()
     {
-        formCompletionHelper.ClickElement(CancelAttendanceLink);
+        formCompletionHelper.ClickElement(CancelAttendanceButton);
         return new SignUpCancelledPage(context);
     }
 

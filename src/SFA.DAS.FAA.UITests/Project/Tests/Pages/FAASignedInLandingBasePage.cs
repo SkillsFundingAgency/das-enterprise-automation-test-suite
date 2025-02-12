@@ -18,6 +18,7 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
     private static By VacancyName => By.CssSelector("span[itemprop='title']");
 
     private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
+    private static By FirstApplicationDisplayed => By.CssSelector("[id^='VAC'][id$='-vacancy-title']");
 
     public FAA_ApplicationsPage GoToApplications()
     {
@@ -65,9 +66,24 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         formCompletionHelper.Click(SearchFAA);
     }
 
-    public void SearchAtRandom()
+    public FAASearchResultPage SearchAtRandom()
     {
         formCompletionHelper.Click(SearchFAA);
+
+        return new FAASearchResultPage(context);
+    }
+
+    public FAASearchResultPage SearchRandomVacancyAndGetVacancyTitle()
+    {
+        formCompletionHelper.Click(SearchFAA);
+
+        var vacancyTitle = pageInteractionHelper.GetText(FirstApplicationDisplayed);
+
+        objectContext.Set("vacancyTitle", vacancyTitle);
+
+        var contextVacancyTitle = objectContext.Get("vacancyTitle");
+
+        return new FAASearchResultPage(context);
     }
 
     public FAASearchResultPage SearchAndSaveVacancyByReferenceNumber()

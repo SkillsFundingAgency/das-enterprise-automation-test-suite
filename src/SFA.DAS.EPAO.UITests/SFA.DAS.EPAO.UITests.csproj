@@ -66,7 +66,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Project\Tests\Accessibility\" />
+    <Folder Include="Project\Tests\Features\Accessibility\" />
   </ItemGroup>
 
 </Project>

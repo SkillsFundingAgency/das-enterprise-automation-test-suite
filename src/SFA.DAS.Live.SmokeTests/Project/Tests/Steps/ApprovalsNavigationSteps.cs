@@ -16,7 +16,7 @@ public class ApprovalsNavigationSteps(ScenarioContext context)
     [Then(@"Add an apprentice link should direct user to Add an apprentice page")]
     public void AddAnApprenticeLinkShouldDirectUserToAddAnApprenticePage()
     {
-        _apprenticesHomePage = _apprenticesHomePage.AddAnApprentice().GoBackToApprenticesHomePage();
+        _apprenticesHomePage = _apprenticesHomePage.ClickAddAnApprentice().GoBackToApprenticesHomePage();
     }
 
     [Then(@"Apprentice requests link should direct user to Apprentice requests page")]
