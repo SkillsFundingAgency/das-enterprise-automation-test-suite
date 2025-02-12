@@ -8,11 +8,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "My applications";
         private static By NextPageLink => By.XPath("//a[contains(text(),'Next')]");
-        private By ApplicationSelector => By.CssSelector($"a[href='applications/{GetPledgeId()}']");
-
+        private By PledgeSelector => By.XPath($"//a[contains(text(),'{GetPledgeId()}')]");
 
         public ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus)
-        {
+        {        
             SearchForApplication();
             formCompletionHelper.ClickLinkByText(GetPledgeId());
             return new ApplicationsDetailsPage(context, expectedStatus);
@@ -20,10 +19,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private void SearchForApplication()
         {
-            // Continue until either ApplicationSelector is found or no more pages to go through
-            do
+            // Continue until either PledgeSelector is found or no more pages to go through
+            while (pageInteractionHelper.IsElementDisplayed(NextPageLink))
             {
-                if (pageInteractionHelper.IsElementDisplayed(ApplicationSelector))
+                if (pageInteractionHelper.IsElementDisplayed(PledgeSelector))
                     break;
 
                 if (pageInteractionHelper.IsElementDisplayed(NextPageLink))
@@ -35,7 +34,8 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
                     break;
                 }
             }
-            while (true);
+
+            VerifyElement(PledgeSelector);
         }
     }
 }
