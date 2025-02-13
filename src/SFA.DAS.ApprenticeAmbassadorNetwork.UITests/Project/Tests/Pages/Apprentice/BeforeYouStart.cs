@@ -2,7 +2,7 @@
 {
     public class BeforeYouStartPage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "Become an Apprentice Ambassador";
+        protected override string PageTitle => "Join the Apprenticeship Ambassador Network as an apprentice";
 
         private static By StartButton => By.Id("start-now");
 
