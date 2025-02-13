@@ -9,7 +9,7 @@ namespace SFA.DAS.AODP.UITests.Project.Hooks
     {
         private readonly TabHelper _tabHelper = context.Get<TabHelper>();
         [BeforeScenario]
-        public void Navigate() => _tabHelper.GoToUrl(UrlConfig.AAN_Admin_BaseUrl);
+        public void Navigate() => _tabHelper.GoToUrl(UrlConfig.Aodp_DfeAdmin_BaseUrl);
     }
 
 
