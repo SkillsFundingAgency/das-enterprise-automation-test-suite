@@ -6,7 +6,7 @@ public class AS_ApplyForAStandardPage : EPAO_BasePage
 
     public AS_ApplyForAStandardPage(ScenarioContext context) : base(context) => VerifyPage();
 
-    public AS_WhatStandardPage Start()
+    public AS_ApplyForAStandardPage Start()
     {
         formCompletionHelper.ClickLinkByText("Start");
         return new(context);

@@ -6,7 +6,13 @@ public class AS_SelectApplicationPage(ScenarioContext context) : EPAO_BasePage(c
 
     private static By StartApplicationLink => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-    public AS_ApplyForAStandardPage StartApplication()
+    //public AS_ApplyForAStandardPage StartApplication()
+    //{
+    //    formCompletionHelper.ClickElement(StartApplicationLink);
+    //    return new(context);
+    //}
+
+    public AS_WhatStandardPage StartApplication()
     {
         formCompletionHelper.ClickElement(StartApplicationLink);
         return new(context);
