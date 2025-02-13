@@ -2,9 +2,9 @@
 
 public class RegistrationCompletePage(ScenarioContext context) : AanBasePage(context)
 {
-    protected override string PageTitle => "Registration complete";
+    protected override string PageTitle => "You have joined the Apprenticeship Ambassador Network";
 
-    private static By NetworkHubLink => By.CssSelector("a[href='/network-hub ']");
+    private static By NetworkHubLink => By.CssSelector("a[href='/network-hub']");
 
     public Apprentice_NetworkHubPage ContinueToAmbassadorHub()
     {

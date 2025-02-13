@@ -17,12 +17,15 @@ public class Apprentice_Onboarding_Steps(ScenarioContext context) : Apprentice_B
         checkYourAnswersPage = beforeYouStartPage.StartApprenticeOnboardingJourney()
             .AcceptTermsAndConditions()
             .YesHaveApprovalFromMaanagerAndContinue()
+            .SelectARegionAndContinue()
+            .ContinueToAmbassadorProfilePage()
+            .ContinueToSearchEmployerNamePage()
             .EnterAddressManually()
             .EnterFullEmployersDetailsAndContinue()
             .ConfirmJobtitleAndContinue()
-            .ConfirmRegionAndContinue()
-            .EnterInformationToJoinNetwork()
             .SelectEventsAndPromotions()
+            .EnterInformationToJoinNetwork()
+            .SelectNoAndContinue()
             .YesHaveEngagedWithAnAmbassadaorAndContinue();
     }
 
@@ -45,7 +48,7 @@ public class Apprentice_Onboarding_Steps(ScenarioContext context) : Apprentice_B
     public void WhenUserShouldBeAbleToModifyAnswers()
     {
         checkYourAnswersPage.AccessChangeCurrentEmployerAndContinue()
-            .EnterAddressManually()
+            .EnterAddressManuallyEdit()
             .ChangeVenueNameAndContinue()
             .AccessChangeCurrentJobTitleAndContinue()
             .ChangeJobtitleAndContinue()
