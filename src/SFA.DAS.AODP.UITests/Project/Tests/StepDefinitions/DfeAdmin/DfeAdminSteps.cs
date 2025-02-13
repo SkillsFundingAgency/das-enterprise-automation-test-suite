@@ -16,7 +16,8 @@ namespace SFA.DAS.AODP.UITests.Project.Tests.StepDefinitions.DfeAdmin
     public class DfeAdminSteps(ScenarioContext context) :DfeAdminStartPage(context)
     {
        [Given(@"Dfe admin user login in to the portal")]
-        public void GivenDfeAdminUserLoginInToThePortal() {
+        public void GivenDfeAdminUserLoginInToThePortal() 
+        {
         clickStartNow();
         SubmitValidLoginDetails(context.GetUser<AodpPortalDfeUser1>());
         }

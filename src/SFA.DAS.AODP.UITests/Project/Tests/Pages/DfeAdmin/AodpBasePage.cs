@@ -6,36 +6,6 @@ namespace SFA.DAS.AODP.UITests.Project.Tests.Pages.DfeAdmin
 {
     public abstract class AodpBasePage(ScenarioContext context) : VerifyBasePage(context)
     {
-        
         protected override string PageTitle => throw new NotImplementedException();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     }
 }

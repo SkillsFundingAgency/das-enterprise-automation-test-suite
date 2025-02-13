@@ -21,7 +21,6 @@ public class AodpConfigurationSetup(ScenarioContext context)
         {
             SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AodpPortalDfeUser1()),
             SetDfeAdminCredsHelper.SetDfeAdminCreds(dfeAdminUsers, new AodpPortalDfeUser2()),
-
         });
 
        
