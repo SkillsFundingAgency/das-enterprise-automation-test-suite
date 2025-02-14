@@ -54,6 +54,16 @@ public class PaymentsSimplificationNotificationSteps
         ValidateProviderEmailBodyAndLinkText(emailText, subject);
     }
 
+    [Then("Provider is notified the employer has approved the change of Start Date request through email")]
+    public void ProviderIsNotifiedTheEmployerHasApprovedTheChangeOfStartDateRequestThroughEmail()
+    {
+        var emailText = $"{orgName} has approved the change to the actual training start date for";
+
+        string subject = $"{orgName} approved start date";
+
+        ValidateProviderEmailBodyAndLinkText(emailText, subject);
+    }
+
 
     [Then(@"Employer is notified that the provider has approved a price change through email")]
     public void EmployerIsNotifiedThatTheProviderHasApprovedAPriceChangeThroughEmail()
