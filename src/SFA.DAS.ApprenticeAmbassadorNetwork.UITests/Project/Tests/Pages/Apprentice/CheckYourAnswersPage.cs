@@ -2,7 +2,7 @@
 {
     public class CheckYourAnswersPage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "Check the information you have provided before completing your registration";
+        protected override string PageTitle => "Register with the Apprenticeship Ambassador Network";
         private static By ChangelinkEmployer => By.CssSelector("a[href='/onboarding/employer-search']");
         private static By ChangelinkJobtitle => By.CssSelector("a[href='/onboarding/current-job-title']");
         private static By ChangelinkRegions => By.CssSelector("a[href='/onboarding/regions']");
@@ -19,10 +19,10 @@
             formCompletionHelper.ClickElement(ChangelinkJobtitle);
             return new CurrentJobTitlePage(context);
         }
-        public RegionsPage AccessChangeCurrentRegionAndContinue()
+        public FindYourRegionalNetworkPage AccessChangeCurrentRegionAndContinue()
         {
             formCompletionHelper.ClickElement(ChangelinkRegions);
-            return new RegionsPage(context);
+            return new FindYourRegionalNetworkPage(context);
         }
         public AreasOfInterestPage AccessChangeCurrentAreasOfInterestAndContinue()
         {

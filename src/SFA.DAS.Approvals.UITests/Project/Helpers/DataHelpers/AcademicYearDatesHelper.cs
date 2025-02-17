@@ -30,4 +30,36 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers
 
         private static DateTime GetAcademicYearEndDate(DateTime academicYearStartDate) => new(academicYearStartDate.Year + 1, EndMonth, EndDay);
     }
+
+    public static class DateTimeExtensions
+    {
+        public static string ToGdsHumanisedDate(this DateTime date)
+        {
+            string ordinal;
+
+            switch (date.Day)
+            {
+                case 1:
+                case 21:
+                case 31:
+                    ordinal = "st";
+                    break;
+                case 2:
+                case 22:
+                    ordinal = "nd";
+                    break;
+                case 3:
+                case 23:
+                    ordinal = "rd";
+                    break;
+                default:
+                    ordinal = "th";
+                    break;
+            }
+
+            // Eg 12th January 2024
+            return string.Format("{0}{1} {2:MMMM yyyy}", date.Day, ordinal, date);
+        }
+
+    }
 }

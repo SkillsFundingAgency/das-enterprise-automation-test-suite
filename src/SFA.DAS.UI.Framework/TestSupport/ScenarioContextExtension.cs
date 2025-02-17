@@ -24,6 +24,7 @@ public static class ScenarioContextExtension
     private const string EIProjectConfigKey = "eiprojectconfigkey";
     private const string ApprenticeCommitmentsConfigKey = "apprenticecommitmentsconfigkey";
     private const string PortableFlexiJobProviderConfigKey = "portableflexijobproviderconfigkey";
+    private const string PaymentsSimplificationConfigKey = "PaymentsSimplificationConfigKey";
     #endregion
 
     #region Setters
@@ -43,6 +44,7 @@ public static class ScenarioContextExtension
     public static void SetARConfig<T>(this ScenarioContext context, T value) => Set(context, value, ARProjectConfigKey);
     public static void SetEIConfig<T>(this ScenarioContext context, T value) => Set(context, value, EIProjectConfigKey);
     public static void SetApprenticeCommitmentsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprenticeCommitmentsConfigKey);
+    public static void SetPaymentsSimplificationConfig<T>(this ScenarioContext context, T value) => Set(context, value, PaymentsSimplificationConfigKey);
     public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);
     private static void Replace<T>(ScenarioContext context, T value, string key) => context.Replace(key, value);
     private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
@@ -65,6 +67,7 @@ public static class ScenarioContextExtension
     public static T GetARConfig<T>(this ScenarioContext context) => Get<T>(context, ARProjectConfigKey);
     public static T GetEIConfig<T>(this ScenarioContext context) => Get<T>(context, EIProjectConfigKey);
     public static T GetApprenticeCommitmentsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprenticeCommitmentsConfigKey);
+    public static T GetPaymentsSimplificationConfig<T>(this ScenarioContext context) => Get<T>(context, PaymentsSimplificationConfigKey);
     public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
     public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
     #endregion

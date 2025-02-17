@@ -297,6 +297,20 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage.ValidateEmployerEditApprovedApprentice(action == "can");
         }
 
+        [Then("a temporary success banner is displayed for the employer to advise payments are being Withheld")]
+        public void TemporarySuccessBannerIsDisplayedForTheEmployerToAdvisePaymentsAreBeingWithheld()
+        {
+            _apprenticeDetailsPage.ValidateProviderPaymentsWithheldTemporaryBannerIsDisplayed();
+        }
+
+        [Then("on revisiting the apprentice details page a permanent success banner is displayed to advise payments are being Withheld")]
+        public void OnRevisitingTheApprenticeDetailsPageAPermanentSuccessBannerIsDisplayedToAdvisePaymentsAreBeingWithheld()
+        {
+            EmployerSearchesLearnerOnManageYourApprenticesPage();
+            _apprenticeDetailsPage.ValidateProviderPaymentsWithheldPermanentBannerIsDisplayed();
+        }
+
+
         [Then(@"display a Provider payments status row with (Active|Withheld) status to Employer")]
         public void DisplayAProviderPaymentsStatusRowWithStatus(string providerPaymentStatus)
         {

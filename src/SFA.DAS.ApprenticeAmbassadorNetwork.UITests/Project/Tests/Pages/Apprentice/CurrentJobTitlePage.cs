@@ -2,16 +2,16 @@
 {
     public class CurrentJobTitlePage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "What is your current job title?";
+        protected override string PageTitle => "What is your job title?";
 
 
         private static By CurrentJobTitle => By.Id("JobTitle");
 
-        public RegionsPage ConfirmJobtitleAndContinue()
+        public AreasOfInterestPage ConfirmJobtitleAndContinue()
         {
             formCompletionHelper.EnterText(CurrentJobTitle, aanDataHelpers.JobTitle);
             Continue();
-            return new RegionsPage(context);
+            return new AreasOfInterestPage(context);
         }
         public CheckYourAnswersPage ChangeJobtitleAndContinue()
         {
