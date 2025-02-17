@@ -6,13 +6,10 @@ public class WhyDoYouWantToJoinNetworkPage(ScenarioContext context) : AanBasePag
 
     private static By ReasonForJoining => By.Id("ReasonForJoiningTheNetwork");
 
-    public AreasOfInterestPage EnterInformationToJoinNetwork()
+    public ReceiveNotificationsPage EnterInformationToJoinNetwork()
     {
         formCompletionHelper.EnterText(ReasonForJoining, aanDataHelpers.UpdateProviderDescriptionText);
         Continue();
-        return new AreasOfInterestPage(context);
+        return new ReceiveNotificationsPage(context);
     }
 }
-
-
-
