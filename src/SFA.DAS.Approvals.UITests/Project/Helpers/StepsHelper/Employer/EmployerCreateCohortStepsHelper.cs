@@ -74,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private CohortSentYourTrainingProviderPage EmployerCreateCohortViaLevyFunds(bool isTransferReceiverEmployer)
         {
             return _confirmProviderDetailsHelper
-               .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFunc())
+               .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFuncWithoutSelectFundingOption())
                .EmployerSendsToProviderToAddApprentices()
                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
         }
