@@ -12,6 +12,6 @@ stages:
   - template: ../job/test-api.yml
     parameters:
       Environment: LIVE
-      ServiceConnection: SFA-DAS-DevTest-ARM
+      ServiceConnection: SFA-DIG-Prod-ARM
       TestFilter: ${{ parameters.TestFilter }}
       TestDlls: ${{ parameters.TestDlls }}
