@@ -2,19 +2,19 @@
 {
     public class AreasOfInterestPage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "Please tell us which areas interest you most in your role as an ambassador";
+        protected override string PageTitle => "How you want to be involved";
 
         private static By NetworkingCheckBox => By.Id("Events_0__IsSelected");
         private static By WritingCaseStudies => By.Id("Promotions_0__IsSelected");
         private static By OnlineEventsCheckBox => By.Id("Events_3__IsSelected");
         private static By DistrubtingCommunicationCheckBox => By.Id("Promotions_2__IsSelected");
 
-        public EngagedWithAmbassadorPage SelectEventsAndPromotions()
+        public WhyDoYouWantToJoinNetworkPage SelectEventsAndPromotions()
         {
             formCompletionHelper.SelectRadioOptionByLocator(NetworkingCheckBox);
             formCompletionHelper.SelectRadioOptionByLocator(WritingCaseStudies);
             Continue();
-            return new EngagedWithAmbassadorPage(context);
+            return new WhyDoYouWantToJoinNetworkPage(context);
         }
 
         public CheckYourAnswersPage AddMoreEventsAndPromotions()
