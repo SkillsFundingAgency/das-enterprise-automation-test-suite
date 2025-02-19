@@ -218,8 +218,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
             return new ApprenticesHomePage(context).ClickAddAnApprentice()
-                .StartNowToSelectFunding()
-                .SelectFundingType(FundingType.CurrentLevyFunds)
+                .StartNowToAddTrainingProvider()
                 .EnterUkprnForPortableFlexiJobPilotProvider()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerAddsApprentices()
