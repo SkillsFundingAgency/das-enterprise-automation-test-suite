@@ -81,49 +81,39 @@ public class ApplyStepsHelper(ScenarioContext context)
 
     public static void SubmitApplication(AP_ApplicationOverviewPage applicationOverviewPage) => applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
 
-    public AS_ApplicationSubmittedPage ApplyForAStandard(AS_ApplyForAStandardPage aS_ApplyForAStandardPage, string standardName)
+    public void ApplyForAStandard(AS_WhatStandardPage aS_WhatStandardPage, string standardName)
     {
         _objectContext.SetApplyStandardName(standardName);
 
-        var applyToStandard = aS_ApplyForAStandardPage
-            .Start()
+        var applyToStandard = aS_WhatStandardPage
             .EnterStandardName()
             .Apply()
             .ConfirmAndApplyWithVersion()
-            .GoToApplyToStandard();
-
-        applyToStandard = ApplyToStandard(applyToStandard);
-
-        return applyToStandard.ReturnToApplicationOverview().Submit();
+            .GoToApplyToStandard()
+            .GoToHaveYouReceivedApprovalFromTheRegulatorPage()
+            .SelectYesHaveYouReceivedApprovalFromTheRegulator()
+            .ReturnToApplicationOverview()
+            .Submit();
     }
 
-    public void ApplyStageTwoStandard()
-    {
-        AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new(context);
+    //public void ApplyStageTwoStandard()
+    //{
+    //    AS_ApplyForAStandardPage _aS_ApplyForAStandardPage = new(context);
 
-        var applyToStandard = _aS_ApplyForAStandardPage.Start()
-        .EnterStandardToCancelName()
-        .Apply()
-        .ConfirmAndApply()
-        .GoToApplyToStandard();
+    //    var applyToStandard = _aS_ApplyForAStandardPage.Start()
+    //    .EnterStandardToCancelName()
+    //    .Apply()
+    //    .ConfirmAndApply()
+    //    .GoToApplyToStandard();
 
-        applyToStandard = ApplyToStandard(applyToStandard);
+    //    applyToStandard = ApplyToStandard(applyToStandard);
 
-        applyToStandard.ReturnToApplicationOverview();
-    }
+    //    applyToStandard.ReturnToApplicationOverview();
+    //}
 
-    private static AS_ApplyToStandardPage ApplyToStandard(AS_ApplyToStandardPage applyToStandard)
-    {
-        applyToStandard = applyToStandard.AccessYourPolicies_01()
-            .NHEIEnterRegNumber()
-            .NHEIUploadPublicLiabilityInsurance()
-            .NHEIUploadProfessionalIndemnityInsurance()
-            .NHEIUploadEmployersLiabilityInsurance()
-            .NHEIEnterHowManyAssessors()
-            .NHEIEnterHowManyEndPointAssessment()
-            .NHEIEnterVolume()
-            .NHEIChooseLocation()
-            .NHEIEnterDayToStart();
-        return applyToStandard;
-    }
+    //    private static AS_ApplyToStandardPage ApplyToStandard(AS_ApplyToStandardPage applyToStandard)
+    //    {
+    //        applyToStandard = applyToStandard.SelectYesHaveYouReceivedApprovalFromTheRegulator();
+    //        return applyToStandard;
+    //    }
 }

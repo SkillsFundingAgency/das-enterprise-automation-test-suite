@@ -203,8 +203,8 @@ public class AssessmentServiceSteps(ScenarioContext context) : EPAOBaseSteps(con
 
     [Then(@"the user can apply to assess a standard")]
     public void ThenTheUserCanApplyToAssessAStandard() =>
-        applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), EPAOApplyStandardDataHelper.ApplyStandardName);
-
+           applyStepsHelper.ApplyForAStandard(loggedInHomePage.ApplyToAssessStandard().SelectApplication().StartApplication(), EPAOApplyStandardDataHelper.ApplyStandardName);
+           
     [Given(@"the certificate is printed")]
     public void GivenTheCertificateIsSentToPrinter() => ePAOAdminSqlDataHelper.UpdateCertificateToPrinted(ePAOAdminDataHelper.LearnerUln);
 
