@@ -21,6 +21,7 @@ public static class ScenarioContextExtension
     private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
     private const string ChangeOfPartyConfigKey = "changeofpartyconfigkey";
     private const string ARProjectConfigKey = "arprojectconfigkey";
+    private const string AppSupportUserConfigKey = "appSupportUserConfigKey";
     private const string EIProjectConfigKey = "eiprojectconfigkey";
     private const string ApprenticeCommitmentsConfigKey = "apprenticecommitmentsconfigkey";
     private const string PortableFlexiJobProviderConfigKey = "portableflexijobproviderconfigkey";
@@ -46,6 +47,7 @@ public static class ScenarioContextExtension
     public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);
     private static void Replace<T>(ScenarioContext context, T value, string key) => context.Replace(key, value);
     private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
+    public static void SetAppSupportUserConfig<T>(this ScenarioContext context, T value) => Set(context, value, AppSupportUserConfigKey);
     #endregion
 
     #region Getters
