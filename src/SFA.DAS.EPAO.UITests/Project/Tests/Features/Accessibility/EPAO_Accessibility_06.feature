@@ -4,6 +4,7 @@
 @epao
 @assessmentservice
 @regression
-Scenario: EPAO_Accessibility_06 - Navigation into Completed Assessments
-	Given the Assessor User is logged into Assessment Service Application
-	And  the User navigates to Pipeline link
+Scenario: EPAO_Accessibility_06 - Update organisation details
+	Given the Manage User is logged into Assessment Service Application
+	When the User navigates to Organisation details page
+	Then the User is able to change the Registered details
