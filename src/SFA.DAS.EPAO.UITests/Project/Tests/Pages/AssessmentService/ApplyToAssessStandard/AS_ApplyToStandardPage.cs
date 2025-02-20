@@ -69,10 +69,11 @@ public class AS_ApplyToStandardPage(ScenarioContext context) : EPAO_BasePage(con
     #endregion
 
     private static By ClickReturnToApplicationOverview => By.XPath("//a[@class='govuk-button']");
+    private static By ClickHaveYouReceivedApprovalFromTheRegulatorQuestion => By.LinkText("Have you received approval from the regulator");
 
-    public AS_InformationCommissionerPage AccessYourPolicies_01()
+    public AS_HaveYouReceivedApprovalFromTheRegulatorPage GoToHaveYouReceivedApprovalFromTheRegulatorPage()
     {
-        formCompletionHelper.ClickLinkByText(YourPolicies_01);
+        formCompletionHelper.Click(ClickHaveYouReceivedApprovalFromTheRegulatorQuestion);
         return new(context);
     }
 

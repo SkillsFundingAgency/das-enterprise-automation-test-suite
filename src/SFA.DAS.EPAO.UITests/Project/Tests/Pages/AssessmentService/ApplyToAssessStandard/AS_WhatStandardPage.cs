@@ -8,7 +8,8 @@ public class AS_WhatStandardPage(ScenarioContext context) : EPAO_BasePage(contex
 
     protected override By ContinueButton => By.CssSelector("#main-content .govuk-button[type='submit']");
 
-    private static By StandardName => By.CssSelector("#standard-name");
+    private static By StandardName => By.XPath("//input[@name='Search']");
+
 
     public AS_StandardSearchResultsPage EnterStandardName()
     {

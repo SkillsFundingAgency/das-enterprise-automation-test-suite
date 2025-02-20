@@ -34,6 +34,7 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
         public void GivenTheUserSearchesAnIntegratedStandardTerm(string searchTerm) => _ePAOOrganisationsPage = _findEPAOStepsHelper.SearchForIntegratedApprenticeshipStandard(searchTerm);
 
         [When(@"the user clicks on view other end point organisations")]
+        [Then(@"the user clicks on view other end point organisations")]
         public void WhenTheUserClicksOnViewOtherEndPointOrganisations() => _ePAOOrganisationsPage = _ePAOOrganisationDetailsPage.SelectViewOtherEndPointOrganisations();
 
         [Then(@"the user is able to click back to the search apprenticeship page")]
