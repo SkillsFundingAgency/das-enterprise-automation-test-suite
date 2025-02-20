@@ -45,5 +45,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 
         protected void Back() => formCompletionHelper.ClickLinkByText("Back");
 
+        internal void NavigateBrowserBack() => tabHelper.NavigateBrowserBack();
     }
 }

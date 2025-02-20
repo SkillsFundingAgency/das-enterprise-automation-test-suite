@@ -2,7 +2,7 @@
 {
     public class EngagedWithAmbassadorPage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "Did you previously engage with an ambassador before deciding to join the network?";
+        protected override string PageTitle => "Engagement with apprenticeship ambassadors";
 
         public CheckYourAnswersPage YesHaveEngagedWithAnAmbassadaorAndContinue()
         {

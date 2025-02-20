@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
@@ -86,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             EnterDob();
         }
 
-        internal ProviderOverlappingTrainingDateThereMayBeProblemPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
+        internal ProviderOverlappingTrainingDateConfirmDetailsPage SubmitApprenticeTrainingDetailsWithOverlappingTrainingDetails()
         {
             EnterUln(objectContext.GetUlnForOLTD());
 
@@ -104,7 +105,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(AddButton);
 
-            return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
+            return new ProviderOverlappingTrainingDateConfirmDetailsPage(context);
         }
 
         internal ProviderApproveApprenticeDetailsPage SubmitNullTrainingDetails()
@@ -112,6 +113,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             SubmitValidPersonalDetails();
             formCompletionHelper.ClickElement(AddButton);
             return new ProviderApproveApprenticeDetailsPage(context);
+        }
+
+        public ProviderFundingForNonLevyEmployersPage NavigateBrowserBackToProviderFundingForNonLevyEmployersPage()
+        {
+            tabHelper.NavigateBrowserBack();
+            return new ProviderFundingForNonLevyEmployersPage(context);
         }
 
         private new void EnterApprenticeMandatoryValidDetails()

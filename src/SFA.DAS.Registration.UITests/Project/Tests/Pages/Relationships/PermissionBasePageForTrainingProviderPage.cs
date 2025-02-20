@@ -64,8 +64,8 @@ public abstract class PermissionBasePageForTrainingProviderPage(ScenarioContext 
 
         switch (permission)
         {
-            case AddApprenticePermissions.AllowConditional: Continue(ApprenticeAllowRadioOption); break;
-            case AddApprenticePermissions.DoNotAllow: Continue(ApprenticeDoNotAllowRadioOption); break;
+            case AddApprenticePermissions.YesAddApprenticeRecords: Continue(ApprenticeAllowRadioOption); break;
+            case AddApprenticePermissions.NoToAddApprenticeRecords: Continue(ApprenticeDoNotAllowRadioOption); break;
         };
     }
 
@@ -73,9 +73,9 @@ public abstract class PermissionBasePageForTrainingProviderPage(ScenarioContext 
     {
         switch (permission)
         {
-            case RecruitApprenticePermissions.Allow: ContinueToConfirm(RecruitAllowRadioOption); break;
-            case RecruitApprenticePermissions.AllowConditional: ContinueToConfirm(RecruitAllowConditionalRadioOption); break;
-            case RecruitApprenticePermissions.DoNotAllow: ContinueToConfirm(RecruitDoNotAllowRadioOption); break;
+            case RecruitApprenticePermissions.YesRecruitApprentices: ContinueToConfirm(RecruitAllowRadioOption); break;
+            case RecruitApprenticePermissions.YesRecruitApprenticesButEmployerWillReview: ContinueToConfirm(RecruitAllowConditionalRadioOption); break;
+            case RecruitApprenticePermissions.NoToRecruitApprentices: ContinueToConfirm(RecruitDoNotAllowRadioOption); break;
         };
     }
 

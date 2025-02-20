@@ -23,7 +23,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ZenHelpWidgetScript1 => By.Id("ze-snippet");
         private static By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-        public AddAnApprenitcePage AddAnApprentice()
+        public AddAnApprenitcePage ClickAddAnApprentice()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeLink);
             return new AddAnApprenitcePage(context);

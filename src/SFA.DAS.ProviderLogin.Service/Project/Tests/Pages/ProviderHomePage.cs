@@ -25,6 +25,10 @@ public class ProviderHomePage : InterimProviderBasePage
 
     protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
 
+    protected static By ProviderRecruitApprenticesLink => By.LinkText("Recruit apprentices");
+
+    protected static By DeveloperAPIsLink => By.LinkText("Developer APIs");
+
     protected static By GetFundingLink => By.LinkText("Get funding for non-levy employers");
 
     protected static By ManageYourFundingLink => By.LinkText("Manage your funding reserved for non-levy employers");

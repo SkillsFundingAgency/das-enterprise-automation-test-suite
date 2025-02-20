@@ -27,4 +27,15 @@ public class AddAnEmployerPage(ScenarioContext context) : ProviderRelationshipsB
 
         return new(context);
     }
+
+    public CheckEmployerDetailsPage ChangeEmployerName()
+    {
+        formCompletionHelper.EnterText(FirstName, eprDataHelper.EmployerFirstName);
+
+        formCompletionHelper.EnterText(LastName, eprDataHelper.EmployerLastName);
+
+        Continue();
+
+        return new(context);
+    }
 }

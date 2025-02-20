@@ -1,8 +1,13 @@
 ﻿namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
+    public class EditEmployerDetailsPage(ScenarioContext context) : EmployerDetailsPage(context)
+    {
+        protected override string PageTitle => "Check the details of your employer";
+    }
+
     public class EmployerDetailsPage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "your employer's name and address";
+        protected override string PageTitle => "Add the details of your employer";
 
         private static By AddressLine1 => By.Id("AddressLine1");
         private static By EmployerName => By.Id("EmployerName");

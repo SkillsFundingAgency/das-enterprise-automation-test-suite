@@ -30,6 +30,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
             return Convert.ToInt32(GetDataAsObject(query));
         }
 
+        public string GetPublicHashedAccountIdByHashedId(string hashedId)
+        {
+            string query = @$"SELECT 
+	                            PublicHashedId 
+                            FROM 
+	                            [employer_account].[Account]
+                            where 
+	                            HashedId = '{hashedId}';";
+
+            return GetDataAsObject(query).ToString();
+        }
+
         private string ReadDataFromDataBase(string queryToExecute, Dictionary<string, string> parameters) => ReadDataFromDataBase(queryToExecute, connectionString, parameters);
 
         private string ReadDataFromCommtDataBase(string queryToExecute) => ReadDataFromDataBase(queryToExecute, _dbConfig.CommitmentsDbConnectionString, null);

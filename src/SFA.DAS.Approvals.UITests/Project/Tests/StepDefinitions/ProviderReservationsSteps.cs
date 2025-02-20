@@ -24,8 +24,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
         private readonly ProviderLoginUser _login;
+        private readonly ProviderAccountOwnerUser _accountOwnerUserLogin;
         private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
+        private ProviderFundingForNonLevyEmployersPage _poviderFundingForNonLevyEmployersPage;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderConfirmEmployerPage _providerConfirmEmployerPage;
 
@@ -41,6 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(_context);
             _providerReservationStepsHelper = new ProviderReservationStepsHelper(_context);
             _login = new ProviderLoginUser { Username = _config.Username, Password = _config.Password, Ukprn = _config.Ukprn };
+            _accountOwnerUserLogin = context.Get<ProviderAccountOwnerUser>();
         }
 
         [Given(@"An Employer has given create reservation permission to a provider")]
@@ -84,6 +87,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can make a reservation")]
         public void ThenProviderCanMakeAReservation() => ProviderMakeReservation();
 
+        [Given(@"Provider Account Owner can make a reservation")]
+        public void ThenProviderCanMakeAReservationForRoleTests()
+        {
+            _providerAddApprenticeDetailsPage = _providerReservationStepsHelper
+                .ProviderAccountOwnerUserMakeReservation(_accountOwnerUserLogin);
+        }
+
         [Then(@"Provider can add an apprentice")]
         public void ThenProviderCanAddAnApprentice() => _providerApproveApprenticeDetailsPage = _providerReservationStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 1);
 
@@ -100,6 +110,61 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider can access Manage Funding Page to reserve more funding")]
         public void ThenTheProviderCanAccessManageFundingPageToReserveMoreFunding() => _providerStepsHelper
             .NavigateToProviderHomePage().GoToManageYourFunding().ClickReserveMoreFundingLink();
+
+        [When(@"user naviagates to 'Funding for non-levy employers' page")]
+        public void ThenTheProviderCanAccessManageFundingPage()
+        {
+            _poviderFundingForNonLevyEmployersPage = _providerStepsHelper.NavigateToProviderHomePage().GoToManageYourFunding();
+        }
+
+        [Then(@"user can Reserve New Funding as defined in the table below (.*)")]
+        public void ThenUserCanOrCannotReserveNewFundingAsDefinedInTable(bool canReserveFunding)
+        {
+            if (canReserveFunding)
+            {
+                _poviderFundingForNonLevyEmployersPage
+                    .ClickReserveMoreFundingLink()
+                    .NavigateBrowserBackToProviderFundingForNonLevyEmployersPage();
+            }
+            else
+            {
+
+                _poviderFundingForNonLevyEmployersPage
+                    .ClickReserveMoreFundingLinkGoesToAccessDenied()
+                    .NavigateBrowserBackToProviderFundingForNonLevyEmployersPage();
+
+            }
+        }
+
+        [Then(@"user can Delete Existing Reservations as defined in the table below (.*)")]
+        public void ThenUserCanOrCannotDeleteReservationAsDefinedInTable(bool canDeleteReservation)
+        {
+            if (canDeleteReservation)
+                _poviderFundingForNonLevyEmployersPage
+                    .DeleteTheReservedFunding()
+                    .NoGoBackToManageReservations();
+            else
+            {
+                _poviderFundingForNonLevyEmployersPage
+                   .DeleteTheReservedFundingGoesToAccessDenied()
+                   .NavigateBrowserBackToProviderFundingForNonLevyEmployersPage();
+            }
+        }
+
+        [Then(@"user can Add Apprentices To Reservation as defined in the table below (.*)")]
+        public void ThenUserCanOrCannotAddApprenticeAsDefinedInTable(bool canAddApprentice)
+        {
+            if (canAddApprentice)
+            {
+                _poviderFundingForNonLevyEmployersPage
+                    .AddApprenticeWithReservedFunding()
+                   .NavigateBrowserBack();
+            }
+            else
+                _poviderFundingForNonLevyEmployersPage
+                    .AddApprenticeWithReservedFundingGoesToAccessDenied()
+                   .NavigateBrowserBackToProviderFundingForNonLevyEmployersPage();
+        }
 
         [Then(@"the Provider with suitable permissions tries to create reservation on behalf of this employer")]
         public void WhenTheProviderWithSuitablePermissionsTriesToCreateReservationOnBehalfOfThisEmployer()
