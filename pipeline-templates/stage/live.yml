@@ -8,6 +8,9 @@ stages:
   displayName: Run test suite on LIVE
   condition: eq(variables['Build.Reason'], 'Manual')
 
+  variables:
+  - group: Prod Shared Resources
+
   jobs:
   - template: ../job/test-api.yml
     parameters:
