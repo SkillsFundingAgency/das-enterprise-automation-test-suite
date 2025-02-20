@@ -46,13 +46,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new EmployerSelectStandardPage(context);
         }
 
-        public YouCannotCreateAnotherFundingReservationPage NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
-        {
-            EmployerAgreesToAdds();
-            Continue();
-            return new YouCannotCreateAnotherFundingReservationPage(context);
-        }
-
         public EmployerSelectStandardPage DynamicHomePageNonLevyEmployerAddsApprentices()
         {
             EmployerAgreesToAdds();

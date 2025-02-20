@@ -76,27 +76,27 @@ public class TasksSteps
         _homePage = TasksHelper.ClickViewApprenticeChangesLink(_homePage, tasks.NumberOfApprenticesToReview);
     }
 
-    [When("there are X cohorts ready for approval")]
-    public void WhenThereAreCohortsReadyToReview()
+    [When("there are X Apprentice Requests ready for review")]
+    public void WhenThereAreXApprenticeRequestsReadyForReview()
     {
         var tasks = GetTaskQueryResult();
         tasks.NumberOfCohortsReadyToReview = _tasksHelper.GetNumberOfCohortsReadyToReview();
         SetTaskQueryResult(tasks);
     }
 
-    [Then("display task: X cohorts ready for approval")]
-    public void ThenDisplayNumberOfCohortsReadyToReview()
+    [Then("display task: X apprentice requests ready for review")]
+    public void ThenDisplayTaskXApprenticeRequestsReadyForReview()
     {
         var tasks = GetTaskQueryResult();
-        _homePage.VerifyCohortsReadyToReviewMessageShown(tasks.NumberOfCohortsReadyToReview);
+        _homePage.VerifyApprenticeRequestsReadyToReviewMessageShown(tasks.NumberOfCohortsReadyToReview);
     }
 
-    [Then("'View cohorts' link should navigate user to 'Apprentice Requests' page")]
-    public void ThenViewCohortsReadyToReviewNavigatesToApprenticeRequestsPage()
+    [Then("'View apprentice requests' link should navigate user to 'Apprentice Requests' page")]
+    public void ThenLinkShouldNavigateUserToPage()
     {
         var tasks = GetTaskQueryResult();
 
-        _homePage = TasksHelper.ClickViewCohortsToReviewLink(_homePage, tasks.NumberOfCohortsReadyToReview);
+        _homePage = TasksHelper.ClickViewApprenticeRequestsLink(_homePage, tasks.NumberOfCohortsReadyToReview);
     }
 
     [When("there is pending Transfer request ready for approval")]
