@@ -1,7 +1,7 @@
 ﻿Feature: EPAO_Accessibility_08
 
 #This test can be re-purposed for the managed standards journey coming in the future
-@ignore
+
 @accessibility
 @epao
 @epaoapply
