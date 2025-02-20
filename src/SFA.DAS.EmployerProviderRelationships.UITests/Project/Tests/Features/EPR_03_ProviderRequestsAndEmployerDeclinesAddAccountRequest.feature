@@ -1,6 +1,7 @@
 ﻿
 Feature: EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest
 
+@provider
 @employerproviderrelationships
 @deletepermission
 Scenario: EPR_03_ProviderRequestsAndEmployerDeclinesAddAccountRequest

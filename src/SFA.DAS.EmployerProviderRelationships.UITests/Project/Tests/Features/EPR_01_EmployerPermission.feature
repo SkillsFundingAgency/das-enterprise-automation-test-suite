@@ -1,4 +1,5 @@
 ﻿
+@provider
 Feature: EPR_01_EmployerGrantPermission
 
 @employerproviderrelationships

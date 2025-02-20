@@ -1,6 +1,6 @@
 ﻿Feature: PR_AP_01_ApprenticeRequests_AccountOwner
 
-@approvals
+@provider
 @regression
 @Approvalproviderrole
 @pasproviderrole

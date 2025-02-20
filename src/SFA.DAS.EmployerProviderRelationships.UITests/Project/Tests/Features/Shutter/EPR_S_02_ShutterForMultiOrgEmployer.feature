@@ -1,5 +1,6 @@
 ﻿Feature: EPR_S_02_ShutterForMultiOrgEmployer
 
+@provider
 @employerproviderrelationships
 @multiaccount
 Scenario: EPR_S_02_ShutterForMultiOrgEmployer

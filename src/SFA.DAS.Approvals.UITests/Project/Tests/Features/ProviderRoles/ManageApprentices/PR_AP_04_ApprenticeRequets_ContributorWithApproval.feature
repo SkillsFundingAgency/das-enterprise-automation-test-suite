@@ -1,6 +1,6 @@
 ﻿Feature: PR_AP_04_ApprenticeRequets_ContributorWithApproval
 
-@approvals
+@provider
 @regression
 @Approvalproviderrole
 @pasproviderrole

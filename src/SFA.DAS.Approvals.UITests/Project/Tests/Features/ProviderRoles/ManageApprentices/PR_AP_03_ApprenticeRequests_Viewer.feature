@@ -1,6 +1,6 @@
 ﻿Feature: PR_AP_03_ApprenticeRequests_Viewer
 
-@approvals
+@provider
 @regression
 @Approvalproviderrole
 @pasproviderrole

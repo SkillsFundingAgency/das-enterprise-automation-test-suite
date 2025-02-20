@@ -1,6 +1,6 @@
 ﻿Feature: PR_AP_08_ManageYourApprentices_Viewer
 
-@approvals
+@provider
 @regression
 @Approvalproviderrole
 @pasproviderrole

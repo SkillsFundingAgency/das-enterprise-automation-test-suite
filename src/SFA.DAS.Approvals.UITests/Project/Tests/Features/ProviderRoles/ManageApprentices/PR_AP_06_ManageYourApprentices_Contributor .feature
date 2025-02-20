@@ -1,6 +1,6 @@
 ﻿Feature: PR_AP_06_ManageYourApprentices_Contributor 
 
-@approvals
+@provider
 @regression
 @Approvalproviderrole
 @pasproviderrole
