@@ -81,22 +81,6 @@ public class ApplyStepsHelper(ScenarioContext context)
 
     public static void SubmitApplication(AP_ApplicationOverviewPage applicationOverviewPage) => applicationOverviewPage.ClickSubmitInApplicationOverviewPage();
 
-    //public AS_ApplicationSubmittedPage ApplyForAStandard(AS_WhatStandardPage aS_WhatStandardPage, string standardName)
-    //{
-    //    _objectContext.SetApplyStandardName(standardName);
-
-    //    var applyToStandard = aS_WhatStandardPage
-    //        .EnterStandardName()
-    //        .Apply()
-    //        .ConfirmAndApplyWithVersion()
-    //        .GoToApplyToStandard()
-    //        .GoToHaveYouReceivedApprovalFromTheRegulatorPage()
-    //        .SelectYesHaveYouReceivedApprovalFromTheRegulator()
-    //        .ReturnToApplicationOverview()
-    //        .Submit();
-
-    //}
-
     public void ApplyForAStandard(AS_WhatStandardPage aS_WhatStandardPage, string standardName)
     {
         _objectContext.SetApplyStandardName(standardName);
@@ -110,7 +94,6 @@ public class ApplyStepsHelper(ScenarioContext context)
             .SelectYesHaveYouReceivedApprovalFromTheRegulator()
             .ReturnToApplicationOverview()
             .Submit();
-
     }
 
     //public void ApplyStageTwoStandard()

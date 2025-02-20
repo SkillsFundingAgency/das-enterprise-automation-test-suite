@@ -4,7 +4,7 @@ public class AS_HaveYouReceivedApprovalFromTheRegulatorPage(ScenarioContext cont
 {
     protected override string PageTitle => "Have you received approval from the regulator?";
 
-    private static By ClickYes => By.XPath("//input[@class='govuk-radios__input'][1]");
+    private static By ClickYes => By.XPath("//div[@class='govuk-radios__item'][1]");
 
     public AS_ApplyToStandardPage SelectYesHaveYouReceivedApprovalFromTheRegulator()
     {
