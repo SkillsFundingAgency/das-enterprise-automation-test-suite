@@ -4,11 +4,11 @@
     {
         protected override string PageTitle => "Do you have approval from your line manager to join the network?";
 
-        public SearchEmployerNamePage YesHaveApprovalFromMaanagerAndContinue()
+        public FindYourRegionalNetworkPage YesHaveApprovalFromMaanagerAndContinue()
         {
             formCompletionHelper.SelectRadioOptionByText("Yes");
             Continue();
-            return new SearchEmployerNamePage(context);
+            return new FindYourRegionalNetworkPage(context);
         }
         public ShutterPage NoHaveApprovalFromMaanagerAndContinue()
         {

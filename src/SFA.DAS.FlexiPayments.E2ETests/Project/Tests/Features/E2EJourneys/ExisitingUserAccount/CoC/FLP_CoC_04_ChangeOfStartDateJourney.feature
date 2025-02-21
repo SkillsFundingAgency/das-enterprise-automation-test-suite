@@ -19,3 +19,4 @@ Scenario: FLP_CoC_04 Change Of Start Date Journey - Happy Path
 	And the approved Change of Start Date request is saved in the StartDateChange table of Apprenticeship db
 	And validate the new training dates have been updated in the Apprenticeship table of Apprenticeship db
 	And validate the new training dates have been updated in the Apprenticeship table of Commitment db
+	And Provider is notified the employer has approved the change of Start Date request through email

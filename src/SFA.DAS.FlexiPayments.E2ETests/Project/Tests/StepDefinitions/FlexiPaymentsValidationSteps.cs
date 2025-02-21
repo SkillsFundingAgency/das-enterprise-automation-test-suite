@@ -287,6 +287,23 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             Assert.AreEqual(roundedExpectedTotalPayment, roundedActualTotalPayment, $"Expected total on-programme payment to be: {roundedExpectedTotalPayment} but found {roundedActualTotalPayment} in earnings db");
         }
+
+        [Then("apprenticeship is marked as withdrawn")]
+        public void ApprenticeshipIsMarkedAsWithdrawn()
+        {
+            var (learningStatus, reason, lastDayOfLearning) = _apprenticeshipsSqlDbHelper.GetWithdrawalRequestData(GetApprenticeULN(1));
+
+            Assert.AreEqual("Withdrawn", learningStatus, "Incorrect Learning status found!");
+        }
+
+                [Then("the approval of the apprenticeship is maintained but it is removed from private beta")]
+        public void ApprovalOfTheApprenticeshipIsMaintainedButItIsRemovedFromPrivateBeta()
+        {
+            var (StartDate, ActualStartDate, EndDate, isPilot, trainingPrice, endpointAssessmentPrice, fromDate, toDate, cost) = _commitmentsSqlDataHelper.GetFlexiPaymentsCommitmentData(GetApprenticeULN(1));
+
+            Assert.IsFalse(Boolean.Parse(isPilot), ErrorMessage("Incorrect Pilot status found in commitments db", 1));
+        }
+
         private string ErrorMessage(string message, int ulnKey) => $"'{message}' for ulnkey '{ulnKey}', uln '{GetApprenticeULN(ulnKey)}'";
 
         private string GetApprenticeULN(int key) => context.Get<ObjectContext>().GetULNKeyInformations().Single(x => x.key == key).uln;

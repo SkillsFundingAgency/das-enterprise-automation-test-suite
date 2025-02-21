@@ -74,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private CohortSentYourTrainingProviderPage EmployerCreateCohortViaLevyFunds(bool isTransferReceiverEmployer)
         {
             return _confirmProviderDetailsHelper
-               .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFunc())
+               .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFuncWithoutSelectFundingOption())
                .EmployerSendsToProviderToAddApprentices()
                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
         }
@@ -92,7 +92,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return new ApprenticesHomePage(context)
                 .ClickAddAnApprentice()
                 .StartNowToSelectFunding()
-                .SelectFundingType(FundingType.ReservedFunds)
+                .SelectFundingType(FundingType.ReserveNewFunds)
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerSendsToProviderToAddApprentices()
@@ -100,15 +100,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         }
 
-        public StartAddingApprenticesPage NonLevyEmployerTriesToAddApprentice()
-        {
-            return _confirmProviderDetailsHelper
-               .ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFuncWithoutSelectFundingOption());
-        }
-
         public void NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
         {
-            new StartAddingApprenticesPage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
+            new AddAnApprenitcePage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
         }
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
