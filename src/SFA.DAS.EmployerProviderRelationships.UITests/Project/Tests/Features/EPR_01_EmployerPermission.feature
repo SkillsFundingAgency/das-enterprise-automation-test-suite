@@ -1,5 +1,6 @@
 ﻿
 @provider
+@donotexecuteinparallel
 Feature: EPR_01_EmployerGrantPermission
 
 @employerproviderrelationships
