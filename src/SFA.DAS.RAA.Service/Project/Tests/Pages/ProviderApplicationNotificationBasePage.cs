@@ -18,9 +18,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             VerifyPage();
         }
 
-        //protected override string PageTitle => $"{rAADataHelper.CandidateFullName}'s application made {_status}.";
-        protected override string PageTitle => "Application made unsuccessful.";
-
+        protected override string PageTitle => $"Application made {_status}.";
 
         protected override string AccessibilityPageTitle => "Candidate application made page";
     }
