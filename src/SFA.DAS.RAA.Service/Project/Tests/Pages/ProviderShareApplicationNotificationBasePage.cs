@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public abstract class ProviderShareApplicationNotificationBasePage : RaaBasePage
     {
-        protected static By NotificationBanner => By.CssSelector("#main-content > div:nth-child(1) > div:nth-child(1) > div > div.govuk-notification-banner__content > h3");
+        protected static By NotificationBanner => By.CssSelector(".govuk-notification-banner__heading");
 
         protected override By PageHeader => NotificationBanner;
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
             VerifyPage();
         }
-        protected override string PageTitle => $"{rAADataHelper.CandidateFullName}'s application {_status} with employer.";
+        protected override string PageTitle => "Application shared with employer.";
         protected override string AccessibilityPageTitle => "Candidate application made page";
 
         public class ProviderApplicationSharePage(ScenarioContext context) : ProviderShareApplicationNotificationBasePage(context, "shared")
