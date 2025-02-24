@@ -30,6 +30,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private PledgeVerificationPage _pledgeVerificationPage;
         private ManageTransferMatchingPage _manageTransferMatchingPage;
+        private TransferPledgePage _transferPledgePage;
         private TransferFundDetailsInErrorPage _transferFundDetailsInErrorPage;
         private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
@@ -134,7 +135,13 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
         public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
         [Then(@"the levy employer can view the approved application")]
-        public void ThenTheLevyEmployerCanViewApprovedApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Auto approval: Awaiting acceptance by applicant");
+        public void ThenTheLevyEmployerCanViewApprovedApplication()
+        {
+            GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Auto approval: Awaiting acceptance by applicant");
+            var sender = _context.Get<TransferMatchingUser>();
+            UpdateOrganisationName(sender.OrganisationName);
+            SignOut();
+        }
 
         [Then(@"the levy employer can view the awaiting your approval application")]
         public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Awaiting your approval");
@@ -411,6 +418,38 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
             _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
         }
 
+        [When(@"Six weeks have passed since the application was approved")]
+        public void WaitSixWeeksAfterApplicationWasApproved()
+        {
+            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+            _transferMatchingSqlDataHelper.UpdateApprovedDateToBeSixWeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+            Thread.Sleep(TimeSpan.FromSeconds(10));
+            // trigger auto decline job
+            _transferMatchingJobsHelper.RunApplicationsWithAutoDeclineJob();
+        }
+
+        [Then(@"the approved application should auto decline")]
+        public void TheApprovedApplicationShouldAutoDecline()
+        {
+            var sender = _context.Get<TransferMatchingUser>();
+            UpdateOrganisationName(sender.OrganisationName);
+            LoginAsSender(sender);
+
+            _transferPledgePage = NavigateToTransferMatchingPage()
+                .GoToViewMyTransferPledgePage()
+                .GoToTransferPledgePage()
+                .ConfirmApplicationStatus(ApplicationStatus.Declined.GetLabelForSender());
+        }
+
+        [Then(@"the deducted funds should be automatically refunded to the sending employer's account")]
+        public void TheDeductedFundsShouldBeRefundedToSendersEmployerAccount()
+        {            
+            var totalPledgeFunds = _transferPledgePage.GetTotalPledgeFunds();
+            var remainingPledgeFunds = _transferPledgePage.GetEstimatedRemainingFunds();
+
+            remainingPledgeFunds.Should().Be(totalPledgeFunds);
+        }
+
         [Then(@"the application is seven days from being auto approved")]
         public void ApplicationIs7DaysFromBeingAutoApproved()
         {
@@ -590,7 +629,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
 
         private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
         {
-            SubmitApplicationHelper.SubmitApplication(page, _isImmediateAutoApprovalPledge ? "" : _objectContext.GetPledgeDetail().PledgeId);
+            SubmitApplicationHelper.SubmitApplication(page, _objectContext.GetPledgeDetail().PledgeId);
 
             return OpenPledgeApplication(_isImmediateAutoApprovalPledge ?
                 ApplicationStatus.Approved.GetLabelForReceiver()
