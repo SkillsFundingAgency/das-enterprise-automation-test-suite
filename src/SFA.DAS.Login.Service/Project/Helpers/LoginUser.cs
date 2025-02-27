@@ -93,7 +93,11 @@ namespace SFA.DAS.Login.Service.Project.Helpers
         public string NoOfCohortToDelete { get; set; }
     }
 
-    public class ApprAppUser : GovSignUser { }
+    public abstract class ApprenticeAppUser : GovSignUser 
+    {
+        public string FullName { get; set; }
+    }
+    public class ApprAppUser : ApprenticeAppUser { }
     #endregion
 
     #region MultipleAccountEasUser

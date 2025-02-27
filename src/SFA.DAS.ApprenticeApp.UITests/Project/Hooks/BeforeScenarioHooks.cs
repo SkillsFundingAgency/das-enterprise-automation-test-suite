@@ -1,21 +1,19 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Hooks
 {
     public class BeforeScenarioHooks(ScenarioContext context)
     {
-        [BeforeScenario(Order = 40)]
+        [BeforeScenario]
         public void AppSetupHelpers()
         {
             var configSection = context.Get<ConfigSection>();
             context.SetAppSupportUserConfig(configSection.GetConfigSection<AppSupportUserConfig>());
+            context.Get<TabHelper>().GoToUrl(UrlConfig.ApprenticeApp_BaseUrl);
             //context.SetAppSupportUser(configSection.GetConfigSection<AppSupportUser>());
         }
     }

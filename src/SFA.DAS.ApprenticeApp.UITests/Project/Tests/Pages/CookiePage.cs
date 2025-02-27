@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.Framework;
 using System;
 using TechTalk.SpecFlow;
 
@@ -16,6 +14,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         public HomePage AccessHomePage()
         {
+            var uri = new Uri(UrlConfig.ApprenticeApp_BaseUrl);
+            tabHelper.GoToUrl(uri.AbsoluteUri);
             formCompletionHelper.Click(acceptCookiesButton);
             return new HomePage(context);
         }
