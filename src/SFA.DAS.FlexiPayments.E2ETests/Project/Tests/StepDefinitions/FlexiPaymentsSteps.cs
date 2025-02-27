@@ -20,6 +20,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
     public class FlexiPaymentsSteps
     {
         private readonly ScenarioContext _context;
+        private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly FlexiProviderStepsHelper _providerStepsHelper;
         private readonly NonLevyReservationStepsHelper _nonLevyReservationStepsHelper;
@@ -38,6 +39,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public FlexiPaymentsSteps(ScenarioContext context)
         {
             _context = context;
+            _objectContext = context.Get<ObjectContext>();
             _employerStepsHelper = new EmployerStepsHelper(_context);
             _providerStepsHelper = new FlexiProviderStepsHelper(_context);
             _nonLevyReservationStepsHelper = new NonLevyReservationStepsHelper(_context);
@@ -145,6 +147,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
 
         [Given(@"Employer searches for the learner on Manage your apprentice page")]
+        [When(@"Employer searches for the learner on Manage your apprentice page")]
+        [Then(@"Employer searches for the learner on Manage your apprentice page")]
         public void EmployerSearchesForTheLearnerOnManageYourApprenticePage()
         {
             EmployerSearchesLearnerOnManageYourApprenticesPage();
@@ -310,6 +314,12 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
             _apprenticeDetailsPage.ValidateProviderPaymentsWithheldPermanentBannerIsDisplayed();
         }
 
+        [Then("display a permanent confirmation banner to advise the Employer that the learner has been Withdrawn")]
+        public void DisplayAPermanentConfirmationBannerToAdviseTheEmployerThatTheLearnerHasBeenWithdrawn()
+        {
+            var reason = _objectContext.Get("WithdrawalReason");
+            _apprenticeDetailsPage.ValidateLearnerStatusWithdrawnPermanentBannerIsDisplayed(reason);
+        }
 
         [Then(@"display a Provider payments status row with (Active|Withheld) status to Employer")]
         public void DisplayAProviderPaymentsStatusRowWithStatus(string providerPaymentStatus)
