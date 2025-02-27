@@ -18,6 +18,7 @@ Scenario: FLP_UI_05 Provider payment status journey
 	And employer is able to successfully freeze provider payments
 	And a temporary success banner is displayed for the employer to advise payments are being Withheld
 	And on revisiting the apprentice details page a permanent success banner is displayed to advise payments are being Withheld
+	And Provider is notified that the employer has changed the payment status to Inactive through email
 	And display a Provider payments status row with Withheld status to Employer
 	And provider payment status is successfully updated to Inactive in apprenticeships db
 	And employer is able to successfully unfreeze provider payments

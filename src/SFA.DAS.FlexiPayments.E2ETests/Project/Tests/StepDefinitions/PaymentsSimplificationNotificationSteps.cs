@@ -95,8 +95,8 @@ public class PaymentsSimplificationNotificationSteps
         ValidateEmployerEmailBodyAndLinkText(emailText, subject);
     }
 
-    [Then("Provider is notified that the provider has rejected a price change through email")]
-    public void ProviderIsNotifiedThatTheProviderHasRejectedAPriceChangeThroughEmail()
+    [Then("Provider is notified that the Employer has rejected a price change through email")]
+    public void ProviderIsNotifiedThatTheEmployerHasRejectedAPriceChangeThroughEmail()
     {
         var emailText = $"{orgName} has declined the change to the total agreed apprenticeship price for";
 
@@ -104,6 +104,17 @@ public class PaymentsSimplificationNotificationSteps
 
         ValidateProviderEmailBodyAndLinkText(emailText, subject);
     }
+
+    [Then("Provider is notified that the employer has changed the payment status to Inactive through email")]
+    public void ProviderIsNotifiedThatTheEmployerHasChangedThePaymentStatusToInactiveThroughEmail()
+    {
+        var emailText = $"{orgName} has changed the payment status to inactive on the";
+
+        string subject = $"{orgName} changed payment status to inactive";
+
+        ValidateProviderEmailBodyAndLinkText(emailText, subject);
+    }
+
 
 
     [When(@"Employer is notified that the provider has requested a change of Start Date through email")]
