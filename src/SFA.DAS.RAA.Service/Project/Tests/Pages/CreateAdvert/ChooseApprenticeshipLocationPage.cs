@@ -12,20 +12,28 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         private static By MenuItems => By.CssSelector(".ui-menu-item");
         private static By SingleLocationRadoButton => By.CssSelector(".govuk-radios__input");
+        private static By DropDownAddressList => By.Id("SelectedLocation");
 
         public CreateAnApprenticeshipAdvertOrVacancyPage ChooseAddressAndGoToCreateApprenticeshipPage(bool isEmployerAddress)
         {
-            if (isEmployerAddress) SelectRadioOptionByForAttribute("OneLocation");
-            else DifferentLocation();
+            if (isEmployerAddress)
+            {
+                SelectRadioOptionByForAttribute("OneLocation");
+            }
+            else
+            {
+                DifferentLocation();
+                return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
+            }
 
             Continue();
 
             formCompletionHelper.SelectRandomRadioOptionByLocator(SingleLocationRadoButton);
-            
             Continue();
 
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
+
 
         public ImportantDatesPage ChooseAddress(bool isEmployerAddress)
         {
@@ -41,8 +49,16 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         private void DifferentLocation()
         {
-            SelectRadioOptionByForAttribute("other-location");
-            formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(Postcode, $"{RAADataHelper.EmployerAddress} "); return pageInteractionHelper.FindElement(MenuItems); });
+            SelectRadioOptionByForAttribute("OneLocation");
+            Continue();
+            
+            formCompletionHelper.ClickLinkByText("Add a new location");
+            formCompletionHelper.EnterText(Postcode, $"{RAADataHelper.EmployerAddress} ");
+            Continue();
+
+            formCompletionHelper.SelectRandomFromDropDownByLocator(DropDownAddressList);
+            Continue();
+            Continue();
         }
     }
 }

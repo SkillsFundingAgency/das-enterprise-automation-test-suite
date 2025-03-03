@@ -76,6 +76,13 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
     private void SelectFromDropDownByValue(IWebElement element, string value) { SelectElement(element).SelectByValue(value); SetDebugInformation($"Selected '{value}'"); }
 
     private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
+    
+    public void SelectRandomFromDropDownByLocator(By locator)
+    {
+        var options = SelectElement(locator).Options.Where(x => !string.IsNullOrEmpty(x.GetValueAttribute())).ToList();
+
+        SelectFromDropDownByValue(locator, options[new Random().Next(options.Count)].GetValueAttribute());
+    }
 
     public static void SelectCheckbox(IWebElement element)
     {
