@@ -117,6 +117,17 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
     public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonLabelCssSelector, text);
 
     public void SelectRadioOptionByLocator(By locator) => ClickElement(webDriver.FindElement(locator));
+    public void SelectRandomRadioOptionByLocator(By locator)
+    {
+        IList<IWebElement> radioButtons = webDriver.FindElements(locator);
+
+        Random rand = new Random();
+        IWebElement randomRadioButton = radioButtons[rand.Next(radioButtons.Count)];
+
+        ClickElement(randomRadioButton);
+    }
+
+
 
     public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
