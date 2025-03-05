@@ -131,7 +131,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
                 .ChooseWage_Employer(wageType)
                 .SubmitExtraInformationAboutPay()
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
-                .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+                .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress ? "employer" : "multiple");
 
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
