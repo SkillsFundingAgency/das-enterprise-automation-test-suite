@@ -9,6 +9,7 @@ namespace SFA.DAS.TransferMatching.APITests.Project.Helpers
     {
         private readonly TransferMatchingJobs_AutoApprovalClient _transferMatchingJobs_AutoApprovalClient;
         private readonly TransferMatchingJobs_AutoRejectionClient _transferMatchingJobs_AutoRejectionClient;
+        private readonly TransferMatchingJobs_AutoDeclineClient _transferMatchingJobs_AutoDeclineClient;
         private readonly ObjectContext _objectContext;
 
         public TransferMatchingJobsHelper(ScenarioContext context)
@@ -17,6 +18,7 @@ namespace SFA.DAS.TransferMatching.APITests.Project.Helpers
 
             _transferMatchingJobs_AutoApprovalClient = new TransferMatchingJobs_AutoApprovalClient(_objectContext, context.GetTransferMatchingJobsConfig<TransferMatchingJobsConfig>());
             _transferMatchingJobs_AutoRejectionClient = new TransferMatchingJobs_AutoRejectionClient(_objectContext, context.GetTransferMatchingJobsConfig<TransferMatchingJobsConfig>());
+            _transferMatchingJobs_AutoDeclineClient = new TransferMatchingJobs_AutoDeclineClient(_objectContext, context.GetTransferMatchingJobsConfig<TransferMatchingJobsConfig>());
         }
 
         public RestResponse RunApplicationsWithAutomaticApprovalJob()
@@ -27,6 +29,11 @@ namespace SFA.DAS.TransferMatching.APITests.Project.Helpers
         public RestResponse RunApplicationsWithAutomaticRejectionJob()
         {
             return _transferMatchingJobs_AutoRejectionClient.ApplicationsWithAutomaticRejectionJob(HttpStatusCode.OK);
+        }
+
+        public RestResponse RunApplicationsWithAutoDeclineJob()
+        {
+            return _transferMatchingJobs_AutoDeclineClient.ApplicationsWithAutomaticDeclineJob(HttpStatusCode.OK);
         }
     }
 }

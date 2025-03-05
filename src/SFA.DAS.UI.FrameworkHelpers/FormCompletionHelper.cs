@@ -76,6 +76,13 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
     private void SelectFromDropDownByValue(IWebElement element, string value) { SelectElement(element).SelectByValue(value); SetDebugInformation($"Selected '{value}'"); }
 
     private void SelectFromDropDownByText(IWebElement element, string text) { SelectElement(element).SelectByText(text); SetDebugInformation($"Selected '{text}'"); }
+    
+    public void SelectRandomFromDropDownByLocator(By locator)
+    {
+        var options = SelectElement(locator).Options.Where(x => !string.IsNullOrEmpty(x.GetValueAttribute())).ToList();
+
+        SelectFromDropDownByValue(locator, options[new Random().Next(options.Count)].GetValueAttribute());
+    }
 
     public static void SelectCheckbox(IWebElement element)
     {
@@ -117,6 +124,17 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
     public void SelectRadioOptionByText(string text) => ClickElementByText(RadioButtonLabelCssSelector, text);
 
     public void SelectRadioOptionByLocator(By locator) => ClickElement(webDriver.FindElement(locator));
+    public void SelectRandomRadioOptionByLocator(By locator)
+    {
+        IList<IWebElement> radioButtons = webDriver.FindElements(locator);
+
+        Random rand = new Random();
+        IWebElement randomRadioButton = radioButtons[rand.Next(radioButtons.Count)];
+
+        ClickElement(randomRadioButton);
+    }
+
+
 
     public void EnterTextByLabel(By labellocator, string labeltext, string text) => EnterText(GetElementByText(labellocator, labeltext).FindElement(InputCssSelector), text);
 
