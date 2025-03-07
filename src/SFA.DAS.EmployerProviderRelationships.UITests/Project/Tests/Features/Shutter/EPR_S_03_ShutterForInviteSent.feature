@@ -1,5 +1,6 @@
 ﻿Feature: EPR_S_03_ShutterForInviteSent
 
+@provider
 @addlevyfunds
 @createemployeraccount
 @singleorgaorn
