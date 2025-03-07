@@ -3,6 +3,8 @@
 public class YouVeSuccessfullyAddedUserDetailsPage : RegistrationBasePage
 {
     protected override string PageTitle { get; }
+    protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
+
 
     public YouVeSuccessfullyAddedUserDetailsPage(ScenarioContext context, bool updated = false) : base(context)
     {
