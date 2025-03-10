@@ -105,12 +105,12 @@ public class PaymentsSimplificationNotificationSteps
         ValidateProviderEmailBodyAndLinkText(emailText, subject);
     }
 
-    [Then("Provider is notified that the employer has changed the payment status to Inactive through email")]
-    public void ProviderIsNotifiedThatTheEmployerHasChangedThePaymentStatusToInactiveThroughEmail()
+    [Then("Provider is notified that the employer has changed the payment status to (Active|Inactive) through email")]
+    public void ProviderIsNotifiedThatTheEmployerHasChangedThePaymentStatusToInactiveThroughEmail(string paymentStatus)
     {
-        var emailText = $"{orgName} has changed the payment status to inactive on the";
+        var emailText = $"{orgName} has changed the payment status to {paymentStatus.ToLower()} on the";
 
-        string subject = $"{orgName} changed payment status to inactive";
+        string subject = $"{orgName} changed payment status to {paymentStatus.ToLower()}";
 
         ValidateProviderEmailBodyAndLinkText(emailText, subject);
     }

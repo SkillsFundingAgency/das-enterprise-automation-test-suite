@@ -24,3 +24,4 @@ Scenario: FLP_UI_05 Provider payment status journey
 	And employer is able to successfully unfreeze provider payments
 	And display a Provider payments status row with Active status to Employer
 	And provider payment status is successfully updated to Active in apprenticeships db
+	And Provider is notified that the employer has changed the payment status to Active through email
