@@ -42,6 +42,8 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
 
         eprDataHelper.EmployerOrganisationName = employerUser.OrganisationName;
 
+        eprDataHelper.AgreementId = objectContext.GetAleAgreementId();
+
         var request = GoToEmailAccountFoundPage().ContinueToInvite().ProviderRequestPermissions(permissions);
 
         request.GoToViewEmployersPage().ViewPendingEmployer();

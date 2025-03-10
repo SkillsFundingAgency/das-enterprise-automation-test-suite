@@ -12,6 +12,8 @@ public class ViewEmpAndManagePermissionsPage(ScenarioContext context) : Provider
 
     private static By EmpLinks => By.CssSelector("a.govuk-link.app-search-result-link");
 
+    private static By AgreementID => By.CssSelector("p.govuk-body");
+
     protected override string PageTitle => "View employers and manage permissions";
 
     public AddAnEmployerPage ClickAddAnEmployer()
@@ -53,6 +55,8 @@ public class ViewEmpAndManagePermissionsPage(ScenarioContext context) : Provider
 
         formCompletionHelper.Click(By.LinkText($"{eprDataHelper.EmployerOrganisationName}"));
 
-        VerifyFromMultipleElements(By.CssSelector($"a[href*='{eprDataHelper.AgreementId}']"), eprDataHelper.EmployerOrganisationName.ToUpper());
+        VerifyFromMultipleElements(AgreementID, $"{eprDataHelper.AgreementId}");
+
+        formCompletionHelper.Click(By.LinkText("View employers and manage permissions"));
     }
 }
