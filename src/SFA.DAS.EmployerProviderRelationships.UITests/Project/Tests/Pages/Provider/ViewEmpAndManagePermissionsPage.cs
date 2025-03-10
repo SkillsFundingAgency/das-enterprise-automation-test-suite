@@ -42,4 +42,17 @@ public class ViewEmpAndManagePermissionsPage(ScenarioContext context) : Provider
 
         VerifyFromMultipleElements(EmpLinks, eprDataHelper.EmployerOrganisationName.ToUpper());
     }
+
+    public void ViewPendingEmployer()
+    {
+        formCompletionHelper.Click(HasPendingRequest);
+
+        formCompletionHelper.EnterText(SearchTerm, eprDataHelper.EmployerOrganisationName);
+
+        formCompletionHelper.Click(ApplyFilter);
+
+        formCompletionHelper.Click(By.LinkText($"{eprDataHelper.EmployerOrganisationName}"));
+
+        VerifyFromMultipleElements(By.CssSelector($"a[href*='{eprDataHelper.AgreementId}']"), eprDataHelper.EmployerOrganisationName.ToUpper());
+    }
 }
