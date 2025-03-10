@@ -1,5 +1,6 @@
 ﻿Feature: EPR_S_01_ShutterForMultiAccountEmployer
 
+@provider
 @employerproviderrelationships
 @multiaccount
 Scenario: EPR_S_01_ShutterForMultiAccountEmployer
