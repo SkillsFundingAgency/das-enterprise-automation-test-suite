@@ -1,5 +1,6 @@
 ﻿Feature: EPR_05_ProviderRequestsEmployerAcceptCreateAccount
 
+@provider
 @addlevyfunds
 @createemployeraccount
 @singleorgaorn

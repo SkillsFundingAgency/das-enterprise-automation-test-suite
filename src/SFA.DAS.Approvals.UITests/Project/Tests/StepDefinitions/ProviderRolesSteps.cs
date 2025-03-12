@@ -107,7 +107,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void UserCanAccessProviderOrganisationsAndAgreementsPage()
         {
             _providerStepsHelper.NavigateToProviderHomePage()
-                .GoToProviderOrganisationsAndAgreementsPage()
+                .GoToProviderEmployersAndPermissionsPagePage()
                 .GoToProviderHomePage();
         }
 

@@ -12,7 +12,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void AssertApprenticeChangeToReviewTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.ApprenticeChangeToReview, numberOfTasks);
 
-        public void AssertCohortRequestReadyForApprovalTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.CohortReadyForApproval, numberOfTasks);
+        public void AssertApprenticeRequestReadyForReviewTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.ApprenticeRequestsReadyForReview, numberOfTasks);
 
         public void AssertReviewConnectionRequestTaskLink(int numberOfTasks) => AssertTaskCount(TasksHomePage.ReviewConnectionRequest, numberOfTasks);
 

@@ -10,10 +10,10 @@ Scenario: TR_01 Transfers - Creating a Cohort and Approve by all 3 parties
 	And First is a Sender connected to Second as a Receiver
 	When Receiver Second sends empty cohort using transfer funds from Sender First to the provider for review and approval
 	And Provider adds an apprentice and approves the cohort
-	Then Receiver Second has '1 cohort request ready for approval' task link
+	Then Receiver Second has '1 apprentice request ready for review' task link
 	When Receiver Second approves the cohort
-	Then Receiver Second has no '... cohort request(s) ready for approval' task link
+	Then Receiver Second has no '... apprentice request(s) ready for review' task link
 	And 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
 	When Sender First approves the cohort
 	Then No 'Transfer request received' task link is displayed under Tasks pane for the Sender First account
-	And Receiver Second has a new live apprenticeship record created
+	Then Receiver Second has a new live apprenticeship record created
