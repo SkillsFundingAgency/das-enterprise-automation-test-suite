@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 
-public class ProviderOrganisationsAndAgreementsPage(ScenarioContext context) : ApprovalsBasePage(context)
+public class ProviderEmployersAndPermissionsPage(ScenarioContext context) : ApprovalsBasePage(context)
 {
-    protected override string PageTitle => "Organisations and agreements";
+    protected override string PageTitle => "View employers and manage permission";
     protected static By ProviderHomeLink => By.LinkText("Home");
 
     public ApprovalsProviderHomePage GoToProviderHomePage()
