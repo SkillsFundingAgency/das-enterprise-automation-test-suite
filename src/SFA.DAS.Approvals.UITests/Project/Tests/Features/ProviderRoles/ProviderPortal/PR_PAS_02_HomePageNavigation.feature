@@ -1,5 +1,6 @@
 ﻿Feature: PR_PAS_02_HomePageNavigation
 
+@provider
 @regression
 @pasproviderrole
 Scenario: PR_PAS_02_HomePageNavigation
