@@ -6,7 +6,7 @@ public class ChangeYourUserDetailsPage : RegistrationBasePage
 
     private static By FirstNameInput => By.CssSelector($"#FirstName");
     private static By LastNameInput => By.CssSelector($"#LastName");
-    protected override By ContinueButton => By.CssSelector("button.govuk-button");
+    protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
     public ChangeYourUserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
