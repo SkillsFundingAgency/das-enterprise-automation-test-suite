@@ -49,14 +49,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public void EmployerCreateCohortsViaDirectTransferAndSendsToProvider(int numberOfCohorts = 1)
         {
+            var cohortReference = "";
+
             for (var i = 1; i <= numberOfCohorts; i++)
             {
                 var cohortSentYourTrainingProviderPage = EmployerCreateCohortsViaDirectTransfer();
 
-                var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+                cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
 
                 _objectContext.SetCohortReferenceList(cohortReference);
             }
+
+            _objectContext.SetCohortReference(cohortReference);
         }
 
         public void EmployerCreateCohortsViaReserveNewFundsOptionAndSendsToProvider(int numberOfCohorts = 1)
@@ -74,7 +78,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private CohortSentYourTrainingProviderPage EmployerCreateCohortViaLevyFunds(bool isTransferReceiverEmployer)
         {
             return _confirmProviderDetailsHelper
-               .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFunc())
+               .ConfirmProviderDetailsAreCorrect(isTransferReceiverEmployer, AddTrainingProviderDetailsFuncWithoutSelectFundingOption())
                .EmployerSendsToProviderToAddApprentices()
                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
         }
@@ -100,15 +104,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         }
 
-        public StartAddingApprenticesPage NonLevyEmployerTriesToAddApprentice()
-        {
-            return _confirmProviderDetailsHelper
-               .ConfirmProviderDetailsAreCorrect(false, AddTrainingProviderDetailsFuncWithoutSelectFundingOption());
-        }
-
         public void NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
         {
-            new StartAddingApprenticesPage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
+            new AddAnApprenitcePage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
         }
 
         protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();

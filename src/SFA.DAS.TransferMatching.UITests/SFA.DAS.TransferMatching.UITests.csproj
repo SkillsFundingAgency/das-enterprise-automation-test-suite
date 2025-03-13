@@ -46,6 +46,9 @@
     <None Update="appsettings.Project.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
+    <None Update="Project\Helpers\SqlScripts\TMUpdateApplicationApplicationApprovedDate6WeeksAgo.sql">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Update="Project\Helpers\SqlScripts\TMUpdateApplicationCreatedDate6WeeksAgo.sql">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
