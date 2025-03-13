@@ -49,14 +49,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public void EmployerCreateCohortsViaDirectTransferAndSendsToProvider(int numberOfCohorts = 1)
         {
+            var cohortReference = "";
+
             for (var i = 1; i <= numberOfCohorts; i++)
             {
                 var cohortSentYourTrainingProviderPage = EmployerCreateCohortsViaDirectTransfer();
 
-                var cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
+                cohortReference = cohortSentYourTrainingProviderPage.CohortReference();
 
                 _objectContext.SetCohortReferenceList(cohortReference);
             }
+
+            _objectContext.SetCohortReference(cohortReference);
         }
 
         public void EmployerCreateCohortsViaReserveNewFundsOptionAndSendsToProvider(int numberOfCohorts = 1)

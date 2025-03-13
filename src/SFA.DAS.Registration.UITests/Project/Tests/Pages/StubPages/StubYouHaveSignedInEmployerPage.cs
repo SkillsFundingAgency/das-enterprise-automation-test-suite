@@ -2,6 +2,8 @@
 
 public class StubYouHaveSignedInEmployerPage : StubYouHaveSignedInBasePage
 {
+    protected override By ContinueButton => By.XPath("//a[contains(text(),'Continue')]");
+
     public StubYouHaveSignedInEmployerPage(ScenarioContext context, string username, string idOrUserRef, bool newUser) : base(context, username, idOrUserRef, newUser)
     {
         if (newUser)

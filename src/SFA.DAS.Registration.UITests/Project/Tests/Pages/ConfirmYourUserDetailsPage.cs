@@ -3,6 +3,7 @@
 public class ConfirmYourUserDetailsPage : RegistrationBasePage
 {
     protected override string PageTitle => "Confirm your user details";
+    protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
     private static By ChangeLink => By.CssSelector("a.govuk-link[href*='/User/add-user-details']");
 
     public ConfirmYourUserDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
