@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using System;
@@ -10,6 +11,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
     public class ChooseApprenticeshipLocationPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Where is this apprenticeship available?";
+        private static string NationalLocationsSubHeading => "Add more information about where the apprentice will work";
+        private static string MultipleLocationsSubHeading => "Add locations";
 
         private static By Postcode => By.CssSelector("#Postcode");
 
@@ -18,16 +21,18 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         private static By DropDownAddressList => By.Id("SelectedLocation");
         private static By MultipleLocationsCheckboxes => By.CssSelector(".govuk-checkboxes__input");
         private static By NationalLocationTextBox => By.Id("AdditionalInformation");
+        private static By NationalLocationsPageSubHeading => By.CssSelector(".govuk-heading-m");
+        private static By MultipleLocationsPageSubHeading => By.CssSelector(".govuk-heading-l");
 
         public CreateAnApprenticeshipAdvertOrVacancyPage ChooseAddressAndGoToCreateApprenticeshipPage(string locationType)
         {
             locationType = locationType.Trim().ToLower();
-            Console.WriteLine($"DEBUG: Location Type received -> {locationType}");
 
             switch (locationType)
             {
                 case "national":
                     SelectRadioOptionByForAttribute("AcrossEngland");
+                    Continue();
 
                     NationalLocationInformation();
                     break;
@@ -41,6 +46,9 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
                 case "employer":
                     SelectRadioOptionByForAttribute("OneLocation");
+                    Continue();
+
+                    formCompletionHelper.SelectRandomRadioOptionByLocator(SingleLocationRadoButton);
                     break;
 
                 case "different":
@@ -50,17 +58,20 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
             Continue();
 
-            if (locationType != "national" && locationType != "multiple")
-            {
-                formCompletionHelper.SelectRandomRadioOptionByLocator(SingleLocationRadoButton);
-                Continue();
-            }
+            //if (locationType != "national" && locationType != "multiple")
+            //{
+            //    formCompletionHelper.SelectRandomRadioOptionByLocator(SingleLocationRadoButton);
+            //    Continue();
+            //}
 
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
         private void SelectMultipleLocations()
         {
+            var subHeadingText = pageInteractionHelper.GetText(MultipleLocationsPageSubHeading).Trim();
+            Assert.AreEqual(MultipleLocationsSubHeading, subHeadingText);
+
             Random random = new Random();
             int numberOfLocations = random.Next(2, 11);
 
@@ -81,9 +92,11 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         private void NationalLocationInformation()
         {
+            var subHeadingText = pageInteractionHelper.GetText(NationalLocationsPageSubHeading).Trim();
+            Assert.AreEqual(NationalLocationsSubHeading, subHeadingText);
+
             formCompletionHelper.Click(NationalLocationTextBox);
             formCompletionHelper.EnterText(NationalLocationTextBox, RandomDataGenerator.GenerateRandomAlphabeticString(100));
-            Continue();
         }
 
         public ImportantDatesPage ChooseAddress(bool isEmployerAddress)
