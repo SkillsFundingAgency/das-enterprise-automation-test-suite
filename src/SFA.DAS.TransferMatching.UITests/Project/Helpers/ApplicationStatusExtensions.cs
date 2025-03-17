@@ -14,6 +14,7 @@
                 ApplicationStatus.Declined => "Withdrawn",
                 ApplicationStatus.Withdrawn => "Withdrawn",
                 ApplicationStatus.WithdrawnAfterAcceptance => "Withdrawn",
+                ApplicationStatus.FundsExpired => "Funds no longer available",
                 _ => string.Empty,
             };
         }
