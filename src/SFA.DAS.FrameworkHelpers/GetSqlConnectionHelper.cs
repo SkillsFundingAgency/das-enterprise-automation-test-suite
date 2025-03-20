@@ -8,12 +8,30 @@ public static class GetSqlConnectionHelper
     {
         var tenantidkey = "TENANTID=";
 
-        var tenantidwithKey = connectionString.Split(';').ToList().Single(x=> x.StartsWith(tenantidkey, StringComparison.OrdinalIgnoreCase));
+        string accessToken;
 
-        connectionString = connectionString.Replace(tenantidwithKey, string.Empty);
+        if (connectionString.Contains("User ID="))
+        {
+            accessToken = null;
+        }
+        else
+        {
+            if (connectionString.Contains(tenantidkey))
+            {
+                var tenantidwithKey = connectionString.Split(';').ToList().Single(x => x.StartsWith(tenantidkey, StringComparison.OrdinalIgnoreCase));
 
-        var tenantid = tenantidwithKey.Replace(tenantidkey, string.Empty);
+                connectionString = connectionString.Replace(tenantidwithKey, string.Empty);
 
-        return new() { ConnectionString = connectionString, AccessToken = connectionString.Contains("User ID=") ? null : AzureTokenService.GetDatabaseAuthToken(tenantid) };
+                var tenantid = tenantidwithKey.Replace(tenantidkey, string.Empty);
+
+                accessToken = AzureTokenService.GetDatabaseAuthToken(tenantid);
+            }
+            else
+            {
+                accessToken = AzureTokenService.GetDatabaseAuthToken();
+            }
+        }
+
+        return new() { ConnectionString = connectionString, AccessToken = accessToken };
     }
 }
