@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
@@ -19,9 +20,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         public WelcomePage SignIn()
         {
-            var user = context.GetUser<ApprAppUser>();
-            formCompletionHelper.EnterText(StubId, user.IdOrUserRef);
-            formCompletionHelper.EnterText(Email, user.Username);
+            formCompletionHelper.EnterText(StubId, context.GetApprenticeAppConfig<ApprenticeAppConfig>().AppUser.IdOrUserRef);
+            formCompletionHelper.EnterText(Email, context.GetApprenticeAppConfig<ApprenticeAppConfig>().AppUser.Username);
             formCompletionHelper.Click(SignInButton);
             return new WelcomePage(context);
         }

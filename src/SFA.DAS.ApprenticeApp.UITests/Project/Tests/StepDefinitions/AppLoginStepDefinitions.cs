@@ -40,5 +40,12 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
             //Assert.True(_stepsHelper.GoToTasksPage().IsAt());
         }
 
+        [Given("the apprentice has logged into the app")]
+        public void GivenTheApprenticeHasLoggedIntoTheApp()
+        {
+            _stepsHelper.GoToHomePage();
+            _stepsHelper.GoToStubSigin();
+            _stepsHelper.GoToWelcomePage();
+        }
     }
 }

@@ -1,26 +1,17 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework;
 using SFA.DAS.UI.Framework.TestSupport;
-using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Hooks
 {
-    public class BeforeScenarioHooks(ScenarioContext context)
-    {
-        [BeforeScenario]
-        public void AppSetupHelpers()
+        [Binding]
+        public class BeforeScenarioHooks(ScenarioContext context)
         {
-            var configSection = context.Get<ConfigSection>();
-            context.SetAppSupportUserConfig(configSection.GetConfigSection<AppSupportUserConfig>());
-            context.Get<TabHelper>().GoToUrl(UrlConfig.ApprenticeApp_BaseUrl);
-            //context.SetAppSupportUser(configSection.GetConfigSection<AppSupportUser>());
+            private readonly ConfigSection _configSection = context.Get<ConfigSection>();
+            [BeforeScenario(Order = 2)]
+            public void AppSetupHelpers()
+            {
+                context.SetApprenticeAppConfig(_configSection.GetConfigSection<ApprenticeAppConfig>());
+            }
         }
-    }
-
-    public class AppSupportUserConfig
-    {
-        public string AppSupportUserEmail { get; set; }
-        public string AppSupportUserStubId { get; set; }
-    }
 }

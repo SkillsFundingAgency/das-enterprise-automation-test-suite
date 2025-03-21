@@ -21,7 +21,7 @@ public static class ScenarioContextExtension
     private const string TransfersProjectConfigKey = "transfersprojectconfigkey";
     private const string ChangeOfPartyConfigKey = "changeofpartyconfigkey";
     private const string ARProjectConfigKey = "arprojectconfigkey";
-    private const string AppSupportUserConfigKey = "appSupportUserConfigKey";
+    private const string ApprenticeAppConfigKey = "apprenticeappconfigkey";
     private const string EIProjectConfigKey = "eiprojectconfigkey";
     private const string ApprenticeCommitmentsConfigKey = "apprenticecommitmentsconfigkey";
     private const string PortableFlexiJobProviderConfigKey = "portableflexijobproviderconfigkey";
@@ -46,10 +46,10 @@ public static class ScenarioContextExtension
     public static void SetEIConfig<T>(this ScenarioContext context, T value) => Set(context, value, EIProjectConfigKey);
     public static void SetApprenticeCommitmentsConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprenticeCommitmentsConfigKey);
     public static void SetPaymentsSimplificationConfig<T>(this ScenarioContext context, T value) => Set(context, value, PaymentsSimplificationConfigKey);
+    public static void SetApprenticeAppConfig<T>(this ScenarioContext context, T value) => Set(context, value, ApprenticeAppConfigKey);
     public static void SetWebDriver(this ScenarioContext context, IWebDriver webDriver) => Replace(context, webDriver, WebDriverKey);
     private static void Replace<T>(ScenarioContext context, T value, string key) => context.Replace(key, value);
     private static void Set<T>(ScenarioContext context, T value, string key) => context.Set(value, key);
-    public static void SetAppSupportUserConfig<T>(this ScenarioContext context, T value) => Set(context, value, AppSupportUserConfigKey);
     #endregion
 
     #region Getters
@@ -70,6 +70,7 @@ public static class ScenarioContextExtension
     public static T GetEIConfig<T>(this ScenarioContext context) => Get<T>(context, EIProjectConfigKey);
     public static T GetApprenticeCommitmentsConfig<T>(this ScenarioContext context) => Get<T>(context, ApprenticeCommitmentsConfigKey);
     public static T GetPaymentsSimplificationConfig<T>(this ScenarioContext context) => Get<T>(context, PaymentsSimplificationConfigKey);
+    public static T GetApprenticeAppConfig<T>(this ScenarioContext context) => Get<T>(context, ApprenticeAppConfigKey);
     public static IWebDriver GetWebDriver(this ScenarioContext context) => Get<IWebDriver>(context, WebDriverKey);
     public static T Get<T>(ScenarioContext context, string key) => context.GetValue<T>(key);
     #endregion
