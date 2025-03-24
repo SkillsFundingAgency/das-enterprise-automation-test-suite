@@ -21,7 +21,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         private static By DropDownAddressList => By.Id("SelectedLocation");
         private static By MultipleLocationsCheckboxes => By.CssSelector(".govuk-checkboxes__input");
         private static By NationalLocationTextBox => By.Id("AdditionalInformation");
-        private static By NationalLocationsPageSubHeading => By.CssSelector(".govuk-heading-m");
+        private static By NationalLocationsPageSubHeading => By.CssSelector(".govuk-heading-m label");
         private static By MultipleLocationsPageSubHeading => By.CssSelector(".govuk-heading-l");
 
         public CreateAnApprenticeshipAdvertOrVacancyPage ChooseAddressAndGoToCreateApprenticeshipPage(string locationType)
@@ -71,6 +71,26 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         {
             var subHeadingText = pageInteractionHelper.GetText(MultipleLocationsPageSubHeading).Trim();
             Assert.AreEqual(MultipleLocationsSubHeading, subHeadingText);
+
+            var detailsElements = pageInteractionHelper.FindElements(By.CssSelector("details.govuk-details")).ToList();
+
+            if (detailsElements != null && detailsElements.Any())
+            {
+                foreach (var details in detailsElements)
+                {
+                    var summary = details.FindElement(By.CssSelector("summary.govuk-details__summary"));
+                    if (summary == null)
+                    {
+                        throw new NullReferenceException("summary is null.");
+                    }
+
+                    var isOpen = details.GetAttribute("open");
+                    if (string.IsNullOrEmpty(isOpen) || !isOpen.Equals("true", StringComparison.OrdinalIgnoreCase))
+                    {
+                        summary.Click();
+                    }
+                }
+            }
 
             Random random = new Random();
             int numberOfLocations = random.Next(2, 11);
