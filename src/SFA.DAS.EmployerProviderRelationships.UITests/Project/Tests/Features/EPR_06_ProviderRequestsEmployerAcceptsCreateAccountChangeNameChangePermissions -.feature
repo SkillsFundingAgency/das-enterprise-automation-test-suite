@@ -1,5 +1,6 @@
 ﻿Feature: EPR_06_ProviderRequestsEmployerAcceptsCreateAccountChangeNameChangePermissions
 
+@provider
 @addlevyfunds
 @createemployeraccount
 @singleorgaorn

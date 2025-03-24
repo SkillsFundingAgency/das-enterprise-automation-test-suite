@@ -15,6 +15,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.TestSupport
             {
                 StartDate = value == "Today" ? DataHelpers.CalculateStartDate()
                     : value == "StartPreviousMonth" ? DataHelpers.CalculateStartDate(true)
+                    : value == "StartFirstDayOfPreviousMonth" ? DataHelpers.GetFirstDateOfPreviousMonth()
+                    : value == "StartFirstDayOfTwoMonthsAgo" ? DataHelpers.GetFirstDateOfTwoMonthsAgo()
                     : value == "StartCurrentMonth" ? DataHelpers.GetFirstDateOfCurrentMonth()
                     : value == "StartNextMonth" ? DataHelpers.GetFirstDateOfNextMonth()
                     : value == "QualifyingPeriodOuterBoundaryDate" ? DataHelpers.GetQualifyingPeriodOuterBoundaryDate()
