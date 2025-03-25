@@ -26,7 +26,7 @@ public class FAATestDataPrepApplySteps(ScenarioContext context)
 
     private void ApplyForAVacancy(bool firstVacancy)
     {
-        var page = firstVacancy ? _faaStepsHelper.ApplyForFirstVacancy(true, true, true, true, true, true) : _faaStepsHelper.ApplyForAVacancy();
+        var page = firstVacancy ? _faaStepsHelper.ApplyForFirstVacancy(true, true, true, true, true, true) : _faaStepsHelper.ApplyForAVacancy("both");
 
         page.PreviewApplication().SubmitApplication();
     }
