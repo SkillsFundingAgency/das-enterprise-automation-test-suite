@@ -1,0 +1,16 @@
+﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
+
+public class LevyDeclarationsPage : SupportConsoleBasePage
+{
+    protected override string PageTitle => "Levy declarations";
+
+    protected override By PageHeader => By.CssSelector(".heading-large");
+
+    protected static By LevyDecTable => By.CssSelector("#submission-details");
+
+    public LevyDeclarationsPage(ScenarioContext context) : base(context)
+    {
+        VerifyPage(() => pageInteractionHelper.FindElements(PageHeader));
+        if (Config.CurrentLevyBalance != "0") pageInteractionHelper.VerifyPage(LevyDecTable);
+    }
+}

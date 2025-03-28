@@ -1,4 +1,4 @@
-﻿namespace SFA.DAS.SupportConsole.UITests.Project;
+﻿namespace SFA.DAS.SupportTools.UITests.Project;
 
 [Binding]
 public class Hooks(ScenarioContext context)

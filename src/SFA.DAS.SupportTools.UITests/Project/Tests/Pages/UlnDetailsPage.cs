@@ -1,0 +1,43 @@
+﻿namespace SFA.DAS.SupportTools.UITests.Project.Tests.Pages;
+
+public class UlnDetailsPage : SupportConsoleBasePage
+{
+    protected override string PageTitle => _cohortDetails.UlnName;
+
+    protected override string AccessibilityPageTitle => "Uln detail page";
+
+    protected override By PageHeader => By.CssSelector(".heading-large");
+
+    private readonly CohortDetails _cohortDetails;
+
+    public UlnDetailsPage(ScenarioContext context, CohortDetails cohortDetails) : base(context)
+    {
+        _cohortDetails = cohortDetails;
+
+        VerifyPage(() => pageInteractionHelper.FindElements(PageHeader), PageTitle);
+    }
+
+    public void VerifyUlnDetailsPageHeaders()
+    {
+        MultipleVerifyPage(
+        [
+            () => { VerifyHeaderAndValue("Unique learner number", _cohortDetails.Uln); return true; },
+            () => { VerifyHeaderAndValue("Name", _cohortDetails.UlnName); return true; },
+            () => { VerifyHeaderAndValue("Cohort reference", _cohortDetails.CohortRef); return true; }
+        ]);
+    }
+
+    protected void ClickTab(By by) => formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(by));
+
+    protected void IsTabDisplayed(By by) => Assert.IsTrue(pageInteractionHelper.FindElements(by).Count > 0);
+
+    private void VerifyHeaderAndValue(string headerText, string headerValue)
+    {
+        var headerTextXpathQuery = $"//th[contains(text(),'{headerText}')]";
+        var header = pageInteractionHelper.FindElement(By.XPath(headerTextXpathQuery));
+        var parent = header.FindElement(By.XPath(".."));
+        var value = parent.FindElement(By.CssSelector("td"));
+        pageInteractionHelper.VerifyText(PageInteractionHelper.GetText(header), headerText);
+        pageInteractionHelper.VerifyText(headerValue, PageInteractionHelper.GetText(value));
+    }
+}

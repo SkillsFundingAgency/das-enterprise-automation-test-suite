@@ -1,3 +1,6 @@
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
 global using NUnit.Framework;
 global using OpenQA.Selenium;
 global using SFA.DAS.ConfigurationBuilder;
@@ -15,8 +18,5 @@ global using SFA.DAS.UI.Framework;
 global using SFA.DAS.UI.Framework.TestSupport;
 global using SFA.DAS.UI.Framework.TestSupport.SqlHelpers;
 global using SFA.DAS.UI.FrameworkHelpers;
-global using System;
-global using System.Collections.Generic;
-global using System.Linq;
 global using TechTalk.SpecFlow;
 global using TechTalk.SpecFlow.Assist;
