@@ -34,5 +34,11 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
 
         [Then(@"Provider can view the refered vacancy")]
         public void ThenProviderCanViewTheReferedVacancy() => _providerStepsHelper.ViewReferVacancy();
+
+        [Then(@"the Provider can close the vacancy")]
+        public void ThenTheProviderCanCloseTheVacancy() => _providerStepsHelper.CloseVacancy();
+
+        [Then(@"the Provider can edit the vacancy")]
+        public void ThenTheProviderCanEditTheVacancy() => _providerStepsHelper.EditVacancyDates();
     }
 }
