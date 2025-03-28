@@ -23,7 +23,7 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
 
         protected abstract CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA);
-        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage);
+        protected abstract CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool enterQuestion1, bool enterQuestion2);
 
         protected static WhatDoYouWantToCallThisAdvertPage NavigateToAdvertTitle(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) => createAdvertPage.AdvertTitle();
 
@@ -34,7 +34,7 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
             checkYourAnswersPage.SubmitAdvert().SetVacancyReference();
 
 
-        protected VacancyReferencePage CreateANewAdvertOrVacancy(string employername, string locationType, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA, bool isProvider)
+        protected VacancyReferencePage CreateANewAdvertOrVacancy(string employername, string locationType, bool disabilityConfidence, string wageType, bool isApplicationMethodFAA, bool isProvider, bool enterQuestion1, bool enterQuestion2)
         {
             var createAdvertPage = CreateAnApprenticeshipAdvertOrVacancy();
 
@@ -64,7 +64,7 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
 
             createAdvertPage.VerifyApplicationSectionStatus(NotStarted);
 
-            createAdvertPage = Application(createAdvertPage);
+            createAdvertPage = Application(createAdvertPage, enterQuestion1, enterQuestion2);
 
             createAdvertPage.VerifyApplicationSectionStatus(Completed);
 

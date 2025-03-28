@@ -10,5 +10,6 @@ namespace SFA.DAS.FlexiPayments.E2ETests
     {
         public string ApprenticeshipAzureFunctionBaseUrl { get; set; }
         public string ApprenticeshipAzureFunctionKey { get; set; }
+        public string ApprenticeshipServiceBearerTokenSigningKey { get; set; } = "<not set>";
     }
 }

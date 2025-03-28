@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAAProvider.UITests.Project.Helpers;
+﻿using System.Collections;
+using SFA.DAS.RAAProvider.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
@@ -14,12 +15,30 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [Given(@"the Provider creates a vacancy by using a registered name")]
         public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => CreateANewVacancy();
 
-        [Given(@"the Provider creates a vacancy by entering all the Optional fields")]
-        public void GivenTheProviderCreatesAVacancyByEnteringAllTheOptionalFields()
+        [Given(@"the Provider creates a vacancy with ""(.*)"" work locations by entering all the Optional fields and ""(.*)"" additional questions")]
+        public void GivenTheProviderCreatesAVacancyWithWorkLocationsByEnteringAllTheOptionalFields(string locationType, string additionalQuestions)
         {
             _providerStepsHelper.optionalFields = true;
 
-            CreateANewVacancy();
+            bool enterQuestion1, enterQuestion2;
+
+            switch (additionalQuestions)
+            {
+                case "first":
+                    enterQuestion1 = true;
+                    enterQuestion2 = false;
+                    break;
+                case "second":
+                    enterQuestion1 = false;
+                    enterQuestion2 = true;
+                    break;
+                default:
+                    enterQuestion1 = true;
+                    enterQuestion2 = true;
+                    break;
+            }
+
+            _providerStepsHelper.CreateVacancyForLocationTypes(locationType, enterQuestion1, enterQuestion2);
         }
 
         [When(@"the Provider creates an Offline vacancy")]
