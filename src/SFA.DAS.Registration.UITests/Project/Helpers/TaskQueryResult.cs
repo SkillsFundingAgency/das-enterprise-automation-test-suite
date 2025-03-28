@@ -8,4 +8,5 @@ public class TaskQueryResult
     public int NumberOfPendingTransferConnections { get; set; }
     public int NumberOfTransferRequestToReview { get; set; }
     public int NumberTransferPledgeApplicationsToReview { get; set; }
+    public int NumberOfAcceptedTransferPledgeApplicationsWithNoApprentices { get; set; }
 }

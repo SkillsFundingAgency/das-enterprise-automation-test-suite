@@ -35,9 +35,38 @@ public class TasksHelper(ScenarioContext context)
     public int GetNumberTransferPledgeApplicationsToReview()
     {
         var accountId = _objectContext.GetDBAccountId();
-        return _transferMatchingSqlDataHelper.GetNumberTransferPledgeApplicationsToReview(accountId);
-    }
+        return _transferMatchingSqlDataHelper.GetNumberTransferPledgeApplicationsByApplicationStatus(accountId, "0");
+    } 
+    
+    public int GetNumberOfAcceptedTransferPledgeApplicationsWithNoApprentices()
+    {
+        var accountId = _objectContext.GetDBAccountId();
+        var acceptedApplications =_transferMatchingSqlDataHelper.GetTransferPledgeApplicationsByApplicationStatus(accountId, "3");
+        if (acceptedApplications == null || acceptedApplications.Count == 0)
+        {
+            return 0;
+        }
 
+        var cohortResult = _commitmentsSqlHelper.GetPledgeApplicationIdsAndNumberOfDraftApprentices(accountId);
+        if (cohortResult == null || cohortResult.Count == 0)
+        {
+            return acceptedApplications.Count;
+        }
+       
+        var acceptedApplicationIdsWithoutApprentices = new List<int>();
+
+        foreach (var appId in acceptedApplications)
+        {
+            var cohortsForApplication = cohortResult.Where(x => x.PledgeApplicationId == appId).ToList();
+            if (cohortsForApplication.Count == 0 || cohortsForApplication.Any(x => x.NumberOfDraftApprentices == 0))
+            {
+                acceptedApplicationIdsWithoutApprentices.Add(appId);
+            }
+        }     
+
+        return acceptedApplicationIdsWithoutApprentices.Count;
+    } 
+    
     public static HomePage ClickViewApprenticeChangesLink(HomePage homePage, int numberOfChanges)
     {
         return homePage.ClickViewChangesForApprenticeChangesToReview(numberOfChanges)
@@ -65,6 +94,12 @@ public class TasksHelper(ScenarioContext context)
     public static HomePage ClickTransferPledgeApplicationsLink(HomePage homePage, int numberOfChanges)
     {
         return homePage.ClickViewTransferPledgeApplications(numberOfChanges)
+            .GoToHomePage();
+    }
+
+    public static HomePage ClickTransfersAvailableToAddApprenticeLink(HomePage homePage, int numberOfChanges)
+    {
+        return homePage.ClickViewTransfersAvailableToAddApprentice(numberOfChanges)
             .GoToHomePage();
     }
 }

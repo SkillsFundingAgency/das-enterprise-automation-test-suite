@@ -17,6 +17,7 @@ public class HomePage : InterimHomeBasePage
     protected static By AANLink => By.LinkText("Join the Apprentice Ambassador Network");
     private static By TransferRequestViewDetailsLink => By.XPath("//li[contains(span, 'Transfer request received')]/span/a[text()='View details']");
     private static By TransferConnectionRequestViewDetailsLink => By.XPath("//li[contains(span, 'connection requests to review')]/span/a[text()='View details']");
+    private static By TransfersAvailableToAddApprenticeLink => By.XPath("//li[contains(span, 'available to add an apprentice')]/span/a[text()='View details']");
     #endregion
 
     protected override string AccessibilityPageTitle => "Employer home page";
@@ -89,6 +90,15 @@ public class HomePage : InterimHomeBasePage
         VerifyElement(transferApplicationsToReviewMessage);
     }
 
+    public void VerifyTransfersAvailableToAddAnApprenticeMessageShown(int numberOfChanges)
+    {
+        var messageText = numberOfChanges == 1 ? "1 transfer available to add an apprentice" : $"{numberOfChanges} transfers available to add an apprentice";
+        var xpath = $"//span[contains(text(), '{messageText}')]";
+        var transferApplicationsToReviewMessage = By.XPath(xpath);
+
+        VerifyElement(transferApplicationsToReviewMessage);
+    }
+
     public void VerifyTransferRequestReceivedMessageShown()
     {
         var xpath = "//span[contains(text(), 'Transfer request received')]";
@@ -143,5 +153,11 @@ public class HomePage : InterimHomeBasePage
 
         formCompletionHelper.Click(transferPledgeApplicationsLink);
         return new MyTransferPledgesPage(context);
+    }
+    
+    public MyTransferApplicationsPage ClickViewTransfersAvailableToAddApprentice(int numberOfChanges)
+    {
+        formCompletionHelper.Click(TransfersAvailableToAddApprenticeLink);
+        return new MyTransferApplicationsPage(context);
     }
 }

@@ -163,4 +163,27 @@ public class TasksSteps
         _homePage = TasksHelper.ClickTransferPledgeApplicationsLink(_homePage, tasks.NumberOfCohortsReadyToReview);
     }
 
+    [When("there are X transfers applications available to add an apprentice")]
+    public void WhenThereAreTransferPledgeApplicationsToAvailableToAddAnApprentice()
+    {
+        var tasks = GetTaskQueryResult();
+        tasks.NumberOfAcceptedTransferPledgeApplicationsWithNoApprentices = _tasksHelper.GetNumberOfAcceptedTransferPledgeApplicationsWithNoApprentices();
+        SetTaskQueryResult(tasks);
+    }
+
+    [Then("display task: 'X transfers available to add an apprentice'")]
+    public void ThenDisplayNumberTransfersAvailableToAddAnApprentice()
+    {
+        var tasks = GetTaskQueryResult();
+        _homePage.VerifyTransfersAvailableToAddAnApprenticeMessageShown(tasks.NumberOfAcceptedTransferPledgeApplicationsWithNoApprentices);
+    }
+
+    [Then("'View details' link should navigate user to 'My applications' page")]
+    public void ThenViewTransferPledgeApplicationsNavigatesToMyApplicationsPage()
+    {
+        var tasks = GetTaskQueryResult();
+
+        _homePage = TasksHelper.ClickTransfersAvailableToAddApprenticeLink(_homePage, tasks.NumberOfAcceptedTransferPledgeApplicationsWithNoApprentices);
+    }
+
 }
