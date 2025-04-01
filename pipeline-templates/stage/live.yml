@@ -10,6 +10,7 @@ stages:
 
   variables:
   - group: Prod Shared Resources
+  - group: LIVE das-live-smoke-test-suite
 
   jobs:
   - template: ../job/test-api.yml
