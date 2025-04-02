@@ -1,10 +1,10 @@
-﻿Feature: PR_PAS_01_ProviderPortalNavigation
+﻿Feature: PR_PAS_03_ProviderPortalNavigation
 
 @provider
 @regression
 @pasproviderrole
 @mfatest
-Scenario: PR_PAS_01_ProviderPortalNavigation
+Scenario: PR_PAS_03_ProviderPortalNavigation
 	Given the provider logs in as a <UserRole>
 	Then user can access Notification Settings page
 	#And user can access Orgs And Agreements page

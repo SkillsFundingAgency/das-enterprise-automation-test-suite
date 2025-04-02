@@ -1,10 +1,10 @@
-﻿Feature: PR_PAS_02_HomePageNavigation
+﻿Feature: PR_PAS_05_HomePageNavigation
 
 @provider
 @regression
 @pasproviderrole
 @mfatest
-Scenario: PR_PAS_02_HomePageNavigation
+Scenario: PR_PAS_05_HomePageNavigation
 	Given the provider logs in as a <UserRole>
 	Then user can view Add New Apprentices page as defined in the table below <AddNewApprentices>
 	#And user can view Add An Employer page as defined in the table below <AddAnEmployer>
@@ -23,7 +23,7 @@ Scenario: PR_PAS_02_HomePageNavigation
 
 Examples:
 	| UserRole                | AddNewApprentices | AddAnEmployer | GetFundingForNonLevyEmployers | DeveloperAPIs |
-	#| Viewer                  | false             | false         | false                         | false         |
-	#| Contributor             | true              | true          | true                          | false         |
-	#| ContributorWithApproval | true              | true          | true                          | false         |
+	| Viewer                  | false             | false         | false                         | false         |
+	| Contributor             | true              | true          | true                          | false         |
+	| ContributorWithApproval | true              | true          | true                          | false         |
 	| AccountOwner            | true              | true          | true                          | true          |
