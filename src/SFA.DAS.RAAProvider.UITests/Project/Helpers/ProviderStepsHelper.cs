@@ -28,7 +28,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
        
         internal void CloseVacancy() => SearchVacancyByVacancyReference().GoToVacancyManagePage().CloseAdvert().YesCloseThisVacancy();
 
-        internal void EditVacancyDates() => SearchVacancyByVacancyReference().GoToVacancyManagePage().EditAdvert().EnterVacancyDates();
+        internal void EditVacancyDates() => SearchVacancyByVacancyReference().GoToVacancyManagePage().EditAdvert().EnterProviderVacancyDates();
 
     }
 }

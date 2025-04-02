@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public class EmployerVacancySearchResultPage(ScenarioContext context) : VacancySearchResultPage(context)
     {
-        protected override string PageTitle => isRaaEmployer ? "Your adverts" : "Your vacancies";
+        protected override string PageTitle => "Your adverts";
 
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private static By Applicant => By.CssSelector("a[data-label='application_review']");
