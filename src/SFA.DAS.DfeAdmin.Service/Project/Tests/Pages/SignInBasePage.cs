@@ -1,11 +1,12 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using System.Threading;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
 public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePage(context)
 {
-    static readonly object _mfaObject = new();
+    private static readonly Lock _mfaObject = new();
 
     static readonly List<string> usedCodes = [];
 
@@ -55,7 +56,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         public void SubmitValidAuthCode(string email)
         {
-            context.Get<RetryAssertHelper>().RetryOnDfeSignMFAAuthCode(() => 
+            context.Get<RetryAssertHelper>().RetryOnDfeSignMFAAuthCode(() =>
             {
                 var codes = context.Get<MailosaurApiHelper>().GetCodes(email, "Your DfE Sign-in (TEST) account verification code", "Account verification code:");
 
@@ -77,45 +78,6 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
                 usedCodes.Add(code);
             });
-
-
-
-            //int count = 0;
-
-            //while (count < 5)
-            //{
-            //    var codes = context.Get<MailosaurApiHelper>().GetCodes(email, "Your DfE Sign-in (TEST) account verification code", "Account verification code:");
-
-            //    SetDebugInformation($"Used codes are ({usedCodes.Select(x => $"'{x}'").ToString(",")})");
-
-            //    SetDebugInformation($"Codes from email are ({codes.Select(x => $"'{x}'").ToString(",")})");
-
-            //    var notusedcodes = codes.Except(usedCodes);
-
-            //    if (notusedcodes.Any())
-            //    {
-            //        var code = notusedcodes.First();
-
-            //        formCompletionHelper.EnterText(EmailAuthCodeField, code);
-
-            //        formCompletionHelper.ClickElement(MFAEmailCodeVerifyButton);
-
-            //        if (pageInteractionHelper.FindElements(CodeError).Count == 0)
-            //        {
-            //            usedCodes.Add(code);
-
-            //            SetDebugInformation($"code error locator {CodeError} is not found");
-
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            SetDebugInformation($"code error locator {CodeError} has been found");
-            //        }
-            //    }
-
-            //    count++;
-            //}
         }
     }
 

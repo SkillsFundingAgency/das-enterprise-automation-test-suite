@@ -3,7 +3,6 @@
 @approvals
 @regression
 @pasproviderrole
-@mfatest
 Scenario: PR_MF_01_ProviderUserRolesInManageFunding
 	Given Provider Account Owner can make a reservation
 	Then user can signout from their account
@@ -17,7 +16,7 @@ Scenario: PR_MF_01_ProviderUserRolesInManageFunding
 
 Examples:
 	| UserRole                | ReserveNewFunding | DeleteExistingReservations | AddApprenticesToReservation |
-	#| Viewer                  | false             | false                      | false                       |
-	#| Contributor             | true              | true                       | true                        |
-	#| ContributorWithApproval | true              | true                       | true                        |
+	| Viewer                  | false             | false                      | false                       |
+	| Contributor             | true              | true                       | true                        |
+	| ContributorWithApproval | true              | true                       | true                        |
 	| AccountOwner            | true              | true                       | true                        |
