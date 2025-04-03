@@ -6,7 +6,7 @@ public static class UrlConfig
     {
         public static string Outer_ApiBaseUrl => GetOuter_ApiBaseUrl($"{EnvironmentConfig.EnvironmentName}-gateway");
 
-        public static string Outer_RAAApiBaseUrl => EnvironmentConfig.IsPPEnvironment ? GetOuter_ApiBaseUrl("pp-api") : Outer_ApiBaseUrl;
+        public static string Outer_RAAApiBaseUrl => GetOuter_ApiBaseUrl($"{EnvironmentConfig.EnvironmentName}-api");
 
         public static string Outer_ApprenticeCommitmentsHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-acomt-api.apprenticeships.education.gov.uk";
 
