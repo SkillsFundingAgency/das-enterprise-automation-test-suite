@@ -1,8 +1,5 @@
-using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 using SFA.DAS.ApprenticeApp.UITests.Project.Helpers;
-using OpenQA.Selenium;
-using SFA.DAS.Login.Service.Project.Helpers;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
 {
@@ -37,7 +34,6 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         public void ThenTheApprenticeIsTakenToTheTasksPage()
         {
             _stepsHelper.GoToTasksPage();
-            //Assert.True(_stepsHelper.GoToTasksPage().IsAt());
         }
 
         [Given("the apprentice has logged into the app")]
@@ -46,6 +42,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
             _stepsHelper.GoToHomePage();
             _stepsHelper.GoToStubSigin();
             _stepsHelper.GoToWelcomePage();
+            _stepsHelper.GoToTasksPage();
         }
     }
 }

@@ -8,10 +8,10 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         protected static By signInButtonLocator = By.CssSelector("button.app-button");
         protected override string PageTitle => "Your Apprenticeship";
 
-        public StubSignIn AppSignIn()
+        public StubSignInPage AppSignIn()
         {
             formCompletionHelper.Click(signInButtonLocator);
-            return new StubSignIn(context);
+            return new StubSignInPage(context);
         }
     }
 }

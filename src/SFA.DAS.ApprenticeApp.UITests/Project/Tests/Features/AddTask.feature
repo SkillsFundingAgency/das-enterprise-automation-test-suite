@@ -1,6 +1,6 @@
 ﻿Feature: Add a task
 
-A short summary of the feature
+Apprentice adds a task
 
 @ApprenticeApp
 @regression

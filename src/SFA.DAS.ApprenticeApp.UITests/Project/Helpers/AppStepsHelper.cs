@@ -1,14 +1,66 @@
-﻿using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
+﻿using OpenQA.Selenium;
+using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
 {
-    public class AppStepsHelper(ScenarioContext context)
+    public class AppStepsHelper(ScenarioContext context) : AppBasePage(context)
     {
+        private static By TasksNavLink => By.CssSelector("a.app-navigation__link[href='/Tasks/Index");
+        private static By KsbNavLink => By.CssSelector("a.app-navigation__link[href='/Ksb/Index']");
+        private static By SupportNavLink => By.CssSelector("a.app-navigation__link[href='/Support/Index']");
+        private static By NotificationsNavLink => By.CssSelector("a.app-navigation__link[href='/Notifications/Index']");
+        private static By AccountNavLink => By.CssSelector("a.app-navigation__link[href='/Account/YourAccount']");
+        private static By YourProfileLink => By.CssSelector("a.app-stack__link[href='/Profile/Index']");
+        private static By SettingsLink => By.CssSelector("a.app-stack__link[href='/Settings/Index']");
+
+        protected override string PageTitle => throw new System.NotImplementedException();
+
         public HomePage GoToHomePage() => new CookiePage(context).AccessHomePage();
-        public StubSignIn GoToStubSigin() => new HomePage(context).AppSignIn();
-        public WelcomePage GoToWelcomePage() => new StubSignIn(context).SignIn();
+        public StubSignInPage GoToStubSigin() => new HomePage(context).AppSignIn();
+        public WelcomePage GoToWelcomePage() => new StubSignInPage(context).SignIn();
         public TasksPage GoToTasksPage() => new WelcomePage(context).StartNow();
+
+        public TasksPage NavigateToTasksPage()
+        {
+            formCompletionHelper.Click(TasksNavLink);
+            return new TasksPage(context);
+        }
+
+        public KsbPage NavigateToKsbPage()
+        {
+            formCompletionHelper.Click(KsbNavLink);
+            return new KsbPage(context);
+        }
+
+        public SupportGuidancePage NavigateToSupportGuidancePage()
+        {
+            formCompletionHelper.Click(SupportNavLink);
+            return new SupportGuidancePage(context);
+        }
+
+        public NotificationsPage NavigateToNotificationsPage()
+        {
+            formCompletionHelper.Click(NotificationsNavLink);
+            return new NotificationsPage(context);
+        }
+
+        public AccountPage NavigateToAccountPage()
+        {
+            formCompletionHelper.Click(AccountNavLink);
+            return new AccountPage(context);
+        }
+        public YourProfilePage NavigateToYourProfilePage()
+        {
+            formCompletionHelper.Click(YourProfileLink);
+            return new YourProfilePage(context);
+        }
+
+        public SettingsPage NavigateToSettingsPage()
+        {
+            formCompletionHelper.Click(SettingsLink);
+            return new SettingsPage(context);
+        }
 
     }
 }

@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
@@ -17,40 +15,35 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         protected static By SortByDropdown => By.CssSelector("span.app-dropdown__toggle-sort-value#sortby");
         protected static By TaskFilters => By.CssSelector("a[href='#filter'][data-module='app-overlay'].app-icon-action");
 
-        private By AddTaskButton => By.CssSelector("a.app-fab.add-btn");
-        private By TaskTitleInput => By.Id("Task_Title");
-        private By DateInput => By.Id("date");
-        private By TimeInput => By.Id("time");
-        private By CategoryRadioButtons => By.CssSelector("input.app-radios__input.task-category");
-        private By KsbButton => By.Id("ksb-popup-btn");
-        private By NoteTextArea => By.Id("note");
-        private By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
-        private By TaskTitle => By.CssSelector("app-card__heading");
+        private static By AddTaskButton => By.CssSelector("a.app-fab.add-btn");
+        private static By TaskTitleInput => By.Id("Task_Title");
+        private static By DateInput => By.Id("date");
+        private static By TimeInput => By.Id("time");
+        private static By KsbButton => By.Id("ksb-popup-btn");
+        private static By CategoryAssignment => By.XPath("//input[@id='category_1']");
+        private static By CategoryCollapseButton => By.XPath("//button[@aria-controls='app-collapse-task-cat']");
+        private static By NoteTextArea => By.Id("note");
+        private static By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
+        private static By TaskTitle => By.CssSelector("h2.app-card__heading");
         protected override string PageTitle => "Tasks";
 
-        public TasksPage AcceptNotifications()
+        public TasksPage AddTask(string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
         {
-            formCompletionHelper.Click(PshNtfPopUp);
-            return new TasksPage(context);
-        }
 
-        public void AddTask(string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
-        {
-         
             formCompletionHelper.Click(AddTaskButton);
             formCompletionHelper.EnterText(TaskTitleInput, title);
             formCompletionHelper.EnterText(DateInput, date);
             formCompletionHelper.EnterText(TimeInput, time);
-            //formCompletionHelper.Click(CategoryRadioButtons);
-            //SelectKsb(ksbId, status);
+            formCompletionHelper.Click(CategoryCollapseButton);
+            //formCompletionHelper.Click(CategoryAssignment);
             formCompletionHelper.EnterText(NoteTextArea, note);
             formCompletionHelper.Click(SaveTaskButton);
-
+            return new TasksPage(context);
 
         }
         public void MoveToDone(string taskTitle)
         {
-
+            
         }
 
         public void DeleteTask(string taskTitle)
@@ -67,8 +60,25 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         {
             
             var tasks = pageInteractionHelper.FindElements(TaskTitle);
-            return tasks.FindAll(task => task.Text.Contains(Title)).Count.Equals(1);
+            return tasks.Any(task => task.Text.Contains(Title));
             
         }
+
+        internal string GenerateTaskName()
+        {
+            return $"Task {DateTime.Now:yyyyMMddHHmmss}";
+        }
+
+        //public void SelectKsb(string ksbId, string status)
+        //{
+        //    var ksbElement = context.FindElement(By.Id($"ksb-{ksbId}"));
+        //    var statusDropdown = ksbElement.FindElement(By.CssSelector("button.app-collapse__button"));
+        //    statusDropdown.Click();
+        //    var statusRadioButton = ksbElement.FindElement(By.Id($"ksbStatus_{status}"));
+        //    if (!statusRadioButton.Selected)
+        //    {
+        //        statusRadioButton.Click();
+        //    }
+        //}
     }
 }
