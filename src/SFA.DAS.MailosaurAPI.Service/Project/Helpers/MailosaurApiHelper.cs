@@ -2,6 +2,7 @@
 using Mailosaur.Models;
 using SFA.DAS.FrameworkHelpers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
@@ -27,6 +28,44 @@ public class MailosaurApiHelper(ScenarioContext context)
         var link = message.Html.Links.FirstOrDefault(x => x.Href.ContainsCompareCaseInsensitive("https://") && (linkText == string.Empty || x.Text.ContainsCompareCaseInsensitive(linkText)));
 
         return link.Href;
+    }
+
+    public List<string> GetCodes(string email, string subject, string emailText)
+    {
+        SetDebugInformation($"Check list of email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {dateTime:HH:mm:ss}");
+
+        var mailosaurAPIUser = GetMailosaurAPIUser(email);
+
+        var mailosaur = new MailosaurClient(mailosaurAPIUser.ApiToken);
+
+        var criteria = new SearchCriteria()
+        {
+            SentTo = email,
+            Subject = subject,
+            Body = emailText,
+            Match = SearchMatchOperator.ANY
+        };
+
+        var messagelistresult = mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: DateTime.Now.AddMinutes(-5), errorOnTimeout: false).Result;
+
+        var messageItems = messagelistresult.Items;
+
+        SetDebugInformation($"'{messageItems.Count}' - no of message received with ids ({messageItems.Select(x => $"'{x.Id}'").ToString(",")}) ");
+
+        List<string> codes = [];   
+
+        foreach (var messageSummary in messageItems.OrderByDescending(x => x.Received))
+        {
+            var message = mailosaur.Messages.GetByIdAsync(messageSummary.Id).Result;
+
+            SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss} with body {Environment.NewLine}{message.Text.Body}");
+
+            var code = message.Html.Codes[0].Value;
+
+            codes.Add(code);
+        }
+
+        return codes;
     }
 
     public Message GetEmailBody(string email, string subject, string emailText)
