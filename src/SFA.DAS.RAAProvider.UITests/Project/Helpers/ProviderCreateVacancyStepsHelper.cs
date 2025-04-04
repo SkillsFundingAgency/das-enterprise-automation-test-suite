@@ -26,17 +26,20 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         public VacancyReferencePage CreateOfflineVacancy() => CreateANewVacancy(false);
 
-        public VacancyReferencePage CreateVacancyForWageType(string wageType) => CreateANewAdvertOrVacancy(string.Empty, true, wageType, true);
+        public VacancyReferencePage CreateVacancyForWageType(string wageType) => CreateANewAdvertOrVacancy(string.Empty, "employer", wageType, true, true, true);
+
+        public VacancyReferencePage CreateVacancyForLocationTypes(string locationType, bool enterQuestion1, bool enterQuestion2) => 
+            CreateANewAdvertOrVacancy(string.Empty, locationType, RAAConst.NationalMinWages, true, enterQuestion1, enterQuestion2);
 
         private VacancyReferencePage CreateANewVacancy(string employername) => CreateANewVacancy(employername, true);
 
         private VacancyReferencePage CreateANewVacancy(bool isApplicationMethodFAA) => CreateANewVacancy(string.Empty, isApplicationMethodFAA);
 
-        private VacancyReferencePage CreateANewVacancy(string employername, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(employername, true, RAAConst.NationalMinWages, isApplicationMethodFAA);
+        private VacancyReferencePage CreateANewVacancy(string employername, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(employername, "employer", RAAConst.NationalMinWages, isApplicationMethodFAA, true, true);
 
-        private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, string wageType, bool isApplicationMethodFAA)
+        private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, string locationType, string wageType, bool isApplicationMethodFAA, bool enterQuestion1, bool enterQuestion2)
         {
-            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA, true);
+            return CreateANewAdvertOrVacancy(employername, locationType, false, wageType, isApplicationMethodFAA, true, enterQuestion1, enterQuestion2);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
@@ -49,11 +52,11 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
                 .SelectApplicationMethod_Provider(isApplicationMethodFAA);
         }
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool enterQuestion1, bool enterQuestion2)
         {
             return createAdvertPage
             .EnterAdditionalQuestionsForApplicants()
-            .CompleteAllAdditionalQuestionsForApplicants();
+            .CompleteAllAdditionalQuestionsForApplicants(enterQuestion1, enterQuestion2);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
@@ -66,7 +69,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
             .EnterFutureProspect()
             .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string locationType, string wageType)
         {
             return createAdvertPage
                 .ImportantDates()
@@ -75,7 +78,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
                 .ChooseWage_Provider(wageType)
                 .SubmitExtraInformationAboutPay()
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
-                .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+                .ChooseAddressAndGoToCreateApprenticeshipPage(locationType);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)

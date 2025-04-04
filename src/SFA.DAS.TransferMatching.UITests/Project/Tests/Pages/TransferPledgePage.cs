@@ -42,6 +42,16 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             return new TransferPledgePage(context);
         }
 
+        public int GetEstimatedRemainingFunds()
+        {
+            return pageInteractionHelper.GetText(EstimatedRemainingFundsSelector).CurrencyStringToInt().Value;
+        }
+
+        public int GetTotalPledgeFunds()
+        {
+            return pageInteractionHelper.GetText(PledgedFundsSelector).CurrencyStringToInt().Value;
+        }
+
         public TransferPledgePage VerifyCostingModel()
         {
             var estimatedcost = tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail().CurrencyStringToInt();
