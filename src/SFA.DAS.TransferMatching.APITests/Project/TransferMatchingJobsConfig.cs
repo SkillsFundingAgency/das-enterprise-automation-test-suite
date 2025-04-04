@@ -4,4 +4,6 @@ public class TransferMatchingJobsConfig
 {
     public string HttpAutomaticApplicationApprovalFunction_Code { get; set; }
     public string HttpAutomaticApplicationRejectionFunction_Code { get; set; }
+    public string HttpAutomaticApplicationDeclineFunction_Code { get; set; }
+    public string HttpAutomaticApplicationExpireFunction_Code { get; set; }
 }

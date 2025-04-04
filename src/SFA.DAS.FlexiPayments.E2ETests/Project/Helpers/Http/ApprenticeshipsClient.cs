@@ -17,6 +17,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.Http
     {
         private HttpClient _apiClient;
         private readonly string _functionKey;
+        private readonly string _signingKey;
 
         public ApprenticeshipsClient(ScenarioContext context)
         {
@@ -25,11 +26,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.Http
 
             _apiClient = HttpClientProvider.GetClient(baseUrl);
             _functionKey = _config.ApprenticeshipAzureFunctionKey;
+            _signingKey = _config.ApprenticeshipServiceBearerTokenSigningKey;
         }
 
         public async Task WithdrawApprenticeship(WithdrawApprenticeshipRequestBody body)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"api/WithdrawApprenticeship?code={_functionKey}");
+            request.Headers.Add("ServiceBearerToken", ServiceBearerTokenProvider.GetServiceBearerToken(_signingKey));
             request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
             var response = await _apiClient.SendAsync(request);
 

@@ -11,7 +11,7 @@ public class ProviderSummaryPage(ScenarioContext context) : FATBasePage(context)
     private static By ViewOtherTrainingProvidersButton => By.Id("btn-view-providers");
     private static By BackToTrainingProviders => By.Id("providers-breadcrumb");
 
-    private static By TrainingOptions => By.XPath("(//h2['.govuk-heading-m'])[8]");
+    private static By TrainingOptions => By.XPath("(//h2[contains(@class,'govuk-heading-m')])[6]");
 
     private string TrainingOptionsText => $"{objectContext.GetProviderName()}’s training options";
 

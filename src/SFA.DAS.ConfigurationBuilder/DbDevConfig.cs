@@ -4,8 +4,7 @@
     {
         public string Server { get; set; }
         public string ConnectionDetails { get; set; }
-        public string UserID { get; set; }
-        public string Password { get; set; }
+        public string TenantId { get; set; }
         public string DatamartDbName { get; set; }
         public string AccountsDbName { get; set; }
         public string FinanceDbName { get; set; }

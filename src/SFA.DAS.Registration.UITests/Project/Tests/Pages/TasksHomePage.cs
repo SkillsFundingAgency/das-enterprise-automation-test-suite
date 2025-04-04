@@ -4,7 +4,7 @@ namespace SFA.DAS.Registration.UITests.Project.Tests.Pages;
 public partial class TasksHomePage : HomePage
 {
     public const string ApprenticeChangeToReview = "ApprenticeChangeToReview";
-    public const string CohortReadyForApproval = "CohortReadyForApproval";
+    public const string ApprenticeRequestsReadyForReview = "apprenticerequestreadyforreview";
     public const string ReviewConnectionRequest = "ReviewConnectionRequest";
     public const string TransferRequestReceived = "TransferRequestReceived";
 
@@ -43,7 +43,7 @@ public partial class TasksHomePage : HomePage
         return taskType switch
         {
             ApprenticeChangeToReview => GetCurrentNumberOfTasks("apprentice change", true),
-            CohortReadyForApproval => GetCurrentNumberOfTasks("ready for approval", true),
+            ApprenticeRequestsReadyForReview => GetCurrentNumberOfTasks("ready for review", true),
             ReviewConnectionRequest => GetCurrentNumberOfTasks("connection request", true),
             TransferRequestReceived => GetCurrentNumberOfTasks("Transfer request received", false),
             _ => 0,
