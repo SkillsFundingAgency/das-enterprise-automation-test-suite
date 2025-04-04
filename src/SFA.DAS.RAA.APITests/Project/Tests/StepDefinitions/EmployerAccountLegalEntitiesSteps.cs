@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using SFA.DAS.API.Framework.Configs;
 
 namespace SFA.DAS.RAA.APITests.Project.Tests.StepDefinitions;
 
@@ -7,6 +9,7 @@ namespace SFA.DAS.RAA.APITests.Project.Tests.StepDefinitions;
 public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
 {
     private Outer_RecruitApiClient _restClient;
+    private CreateVacancyApiClient _raaRestClient;
     private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
     private readonly Outer_ApiAuthTokenConfig _apiAuthTokenConfig = context.Get<Outer_ApiAuthTokenConfig>();
     private readonly EmployerLegalEntitiesSqlDbHelper _employerLegalEntitiesSqlHelper = context.Get<EmployerLegalEntitiesSqlDbHelper>();
@@ -14,8 +17,8 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
     private string _expected;
     private RestResponse _apiResponse;
 
-    [Given(@"user prepares request with Employer HashedID")]
-    public void GivenUserPreparesRequestWithEmployerHashedId()
+    [Given(@"user prepares request with Employer ID")]
+    public void GivenUserPreparesRequestWithEmployerId()
         => (_hashedAccountId, _expected) = _employerLegalEntitiesSqlHelper.GetEmployerAccountDetails();
 
     [When(@"the user sends (GET) request to (.*)")]
@@ -28,7 +31,17 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
 
     [Then(@"a (OK|Created) response is received")]
     public void ThenAOKResponseIsReceived(HttpStatusCode responseCode)
-        => _apiResponse = _restClient.Execute(responseCode);
+    {
+        if(responseCode == HttpStatusCode.OK)
+        {
+            _apiResponse = _restClient.Execute(responseCode);
+            
+        } else
+        {
+            _apiResponse = _raaRestClient.Execute(responseCode);
+        }
+        
+    }
 
     [Then(@"verify response body displays correct information")]
     public void ThenVerifyResponseBodyDisplaysCorrectInformation()
@@ -38,12 +51,17 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
     public void WhenTheUserSendsPOSTRequestToWithPayload(string filename)
     {
         var apiBaseUrl = UrlConfig.OuterApiUrlConfig.Outer_RAAApiBaseUrl;
-        _restClient = new Outer_RecruitApiClient(_objectContext, _apiAuthTokenConfig, apiBaseUrl);
+        _raaRestClient = new CreateVacancyApiClient(_objectContext, _apiAuthTokenConfig, apiBaseUrl);
         var jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Project/Tests/Payload/{filename}");
         var payload = File.ReadAllText(jsonFilePath);
+        JObject json = JObject.Parse(payload);
+        JObject contractingParties = (JObject)json["contractingParties"];
+        contractingParties["ukprn"] = _apiAuthTokenConfig.Ukprn;
+        contractingParties["accountLegalEntityPublicHashedId"] = $"{_apiAuthTokenConfig.Hashed_AccountId}";
+
         var dynamicGuid = Guid.NewGuid().ToString();
 
-        _restClient.CreateRestRequest(Method.Post, $"/managevacancies/vacancy/{dynamicGuid}", payload);
+        _raaRestClient.CreateRestRequest(Method.Post, $"/managevacancies/vacancy/{dynamicGuid}", json.ToString());
     }
 
     [Then(@"verify response body displays vacancy reference number")]

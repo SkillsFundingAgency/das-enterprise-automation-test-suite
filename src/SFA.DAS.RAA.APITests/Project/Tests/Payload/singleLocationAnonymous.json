@@ -5,8 +5,8 @@
         "phone": "01234 444555"
     },
     "contractingParties": {
-        "ukprn": 10005927,
-        "accountLegalEntityPublicHashedId": "27BV97"
+        "ukprn": 1234,
+        "accountLegalEntityPublicHashedId": "hashId"
     },
     "title": "Test apprenticeship 1 SL Anon 1",
     "description": "You'll be done some amazing work here, it'll be the best - you wont regret joining the company",
