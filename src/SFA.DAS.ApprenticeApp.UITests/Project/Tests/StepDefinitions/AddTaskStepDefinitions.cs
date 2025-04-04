@@ -18,7 +18,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         {
             tasksPage = _stepsHelper.NavigateToTasksPage();
             taskName = tasksPage.GenerateTaskName();
-            tasksPage.AddTask(taskName, DateTime.Now.AddDays(+2).ToString("dd/MM/yyyy"), ("1200p"), "KSB", "1", "Assignment", "Status", "Note");
+            tasksPage.AddTask(taskName, DateTime.Now.AddDays(+2).ToString("dd/MM/yyyy"), ("12:00p"), "KSB", "1", "Assignment", "Status", "Note");
         }
 
         [Then("the task is added to the task list")]
