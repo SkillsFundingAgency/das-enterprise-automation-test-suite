@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeApp.UITests.Project.Helpers;
+﻿using FluentAssertions;
+using SFA.DAS.ApprenticeApp.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
@@ -17,7 +18,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         {
             tasksPage = _stepsHelper.NavigateToTasksPage();
             taskName = tasksPage.GenerateTaskName();
-            tasksPage.AddTask(taskName, DateTime.Now.AddDays(+2).ToString("dd/MM/yyyy"), TimeOnly.FromDateTime(DateTime.Now).ToString("hh:mm:ss"), "KSB", "1", "Assignment", "Status", "Note");
+            tasksPage.AddTask(taskName, DateTime.Now.AddDays(+2).ToString("dd/MM/yyyy"), ("1200p"), "KSB", "1", "Assignment", "Status", "Note");
         }
 
         [Then("the task is added to the task list")]
