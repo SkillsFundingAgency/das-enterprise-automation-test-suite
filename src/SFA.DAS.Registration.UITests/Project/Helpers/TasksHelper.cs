@@ -38,6 +38,13 @@ public class TasksHelper(ScenarioContext context)
         return _transferMatchingSqlDataHelper.GetNumberTransferPledgeApplicationsByApplicationStatus(accountId, "0");
     } 
     
+    public int GetNumberOfTransferPledgeApplicationsApproved()
+    {
+        var accountId = _objectContext.GetDBAccountId();
+        var approvedApplications = _transferMatchingSqlDataHelper.GetTransferPledgeApplicationsByApplicationStatus(accountId, "1");        
+        return approvedApplications?.Count ?? 0;
+    } 
+
     public int GetNumberOfAcceptedTransferPledgeApplicationsWithNoApprentices()
     {
         var accountId = _objectContext.GetDBAccountId();
@@ -99,7 +106,25 @@ public class TasksHelper(ScenarioContext context)
 
     public static HomePage ClickTransfersAvailableToAddApprenticeLink(HomePage homePage, int numberOfChanges)
     {
-        return homePage.ClickViewTransfersAvailableToAddApprentice(numberOfChanges)
+        if (numberOfChanges == 1)
+        {
+            return homePage.ClickViewTransfersAvailableToAddApprentice()
+                .GoToHomePage();
+        }
+        
+        return homePage.ClickViewMultipleTransfersAvailableToAddApprentice()
+            .GoToHomePage();
+    }
+    
+    public static HomePage ClickTransfersToAcceptLink(HomePage homePage, int numberOfChanges)
+    {
+        if (numberOfChanges == 1)
+        {
+            return homePage.ClickViewTransferToAccept()
+                .GoToHomePage();
+        }
+
+        return homePage.ClickViewMultipleTransfersToAccept()
             .GoToHomePage();
     }
 }

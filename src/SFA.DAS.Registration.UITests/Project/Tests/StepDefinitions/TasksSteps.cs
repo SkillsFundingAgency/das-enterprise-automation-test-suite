@@ -179,11 +179,33 @@ public class TasksSteps
     }
 
     [Then("'View details' link should navigate user to 'My applications' page")]
-    public void ThenViewTransferPledgeApplicationsNavigatesToMyApplicationsPage()
+    public void ThenViewTransferPledgeApplicationsNavigatesToUseTransferFundsPage()
     {
         var tasks = GetTaskQueryResult();
 
         _homePage = TasksHelper.ClickTransfersAvailableToAddApprenticeLink(_homePage, tasks.NumberOfAcceptedTransferPledgeApplicationsWithNoApprentices);
     }
 
+    [When("there are X transfer application has been approved")]
+    public void WhenTransferApplicationsHaveBeenApproved()
+    {
+        var tasks = GetTaskQueryResult();     
+        tasks.NumberOfTransferPledgeApplicationsApproved = _tasksHelper.GetNumberOfTransferPledgeApplicationsApproved();
+        SetTaskQueryResult(tasks);
+    }
+
+    [Then("display task: 'X transfers to accept'")]
+    public void ThenDisplayNumberOfTransferPledgeApplicationsApproved()
+    {
+        var tasks = GetTaskQueryResult();
+        _homePage.VerifyTransfersToAcceptMessageShown(tasks.NumberOfTransferPledgeApplicationsApproved);
+    }
+
+    [Then("'View details' link should navigate user to 'My applications' to Accept page")]
+    public void ThenViewNumberOfTransferPledgeApplicationsApprovedMyApplicationsPage()
+    {
+        var tasks = GetTaskQueryResult();
+
+        _homePage = TasksHelper.ClickTransfersToAcceptLink(_homePage, tasks.NumberOfTransferPledgeApplicationsApproved);
+    }
 }

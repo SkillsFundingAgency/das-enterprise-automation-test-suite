@@ -18,6 +18,7 @@ public class HomePage : InterimHomeBasePage
     private static By TransferRequestViewDetailsLink => By.XPath("//li[contains(span, 'Transfer request received')]/span/a[text()='View details']");
     private static By TransferConnectionRequestViewDetailsLink => By.XPath("//li[contains(span, 'connection requests to review')]/span/a[text()='View details']");
     private static By TransfersAvailableToAddApprenticeLink => By.XPath("//li[contains(span, 'available to add an apprentice')]/span/a[text()='View details']");
+    private static By TransfersToAcceptLink => By.XPath("//li[contains(span, 'to accept')]/span/a[text()='View details']");
     #endregion
 
     protected override string AccessibilityPageTitle => "Employer home page";
@@ -94,9 +95,18 @@ public class HomePage : InterimHomeBasePage
     {
         var messageText = numberOfChanges == 1 ? "1 transfer available to add an apprentice" : $"{numberOfChanges} transfers available to add an apprentice";
         var xpath = $"//span[contains(text(), '{messageText}')]";
-        var transferApplicationsToReviewMessage = By.XPath(xpath);
+        var transferApplicationAvailableMessage = By.XPath(xpath);
 
-        VerifyElement(transferApplicationsToReviewMessage);
+        VerifyElement(transferApplicationAvailableMessage);
+    }  
+    
+    public void VerifyTransfersToAcceptMessageShown(int numberOfChanges)
+    {
+        var messageText = numberOfChanges == 1 ? "1 transfer to accept" : $"{numberOfChanges} transfers to accept";
+        var xpath = $"//span[contains(text(), '{messageText}')]";
+        var transferApplicationsToAcceptMessage = By.XPath(xpath);
+
+        VerifyElement(transferApplicationsToAcceptMessage);
     }
 
     public void VerifyTransferRequestReceivedMessageShown()
@@ -155,9 +165,27 @@ public class HomePage : InterimHomeBasePage
         return new MyTransferPledgesPage(context);
     }
     
-    public UseTransferFundsPage ClickViewTransfersAvailableToAddApprentice(int numberOfChanges)
+    public UseTransferFundsPage ClickViewTransfersAvailableToAddApprentice()
     {
         formCompletionHelper.Click(TransfersAvailableToAddApprenticeLink);
         return new UseTransferFundsPage(context);
+    }
+    
+    public MyTransferApplicationsPage ClickViewMultipleTransfersAvailableToAddApprentice()
+    {
+        formCompletionHelper.Click(TransfersAvailableToAddApprenticeLink);
+        return new MyTransferApplicationsPage(context);
+    }
+    
+    public ApplicationDetailsPage ClickViewTransferToAccept()
+    {
+        formCompletionHelper.Click(TransfersToAcceptLink);
+        return new ApplicationDetailsPage(context);
+    }
+    
+    public MyTransferApplicationsPage ClickViewMultipleTransfersToAccept()
+    {
+        formCompletionHelper.Click(TransfersToAcceptLink);
+        return new MyTransferApplicationsPage(context);
     }
 }

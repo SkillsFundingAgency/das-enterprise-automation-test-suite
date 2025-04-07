@@ -23,12 +23,9 @@ Scenario: RE_Tasks_02_Verify tasks menu on employer home page
 	When there are X transfer pledge applications awaiting your approval
 	Then display task: 'X transfer pledge applications awaiting your approval'
 	And 'View applications' link should navigate user to 'My Transfer Pledges' page
-	
 	When there are X transfers applications available to add an apprentice
 	Then display task: 'X transfers available to add an apprentice'
 	And 'View details' link should navigate user to 'My applications' page
-
-	#NumberOfTransferPledgeApplicationsApproved # get pending applications by accountID Approved = 1,
-   #When there are X transfer application has been approved.
-	#Then display task: 'X transfers to accept'
-	#And 'View details' link should navigate user to 'My applications' page
+   When there are X transfer application has been approved
+	Then display task: 'X transfers to accept'
+	And 'View details' link should navigate user to 'My applications' to Accept page
