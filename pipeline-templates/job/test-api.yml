@@ -50,9 +50,9 @@ jobs:
         - task: ms-autotest.screen-resolution-utility-task.screen-resolution-utlity-task.ScreenResolutionUtility@1
           displayName: 'Set Screen Resolution'
           inputs:
-          displaySettings: specific
-          width: 1920
-          height: 1080
+            displaySettings: specific
+            width: 1920
+            height: 1080
         - task: DotNetCoreCLI@2
           env:
             ResourceEnvironmentName: $(ResourceEnvironmentName)
