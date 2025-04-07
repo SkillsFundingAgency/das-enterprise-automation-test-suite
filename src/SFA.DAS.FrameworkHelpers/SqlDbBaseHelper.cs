@@ -59,8 +59,8 @@ public class SqlDbBaseHelper(ObjectContext objectContext, string connectionStrin
     protected (List<object[]> data, int noOfColumns) GetListOfData(string queryToExecute, string connectionString, Dictionary<string, string> parameters) =>
         GetMultipleListOfData([queryToExecute], connectionString, parameters).FirstOrDefault();
 
-    protected List<(List<object[]> data, int noOfColumns)> GetMultipleListOfData(List<string> queryToExecute) =>
-        GetMultipleListOfData(queryToExecute, connectionString, null);
+    protected List<(List<object[]> data, int noOfColumns)> GetMultipleListOfData(List<string> queryToExecute, Dictionary<string, string> parameters = null) =>
+        GetMultipleListOfData(queryToExecute, connectionString, parameters);
 
     private List<(List<object[]> data, int noOfColumns)> GetMultipleListOfData(List<string> queryToExecute, string connectionString, Dictionary<string, string> parameters)
     {

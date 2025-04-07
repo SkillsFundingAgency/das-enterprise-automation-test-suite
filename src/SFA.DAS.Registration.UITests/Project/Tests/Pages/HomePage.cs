@@ -155,9 +155,9 @@ public class HomePage : InterimHomeBasePage
         return new MyTransferPledgesPage(context);
     }
     
-    public MyTransferApplicationsPage ClickViewTransfersAvailableToAddApprentice(int numberOfChanges)
+    public UseTransferFundsPage ClickViewTransfersAvailableToAddApprentice(int numberOfChanges)
     {
         formCompletionHelper.Click(TransfersAvailableToAddApprenticeLink);
-        return new MyTransferApplicationsPage(context);
+        return new UseTransferFundsPage(context);
     }
 }

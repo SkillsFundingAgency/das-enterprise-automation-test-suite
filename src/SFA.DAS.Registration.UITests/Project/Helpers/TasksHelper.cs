@@ -41,7 +41,7 @@ public class TasksHelper(ScenarioContext context)
     public int GetNumberOfAcceptedTransferPledgeApplicationsWithNoApprentices()
     {
         var accountId = _objectContext.GetDBAccountId();
-        var acceptedApplications =_transferMatchingSqlDataHelper.GetTransferPledgeApplicationsByApplicationStatus(accountId, "3");
+        var acceptedApplications =_transferMatchingSqlDataHelper.GetTransferPledgeApplicationsByApplicationStatus(accountId, "3"); 
         if (acceptedApplications == null || acceptedApplications.Count == 0)
         {
             return 0;

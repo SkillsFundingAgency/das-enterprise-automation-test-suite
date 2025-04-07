@@ -118,89 +118,61 @@ public class CommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig
     }
 
     public List<CohortsWithPledgeApplications> GetPledgeApplicationIdsAndNumberOfDraftApprentices(string employerAccountId)
-    {       
-        string query = @$"SELECT 
-                    [c].[PledgeApplicationId],
-                    COUNT([a1].[Id]) AS [NumberOfDraftApprentices] 
-                FROM 
-                    [Commitment] AS [c]
-                LEFT JOIN 
-                    [Accounts] AS [a] 
-                    ON [c].[TransferSenderId] = [a].[Id]
-                INNER JOIN 
-                    (
-                        SELECT 
-                            [a0].[Id],
-                            [a0].[Name],
-                            [a0].[PublicHashedId]
-                        FROM 
-                            [AccountLegalEntities] AS [a0]
-                        WHERE 
-                            [a0].[Deleted] IS NULL
-                    ) AS [t] 
-                    ON [c].[AccountLegalEntityId] = [t].[Id]
-                INNER JOIN 
-                    [Providers] AS [p] 
-                    ON [c].[ProviderId] = [p].[UkPrn]
-                LEFT JOIN 
-                    [Apprenticeship] AS [a1] 
-                    ON [c].[Id] = [a1].[CommitmentId] 
-                    AND [a1].[IsApproved] = CAST(0 AS bit)  -- Only draft apprentices
-                WHERE 
-                    [c].[PledgeApplicationId] IS NOT NULL 
-                    AND [c].[IsDeleted] = CAST(0 AS bit) 
-                    AND [c].[EmployerAccountId] = {employerAccountId} 
-                    AND (
-                        [c].[EditStatus] <> CAST(0 AS smallint) 
-                        OR (
-                            [c].[TransferSenderId] IS NOT NULL 
-                            AND [c].[TransferApprovalStatus] = CAST(0 AS tinyint)
-                        )
-                    )
-                GROUP BY 
-                    [c].[PledgeApplicationId]SELECT 
-                    [c].[PledgeApplicationId],
-                    COUNT([a1].[Id]) AS [NumberOfDraftApprentices]  -- Count of draft apprentices
-                FROM 
-                    [Commitment] AS [c]
-                LEFT JOIN 
-                    [Accounts] AS [a] 
-                    ON [c].[TransferSenderId] = [a].[Id]
-                INNER JOIN 
-                    (
-                        SELECT 
-                            [a0].[Id],
-                            [a0].[Name],
-                            [a0].[PublicHashedId]
-                        FROM 
-                            [AccountLegalEntities] AS [a0]
-                        WHERE 
-                            [a0].[Deleted] IS NULL
-                    ) AS [t] 
-                    ON [c].[AccountLegalEntityId] = [t].[Id]
-                INNER JOIN 
-                    [Providers] AS [p] 
-                    ON [c].[ProviderId] = [p].[UkPrn]
-                LEFT JOIN 
-                    [Apprenticeship] AS [a1] 
-                    ON [c].[Id] = [a1].[CommitmentId] 
-                    AND [a1].[IsApproved] = CAST(0 AS bit)  -- Only draft apprentices
-                WHERE 
-                    [c].[PledgeApplicationId] IS NOT NULL 
-                    AND [c].[IsDeleted] = CAST(0 AS bit) 
-                    AND [c].[EmployerAccountId] = @EmployerAccountId 
-                    AND (
-                        [c].[EditStatus] <> CAST(0 AS smallint) 
-                        OR (
-                            [c].[TransferSenderId] IS NOT NULL 
-                            AND [c].[TransferApprovalStatus] = CAST(0 AS tinyint)
-                        )
-                    )
-                GROUP BY 
-                    [c].[PledgeApplicationId]";
+    {
+        Dictionary<string, string> sqlParameters = new()
+        {
+            { "@EmployerAccountId", employerAccountId }
+        };
 
-        List<string[]> rawResults = GetMultipleData(query);
+        string query = @"
+            SELECT 
+                [c].[PledgeApplicationId],
+                COUNT([a1].[Id]) AS [NumberOfDraftApprentices]
+            FROM 
+                [Commitment] AS [c]
+            LEFT JOIN 
+                [Accounts] AS [a] 
+                ON [c].[TransferSenderId] = [a].[Id]
+            INNER JOIN 
+                (
+                    SELECT 
+                        [a0].[Id],
+                        [a0].[Name],
+                        [a0].[PublicHashedId]
+                    FROM 
+                        [AccountLegalEntities] AS [a0]
+                    WHERE 
+                        [a0].[Deleted] IS NULL
+                ) AS [t] 
+                ON [c].[AccountLegalEntityId] = [t].[Id]
+            INNER JOIN 
+                [Providers] AS [p] 
+                ON [c].[ProviderId] = [p].[UkPrn]
+            LEFT JOIN 
+                [Apprenticeship] AS [a1] 
+                ON [c].[Id] = [a1].[CommitmentId] 
+                AND [a1].[IsApproved] = CAST(0 AS bit)  -- Only draft apprentices
+            WHERE 
+                [c].[PledgeApplicationId] IS NOT NULL 
+                AND [c].[IsDeleted] = CAST(0 AS bit) 
+                AND [c].[EmployerAccountId] = @EmployerAccountId
+                AND (
+                    [c].[EditStatus] <> CAST(0 AS smallint) 
+                    OR (
+                        [c].[TransferSenderId] IS NOT NULL 
+                        AND [c].[TransferApprovalStatus] = CAST(0 AS tinyint)
+                    )
+                )
+            GROUP BY 
+                [c].[PledgeApplicationId]";
+
+        List<string[]> rawResults = GetMultipleData(query, sqlParameters);
         var results = new List<CohortsWithPledgeApplications>();
+
+        if (rawResults == null || rawResults.Count == 0 || rawResults.All(row => row.Length < 2 || row.All(cell => string.IsNullOrEmpty(cell))))
+        {
+            return null;
+        }
 
         foreach (var row in rawResults)
         {

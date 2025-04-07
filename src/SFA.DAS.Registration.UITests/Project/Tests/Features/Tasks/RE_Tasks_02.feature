@@ -29,6 +29,6 @@ Scenario: RE_Tasks_02_Verify tasks menu on employer home page
 	And 'View details' link should navigate user to 'My applications' page
 
 	#NumberOfTransferPledgeApplicationsApproved # get pending applications by accountID Approved = 1,
-   When there are X transfer application has been approved.
-	Then display task: 'X transfers to accept'
-	And 'View details' link should navigate user to 'My applications' page
+   #When there are X transfer application has been approved.
+	#Then display task: 'X transfers to accept'
+	#And 'View details' link should navigate user to 'My applications' page

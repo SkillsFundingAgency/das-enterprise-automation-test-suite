@@ -20,16 +20,20 @@ public class TransferMatchingSqlDataHelper(ObjectContext objectContext, DbConfig
     }
 
     public List<int> GetTransferPledgeApplicationsByApplicationStatus(string employerAccountId, string applicationStatusId)
-    {       
-        string query = @$"
-        SELECT app.Id 
-        FROM [dbo].[Application] app
-        INNER JOIN [dbo].[Pledge] pledge
-            ON pledge.Id = app.PledgeId
-        WHERE app.Status = {applicationStatusId}
-            AND pledge.EmployerAccountId = {employerAccountId};";
+    {
+        Dictionary<string, string> sqlParameters = new()
+        {
+            { "@EmployerAccountId", employerAccountId },
+            { "@ApplicationStatus", applicationStatusId }
+        };
 
-        List<string[]> rawResults = GetMultipleData(query);
+        string query = @"
+             SELECT Id 
+                FROM [dbo].[Application] 
+             WHERE [Status] = @ApplicationStatus
+                AND EmployerAccountId = @EmployerAccountId;";
+
+        List<string[]> rawResults = GetMultipleData(query, sqlParameters);
         List<int> applicationIds = [];
 
         foreach (var row in rawResults)

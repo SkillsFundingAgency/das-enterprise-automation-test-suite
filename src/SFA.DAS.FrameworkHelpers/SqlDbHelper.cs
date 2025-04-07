@@ -31,11 +31,11 @@ public abstract class SqlDbHelper(ObjectContext objectContext, string connection
         return returnItems;
     }
 
-    protected List<string[]> GetMultipleData(string query) => GetListOfMultipleData([query]).FirstOrDefault();
+    protected List<string[]> GetMultipleData(string query, Dictionary<string, string> parameters = null) => GetListOfMultipleData([query], parameters).FirstOrDefault();
 
-    protected List<List<string[]>> GetListOfMultipleData(List<string> query)
+    protected List<List<string[]>> GetListOfMultipleData(List<string> query, Dictionary<string, string> parameters = null)
     {
-        List<(List<object[]> data, int noOfColumns)> multidatas = SqlDbRetryHelper.RetryOnException(() => GetMultipleListOfData(query));
+        List<(List<object[]> data, int noOfColumns)> multidatas = SqlDbRetryHelper.RetryOnException(() => GetMultipleListOfData(query, parameters));
 
         var multireturnItems = new List<List<string[]>>();
 

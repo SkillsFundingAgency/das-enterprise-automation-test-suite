@@ -432,7 +432,7 @@ public class TransferMatchingSteps
     [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
     public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
     {
-        var apprenticeDetailsApprovedPage = new UseTransferFundsPage(_context).ClickOnStartNowButton()
+        var apprenticeDetailsApprovedPage = new Pages.UseTransferFundsPage(_context).ClickOnStartNowButton()
             .SubmitValidUkprn()
             .ConfirmProviderDetailsAreCorrect()
             .EmployerAddsApprentices()
