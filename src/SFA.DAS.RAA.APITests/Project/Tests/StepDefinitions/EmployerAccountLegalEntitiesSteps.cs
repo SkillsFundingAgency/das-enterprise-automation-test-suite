@@ -56,8 +56,8 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
         var payload = File.ReadAllText(jsonFilePath);
         JObject json = JObject.Parse(payload);
         JObject contractingParties = (JObject)json["contractingParties"];
-        contractingParties["ukprn"] = _apiAuthTokenConfig.Ukprn;
-        contractingParties["accountLegalEntityPublicHashedId"] = $"{_apiAuthTokenConfig.Hashed_AccountId}";
+        contractingParties["ukprn"] = _apiAuthTokenConfig.RAA_Ukprn;
+        contractingParties["accountLegalEntityPublicHashedId"] = $"{_apiAuthTokenConfig.RAA_Hashed_AccountId}";
 
         var dynamicGuid = Guid.NewGuid().ToString();
 

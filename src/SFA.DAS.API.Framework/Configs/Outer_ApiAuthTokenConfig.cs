@@ -8,7 +8,7 @@ public class Outer_ApiAuthTokenConfig
 
     public string NAS_Apim_SubscriptionKey { get; set; }
 
-    public string Hashed_AccountId { get; set; }
+    public string RAA_Hashed_AccountId { get; set; }
 
-    public int Ukprn { get; set; }
+    public int RAA_Ukprn { get; set; }
 }
