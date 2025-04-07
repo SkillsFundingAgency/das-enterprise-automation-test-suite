@@ -9,8 +9,11 @@ variables:
   value: release
 - name: BuildPlatform
   value: any cpu
+- name: Browser
+  value: local
 - group: Release Automation Suite Variables
 - group: Release Automation Suite Variables (Db)
+- group: LIVE das-live-smoke-test-suite
 resources:
   repositories:
   - repository: self
@@ -34,7 +37,7 @@ resources:
       - Deploy_PP
 
 stages:
-- template: stage/test.yml
+- template: ../../../pipeline-templates/stage/live.yml
   parameters:
     TestFilter: ${{ parameters.TestFilter }}
     TestDlls: ${{ parameters.TestDlls }}
