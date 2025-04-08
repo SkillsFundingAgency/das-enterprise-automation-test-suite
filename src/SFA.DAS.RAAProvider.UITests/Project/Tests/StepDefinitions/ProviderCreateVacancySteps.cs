@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using SFA.DAS.RAA.Service.Project.Tests.Pages;
+﻿using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.RAAProvider.UITests.Project.Helpers;
 using SFA.DAS.RAAProvider.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
