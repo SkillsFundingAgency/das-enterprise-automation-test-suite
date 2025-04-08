@@ -40,7 +40,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
             return new CreateAnAdvertPage(context);
         }
 
-        public ManageRecruitPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveVacancy();
+        public ManageRecruitPage SelectLiveAdvert() => _searchVacancyPageHelper.SelectLiveAdvert();
 
         public EmployerVacancySearchResultPage SearchAdvertByReferenceNumber() => _searchVacancyPageHelper.SearchEmployerVacancy();
 

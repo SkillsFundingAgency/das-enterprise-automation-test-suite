@@ -43,6 +43,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 
         public ProviderVacancySearchResultPage SearchVacancy() => _searchVacancyPageHelper.SearchProviderVacancy();
 
+        public ManageRecruitPage SelectLiveVacancy() => _searchVacancyPageHelper.SelectLiveVacancy();
+
         public ReferVacancyPage SearchReferAdvertTitle()
         {
             _ = _searchVacancyPageHelper.SearchReferVacancy();
