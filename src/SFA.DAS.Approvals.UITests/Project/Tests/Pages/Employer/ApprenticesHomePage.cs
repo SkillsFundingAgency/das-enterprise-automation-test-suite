@@ -68,6 +68,7 @@ public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHo
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Help), "Validate Help link on the footer of the page");
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Feedback), "Validate Feedback link on the footer of the page");
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Privacy), "Validate Privacy link on the footer of the page");
+        Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(AccessibilityStatement), "Validate Accessibility Statement link on the footer of the page");
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Cookies), "Validate Cookies link on the footer of the page");
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(BuiltBy), "Validate BuiltBy link on the footer of the page");
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CrownCopyright), "Validate CrownCopyright link on the footer of the page");
