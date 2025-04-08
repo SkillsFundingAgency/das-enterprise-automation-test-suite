@@ -5,8 +5,8 @@
         "phone": "01234 444555"
     },
     "contractingParties": {
-        "ukprn": 1234,
-        "accountLegalEntityPublicHashedId": "hashID"
+        "ukprn": "__RAA_API_Ukprn__",
+        "accountLegalEntityPublicHashedId": "__RAA_API_Hashed_AccountId__"
     },
     "title": "Test apprenticeship 1 SL 2203",
     "description": "You'll be done some amazing work here, it'll be the best - you wont regret joining the company",
