@@ -3,18 +3,19 @@ parameters:
   TestDlls:
 
 stages:
-- stage: Deploy_TEST
+- stage: Deploy_LIVE
   dependsOn: []
-  displayName: Run test suite on TEST
+  displayName: Run test suite on LIVE
   condition: eq(variables['Build.Reason'], 'Manual')
+
   variables:
-  - group: TEST Automation Suite Variables
-  - group: TEST DevTest Shared Resources
-  - group: AT DevTest Shared Resources
+  - group: Prod Shared Resources
+  - group: Live Shared Resources
+
   jobs:
   - template: ../job/test-api.yml
     parameters:
-      Environment: TEST
-      ServiceConnection: SFA-DAS-DevTest-ARM
+      Environment: LIVE
+      ServiceConnection: SFA-DIG-Prod-ARM
       TestFilter: ${{ parameters.TestFilter }}
       TestDlls: ${{ parameters.TestDlls }}

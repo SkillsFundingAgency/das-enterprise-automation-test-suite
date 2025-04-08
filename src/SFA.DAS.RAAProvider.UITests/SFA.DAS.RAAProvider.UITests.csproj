@@ -53,6 +53,7 @@
 
   <ItemGroup>
     <Folder Include="Project\Tests\Features\FAAJourney\" />
+    <Folder Include="Project\Tests\Features\ChangeVacancyStatus\" />
   </ItemGroup>
 
 </Project>
