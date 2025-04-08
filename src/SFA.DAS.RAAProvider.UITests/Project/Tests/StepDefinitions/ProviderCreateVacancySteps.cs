@@ -57,6 +57,12 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [Given(@"the Provider creates Draft advert")]
         public void TheProviderCreatesDraftAdvert() => ReturnToDashoard(_providerStepsHelper.CreateDraftAdvert());
 
+        [When(@"the Provider completes the Draft advert to cancel deleting the draft")]
+        public void TheProviderCreatesCompleteDraftAdvert() => _stepsHelper.CompleteDraftAdvert(GoToYourAdvertFromDraftAdverts());
+
+        [Then(@"the Provider is able to delete the draft vacancy")]
+        public void ThenTheProviderIsAbleToDeleteTheDraftVacancy() => _stepsHelper.CompleteDeleteOfDraftVacancy();
+
         [Then(@"the advert is saved as a draft")]
         public void ThenTheVacancyIsSavedAsADraft() => GoToYourAdvertFromDraftAdverts();
 

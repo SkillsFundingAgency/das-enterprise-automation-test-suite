@@ -19,6 +19,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
             return new PreviewYourAdvertOrVacancyPage(context);
         }
 
+        public PreviewYourAdvertOrVacancyPage PreviewVacancy()
+        {
+            formCompletionHelper.ClickLinkByText("Preview vacancy before submitting");
+            return new PreviewYourAdvertOrVacancyPage(context);
+        }
+
         public CreateAnApprenticeshipAdvertOrVacancyPage BackToTaskList()
         {
             formCompletionHelper.Click(BackToTaskSelector);
