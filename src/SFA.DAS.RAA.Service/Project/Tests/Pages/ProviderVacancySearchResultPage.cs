@@ -75,5 +75,11 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
                 formCompletionHelper.ClickLinkByText(Applications, applicationid);
             }
         }
+
+        public CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertPage()
+        {
+            DraftVacancy();
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
+        }
     }
 }

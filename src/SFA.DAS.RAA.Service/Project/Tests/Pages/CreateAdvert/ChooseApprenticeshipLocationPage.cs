@@ -58,12 +58,6 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
             Continue();
 
-            //if (locationType != "national" && locationType != "multiple")
-            //{
-            //    formCompletionHelper.SelectRandomRadioOptionByLocator(SingleLocationRadoButton);
-            //    Continue();
-            //}
-
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 

@@ -33,6 +33,12 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
             return new GetStartedWithRecruitmentAPIsPage(context);
         }
 
+        public ProviderVacancySearchResultPage GoToYourAdvertFromDraftAdverts()
+        {
+            formCompletionHelper.ClickLinkByText("Draft vacancies");
+            return new ProviderVacancySearchResultPage(context);
+        }
+
         public ProviderVacancySearchResultPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();
 
         public ProviderVacancySearchResultPage SearchVacancy() => _searchVacancyPageHelper.SearchProviderVacancy();
