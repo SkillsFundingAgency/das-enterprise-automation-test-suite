@@ -52,7 +52,7 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
     {
         var apiBaseUrl = UrlConfig.OuterApiUrlConfig.Outer_RAAApiBaseUrl;
         _raaRestClient = new CreateVacancyApiClient(_objectContext, _apiAuthTokenConfig, apiBaseUrl);
-        Console.WriteLine($"base url: {apiBaseUrl} \n api key: {_apiAuthTokenConfig.EmployerRecruit_ApiKey} \n ukprn: {_apiAuthTokenConfig.RAA_API_Ukprn} \n hash id: {_apiAuthTokenConfig.RAA_API_Hashed_AccountId} \n payload: {json}");
+        Console.WriteLine($"base url: {apiBaseUrl} \n api key: {_apiAuthTokenConfig.EmployerRecruit_ApiKey} \n ukprn: {_apiAuthTokenConfig.RAA_API_Ukprn} \n hash id: {_apiAuthTokenConfig.RAA_API_Hashed_AccountId}");
 
         var jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Project/Tests/Payload/{filename}");
         var payload = File.ReadAllText(jsonFilePath);
@@ -61,6 +61,7 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
 
         contractingParties["ukprn"] = _apiAuthTokenConfig.RAA_API_Ukprn;
         contractingParties["accountLegalEntityPublicHashedId"] = $"{_apiAuthTokenConfig.RAA_API_Hashed_AccountId}";
+        Console.WriteLine("payload: {json}");
 
         var dynamicGuid = Guid.NewGuid().ToString();
 
