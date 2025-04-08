@@ -6,5 +6,5 @@ Support and guidance articles are displayed
 @regression
 Scenario: Support and guidance articles are listed
 	Given the apprentice has logged into the app
-	When the apprentice user clicks on the support and guidance tab
+	When the apprentice clicks on the support and guidance tab
 	Then the support and guidance articles are displayed

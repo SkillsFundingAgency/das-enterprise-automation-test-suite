@@ -10,8 +10,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         private readonly AppStepsHelper _stepsHelper = new(context);
         private NotificationsPage notificationsPage;
 
-        [When("the apprentice user clicks on the notifications tab")]
-        public void WhenTheApprenticeUserClicksOnTheNotificationsTab()
+        [When("the apprentice clicks on the notifications tab")]
+        public void WhenTheApprenticeClicksOnTheNotificationsTab()
         {
             notificationsPage = _stepsHelper.NavigateToNotificationsPage();
         }

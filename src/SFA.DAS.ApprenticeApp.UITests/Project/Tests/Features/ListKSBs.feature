@@ -6,6 +6,6 @@ KSBs are listed!
 @regression
 Scenario: KSBs are listed
 	Given the apprentice has logged into the app
-	When the apprentice user clicks on the KSBs tab
+	When the apprentice clicks on the KSBs tab
 	Then the KSBs are displayed
 	

@@ -13,7 +13,7 @@
 	<ItemGroup>
 		<PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.*" />
-		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="133.0.6943.14100" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="135.0.7049.4200" />
 		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.*" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.*" />

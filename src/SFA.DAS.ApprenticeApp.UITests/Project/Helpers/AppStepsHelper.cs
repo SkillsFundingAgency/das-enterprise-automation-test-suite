@@ -7,6 +7,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
     public class AppStepsHelper(ScenarioContext context) : AppBasePage(context)
     {
         private static By TasksNavLink => By.CssSelector("a.app-navigation__link[href='/Tasks/Index");
+        private static By ToDoTabNavLink => By.CssSelector("a.app-tabs__tab.todo[href=\"#tasks-todo\"][role=\"tab\"][aria-selected=\"false\"]");
+        private static By DoneTabNavLink => By.CssSelector("a.app-tabs__tab.done[href=\"#tasks-done\"][role=\"tab\"][aria-selected=\"false\"]");
         private static By KsbNavLink => By.CssSelector("a.app-navigation__link[href='/Ksb/Index']");
         private static By SupportNavLink => By.CssSelector("a.app-navigation__link[href='/Support/Index']");
         private static By NotificationsNavLink => By.CssSelector("a.app-navigation__link[href='/Notifications/Index']");
@@ -19,14 +21,20 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
         public HomePage GoToHomePage() => new CookiePage(context).AccessHomePage();
         public StubSignInPage GoToStubSigin() => new HomePage(context).AppSignIn();
         public WelcomePage GoToWelcomePage() => new StubSignInPage(context).SignIn();
-        public TasksPage GoToTasksPage() => new WelcomePage(context).StartNow();
+        public TasksBasePage GoToTasksPage() => new WelcomePage(context).StartNow();
 
-        public TasksPage NavigateToTasksPage()
+        public TasksBasePage NavigateToToDoTab()
         {
             formCompletionHelper.Click(TasksNavLink);
-            return new TasksPage(context);
+            return new TasksBasePage(context);
         }
 
+        public DoneTasksPage NavigateToDoneTab()
+        {
+            formCompletionHelper.Click(DoneTabNavLink);
+            return new DoneTasksPage(context);
+        }
+        
         public KsbPage NavigateToKsbPage()
         {
             formCompletionHelper.Click(KsbNavLink);

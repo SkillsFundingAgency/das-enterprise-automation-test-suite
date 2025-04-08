@@ -10,14 +10,14 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         private readonly AppStepsHelper _stepsHelper = new(context);
         private YourProfilePage yourProfilePage;
 
-        [When("the apprentice user clicks on the account tab")]
-        public void WhenTheApprenticeUserClicksOnTheAccountTab()
+        [When("the apprentice clicks on the account tab")]
+        public void WhenTheApprenticeClicksOnTheAccountTab()
         {
             var accountPage = _stepsHelper.NavigateToAccountPage();
         }
 
-        [When("the apprentice user clicks on your profile")]
-        public void WhenTheApprenticeUserClicksOnYourProfile()
+        [When("the apprentice clicks on your profile")]
+        public void WhenTheApprenticeClicksOnYourProfile()
         {
             yourProfilePage = _stepsHelper.NavigateToYourProfilePage();
         }

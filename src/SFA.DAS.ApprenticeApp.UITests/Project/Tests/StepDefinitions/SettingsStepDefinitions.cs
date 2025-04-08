@@ -10,8 +10,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         private readonly AppStepsHelper _stepsHelper = new(context);
         private SettingsPage settingsPage;
 
-        [When("the apprentice user clicks on settings")]
-        public void WhenTheApprenticeUserClicksOnSettings()
+        [When("the apprentice clicks on settings")]
+        public void WhenTheApprenticeClicksOnSettings()
         {
             settingsPage = _stepsHelper.NavigateToSettingsPage();
         }

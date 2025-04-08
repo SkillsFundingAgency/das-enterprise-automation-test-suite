@@ -1,21 +1,21 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.BiDi.Modules.Input;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 {
-    public class TasksPage(ScenarioContext context) : AppBasePage(context)
+    public class TasksBasePage(ScenarioContext context) : AppBasePage(context)
     {
         protected static By YourTasks => By.CssSelector("h1.govuk-heading-xl.govuk-!-margin-bottom-2");
-        protected static By PshNtfPopUp => By.CssSelector("button.govuk-button");
         protected static By YearDropdown => By.CssSelector("button.app-dropdown__toggle[aria-expanded='false']");
-        protected static By Todo => By.CssSelector("a.app-tabs__tab.todo[role='tab'][aria-selected='true']");
-        protected static By Done => By.CssSelector("a.app-tabs__tab.done[role='tab'][aria-selected='true']");
         protected static By SortByDropdown => By.CssSelector("span.app-dropdown__toggle-sort-value#sortby");
         protected static By TaskFilters => By.CssSelector("a[href='#filter'][data-module='app-overlay'].app-icon-action");
-
+        private static By ToDoTab => By.CssSelector("a.app-tabs__tab.todo[role='tab']");
+        private static By DoneTab => By.CssSelector("a.app-tabs__tab.done[role='tab']");
         private static By AddTaskButton => By.CssSelector("a.app-fab.add-btn");
+        private static By AddTaskButtonInitial => By.CssSelector("a.app-fab.add-btn.app-fab--highlight");
         private static By TaskTitleInput => By.Id("Task_Title");
         private static By DateInput => By.Id("date");
         private static By TimeInput => By.Id("time");
@@ -27,10 +27,27 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By TaskTitle => By.CssSelector("h2.app-card__heading");
         protected override string PageTitle => "Tasks";
 
-        public TasksPage AddTask(string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
+        public TasksBasePage ClickToDoTab()
         {
-
-            formCompletionHelper.Click(AddTaskButton);
+            formCompletionHelper.Click(ToDoTab);
+            return new TasksBasePage(context);
+        }
+        public void ClickDoneTab()
+        {
+            formCompletionHelper.Click(DoneTab);
+            pageInteractionHelper.WaitforURLToChange("/Tasks/Index?status=1");
+            pageInteractionHelper.WaitForElementToChange(ToDoTab, "hidden");
+        }
+        public TasksBasePage AddTask(bool isToDo, string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
+        {
+            if (pageInteractionHelper.IsElementPresent(AddTaskButtonInitial))
+            {
+                formCompletionHelper.Click(AddTaskButtonInitial);
+            }
+            else
+            {
+                formCompletionHelper.Click(AddTaskButton);
+            }
             formCompletionHelper.EnterText(TaskTitleInput, title);
             formCompletionHelper.EnterText(DateInput, date);
             formCompletionHelper.EnterText(TimeInput, time);
@@ -38,14 +55,9 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             //formCompletionHelper.Click(CategoryAssignment);
             formCompletionHelper.EnterText(NoteTextArea, note);
             formCompletionHelper.Click(SaveTaskButton);
-            return new TasksPage(context);
+            return new TasksBasePage(context);
 
         }
-        public void MoveToDone(string taskTitle)
-        {
-            
-        }
-
         public void DeleteTask(string taskTitle)
         {
 

@@ -10,8 +10,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         private readonly AppStepsHelper _stepsHelper = new(context);
         private SupportGuidancePage supportGuidancePage;
 
-        [When("the apprentice user clicks on the support and guidance tab")]
-        public void WhenTheApprenticeUserClicksOnTheSupportAndGuidanceTab()
+        [When("the apprentice clicks on the support and guidance tab")]
+        public void WhenTheApprenticeClicksOnTheSupportAndGuidanceTab()
         {
             supportGuidancePage = _stepsHelper.NavigateToSupportGuidancePage();
         }

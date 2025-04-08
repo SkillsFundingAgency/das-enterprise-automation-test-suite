@@ -10,8 +10,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         private readonly AppStepsHelper _stepsHelper = new(context);
         private KsbPage ksbPage;
 
-        [When("the apprentice user clicks on the KSBs tab")]
-        public void WhenTheApprenticeUserClicksOnTheKSBsTab()
+        [When("the apprentice clicks on the KSBs tab")]
+        public void WhenTheApprenticeClicksOnTheKSBsTab()
         {
             ksbPage = _stepsHelper.NavigateToKsbPage();
         }
