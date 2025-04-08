@@ -50,19 +50,15 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
     [When(@"the user sends POST request to vacancy endpoint with (.*)")]
     public void WhenTheUserSendsPOSTRequestToWithPayload(string filename)
     {
-        Console.WriteLine($"Payload file name: {filename}");
         var apiBaseUrl = UrlConfig.OuterApiUrlConfig.Outer_RAAApiBaseUrl;
         _raaRestClient = new CreateVacancyApiClient(_objectContext, _apiAuthTokenConfig, apiBaseUrl);
         var jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Project/Tests/Payload/{filename}");
         var payload = File.ReadAllText(jsonFilePath);
         JObject json = JObject.Parse(payload);
         JObject contractingParties = (JObject)json["contractingParties"];
-        Console.WriteLine($"RAA_Ukprn: {_apiAuthTokenConfig.RAA_Ukprn}");
-        Console.WriteLine($"RAA_Hashed_AccountId: {_apiAuthTokenConfig.RAA_Hashed_AccountId}");
 
         contractingParties["ukprn"] = _apiAuthTokenConfig.RAA_Ukprn;
         contractingParties["accountLegalEntityPublicHashedId"] = $"{_apiAuthTokenConfig.RAA_Hashed_AccountId}";
-        Console.WriteLine($"Payload: {json}");
         var dynamicGuid = Guid.NewGuid().ToString();
 
         _raaRestClient.CreateRestRequest(Method.Post, $"/managevacancies/vacancy/{dynamicGuid}", json.ToString());
