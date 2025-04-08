@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.RAAProvider.UITests.Project.Helpers;
+using SFA.DAS.RAAProvider.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
@@ -8,6 +10,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
     public class ProviderCreateVacancySteps(ScenarioContext context)
     {
         private readonly ProviderCreateVacancyStepsHelper _providerStepsHelper = new(context);
+        private readonly ProviderCreateDraftAdvertStepsHelper _stepsHelper = new(context);
+        private RecruitmentHomePage _recruitmentHomePage;
 
         [Then(@"the Provider creates anonymous vacancy through View all your vacancies page")]
         public void ThenTheProviderCreatesAnonymousVacancyThroughViewAllYourVacanciesPage() => _providerStepsHelper.CreateAnonymousVacancy();
@@ -47,6 +51,23 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [When(@"Provider selects '(National Minimum Wage|National Minimum Wage For Apprentices|Fixed Wage Type|Set As Competitive)' in the first part of the journey")]
         public void WhenProviderSelectsInTheFirstPartOfTheJourney(string wageType) => _providerStepsHelper.CreateVacancyForWageType(wageType);
 
+        [Given("Provider cancels after saving the title of the advert")]
+        public void ProviderCancelsAfterSavingTheTitleOfTheAdvert() => _recruitmentHomePage = _providerStepsHelper.CancelAdvert();
+
+        [Given(@"the Provider creates Draft advert")]
+        public void TheProviderCreatesDraftAdvert() => ReturnToDashoard(_providerStepsHelper.CreateDraftAdvert());
+
+        [Then(@"the advert is saved as a draft")]
+        public void ThenTheVacancyIsSavedAsADraft() => GoToYourAdvertFromDraftAdverts();
+
+        [Then(@"the Provider can open the draft and submits the advert")]
+        public void TheProviderCanOpenTheDraftAndSubmitsTheAdvert() => _stepsHelper.SubmitDraftAdvert(GoToYourAdvertFromDraftAdverts());
+
         private void CreateANewVacancy() => _providerStepsHelper.CreateANewVacancyForRandomEmployer();
+
+        private void ReturnToDashoard(CreateAnApprenticeshipAdvertOrVacancyPage page) { page.ReturnToDashoard(); _recruitmentHomePage = new RecruitmentHomePage(context); }
+
+        private CreateAnApprenticeshipAdvertOrVacancyPage GoToYourAdvertFromDraftAdverts() => _recruitmentHomePage.GoToYourAdvertFromDraftAdverts().CreateAnApprenticeshipAdvertPage();
+
     }
 }

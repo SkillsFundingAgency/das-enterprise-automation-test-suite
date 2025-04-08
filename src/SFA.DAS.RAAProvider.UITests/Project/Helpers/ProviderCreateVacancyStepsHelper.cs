@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.RAA.Service.Project.Helpers;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert;
+using SFA.DAS.RAAProvider.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
@@ -108,5 +109,32 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
              advertTitlePage.EnterVacancyTitle();
+
+        internal RecruitmentHomePage CancelAdvert()
+        {
+            (CreateAnApprenticeshipAdvertOrVacancy()).AdvertTitle().EnterVacancyTitle().EmployerCancelAdvert();
+            return new RecruitmentHomePage(context);
+        }
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool createFirstDraftAdvert)
+        {
+
+            return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertOrVacancySummary(createAdvertPage), "employer", RAAConst.NationalMinWages);
+        }
+
+        private static CreateAnApprenticeshipAdvertOrVacancyPage FirstAdvertSummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
+            AdvertSummary(NavigateToAdvertTitle(createAdvertPage).EnterVacancyTitleForTheFirstAdvert().SelectYes());
+
+        private static CreateAnApprenticeshipAdvertOrVacancyPage AdvertSummary(ApprenticeshipTrainingPage page) =>
+        page.EnterTrainingTitle()
+            .ConfirmTrainingproviderAndContinue()
+            .SelectTrainingProvider()
+            .ConfirmProviderAndContinueToSummaryPage()
+            .EnterShortDescription()
+            .EnterShortDescriptionOfWhatApprenticeWillDo()
+            .EnterAllDescription();
+
     }
 }
