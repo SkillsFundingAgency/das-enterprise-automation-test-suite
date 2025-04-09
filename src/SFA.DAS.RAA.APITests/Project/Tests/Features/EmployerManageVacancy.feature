@@ -27,7 +27,7 @@ Scenario Outline: RAA_API_02_Emp_Createvacancy_Created
 Scenario Outline: RAA_API_02B_Emp_Createvacancy_Unauthorized
 	When the user sends POST request to vacancy with payload <Payload>
 	Then a <ResponseStatus> response is received
-	And verify response body displays vacancy reference number
+	And verify response body displays Access denied due to invalid subscription key
 
 	Examples: 
 	| TestCaseId | ResponseStatus | Payload             |

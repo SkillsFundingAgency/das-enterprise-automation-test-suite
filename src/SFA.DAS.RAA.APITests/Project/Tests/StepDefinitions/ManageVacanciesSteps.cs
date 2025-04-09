@@ -4,7 +4,7 @@ using System.Linq;
 namespace SFA.DAS.RAA.APITests.Project.Tests.StepDefinitions;
 
 [Binding]
-public class EmployerManageVacanciesSteps(ScenarioContext context)
+public class ManageVacanciesSteps(ScenarioContext context)
 {
     private Outer_ManageVacancyApiClient _restClient;
 
@@ -44,4 +44,12 @@ public class EmployerManageVacanciesSteps(ScenarioContext context)
         var expected = "vacancyReference";
         StringAssert.Contains(expected, _apiResponse.Content);
     }
+
+    [Then("verify response body displays Access denied due to invalid subscription key")]
+    public void ThenVerifyResponseBodyDisplaysAccessDeniedDueToInvalidSubscriptionKey()
+    {
+        var expected = "Access denied due to invalid subscription key";
+        StringAssert.Contains(expected, _apiResponse.Content);
+    }
+
 }
