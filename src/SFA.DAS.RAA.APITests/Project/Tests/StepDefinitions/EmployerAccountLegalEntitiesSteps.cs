@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
-using Newtonsoft.Json.Linq;
-using SFA.DAS.API.Framework.Configs;
 
 namespace SFA.DAS.RAA.APITests.Project.Tests.StepDefinitions;
 
@@ -32,15 +31,16 @@ public class EmployerAccountLegalEntitiesSteps(ScenarioContext context)
     [Then(@"a (OK|Created) response is received")]
     public void ThenAOKResponseIsReceived(HttpStatusCode responseCode)
     {
-        if(responseCode == HttpStatusCode.OK)
+        if (responseCode == HttpStatusCode.OK)
         {
             _apiResponse = _restClient.Execute(responseCode);
-            
-        } else
+
+        }
+        else
         {
             _apiResponse = _raaRestClient.Execute(responseCode);
         }
-        
+
     }
 
     [Then(@"verify response body displays correct information")]

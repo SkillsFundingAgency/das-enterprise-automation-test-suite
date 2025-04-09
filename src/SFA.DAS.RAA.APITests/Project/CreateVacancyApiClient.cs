@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SFA.DAS.RAA.APITests.Project
+﻿namespace SFA.DAS.RAA.APITests.Project
 {
     public class CreateVacancyApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config, string apiBaseUrl) : Recruit_BaseApiRestClient(objectContext, config)
     {
@@ -22,8 +16,6 @@ namespace SFA.DAS.RAA.APITests.Project
             Addheader("Content-Type", "application/json");
 
             Addheader("Accept", "application/json");
-
         }
     }
-
 }
