@@ -15,7 +15,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
-		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="135.0.7049.4200" />
 		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
 			<PrivateAssets>all</PrivateAssets>

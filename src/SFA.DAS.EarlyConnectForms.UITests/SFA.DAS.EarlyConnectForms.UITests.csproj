@@ -21,8 +21,7 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="135.0.7049.4200" />  
+	  </PackageReference>  
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
 	<PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
   </ItemGroup>
