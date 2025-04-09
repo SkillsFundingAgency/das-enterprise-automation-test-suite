@@ -1,8 +1,8 @@
 ﻿namespace SFA.DAS.RAA.APITests.Project;
 
-public class Outer_RecruitApiClient(ObjectContext objectContext, Outer_ApiAuthTokenConfig config) : Outer_BaseApiRestClient(objectContext, config)
+public class Outer_ManageVacancyApiClient(ObjectContext objectContext, string authKey) : Outer_BaseApiRestClient(objectContext, authKey)
 {
-    protected override string ApiName => "recruit";
+    protected override string ApiName => "managevacancies";
 
     protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
 
@@ -15,6 +15,5 @@ public class Outer_RecruitApiClient(ObjectContext objectContext, Outer_ApiAuthTo
     //    Addheader("Content-Type", "application/json");
 
     //    Addheader("Accept", "application/json");
-
     //}
 }
