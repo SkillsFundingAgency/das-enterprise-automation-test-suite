@@ -10,6 +10,6 @@ Scenario Outline: RAA_API_01_OuterApiGetEmployerAccountLegalEntities_
 	And verify response body displays correct information
 
 	Examples:
-		| TestCaseId | Method | Endpoint                                                  | ResponseStatus |
-		| 001        | GET    | /recruit/employeraccounts/{hashedAccountId}/legalentities | OK             |
-		| 002        | GET    | /recruit/employeraccounts/{hashedAccountId}/legalentities | OK             |
+		| TestCaseId | Method | Endpoint                                          | ResponseStatus |
+		| 001        | GET    | /employeraccounts/{hashedAccountId}/legalentities | OK             |
+		| 002        | GET    | /employeraccounts/{hashedAccountId}/legalentities | OK             |
