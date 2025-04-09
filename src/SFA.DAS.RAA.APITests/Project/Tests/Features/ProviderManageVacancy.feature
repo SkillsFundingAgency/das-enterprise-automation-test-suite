@@ -1,11 +1,11 @@
 ﻿
-Feature: EmployerManageVacancy
+Feature: ProviderManageVacancy
 
 @api
 @regression
 @raaapi
-@raaapiemployer
-Scenario Outline: RAA_API_02_Emp_Createvacancy_Created
+@raaapiprovider
+Scenario Outline: RAA_API_03_Pro_Createvacancy_Created
 	When the user sends POST request to vacancy with payload <Payload>
 	Then a <ResponseStatus> response is received
 	And verify response body displays vacancy reference number
@@ -22,9 +22,9 @@ Scenario Outline: RAA_API_02_Emp_Createvacancy_Created
 @api
 @regression
 @raaapi
-@raaapiemployer
+@raaapiprovider
 @invalidapikey
-Scenario Outline: RAA_API_02B_Emp_Createvacancy_Unauthorized
+Scenario Outline: RAA_API_03B_Pro_Createvacancy_Unauthorized
 	When the user sends POST request to vacancy with payload <Payload>
 	Then a <ResponseStatus> response is received
 	And verify response body displays vacancy reference number

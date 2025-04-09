@@ -9,5 +9,7 @@ public class RaaApiFrameworkConfigurationSetup(ScenarioContext context)
     public void SetUpRaaApiFrameworkConfiguration()
     {
         context.Set(_configSection.GetConfigSection<Raa_Emp_Outer_ApiAuthTokenConfig>());
+
+        context.Set(_configSection.GetConfigSection<Raa_Pro_Outer_ApiAuthTokenConfig>());
     }
 }

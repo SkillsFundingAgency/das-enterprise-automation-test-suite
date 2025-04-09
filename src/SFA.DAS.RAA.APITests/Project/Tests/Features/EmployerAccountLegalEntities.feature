@@ -3,7 +3,7 @@
 @raaapi
 Feature: EmployerAccountLegalEntities
 
-Scenario Outline: RAA_API_01_OuterApiGetEmployerAccountLegalEntities_
+Scenario Outline: RAA_API_01_OuterApiGetEmployerAccountLegalEntities
 	Given user prepares request with Employer ID
 	When the user sends <Method> request to <Endpoint>
 	Then a <ResponseStatus> response is received
