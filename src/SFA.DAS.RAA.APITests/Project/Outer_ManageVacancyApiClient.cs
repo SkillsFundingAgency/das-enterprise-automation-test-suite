@@ -4,8 +4,6 @@ public class Outer_ManageVacancyApiClient(ObjectContext objectContext, string au
 {
     protected override string ApiName => "managevacancies";
 
-    protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
-
     //public new void CreateRestRequest(Method method, string resource, string payload)
     //{
     //    base.CreateRestRequest(method, resource, payload);

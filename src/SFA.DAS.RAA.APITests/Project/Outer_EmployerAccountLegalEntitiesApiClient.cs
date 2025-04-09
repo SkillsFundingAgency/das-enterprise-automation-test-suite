@@ -4,8 +4,6 @@ public class Outer_RecruitApiClient(ObjectContext objectContext, Outer_ApiAuthTo
 {
     protected override string ApiName => "recruit";
 
-    protected override string ApiBaseUrl => UrlConfig.OuterApiUrlConfig.Outer_ApiBaseUrl;
-
     //public new void CreateRestRequest(Method method, string resource, string payload)
     //{
     //    base.CreateRestRequest(method, resource, payload);
