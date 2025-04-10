@@ -8,9 +8,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class AddAToDoTaskStepDefinitions(ScenarioContext context)
     {
-        private readonly AppStepsHelper _stepsHelper = new(context);
         private readonly TasksBasePage tasksBasePage = new(context);
-        private ToDoTasksPage toDoTasksPage;
         private string toDoTaskName;
 
         [When("the apprentice adds a new to do task")]

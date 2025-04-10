@@ -8,9 +8,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
     [Binding]
     public class AddADoneTaskStepDefinitions(ScenarioContext context)
     {
-        private readonly AppStepsHelper _stepsHelper = new(context);
         private readonly TasksBasePage tasksBasePage = new(context);
-        private DoneTasksPage doneTasksPage;
         private string doneTaskName;
 
         [When("the apprentice has clicked on the done tasks tab")]
