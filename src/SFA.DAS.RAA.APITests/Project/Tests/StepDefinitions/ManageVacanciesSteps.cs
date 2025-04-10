@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace SFA.DAS.RAA.APITests.Project.Tests.StepDefinitions;
+﻿namespace SFA.DAS.RAA.APITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class ManageVacanciesSteps(ScenarioContext context)
@@ -17,7 +14,13 @@ public class ManageVacanciesSteps(ScenarioContext context)
     {
         Raa_Outer_ApiAuthTokenConfig apiAuthTokenConfig = context.ScenarioInfo.Tags.Contains("raaapiemployer") ? context.Get<Raa_Emp_Outer_ApiAuthTokenConfig>() : context.Get<Raa_Pro_Outer_ApiAuthTokenConfig>();
 
-        string apiKey = context.ScenarioInfo.Tags.Contains("invalidapikey") ? apiAuthTokenConfig.InvalidApiKey : apiAuthTokenConfig.ApiKey;
+        (string msg, string apiKey) = context.ScenarioInfo.Tags.Contains("invalidapikey") ? ("An invalid", apiAuthTokenConfig.InvalidApiKey) : ("A valid", apiAuthTokenConfig.ApiKey);
+
+        string hashedid = apiAuthTokenConfig.Hashed_AccountId;
+
+        string ukprn = apiAuthTokenConfig.Ukprn;
+
+        _objectContext.SetDebugInformation($"'{msg}' Api key - '{apiKey}' is used to create vacancy for hashedid - '{hashedid}'and ukprn - '{ukprn}'");
 
         _restClient = new Outer_ManageVacancyApiClient(_objectContext, apiKey);
 
@@ -25,8 +28,8 @@ public class ManageVacanciesSteps(ScenarioContext context)
 
         var payloadreplacement = new Dictionary<string, string>
         {
-            { "ukprn", apiAuthTokenConfig.Ukprn},
-            { "hashedid", apiAuthTokenConfig.Hashed_AccountId},
+            { "ukprn", ukprn},
+            { "hashedid", hashedid},
         };
 
         _restClient.CreateRestRequest(method, $"/managevacancies/{endpoint}/{dynamicGuid}", payload, payloadreplacement);
@@ -51,5 +54,4 @@ public class ManageVacanciesSteps(ScenarioContext context)
         var expected = "Access denied due to invalid subscription key";
         StringAssert.Contains(expected, _apiResponse.Content);
     }
-
 }
