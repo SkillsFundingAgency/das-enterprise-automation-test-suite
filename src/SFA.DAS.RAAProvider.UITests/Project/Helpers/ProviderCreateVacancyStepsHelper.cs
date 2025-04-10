@@ -11,6 +11,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         private bool _isMultiOrg;
 
         private string _hashedid = string.Empty;
+        private readonly RecruitmentProviderHomePageStepsHelper _recruitmentProviderHomePageStepsHelper = new(context);
 
         public ProviderCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
 
@@ -136,5 +137,9 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
             .EnterShortDescriptionOfWhatApprenticeWillDo()
             .EnterAllDescription();
 
+        internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(GoToRecruitmentHomePage().SelectLiveVacancy().CloneVacancy()
+            .SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage().UpdateAdditionalQuestion().UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage(true, true));
+
+        protected virtual RecruitmentHomePage GoToRecruitmentHomePage() => _recruitmentProviderHomePageStepsHelper.GoToRecruitmentProviderHomePage(true);
     }
 }

@@ -1,8 +1,8 @@
-﻿Feature: RAA_Nav_01
+﻿Feature: RAA_E_Nav_01
 
 @regression
 @raa
-Scenario: RAA_Nav_01_Navigate to EAS sub sites from Recruit Page
+Scenario: RAA_E_Nav_01_Navigate to EAS sub sites from Recruit Page
 	When the Employer navigates to 'Recruit' Page
 	Then the employer can navigate to home page
 	Then the employer can navigate to finance page
