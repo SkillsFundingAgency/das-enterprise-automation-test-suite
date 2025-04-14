@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers;
 
@@ -33,6 +34,39 @@ public class FAAStepsHelper(ScenarioContext context)
         return new FAASignedInLandingBasePage(context);
     }
 
+    public void NavigateToClosedFAAVacancyDetails()
+    {
+        var tabHelper = context.Get<TabHelper>();
+        var closedVacancyList = context.Get<FrameworkList<FAAConfig>>();
+        var closedVacancyConfig = closedVacancyList?.FirstOrDefault();
+
+        var vacancyReference = closedVacancyConfig.ClosedFaaVacancyReferenceNumber;
+
+        var baseUrl = UrlConfig.FAA_AppSearch.Replace("apprenticeshipsearch", "apprenticeship");
+        var closedVacancyUrl = $"{baseUrl}/{vacancyReference}";
+
+        tabHelper.GoToUrl(closedVacancyUrl);
+    }
+
+    public void NavigateToClosedVacancyAndStoreTitle()
+    {
+        NavigateToClosedFAAVacancyDetails();
+
+        var closedVacancyPage = new ClosedVacancyPage(context);
+
+        var closedVacancyTitle = closedVacancyPage.GetClosedVacancyTitle();
+
+        context["ClosedVacancyPageTitle"] = closedVacancyTitle;
+    }
+
+    public ClosedVacancyLoggedInUserPage GoToClosedVacancyLoggedInPage()
+    {
+        new FAASignedOutLandingpage(context).GoToSignInPage()
+            .SubmitValidUserDetails(context.GetUser<FAAApplyUser>())
+            .Continue();
+
+        return new ClosedVacancyLoggedInUserPage(context);
+    }
 
     public void VerifyApplicationStatus(bool IsSucessful)
     {

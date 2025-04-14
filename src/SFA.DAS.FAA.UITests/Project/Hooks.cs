@@ -25,5 +25,12 @@ public class Hooks(ScenarioContext context)
         context.Set(new VacancyReferenceHelper(pageInteractionHelper, _objectContext));
 
         if (context.ScenarioInfo.Tags.Contains("faaapplytestdataprep")) context.Set(new AdvertDataHelper());
+
+        var faaConfigList = new MultiConfigurationSetupHelper(context)
+                    .SetMultiConfiguration<FAAConfig>("FAAConfig");
+
+        var faaConfig = faaConfigList.FirstOrDefault();
+        context.Set(faaConfig);
+
     }
 }

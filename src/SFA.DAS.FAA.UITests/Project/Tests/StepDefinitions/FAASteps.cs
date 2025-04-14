@@ -1,4 +1,6 @@
-﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages.Delete;
+﻿using NUnit.Framework;
+using SFA.DAS.FAA.UITests.Project.Tests.Pages;
+using SFA.DAS.FAA.UITests.Project.Tests.Pages.Delete;
 
 namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
 
@@ -28,5 +30,12 @@ public class FAASteps(ScenarioContext context)
         new SettingPage(context).DeleteMyAccount().ContinueToDeleteMyAccounWithApplication().WithdrawBeforeDeletingMyAccount().ConfirmDeleteMyAccount().VerifyNotification();
     }
 
+    [Given("the apprentice can navigate to a closed vacancy URL")]
+    [Then("the apprentice can navigate to a closed vacancy URL")]
+    public void ThenTheApprenticeCanNavigateToAClosedVacancyURL() => _faaStepsHelper.NavigateToClosedVacancyAndStoreTitle();
+
+    [Given("the candidate can login in to FAA from closed vacancy page")]
+    [Then("the candidate can login in to FAA from closed vacancy page")]
+    public void GivenTheCandidateCanLoginInToFAAFromClosedVacancyPage() => _faaStepsHelper.GoToClosedVacancyLoggedInPage();
 
 }
