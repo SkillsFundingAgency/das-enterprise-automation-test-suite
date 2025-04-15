@@ -5,7 +5,6 @@ Navigation journey through EAS and PAS
 @approvalsaccessibility
 @approvals
 @approvalsnavigation
-@testrun
 Scenario: AP_E2E_ACC_01_Navigate to EAS sub sites from Apprentice Page
 	Given the Employer logins using existing Levy Account
 	When the Employer navigates to 'Apprentice' Page

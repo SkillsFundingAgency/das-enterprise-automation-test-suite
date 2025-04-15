@@ -118,22 +118,15 @@ public abstract class VerifyBasePage : InterimBasePage
         int GetCounter() => _screenShotTitleGenerator.GetCounter();
 
         int counter = GetCounter();
-        try
-        {
-            var result = func();
 
+        bool result = func();
+
+        if (result)
+        {
             TakeScreenShot();
-
-            if (IsAccessibilityTesting() && CanAnalyzePage) new AnalyzePageHelper(context).AnalyzePage(AccessibilityPageTitle);
-
-            return result;
         }
-        catch (Exception)
-        {
-            if (tags.Contains("authtests") && counter == GetCounter()) TakeScreenShot();
 
-            throw;
-        }
+        return result;
     }
 
     private void TakeScreenShot()
