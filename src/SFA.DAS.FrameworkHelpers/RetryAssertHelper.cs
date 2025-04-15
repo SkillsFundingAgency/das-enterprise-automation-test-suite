@@ -15,6 +15,8 @@ namespace SFA.DAS.FrameworkHelpers
 
         public void RetryOnTasksHomePage(Action action, Action retryaction) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan([5, 8, 13, 20, 30, 30, 30, 30, 30, 30, 30, 30, 30]), retryaction);
 
+        public void RetryOnDfeSignMFAAuthCode(Action action) => RetryOnNUnitException(action, RetryTimeOut.GetTimeSpan([5, 5, 5, 5, 5]), null);
+
         private void RetryOnNUnitException(Action action, TimeSpan[] timespan, Action retryaction)
         {
             Policy

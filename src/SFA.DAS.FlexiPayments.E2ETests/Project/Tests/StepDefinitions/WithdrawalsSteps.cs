@@ -27,6 +27,8 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [When(@"a withdrawal is recorded with reason as (WithdrawFromBeta|WithdrawDuringLearning)")]
         public async Task AWithdrawalIsRecordedWithReason(string reason)
         {
+            objectContext.Set("WithdrawalReason", reason);
+
             var apprenticeshipsClient = new ApprenticeshipsClient(_context);
 
             var providerConfig = _context.GetProviderConfig<ProviderConfig>();

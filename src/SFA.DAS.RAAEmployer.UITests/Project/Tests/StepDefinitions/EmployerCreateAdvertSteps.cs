@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.RAA.Service.Project.Helpers;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.RAAEmployer.UITests.Project.Helpers;
+using System;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
@@ -36,7 +37,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         public void TheEmployerClonesAndCreatesAnAdvert() => _employerCreateVacancyStepsHelper.CloneAnAdvert();
 
         [Given(@"the Employer creates an advert by selecting different work location")]
-        public void TheEmployerCreatesAnAdvertBySelectingDifferentWorkLocation() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.LegalEntityName, false);
+        public void TheEmployerCreatesAnAdvertBySelectingDifferentWorkLocation() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.LegalEntityName, "different");
 
         [Given(@"the Employer creates an anonymous advert")]
         public void TheEmployerCreatesAnAnonymousAdvert() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.Anonymous);
@@ -46,5 +47,9 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
 
         [Given(@"the Employer creates an advert by using a trading name")]
         public void TheEmployerCreatesAnAdvertByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.ExistingTradingName);
+
+        [Given(@"the Employer creates an advert with ""(.*)"" work location")]
+        public void GivenTheEmployerCreatesAnAdvertWithWorkLocation(string locationType) => _employerCreateVacancyStepsHelper.CreateANewAdvert(locationType, locationType);
+
     }
 }

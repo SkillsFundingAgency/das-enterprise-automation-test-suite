@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.RAA.Service.Project.Helpers;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert;
+using SFA.DAS.RAAProvider.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
@@ -10,6 +11,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         private bool _isMultiOrg;
 
         private string _hashedid = string.Empty;
+        private readonly RecruitmentProviderHomePageStepsHelper _recruitmentProviderHomePageStepsHelper = new(context);
 
         public ProviderCreateVacancyStepsHelper(ScenarioContext context) : this(context, false) { }
 
@@ -26,17 +28,20 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         public VacancyReferencePage CreateOfflineVacancy() => CreateANewVacancy(false);
 
-        public VacancyReferencePage CreateVacancyForWageType(string wageType) => CreateANewAdvertOrVacancy(string.Empty, true, wageType, true);
+        public VacancyReferencePage CreateVacancyForWageType(string wageType) => CreateANewAdvertOrVacancy(string.Empty, "employer", wageType, true, true, true);
+
+        public VacancyReferencePage CreateVacancyForLocationTypes(string locationType, bool enterQuestion1, bool enterQuestion2) => 
+            CreateANewAdvertOrVacancy(string.Empty, locationType, RAAConst.NationalMinWages, true, enterQuestion1, enterQuestion2);
 
         private VacancyReferencePage CreateANewVacancy(string employername) => CreateANewVacancy(employername, true);
 
         private VacancyReferencePage CreateANewVacancy(bool isApplicationMethodFAA) => CreateANewVacancy(string.Empty, isApplicationMethodFAA);
 
-        private VacancyReferencePage CreateANewVacancy(string employername, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(employername, true, RAAConst.NationalMinWages, isApplicationMethodFAA);
+        private VacancyReferencePage CreateANewVacancy(string employername, bool isApplicationMethodFAA) => CreateANewAdvertOrVacancy(employername, "employer", RAAConst.NationalMinWages, isApplicationMethodFAA, true, true);
 
-        private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, bool isEmployerAddress, string wageType, bool isApplicationMethodFAA)
+        private VacancyReferencePage CreateANewAdvertOrVacancy(string employername, string locationType, string wageType, bool isApplicationMethodFAA, bool enterQuestion1, bool enterQuestion2)
         {
-            return CreateANewAdvertOrVacancy(employername, isEmployerAddress, false, wageType, isApplicationMethodFAA, true);
+            return CreateANewAdvertOrVacancy(employername, locationType, false, wageType, isApplicationMethodFAA, true, enterQuestion1, enterQuestion2);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AboutTheEmployer(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string employername, bool disabilityConfidence, bool isApplicationMethodFAA)
@@ -49,11 +54,11 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
                 .SelectApplicationMethod_Provider(isApplicationMethodFAA);
         }
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage Application(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool enterQuestion1, bool enterQuestion2)
         {
             return createAdvertPage
             .EnterAdditionalQuestionsForApplicants()
-            .CompleteAllAdditionalQuestionsForApplicants();
+            .CompleteAllAdditionalQuestionsForApplicants(enterQuestion1, enterQuestion2);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
@@ -66,7 +71,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
             .EnterFutureProspect()
             .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isEmployerAddress, string wageType)
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string locationType, string wageType)
         {
             return createAdvertPage
                 .ImportantDates()
@@ -75,7 +80,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
                 .ChooseWage_Provider(wageType)
                 .SubmitExtraInformationAboutPay()
                 .SubmitNoOfPositionsAndNavigateToChooseLocationPage()
-                .ChooseAddressAndGoToCreateApprenticeshipPage(isEmployerAddress);
+                .ChooseAddressAndGoToCreateApprenticeshipPage(locationType);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage AdvertOrVacancySummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
@@ -105,5 +110,36 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         private ApprenticeshipTrainingPage EnterVacancyTitle(WhatDoYouWantToCallThisAdvertPage advertTitlePage) =>
              advertTitlePage.EnterVacancyTitle();
+
+        internal RecruitmentHomePage CancelAdvert()
+        {
+            (CreateAnApprenticeshipAdvertOrVacancy()).AdvertTitle().EnterVacancyTitle().EmployerCancelAdvert();
+            return new RecruitmentHomePage(context);
+        }
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
+
+        internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool createFirstDraftAdvert)
+        {
+
+            return EmploymentDetails(createFirstDraftAdvert ? FirstAdvertSummary(createAdvertPage) : AdvertOrVacancySummary(createAdvertPage), "employer", RAAConst.NationalMinWages);
+        }
+
+        private static CreateAnApprenticeshipAdvertOrVacancyPage FirstAdvertSummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
+            AdvertSummary(NavigateToAdvertTitle(createAdvertPage).EnterVacancyTitleForTheFirstAdvert().SelectYes());
+
+        private static CreateAnApprenticeshipAdvertOrVacancyPage AdvertSummary(ApprenticeshipTrainingPage page) =>
+        page.EnterTrainingTitle()
+            .ConfirmTrainingproviderAndContinue()
+            .SelectTrainingProvider()
+            .ConfirmProviderAndContinueToSummaryPage()
+            .EnterShortDescription()
+            .EnterShortDescriptionOfWhatApprenticeWillDo()
+            .EnterAllDescription();
+
+        internal VacancyReferencePage CloneAnAdvert() => SubmitAndSetVacancyReference(GoToRecruitmentHomePage().SelectLiveVacancy().CloneVacancy()
+            .SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage().UpdateAdditionalQuestion().UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage(true, true));
+
+        protected virtual RecruitmentHomePage GoToRecruitmentHomePage() => _recruitmentProviderHomePageStepsHelper.GoToRecruitmentProviderHomePage(true);
     }
 }

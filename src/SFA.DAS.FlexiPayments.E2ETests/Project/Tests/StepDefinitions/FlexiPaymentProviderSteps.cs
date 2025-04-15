@@ -4,6 +4,7 @@ using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
+using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
@@ -194,6 +195,13 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ProviderIsAbleToViewThePendingChangeOfPriceRequest()
         {
             _providerApprenticeDetailsPage.ValidatePriceChangePendingBannerDisplayed();
+        }
+
+        [Then("display a permanent confirmation banner to advise the Provider that the learner has been Withdrawn")]
+        public void ThenDisplayAPermanentConfirmationBannerToAdviseTheProviderThatTheLearnerHasBeenWithdrawn()
+        {
+            var lastPaymentMonth = DataHelpers.GetLastPaymentMonth(DateTime.Today);
+            _providerApprenticeDetailsPage.ValidateLearnerStatusWithdrawnPermanentBannerIsDisplayed(lastPaymentMonth);
         }
 
         [Then(@"Provider can view the details of the Change of Price request")]

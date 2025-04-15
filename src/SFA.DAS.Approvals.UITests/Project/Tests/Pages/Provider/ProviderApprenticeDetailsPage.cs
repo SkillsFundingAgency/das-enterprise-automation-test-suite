@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
@@ -55,6 +56,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By ProviderPaymentStatusValue => By.Id("provider-payments-status");
         private static By LearnerStatusRowHeading => By.XPath("//td[@id='apprenticeship-learner-status']/preceding-sibling::th");
         private static By LearnerStatusValue => By.CssSelector("#apprenticeship-learner-status strong");
+        private static By WithdrawnPermanentBannerHeading => By.CssSelector("#withdrawn-permanent-banner h3");
+        private static By WithdrawnPermanentBannerTextLocator => By.CssSelector("#withdrawn-permanent-banner p");
         private static string SimplifiedPaymentsPilotText => "Contact simplifiedpaymentspilot@education.gov.uk if the details on this page are incorrect. We aim to respond within 2 working days.";
 
         public ProviderReviewChangesPage ClickReviewChanges()
@@ -282,6 +285,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
+        public ProviderApprenticeDetailsPage ValidateLearnerStatusWithdrawnPermanentBannerIsDisplayed(string lastPaymentPeriodText)
+        {
+            Assert.AreEqual("Learner status changed to \"Withdrawn\" on " + DateTimeExtensions.ToGdsHumanisedDate(DateTime.Today), pageInteractionHelper.GetText(WithdrawnPermanentBannerHeading));
+            Assert.AreEqual($"The last payment you will receive for this apprenticeship will be {lastPaymentPeriodText}", pageInteractionHelper.GetText(WithdrawnPermanentBannerTextLocator));
+            return this;
+        }
         public ProviderApprenticeDetailsPage ValidateLearnerStatus(string status)
         {
             string expectedLearnerStatus = status.ToUpper() switch

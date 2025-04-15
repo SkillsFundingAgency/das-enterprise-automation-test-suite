@@ -11,28 +11,35 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         private static By AdditionalQuestion1Selector => By.Id("AdditionalQuestion1");
         private static By AdditionalQuestion2Selector => By.Id("AdditionalQuestion2");
 
-        public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants()
+        public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants(bool enterQuestion1 = true, bool enterQuestion2 = true)
         {
-            EnterAdditionalQuestions();
+            EnterAdditionalQuestions(enterQuestion1, enterQuestion2);
 
             Continue();
 
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
-        public CheckYourAnswersPage UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage()
+        public CheckYourAnswersPage UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage(bool enterQuestion1 = true, bool enterQuestion2 = true)
         {
-            EnterAdditionalQuestions();
+            EnterAdditionalQuestions(enterQuestion1, enterQuestion2);
 
             Continue();
 
             return new CheckYourAnswersPage(context);
         }
 
-        private void EnterAdditionalQuestions()
+        private void EnterAdditionalQuestions(bool enterQuestion1, bool enterQuestion2)
         {
-            formCompletionHelper.EnterText(AdditionalQuestion1Selector, advertDataHelper.AdditionalQuestion1);
-            formCompletionHelper.EnterText(AdditionalQuestion2Selector, advertDataHelper.AdditionalQuestion2);
+            if (enterQuestion1)
+            {
+                formCompletionHelper.EnterText(AdditionalQuestion1Selector, advertDataHelper.AdditionalQuestion1);
+            }
+
+            if (enterQuestion2)
+            {
+                formCompletionHelper.EnterText(AdditionalQuestion2Selector, advertDataHelper.AdditionalQuestion2);
+            }
         }
     }
 }
