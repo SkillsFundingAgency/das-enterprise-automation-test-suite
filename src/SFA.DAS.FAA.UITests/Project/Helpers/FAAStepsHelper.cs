@@ -2,6 +2,7 @@
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.UI.FrameworkHelpers;
 
+
 namespace SFA.DAS.FAA.UITests.Project.Helpers;
 
 public class FAAStepsHelper(ScenarioContext context)
@@ -40,6 +41,11 @@ public class FAAStepsHelper(ScenarioContext context)
         var closedVacancyList = context.Get<FrameworkList<FAAConfig>>();
         var closedVacancyConfig = closedVacancyList?.FirstOrDefault();
 
+        if (closedVacancyConfig == null)
+        {
+            throw new InvalidOperationException("ClosedVacancyConfig is missing.");
+        }
+
         var vacancyReference = closedVacancyConfig.ClosedFaaVacancyReferenceNumber;
 
         var baseUrl = UrlConfig.FAA_AppSearch.Replace("apprenticeshipsearch", "apprenticeship");
@@ -47,6 +53,7 @@ public class FAAStepsHelper(ScenarioContext context)
 
         tabHelper.GoToUrl(closedVacancyUrl);
     }
+
 
     public void NavigateToClosedVacancyAndStoreTitle()
     {

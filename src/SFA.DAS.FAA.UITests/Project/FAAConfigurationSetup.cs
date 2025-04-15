@@ -7,6 +7,7 @@ namespace SFA.DAS.FAA.UITests.Project;
 public class FAAConfigurationSetup(ScenarioContext context)
 {
     private const string FAAApplyUsersConfig = "FAAApplyUsersConfig";
+    private const string FAAConfigKey = "FAAConfig";
 
     [BeforeScenario(Order = 2)]
     public void SetUpFAAConfiguration()
@@ -19,15 +20,13 @@ public class FAAConfigurationSetup(ScenarioContext context)
 
         var faaApplyUser = new FAAApplyUser { Username = $"{selectedUser}@{fAAApplyUsers.Domain}" };
 
-        var faaConfigList = new MultiConfigurationSetupHelper(context)
-            .SetMultiConfiguration<FAAConfig>("FAAConfig");
-
-        var faaConfig = faaConfigList.FirstOrDefault();
-        context.Set(faaConfig);
-
         context.SetFAAPortaluser([faaApplyUser]);
 
         var faaUser = context.GetUser<FAAApplyUser>();
+
+        var faaConfigList = new MultiConfigurationSetupHelper(context).SetMultiConfiguration<FAAConfig>(FAAConfigKey);
+
+        var faaConfig = faaConfigList.FirstOrDefault();
 
         context.SetFAAConfig(new FAAUserConfig { FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName});
     }
