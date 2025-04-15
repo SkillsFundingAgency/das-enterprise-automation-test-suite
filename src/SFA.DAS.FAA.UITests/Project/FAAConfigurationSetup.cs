@@ -19,10 +19,16 @@ public class FAAConfigurationSetup(ScenarioContext context)
 
         var faaApplyUser = new FAAApplyUser { Username = $"{selectedUser}@{fAAApplyUsers.Domain}" };
 
+        var faaConfigList = new MultiConfigurationSetupHelper(context)
+            .SetMultiConfiguration<FAAConfig>("FAAConfig");
+
+        var faaConfig = faaConfigList.FirstOrDefault();
+        context.Set(faaConfig);
+
         context.SetFAAPortaluser([faaApplyUser]);
 
         var faaUser = context.GetUser<FAAApplyUser>();
 
-        context.SetFAAConfig(new FAAUserConfig { FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName });
+        context.SetFAAConfig(new FAAUserConfig { FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName});
     }
 }
