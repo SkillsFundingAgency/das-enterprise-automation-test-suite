@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAAEmployer.UITests.Project.Helpers;
+﻿using SFA.DAS.RAA.Service.Project.Tests.Pages;
+using SFA.DAS.RAAEmployer.UITests.Project.Helpers;
 using SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
@@ -10,11 +11,14 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly RAAEmployerLoginStepsHelper _rAAEmployerLoginHelper;
+        private readonly YourApprenticeshipAdvertsHomePage _yourApprenticeshipAdvertsHomePage;
+        private ApiListPage _apiListPage;
 
         public Navigationsteps(ScenarioContext context)
         {
             _context = context;
             _rAAEmployerLoginHelper = new RAAEmployerLoginStepsHelper(_context);
+            _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context);
         }
 
         [Given(@"the Employer navigates to 'Recruit' Page")]
