@@ -28,6 +28,8 @@ public class FAAConfigurationSetup(ScenarioContext context)
 
         var faaConfig = faaConfigList.FirstOrDefault();
 
+        context.SetFAAConfig(faaConfig);
+
         context.SetFAAConfig(new FAAUserConfig { FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName});
     }
 }
