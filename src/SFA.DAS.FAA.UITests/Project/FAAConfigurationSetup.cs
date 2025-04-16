@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Login.Service.Project;
+﻿using Newtonsoft.Json;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.RAA.DataGenerator.Project.Config;
 
 namespace SFA.DAS.FAA.UITests.Project;
@@ -24,11 +25,21 @@ public class FAAConfigurationSetup(ScenarioContext context)
 
         var faaUser = context.GetUser<FAAApplyUser>();
 
-        var faaConfigList = new MultiConfigurationSetupHelper(context).SetMultiConfiguration<FAAConfig>(FAAConfigKey);
+        var configSection = context.Get<ConfigSection>();
 
-        var faaConfig = faaConfigList.FirstOrDefault();
+        FAAConfig faaConfig;
 
-        context.SetFAAConfig(faaConfig);
+        if (Configurator.IsAdoExecution)
+        {
+            var rawJson = configSection.GetConfigSection<string>(FAAConfigKey);
+            faaConfig = JsonConvert.DeserializeObject<FAAConfig>(rawJson);
+        }
+        else
+        {
+            faaConfig = configSection.GetConfigSection<FAAConfig>(FAAConfigKey);
+        }
+
+        context.Set<FAAConfig>(faaConfig);
 
         context.SetFAAConfig(new FAAUserConfig { FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName});
     }

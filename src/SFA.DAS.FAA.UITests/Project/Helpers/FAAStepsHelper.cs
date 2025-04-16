@@ -38,14 +38,11 @@ public class FAAStepsHelper(ScenarioContext context)
     public void NavigateToClosedFAAVacancyDetails()
     {
         var tabHelper = context.Get<TabHelper>();
-        var closedVacancyList = context.Get<FrameworkList<FAAConfig>>();
-        var closedVacancyConfig = closedVacancyList?.FirstOrDefault();
 
-        if (closedVacancyConfig == null)
-        {
-            throw new InvalidOperationException("ClosedVacancyConfig is missing.");
-        }
+        // Retrieve FAAConfig (single object)
+        var closedVacancyConfig = context.Get<FAAConfig>();
 
+        // Retrieve the ClosedFaaVacancyReferenceNumber
         var vacancyReference = closedVacancyConfig.ClosedFaaVacancyReferenceNumber;
 
         var baseUrl = UrlConfig.FAA_AppSearch.Replace("apprenticeshipsearch", "apprenticeship");
@@ -53,6 +50,7 @@ public class FAAStepsHelper(ScenarioContext context)
 
         tabHelper.GoToUrl(closedVacancyUrl);
     }
+
 
 
     public void NavigateToClosedVacancyAndStoreTitle()
