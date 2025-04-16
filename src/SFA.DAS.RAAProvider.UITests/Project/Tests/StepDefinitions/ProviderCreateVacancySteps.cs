@@ -71,7 +71,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [Then(@"the Provider can open the draft and submits the advert")]
         public void TheProviderCanOpenTheDraftAndSubmitsTheAdvert() => _stepsHelper.SubmitDraftAdvert(GoToYourAdvertFromDraftAdverts());
 
-        [Given(@"the Provider creates a vacancy with ""(.*)"" work locations and ""(.*)"" wage type")]
+        [When(@"the Provider creates a vacancy with ""(.*)"" work locations and ""(.*)"" wage type")]
         public void GivenTheProviderCreatesAVacancyWithWorkLocationsAndWageTypeAndAdditionalQuestions(string locationType, string wageType)
             => _providerStepsHelper.CreateVacancyForLocationAndWageTypes(locationType, wageType);
 
