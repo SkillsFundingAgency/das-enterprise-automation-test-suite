@@ -1,10 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.BiDi.Modules.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
@@ -27,22 +21,5 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By NoteTextArea => By.Id("note");
         private static By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
         private static By TaskTitle => By.CssSelector("h2.app-card__heading");
-        
-        public string DoneTasksPageTitle()
-        {
-            return pageInteractionHelper.FindElement(DoneTasksHeader).Text;
-        }
-        public DoneTasksPage AddDoneTask(string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
-        {
-            formCompletionHelper.Click(AddDoneTaskButton);
-            formCompletionHelper.EnterText(TaskTitleInput, title);
-            formCompletionHelper.EnterText(DateInput, date);
-            formCompletionHelper.EnterText(TimeInput, time);
-            formCompletionHelper.Click(CategoryCollapseButton);
-            //formCompletionHelper.Click(CategoryAssignment);
-            formCompletionHelper.EnterText(NoteTextArea, note);
-            formCompletionHelper.Click(SaveTaskButton);
-            return new DoneTasksPage(context);
-        }
     }
 }

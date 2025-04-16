@@ -1,5 +1,4 @@
 using System;
-using SFA.DAS.ApprenticeApp.UITests.Project.Helpers;
 using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
@@ -21,7 +20,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         public void WhenTheApprenticeAddsANewDoneTask()
         {
             doneTaskName = tasksBasePage.GenerateTaskName();
-            tasksBasePage.AddTask(false, doneTaskName, DateTime.Now.ToString("dd/MM/yyyy"), "12:00", "KSB", "1", "Assignment", "Status", "Note");
+            tasksBasePage.AddTask(false, doneTaskName, DateTime.Now.ToString("dd/MM/yyyy"), "12:00", "KSB", "1", "Assignment", "Status", "Note").ClickToDoTab().ClickDoneTab();
         }
 
         [Then("the task is added to the done tasks list")]

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.BiDi.Modules.Input;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -14,8 +13,10 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         protected static By TaskFilters => By.CssSelector("a[href='#filter'][data-module='app-overlay'].app-icon-action");
         private static By ToDoTab => By.CssSelector("a.app-tabs__tab.todo[role='tab']");
         private static By DoneTab => By.CssSelector("a.app-tabs__tab.done[role='tab']");
-        private static By AddTaskButton => By.CssSelector("a.app-fab.add-btn");
-        private static By AddTaskButtonInitial => By.CssSelector("a.app-fab.add-btn.app-fab--highlight");
+        private static By AddToDoTaskButton => By.CssSelector("a[data-status-id='0'].app-fab.add-btn");
+        private static By AddToDoTaskButtonInitial => By.CssSelector("a.app-fab.add-btn.app-fab--highlight");
+        private static By AddDoneTaskButton => By.CssSelector("a[data-status-id='1'].app-fab.add-btn");
+        private static By AddDoneTaskButtonInitial => By.CssSelector("a.app-fab.add-btn.app-fab--highlight");
         private static By TaskTitleInput => By.Id("Task_Title");
         private static By DateInput => By.Id("date");
         private static By TimeInput => By.Id("time");
@@ -24,7 +25,11 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By CategoryCollapseButton => By.XPath("//button[@aria-controls='app-collapse-task-cat']");
         private static By NoteTextArea => By.Id("note");
         private static By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
+        private static By Task => By.CssSelector("div.app-card");
         private static By TaskTitle => By.CssSelector("h2.app-card__heading");
+        private static By ViewActions => By.CssSelector("button.app-dropdown__toggle[aria-expanded='false']");
+        private static By DeleteButton => By.CssSelector("[class='app-dropdown__menu-link delete-task']");
+        private static By ConfirmDelete => By.CssSelector("[class='app-button app-button--warning']");
         protected override string PageTitle => "Tasks";
 
         public TasksBasePage ClickToDoTab()
@@ -35,18 +40,30 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         public void ClickDoneTab()
         {
             formCompletionHelper.Click(DoneTab);
-            pageInteractionHelper.WaitforURLToChange("/Tasks/Index?status=1");
-            pageInteractionHelper.WaitForElementToChange(ToDoTab, "hidden");
         }
         public TasksBasePage AddTask(bool isToDo, string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
         {
-            if (pageInteractionHelper.IsElementPresent(AddTaskButtonInitial))
+            if (isToDo)
             {
-                formCompletionHelper.Click(AddTaskButtonInitial);
+                if (pageInteractionHelper.IsElementPresent(AddToDoTaskButtonInitial))
+                {
+                    formCompletionHelper.Click(AddToDoTaskButtonInitial);
+                }
+                else
+                {
+                    formCompletionHelper.Click(AddToDoTaskButton);
+                }
             }
             else
             {
-                formCompletionHelper.Click(AddTaskButton);
+                if (pageInteractionHelper.IsElementPresent(AddToDoTaskButtonInitial))
+                {
+                    formCompletionHelper.Click(AddDoneTaskButtonInitial);
+                }
+                else
+                {
+                    formCompletionHelper.Click(AddDoneTaskButton);
+                }
             }
             formCompletionHelper.EnterText(TaskTitleInput, title);
             formCompletionHelper.EnterText(DateInput, date);
@@ -58,11 +75,35 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             return new TasksBasePage(context);
 
         }
-        public void DeleteTask(string taskTitle)
+        public void DeleteAllTasks()
         {
-
+            
+        }
+       
+        public void DeleteTask()
+        {
+            formCompletionHelper.Click(DeleteButton);
+            formCompletionHelper.Click(ConfirmDelete);
         }
 
+        public void ClickViewActions()
+        {
+            var task = pageInteractionHelper.FindElements(Task).FirstOrDefault();
+            task.FindElement(ViewActions).Click();
+        }
+
+        public string GetTaskTitle()
+        {
+            if (pageInteractionHelper.IsElementPresent(TaskTitle))
+            {
+                var taskTitles = pageInteractionHelper.FindElements(TaskTitle);
+                return taskTitles.FirstOrDefault().Text;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
         protected void EditTask()
         {
 
@@ -71,8 +112,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         public bool IsTaskAdded(string Title)
         {
             
-            var tasks = pageInteractionHelper.FindElements(TaskTitle);
-            return tasks.Any(task => task.Text.Contains(Title));
+            var taskTitles = pageInteractionHelper.FindElements(TaskTitle);
+            return taskTitles.Any(task => task.Text.Contains(Title));
             
         }
 
@@ -80,17 +121,5 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         {
             return $"Task {DateTime.Now:yyyyMMddHHmmss}";
         }
-
-        //public void SelectKsb(string ksbId, string status)
-        //{
-        //    var ksbElement = context.FindElement(By.Id($"ksb-{ksbId}"));
-        //    var statusDropdown = ksbElement.FindElement(By.CssSelector("button.app-collapse__button"));
-        //    statusDropdown.Click();
-        //    var statusRadioButton = ksbElement.FindElement(By.Id($"ksbStatus_{status}"));
-        //    if (!statusRadioButton.Selected)
-        //    {
-        //        statusRadioButton.Click();
-        //    }
-        //}
     }
 }

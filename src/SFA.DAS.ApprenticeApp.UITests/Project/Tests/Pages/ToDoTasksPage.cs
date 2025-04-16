@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
@@ -12,7 +7,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Your tasks";
         protected static By ToDoTasksHeader => By.CssSelector("h1.govuk-heading-xl");
-        
+
         private static By TaskTitleInput => By.Id("Task_Title");
         private static By DateInput => By.Id("date");
         private static By TimeInput => By.Id("time");
@@ -22,11 +17,5 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By NoteTextArea => By.Id("note");
         private static By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
         private static By TaskTitle => By.CssSelector("h2.app-card__heading");
-
-        
-        public string ToDoTasksPageTitle()
-        {
-            return pageInteractionHelper.FindElement(ToDoTasksHeader).Text;
-        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using SFA.DAS.ApprenticeApp.UITests.Project.Helpers;
-using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
 using System;
 using TechTalk.SpecFlow;
 
