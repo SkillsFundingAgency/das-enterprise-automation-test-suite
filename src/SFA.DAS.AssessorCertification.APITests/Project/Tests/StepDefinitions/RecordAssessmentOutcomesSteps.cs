@@ -5,7 +5,7 @@ using SFA.DAS.AssessorCertification.APITests.Project.Helpers.SqlDbHelpers;
 using System.Net;
 using TechTalk.SpecFlow;
 
-namespace SFA.DAS.AssessorCertification.APITests.Project.StepDefinitions
+namespace SFA.DAS.AssessorCertification.APITests.Project.Tests.StepDefinitions
 {
     [Binding]
     public class RecordAssessmentOutcomesSteps(ScenarioContext context)

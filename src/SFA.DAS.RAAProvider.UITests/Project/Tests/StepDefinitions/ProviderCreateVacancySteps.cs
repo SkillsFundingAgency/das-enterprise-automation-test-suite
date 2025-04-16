@@ -44,6 +44,9 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper.CreateVacancyForLocationTypes(locationType, enterQuestion1, enterQuestion2);
         }
 
+        [Given(@"the Provider clones and creates an advert")]
+        public void TheProviderClonesAndCreatesAnAdvert() => _providerStepsHelper.CloneAnAdvert();
+
         [When(@"the Provider creates an Offline vacancy")]
         public void WhenTheProviderCreatesAnOfflineVacancy() => _providerStepsHelper.CreateOfflineVacancy();
 
