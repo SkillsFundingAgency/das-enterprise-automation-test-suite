@@ -41,8 +41,14 @@ public class FAAStepsHelper(ScenarioContext context)
 
         if (!context.TryGetValue(typeof(FAAConfig).FullName, out var configObj) || configObj is not FAAConfig closedVacancyConfig)
         {
+            Console.WriteLine("❌ FAAConfig is missing from ScenarioContext.");
+            foreach (var key in context.Keys)
+            {
+                Console.WriteLine($"[ScenarioContext Key] {key}");
+            }
             throw new InvalidOperationException("FAAConfig is missing from ScenarioContext.");
         }
+
 
         if (string.IsNullOrEmpty(closedVacancyConfig.ClosedFaaVacancyReferenceNumber))
         {

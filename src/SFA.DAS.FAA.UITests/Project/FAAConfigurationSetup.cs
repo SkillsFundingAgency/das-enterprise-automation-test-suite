@@ -13,6 +13,8 @@ public class FAAConfigurationSetup(ScenarioContext context)
     [BeforeScenario(Order = 2)]
     public void SetUpFAAConfiguration()
     {
+        Console.WriteLine("🚀 Running SetUpFAAConfiguration");
+
         var listOfFAAApplyUsers = new MultiConfigurationSetupHelper(context).SetMultiConfiguration<FAAApplyUsers>(FAAApplyUsersConfig);
 
         var fAAApplyUsers = RandomDataGenerator.GetRandomElementFromListOfElements(listOfFAAApplyUsers);
@@ -40,6 +42,9 @@ public class FAAConfigurationSetup(ScenarioContext context)
         }
 
         context.Set<FAAConfig>(faaConfig);
+        Console.WriteLine($"[DEBUG] FAAConfigKey: {FAAConfigKey}");
+        Console.WriteLine($"[DEBUG] faaConfig.ClosedFaaVacancyReferenceNumber: {faaConfig?.ClosedFaaVacancyReferenceNumber}");
+
 
         context.SetFAAConfig(new FAAUserConfig { FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName});
     }
