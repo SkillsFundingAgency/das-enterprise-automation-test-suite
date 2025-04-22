@@ -40,30 +40,19 @@ public class FAAStepsHelper(ScenarioContext context)
     {
         var tabHelper = context.Get<TabHelper>();
 
-        FAAConfig closedVacancyConfig;
+        var closedVacancyConfig = context.Get<FAAConfig>();
 
-        try
+        Console.WriteLine($"[DEBUG] FAAConfig object: {(closedVacancyConfig == null ? "null" : "loaded")}");
+        Console.WriteLine($"[DEBUG] ClosedFaaVacancyReferenceNumber: {closedVacancyConfig?.ClosedFaaVacancyReferenceNumber}");
+
+        if (closedVacancyConfig == null || string.IsNullOrWhiteSpace(closedVacancyConfig.ClosedFaaVacancyReferenceNumber))
         {
-            closedVacancyConfig = context.Get<FAAConfig>();
-        }
-        catch (KeyNotFoundException)
-        {
-            Console.WriteLine("❌ FAAConfig not found in ScenarioContext.");
-            foreach (var key in context.Keys)
-            {
-                Console.WriteLine($"[ScenarioContext Key] {key}");
-            }
-            throw new InvalidOperationException("FAAConfig is missing from ScenarioContext.");
+            throw new InvalidOperationException("ClosedFaaVacancyReferenceNumber is missing in FAAConfig.");
         }
 
+        Console.WriteLine($"[DEBUG] UrlConfig.FAA_AppSearch: {UrlConfig.FAA_AppSearch}");
 
-
-        if (string.IsNullOrEmpty(closedVacancyConfig.ClosedFaaVacancyReferenceNumber))
-        {
-            throw new InvalidOperationException("ClosedFaaVacancyReferenceNumber is null or empty.");
-        }
-
-        if (string.IsNullOrEmpty(UrlConfig.FAA_AppSearch))
+        if (string.IsNullOrWhiteSpace(UrlConfig.FAA_AppSearch))
         {
             throw new InvalidOperationException("FAA_AppSearch is not configured.");
         }
@@ -71,8 +60,11 @@ public class FAAStepsHelper(ScenarioContext context)
         var baseUrl = UrlConfig.FAA_AppSearch.Replace("apprenticeshipsearch", "apprenticeship");
         var closedVacancyUrl = $"{baseUrl}/{closedVacancyConfig.ClosedFaaVacancyReferenceNumber}";
 
+        Console.WriteLine($"[DEBUG] Navigating to Closed Vacancy URL: {closedVacancyUrl}");
+
         tabHelper.GoToUrl(closedVacancyUrl);
     }
+
 
 
     public void NavigateToClosedVacancyAndStoreTitle()
