@@ -1,4 +1,5 @@
-﻿using SFA.DAS.RAAProvider.UITests.Project.Helpers;
+﻿using System;
+using SFA.DAS.RAAProvider.UITests.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
@@ -22,5 +23,31 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Provider views the recruitment API key")]
         public void ThenTheProviderViewsTheRecruitmentAPIKey() => _providerStepsHelper.ViewRecruitmentApiKeyPage();
+
+        [Then(@"the provider views '(.*)'")]
+        public void ThenTheProviderViewsApi(string apiName)
+        {
+            switch (apiName)
+            {
+                case "Display advert api":
+                    _providerStepsHelper.VerifyDisplayApiPage();
+                    break;
+                case "Recruitment api":
+                    _providerStepsHelper.VerifyRecruitmentApiPage();
+                    break;
+                case "API List page":
+                    _providerStepsHelper.VerifyDisplayApiText();
+                    break;
+                default:
+                    throw new ArgumentException($"Unknown API name: {apiName}");
+            }
+
+        }
+        [Then(@"the provider signs in to developer hub")]
+        public void ThenTheProviderSignsIntoDeveloperHub() 
+        {
+            _providerStepsHelper.ClickDevHubSignInLink();
+        }
+        
     }
 }
