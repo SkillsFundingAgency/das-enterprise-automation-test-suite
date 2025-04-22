@@ -11,14 +11,11 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private readonly RAAEmployerLoginStepsHelper _rAAEmployerLoginHelper;
-        private readonly YourApprenticeshipAdvertsHomePage _yourApprenticeshipAdvertsHomePage;
-        private ApiListPage _apiListPage;
 
         public Navigationsteps(ScenarioContext context)
         {
             _context = context;
             _rAAEmployerLoginHelper = new RAAEmployerLoginStepsHelper(_context);
-            _yourApprenticeshipAdvertsHomePage = new YourApprenticeshipAdvertsHomePage(_context);
         }
 
         [Given(@"the Employer navigates to 'Recruit' Page")]
