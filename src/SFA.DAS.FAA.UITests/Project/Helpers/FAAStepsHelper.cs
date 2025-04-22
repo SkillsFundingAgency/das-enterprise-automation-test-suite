@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project;
 using SFA.DAS.UI.FrameworkHelpers;
+using System.Collections.Generic;
 
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers;
@@ -39,15 +40,22 @@ public class FAAStepsHelper(ScenarioContext context)
     {
         var tabHelper = context.Get<TabHelper>();
 
-        if (!context.TryGetValue(typeof(FAAConfig).FullName, out var configObj) || configObj is not FAAConfig closedVacancyConfig)
+        FAAConfig closedVacancyConfig;
+
+        try
         {
-            Console.WriteLine("❌ FAAConfig is missing from ScenarioContext.");
+            closedVacancyConfig = context.Get<FAAConfig>();
+        }
+        catch (KeyNotFoundException)
+        {
+            Console.WriteLine("❌ FAAConfig not found in ScenarioContext.");
             foreach (var key in context.Keys)
             {
                 Console.WriteLine($"[ScenarioContext Key] {key}");
             }
             throw new InvalidOperationException("FAAConfig is missing from ScenarioContext.");
         }
+
 
 
         if (string.IsNullOrEmpty(closedVacancyConfig.ClosedFaaVacancyReferenceNumber))
