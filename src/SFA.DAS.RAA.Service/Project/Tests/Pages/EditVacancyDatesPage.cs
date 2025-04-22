@@ -14,6 +14,14 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             return new EmployerVacancySearchResultPage(context);
         }
 
+        public ProviderVacancySearchResultPage EnterProviderVacancyDates()
+        {
+            ClosingDate(rAADataHelper.EditedVacancyClosing);
+            StartDate(rAADataHelper.EditedVacancyStart);
+            Continue();
+            return new ProviderVacancySearchResultPage(context);
+        }
+
         public EditVacancyPage EnterPossibleStartDate()
         {
             // Vacancy dates are edited.
