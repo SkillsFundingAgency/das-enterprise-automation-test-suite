@@ -36,6 +36,15 @@ public class FAASteps(ScenarioContext context)
 
     [Given("the candidate can login in to FAA from closed vacancy page")]
     [Then("the candidate can login in to FAA from closed vacancy page")]
-    public void GivenTheCandidateCanLoginInToFAAFromClosedVacancyPage() => _faaStepsHelper.GoToClosedVacancyLoggedInPage();
+    public void GivenTheCandidateCanLoginInToFAAFromClosedVacancyPage()
+    {
+        var configSection = context.Get<ConfigSection>();
+        var faaConfig = configSection.GetConfigSection<FAAConfig>("FAAConfig");
+
+        Console.WriteLine($"Vacancy Ref: {faaConfig.ClosedFaaVacancyReferenceNumber}");
+
+
+        _faaStepsHelper.GoToClosedVacancyLoggedInPage();
+    }
 
 }
