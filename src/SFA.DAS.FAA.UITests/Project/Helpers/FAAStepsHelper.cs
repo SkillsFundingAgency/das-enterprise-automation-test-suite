@@ -80,6 +80,13 @@ public class FAAStepsHelper(ScenarioContext context)
 
     public ClosedVacancyLoggedInUserPage GoToClosedVacancyLoggedInPage()
     {
+        var configList = new MultiConfigurationSetupHelper(context).SetMultiConfiguration<FAAConfig>("FAAConfig");
+
+        if (!configList.Any() || string.IsNullOrWhiteSpace(configList[0].ClosedFaaVacancyReferenceNumber))
+        {
+            throw new InvalidOperationException("ClosedFaaVacancyReferenceNumber is still missing after config read.");
+        }
+
         new FAASignedOutLandingpage(context).GoToSignInPage()
             .SubmitValidUserDetails(context.GetUser<FAAApplyUser>())
             .Continue();
