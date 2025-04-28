@@ -24,8 +24,8 @@ public class FAASignedOutLandingpage(ScenarioContext context) : FAABasePage(cont
 
     public StubSignInFAAPage GoToSignInPage()
     {
-        formCompletionHelper.Click(AcceptAdditionalCookies);
-        formCompletionHelper.Click(HideAdditionalCookies);
+        ClickIfDisplayed(AcceptAdditionalCookies);
+        ClickIfDisplayed(HideAdditionalCookies);
         formCompletionHelper.Click(SignIn);
 
         return new StubSignInFAAPage(context);
