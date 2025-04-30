@@ -27,11 +27,10 @@
        },
     "wage": {
         "wageAdditionalInformation": "nothing to report",
-        "fixedWageYearlyAmount": 15704,
         "weeklyHours": 40,
         "duration": 18,
         "workingWeekDescription": "come and get the job done",
-        "wageType": "FixedWage",
+        "wageType": "CompetitiveSalary",
         "durationUnit": "Month"
     },
     "skills": [ "IT skills" ],

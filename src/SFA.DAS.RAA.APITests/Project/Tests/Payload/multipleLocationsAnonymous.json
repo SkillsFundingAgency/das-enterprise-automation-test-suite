@@ -1,6 +1,6 @@
 {
     "submitterContactDetails": {
-        "name": "Tester",
+        "name": "Automation Tester",
         "email": "abc@test.com",
         "phone": "01234 444555"
     },
@@ -31,15 +31,14 @@
             "postcode": "E1 2AA"
         }
     ],
-    "wage": {
-        "wageAdditionalInformation": "nothing to report",
-        "fixedWageYearlyAmount": 15704,
-        "weeklyHours": 40,
-        "duration": 18,
-        "workingWeekDescription": "come and get the job done",
-        "wageType": "FixedWage",
-        "durationUnit": "Month"
-    },
+  "wage": {
+    "wageAdditionalInformation": "nothing to report",
+    "weeklyHours": 40,
+    "duration": 18,
+    "workingWeekDescription": "come and get the job done",
+    "wageType": "NationalMinimumWageForApprentices",
+    "durationUnit": "Month"
+  },
     "skills": [ "IT skills" ],
     "employerNameOption": "Anonymous",
     "anonymousReason": "Test provider",
