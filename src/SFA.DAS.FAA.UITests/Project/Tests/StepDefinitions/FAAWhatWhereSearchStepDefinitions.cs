@@ -24,5 +24,11 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             new FAASearchResultPage(_context).VerifySuccessfulResults();
         }
+
+        [Then(@"the user signs out")]
+        public void ThenTheUserSignsOut()
+        {
+            new FAASearchResultPage(_context).ClickSignout();
+        }
     }
 }
