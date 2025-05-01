@@ -18,7 +18,15 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
         private static By CreateAnAdvertButton => By.LinkText("Create an advert");
         private static By SettingsLink => By.LinkText("Settings");
         private static By AdvertNotificationLink => By.LinkText("Manage your advert notifications");
-        private static By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
+        private static By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");  
+        private static By ManageYourEmailsLink => By.LinkText("Manage your emails");
+        private static By ReturnToDashboardLink => By.LinkText("Return to dashboard");
+
+        //public YourApprenticeshipAdvertsHomePage ClickReturnToDashboard()
+        //{
+        //    formCompletionHelper.Click(ReturnToDashboardLink);
+        //    return new YourApprenticeshipAdvertsHomePage(context);
+        //}
 
         public EmployerVacancySearchResultPage GoToYourAdvertFromDraftAdverts()
         {
@@ -65,6 +73,14 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
         {
             formCompletionHelper.Click(RecruitmentAPIsLink);
             return new GetStartedWithRecruitmentAPIsPage(context);
+        }
+
+        
+
+        public ManageYourEmailsPage ClickMangeYourEmailsLink()
+        {
+            formCompletionHelper.Click(ManageYourEmailsLink);
+            return new ManageYourEmailsPage(context);
         }
     }
 }

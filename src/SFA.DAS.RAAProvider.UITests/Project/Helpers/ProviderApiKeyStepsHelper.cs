@@ -13,6 +13,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         public KeyforApiPage DoesNotRenewDisplayAPIKey() => NavigateToAPIListPage().ClickViewDisplayAPILink().ClickRenewKeyLink().DoNotRenewApiKey();
 
+        public KeyforApiPage ViewRecruitmentApiKeyPage() => NavigateToAPIListPage().ClickViewRecruitmentAPILink();
+
         private static KeyforApiPage RenewAPIKey(KeyforApiPage page) => page.ClickRenewKeyLink().RenewAPIKey().VerifyApikeyRenewed();
 
         private ApiListPage NavigateToAPIListPage() => GoToRecruitmentHomePage(false).NavigateToRecruitmentAPIs().ClickAPIKeysHereLink();

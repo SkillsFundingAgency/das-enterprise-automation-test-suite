@@ -85,7 +85,7 @@ public class FAAStepsHelper(ScenarioContext context)
     public FAA_ApplicationOverviewPage ApplyForAVacancyWithNewAccount(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
         var applicationFormPage = GoToFAASearchResultsPageToSelectAVacancyAndApply();
-
+        
         if (qualificationdetails)
         {
             applicationFormPage = applicationFormPage.Access_Section1_1SchoolCollegeQualifications()
@@ -197,6 +197,8 @@ public class FAAStepsHelper(ScenarioContext context)
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
 
     public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndWithdrawAnApplication() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage().WithdrawSelectedApplication();
+    public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndWithdrawARandomApplication() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage().WithdrawRandomlySelectedApplication();
+    public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndOpenSubmittedApplicationsPage() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage();
 
     private FAA_ApplicationOverviewPage GoToFAASearchResultsPageToSelectAVacancyAndApply()
     {
