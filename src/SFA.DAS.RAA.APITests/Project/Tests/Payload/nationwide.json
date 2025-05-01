@@ -1,6 +1,6 @@
 {
     "submitterContactDetails": {
-        "name": "Tester",
+        "name": "Automation Tester",
         "email": "abc@test.com",
         "phone": "01234 444555"
     },
@@ -21,15 +21,14 @@
     "trainingDescription": "Training Description the character count of your writing, simply copy and paste text into  tool To find out the word and character count of your writing, simply copy and paste text into the tool or write directly into the text area. limits are quite common these days on the Internet. The one that most people are likely aware of is the 140 character limit for tweets on Twitter, but tha",
      "recruitingNationally": true,
      "recruitingNationallyDetails": "Recruiting across england",
-    "wage": {
-        "wageAdditionalInformation": "nothing to report",
-        "fixedWageYearlyAmount": 15704,
-        "weeklyHours": 40,
-        "duration": 18,
-        "workingWeekDescription": "come and get the job done",
-        "wageType": "FixedWage",
-        "durationUnit": "Month"
-    },
+  "wage": {
+    "wageAdditionalInformation": "nothing to report",
+    "weeklyHours": 40,
+    "duration": 18,
+    "workingWeekDescription": "come and get the job done",
+    "wageType": "NationalMinimumWage",
+    "durationUnit": "Month"
+  },
     "skills": [ "IT skills" ],
     "employerNameOption": "0",
     "anonymousReason": "",
