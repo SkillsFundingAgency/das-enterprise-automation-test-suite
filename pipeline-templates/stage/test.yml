@@ -7,9 +7,10 @@ stages:
   dependsOn: []
   displayName: Run test suite on TEST
   condition: eq(variables['Build.Reason'], 'Manual')
-  variables:  
+  variables:
   - group: TEST Automation Suite Variables
   - group: TEST DevTest Shared Resources
+  - group: AT DevTest Shared Resources
   jobs:
   - template: ../job/test-api.yml
     parameters:

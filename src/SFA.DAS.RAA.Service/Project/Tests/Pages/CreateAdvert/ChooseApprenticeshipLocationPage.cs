@@ -54,15 +54,25 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
                 case "different":
                     DifferentLocation();
                     return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
+
+                case "all location types":
+                    SelectRadioOptionByForAttribute("OneLocation");
+                    Continue();
+                    formCompletionHelper.SelectRandomRadioOptionByLocator(SingleLocationRadoButton);
+                    Continue();
+                    formCompletionHelper.ClickLinkByText("Locations");
+                    SelectRadioOptionByForAttribute("MoreThanOneLocation");
+                    Continue();
+                    SelectMultipleLocations();
+                    Continue();
+                    formCompletionHelper.ClickLinkByText("Locations");
+                    SelectRadioOptionByForAttribute("AcrossEngland");
+                    Continue();
+                    NationalLocationInformation();
+                    break;
             }
 
             Continue();
-
-            //if (locationType != "national" && locationType != "multiple")
-            //{
-            //    formCompletionHelper.SelectRandomRadioOptionByLocator(SingleLocationRadoButton);
-            //    Continue();
-            //}
 
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }

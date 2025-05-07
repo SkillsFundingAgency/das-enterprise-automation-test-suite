@@ -9,11 +9,17 @@ public class FAASearchResultPage(ScenarioContext context) : FAASignedInLandingBa
     private static By SavedVacancyNavBarLink => By.LinkText("Saved vacancies");
     private static By ApplyNow => By.CssSelector(".das-button--inline-link");
     private static By FirstApplicationDisplayed => By.CssSelector("[id^='VAC'][id$='-vacancy-title']");
+    private static By SingoutLink => By.LinkText("Sign out");
 
 
     public void VerifySuccessfulResults()
     {
         pageInteractionHelper.IsElementDisplayed(ResultsFound);
+    }
+
+    public void ClickSignout()
+    {
+        formCompletionHelper.Click(SingoutLink);
     }
     public FAA_ApplicationOverviewPage SaveFromSearchResultsAndApplyForVacancy()
     {

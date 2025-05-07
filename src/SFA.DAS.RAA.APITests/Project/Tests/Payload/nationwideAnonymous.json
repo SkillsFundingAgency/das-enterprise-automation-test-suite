@@ -1,0 +1,52 @@
+{
+    "submitterContactDetails": {
+        "name": "Tester",
+        "email": "abc@test.com",
+        "phone": "01234 444555"
+    },
+    "contractingParties": {
+        "ukprn": "<ukprn>",
+        "accountLegalEntityPublicHashedId": "<hashedid>"
+    },
+    "title": "Test apprenticeship 1 SL Anon 1",
+    "description": "You'll be done some amazing work here, it'll be the best - you wont regret joining the company",
+    "standardLarsCode": "240",
+    "alternativeEmployerName": "TEST Employer",
+    "shortDescription": "Summary of Some kinda short description here that needs to be a bit longer than short Apprenticeship with Hundred Words So That we Know the title is true to design spec Software testing. Some kinda short description here that needs to be a bit longer than short",
+    "numberOfPositions": 1,
+    "outcomeDescription": "Outcome Description the character counts of your writing, simply copy and paste text into  tool To find out the word and character count of your writing, simply copy and paste text into the tool or write directly into the text area. Once done, the free online tool will display both counts for the text that's been inserted. This can be useful in many instances, but it can be especially helpful when you are writing for something that has a character minimum or limit.Character and word limits are quite common these days on the Internet. The one that most people are likely aware of n you are writing for something that has a character minimum or limit.Character and word limits are quite common these days on the Internet. The one that most people are likely aware of is the 140 character limit for tweets on Twitter, but tha",
+    "closingDate": "2027-04-28",
+    "startDate": "2027-05-10",
+    "employerDescription": "Test Employer",
+    "trainingDescription": "Training Description the character count of your writing, simply copy and paste text into  tool To find out the word and character count of your writing, simply copy and paste text into the tool or write directly into the text area. limits are quite common these days on the Internet. The one that most people are likely aware of is the 140 character limit for tweets on Twitter, but tha",
+    "recruitingNationally": true,
+    "recruitingNationallyDetails": "Recruiting across england",
+    "wage": {
+        "wageAdditionalInformation": "nothing to report",
+        "fixedWageYearlyAmount": 15704,
+        "weeklyHours": 40,
+        "duration": 18,
+        "workingWeekDescription": "come and get the job done",
+        "wageType": "FixedWage",
+        "durationUnit": "Month"
+    },
+    "skills": [ "IT skills" ],
+    "employerNameOption": "Anonymous",
+    "anonymousReason": "Test provider",
+    "qualifications": [
+        {
+            "qualificationType": "GCSE or equivalent",
+            "subject": "English",
+            "grade": "3",
+            "weighting": "Essential"
+        }
+    ],
+    "applicationInstructions": "",
+    "applicationUrl": "",
+    "applicationMethod": "ThroughFindAnApprenticeship",
+    "disabilityConfident": "No",
+    "thingsToConsider": "Training Description the character count of your writing, simply copy and paste text into  tool To find out the word and character count of your writing, simply copy and paste text into the tool or write",
+    "employerWebsiteUrl": "www.bbc.co.uk",
+    "additionalQuestion1": "Do you have a driving licence?",
+    "additionalQuestion2": "What interests you about this industry?"
+}

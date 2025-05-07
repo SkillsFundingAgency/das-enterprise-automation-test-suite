@@ -12,7 +12,11 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         private static By ReturnToApplicationsSelector => By.LinkText("Return to your applications");
 
+        private static By ReturnToDashboardSelector => By.LinkText("Return to dashboard");
+
         public void ReturnToApplications() => formCompletionHelper.ClickElement(ReturnToApplicationsSelector);
+
+        public void ReturnToDashoard() => formCompletionHelper.ClickElement(ReturnToDashboardSelector);
 
         public CheckYourAnswersPage CheckYourAnswers()
         {
