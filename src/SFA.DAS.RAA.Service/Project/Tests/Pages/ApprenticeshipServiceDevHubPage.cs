@@ -9,7 +9,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         protected override bool TakeFullScreenShot => false;
 
-        private readonly By DisplayAdvertApiLink = By.LinkText("Display advert API");
+        private readonly By DisplayAdvertApiLink = By.LinkText("Display Advert API");
         private readonly By RecruitmentApiLink = By.LinkText("Recruitment API");
         private readonly By DevHubSignInLink = By.LinkText("sign in to get an API key");
       
