@@ -17,7 +17,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
         internal CreateAnApprenticeshipAdvertOrVacancyPage CompleteDraftAdvert(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
             CompleteAboutTheEmployer(createAdvertPage).EnterAdditionalQuestionsForApplicants().CompleteAllAdditionalQuestionsForApplicants(true, true).CheckYourAnswers().PreviewAdvert().DeleteVacancy().NoDeleteVacancy();
 
-        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new CreateAnApprenticeshipAdvertOrVacancyPage(context).CheckYourAnswers().PreviewAdvert().DeleteVacancy().YesDeleteVacancy();
+        internal EmployerVacancySearchResultPage CompleteDeleteOfDraftVacancy() => new CreateAnApprenticeshipAdvertOrVacancyPage(context).CheckYourAnswers().PreviewAdvert().DeleteVacancy().YesDeleteAdvert();
 
         internal CreateAnApprenticeshipAdvertOrVacancyPage CreateDraftAdvert() => CreateDraftAdvert(CreateAnApprenticeshipAdvertOrVacancy(), false);
 
@@ -88,6 +88,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
             .SelectYes().UpdateTitle().UpdateVacancyTitleAndGoToCheckYourAnswersPage().UpdateAdditionalQuestion().UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage(true, true));
 
         internal VacancyReferencePage CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, "employer", false, wageType);
+
+        internal VacancyReferencePage CreateANewAdvert_LocationAndWageType(string locationType, string wageType) => CreateANewAdvert(string.Empty, locationType, false, wageType);
 
         internal VacancyReferencePage CreateANewAdvert() => CreateANewAdvert(RAAConst.LegalEntityName);
 

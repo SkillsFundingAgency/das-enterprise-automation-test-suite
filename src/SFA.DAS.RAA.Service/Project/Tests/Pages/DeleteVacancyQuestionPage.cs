@@ -18,11 +18,18 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public DeleteVacancyQuestionPage(ScenarioContext context) : base(context) => VerifyPage(SubHeader, SubTitle);
 
-        public EmployerVacancySearchResultPage YesDeleteVacancy()
+        public EmployerVacancySearchResultPage YesDeleteAdvert()
         {
             SelectRadioOptionByForAttribute("delete-yes");
             Continue();
             return new EmployerVacancySearchResultPage(context);
+        }
+
+        public ProviderVacancySearchResultPage YesDeleteVacancy()
+        {
+            SelectRadioOptionByForAttribute("delete-yes");
+            Continue();
+            return new ProviderVacancySearchResultPage(context);
         }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage NoDeleteVacancy()

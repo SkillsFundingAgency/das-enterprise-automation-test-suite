@@ -51,5 +51,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer creates an advert with ""(.*)"" work location")]
         public void GivenTheEmployerCreatesAnAdvertWithWorkLocation(string locationType) => _employerCreateVacancyStepsHelper.CreateANewAdvert(locationType, locationType);
 
+        [Given(@"the Employer creates an advert with ""(.*)"" work location and '(.*)' wage type")]
+        public void GivenTheEmployerCreatesAnAdvertWithWorkLocationAndWageType(string locationType, string wageType) => _employerCreateVacancyStepsHelper.CreateANewAdvert_LocationAndWageType(locationType, wageType);
+
     }
 }

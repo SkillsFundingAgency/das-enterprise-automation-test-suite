@@ -52,6 +52,8 @@
   <ItemGroup>
     <Folder Include="Project\Tests\Features\FAAJourney\" />
     <Folder Include="Project\Tests\Features\ChangeVacancyStatus\" />
+    <Folder Include="Project\Tests\Features\Navigation\" />
+    <Folder Include="Project\Tests\Features\CloneVacancy\" />
   </ItemGroup>
 
 </Project>
