@@ -16,7 +16,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         private readonly By RecruitmentAPIGetLink = By.CssSelector("#get-key-for-VacanciesManageOuterApi");
         private readonly By RecruitmentAPISandBoxGetKeyLink = By.CssSelector("#get-key-for-VacanciesManageOuterApi-Sandbox");
         private readonly By DisplayAPIGetKeyLink = By.CssSelector("#get-key-for-VacanciesOuterApi");
-        private readonly By DisplayAdvertApiText = By.XPath("//td[contains(text(), 'Display advert API')]");
+        private readonly By DisplayAdvertApiText = By.XPath("//td[contains(text(), 'Display Advert API')]");
         #endregion
 
         public KeyforApiPage ClickViewRecruitmentAPILink() => GoToKeyforAPIPage(RecruitmentAPIViewKeyLink, RecruitmentAPIGetLink);
@@ -37,7 +37,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public ApiListPage VerifyDisplayAdvertApiText()
         {
-            pageInteractionHelper.CheckText(DisplayAdvertApiText, "Display advert API");
+            pageInteractionHelper.CheckText(DisplayAdvertApiText, "Display Advert API");
             return new ApiListPage(context);
         }
     }
