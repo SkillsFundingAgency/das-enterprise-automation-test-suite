@@ -10,3 +10,4 @@ Scenario: AP_Nav_03_Navigate to different links from Apprentices Page
 	Then 'Manage your apprentices' link should direct user to 'Manage your apprentices' page
 	And 'Apprentice requests' link should direct user to 'Your cohort requests' page
 	And 'Add an apprentice' link should direct user to 'Add an apprentice' page
+	And 'Accessibility statement' link should direct user to 'Accessibility statement' page
