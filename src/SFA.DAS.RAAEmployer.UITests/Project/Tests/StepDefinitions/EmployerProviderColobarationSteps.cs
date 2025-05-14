@@ -49,6 +49,14 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             */
         }
 
+        [Given(@"the Employer grants permission to the provider to create advert with review option set as Yes")]
+        public void GivenTheEmployerGrantsPermissionToTheProviderToCreateAdvertWithReviewOptionSetAsYes()
+        {
+            _loginUser = _context.GetUser<RAAEmployerProviderYesPermissionUser>();
+
+            var homePage = _rAAEmployerLoginHelper.GoToHomePage(_loginUser);
+        }
+
         [When(@"the Provider submits a vacancy to the employer for review")]
         public void WhenTheProviderSubmitsAVacancyToTheEmployerForReview()
         {
