@@ -45,7 +45,14 @@ public class TabHelper(IWebDriver webDriver, ObjectContext objectContext)
 
     public void NavigateBrowserBack() => webDriver.Navigate().Back();
 
-    private ReadOnlyCollection<string> ExistingTabs() => webDriver.WindowHandles;
+    public void CloseCurrentTab()
+    {
+        var tabs = ExistingTabs();
+        webDriver.Close();
+        webDriver.SwitchTo().Window(tabs[0]);
+    }
+
+    private ReadOnlyCollection<string> ExistingTabs() => webDriver.WindowHandles;   
 
     private void ClosePreviousTab()
     {
