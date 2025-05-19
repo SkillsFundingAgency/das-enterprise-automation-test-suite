@@ -17,7 +17,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project
             [
                 _configSection.GetConfigSection<RAAEmployerUser>(),
 
-                _configSection.GetConfigSection<RAAEmployerProviderPermissionUser>()
+                _configSection.GetConfigSection<RAAEmployerProviderPermissionUser>(),
+                _configSection.GetConfigSection<RAAEmployerProviderYesPermissionUser>(),
             ]);
         }
     }
