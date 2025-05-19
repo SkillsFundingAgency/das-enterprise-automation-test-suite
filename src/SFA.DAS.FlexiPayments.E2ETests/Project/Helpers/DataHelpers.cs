@@ -33,6 +33,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
             return (int)funding != 1 ? new DateTime(endDate.Year, endDate.Month, 1) : endDate;
         }
 
+        public static string GetLastPaymentMonth(DateTime date)
+        {
+            DateTime lastPaymentMonth;
+
+            if (IsLastDayOfTheMonth(DateTime.Today))
+                lastPaymentMonth = DateTime.Today;
+            else
+                lastPaymentMonth = DateTime.Today.AddMonths(-1);
+
+            return lastPaymentMonth.ToString("MMMM yyyy");
+        }
+
         public static DateTime GetQualifyingPeriodOuterBoundaryDate()
         {
             return DateTime.Today.AddDays(-43);
@@ -50,6 +62,18 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers
 
             if (date.Month == 1) date = new DateTime(date.Year - 1, 12, 1);
             else date = new DateTime(date.Year, date.Month - 1, 1);
+
+            return date;
+        }
+
+        public static DateTime GetFirstDateOfTwoMonthsAgo()
+        {
+            DateTime date = DateTime.Today;
+
+            if (date.Month <= 2)
+                date = new DateTime(date.Year - 1, date.Month + 10, 1);
+            else
+                date = new DateTime(date.Year, date.Month - 2, 1);
 
             return date;
         }

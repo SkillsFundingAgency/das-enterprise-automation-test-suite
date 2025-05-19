@@ -40,7 +40,13 @@ public class ExistingAccountSteps
             .GoToNotificationSettingsPage().ClickBackLink();
 
     [Then(@"Employer is able to navigate to Help Page")]
-    public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage();
+    public void ThenEmployerIsAbleToNavigateToHelpPage() => _homePage.GoToHelpPage().CloseTabAndGoBackToHomePage();
+
+    [Then(@"the employer can navigate to Accessibility statement page")]
+    public void ThenEmployerIsAbleToNavigateToAccessibilityStatementPage()
+    {
+        _homePage.GoToAccessibilityStatementPage(); 
+    }
 
     [Then(@"the employer can navigate to home page")]
     public void ThenTheEmployerCanNavigateToHomePage() => _ = new HomePage(_context, true);

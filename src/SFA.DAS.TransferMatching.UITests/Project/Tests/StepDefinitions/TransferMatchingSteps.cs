@@ -22,699 +22,774 @@ using TechTalk.SpecFlow;
 using MyAccountTransferFundingPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyAccountTransferFundingPage;
 using MyTransferPledgesPage = SFA.DAS.TransferMatching.UITests.Project.Tests.Pages.MyTransferPledgesPage;
 
-namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions
+namespace SFA.DAS.TransferMatching.UITests.Project.Tests.StepDefinitions;
+
+[Binding]
+public class TransferMatchingSteps
 {
-    [Binding]
-    public class TransferMatchingSteps
+    private readonly ScenarioContext _context;
+    private PledgeVerificationPage _pledgeVerificationPage;
+    private ManageTransferMatchingPage _manageTransferMatchingPage;
+    private PledgeAndTransferYourLevyFundsPage _pledgeAndTransferYourLevyFundsPage;
+    private TransferPledgePage _transferPledgePage;
+    private TransferFundDetailsInErrorPage _transferFundDetailsInErrorPage;
+    private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
+    private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
+    private readonly TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
+    private readonly TabHelper _tabHelper;
+    private readonly ObjectContext _objectContext;
+    private readonly AccountSignOutHelper _accountSignOutHelper;
+    private string _sender;
+    private string _receiver;
+    private bool _isAnonymousPledge;
+    private bool _isImmediateAutoApprovalPledge;
+    private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+    private readonly EmployerHomePageStepsHelper _employerHomePageStepsHelper;
+    private readonly TransferMatchingJobsHelper _transferMatchingJobsHelper;
+
+    public TransferMatchingSteps(ScenarioContext context)
     {
-        private readonly ScenarioContext _context;
-        private PledgeVerificationPage _pledgeVerificationPage;
-        private ManageTransferMatchingPage _manageTransferMatchingPage;
-        private TransferPledgePage _transferPledgePage;
-        private TransferFundDetailsInErrorPage _transferFundDetailsInErrorPage;
-        private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
-        private readonly CreateAccountEmployerPortalLoginHelper _loginFromCreateAcccountPageHelper;
-        private readonly TransferMatchingSqlDataHelper _transferMatchingSqlDataHelper;
-        private readonly TabHelper _tabHelper;
-        private readonly ObjectContext _objectContext;
-        private readonly AccountSignOutHelper _accountSignOutHelper;
-        private string _sender;
-        private string _receiver;
-        private bool _isAnonymousPledge;
-        private bool _isImmediateAutoApprovalPledge;
-        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
-        private readonly EmployerHomePageStepsHelper _employerHomePageStepsHelper;
-        private readonly TransferMatchingJobsHelper _transferMatchingJobsHelper;
-
-        public TransferMatchingSteps(ScenarioContext context)
-        {
-            _context = context;
-            _isAnonymousPledge = false;
-            _isImmediateAutoApprovalPledge = false;
-            _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
-            _objectContext = context.Get<ObjectContext>();
-            _accountSignOutHelper = new AccountSignOutHelper(context);
-            _tabHelper = context.Get<TabHelper>();
-            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
-            _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(context);
-            _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_objectContext, context.Get<DbConfig>());
-            _transferMatchingJobsHelper = new TransferMatchingJobsHelper(context);
-        }
-
-        [Given(@"the levy employer who are currently sending transfer funds login")]
-        public void GivenTheLevyEmployerWhoAreCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUser>());
-
-        [Given(@"the levy employer who are not currently sending transfer funds login")]
-        public void GivenTheLevyEmployerWhoAreNotCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUserNoFunds>());
-
-        [Then(@"the levy employer can apply for transfer opportunities")]
-        public void ThenTheLevyEmployerCanApplyForTransferOpportunities() => NavigateToTransferMatchingPage().GoToFindABusinessPage();
-
-        [Then(@"the levy employer can view the task")]
-        public void ThenTheLevyEmployerCanViewTheTask()
-        {
-            SignOut();
-
-            LoginAsSender(_context.GetUser<TransferMatchingUser>());
-
-            NavigateToTransferMatchingPage().GoToAccountHomePage().ClickTask();
-        }
-
-        [Given(@"the another levy employer creates a pledge")]
-        public void GivenTheAnotherLevyEmployerCreatesAPledge()
-        {
-            SignOut();
-
-            CreateATransferPledge(_context.GetUser<TransactorUser>());
-        }
-
-        [Given(@"the levy employer creates a pledge")]
-        public void GivenTheLevyEmployerCreatesAPledge() => CreateATransferPledge(_context.GetUser<LevyUser>());
-
-        [Given(@"the levy employer login using existing transactor user account")]
-        public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => LoginAsSender(_context.GetUser<TransactorUser>());
-
-        [When(@"the receiver levy employer applies for the pledge")]
-        public void WhenTheReceiverLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
-
-        [Then(@"the non levy employer can apply for the pledge")]
-        [When(@"the non levy employer applies for the pledge")]
-        public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
-
-        [Then(@"the non levy employer can apply for the pledge but is not immediately autoapproved")]
-        public void WhenTheNonLevyEmployerAppliesForThePledgeButNotImmediatelyAutoApproved()
-        {
-            _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
-            SubmitApplicationHelper.SubmitApplication(new CreateATransfersApplicationPage(_context), _objectContext.GetPledgeDetail().PledgeId);
-            OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver()).SetPledgeApplication();
-        }
-
-        [Then(@"the non levy employer cannot exceed the available pledge funding")]
-        public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
-            => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "Cost of training exceeds the amount remaining in this pledge");
-
-        [Then(@"the levy employer can download excel file")]
-        public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
-
-        [Then(@"the levy employer can close the pledge")]
-        public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose().ConfirmStatus("Closed");
-
-        [Then(@"the levy employer doesn't close the pledge")]
-        public void ThenTheLevyEmployerDoesntCloseThePledge() => ClosePledge().DontClose();
-
-        [Then(@"the levy employer can approve the application")]
-        public void ThenTheLevyEmployerCanApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication();
-
-        [Then(@"the levy employer can approve the application and verify costing model")]
-        public void ThenTheLevyEmployerCanApproveTheApplicationAndVerifyCostingModel() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication().ClickBackButton().VerifyCostingModel();
-
-        [Then(@"the levy employer can auto approve the application")]
-        public void ThenTheLevyEmployerCanAutoApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().AutoApproveApplication();
+        _context = context;
+        _isAnonymousPledge = false;
+        _isImmediateAutoApprovalPledge = false;
+        _loginFromCreateAcccountPageHelper = new CreateAccountEmployerPortalLoginHelper(context);
+        _objectContext = context.Get<ObjectContext>();
+        _accountSignOutHelper = new AccountSignOutHelper(context);
+        _tabHelper = context.Get<TabHelper>();
+        _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+        _employerHomePageStepsHelper = new EmployerHomePageStepsHelper(context);
+        _transferMatchingSqlDataHelper = new TransferMatchingSqlDataHelper(_objectContext, context.Get<DbConfig>());
+        _transferMatchingJobsHelper = new TransferMatchingJobsHelper(context);
+    }
 
-        [Then(@"the levy employer can reject the application")]
-        public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
+    [Given(@"the levy employer who are currently sending transfer funds login")]
+    public void GivenTheLevyEmployerWhoAreCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUser>());
 
-        [Then(@"the levy employer can view the approved application")]
-        public void ThenTheLevyEmployerCanViewApprovedApplication()
-        {
-            GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Auto approval: Awaiting acceptance by applicant");
-            var sender = _context.Get<TransferMatchingUser>();
-            UpdateOrganisationName(sender.OrganisationName);
-            SignOut();
-        }
+    [Given(@"the levy employer who are not currently sending transfer funds login")]
+    public void GivenTheLevyEmployerWhoAreNotCurrentlySendingTransferFundsLogin() => LoginAsSender(_context.GetUser<TransfersUserNoFunds>());
 
-        [Then(@"the levy employer can view the awaiting your approval application")]
-        public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Awaiting your approval");
+    [Then(@"the levy employer can apply for transfer opportunities")]
+    public void ThenTheLevyEmployerCanApplyForTransferOpportunities() => NavigateToTransferMatchingPage().GoToFindABusinessPage();
 
-        [Then(@"the non levy employer can accept funding")]
-        public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication(ApplicationStatus.Accepted.GetLabelForReceiver());
+    [Then(@"the levy employer can view the task")]
+    public void ThenTheLevyEmployerCanViewTheTask()
+    {
+        SignOut();
 
-        [Then(@"the non levy employer can withdraw funding")]
-        public void ThenTheNonLevyEmployerCanWithdrawFunding()
-        {
-            OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount();
-            OpenPledgeApplication(ApplicationStatus.Withdrawn.GetLabelForReceiver());
-        }
+        LoginAsSender(_context.GetUser<TransferMatchingUser>());
 
-        [Then(@"the non levy employer can open approved pledge application")]
-        public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication()
-        {
-            _employerHomePageStepsHelper.GotoEmployerHomePage();
-            OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver());
-        }
+        NavigateToTransferMatchingPage().GoToAccountHomePage().ClickTask();
+    }
 
-        [Then(@"the receiver can open approved pledge application")]
-        public void ThenTheReceiverCanOpenApprovedPledgeApplication()
-        {
-            var sender = _context.Get<TransferMatchingUser>();
-            UpdateOrganisationName(sender.OrganisationName);
+    [Given(@"the another levy employer creates a pledge")]
+    public void GivenTheAnotherLevyEmployerCreatesAPledge()
+    {
+        SignOut();
 
-            SignOut();
+        CreateATransferPledge(_context.GetUser<TransactorUser>());
+    }
 
-            var receiverLogin = _context.Get<LevyUser>();
-            UpdateOrganisationName(receiverLogin.OrganisationName);
-            LoginAsReceiver(receiverLogin);
+    [Given(@"the levy employer creates a pledge")]
+    public void GivenTheLevyEmployerCreatesAPledge() => CreateATransferPledge(_context.GetUser<LevyUser>());
 
-            OpenPledgeApplication("Approved, awaiting your acceptance");
-        }
+    [Given(@"the levy employer login using existing transactor user account")]
+    public void GivenTheEmployerLoginsUsingExistingTransactorUserAccount() => LoginAsSender(_context.GetUser<TransactorUser>());
 
-        [Then(@"the non levy employer can open awaiting approval pledge application")]
-        public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication()
-        {
-            _employerHomePageStepsHelper.GotoEmployerHomePage();
-            OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver());
-        }
+    [When(@"the receiver levy employer applies for the pledge")]
+    public void WhenTheReceiverLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<LevyUser>());
 
-        [Then(@"the non levy employer can withdraw funding before approval")]
-        public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
-        {
-            UpdateOrganisationName(_receiver);
+    [Then(@"the non levy employer can apply for the pledge")]
+    [When(@"the non levy employer applies for the pledge")]
+    public void WhenTheNonLevyEmployerAppliesForThePledge() => ApplyForAPledge(_context.GetUser<NonLevyUser>());
 
-            SignOut();
+    [Then(@"the non levy employer can apply for the pledge but is not immediately autoapproved")]
+    public void WhenTheNonLevyEmployerAppliesForThePledgeButNotImmediatelyAutoApproved()
+    {
+        _receiver = GoToTransferMatchingAndSignIn(_context.GetUser<NonLevyUser>(), _sender, _isAnonymousPledge);
+        SubmitApplicationHelper.SubmitApplication(new CreateATransfersApplicationPage(_context), _objectContext.GetPledgeDetail().PledgeId);
+        OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver()).SetPledgeApplication();
+    }
 
-            LoginAsReceiver(_context.Get<NonLevyUser>());
+    [Then(@"the non levy employer cannot exceed the available pledge funding")]
+    public void ThenTheNonLevyEmployerCannotExceedTheAvailablePledgeFunding()
+        => AssertErrorMessage(ApplyForAnInvalidPledge(_context.GetUser<NonLevyUser>()).EnterAmountMoreThanAvailableFunding(), "Cost of training exceeds the amount remaining in this pledge");
 
-            OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver()).WithdrawBeforeApproval().ReturnToMyAccount();
-            OpenPledgeApplication(ApplicationStatus.Withdrawn.GetLabelForReceiver());
+    [Then(@"the levy employer can download excel file")]
+    public void ThenTheLevyEmployerCanDownloadExcelFilen() => GoToTransferPledgePageAsReceiver().DownloadExcel();
 
-        }
+    [Then(@"the levy employer can close the pledge")]
+    public void ThenTheLevyEmployerCanCloseThePledge() => ClosePledge().ConfirmClose().ConfirmStatus("Closed");
 
-        [Then(@"the pledge is available to apply")]
-        public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
+    [Then(@"the levy employer doesn't close the pledge")]
+    public void ThenTheLevyEmployerDoesntCloseThePledge() => ClosePledge().DontClose();
 
-        [When(@"the transfer receiver applies for the pledge")]
-        public void TheTransferReceiverAppliesForThePledge()
-        {
-            var signInPage = ApplyForTransferFunds();
+    [Then(@"the levy employer can approve the application")]
+    public void ThenTheLevyEmployerCanApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication();
 
-            UpdateOrganisationName(_receiver);
+    [Then(@"the levy employer can approve the application and verify costing model")]
+    public void ThenTheLevyEmployerCanApproveTheApplicationAndVerifyCostingModel() => GoToApprovingTheApprenticeshipDetailsPage().ManuallyApproveApplication().ClickBackButton().VerifyCostingModel();
 
-            _multipleAccountsLoginHelper.LoginToMyAccountTransferFunding(signInPage);
 
-            SubmitApplication(new MyAccountTransferFundingPage(_context).GoToCreateATransfersApplicationPage(_receiver));
-        }
+    [Then(@"the receiver employer can accept funding")]
+    public void TheReceiverEmployerCanAcceptFunding()
+    {
+        UpdateOrganisationName(_sender);
 
-        [Given(@"the levy employer logins using existing transfer matching account")]
-        public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsSender(_context.GetUser<TransferMatchingUser>());
+        SignOut();
 
-        [Then(@"the levy employer cannot exceed the maximum funding available")]
-        public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "You need to enter an amount greater than");
+        UpdateOrganisationName(_receiver);
 
-        [Then(@"the viewer cannot create pledge")]
-        public void TheViewerCannotCreatePledge()
-        { NavigateToTransferMatchingPage().CanCreateTransferPledge(); }
+        _multipleAccountsLoginHelper.ReLogin();
 
+        OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver())
+            .VerifyAgreeToTermsIsMandatoryAndAcceptFunding()
+            .ViewMyApplications()
+            .OpenPledgeApplication(ApplicationStatus.Accepted.GetLabelForReceiver());
+    }
 
-        [Then(@"the levy employer confirms the pledge displays as closed")]
-        public void ThenLevyEmployerCanViewClosedPledge()
-        {
-            var sender = _context.Get<TransferMatchingUser>();
-            UpdateOrganisationName(sender.OrganisationName);
+    [When(@"3 months have passed since the funds accepted")]
+    public void ThreeMonthsHavePassedSinceFundsWereAccepted()
+    {
+        _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
+        _transferMatchingSqlDataHelper.UpdateAcceptedDateToBe3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
 
-            _employerHomePageStepsHelper.GotoEmployerHomePage();
-            _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+        _transferMatchingJobsHelper.RunApplicationsWithAutoExpireJob();
+    }
 
-            _manageTransferMatchingPage.GoToViewMyTransferPledgePage().ConfirmStatus("Closed")
-                .GoToTransferPledgePage().VerifyClosePledgeButtonIsNotDisplayed();
-        }
 
-        [Given(@"the levy employer can create pledge using default criteria")]
-        [Then(@"the levy employer can create pledge using default criteria")]
-        public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
-        {
-            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
+    [Then(@"the accepted funds should expire")]
+    public void TheAcceptedFundsShouldExpire()
+    {
+        _employerHomePageStepsHelper.GotoEmployerHomePage();
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+        OpenPledgeApplication(ApplicationStatus.FundsExpired.GetLabelForReceiver());
+    }
 
-            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+    [Then(@"the expired funds should be automatically refunded to the sending employer's account")]
+    public void TheExpiredFundsShouldBeRefuncdedToSendingEmployersAccount()
+    {
+        UpdateOrganisationName(_receiver);
 
-            SetPledgeDetail();
-        }
+        SignOut();
 
-        [Given(@"the levy employer can create pledge for immediate approval using default criteria")]
-        [Then(@"the levy employer can create pledge for immediate approval using default criteria")]
-        public void TheLevyEmployerCanCreatePledgeForImmediateApprovalUsingDefaultCriteria()
-        {
-            _isImmediateAutoApprovalPledge = true;
+        UpdateOrganisationName(_sender);
 
-            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
+        _multipleAccountsLoginHelper.ReLogin();
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+        _transferPledgePage = NavigateToTransferMatchingPage()
+            .GoToViewMyTransferPledgePage()
+            .GoToTransferPledgePage();
 
-            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+        ConfirmPledgeFundsHaveBeenRefunded();
+    }
 
-            SetPledgeDetail();
-        }
+    [Then(@"the levy employer can auto approve the application")]
+    public void ThenTheLevyEmployerCanAutoApproveTheApplication() => GoToApprovingTheApprenticeshipDetailsPage().AutoApproveApplication();
 
+    [Then(@"the levy employer can reject the application")]
+    public void ThenTheLevyEmployerCanRejectTheApplication() => GoToApproveAppliationPage().RejectApplication();
 
-        [Given(@"the levy employer can create pledge using non default criteria and immediate approval")]
-        [Then(@"the levy employer can create pledge using non default criteria and immediate approval")]
-        public void TheLevyEmployerCanCreatePledgeUsingNonDefaultCriteriaWithImmediateApproval()
-        {
-            _isImmediateAutoApprovalPledge = true;
-            _isAnonymousPledge = true;
+    [Then(@"the levy employer can view the approved application")]
+    public void ThenTheLevyEmployerCanViewApprovedApplication()
+    {
+        GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Auto approval: Awaiting acceptance by applicant");
+        var sender = _context.Get<TransferMatchingUser>();
+        UpdateOrganisationName(sender.OrganisationName);
+        SignOut();
+    }
 
-            _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
-                .GoToAddtheLocationPage().EnterLocation()
-                .GoToChoosetheSectorPage().SelectSetorAndContinue()
-                .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
-                .GoToChooseTheLevelPage().SelectLevelAndContinue()
-                .ContinueToPledgeVerificationPage();
+    [Then(@"the levy employer can view the awaiting your approval application")]
+    public void ThenTheLevyEmployerCanViewAwaitingYourApprovalApplication() => GoToTransferPledgePageAsReceiver().ConfirmApplicationStatus("Awaiting your approval");
 
-            SetPledgeDetail();
-        }
+    [Then(@"the non levy employer can accept funding")]
+    public void ThenTheNonLevyEmployerCanAcceptFunding() => OpenApprovedPledgeApplication().VerifyAgreeToTermsIsMandatoryAndAcceptFunding().ViewMyApplications().OpenPledgeApplication(ApplicationStatus.Accepted.GetLabelForReceiver());
 
-        [Given(@"the levy employer can create pledge using minimal funding")]
-        [Then(@"the levy employer can create pledge using minimal funding")]
-        public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
-        {
-            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, true);
+    [Then(@"the non levy employer can withdraw funding")]
+    public void ThenTheNonLevyEmployerCanWithdrawFunding()
+    {
+        OpenApprovedPledgeApplication().WithdrawFunding().ReturnToMyAccount();
+        OpenPledgeApplication(ApplicationStatus.Withdrawn.GetLabelForReceiver());
+    }
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+    [Then(@"the non levy employer can open approved pledge application")]
+    public void ThenTheNonLevyEmployerCanOpenApprovedPledgeApplication()
+    {
+        _employerHomePageStepsHelper.GotoEmployerHomePage();
+        OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver());
+    }
 
-            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+    [Then(@"the receiver can open approved pledge application")]
+    public void ThenTheReceiverCanOpenApprovedPledgeApplication()
+    {
+        var sender = _context.Get<TransferMatchingUser>();
+        UpdateOrganisationName(sender.OrganisationName);
 
-            SetPledgeDetail();
-        }
+        SignOut();
 
+        var receiverLogin = _context.Get<LevyUser>();
+        UpdateOrganisationName(receiverLogin.OrganisationName);
+        LoginAsReceiver(receiverLogin);
 
-        [Then(@"the levy employer can create pledge with funding equal to course cost")]
-        public void TheLevyEmployerCanCreatePledgeWithFundingEqualToCourseCost()
-        {
-            var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false, true);
+        OpenPledgeApplication("Approved, awaiting your acceptance");
+    }
 
-            StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
-            StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-            StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
-            StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
-
-            _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
-
-            SetPledgeDetail();
-        }
-
-        [Then(@"the levy employer can create anonymous pledge using non default criteria")]
-        public void TheLevyEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
-        {
-            _isAnonymousPledge = true;
-
-            _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
-                 .GoToAddtheLocationPage().EnterLocation()
-                 .GoToChoosetheSectorPage().SelectSetorAndContinue()
-                 .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
-                 .GoToChooseTheLevelPage().SelectLevelAndContinue()
-                 .ContinueToPledgeVerificationPage();
-
-            SetPledgeDetail();
-        }
-
-        [Then(@"the levy employer can sort the pledges")]
-        public void TheLevyEmployerCanSortThePledges() => SortApplications();
-
-        [When(@"the levy employer is viewing pledges from verification page")]
-        [Then(@"the levy employer can view pledges from verification page")]
-        public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().ConfirmStatus("Active");
-
-        [Then(@"the user can view transfer pledge")]
-        public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
-
-        [Then(@"the levy employer currently receiving funds can not create pledge")]
-        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanNotCreatePledge() => CreateTransferPledge(true, false);
-
-        [Then(@"the levy employer currently receiving funds can create pledge")]
-        public void ThenTheLevyEmployerCurrentlyReceivingFundsCanCreatePledge() => CreateTransferPledge(true, true);
-
-        [Then(@"the user can not create transfer pledge")]
-        public void TheUserCanNotCreateTransferPledge() => CreateTransferPledge(false, false);
-
-        [Then(@"the user can create transfer pledge")]
-        public void TheUserCanCreateTransferPledge() => CreateTransferPledge(false, true);
-
-        [Then(@"the levy employer can not apply for transfer opportunities")]
-        public void ThenTheLevyEmployerCanNotApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(false);
-
-        [Then(@"the levy employer is able to apply for transfer opportunities")]
-        public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(true);
-
-        [Then(@"the levy employer can bulk reject application")]
-        public void ThenTheLevyEmployerCanBulkRejectApplication() => BulkReject();
-
-        [Then(@"Then the levy employer can view transfer allowance")]
-        public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
-
-        [Then(@"the levy employer can view pleged amount")]
-        public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
-
-        [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
-        public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
-        {
-            var apprenticeDetailsApprovedPage = new UseTransferFundsPage(_context).ClickOnStartNowButton()
-                .SubmitValidUkprn()
-                .ConfirmProviderDetailsAreCorrect()
-                .EmployerAddsApprentices()
-                .EmployerSelectsAStandard()
-                .SubmitValidApprenticeDetails(false)
-                .EmployerFirstApproveAndNotifyTrainingProvider();
-
-            var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
-            _objectContext.SetCohortReference(cohortReference);
-            _objectContext.SetNoOfApprentices(1);
-        }
-
-        [Then(@"the non levy employer can add apprentice to the pledgeApplication via 'Add an apprentice' route")]
-        public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplicationViaAddAnApprenticeRoute()
-        {
-            var apprenticeDetailsApprovedPage = _apprenticeHomePageStepsHelper.GoToAddAnApprenticePage()
-                .StartNowToSelectFunding()
-                .SelectFundingType(FundingType.TransferFunds)
-                .SubmitValidUkprn()
-                .ConfirmProviderDetailsAreCorrect()
-                .EmployerAddsApprentices()
-                .EmployerSelectsAStandard()
-                .SubmitValidApprenticeDetails(false)
-                .EmployerFirstApproveAndNotifyTrainingProvider(); ;
-
-            var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
-            _objectContext.SetCohortReference(cohortReference);
-            _objectContext.SetNoOfApprentices(1);
-        }
-
-        [Then(@"wait for 6 weeks")]
-        public void ApplicationIsApprovedAfter6Weeks()
-        {
-            //update created on date to 6 weeks Ago
-            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
-            Thread.Sleep(TimeSpan.FromSeconds(10));
-            // trigger autoapproval job
-            _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
-        }
-
-        [When(@"Six weeks have passed since the application was approved")]
-        public void WaitSixWeeksAfterApplicationWasApproved()
-        {
-            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
-            _transferMatchingSqlDataHelper.UpdateApprovedDateToBeSixWeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
-            Thread.Sleep(TimeSpan.FromSeconds(10));
-            // trigger auto decline job
-            _transferMatchingJobsHelper.RunApplicationsWithAutoDeclineJob();
-        }
-
-        [Then(@"the approved application should auto decline")]
-        public void TheApprovedApplicationShouldAutoDecline()
-        {
-            var sender = _context.Get<TransferMatchingUser>();
-            UpdateOrganisationName(sender.OrganisationName);
-            LoginAsSender(sender);
-
-            _transferPledgePage = NavigateToTransferMatchingPage()
-                .GoToViewMyTransferPledgePage()
-                .GoToTransferPledgePage()
-                .ConfirmApplicationStatus(ApplicationStatus.Declined.GetLabelForSender());
-        }
-
-        [Then(@"the deducted funds should be automatically refunded to the sending employer's account")]
-        public void TheDeductedFundsShouldBeRefundedToSendersEmployerAccount()
-        {            
-            var totalPledgeFunds = _transferPledgePage.GetTotalPledgeFunds();
-            var remainingPledgeFunds = _transferPledgePage.GetEstimatedRemainingFunds();
-
-            remainingPledgeFunds.Should().Be(totalPledgeFunds);
-        }
-
-        [Then(@"the application is seven days from being auto approved")]
-        public void ApplicationIs7DaysFromBeingAutoApproved()
-        {
-            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo5WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
-        }
-
-        [Then(@"the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'")]
-        public void ApplicationStatusShowsDateDueToAutoApprove()
-        {
-            var approvalDate = "Auto approval on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
-
-            GoToTransferPledgePageAsSender().ConfirmApplicationStatus(approvalDate);
-        }
-
-        [Then(@"It is 7 days before an application reaches 3 months without any action")]
-        public void ItIsAWeekBeforeApplicationIs3MonthsOldWithoutAnyAction()
-        {
-            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToAWeekLessThan3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
-        }
-
-        [Then(@"the levy employer will be able to view auto rejected date of application under status tag 'Application expires on dd/mm/yy'")]
-        public void ApplicationStatusShowsDateDueToAutoReject()
-        {
-            var approvalDate = "Application expires on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
-
-            var sender = _context.Get<TransferMatchingUser>();
-            UpdateOrganisationName(sender.OrganisationName);
-
-            SignOut();
-            LoginAsSender(sender);
-            NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ConfirmApplicationStatus(approvalDate);
-        }
-
-        [Then(@"Application has not been actioned for 3 months")]
-        public void ApplicationHasNotBeenActionedFor3Months()
-        {
-            _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
-            Thread.Sleep(TimeSpan.FromSeconds(10));
-
-            // trigger autoRejection job
-            _transferMatchingJobsHelper.RunApplicationsWithAutomaticRejectionJob();
-        }
+    [Then(@"the non levy employer can open awaiting approval pledge application")]
+    public void ThenTheNonLevyEmployerCanOpenAwaitingApprovalPledgeApplication()
+    {
+        _employerHomePageStepsHelper.GotoEmployerHomePage();
+        OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver());
+    }
 
-        [Then(@"Application should be auto rejected")]
-        public void ApplicationShouldBeAutoRejected()
-        {
-            var status = _transferMatchingSqlDataHelper.GetPledgeApplicationStatusByDetails(_objectContext.GetPledgeDetail().PledgeId);
-            status.Should().Be((int)ApplicationStatus.Rejected);
-        }
+    [Then(@"the non levy employer can withdraw funding before approval")]
+    public void ThenTheNonLevyEmployerCanWithdrawFundingBeforeApproval()
+    {
+        UpdateOrganisationName(_receiver);
 
-        [Then(@"the Pledge balance drops below £2,000 Pledge should be auto closed")]
-        public void PledgeBalanceDropsBelow2000AndShouldBeAutoClosed()
-        {
-            var (status, remainingAmount) = _transferMatchingSqlDataHelper.GetPledgeDetails(_objectContext.GetPledgeDetail().PledgeId);
+        SignOut();
 
-            remainingAmount.Should().BeLessThanOrEqualTo(2000);
-            status.Should().Be((int)PledgeStatus.Closed);
-        }
+        LoginAsReceiver(_context.Get<NonLevyUser>());
 
-        [Then(@"Pledge wont be shown publicly")]
-        public void PledgeIsNotShownPublicly()
-        {
-            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
-            _transferFundDetailsInErrorPage = new TransferFundDetailsInErrorPage(_context);
-        }
-
-        public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
-        {
-            SignOutAndGoToTransferMacthingApplyUrl();
-
-            UpdateOrganisationName(_sender);
-
-            var page = new TransferFundDetailsPage(_context, _isAnonymousPledge);
-
-            var _receiver = receiver.OrganisationName;
-
-            UpdateOrganisationName(_receiver);
-
-            page.ApplyForTransferFunds().Login(receiver.Username, receiver.IdOrUserRef).Continue();
-
-            return _receiver;
-        }
-
-
-        [Then(@"the levy employer can filter pledges")]
-        public void ThenTheLevyEmployerCanFilterPledges()
-        {
-            NavigateToTransferMatchingPage().GoToFindABusinessPage().GoToOpportunitiesPage().SelectAndApplyFilters();
-        }
-
-        public void SignOutAndGoToTransferMacthingApplyUrl()
-        {
-            SignOut();
-
-            _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
-        }
-
-        public void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
-
-        public void SignOut() => _accountSignOutHelper.SignOut();
-
-        private ApplicationsDetailsPage OpenApprovedPledgeApplication()
-        {
-            UpdateOrganisationName(_sender);
-
-            SignOut();
-
-            LoginAsReceiver(_context.Get<NonLevyUser>());
-
-            return OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver());
-        }
-
-        private void CanApplyForTransferOppurtunity(bool canApply)
-        {
-            Assert.That(NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), Is.EqualTo(canApply), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
-        }
-
-        private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
-        {
-            if (navigate) new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
-
-            Assert.That(NavigateToTransferMatchingPage().CanCreateTransferPledge(), Is.EqualTo(canCreateTransferPledge), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
-        }
-
-        private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
-
-        private TransferPledgePage VerifyPlegdeAmount() => GoToTransferPledgePageAsSender().VerifyPledgeAmount();
-        private ClosePledgePage ClosePledge() => GoToTransferPledgePageAsSender().ClosePledge();
-
-        private TransferPledgePage BulkReject() => GoToTransferPledgePageAsSender().SelectBulkReject().CancelBulkReject().SelectBulkReject().BulkReject();
-
-        private TransferPledgePage SortApplications() => GoToTransferPledgePageAsSender().SortByApplicant();
-
-        private TransferPledgePage GoToTransferPledgePageAsSender()
-        {
-            SignOut();
-
-            LoginAsSender(_context.GetUser<TransferMatchingUser>());
-
-            return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage();
-        }
-
-        private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePageAsReceiver().GoToApproveAppliationPage();
-
-        private TransferPledgePage GoToTransferPledgePageAsReceiver()
-        {
-            SignOut();
-
-            UpdateOrganisationName(_sender);
-
-            _multipleAccountsLoginHelper.ReLogin();
-
-            NavigateToTransferMatchingPage();
-
-            UpdateOrganisationName(_receiver);
-
-            return GoToViewMyTransferPledgePage().GoToTransferPledgePage();
-        }
-
-        protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
-
-        private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool immediateMatch, bool useMinimalFunding, bool useFundingEqualToEstimatedCost = false) =>
-            GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding, useFundingEqualToEstimatedCost)
-            .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName)
-            .GoToPledge100PercentMatchPage().EnterValidMatchChoice(immediateMatch);
-
-        private PledgeAmountPage GoToEnterPlegeAmountPage() =>
-            NavigateToTransferMatchingPage()
-            .GotoCreateTransfersPledgePage()
-            .StartCreatePledge()
-            .GoToPledgeAmountPage()
-            .CaptureAvailablePledgeAmount();
-
-        private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
-
-        private MyTransferPledgesPage GoToViewMyTransferPledgePage() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
-
-        private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
-        {
-            SubmitApplicationHelper.SubmitApplication(page, _objectContext.GetPledgeDetail().PledgeId);
-
-            return OpenPledgeApplication(_isImmediateAutoApprovalPledge ?
-                ApplicationStatus.Approved.GetLabelForReceiver()
-                : ApplicationStatus.Pending.GetLabelForReceiver()).SetPledgeApplication();
-        }
-
-        private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);
-
-        private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
-        {
-            _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
-
-            return SubmitApplicationHelper.GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
-        }
-
-        private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)
-        {
-            _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
-
-            return SubmitApplication(new CreateATransfersApplicationPage(_context));
-        }
-
-        private StubSignInEmployerPage ApplyForTransferFunds()
-        {
-            SignOutAndGoToTransferMacthingApplyUrl();
-
-            return new TransferFundDetailsPage(_context, false).ApplyForTransferFunds();
-        }
-
-        private static void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
-        {
-            string actualErrorMessage = page.GetErrorMessage();
-
-            Assert.Multiple(() =>
-            {
-                StringAssert.Contains("There is a problem", actualErrorMessage);
-
-                StringAssert.Contains(expectedErrorMessage, actualErrorMessage);
-            });
-        }
-
-        private void CreateATransferPledge(EasAccountUser login)
-        {
-            LoginAsSender(login);
-
-            CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
-        }
-
-        private void LoginAsReceiver(EasAccountUser login)
-        {
-            _receiver = login.OrganisationName;
-
-            _loginFromCreateAcccountPageHelper.Login(login, false);
-        }
-
-        private void LoginAsSender(EasAccountUser login)
-        {
-            _sender = login.OrganisationName;
-
-            _loginFromCreateAcccountPageHelper.Login(login, true);
-        }
-
-        private void LoginAsSender(MultipleEasAccountUser login)
-        {
-            _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, login)
-            {
-                OrganisationName = login.OrganisationName
-            };
-
-            _multipleAccountsLoginHelper.Login(login, true);
-
-            _sender = login.OrganisationName;
-
-            _receiver = login.SecondOrganisationName;
-        }
-
-        [Then(@"Verify a new live apprenticeship record is created")]
-        public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
-        {
-            UpdateOrganisationName(_receiver);
-
-            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
-
-            manageYourApprenticePage.VerifyApprenticeExists();
-        }
+        OpenPledgeApplication(ApplicationStatus.Pending.GetLabelForReceiver()).WithdrawBeforeApproval().ReturnToMyAccount();
+        OpenPledgeApplication(ApplicationStatus.Withdrawn.GetLabelForReceiver());
 
     }
+
+    [Then(@"the pledge is available to apply")]
+    public void ThenThePledgeIsAvailableToApply() => ApplyForTransferFunds();
+
+    [When(@"the transfer receiver applies for the pledge")]
+    public void TheTransferReceiverAppliesForThePledge()
+    {
+        var signInPage = ApplyForTransferFunds();
+
+        UpdateOrganisationName(_receiver);
+
+        _multipleAccountsLoginHelper.LoginToMyAccountTransferFunding(signInPage);
+
+        SubmitApplication(new MyAccountTransferFundingPage(_context).GoToCreateATransfersApplicationPage(_receiver));
+    }
+
+    [Given(@"the levy employer logins using existing transfer matching account")]
+    public void TheLevyEmployerLoginsUsingExistingTransferMatchingAccount() => LoginAsSender(_context.GetUser<TransferMatchingUser>());
+
+    [Then(@"the levy employer cannot exceed the maximum funding available")]
+    public void TheLevyEmployerCannotExceedTheMaximumFundingAvailable() => AssertErrorMessage(GoToEnterPlegeAmountPage().EnterInValidAmount(), "You need to enter an amount greater than");
+
+    [Then(@"the viewer cannot create pledge")]
+    public void TheViewerCannotCreatePledge()
+    { NavigateToTransferMatchingPage().CanCreateTransferPledge(); }
+
+
+    [Then(@"the levy employer confirms the pledge displays as closed")]
+    public void ThenLevyEmployerCanViewClosedPledge()
+    {
+        var sender = _context.Get<TransferMatchingUser>();
+        UpdateOrganisationName(sender.OrganisationName);
+
+        _employerHomePageStepsHelper.GotoEmployerHomePage();
+        _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
+
+        _manageTransferMatchingPage.GoToViewMyTransferPledgePage().ConfirmStatus("Closed")
+            .GoToTransferPledgePage().VerifyClosePledgeButtonIsNotDisplayed();
+    }
+
+    [Given(@"the levy employer can create pledge using default criteria")]
+    [Then(@"the levy employer can create pledge using default criteria")]
+    public void TheLevyEmployerCanCreatePledgeUsingDefaultCriteria()
+    {
+        var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
+
+        StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+        StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+
+        _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+        SetPledgeDetail();
+    }
+
+    [Given(@"the levy employer can create pledge for immediate approval using default criteria")]
+    [Then(@"the levy employer can create pledge for immediate approval using default criteria")]
+    public void TheLevyEmployerCanCreatePledgeForImmediateApprovalUsingDefaultCriteria()
+    {
+        _isImmediateAutoApprovalPledge = true;
+
+        var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false);
+
+        StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+        StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+
+        _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+        SetPledgeDetail();
+    }
+
+
+    [Given(@"the levy employer can create pledge using non default criteria and immediate approval")]
+    [Then(@"the levy employer can create pledge using non default criteria and immediate approval")]
+    public void TheLevyEmployerCanCreatePledgeUsingNonDefaultCriteriaWithImmediateApproval()
+    {
+        _isImmediateAutoApprovalPledge = true;
+        _isAnonymousPledge = true;
+
+        _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
+            .GoToAddtheLocationPage().EnterLocation()
+            .GoToChoosetheSectorPage().SelectSetorAndContinue()
+            .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
+            .GoToChooseTheLevelPage().SelectLevelAndContinue()
+            .ContinueToPledgeVerificationPage();
+
+        SetPledgeDetail();
+    }
+
+    [Given(@"the levy employer can create pledge using minimal funding")]
+    [Then(@"the levy employer can create pledge using minimal funding")]
+    public void TheLevyEmployerCanCreatePledgeUsingMinimalFunding()
+    {
+        var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, true);
+
+        StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+        StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+
+        _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+        SetPledgeDetail();
+    }
+
+
+    [Then(@"the levy employer can create pledge with funding equal to course cost")]
+    public void TheLevyEmployerCanCreatePledgeWithFundingEqualToCourseCost()
+    {
+        var page = CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false, true);
+
+        StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
+        StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
+        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
+
+        _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
+
+        SetPledgeDetail();
+    }
+
+    [Then(@"the levy employer can create anonymous pledge using non default criteria")]
+    public void TheLevyEmployerCanCreateAnonymousPledgeUsingNonDefaultCriteria()
+    {
+        _isAnonymousPledge = true;
+
+        _pledgeVerificationPage = CreateATransferPledge(false, _isImmediateAutoApprovalPledge, false)
+             .GoToAddtheLocationPage().EnterLocation()
+             .GoToChoosetheSectorPage().SelectSetorAndContinue()
+             .GoToChooseTheTypesOfJobPage().SelectTypeOfJobAndContinue()
+             .GoToChooseTheLevelPage().SelectLevelAndContinue()
+             .ContinueToPledgeVerificationPage();
+
+        SetPledgeDetail();
+    }
+
+    [Then(@"the levy employer can sort the pledges")]
+    public void TheLevyEmployerCanSortThePledges() => SortApplications();
+
+    [When(@"the levy employer is viewing pledges from verification page")]
+    [Then(@"the levy employer can view pledges from verification page")]
+    public void TheLevyEmployerCanViewPledgesFromVerificationPage() => _pledgeVerificationPage.ViewYourPledges().ConfirmStatus("Active");
+
+    [Then(@"the user can view transfer pledge")]
+    public void TheEmployerCanViewTransfers() => GoToViewMyTransferPledgePage();
+
+    [Then(@"the levy employer currently receiving funds can not create pledge")]
+    public void ThenTheLevyEmployerCurrentlyReceivingFundsCanNotCreatePledge() => CreateTransferPledge(true, false);
+
+    [Then(@"the levy employer currently receiving funds can create pledge")]
+    public void ThenTheLevyEmployerCurrentlyReceivingFundsCanCreatePledge() => CreateTransferPledge(true, true);
+
+    [Then(@"the user can not create transfer pledge")]
+    public void TheUserCanNotCreateTransferPledge() => CreateTransferPledge(false, false);
+
+    [Then(@"the user can create transfer pledge")]
+    public void TheUserCanCreateTransferPledge() => CreateTransferPledge(false, true);
+
+    [Then(@"the levy employer can not apply for transfer opportunities")]
+    public void ThenTheLevyEmployerCanNotApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(false);
+
+    [Then(@"the levy employer is able to apply for transfer opportunities")]
+    public void ThenTheLevyEmployerIsAbletoApplyForTransferOpportunities() => CanApplyForTransferOppurtunity(true);
+
+    [Then(@"the levy employer can bulk reject application")]
+    public void ThenTheLevyEmployerCanBulkRejectApplication() => BulkReject();
+
+    [Then(@"Then the levy employer can view transfer allowance")]
+    public void ThenTheLevyEmployerCanViewTransferAllowance() => NavigateToTransferMatchingPage().VerifyTransferAllowanceText();
+
+    [Then(@"the levy employer can view pleged amount")]
+    public void ThenTheLevyEmployerCanViewPLedgedAmount() => VerifyPlegdeAmount();
+
+    [Then(@"the non levy employer can add apprentice to the pledgeApplication")]
+    public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplication()
+    {
+        var apprenticeDetailsApprovedPage = new UseTransferFundsPage(_context).ClickOnStartNowButton()
+            .SubmitValidUkprn()
+            .ConfirmProviderDetailsAreCorrect()
+            .EmployerAddsApprentices()
+            .EmployerSelectsAStandard()
+            .SubmitValidApprenticeDetails(false)
+            .EmployerFirstApproveAndNotifyTrainingProvider();
+
+        var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
+        _objectContext.SetCohortReference(cohortReference);
+        _objectContext.SetNoOfApprentices(1);
+    }
+
+    [Then(@"the non levy employer can add apprentice to the pledgeApplication via 'Add an apprentice' route")]
+    public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplicationViaAddAnApprenticeRoute()
+    {
+        var apprenticeDetailsApprovedPage = _apprenticeHomePageStepsHelper.GoToAddAnApprenticePage()
+            .StartNowToSelectFunding()
+            .SelectFundingType(FundingType.TransferFunds)
+            .SubmitValidUkprn()
+            .ConfirmProviderDetailsAreCorrect()
+            .EmployerAddsApprentices()
+            .EmployerSelectsAStandard()
+            .SubmitValidApprenticeDetails(false)
+            .EmployerFirstApproveAndNotifyTrainingProvider(); ;
+
+        var cohortReference = apprenticeDetailsApprovedPage.CohortReferenceFromUrl();
+        _objectContext.SetCohortReference(cohortReference);
+        _objectContext.SetNoOfApprentices(1);
+    }
+
+    [Then(@"wait for 6 weeks")]
+    public void ApplicationIsApprovedAfter6Weeks()
+    {
+        //update created on date to 6 weeks Ago
+        _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+        // trigger autoapproval job
+        _transferMatchingJobsHelper.RunApplicationsWithAutomaticApprovalJob();
+    }
+
+    [When(@"Six weeks have passed since the application was approved")]
+    public void WaitSixWeeksAfterApplicationWasApproved()
+    {
+        _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo6WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+        _transferMatchingSqlDataHelper.UpdateApprovedDateToBeSixWeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+        // trigger auto decline job
+        _transferMatchingJobsHelper.RunApplicationsWithAutoDeclineJob();
+    }
+
+    [Then(@"the approved application should auto decline")]
+    public void TheApprovedApplicationShouldAutoDecline()
+    {
+        var sender = _context.Get<TransferMatchingUser>();
+        UpdateOrganisationName(sender.OrganisationName);
+        LoginAsSender(sender);
+
+        _transferPledgePage = NavigateToTransferMatchingPage()
+            .GoToViewMyTransferPledgePage()
+            .GoToTransferPledgePage()
+            .ConfirmApplicationStatus(ApplicationStatus.Declined.GetLabelForSender());
+    }
+
+    [Then(@"the deducted funds should be automatically refunded to the sending employer's account")]
+    public void TheDeductedFundsShouldBeRefundedToSendersEmployerAccount() => ConfirmPledgeFundsHaveBeenRefunded();
+
+    [Then(@"the application is seven days from being auto approved")]
+    public void ApplicationIs7DaysFromBeingAutoApproved()
+    {
+        _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo5WeeksAgo(_objectContext.GetPledgeDetail().PledgeId);
+    }
+
+    [Then(@"the status of the application will change from 'Auto approval' to 'Auto approval due on XXX'")]
+    public void ApplicationStatusShowsDateDueToAutoApprove()
+    {
+        var approvalDate = "Auto approval on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+
+        GoToTransferPledgePageAsSender().ConfirmApplicationStatus(approvalDate);
+    }
+
+    [Then(@"It is 7 days before an application reaches 3 months without any action")]
+    public void ItIsAWeekBeforeApplicationIs3MonthsOldWithoutAnyAction()
+    {
+        _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationToAWeekLessThan3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
+    }
+
+    [Then(@"the levy employer will be able to view auto rejected date of application under status tag 'Application expires on dd/mm/yy'")]
+    public void ApplicationStatusShowsDateDueToAutoReject()
+    {
+        var approvalDate = "Application expires on " + DateTime.Now.AddDays(7).ToString("dd MMM yyyy").ToUpper();
+
+        var sender = _context.Get<TransferMatchingUser>();
+        UpdateOrganisationName(sender.OrganisationName);
+
+        SignOut();
+        LoginAsSender(sender);
+        NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage().ConfirmApplicationStatus(approvalDate);
+    }
+
+    [Then(@"Application has not been actioned for 3 months")]
+    public void ApplicationHasNotBeenActionedFor3Months()
+    {
+        _transferMatchingSqlDataHelper.UpdateCreatedDateForApplicationTo3MonthsAgo(_objectContext.GetPledgeDetail().PledgeId);
+        Thread.Sleep(TimeSpan.FromSeconds(10));
+
+        // trigger autoRejection job
+        _transferMatchingJobsHelper.RunApplicationsWithAutomaticRejectionJob();
+    }
+
+    [Then(@"Application should be auto rejected")]
+    public void ApplicationShouldBeAutoRejected()
+    {
+        var status = _transferMatchingSqlDataHelper.GetPledgeApplicationStatusByDetails(_objectContext.GetPledgeDetail().PledgeId);
+        status.Should().Be((int)ApplicationStatus.Rejected);
+    }
+
+    [Then(@"the Pledge balance drops below £2,000 Pledge should be auto closed")]
+    public void PledgeBalanceDropsBelow2000AndShouldBeAutoClosed()
+    {
+        var (status, remainingAmount) = _transferMatchingSqlDataHelper.GetPledgeDetails(_objectContext.GetPledgeDetail().PledgeId);
+
+        remainingAmount.Should().BeLessThanOrEqualTo(2000);
+        status.Should().Be((int)PledgeStatus.Closed);
+    }
+
+    [Then(@"Pledge wont be shown publicly")]
+    public void PledgeIsNotShownPublicly()
+    {
+        _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
+        _transferFundDetailsInErrorPage = new TransferFundDetailsInErrorPage(_context);
+    }
+
+    public string GoToTransferMatchingAndSignIn(EasAccountUser receiver, string _sender, bool _isAnonymousPledge)
+    {
+        SignOutAndGoToTransferMacthingApplyUrl();
+
+        UpdateOrganisationName(_sender);
+
+        var page = new TransferFundDetailsPage(_context, _isAnonymousPledge);
+
+        var _receiver = receiver.OrganisationName;
+
+        UpdateOrganisationName(_receiver);
+
+        page.ApplyForTransferFunds().Login(receiver.Username, receiver.IdOrUserRef).Continue();
+
+        return _receiver;
+    }
+
+
+    [Then(@"the levy employer can filter pledges")]
+    public void ThenTheLevyEmployerCanFilterPledges()
+    {
+        NavigateToTransferMatchingPage().GoToFindABusinessPage().GoToOpportunitiesPage().SelectAndApplyFilters();
+    }
+    
+    [Then(@"Employer navigates to Create a Transfer Pledge page")]
+    public void ThenTheEmployerNavigatesToCreateATransferPledgePage()
+    {
+        _pledgeAndTransferYourLevyFundsPage = NavigateToTransferMatchingPage().GotoCreateTransfersPledgePage();
+    }
+
+    [Then(@"Standard gov\.uk footer should be displayed at the bottom of the page in Transfers")]
+    public void ThenStandardGov_UkFooterShouldBeDisplayedAtTheBottomOfThePage() => _pledgeAndTransferYourLevyFundsPage.ValidateFooter();
+
+    [Then(@"the Help widget is displayed on bottom right hand corner in Transfers")]
+    public void ThenTheHelpWidgetIsDisplayedOnBottomRightHandCorner() => _pledgeAndTransferYourLevyFundsPage.ValidateHelpWidget();
+
+    [Then(@"the employer can navigate to Accessibility statement page from Transfers")]
+    public void ThenEmployerIsAbleToNavigateToAccessibilityStatementPage()
+    {
+        _pledgeAndTransferYourLevyFundsPage
+         .GoToAccessibilityStatementPage();
+    }
+    public void SignOutAndGoToTransferMacthingApplyUrl()
+    {
+        SignOut();
+
+        _tabHelper.OpenInNewTab(UrlConfig.TransferMacthingApplyUrl(_objectContext.GetPledgeDetail().PledgeId));
+    }
+
+    public void UpdateOrganisationName(string orgName) => _objectContext.UpdateOrganisationName(orgName);
+
+    public void SignOut() => _accountSignOutHelper.SignOut();
+
+    private ApplicationsDetailsPage OpenApprovedPledgeApplication()
+    {
+        UpdateOrganisationName(_sender);
+
+        SignOut();
+
+        LoginAsReceiver(_context.Get<NonLevyUser>());
+
+        return OpenPledgeApplication(ApplicationStatus.Approved.GetLabelForReceiver());
+    }
+
+    private void CanApplyForTransferOppurtunity(bool canApply)
+    {
+        Assert.That(NavigateToTransferMatchingPage().CanApplyForTransferOppurtunity(), Is.EqualTo(canApply), canApply ? "User can't apply for transfer oppurtunity" : "User can apply for transfer oppurtunity");
+    }
+
+    private void CreateTransferPledge(bool navigate, bool canCreateTransferPledge)
+    {
+        if (navigate) new HomePage(_context, true).GoToYourAccountsPage().ClickAccountLink(_receiver);
+
+        Assert.That(NavigateToTransferMatchingPage().CanCreateTransferPledge(), Is.EqualTo(canCreateTransferPledge), canCreateTransferPledge ? "User can't create transfer pledge" : "User can create transfer pledge");
+    }
+
+    private ApprovingTheApprenticeshipDetailsPage GoToApprovingTheApprenticeshipDetailsPage() => GoToApproveAppliationPage().GoToApprovingTheApprenticeshipDetailsPage();
+
+    private TransferPledgePage VerifyPlegdeAmount() => GoToTransferPledgePageAsSender().VerifyPledgeAmount();
+    private ClosePledgePage ClosePledge() => GoToTransferPledgePageAsSender().ClosePledge();
+
+    private TransferPledgePage BulkReject() => GoToTransferPledgePageAsSender().SelectBulkReject().CancelBulkReject().SelectBulkReject().BulkReject();
+
+    private TransferPledgePage SortApplications() => GoToTransferPledgePageAsSender().SortByApplicant();
+
+    private TransferPledgePage GoToTransferPledgePageAsSender()
+    {
+        SignOut();
+
+        LoginAsSender(_context.GetUser<TransferMatchingUser>());
+
+        return NavigateToTransferMatchingPage().GoToViewMyTransferPledgePage().GoToTransferPledgePage();
+    }
+
+    private ApproveAppliationPage GoToApproveAppliationPage() => GoToTransferPledgePageAsReceiver().GoToApproveAppliationPage();
+
+    private TransferPledgePage GoToTransferPledgePageAsReceiver()
+    {
+        SignOut();
+
+        UpdateOrganisationName(_sender);
+
+        _multipleAccountsLoginHelper.ReLogin();
+
+        NavigateToTransferMatchingPage();
+
+        UpdateOrganisationName(_receiver);
+
+        return GoToViewMyTransferPledgePage().GoToTransferPledgePage();
+    }
+
+    protected void SetPledgeDetail() => _pledgeVerificationPage.SetPledgeDetail();
+
+    private CreateATransferPledgePage CreateATransferPledge(bool showOrgName, bool immediateMatch, bool useMinimalFunding, bool useFundingEqualToEstimatedCost = false) =>
+        GoToEnterPlegeAmountPage().EnterInValidAmountForCreateAPledge(useMinimalFunding, useFundingEqualToEstimatedCost)
+        .GoToPledgeOrganisationNamePageOptionPage().EnterValidOrgNameChoice(showOrgName)
+        .GoToPledge100PercentMatchPage().EnterValidMatchChoice(immediateMatch);
+
+    private PledgeAmountPage GoToEnterPlegeAmountPage() =>
+        NavigateToTransferMatchingPage()
+        .GotoCreateTransfersPledgePage()
+        .StartCreatePledge()
+        .GoToPledgeAmountPage()
+        .CaptureAvailablePledgeAmount();
+
+    private ManageTransferMatchingPage NavigateToTransferMatchingPage() => _manageTransferMatchingPage = new HomePageFinancesSection_YourTransfers(_context).NavigateToTransferMatchingPage();
+
+    private MyTransferPledgesPage GoToViewMyTransferPledgePage() => _manageTransferMatchingPage.GoToViewMyTransferPledgePage();
+
+    private ApplicationsDetailsPage SubmitApplication(CreateATransfersApplicationPage page)
+    {
+        SubmitApplicationHelper.SubmitApplication(page, _objectContext.GetPledgeDetail().PledgeId);
+
+        return OpenPledgeApplication(_isImmediateAutoApprovalPledge ?
+            ApplicationStatus.Approved.GetLabelForReceiver()
+            : ApplicationStatus.Pending.GetLabelForReceiver()).SetPledgeApplication();
+    }
+
+    private ApplicationsDetailsPage OpenPledgeApplication(string expectedStatus) => NavigateToTransferMatchingPage().ViewApplicationsIhaveSubmitted().OpenPledgeApplication(expectedStatus);
+
+    private ApprenticeshipTrainingPage ApplyForAnInvalidPledge(EasAccountUser user)
+    {
+        _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
+
+        return SubmitApplicationHelper.GoToApprenticeshipTrainingPage(new CreateATransfersApplicationPage(_context));
+    }
+
+    private ApplicationsDetailsPage ApplyForAPledge(EasAccountUser user)
+    {
+        _receiver = GoToTransferMatchingAndSignIn(user, _sender, _isAnonymousPledge);
+
+        return SubmitApplication(new CreateATransfersApplicationPage(_context));
+    }
+
+    private StubSignInEmployerPage ApplyForTransferFunds()
+    {
+        SignOutAndGoToTransferMacthingApplyUrl();
+
+        return new TransferFundDetailsPage(_context, false).ApplyForTransferFunds();
+    }
+
+    private static void AssertErrorMessage(TransferMatchingBasePage page, string expectedErrorMessage)
+    {
+        string actualErrorMessage = page.GetErrorMessage();
+
+        Assert.Multiple(() =>
+        {
+            StringAssert.Contains("There is a problem", actualErrorMessage);
+
+            StringAssert.Contains(expectedErrorMessage, actualErrorMessage);
+        });
+    }
+
+    private void CreateATransferPledge(EasAccountUser login)
+    {
+        LoginAsSender(login);
+
+        CreateATransferPledge(true, _isImmediateAutoApprovalPledge, false).ContinueToPledgeVerificationPage().SetPledgeDetail();
+    }
+
+    private void LoginAsReceiver(EasAccountUser login)
+    {
+        _receiver = login.OrganisationName;
+
+        _loginFromCreateAcccountPageHelper.Login(login, false);
+    }
+
+    private void LoginAsSender(EasAccountUser login)
+    {
+        _sender = login.OrganisationName;
+
+        _loginFromCreateAcccountPageHelper.Login(login, true);
+    }
+
+    private void LoginAsSender(MultipleEasAccountUser login)
+    {
+        _multipleAccountsLoginHelper = new MultipleAccountsLoginHelper(_context, login)
+        {
+            OrganisationName = login.OrganisationName
+        };
+
+        _multipleAccountsLoginHelper.Login(login, true);
+
+        _sender = login.OrganisationName;
+
+        _receiver = login.SecondOrganisationName;
+    }
+
+    private void ConfirmPledgeFundsHaveBeenRefunded()
+    {
+        var totalPledgeFunds = _transferPledgePage.GetTotalPledgeFunds();
+        var remainingPledgeFunds = _transferPledgePage.GetEstimatedRemainingFunds();
+
+        remainingPledgeFunds.Should().Be(totalPledgeFunds);
+    }
+
+    [Then(@"Verify a new live apprenticeship record is created")]
+    public void ThenVerifyANewLiveApprenticeshipRecordIsCreated()
+    {
+        UpdateOrganisationName(_receiver);
+
+        var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
+
+        manageYourApprenticePage.VerifyApprenticeExists();
+    }
+
 }

@@ -6,4 +6,5 @@
 Scenario: RAA_E_CVS_02 - Create, Approve and Edit the advert
 	Given the Employer creates an advert by using a trading name
 	And the Reviewer Approves the vacancy
+	When the Applicant can apply for a Vacancy in FAA
 	Then the Employer can edit the vacancy

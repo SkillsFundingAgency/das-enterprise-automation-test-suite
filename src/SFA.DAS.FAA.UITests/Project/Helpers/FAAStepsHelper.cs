@@ -43,7 +43,7 @@ public class FAAStepsHelper(ScenarioContext context)
         else page.OpenUnSuccessfulApplicationPage().ViewApplication();
     }
 
-    public FAA_ApplicationOverviewPage ApplyForAVacancy()
+    public FAA_ApplicationOverviewPage ApplyForAVacancy(string numberOfQuestions)
     {
         var applicationFormPage = GoToFAAHomePageAndApply();
 
@@ -59,10 +59,21 @@ public class FAAStepsHelper(ScenarioContext context)
 
         applicationFormPage = applicationFormPage.Access_Section3_2Interests().SelectSectionCompleted().VerifyApplicationsQuestions_2();
 
+        switch (numberOfQuestions)
+        {
+            case "first":
+                applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
+                break;
 
-        applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
+            case "second":
+                applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
+                break;
 
-        applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
+            case "both":
+                applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
+                applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
+                break;
+        }
 
         applicationFormPage = applicationFormPage.Access_Section4_1Adjustment().SelectYesAndContinue().SelectSectionCompleted().VerifyInterviewAadjustments_1();
 
@@ -74,7 +85,7 @@ public class FAAStepsHelper(ScenarioContext context)
     public FAA_ApplicationOverviewPage ApplyForAVacancyWithNewAccount(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
         var applicationFormPage = GoToFAASearchResultsPageToSelectAVacancyAndApply();
-
+        
         if (qualificationdetails)
         {
             applicationFormPage = applicationFormPage.Access_Section1_1SchoolCollegeQualifications()
@@ -186,6 +197,8 @@ public class FAAStepsHelper(ScenarioContext context)
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
 
     public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndWithdrawAnApplication() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage().WithdrawSelectedApplication();
+    public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndWithdrawARandomApplication() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage().WithdrawRandomlySelectedApplication();
+    public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndOpenSubmittedApplicationsPage() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage();
 
     private FAA_ApplicationOverviewPage GoToFAASearchResultsPageToSelectAVacancyAndApply()
     {

@@ -42,6 +42,15 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Helpers
 
             ExecuteSqlCommand(sqlQueryFromFile);
         }
+        
+        public void UpdateAcceptedDateToBe3MonthsAgo(string details)
+        {
+            string sqlQueryFromFile = FileHelper.GetSql("TMUpdateApplicationApplicationAccepteddDate3MonthsAgo");
+
+            sqlQueryFromFile = MyRegex3().Replace(sqlQueryFromFile, details);
+
+            ExecuteSqlCommand(sqlQueryFromFile);
+        }
 
         public void UpdateCreatedDateForApplicationTo5WeeksAgo(string details)
         {

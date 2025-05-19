@@ -41,7 +41,26 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
                 ExtraInformationAboutWage();
             }
 
-            else EnterNationalMinimumWageForApprentices();
+            else if (wageType == RAAConst.NationalMinWagesForApprentices)
+            {
+                EnterNationalMinimumWageForApprentices();
+            }
+            else
+            {
+                EnterNationalMinWages();
+                Continue();
+                NavigateBack();
+                EnterFixedWageType();
+                Continue();
+                NavigateBack();
+                NavigateBack();
+                EnterSetAsCompetitive();
+                ExtraInformationAboutWage();
+                Continue();
+                NavigateBack();
+                NavigateBack();
+                EnterNationalMinimumWageForApprentices();
+            }
         }
 
         public CompetitiveWagePage ExtraInformationAboutWage()

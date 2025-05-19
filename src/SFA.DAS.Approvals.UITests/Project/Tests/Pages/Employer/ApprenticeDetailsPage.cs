@@ -53,6 +53,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ProviderPaymentStatusValue => By.Id("provider-payments-status");
         private static By ProviderPaymentsInactiveTemporaryBannerHeading => By.CssSelector("#provider-payments-inactive-banner h3");
         private static By ProviderPaymentsInactivePermanentBannerHeading => By.CssSelector("#provider-payments-inactive-permanent-banner h3");
+        private static By WithdrawnPermanentBannerHeading => By.CssSelector("#withdrawn-permanent-banner h3");
+        private static By WithdrawnPermanentBannerTextLocator => By.CssSelector("#withdrawn-permanent-banner p");
         private static By LearnerStatusRowHeading => By.XPath("//th[text()='Learner Status']");
         private static By LearnerStatusValue => By.XPath("//th[text()='Learner Status']/parent::tr/td/strong");
         private static By ChangeProviderPaymentStatusLink => By.Id("linkChangePaymentStatus");
@@ -276,6 +278,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         public ApprenticeDetailsPage ValidateProviderPaymentsWithheldPermanentBannerIsDisplayed()
         {
             Assert.AreEqual("Provider payments set to \"Withheld\" on the " + DateTimeExtensions.ToGdsHumanisedDate(DateTime.Today), pageInteractionHelper.GetText(ProviderPaymentsInactivePermanentBannerHeading));
+            return this;
+        }
+
+        public ApprenticeDetailsPage ValidateLearnerStatusWithdrawnPermanentBannerIsDisplayed(string withdrawalReason)
+        {
+            Assert.AreEqual("The training provider changed the apprentice status to \"Withdrawn\" on the " + DateTimeExtensions.ToGdsHumanisedDate(DateTime.Today), pageInteractionHelper.GetText(WithdrawnPermanentBannerHeading));
+            Assert.AreEqual($"Reason for update: {withdrawalReason}\r\n\r\nIf you believe this was done in error please contact the training provider.", pageInteractionHelper.GetText(WithdrawnPermanentBannerTextLocator));
             return this;
         }
 

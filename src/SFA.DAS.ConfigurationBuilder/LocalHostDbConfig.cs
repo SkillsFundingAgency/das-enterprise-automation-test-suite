@@ -45,7 +45,7 @@ namespace SFA.DAS.ConfigurationBuilder
 
         private string GetConnectionString(string dbName)
         {
-            var x = $"Server={dbDevConfig.Server};{SqlDbConfigHelper.GetDbNameKey(useSqlLogin)}={dbName};{dbDevConfig.ConnectionDetails};";
+            var x = $"Server={dbDevConfig.Server};{SqlDbConfigHelper.GetDbNameKey(useSqlLogin)}={dbName};{dbDevConfig.ConnectionDetails};TENANTID={dbDevConfig.TenantId}";
 
             return EnvironmentConfig.ReplaceEnvironmentName(x);
         }

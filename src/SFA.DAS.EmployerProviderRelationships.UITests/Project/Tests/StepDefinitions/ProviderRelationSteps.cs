@@ -25,6 +25,30 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
         request.GoToViewEmployersPage().VerifyPendingRequest();
     }
 
+    [Given("a provider requests all permission from an employer and verifies the employer details")]
+    public void GivenAProviderRequestsAllPermissionFromAnEmployerAndVerifiesTheEmployerDetails()
+    {
+        EPRBaseUser employerUser = tags.Contains("acceptrequest") ? context.GetUser<EPRAcceptRequestUser>() : context.GetUser<EPRDeclineRequestUser>();
+
+        context.Set(employerUser);
+
+        EPRLogin(employerUser);
+
+        permissions = (AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprentices);
+
+        GoToProviderViewEmployersAndManagePermissions();
+
+        eprDataHelper.EmployerEmail = employerUser.Username;
+
+        eprDataHelper.EmployerOrganisationName = employerUser.OrganisationName;
+
+        eprDataHelper.AgreementId = objectContext.GetAleAgreementId();
+
+        var request = GoToEmailAccountFoundPage().ContinueToInvite().ProviderRequestPermissions(permissions);
+
+        request.GoToViewEmployersPage().ViewPendingEmployer();
+    }
+
     [When("the provider updates the permission to NoToAddApprenticeRecords YesRecruitApprenticesButEmployerWillReview")]
     public void WhenTheProviderUpdatesThePermissionToNoToAddApprenticeRecordsYesRecruitApprenticesButEmployerWillReview()
     {

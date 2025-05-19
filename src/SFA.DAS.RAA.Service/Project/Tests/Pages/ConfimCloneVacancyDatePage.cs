@@ -6,7 +6,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public class ConfimCloneVacancyDatePage : RaaBasePage
     {
-        protected override string PageTitle => "Advert succesfully cloned";
+        protected override string PageTitle => isRaaEmployer ?  "Advert succesfully cloned" : "Vacancy succesfully cloned";
 
         private static By Info => By.CssSelector(".govuk-notification-banner__heading");
 
