@@ -8,7 +8,7 @@ public class ApprenticeshipTrainingCourseSummaryPage(ScenarioContext context) : 
 
     #region Locators
     private static By LocationTextBox => By.Id("search-location");
-    private static By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
+    private static By ViewProvidersForThisCourseButton => By.XPath("//*[@id=\"course-location-form\"]/a");
     private static By BackToCourseSearchPage => By.Id("courses-breadcrumb");
 
     #endregion
