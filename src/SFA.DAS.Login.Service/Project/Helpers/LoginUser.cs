@@ -163,6 +163,20 @@ namespace SFA.DAS.Login.Service.Project.Helpers
 
     }
 
+    public abstract class FAAPortalSecondUser : GovSignUser
+    {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string MobilePhone { get; set; }
+    }
+
+    public class FAAApplySecondUser : FAAPortalSecondUser
+    {
+
+    }
+
     #region ApprenticeAccount
 
     public class CocApprenticeUser : ApprenticeUser { }

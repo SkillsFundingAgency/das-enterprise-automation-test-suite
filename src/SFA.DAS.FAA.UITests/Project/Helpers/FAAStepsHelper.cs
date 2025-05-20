@@ -16,6 +16,29 @@ public class FAAStepsHelper(ScenarioContext context)
 
         return new FAASignedInLandingBasePage(context);
     }
+    public FAASignedInLandingBasePage GoToFAAHomePage(FAAApplyUser user)
+    {
+        context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
+
+        if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
+        {
+            new FAASignedOutLandingpage(context).GoToSignInPage().SubmitValidUserDetails(user).Continue();
+        }
+
+        return new FAASignedInLandingBasePage(context);
+    }
+
+    public FAASignedInLandingBasePage GoToFAAHomePage(FAAApplySecondUser user)
+    {
+        context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
+
+        if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
+        {
+            new FAASignedOutLandingpage(context).GoToSignInPage().SubmitValidUserDetails(user).Continue();
+        }
+
+        return new FAASignedInLandingBasePage(context);
+    }
 
     public FAASignedInLandingBasePage SubmitNewUserDetails()
     {
@@ -36,7 +59,8 @@ public class FAAStepsHelper(ScenarioContext context)
 
     public void VerifyApplicationStatus(bool IsSucessful)
     {
-        var page = GoToFAAHomePage().GoToApplications();
+        var user = context.GetUser<FAAApplyUser>();
+        var page = GoToFAAHomePage(user).GoToApplications();
 
         if (IsSucessful) page.OpenSuccessfulApplicationPage().ViewApplication();
 
@@ -46,6 +70,57 @@ public class FAAStepsHelper(ScenarioContext context)
     public FAA_ApplicationOverviewPage ApplyForAVacancy(string numberOfQuestions)
     {
         var applicationFormPage = GoToFAAHomePageAndApply();
+
+        applicationFormPage = applicationFormPage.Access_Section1_1SchoolCollegeQualifications().SelectSectionCompleted().VerifyEducationHistory_1();
+
+        applicationFormPage = applicationFormPage.Access_Section1_2TrainingCourse().SelectSectionCompleted().VerifyEducationHistory_2();
+
+        applicationFormPage = applicationFormPage.Access_Section2_1Jobs().SelectSectionCompleted().VerifyWorkHistory_1();
+
+        applicationFormPage = applicationFormPage.Access_Section2_2VolunteeringAndWorkExperience().SelectSectionCompleted().VerifyWorkHistory_2();
+
+        applicationFormPage = applicationFormPage.Access_Section3_1SkillsAndStrengths().SelectSectionCompleted().VerifyApplicationsQuestions_1();
+
+        applicationFormPage = applicationFormPage.Access_Section3_2Interests().SelectSectionCompleted().VerifyApplicationsQuestions_2();
+
+        switch (numberOfQuestions)
+        {
+            case "first":
+                applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
+                break;
+
+            case "second":
+                applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
+                break;
+
+            case "both":
+                applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
+                applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
+                break;
+        }
+
+        applicationFormPage = applicationFormPage.Access_Section4_1Adjustment().SelectYesAndContinue().SelectSectionCompleted().VerifyInterviewAadjustments_1();
+
+        applicationFormPage = applicationFormPage.Access_Section5_1DisabilityConfidence().SelectSectionCompleted().VerifyDisabilityConfidence_1();
+
+        return applicationFormPage;
+    }
+
+    public FAA_ApplicationOverviewPage ApplyForAVacancy(string numberOfQuestions, object user)
+    {
+        FAA_ApplicationOverviewPage applicationFormPage;
+
+        switch (user)
+        {
+            case FAAApplyUser faaUser:
+                applicationFormPage = GoToFAAHomePageAndApply(faaUser);
+                break;
+            case FAAApplySecondUser faaUser2:
+                applicationFormPage = GoToFAAHomePageAndApply(faaUser2);
+                break;
+            default:
+                throw new ArgumentException("Unsupported user type", nameof(user));
+        } 
 
         applicationFormPage = applicationFormPage.Access_Section1_1SchoolCollegeQualifications().SelectSectionCompleted().VerifyEducationHistory_1();
 
@@ -194,8 +269,6 @@ public class FAAStepsHelper(ScenarioContext context)
 
     public FAA_ApplicationOverviewPage GoToVacancyDetailsPageThenSaveBeforeApplying() => GoToFAAHomePage().SearchByReferenceNumber().SaveAndApplyForVacancy().Apply();
     public FAA_ApplicationOverviewPage GoToSearchResultsPagePageAndSaveBeforeApplying() => GoToFAAHomePage().SearchAndSaveVacancyByReferenceNumber().SaveFromSearchResultsAndApplyForVacancy();
-    private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
-
     public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndWithdrawAnApplication() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage().WithdrawSelectedApplication();
     public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndWithdrawARandomApplication() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage().WithdrawRandomlySelectedApplication();
     public FAA_SubmittedApplicationPage GoToYourApplicationsPageAndOpenSubmittedApplicationsPage() => GoToFAAHomePage().GoToApplications().OpenSubmittedlApplicationPage();
@@ -210,7 +283,9 @@ public class FAAStepsHelper(ScenarioContext context)
 
         return apprenticeSummaryPage.Apply();
     }
-
+    private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
+    private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAApplyUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
+    private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAApplySecondUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
