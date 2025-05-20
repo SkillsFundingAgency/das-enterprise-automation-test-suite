@@ -5,5 +5,13 @@ public class ApplicationSubmittedPage(ScenarioContext context) : FAABasePage(con
     protected override string PageTitle => "Application submitted";
 
     protected override By PageHeader => By.CssSelector(".govuk-panel--confirmation");
+
+    private static By SignoutLink => By.LinkText("Sign out");
+
+    public void ClickSignOut()
+    {
+        formCompletionHelper.Click(SignoutLink);
+      
+    }
 }
 

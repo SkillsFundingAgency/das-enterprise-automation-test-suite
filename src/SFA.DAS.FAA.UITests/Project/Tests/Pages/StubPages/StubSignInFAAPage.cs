@@ -13,6 +13,11 @@ public class StubSignInFAAPage(ScenarioContext context) : StubSignInBasePage(con
         return GoToStubYouHaveSignedInFAAPage(loginUser.Username, loginUser.IdOrUserRef, loginUser.MobilePhone, false);
     }
 
+    public StubYouHaveSignedInFAAPage SubmitValidUserDetails(FAAPortalSecondUser loginUser)
+    {
+        return GoToStubYouHaveSignedInFAAPage(loginUser.Username, loginUser.IdOrUserRef, loginUser.MobilePhone, false);
+    }
+
     public StubYouHaveSignedInFAAPage SubmitNewUserDetails(FAAPortalUser loginUser) => GoToStubYouHaveSignedInFAAPage(loginUser.Username, loginUser.IdOrUserRef, loginUser.MobilePhone, true);
 
     private StubYouHaveSignedInFAAPage GoToStubYouHaveSignedInFAAPage(string email, string idOrUserRef, string mobilePhone, bool newUser)
