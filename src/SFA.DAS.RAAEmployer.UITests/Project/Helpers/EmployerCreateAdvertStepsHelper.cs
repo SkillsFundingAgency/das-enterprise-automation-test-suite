@@ -89,6 +89,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Helpers
 
         internal VacancyReferencePage CreateANewAdvert_WageType(string wageType) => CreateANewAdvert(string.Empty, "employer", false, wageType);
 
+        internal VacancyReferencePage CreateANewAdvert_LocationAndWageType(string locationType, string wageType) => CreateANewAdvert(string.Empty, locationType, false, wageType);
+
         internal VacancyReferencePage CreateANewAdvert() => CreateANewAdvert(RAAConst.LegalEntityName);
 
         internal VacancyReferencePage CreateANewAdvert(string employername) => CreateANewAdvert(employername, "employer");

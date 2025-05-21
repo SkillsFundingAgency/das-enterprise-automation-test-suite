@@ -33,6 +33,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         public VacancyReferencePage CreateVacancyForLocationTypes(string locationType, bool enterQuestion1, bool enterQuestion2) => 
             CreateANewAdvertOrVacancy(string.Empty, locationType, RAAConst.NationalMinWages, true, enterQuestion1, enterQuestion2);
 
+        public VacancyReferencePage CreateVacancyForLocationAndWageTypes(string locationType, string wageType) => CreateANewAdvertOrVacancy(string.Empty, locationType, wageType, true, true, true);
+
         private VacancyReferencePage CreateANewVacancy(string employername) => CreateANewVacancy(employername, true);
 
         private VacancyReferencePage CreateANewVacancy(bool isApplicationMethodFAA) => CreateANewVacancy(string.Empty, isApplicationMethodFAA);

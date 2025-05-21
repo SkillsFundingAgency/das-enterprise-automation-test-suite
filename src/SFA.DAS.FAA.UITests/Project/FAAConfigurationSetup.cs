@@ -19,11 +19,25 @@ public class FAAConfigurationSetup(ScenarioContext context)
 
         var fAAApplyUsers = RandomDataGenerator.GetRandomElementFromListOfElements(listOfFAAApplyUsers);
 
-        var selectedUser = RandomDataGenerator.GetRandomElementFromListOfElements(fAAApplyUsers.ListofUser);
+        var userList = fAAApplyUsers.ListofUser.ToList();
+        var random = new Random();
+        int firstIndex = random.Next(userList.Count);
+        int secondIndex;
+        do
+        {
+            secondIndex = random.Next(userList.Count);
+        } while (secondIndex == firstIndex);
 
-        var faaApplyUser = new FAAApplyUser { Username = $"{selectedUser}@{fAAApplyUsers.Domain}" };
+        var selectedUser1 = userList[firstIndex];
+        var selectedUser2 = userList[secondIndex];
+
+        //var selectedUser = RandomDataGenerator.GetRandomElementFromListOfElements(fAAApplyUsers.ListofUser);
+
+        var faaApplyUser = new FAAApplyUser { Username = $"{selectedUser1}@{fAAApplyUsers.Domain}" };
+        var FAAApplySecondUser = new FAAApplySecondUser { Username = $"{selectedUser2}@{fAAApplyUsers.Domain}" };
 
         context.SetFAAPortaluser([faaApplyUser]);
+        context.SetFAAPortaluser2([FAAApplySecondUser]);
 
         var faaUser = context.GetUser<FAAApplyUser>();
 

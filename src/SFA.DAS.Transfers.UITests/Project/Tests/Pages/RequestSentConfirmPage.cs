@@ -8,7 +8,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.Pages
     {
         protected override string PageTitle => "Request sent";
 
-        protected override By PageHeader => By.CssSelector("#govuk-notification-banner-title");
+        protected override By PageHeader => By.XPath("//h2[contains(text(),'Request sent')]");
 
         protected override By ContinueButton => By.XPath("//button[text()='Continue']");
 

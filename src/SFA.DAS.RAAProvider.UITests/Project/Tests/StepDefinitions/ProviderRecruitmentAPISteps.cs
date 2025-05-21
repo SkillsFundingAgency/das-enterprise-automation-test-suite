@@ -21,6 +21,9 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [Then(@"the provider does not renews the api key")]
         public void ThenTheProviderDoesNotRenewsTheApiKey() => _providerStepsHelper.DoesNotRenewDisplayAPIKey();
 
+        [Then(@"the Provider views the recruitment API key")]
+        public void ThenTheProviderViewsTheRecruitmentAPIKey() => _providerStepsHelper.ViewRecruitmentApiKeyPage();
+
         [Then(@"the provider views '(.*)'")]
         public void ThenTheProviderViewsApi(string apiName)
         {

@@ -14,6 +14,7 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private By GetWithdrawnVacancyTitleLocator(string vacancyRef) => By.CssSelector($"a[href*='/apprenticeship/VAC{vacancyRef}?source=applications&tab=Submitted']");
 
+        private By FirstWithdrawLink => By.CssSelector("[id^='VAC'][id$='-withdraw']");
         public FAA_SubmittedApplicationPage WithdrawSelectedApplication()
         {
             var vacancyRef = objectContext.GetVacancyReference();
@@ -24,6 +25,13 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
             ClickToWithdrawApplication(vacancyRef);
             PerformVacancyWithdrawalActions();
             AssertApplicationWithdrawnMessage(vacancyTitle);
+
+            return new FAA_SubmittedApplicationPage(context);
+        }
+        public FAA_SubmittedApplicationPage WithdrawRandomlySelectedApplication()
+        {
+            ClickIfDisplayed(FirstWithdrawLink);
+            PerformVacancyWithdrawalActions();
 
             return new FAA_SubmittedApplicationPage(context);
         }

@@ -24,6 +24,12 @@ public class FAASteps(ScenarioContext context)
     [Then("the Applicant can withdraw the application")]
     public void ThenTheApplicantCanWithdrawTheApplication() => _faaStepsHelper.GoToYourApplicationsPageAndWithdrawAnApplication();
 
+    [Then("the Applicant can withdraw a random application")]
+    public void ThenTheApplicantCanWithdrawARandomApplication() => _faaStepsHelper.GoToYourApplicationsPageAndWithdrawARandomApplication();
+
+    [Then("the Applicant can view submitted applications page")]
+    public void ThenTheApplicantCanViewSubmittedApplicationsPage() => _faaStepsHelper.GoToYourApplicationsPageAndOpenSubmittedApplicationsPage();
+
     [Then("the apprentice attempts to delete their account they are notified of application withdrawal")]
     public void WhenTheApprenticeAttemptsToDeleteTheirAccountTheyAreNotifiedOfApplicationWithdrawal()
     {

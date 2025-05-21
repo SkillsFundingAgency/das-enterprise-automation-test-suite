@@ -36,6 +36,24 @@ namespace SFA.DAS.Login.Service.Project
             }
         }
 
+        public static void SetFAAPortaluser2(this ScenarioContext context, List<FAAPortalSecondUser> users)
+        {
+            var signInIds = new CandidateAccountStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                users[i].IdOrUserRef = signInIds[i].signInId;
+
+                users[i].FirstName = signInIds[i].firstName;
+
+                users[i].LastName = signInIds[i].lastName;
+
+                users[i].MobilePhone = signInIds[i].mobilePhone;
+
+                SetUser(context, users[i]);
+            }
+        }
+
         public static void SetEPAOAssessorPortalUser(this ScenarioContext context, List<EPAOAssessorPortalUser> users)
         {
             var signInIds = new AssessorStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());

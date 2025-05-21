@@ -13,8 +13,7 @@
 
         private string Employmentdetails => "2. Employment details";
         private string Employmentdetails_1 => isRaaEmployer ? "Closing and start dates" : "Closing and start dates";
-
-        private string Skillsandqualifications => isRaaEmployer ? "3. Requirements and prospects" : "3. Skills and qualifications";
+        private string Skillsandqualifications => "3. Requirements and prospects";
         private static string Skillsandqualifications_1 => "Skills";
 
         private static string Abouttheemployer => "4. About the employer";
