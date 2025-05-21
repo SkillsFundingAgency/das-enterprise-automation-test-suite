@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderDoYouWantToShareAnApplicationBasePage;
+using static SFA.DAS.RAA.Service.Project.Tests.Pages.ProviderDoYouWantToShareMultipleApplicationBasePage;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
@@ -18,6 +19,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         {
             OutcomeMultiSelectSharedWithEmployer();
             return new ProviderDoYouWantToShareAnApplicationPage(context);
+        }
+
+        public ProviderDoYouWantToShareMultipleApplicationsPage ProviderShareApplicantsWithEmployer()
+        {
+            OutcomeMultiSelectSharedWithEmployer();
+            return new ProviderDoYouWantToShareMultipleApplicationsPage(context);
         }
 
     }
