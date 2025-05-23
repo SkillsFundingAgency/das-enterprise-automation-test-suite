@@ -370,9 +370,4 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
         retryHelper.RetryOnWebDriverException(() => func(element), retryAction);
     }
-
-    public void WaitForElementToChange(object autoCompleteMenu, string v1, string v2)
-    {
-        throw new NotImplementedException();
-    }
 }
