@@ -35,6 +35,8 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
             if (firstlogin)
             {
                 if (tags.Any(x => x == "aanapprenticeonboardingreset")) context.Get<AANSqlHelper>().ResetApprenticeOnboardingJourney(user.Username);
+                VerifyPageAfterRefresh(By.Id("start-now"));
+
                 objectContext.SetLoginCredentials(user);
             }
         }
