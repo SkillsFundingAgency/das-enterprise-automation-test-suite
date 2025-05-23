@@ -4,7 +4,7 @@ public abstract class FATBasePage : VerifyBasePage
 {
     #region Locators
     protected override By BackLink => By.CssSelector("a.link-back");
-    protected static By SearchTextField => By.Id("Keyword");
+    protected static By SearchTextField => By.Id("keyword-input");
     protected virtual By SearchButton => By.Id("filters-submit");
     protected virtual By FirstProviderResultLink => By.ClassName("das-search-results__link");
     protected virtual By HomePageLink => By.LinkText("Home");
