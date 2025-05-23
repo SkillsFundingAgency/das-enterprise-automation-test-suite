@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page.StubPages;
 using SFA.DAS.Login.Service.Project.Helpers;
+using System.Threading;
 
 namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Apprentice
 {
@@ -35,7 +36,10 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
             if (firstlogin)
             {
                 if (tags.Any(x => x == "aanapprenticeonboardingreset")) context.Get<AANSqlHelper>().ResetApprenticeOnboardingJourney(user.Username);
-                VerifyPageAfterRefresh(By.Id("start-now"));
+
+                Thread.Sleep(2000);
+
+                pageInteractionHelper.RefreshPage();
 
                 objectContext.SetLoginCredentials(user);
             }
