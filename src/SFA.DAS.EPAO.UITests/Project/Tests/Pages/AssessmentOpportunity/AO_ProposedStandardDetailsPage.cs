@@ -2,7 +2,7 @@
 
 public class AO_ProposedStandardDetailsPage : EPAO_BasePage
 {
-    protected override string PageTitle => "Wind turbine technician";
+    protected override string PageTitle => "Fintech Product Manager";
 
     public AO_ProposedStandardDetailsPage(ScenarioContext context) : base(context) => VerifyPage();
 
