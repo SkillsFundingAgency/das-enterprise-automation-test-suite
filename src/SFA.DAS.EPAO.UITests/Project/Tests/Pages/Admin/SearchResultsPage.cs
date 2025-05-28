@@ -4,7 +4,7 @@ public class SearchResultsPage : EPAOAdmin_BasePage
 {
     protected override string PageTitle => "Search results";
 
-    private static By ViewLearner => By.CssSelector(".govuk-link[href*='/select']");
+    private static By ViewLearner => By.CssSelector("tr.govuk-table__row td.govuk-table__cell:first-of-type");
 
     public SearchResultsPage(ScenarioContext context) : base(context) => VerifyPage();
 

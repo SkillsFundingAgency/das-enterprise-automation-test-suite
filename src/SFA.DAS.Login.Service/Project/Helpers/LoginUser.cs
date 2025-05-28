@@ -44,6 +44,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     public class RAAEmployerUser : EasAccountUser { }
 
     public class RAAEmployerProviderPermissionUser : EasAccountUser { }
+    public class RAAEmployerProviderYesPermissionUser : EasAccountUser { }
 
     public class ProviderPermissionLevyUser : EasAccountUser { }
 
@@ -159,6 +160,20 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     }
 
     public class FAAApplyUser : FAAPortalUser
+    {
+
+    }
+
+    public abstract class FAAPortalSecondUser : GovSignUser
+    {
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string MobilePhone { get; set; }
+    }
+
+    public class FAAApplySecondUser : FAAPortalSecondUser
     {
 
     }
