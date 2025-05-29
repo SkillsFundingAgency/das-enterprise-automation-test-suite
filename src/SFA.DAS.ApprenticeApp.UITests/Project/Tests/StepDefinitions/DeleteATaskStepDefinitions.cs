@@ -26,7 +26,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        [Then("the apprentice clicks on delete and confirms")]
+        [When("the apprentice clicks on delete and confirms")]
         public void ThenTheApprenticeClicksOnDeleteAndConfirms()
         {
             if (TaskExists)

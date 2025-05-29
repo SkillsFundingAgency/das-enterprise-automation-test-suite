@@ -1,10 +1,10 @@
-﻿Feature: ListKSBs
+﻿Feature: AA_05_View KSBs
 
 KSBs are listed!
 
 @ApprenticeApp
 @regression
-Scenario: KSBs are listed
+Scenario: AA_05_KSBs are listed
 	Given the apprentice has logged into the app
 	When the apprentice clicks on the KSBs tab
 	Then the KSBs are displayed
