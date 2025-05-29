@@ -63,9 +63,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (IsRplPageShown) new ProviderRPLPage(context).SelectNoAndContinue();
-
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
+
+            if (IsRplPageShown) new ProviderRPLPage(context).SelectNoAndContinue();
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
