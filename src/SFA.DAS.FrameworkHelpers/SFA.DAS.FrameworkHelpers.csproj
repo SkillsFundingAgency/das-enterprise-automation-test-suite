@@ -8,7 +8,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Azure.Identity" Version="1.13.*" />
-		<PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
 			<PrivateAssets>all</PrivateAssets>

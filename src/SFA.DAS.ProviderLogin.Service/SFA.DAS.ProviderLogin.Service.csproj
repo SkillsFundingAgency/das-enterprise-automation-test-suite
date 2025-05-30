@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
     <ProjectReference Include="..\SFA.DAS.TestDataExport\SFA.DAS.TestDataExport.csproj" />
     <ProjectReference Include="..\SFA.DAS.ConfigurationBuilder\SFA.DAS.ConfigurationBuilder.csproj" />

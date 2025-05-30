@@ -21,7 +21,6 @@
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.18.*" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
-    <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
 	<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
