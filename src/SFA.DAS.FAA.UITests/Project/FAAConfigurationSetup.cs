@@ -1,5 +1,7 @@
 ﻿using SFA.DAS.Login.Service.Project;
+using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.RAA.DataGenerator.Project.Config;
+using SFA.DAS.TestDataExport.Helper;
 
 namespace SFA.DAS.FAA.UITests.Project;
 
@@ -39,4 +41,9 @@ public class FAAConfigurationSetup(ScenarioContext context)
 
         context.SetFAAConfig(new FAAUserConfig { FAAUserName = faaUser.Username, FAAPassword = faaUser.IdOrUserRef, FAAFirstName = faaUser.FirstName, FAALastName = faaUser.LastName });
     }
+
+    private MailosaurApiHelper mailosaurApiHelper;
+
+    [BeforeScenario(Order = 12)]
+    public void SetUpMailosaurApiHelper() => context.Set(mailosaurApiHelper = new MailosaurApiHelper(context));
 }
