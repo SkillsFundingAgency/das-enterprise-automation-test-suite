@@ -8,14 +8,15 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
     public class DeleteATaskStepDefinitions(ScenarioContext context)
     {
         private readonly TasksBasePage tasksBasePage = new(context);
-        private string TaskTitle;
+        private string taskTitle;
         private bool TaskExists = false;
 
         [When("the apprentice clicks on view actions")]
-        public void WhenTheApprenticeClicksOnViewActions()
+        public string WhenTheApprenticeClicksOnViewActions()
         {
-            TaskTitle = tasksBasePage.GetTaskTitle();
-            if (!string.IsNullOrEmpty(TaskTitle))
+            var taskElement = tasksBasePage.GetTask();
+            taskTitle = taskElement.FindElement(TasksBasePage.TaskTitle).Text;
+            if (!string.IsNullOrEmpty(taskTitle))
             {
                 tasksBasePage.ClickViewActions();
                 TaskExists = true;
@@ -24,6 +25,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
             {
                 Console.WriteLine("No task found to delete. Skipping further steps.");
             }
+            return taskTitle;
         }
 
         [When("the apprentice clicks on delete and confirms")]
@@ -32,6 +34,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
             if (TaskExists)
             {
                 tasksBasePage.DeleteTask();
+                tasksBasePage.Refresh();
             }
             else
             {
@@ -44,7 +47,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         {
             if (TaskExists)
             {
-                Assert.IsFalse(tasksBasePage.IsTaskAdded(TaskTitle), "The task was not removed from the list");
+                Assert.IsFalse(tasksBasePage.IsTaskAdded(taskTitle), "The task was not removed from the list");
             }
             else
             {

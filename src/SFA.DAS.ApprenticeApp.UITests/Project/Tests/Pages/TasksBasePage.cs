@@ -26,20 +26,25 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By NoteTextArea => By.Id("note");
         private static By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
         private static By Task => By.CssSelector("div.app-card");
-        private static By TaskTitle => By.CssSelector("h2.app-card__heading");
+        public static By TaskTitle => By.CssSelector("h2.app-card__heading");
         private static By ViewActions => By.CssSelector("button.app-dropdown__toggle[aria-expanded='false']");
         private static By DeleteButton => By.CssSelector("[class='app-dropdown__menu-link delete-task']");
         private static By ConfirmDelete => By.CssSelector("[class='app-button app-button--warning']");
+        private static By DonePanel => By.CssSelector("div.app-tabs__panel#tasks-done");
+        private static By ToDoPanel => By.CssSelector("div.app-tabs__panel#tasks-todo");
         protected override string PageTitle => "Tasks";
+        private object TaskList;
+
 
         public TasksBasePage ClickToDoTab()
         {
             formCompletionHelper.Click(ToDoTab);
             return new TasksBasePage(context);
         }
-        public void ClickDoneTab()
+        public TasksBasePage ClickDoneTab()
         {
             formCompletionHelper.Click(DoneTab);
+            return new TasksBasePage(context);
         }
         public TasksBasePage AddTask(bool isToDo, string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
         {
@@ -82,27 +87,41 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
        
         public void DeleteTask()
         {
-            formCompletionHelper.Click(DeleteButton);
+            IWebElement taskCard = GetTask();
+            formCompletionHelper.ClickElement(taskCard.FindElement(DeleteButton));
             formCompletionHelper.Click(ConfirmDelete);
         }
 
         public void ClickViewActions()
         {
-            var task = pageInteractionHelper.FindElements(Task).FirstOrDefault();
-            task.FindElement(ViewActions).Click();
+            IWebElement taskCard = GetTask();
+            IWebElement selectedOption = taskCard.FindElement(ViewActions);
+
+            formCompletionHelper.ClickElement(selectedOption);
         }
 
-        public string GetTaskTitle()
+        public IWebElement GetTask()
         {
-            if (pageInteractionHelper.IsElementPresent(TaskTitle))
+            var todoTiles = pageInteractionHelper.FindElements(ToDoPanel).SelectMany(panel => panel.FindElements(Task));
+            var doneTiles = pageInteractionHelper.FindElements(DonePanel).SelectMany(panel => panel.FindElements(Task));
+            var url = pageInteractionHelper.GetUrl();
+
+            IWebElement taskCard;
+
+            switch (url)
             {
-                var taskTitles = pageInteractionHelper.FindElements(TaskTitle);
-                return taskTitles.FirstOrDefault().Text;
+                case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=0":
+                    case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index":
+                    taskCard = todoTiles.FirstOrDefault();
+                    break;
+                case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=1":
+                    taskCard = doneTiles.FirstOrDefault();
+                    break;
+                default:
+                    throw new InvalidOperationException("Unexpected URL: " + url);
             }
-            else
-            {
-                return string.Empty;
-            }
+            return taskCard ??
+                        throw new InvalidOperationException("No task found in the current panel.");
         }
         protected void EditTask()
         {
@@ -111,7 +130,6 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         public bool IsTaskAdded(string Title)
         {
-            
             var taskTitles = pageInteractionHelper.FindElements(TaskTitle);
             return taskTitles.Any(task => task.Text.Contains(Title));
             
@@ -120,6 +138,12 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         internal string GenerateTaskName()
         {
             return $"Task {DateTime.Now:yyyyMMddHHmmss}";
+        }
+        public void Refresh()
+        {
+            var  _ = pageInteractionHelper.GetUrl();
+            pageInteractionHelper.RefreshPage();
+            pageInteractionHelper.WaitForPageToLoad();
         }
     }
 }

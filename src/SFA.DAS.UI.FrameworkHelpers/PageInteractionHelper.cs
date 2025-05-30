@@ -353,7 +353,7 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         };
     }
 
-    private void WaitForPageToLoad() => webDriverWaitHelper.WaitForPageToLoad();
+    public void WaitForPageToLoad() => webDriverWaitHelper.WaitForPageToLoad();
 
     private void WaitForElementToChange(Func<IWebElement> element, string attribute, string value, Action retryAction)
     {
