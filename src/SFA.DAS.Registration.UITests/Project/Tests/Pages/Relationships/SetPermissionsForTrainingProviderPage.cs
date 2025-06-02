@@ -2,7 +2,7 @@
 
 public class SetPermissionsForTrainingProviderPage(ScenarioContext context) : PermissionBasePageForTrainingProviderPage(context)
 {
-    protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading");
+    protected override By PageHeader => By.CssSelector(".govuk-heading-l");
 
     protected override string PageTitle => $"Set permissions";
 }

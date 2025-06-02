@@ -85,7 +85,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         public void GivenReceiverSendsACohortToTheProviderForReviewAndApproval(string receiver, string _)
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _transfersCreateCohortStepsHelper.EmployerCreateCohortAndSendsToProvider();
+            _transfersCreateCohortStepsHelper.EmployerCreateCohortsViaDirectTransferAndSendsToProvider();
         }
 
         [When(@"Receiver (First|Second|Third) sends approved cohort using transfer funds from Sender (First|Second|Third) with (.*) apprentices to the provider for review and approval")]
@@ -172,12 +172,12 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         [Then(@"Receiver (First|Second|Third) has no '... apprentice change\(s\) to review' task link")]
         public void ThenNoApprenticeChangeToReviewTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver) => AssertApprenticeChangeToReviewTaskLink(receiver, 0);
 
-        [Then(@"Receiver (First|Second|Third) has '(.*) cohort request ready for approval' task link")]
-        [Then(@"Receiver (First|Second|Third) has '(.*) cohort requests ready for approval' task link")]
-        public void ThenCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver, int numberOfTasks) => AssertCohortRequestReadyForApprovalTaskLink(receiver, numberOfTasks);
+        [Then(@"Receiver (First|Second|Third) has '(.*) apprentice request ready for review' task link")]
+        [Then(@"Receiver (First|Second|Third) has '(.*) apprentice requests ready for review' task link")]
+        public void ThenReceiverSecondHasTaskLink(string receiver, int numberOfTasks) => AssertApprenticeRequestRequestReadyForReviewTaskLink(receiver, numberOfTasks);
 
-        [Then(@"Receiver (First|Second|Third) has no '... cohort request\(s\) ready for approval' task link")]
-        public void ThenNoCohortRequestReadyForApprovalTaskLinkIsDisplayedUnderTasksPaneForTheReceiverAccount(string receiver) => AssertCohortRequestReadyForApprovalTaskLink(receiver, 0);
+        [Then(@"Receiver (First|Second|Third) has no '... apprentice request\(s\) ready for review' task link")]
+        public void ThenReceiverSecondHasNoTaskLink(string receiver) => AssertApprenticeRequestRequestReadyForReviewTaskLink(receiver, 0);
 
         [Then(@"(First|Second|Third) account has '(.*) connection request to review' task link")]
         [Then(@"(First|Second|Third) account has '(.*) connection requests to review' task link")]
@@ -199,10 +199,10 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
             _employerStepsHelper.AssertApprenticeChangeToReviewTaskLink(numberOfTasks);
         }
 
-        private void AssertCohortRequestReadyForApprovalTaskLink(string receiver, int numberOfTasks)
+        private void AssertApprenticeRequestRequestReadyForReviewTaskLink(string receiver, int numberOfTasks)
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
-            _employerStepsHelper.AssertCohortRequestReadyForApprovalTaskLink(numberOfTasks);
+            _employerStepsHelper.AssertApprenticeRequestReadyForReviewTaskLink(numberOfTasks);
         }
 
         private void AssertReviewConnectionRequestTaskLink(string account, int numberOfTasks)

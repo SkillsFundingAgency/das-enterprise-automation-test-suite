@@ -159,10 +159,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        public ProviderOverlappingTrainingDateThereMayBeProblemPage ClickSaveWhenOltd()
+        public ProviderOverlappingTrainingDateConfirmDetailsPage ClickSaveWhenOltd()
         {
             formCompletionHelper.ClickElement(SaveButton);
-            return new ProviderOverlappingTrainingDateThereMayBeProblemPage(context);
+            return new ProviderOverlappingTrainingDateConfirmDetailsPage(context);
         }
         public ProviderEditApprenticeDetailsPage EditCost(int cost)
         {

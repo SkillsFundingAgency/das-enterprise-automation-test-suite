@@ -36,7 +36,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"user tries to create an apprenticeship request \(cohort\)")]
         public void TheUserTriesToCreateAnApprenticeRequestWithCohort()
         {
-            _employerCreateCohortStepsHelper.NonLevyEmployerTriesToAddApprentice();
+            _apprenticeHomePageStepsHelper.GoToAddAnApprenticePage();
         }
 
         [Then(@"the Employer is blocked with a shutter page")]

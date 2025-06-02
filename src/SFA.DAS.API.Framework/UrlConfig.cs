@@ -6,13 +6,13 @@ public static class UrlConfig
     {
         public static string Outer_ApiBaseUrl => GetOuter_ApiBaseUrl($"{EnvironmentConfig.EnvironmentName}-gateway");
 
-        public static string Outer_RAAApiBaseUrl => EnvironmentConfig.IsPPEnvironment ? GetOuter_ApiBaseUrl("pp-api") : Outer_ApiBaseUrl;
-
         public static string Outer_ApprenticeCommitmentsHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-acomt-api.apprenticeships.education.gov.uk";
 
         public static string Outer_EmployerFinanceHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-empfin-api.apprenticeships.education.gov.uk";
 
         public static string Outer_EmployerAccountsHealthBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-empacc-api.apprenticeships.education.gov.uk";
+
+        public static string Outer_ProviderFeedbackApiBaseUrl => $"https://{EnvironmentConfig.EnvironmentName}-apim-prvfb-api.apprenticeships.education.gov.uk";
 
         public static string Outer_AssessorCertificationApiBaseUrl => $"https://test-apis.apprenticeships.education.gov.uk/";
 

@@ -1,2 +1,0 @@
-DELETE Accounts WHERE Id=@accountId AND AccountLegalEntityId=@accountLegalEntityId AND NOT EXISTS
- (SELECT 1 FROM IncentiveApplication WHERE AccountId=@accountId AND AccountLegalEntityId=@accountLegalEntityId)

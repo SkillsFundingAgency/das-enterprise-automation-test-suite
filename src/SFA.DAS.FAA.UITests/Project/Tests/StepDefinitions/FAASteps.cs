@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
+﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages.Delete;
+
+namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
 
 [Binding]
 public class FAASteps(ScenarioContext context)
@@ -16,6 +18,21 @@ public class FAASteps(ScenarioContext context)
 
     [Then(@"the applicant can save vacancy on search results page before applying for the vacancy")]
     public void ThenTheApplicantCanSaveVacancyOnSearchResultsPageBeforeApplyingForTheVacancy() => _faaStepsHelper.GoToSearchResultsPagePageAndSaveBeforeApplying();
+
+    [Then("the Applicant can withdraw the application")]
+    public void ThenTheApplicantCanWithdrawTheApplication() => _faaStepsHelper.GoToYourApplicationsPageAndWithdrawAnApplication();
+
+    [Then("the Applicant can withdraw a random application")]
+    public void ThenTheApplicantCanWithdrawARandomApplication() => _faaStepsHelper.GoToYourApplicationsPageAndWithdrawARandomApplication();
+
+    [Then("the Applicant can view submitted applications page")]
+    public void ThenTheApplicantCanViewSubmittedApplicationsPage() => _faaStepsHelper.GoToYourApplicationsPageAndOpenSubmittedApplicationsPage();
+
+    [Then("the apprentice attempts to delete their account they are notified of application withdrawal")]
+    public void WhenTheApprenticeAttemptsToDeleteTheirAccountTheyAreNotifiedOfApplicationWithdrawal()
+    {
+        new SettingPage(context).DeleteMyAccount().ContinueToDeleteMyAccounWithApplication().WithdrawBeforeDeletingMyAccount().ConfirmDeleteMyAccount().VerifyNotification();
+    }
 
 
 }

@@ -4,7 +4,23 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 {
     protected override By PageHeader => By.CssSelector(".faa-vacancy__title");
 
-    protected override string PageTitle => vacancyTitleDataHelper.VacancyTitle;
+    protected override string PageTitle
+    {
+        get
+        {
+            var vacancyTitle = objectContext.Get<string>("vacancyTitle");
+
+            if (!string.IsNullOrEmpty(vacancyTitle))
+            {
+                return vacancyTitle;
+            }
+
+            vacancyTitle = pageInteractionHelper.FindElement(PageHeader)?.Text;
+            objectContext.Set("vacancyTitle", vacancyTitle);
+
+            return vacancyTitle;
+        }
+    }
 
     protected override string AccessibilityPageTitle => "FAA vacancy title page";
 

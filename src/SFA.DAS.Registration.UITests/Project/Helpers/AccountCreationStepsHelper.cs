@@ -87,7 +87,7 @@ public class AccountCreationStepsHelper(ScenarioContext context)
             .ClickYesThisIsMyOrg()
             .ContinueToConfirmationPage()
             .GoToSetYourAccountNameLink()
-            .SelectoptionYes()
+            .SelectoptionToSkipNameChange()
             .ContinueToAcknowledge()
             .GoToYourEmployerAgreementLink()
             .ClickContinueToYourAgreementButtonToDoYouAcceptTheEmployerAgreementPage();

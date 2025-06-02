@@ -15,9 +15,9 @@ Scenario: FLP_E2E_EUA_02 Employer adds apprentice details to a cohort and Provid
 	Then validate the following data is created in the commitments database
 		| ULN_Key | is_pilot | price_episode_from_date_str | price_episode_to_date_str | price_episode_cost | training_price | endpoint_assessment_price |
 		| 1       | false    | StartCurrentMonth           | Null                      | 15000              |                |                           |
-	And validate there is no data in Apprenticeship database
-		| ULN_Key |
-		| 1       |
+	And validate the following data in Earnings Apprenticeship database
+		| ULN_Key | funding_platform | start_date_str    | planned_end_date_str | agreed_price | funding_type | funding_band_maximum |
+		| 1       | 2                | StartCurrentMonth | +11Months            | 15000        | 0            | 15000                |
 	And validate earnings are not generated for the learners
 		| ULN_Key |
 		| 1       |

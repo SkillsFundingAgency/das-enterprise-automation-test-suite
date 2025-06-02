@@ -6,9 +6,9 @@ public class AddPermissionsForTrainingProviderPage(ScenarioContext context, Prov
 
     public void VerifyDoNotAllowPermissions()
     {
-        SetAddApprentice(AddApprenticePermissions.DoNotAllow);
+        SetAddApprentice(AddApprenticePermissions.NoToAddApprenticeRecords);
 
-        SetRecruitApprentice(RecruitApprenticePermissions.DoNotAllow);
+        SetRecruitApprentice(RecruitApprenticePermissions.NoToRecruitApprentices);
 
         VerifyPage(ErrorMsg, "You must select yes for at least one permission for add apprentice records or recruit apprentices");
     }

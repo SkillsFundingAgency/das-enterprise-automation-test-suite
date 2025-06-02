@@ -3,6 +3,7 @@
 @approvals
 @regression
 @Approvalproviderrole
+@pasproviderrole
 Scenario: PR_AP_05_Provider Roles Account Owner Manage your apprentices 
 Given the provider logs in as a AccountOwner
 When the user clicks on manage apprentice link from homepage or manage apprentices link

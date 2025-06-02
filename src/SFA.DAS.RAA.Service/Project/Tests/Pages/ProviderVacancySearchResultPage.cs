@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using System;
 using TechTalk.SpecFlow;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
@@ -11,11 +13,32 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         private static By Applications => By.CssSelector("a.govuk-link[href*='applications']");
 
-        public ManageApplicantPage NavigateToManageApplicant()
+       
+        public ManageApplicantPage NavigateToManageApplicant(string applicationid = null)
         {
-            GoToVacancyManageApplicantsPage($"{rAADataHelper.CandidateFullName}");
+            GoToVacancyManageApplicantsPage(applicationid);
+
+            if (string.IsNullOrEmpty(applicationid))
+            {
+                applicationid = GetApplicationIdFromManageApplicantsPage();
+            }
+
+            formCompletionHelper.Click(By.Id($"application-id-{applicationid}"));
 
             return new ManageApplicantPage(context);
+        }
+
+        private string GetApplicationIdFromManageApplicantsPage()
+        {
+            var applicationIdIdentifier = pageInteractionHelper.FindElement(By.CssSelector("a[id^='application-id-']"));
+            var applicationIdNumber = applicationIdIdentifier?.GetDomAttribute("id");
+
+            if (!string.IsNullOrEmpty(applicationIdNumber) && applicationIdNumber.StartsWith("application-id-"))
+            {
+                return applicationIdNumber.Replace("application-id-", "");
+            }
+
+            throw new InvalidOperationException("Application ID not found or in unexpected format.");
         }
 
         public ViewVacancyPage NavigateToViewAdvertPage()
@@ -43,11 +66,20 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             return new ManageMultiApplicationsUnsuccessfulPage(context);
         }
 
-        private void GoToVacancyManageApplicantsPage(string linkText)
+        private void GoToVacancyManageApplicantsPage(string applicationid)
         {
             GoToVacancyManagePage();
 
-            formCompletionHelper.ClickLinkByText(Applications, linkText);
+            if (!string.IsNullOrEmpty(applicationid))
+            {
+                formCompletionHelper.ClickLinkByText(Applications, applicationid);
+            }
+        }
+
+        public CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertPage()
+        {
+            DraftVacancy();
+            return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
     }
 }

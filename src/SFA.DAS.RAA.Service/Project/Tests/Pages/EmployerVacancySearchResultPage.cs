@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Your adverts";
 
-        protected override By PageHeader => By.CssSelector(".govuk-heading-l");
+        protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
         private static By Applicant => By.CssSelector("a[data-label='application_review']");
 
         public CreateAnApprenticeshipAdvertOrVacancyPage CreateAnApprenticeshipAdvertPage()

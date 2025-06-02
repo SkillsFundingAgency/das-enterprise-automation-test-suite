@@ -65,7 +65,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     _apprenticesHomePage.ClickApprenticeRequestsLink();
                     break;
                 case "Add an apprentice":
-                    _apprenticesHomePage.AddAnApprentice();
+                    _apprenticesHomePage.ClickAddAnApprentice();
+                    break;
+                case "Accessibility statement":
+                    _apprenticesHomePage.ClickAccessibilityStatement();
                     break;
                 default:
                     break;

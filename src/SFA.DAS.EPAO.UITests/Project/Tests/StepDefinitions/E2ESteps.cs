@@ -35,13 +35,13 @@ public class E2ESteps(ScenarioContext context) : EPAOBaseSteps(context)
     [Given(@"the admin appoves the assessor")]
     public void GivenTheAdminAppovesTheAssessor() => staffDashboardPage = AdminStepshelper.ApproveAnOrganisation(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true), FinancialHealthAssessmentLinkExists);
 
-    [When(@"the apply user applies for a standard")]
-    public void WhenTheApplyUserAppliesForAStandard()
-    {
-        var page = ePAOHomePageHelper.GoToEpaoApplyForAStandardPage();
+    //[When(@"the apply user applies for a standard")]
+    //public void WhenTheApplyUserAppliesForAStandard()
+    //{
+    //    var page = ePAOHomePageHelper.GoToEpaoApplyForAStandardPage();
 
-        applyStepsHelper.ApplyForAStandard(page, E2EOrgStandardName);
-    }
+    //    applyStepsHelper.ApplyForAStandard(page, E2EOrgStandardName);
+    //}
 
     [Then(@"the admin approves the standard")]
     public void ThenTheAdminApprovesTheStandard() => staffDashboardPage = AdminStepshelper.ApproveAStandard(ePAOHomePageHelper.LoginToEpaoAdminHomePage(true));

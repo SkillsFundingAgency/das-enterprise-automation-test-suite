@@ -71,13 +71,13 @@ public class HomePage : InterimHomeBasePage
         VerifyElement(apprenticeChangeToReviewMessage);
     }
 
-    public void VerifyCohortsReadyToReviewMessageShown(int numberOfChanges)
+    public void VerifyApprenticeRequestsReadyToReviewMessageShown(int numberOfChanges)
     {
-        var messageText = numberOfChanges == 1 ? "1 cohort ready for approval" : $"{numberOfChanges} cohorts ready for approval";
+        var messageText = numberOfChanges == 1 ? "1 apprentice request ready for review" : $"{numberOfChanges} apprentice requests ready for review";
         var xpath = $"//span[contains(text(), '{messageText}')]";
-        var cohortsToReviewMessage = By.XPath(xpath);
+        var apprenticeRequestsToReviewMessage = By.XPath(xpath);
 
-        VerifyElement(cohortsToReviewMessage);
+        VerifyElement(apprenticeRequestsToReviewMessage);
     }
 
     public void VerifyTransferPledgeApplicationsToReviewMessageShown(int numberOfChanges)
@@ -115,9 +115,9 @@ public class HomePage : InterimHomeBasePage
         return new ManageYourApprenticesPage(context);
     }
 
-    public ApprenticeRequestsPage ClickViewCohortsForCohortsReadyToReview(int numberOfChanges)
+    public ApprenticeRequestsPage ClickViewApprenticeRequestsForApprenticeRequestsToReview(int numberOfChanges)
     {
-        var linkText = numberOfChanges == 1 ? "View cohort" : "View cohorts";
+        var linkText = numberOfChanges == 1 ? "View apprentice request" : "View apprentice requests";
         var cohortsToApproveLink = By.LinkText(linkText);
 
         formCompletionHelper.Click(cohortsToApproveLink);

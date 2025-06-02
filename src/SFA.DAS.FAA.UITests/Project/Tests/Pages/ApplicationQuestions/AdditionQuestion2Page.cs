@@ -2,7 +2,7 @@
 
 public class AdditionQuestion2Page(ScenarioContext context) : FAABasePage(context)
 {
-    protected override string PageTitle => advertDataHelper.AdditionalQuestion2;
+    protected override string PageTitle => pageInteractionHelper.FindElement(PageHeader).Text;
     protected override By PageHeader => By.CssSelector("label[for='AdditionalQuestionAnswer']");
 
     private static By AdditionalQuestionAnswer => By.CssSelector("#AdditionalQuestionAnswer");

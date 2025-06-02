@@ -9,7 +9,7 @@ public class ManageAmbassadorsPage(ScenarioContext context) : SearchEventsBasePa
 
     private static By CreateEventButton => By.CssSelector("#create-event");
 
-    private static By MemberLink => By.XPath("(//a[text()='Alan Burns'])[1]");
+    private static By MemberLink => By.LinkText("Alan Burns");
 
     protected override string PageTitle => "Manage ambassadors";
 

@@ -12,7 +12,7 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
 
         EPRLogin(employerUser);
 
-        permissions = (AddApprenticePermissions.AllowConditional, RecruitApprenticePermissions.Allow);
+        permissions = (AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprentices);
 
         GoToProviderViewEmployersAndManagePermissions();
 
@@ -25,15 +25,57 @@ public class ProviderRelationSteps(ScenarioContext context) : EmpProRelationBase
         request.GoToViewEmployersPage().VerifyPendingRequest();
     }
 
-    [When(@"the provider update the permission")]
-    public void TheProviderUpdateThePermission()
+    [Given("a provider requests all permission from an employer and verifies the employer details")]
+    public void GivenAProviderRequestsAllPermissionFromAnEmployerAndVerifiesTheEmployerDetails()
     {
-        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.AllowConditional));
+        EPRBaseUser employerUser = tags.Contains("acceptrequest") ? context.GetUser<EPRAcceptRequestUser>() : context.GetUser<EPRDeclineRequestUser>();
+
+        context.Set(employerUser);
+
+        EPRLogin(employerUser);
+
+        permissions = (AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprentices);
+
+        GoToProviderViewEmployersAndManagePermissions();
+
+        eprDataHelper.EmployerEmail = employerUser.Username;
+
+        eprDataHelper.EmployerOrganisationName = employerUser.OrganisationName;
+
+        eprDataHelper.AgreementId = objectContext.GetAleAgreementId();
+
+        var request = GoToEmailAccountFoundPage().ContinueToInvite().ProviderRequestPermissions(permissions);
+
+        request.GoToViewEmployersPage().ViewPendingEmployer();
     }
 
-    [When(@"the provider update the permission again")]
-    public void TheProviderUpdateThePermissionAgain()
+    [When("the provider updates the permission to NoToAddApprenticeRecords YesRecruitApprenticesButEmployerWillReview")]
+    public void WhenTheProviderUpdatesThePermissionToNoToAddApprenticeRecordsYesRecruitApprenticesButEmployerWillReview()
     {
-        ProviderUpdatePermission((AddApprenticePermissions.DoNotAllow, RecruitApprenticePermissions.AllowConditional));
+        ProviderUpdatePermission((AddApprenticePermissions.NoToAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprenticesButEmployerWillReview));
+    }
+
+    [When("the provider updates the permission to NoToAddApprenticeRecords YesRecruitApprentices")]
+    public void WhenTheProviderUpdatesThePermissionToNoToAddApprenticeRecordsYesRecruitApprentices()
+    {
+        ProviderUpdatePermission((AddApprenticePermissions.NoToAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprentices));
+    }
+
+    [When("the provider updates the permission to YesAddApprenticeRecords YesRecruitApprentices")]
+    public void WhenTheProviderUpdatesThePermissionToYesAddApprenticeRecordsYesRecruitApprentices()
+    {
+        ProviderUpdatePermission((AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprentices));
+    }
+
+    [When("the provider updates the permission to YesAddApprenticeRecords YesRecruitApprenticesButEmployerWillReview")]
+    public void WhenTheProviderUpdatesThePermissionToYesAddApprenticeRecordsYesRecruitApprenticesButEmployerWillReview()
+    {
+        ProviderUpdatePermission((AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.YesRecruitApprenticesButEmployerWillReview));
+    }
+
+    [When("the provider updates the permission to YesAddApprenticeRecords NoToRecruitApprentices")]
+    public void WhenTheProviderUpdatesThePermissionToYesAddApprenticeRecordsNoToRecruitApprentices()
+    {
+        ProviderUpdatePermission((AddApprenticePermissions.YesAddApprenticeRecords, RecruitApprenticePermissions.NoToRecruitApprentices));
     }
 }

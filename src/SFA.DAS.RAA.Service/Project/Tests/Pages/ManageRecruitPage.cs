@@ -15,6 +15,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             return new CloneVacancyDatesPage(context);
         }
 
+        public CloneVacancyDatesPage CloneVacancy()
+        {
+            formCompletionHelper.ClickLinkByText("Clone vacancy");
+            return new CloneVacancyDatesPage(context);
+        }
+
         public EditVacancyDatesPage EditAdvert()
         {
             formCompletionHelper.ClickElement(EditAdvertActionSelector);

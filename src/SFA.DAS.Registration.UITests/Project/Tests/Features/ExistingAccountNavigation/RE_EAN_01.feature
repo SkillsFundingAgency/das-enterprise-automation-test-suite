@@ -7,3 +7,4 @@ Scenario: RE_EAN_01_Verify Login for Existing Levy Account and Navigation to Sav
 	When the Employer logins using existing Levy Account
 	Then Employer is able to navigate to all the link under Settings
 	And Employer is able to navigate to Help Page
+	And the employer can navigate to Accessibility statement page

@@ -14,7 +14,7 @@ public class EPAOStageTwoCancelStandardSteps : EPAOBaseSteps
 
     [When(@"Starts the journey to apply for the first standard")]
     [Given(@"Starts the journey to apply for the first standard")]
-    public void GivenStartsTheJourneyToApplyForTheFirstStandard() => applyStepsHelper.ApplyStageTwoStandard();
+    //public void GivenStartsTheJourneyToApplyForTheFirstStandard() => applyStepsHelper.ApplyStageTwoStandard();
 
     [Then(@"EPAO cancels the standard using cancel link as incorrect standard selected")]
     public void ThenEPAOCancelsTheStandardUsingCancelLinkAsIncorrectStandardSelected() => new CancelStandardStepsHelper(context).CancelYourStandard();

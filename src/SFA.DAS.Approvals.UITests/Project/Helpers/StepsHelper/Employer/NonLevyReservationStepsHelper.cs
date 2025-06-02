@@ -1,8 +1,9 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.FrameworkHelpers;
-using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
@@ -51,6 +52,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
 
             return SetApprenticeDetails(listOfApprentice.Count);
+        }
+
+        public DynamicHomePages NonLevyEmployerAddsTwoReservations()
+        {
+            ManageFundingEmployerStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding()).SaveReservationId().GoToDynamicHomePage();
+            ManageFundingEmployerStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding()).SaveReservationId(true).GoToDynamicHomePage();
+            return new DynamicHomePages(_context);
         }
 
         public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool shouldConfirmOnlyStandardCoursesSelectable)

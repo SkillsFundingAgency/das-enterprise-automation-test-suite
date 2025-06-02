@@ -21,8 +21,18 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
         private static By SearchButton => By.CssSelector(".govuk-button.das-search-form__button");
 
         private static By Manage => By.CssSelector("[data-label='Action']");
+        private static By ProviderManage => By.CssSelector("td[data-label='Action'] a.govuk-link");
+
 
         public ManageRecruitPage SelectLiveVacancy()
+        {
+            _formCompletionHelper.ClickLinkByText("Live vacancies");
+            _pageInteractionHelper.WaitforURLToChange($"filter=Live");
+            _formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(ProviderManage)));
+            return new ManageRecruitPage(context);
+        }
+
+        public ManageRecruitPage SelectLiveAdvert()
         {
             _formCompletionHelper.ClickLinkByText("Live adverts");
             _pageInteractionHelper.WaitforURLToChange($"filter=Live");

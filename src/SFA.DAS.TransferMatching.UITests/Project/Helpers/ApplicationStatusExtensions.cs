@@ -14,6 +14,23 @@
                 ApplicationStatus.Declined => "Withdrawn",
                 ApplicationStatus.Withdrawn => "Withdrawn",
                 ApplicationStatus.WithdrawnAfterAcceptance => "Withdrawn",
+                ApplicationStatus.FundsExpired => "Funds no longer available",
+                _ => string.Empty,
+            };
+        }
+
+        public static string GetLabelForSender(this ApplicationStatus status)
+        {           
+            return status switch
+            {
+                ApplicationStatus.Pending => "Awaiting your approval",
+                ApplicationStatus.Accepted => "Offer of funding accepted",
+                ApplicationStatus.FundsUsed => "Funds used",
+                ApplicationStatus.Rejected => "Rejected",
+                ApplicationStatus.Declined => "Declined by applicant",
+                ApplicationStatus.Withdrawn => "Withdrawn by applicant",
+                ApplicationStatus.WithdrawnAfterAcceptance => "Withdrawn by applicant",
+                ApplicationStatus.FundsExpired => "Funds no longer available",
                 _ => string.Empty,
             };
         }

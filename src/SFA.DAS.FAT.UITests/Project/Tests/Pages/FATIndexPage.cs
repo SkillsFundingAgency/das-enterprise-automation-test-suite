@@ -9,9 +9,9 @@ public class FATIndexPage(ScenarioContext context) : FATBasePage(context)
 
     #endregion
 
-    public ApprenticeshipTrainingCoursesPage ClickStartButton()
+    public FATSearchPage ClickStartButton()
     {
         formCompletionHelper.Click(StartButton);
-        return new ApprenticeshipTrainingCoursesPage(context);
+        return new FATSearchPage(context);
     }
 }

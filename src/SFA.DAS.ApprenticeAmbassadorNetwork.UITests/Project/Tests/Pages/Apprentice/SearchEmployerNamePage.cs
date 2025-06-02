@@ -5,7 +5,7 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
 {
     public class SearchEmployerNamePage(ScenarioContext context) : AanBasePage(context)
     {
-        protected override string PageTitle => "Search for your employer's name or address";
+        protected override string PageTitle => "Who do you work for?";
         private static By FirstAddress => By.Id("SearchTerm__option--0");
 
         private static By PostCodeField => By.Id("SearchTerm");
@@ -25,8 +25,11 @@ namespace SFA.DAS.ApprenticeAmbassadorNetwork.UITests.Project.Tests.Pages.Appren
             formCompletionHelper.ClickLinkByText("Enter address manually");
             return new EmployerDetailsPage(context);
         }
+
+        public EditEmployerDetailsPage EnterAddressManuallyEdit()
+        {
+            formCompletionHelper.ClickLinkByText("Enter address manually");
+            return new EditEmployerDetailsPage(context);
+        }
     }
 }
-
-
-

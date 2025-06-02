@@ -74,15 +74,15 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public static string WeeklyHours => "40";
 
-        public static string FixedWageYearlyAmount => "14000";
+        public static string FixedWageYearlyAmount => "16000";
 
-        public static string NationalMinimumWage => "£13,312 to £23,795.20 a year";
+        public static string NationalMinimumWage => "£15,704 to £25,396.80 a year";
 
-        public static string NationalMinimumWageForApprentices => "£13,312 a year";
+        public static string NationalMinimumWageForApprentices => "£15,704 a year";
 
         public static string SetAsCompetitive => "Competitive";
 
-        public static string FixedWageForApprentices => "£14,000 a year";
+        public static string FixedWageForApprentices => "£16,000 a year";
 
         public DateTime EditedVacancyClosing { get; }
 
@@ -110,6 +110,6 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private static List<string> AvailableProviders => ["BALTIC TRAINING SERVICES LIMITED 10019026"];
 
-        private static List<string> AvailableAddress => ["CV33", "CV35", "SM3", "SW11"];
+        private static List<string> AvailableAddress => ["SW1H 9NA", "SW1A 2AA", "SE1 8UG", "E14 4PU", "SW1A 1AA", "SW1P 3BT"];
     }
 }
