@@ -8,7 +8,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public class DisplayAdvertAPIPage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => "Display advert API";
+        protected override string PageTitle => "Display Advert API";
         protected override By PageHeader => By.ClassName("sl-text-5xl");
         protected override bool TakeFullScreenShot => false;
         private readonly By TitleTagsLocator = By.CssSelector("[title]");

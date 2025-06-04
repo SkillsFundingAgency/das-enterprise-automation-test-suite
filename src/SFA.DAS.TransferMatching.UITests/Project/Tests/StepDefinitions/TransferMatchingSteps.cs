@@ -30,6 +30,7 @@ public class TransferMatchingSteps
     private readonly ScenarioContext _context;
     private PledgeVerificationPage _pledgeVerificationPage;
     private ManageTransferMatchingPage _manageTransferMatchingPage;
+    private PledgeAndTransferYourLevyFundsPage _pledgeAndTransferYourLevyFundsPage;
     private TransferPledgePage _transferPledgePage;
     private TransferFundDetailsInErrorPage _transferFundDetailsInErrorPage;
     private MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
@@ -588,7 +589,25 @@ public class TransferMatchingSteps
     {
         NavigateToTransferMatchingPage().GoToFindABusinessPage().GoToOpportunitiesPage().SelectAndApplyFilters();
     }
+    
+    [Then(@"Employer navigates to Create a Transfer Pledge page")]
+    public void ThenTheEmployerNavigatesToCreateATransferPledgePage()
+    {
+        _pledgeAndTransferYourLevyFundsPage = NavigateToTransferMatchingPage().GotoCreateTransfersPledgePage();
+    }
 
+    [Then(@"Standard gov\.uk footer should be displayed at the bottom of the page in Transfers")]
+    public void ThenStandardGov_UkFooterShouldBeDisplayedAtTheBottomOfThePage() => _pledgeAndTransferYourLevyFundsPage.ValidateFooter();
+
+    [Then(@"the Help widget is displayed on bottom right hand corner in Transfers")]
+    public void ThenTheHelpWidgetIsDisplayedOnBottomRightHandCorner() => _pledgeAndTransferYourLevyFundsPage.ValidateHelpWidget();
+
+    [Then(@"the employer can navigate to Accessibility statement page from Transfers")]
+    public void ThenEmployerIsAbleToNavigateToAccessibilityStatementPage()
+    {
+        _pledgeAndTransferYourLevyFundsPage
+         .GoToAccessibilityStatementPage();
+    }
     public void SignOutAndGoToTransferMacthingApplyUrl()
     {
         SignOut();

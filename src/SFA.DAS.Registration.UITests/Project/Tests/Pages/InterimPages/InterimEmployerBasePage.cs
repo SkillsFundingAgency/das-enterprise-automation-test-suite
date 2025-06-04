@@ -6,6 +6,7 @@ public abstract class InterimEmployerBasePage : Navigate
     private static By SettingsLink => By.LinkText("Settings");
     private static By YourAccountsLink => By.LinkText("Your accounts");
     private static By HelpLink => By.LinkText("Help");
+    private static By AccessiblityLink => By.LinkText("Accessibility statement");
     private static By RenameAccountLink => By.LinkText("Rename account");
     private static By NotificationSettingsLink => By.PartialLinkText("Notification");
     #endregion
@@ -42,6 +43,12 @@ public abstract class InterimEmployerBasePage : Navigate
     {
         tabHelper.OpenInNewTab(() => formCompletionHelper.ClickElement(HelpLink));
         return new EmployerHelpPage(context);
+    }
+     
+    public AccessibilityStatementPage GoToAccessibilityStatementPage()
+    {
+        formCompletionHelper.ClickElement(AccessiblityLink);
+        return new AccessibilityStatementPage(context);
     }
 
     public RenameAccountPage GoToRenameAccountPage()
