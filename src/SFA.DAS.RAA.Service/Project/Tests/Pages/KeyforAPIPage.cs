@@ -9,6 +9,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
+        private static By AdvertsLink => By.LinkText("Adverts");
+
         #region Locators
         private readonly By RenewKeyLink = By.CssSelector("#renew-key");
         private readonly By DoYouNeedANewKeyDropDown = By.CssSelector(".govuk-details__summary-text");
@@ -23,5 +25,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             formCompletionHelper.Click(RenewKeyLink);
             return new AreYouSureYouWantToRenewThisAPIKeyPage(context);
         }
+
+        public void ClickAdvertsLink() => formCompletionHelper.Click(AdvertsLink);
     }
 }

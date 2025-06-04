@@ -9,4 +9,10 @@ public class EmployerHelpPage : RegistrationBasePage
     protected override bool CanAnalyzePage => false;
 
     public EmployerHelpPage(ScenarioContext context) : base(context) => VerifyPage(PageHeader);
+
+    public HomePage CloseTabAndGoBackToHomePage()
+    {
+        tabHelper.CloseCurrentTab();
+        return new HomePage(context);
+    }
 }

@@ -105,7 +105,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
         public OrganisationsAndAgreementsPage NavigateToOrganisationsAndAgreementsPage()
         {
             NavigateToMore();
-            formCompletionHelper.ClickLinkByText("Organisations and agreements");
+            formCompletionHelper.ClickLinkByText("View employers and manage permissions");
             return new OrganisationsAndAgreementsPage(context);
         }
         public NotificationsSettingsPage GoToNotificationsSettingsPage()

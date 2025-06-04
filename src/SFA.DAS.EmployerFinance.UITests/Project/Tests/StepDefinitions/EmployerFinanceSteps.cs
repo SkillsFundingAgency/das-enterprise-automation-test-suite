@@ -53,6 +53,9 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the employer can navigate to help settings page")]
         public void ThenTheEmployerCanNavigateToHelpSettingsPage() => new InterimFinanceHomePage(context, true, true).GoToHelpPage();
+         
+        [Then(@"the employer can navigate to Accessibility statement page from Finance page")]
+        public void ThenTheEmployerCanNavigateToAccessibilityStatementPage() => new InterimFinanceHomePage(context, true, true).GoToAccessibilityStatementPage();
 
         [Then(@"'View transactions', 'Download transactions' and 'Transfers' links are displayed")]
         public void ThenAndLinksAreDisplayed() => _financePage.IsViewTransactionsLinkPresent().IsDownloadTransactionsLinkPresent().IsTransfersLinkPresent();

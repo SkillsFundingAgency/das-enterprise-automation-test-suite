@@ -2,10 +2,10 @@
 
 public class CertificateDetailsPage : EPAOAdmin_BasePage
 {
-    protected override string PageTitle => "Certificate";
+    protected override string PageTitle => "Standard";
 
     #region Helpers and Context
-    protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+    protected override By PageHeader => By.CssSelector(".govuk-heading-l");
     private static By DeleteCertificateLink => By.LinkText("Delete certificate");
     private static By AmendCertificateLink => By.LinkText("Amend certificate information");
     private static By ReprintCertificateLink => By.LinkText("Request certificate reprint");

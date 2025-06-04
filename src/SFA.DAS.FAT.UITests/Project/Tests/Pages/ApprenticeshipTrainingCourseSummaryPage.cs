@@ -8,8 +8,10 @@ public class ApprenticeshipTrainingCourseSummaryPage(ScenarioContext context) : 
 
     #region Locators
     private static By LocationTextBox => By.Id("search-location");
-    private static By ViewProvidersForThisCourseButton => By.Id("btn-view-providers");
+    private static By ViewProvidersForThisCourseButton => By.XPath("//a[contains(.,'View providers for this course')]");   
     private static By BackToCourseSearchPage => By.Id("courses-breadcrumb");
+    private static By AutoCompleteMenu => By.ClassName("autocomplete__menu--visible");
+    private static By ApprenticeTravel => By.XPath("//h3[@class='govuk-heading-s govuk-!-margin-bottom-6']");
 
     #endregion
 
@@ -31,7 +33,12 @@ public class ApprenticeshipTrainingCourseSummaryPage(ScenarioContext context) : 
 
             formCompletionHelper.EnterText(LocationTextBox, location);
 
-            formCompletionHelper.SendKeys(LocationTextBox, Keys.Tab);
+            pageInteractionHelper.WaitForElementToBeDisplayed(AutoCompleteMenu);
+
+            formCompletionHelper.Click(AutoCompleteMenu);
+
+            pageInteractionHelper.WaitForElementToBeDisplayed(ApprenticeTravel);
+
         }
 
         formCompletionHelper.Click(ViewProvidersForThisCourseButton);
