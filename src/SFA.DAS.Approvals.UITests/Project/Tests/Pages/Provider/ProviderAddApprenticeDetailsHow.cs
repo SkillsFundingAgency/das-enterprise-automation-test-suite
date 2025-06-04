@@ -10,6 +10,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Add apprentice details";
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
+        internal ProviderSelectApprenticeFromILRPage SelectApprenticeFromILR()
+        {
+            SelectRadioOptionByForAttribute("confirm-ILR");
+            Continue();
+            return new ProviderSelectApprenticeFromILRPage(context);
+        }
+
         internal ProviderSelectStandardPage SelectAddManually()
         {
             SelectRadioOptionByForAttribute("confirm-Manual");
@@ -24,11 +31,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderChooseAReservationPage(context);
         }
 
-        internal ProviderSelectApprenticeFromILRPage SelectApprenticeFromILR()
+        internal ProviderAccessDeniedPage SelectAddManuallyGoesToAccessDenied()
         {
-            SelectRadioOptionByForAttribute("confirm-ILR");
+            SelectRadioOptionByForAttribute("confirm-Manual");
             Continue();
-            return new ProviderSelectApprenticeFromILRPage(context);
+            return new ProviderAccessDeniedPage(context);
         }
+
+
+
     }
 }

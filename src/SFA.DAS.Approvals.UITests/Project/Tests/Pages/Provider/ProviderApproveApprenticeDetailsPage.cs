@@ -107,10 +107,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderAccessDeniedPage(context);
         }
 
-        internal ProviderAccessDeniedPage SelectAddAnApprenticeGoesToAccessDenied()
+        internal ProviderAddApprenticeDetailsHow SelectAddAnotherApprenticeLink()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            return new ProviderAccessDeniedPage(context);
+            return new ProviderAddApprenticeDetailsHow(context);
         }
 
         public ProviderAccessDeniedPage SelectDeleteCohortGoesToAccessDenied()
