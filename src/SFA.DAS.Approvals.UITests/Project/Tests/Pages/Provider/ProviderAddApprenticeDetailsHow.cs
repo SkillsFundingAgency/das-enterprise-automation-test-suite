@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using TechTalk.SpecFlow;
 
 
@@ -14,6 +15,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             SelectRadioOptionByForAttribute("confirm-Manual");
             Continue();
             return new ProviderSelectStandardPage(context);
+        }
+
+        internal ProviderChooseAReservationPage SelectAddManuallyViaCreateNewReservation()
+        {
+            SelectRadioOptionByForAttribute("confirm-Manual");
+            Continue();
+            return new ProviderChooseAReservationPage(context);
         }
 
         internal ProviderSelectApprenticeFromILRPage SelectApprenticeFromILR()

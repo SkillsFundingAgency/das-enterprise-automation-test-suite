@@ -30,10 +30,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string AccessibilityPageTitle => "Provider approve apprentice details";
 
-        internal ProviderChooseAReservationPage SelectAddAnApprenticeUsingReservation()
+        internal ProviderAddApprenticeDetailsHow SelectAddAnApprenticeUsingReservation()
         {
             AddAnApprentice();
-            return new ProviderChooseAReservationPage(context);
+            return new ProviderAddApprenticeDetailsHow(context);
         }
 
         internal ProviderAddApprenticeDetailsHow SelectAddAnApprentice()

@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             {
                 _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
 
-                var page = providerApproveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().CreateANewReservation();
+                var page = providerApproveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().SelectAddManuallyViaCreateNewReservation().CreateANewReservation();
 
                 var page1 = VerifySuccessMessage(page);
 
@@ -45,12 +45,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
         {
-            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToSelectStandardPage().ProviderSelectsAStandard();
+            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToAddApprenticeDetailsHowPage().SelectAddManually().ProviderSelectsAStandard();
         }
 
         public ProviderAddApprenticeDetailsPage ProviderAccountOwnerUserMakeReservation(ProviderAccountOwnerUser login)
         {
-            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToSelectStandardPage().ProviderSelectsAStandard();
+            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToAddApprenticeDetailsHowPage().SelectAddManually().ProviderSelectsAStandard();
         }
 
         public ProviderApprenticeshipTrainingPage StartCreateReservationAndGoToStartTrainingPage(ApprovalsProviderHomePage approvalsProviderHomePage)
