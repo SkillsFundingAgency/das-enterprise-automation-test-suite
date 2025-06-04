@@ -127,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var homepage = login ? _providerCommonStepsHelper.GoToProviderHomePage() : _providerStepsHelper.NavigateToProviderHomePage();
 
-            return homepage.GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer().ConfirmEmployer().ProviderSelectsAStandard();
+            return homepage.GotoSelectJourneyPage().SelectAddManually().SelectOptionCreateNewCohort().ChooseLevyEmployer().ConfirmEmployer().SelectAddManually().ProviderSelectsAStandard();
         }
 
         [When(@"provider decides to send stop request email from service for Change Of Employer Overlapping Training Dates")]

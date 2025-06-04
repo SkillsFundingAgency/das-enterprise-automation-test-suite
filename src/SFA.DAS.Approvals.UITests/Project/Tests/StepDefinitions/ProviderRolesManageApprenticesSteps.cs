@@ -145,6 +145,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             .SelectOptionCreateNewCohort()
             .ChooseLevyEmployer()
             .ConfirmEmployer()
+            .SelectAddManually()
             .ProviderSelectsAStandard();
         }
 

@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderSeeWarningMessagesInApproveApprenticePage() => providerApproveApprenticeDetailsPage.VerifyLimitingStandardRestriction();
 
         [Then(@"provider should not see Standard-X in add apprentice details page")]
-        public void ThenProviderShouldNotSeeStandard_XInAddApprenticeDetailsPage() => _providerCommonStepsHelper.ChooseALevyEmployer().ConfirmEmployer().AssertStandardIsNotAvailable();
+        public void ThenProviderShouldNotSeeStandard_XInAddApprenticeDetailsPage() => _providerCommonStepsHelper.ChooseALevyEmployer().ConfirmEmployer().SelectAddManually().AssertStandardIsNotAvailable();
 
         [Then(@"provider can not upload file using Standard-X")]
         public void ThenProviderCanNotUploadFileUsingStandard_X()
