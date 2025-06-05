@@ -1,17 +1,18 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
-using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.Login.Service.Project;
+using SFA.DAS.Login.Service.Project.Helpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Hooks
 {
-        [Binding]
-        public class BeforeScenarioHooks(ScenarioContext context)
+    [Binding]
+    public class BeforeScenarioHooks(ScenarioContext context)
+    {
+        private readonly ConfigSection _configSection = context.Get<ConfigSection>();
+        [BeforeScenario(Order = 2)]
+        public void AppSetupHelpers()
         {
-            private readonly ConfigSection _configSection = context.Get<ConfigSection>();
-            [BeforeScenario(Order = 2)]
-            public void AppSetupHelpers()
-            {
-                context.SetApprenticeAppConfig(_configSection.GetConfigSection<ApprenticeAppConfig>());
-            }
+            context.SetApprenticeAccountsPortalUser([_configSection.GetConfigSection<ApprenticeAppUser>()]);
         }
+    }
 }
