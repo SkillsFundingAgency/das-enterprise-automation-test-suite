@@ -92,4 +92,11 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
         return new FAASearchResultPage(context);
     }
+
+    public FAABrowseByInterestsPage ClickBrowseByYourInterests()
+    {
+        formCompletionHelper.ClickLinkByText("Browse by your interests instead");
+
+        return new FAABrowseByInterestsPage(context);
+    }
 }
