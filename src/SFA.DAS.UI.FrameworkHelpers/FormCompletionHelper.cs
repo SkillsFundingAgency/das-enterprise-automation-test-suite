@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -106,6 +107,12 @@ public class FormCompletionHelper(IWebDriver webDriver, ObjectContext objectCont
         SelectCheckbox(webDriver.FindElement(locator));
 
         SetDebugInformation($"Checked '{locator}'");
+    }
+
+    public void SelectCheckBoxByActions(By locator)
+    {
+        var actions = new Actions(webDriver);
+        actions.MoveToElement(webDriver.FindElement(locator)).Click().Build().Perform();
     }
 
     public void SelectCheckBoxByText(By locator, string text) => ClickElementByText(locator, text);
