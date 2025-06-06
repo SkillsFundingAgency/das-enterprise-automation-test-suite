@@ -1,9 +1,12 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
+using SFA.DAS.RAA.DataGenerator;
 
 namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
 {
@@ -13,8 +16,10 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext objectContext;
         private readonly MailosaurApiHelper mailosaurApiHelper;
+        protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         private readonly string employerEmail;
         private readonly string providerEmail;
+        private readonly string applicantEmail;
 
         public EmployerEmailNotificationsSteps(ScenarioContext context)
         {
@@ -24,6 +29,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             employerEmail = objectContext.GetRegisteredEmail();
             var providerConfig = context.Get<dynamic>("providerconfigkey");
             providerEmail = providerConfig.Username;
+            vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
+            applicantEmail = context.GetUser<FAAApplyUser>().Username;
         }
 
         [Then(@"the '(.*)' receives '(.*)' email notification")]
@@ -57,6 +64,24 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     emailText = "Your advert needs to be reviewed";
                     subject = $"Review your advert (VAC{objectContext.GetVacancyReference()})";
                     userEmail = employerEmail;
+                    break;
+
+                case ("new application", "applicant"):
+                    emailText = "We’ve received your application for:";
+                    subject = $"Application submitted: {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
+                    userEmail = applicantEmail;
+                    break;
+
+                case ("successful application", "applicant"):
+                    emailText = "Congratulations, you’ve been offered an apprenticeship:";
+                    subject = $"Successful application: {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
+                    userEmail = applicantEmail;
+                    break;
+
+                case ("unsuccessful application", "applicant"):
+                    emailText = "An application you’ve made has been unsuccessful:";
+                    subject = $"Unsuccessful application: read your feedback for {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
+                    userEmail = applicantEmail;
                     break;
 
                 default:
