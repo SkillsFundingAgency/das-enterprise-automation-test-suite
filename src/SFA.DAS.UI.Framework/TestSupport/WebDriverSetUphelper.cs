@@ -117,6 +117,7 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
         chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
 
         chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.notifications", 1);
+        chromeOptions.AddArguments("--enable-notifications");
 
         return chromeOptions;
     }
