@@ -29,9 +29,9 @@
 	<PackageReference Include="RestSharp" Version="112.1.0" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="Selenium.Axe" Version="4.0.*" />
-    <PackageReference Include="Selenium.Support" Version="4.29.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="4.29.0" />
-	<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="135.*" />
+    <PackageReference Include="Selenium.Support" Version="4.33.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.33.0" />
+	<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="137.0.7151.6800" />
   </ItemGroup>
 
   <ItemGroup>
