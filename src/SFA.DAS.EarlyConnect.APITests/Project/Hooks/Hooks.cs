@@ -36,7 +36,6 @@ namespace SFA.DAS.EarlyConnect.APITests.Project.Hooks
         public void CleanTestData()
         {
             _sqlHelper.DeleteStudentData(_dataHelper.ApprenticeEmail);
-            _sqlHelper.DeleteMetricsData();
         }
     }
 }

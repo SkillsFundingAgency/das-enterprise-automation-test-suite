@@ -7,20 +7,13 @@ public class EarlyConnectSqlHelper(ObjectContext objectContext, DbConfig config)
 {
     public void DeleteStudentData(string email)
     {
-        string sqlQuery = $@" select id into #StudentId from StudentData where email = '{email}';
-            delete from StudentData where Id in (select id from #StudentId);
-            drop table #StudentId;";
-
-        ExecuteSqlCommand(sqlQuery);
-    }
-
-    public void DeleteMetricsData()
-    {
-        string sqlQuery = $@"SELECT Id INTO #MetricIds FROM ApprenticeMetricsData WHERE DateAdded >= DATEADD(MINUTE, -15, GETDATE());
-                DELETE FROM ApprenticeMetricsData
-                WHERE Id IN (SELECT Id FROM #MetricIds);
-                DROP TABLE #MetricIds;";
-
+        string sqlQuery = $@"select id into #StudentId from StudentData where email = '{email}';
+        select Id into #StudentSurveyId from StudentSurvey where StudentId in (select id from #StudentId);
+        delete from StudentAnswer where StudentSurveyId in (select id from #StudentSurveyId)
+        delete from StudentSurvey where StudentId in (select id from #StudentId)
+        delete from StudentData where Id in (select id from #StudentId)
+        drop table #StudentId
+        drop table #StudentSurveyId";
 
         ExecuteSqlCommand(sqlQuery);
     }
