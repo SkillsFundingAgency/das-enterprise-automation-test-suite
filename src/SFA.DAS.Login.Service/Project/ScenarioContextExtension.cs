@@ -20,7 +20,7 @@ namespace SFA.DAS.Login.Service.Project
 
         public static void SetFAAPortaluser(this ScenarioContext context, List<FAAPortalUser> users)
         {
-            var signInIds = new CandidateAccountStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());
+            var signInIds = new CandidateAccountStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds([.. users.Select(x => x.Username)]);
 
             for (int i = 0; i < users.Count; i++)
             {
@@ -38,7 +38,7 @@ namespace SFA.DAS.Login.Service.Project
 
         public static void SetFAAPortaluser2(this ScenarioContext context, List<FAAPortalSecondUser> users)
         {
-            var signInIds = new CandidateAccountStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());
+            var signInIds = new CandidateAccountStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds([.. users.Select(x => x.Username)]);
 
             for (int i = 0; i < users.Count; i++)
             {
@@ -56,7 +56,7 @@ namespace SFA.DAS.Login.Service.Project
 
         public static void SetEPAOAssessorPortalUser(this ScenarioContext context, List<EPAOAssessorPortalUser> users)
         {
-            var signInIds = new AssessorStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());
+            var signInIds = new AssessorStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds([.. users.Select(x => x.Username)]);
 
             for (int i = 0; i < users.Count; i++)
             {
@@ -70,7 +70,7 @@ namespace SFA.DAS.Login.Service.Project
 
         public static void SetApprenticeAccountsPortalUser(this ScenarioContext context, List<ApprenticeUser> users)
         {
-            var signInIds = new ApprenticeAccountsStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds(users.Select(x => x.Username).ToList());
+            var signInIds = new ApprenticeAccountsStubLoginSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetSignInIds([.. users.Select(x => x.Username)]);
 
             for (int i = 0; i < users.Count; i++)
             {
@@ -92,7 +92,7 @@ namespace SFA.DAS.Login.Service.Project
 
             if (notNullUsers.Count == 0) return;
 
-            var legalentities = context.GetAccountLegalEntities(notNullUsers.Select(x => x.Username).ToList());
+            var legalentities = context.GetAccountLegalEntities([.. notNullUsers.Select(x => x.Username)]);
 
             for (int i = 0; i < notNullUsers.Count; i++)
             {
@@ -110,7 +110,7 @@ namespace SFA.DAS.Login.Service.Project
         {
             var accountDetails = new EasAccountsSqlDataHelper(context.Get<ObjectContext>(), context.Get<DbConfig>()).GetAccountDetails(username);
 
-            return accountDetails.Select(x => (x.listoflegalEntities.Select(y => RegexHelper.ReplaceMultipleSpace(y)).ToList(), x.idOrUserRef)).ToList();
+            return [.. accountDetails.Select(x => (x.listoflegalEntities.Select(y => RegexHelper.ReplaceMultipleSpace(y)).ToList(), x.idOrUserRef))];
         }
 
         private static void SetUser<T>(ScenarioContext context, T data) => context.Set(data, data == null ? Key<T>() : Key(data.GetType()));

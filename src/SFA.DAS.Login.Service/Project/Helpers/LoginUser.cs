@@ -93,7 +93,7 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     {
         public string NoOfCohortToDelete { get; set; }
     }
-
+    
     #endregion
 
     #region MultipleAccountEasUser
@@ -179,10 +179,11 @@ namespace SFA.DAS.Login.Service.Project.Helpers
     }
 
     #region ApprenticeAccount
-
     public class CocApprenticeUser : ApprenticeUser { }
 
     public class ApprenticeFeedbackUser : ApprenticeUser { }
+
+    public class ApprenticeAppUser : ApprenticeUser { }
 
     public abstract class ApprenticeUser : GovSignUser
     {
