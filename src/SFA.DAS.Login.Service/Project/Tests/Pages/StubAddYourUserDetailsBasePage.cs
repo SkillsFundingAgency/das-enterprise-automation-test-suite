@@ -6,7 +6,7 @@ namespace SFA.DAS.Login.Service.Project.Tests.Pages;
 
 public abstract class StubAddYourUserDetailsBasePage : VerifyBasePage
 {
-    protected override string PageTitle => "Add your user details";
+    protected override string PageTitle => "What is your name?";
 
     private static By FirstNameInput => By.CssSelector($"#FirstName, #GivenName");
     private static By LastNameInput => By.CssSelector($"#LastName, #FamilyName");
