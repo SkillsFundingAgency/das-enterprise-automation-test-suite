@@ -6,7 +6,7 @@ namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
 public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePage(context)
 {
-    private static readonly Lock _mfaObject = new();
+    private static readonly Mutex _mfaObject = new();
 
     static readonly List<string> usedCodes = [];
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -6,6 +6,13 @@
 	  <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="..\00BrowserStack.TestAdapter.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\NUnitConfigurator.cs" Link="NUnitConfigurator.cs">
