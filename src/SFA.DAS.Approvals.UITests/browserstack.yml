@@ -11,8 +11,8 @@ platforms:
     accessibility: true
 accessibilityOptions:
   wcagVersion: wcag22aa
-  includeTagsInTestingScope: 'accessibility'
-  excludeTagsInTestingScope: 'regression'
+  includeTagsInTestingScope: ''
+  excludeTagsInTestingScope: ''
 logLevel: debug
 browserstackAutomation: true
 testObservability: true
