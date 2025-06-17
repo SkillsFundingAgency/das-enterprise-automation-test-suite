@@ -1,0 +1,66 @@
+jobs:
+- job: CodeBuild
+  pool:
+    name: DAS - Continuous Integration Agents
+  variables:
+    - group: BUILD Management Resources
+  workspace:
+    clean: all
+  steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build'
+      inputs:
+        projects: 'src/**/*.csproj'
+        arguments: '--configuration $(buildConfiguration)'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet pack'
+      inputs:
+        command: 'pack'
+        projects: 'src/**/*.csproj'
+        packDirectory: '$(build.artifactstagingdirectory)/publish'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet publish'
+      inputs:
+        command: publish
+        publishWebProjects: false
+        zipAfterPublish: false
+        projects: 'src/**/*Tests.csproj'
+        arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
+
+    - task: CopyFiles@2
+      displayName: 'Copy config and support files'
+      inputs:
+        Contents: |
+          src/**/*.sql
+          src/**/html2canvas.js
+          src/**/appsettings.*.json
+          src/**/browserstack.yml
+          src/**/*.runsettings
+          src/**/Check-TestResults.ps1
+          src/**/UpdateNoofTestWorkers.ps1
+        TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
+        flattenFolders: true
+        OverWrite: true
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive test artifacts'
+      inputs:
+        rootFolderOrFile: '$(build.artifactstagingdirectory)/tests'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(build.artifactstagingdirectory)/publish/tests.zip'
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact'
+      inputs:
+        pathtoPublish: '$(build.artifactstagingdirectory)/publish'
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact - Recruit'
+      inputs:
+        pathtoPublish: '$(build.artifactstagingdirectory)/publish'
+        artifactName: Recruit
