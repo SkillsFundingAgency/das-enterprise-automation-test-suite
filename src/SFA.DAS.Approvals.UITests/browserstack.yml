@@ -1,5 +1,5 @@
-userName: gabrielpeterthom_ubAsv1
-accessKey: sZpPBSSmmXnyqW8aRmTK
+userName: ${BROWSERSTACK_USERNAME}
+accessKey: ${BROWSERSTACK_ACCESS_KEY}
 projectName: "ApprenticeshipService"
 buildName: "Approvals"
 buildIdentifier: ${DATE_TIME}
