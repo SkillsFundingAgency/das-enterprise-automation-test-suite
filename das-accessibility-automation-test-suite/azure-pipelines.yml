@@ -48,8 +48,6 @@ stages:
         parameters:
           Environment: TEST
           ServiceConnection: SFA-DAS-DevTest-ARM
-          AppRoleAssignmentsServiceConnection: das-app-role-assignments-CDS
-          AADGroupObjectIdArray: $(AdminAADGroupObjectId),$(DevAADGroupObjectId)
 
   - stage: Deploy_TEST2
     dependsOn: Build
@@ -62,8 +60,6 @@ stages:
         parameters:
           Environment: TEST2
           ServiceConnection: SFA-DAS-DevTest-ARM
-          AppRoleAssignmentsServiceConnection: das-app-role-assignments-CDS
-          AADGroupObjectIdArray: $(AdminAADGroupObjectId),$(DevAADGroupObjectId)
 
   - stage: Deploy_DEMO
     dependsOn: Build
@@ -76,8 +72,6 @@ stages:
         parameters:
           Environment: DEMO
           ServiceConnection: SFA-DAS-DevTest-ARM
-          AppRoleAssignmentsServiceConnection: das-app-role-assignments-CDS
-          AADGroupObjectIdArray: $(AdminAADGroupObjectId),$(DevAADGroupObjectId)
 
   - stage: Deploy_PP
     dependsOn: Build
@@ -92,5 +86,3 @@ stages:
         parameters:
           Environment: PP
           ServiceConnection: SFA-DIG-PreProd-ARM
-          AppRoleAssignmentsServiceConnection: das-app-role-assignments-FCS
-          AADGroupObjectIdArray: $(AdminAADGroupObjectId),$(DevAADGroupObjectId)
