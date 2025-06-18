@@ -1,0 +1,28 @@
+auth:
+  username: "${BROWSERSTACK_USERNAME}"
+  access_key: "${BROWSERSTACK_ACCESS_KEY}"
+
+project_name: "ApprenticeshipService"
+build_name: "Approvals"
+build_identifier: "${DATE_TIME}"
+
+run_settings:
+  csharp_project_path: "src/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.csproj"
+  parallel: 2
+  test_framework: "specflow"
+
+platforms:
+  - os: "Windows"
+    os_version: "11"
+    browser: "chrome"
+    browser_version: "latest"
+    accessibility: true
+
+accessibility_options:
+  wcag_version: "wcag22aa"
+  include_tags_in_testing_scope: ""
+  exclude_tags_in_testing_scope: ""
+
+browserstack_automation: true
+test_observability: true
+log_level: "debug"
