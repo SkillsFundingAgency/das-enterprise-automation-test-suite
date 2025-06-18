@@ -1,76 +1,93 @@
-steps:
-  - task: browserstackcom.browserstack-vsts-extension.browserstack-config-task.BrowserStackConfig@0
-    displayName: 'BrowserStack - Configuration'
-    inputs:
-      BrowserStackServiceEndPoint: 'AS-Browserstack'
+parameters:
+  - name: ServiceConnection
+    type: string
+  - name: SolutionBaseName
+    type: string
+  - name: Environment
+    type: string
 
-  - task: ExtractFiles@1
-    displayName: 'Extract files'
-    inputs:
-      archiveFilePatterns: '**/tests.zip'
-      destinationFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
+jobs:
+- deployment: Deploy_AutomationTests
+  displayName: 'Deploy Automation Tests to ${{ parameters.Environment }}'
+  environment: ${{ parameters.Environment }}
+  pool:
+    vmImage: 'windows-latest'
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - task: browserstackcom.browserstack-vsts-extension.browserstack-config-task.BrowserStackConfig@0
+          displayName: 'BrowserStack - Configuration'
+          inputs:
+            BrowserStackServiceEndPoint: 'AS-Browserstack'
 
-  - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
-    displayName: 'Tokenization: Transform file *.json'
-    inputs:
-      SourcePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
-      TargetFileNames: '*.json'
+        - task: ExtractFiles@1
+          displayName: 'Extract files'
+          inputs:
+            archiveFilePatterns: '**/tests.zip'
+            destinationFolder: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
 
-  - task: AzurePowerShell@5
-    displayName: "Get Agent's IP Address"
-    inputs:
-      azureSubscription: '$(ARMServiceConnection)'
-      ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
-      ScriptArguments: '-WhatsMyIpUrl "https://ifconfig.me/ip"'
-      azurePowerShellVersion: LatestVersion
+        - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
+          displayName: 'Tokenization: Transform file *.json'
+          inputs:
+            SourcePath: '$(System.DefaultWorkingDirectory)/das-enterprise-automation-test-suite/drop/tests'
+            TargetFileNames: '*.json'
 
-  - task: AzurePowerShell@5
-    displayName: "Whitelist agent's IP address"
-    inputs:
-      azureSubscription: '$(ARMServiceConnection)'
-      ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
-      ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
-      azurePowerShellVersion: LatestVersion
+        - task: AzurePowerShell@5
+          displayName: "Get Agent's IP Address"
+          inputs:
+            azureSubscription: ${{ parameters.ServiceConnection }}
+            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
+            ScriptArguments: '-WhatsMyIpUrl "https://ifconfig.me/ip"'
+            azurePowerShellVersion: LatestVersion
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Run Browserstack accessibility tests'
-    inputs:
-      command: test
-      projects: |
-        **/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.dll
-        **/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.dll
-        **/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.dll
-        **/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.dll
-        **/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.dll
-        **/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.dll
-        **/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.dll
-        **/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.dll
-        **/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.dll
-        **/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.dll
-        **/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.dll
-        **/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.dll
-        **/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.dll
-        **/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.dll
-        **/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.dll
-        **/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.dll
-        **/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.dll
-        **/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.dll
-        **/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.dll
-        **/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.dll
-        **/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.dll
-        **/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.dll
-        **/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.dll
-      arguments: '--filter Category=$(TestCategory)'
-      testRunTitle: 'Accessibility test $(DATE_TIME)'
+        - task: AzurePowerShell@5
+          displayName: "Whitelist agent's IP address"
+          inputs:
+            azureSubscription: ${{ parameters.ServiceConnection }}
+            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
+            ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            azurePowerShellVersion: LatestVersion
 
-  - task: AzurePowerShell@5
-    displayName: "SQL - Remove Whitelisted Agent's IP Address"
-    inputs:
-      azureSubscription: '$(ARMServiceConnection)'
-      ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
-      ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
-      azurePowerShellVersion: LatestVersion
-    condition: succeededOrFailed()
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Browserstack accessibility tests'
+          inputs:
+            command: test
+            projects: |
+              **/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.dll
+              **/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.dll
+              **/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.dll
+              **/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.dll
+              **/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.dll
+              **/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.dll
+              **/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.dll
+              **/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.dll
+              **/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.dll
+              **/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.dll
+              **/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.dll
+              **/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.dll
+              **/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.dll
+              **/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.dll
+              **/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.dll
+              **/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.dll
+              **/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.dll
+              **/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.dll
+              **/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.dll
+              **/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.dll
+              **/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.dll
+              **/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.dll
+              **/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.dll
+            arguments: '--filter Category=$(TestCategory)'
+            testRunTitle: 'Accessibility test $(DATE_TIME)'
 
-  - task: browserstackcom.browserstack-vsts-extension.reports-task.BrowserStackResults@1
-    displayName: 'BrowserStack - Results'
+        - task: AzurePowerShell@5
+          displayName: "SQL - Remove Whitelisted Agent's IP Address"
+          inputs:
+            azureSubscription: ${{ parameters.ServiceConnection }}
+            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
+            ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            azurePowerShellVersion: LatestVersion
+          condition: succeededOrFailed()
+
+        - task: browserstackcom.browserstack-vsts-extension.reports-task.BrowserStackResults@1
+          displayName: 'BrowserStack - Results'
