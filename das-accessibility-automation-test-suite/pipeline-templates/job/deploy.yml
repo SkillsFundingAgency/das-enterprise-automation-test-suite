@@ -44,7 +44,7 @@ jobs:
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
             ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
-            ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
 
         - task: DotNetCoreCLI@2
@@ -61,7 +61,7 @@ jobs:
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
             ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
-            ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
           condition: succeededOrFailed()
 
