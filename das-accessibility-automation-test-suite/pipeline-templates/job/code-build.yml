@@ -33,7 +33,7 @@ jobs:
     - task: CopyFiles@2
       displayName: 'Copy plain files to: $(build.artifactstagingdirectory)/tests/files'
       inputs:
-        Contents: |     
+        Contents: |
          src/**/*.sql
          src/**/html2canvas.js
          src/**/appsettings.Config.json
@@ -51,7 +51,7 @@ jobs:
     - task: CopyFiles@2
       displayName: 'Copy project json files to: $(build.artifactstagingdirectory)/tests/'
       inputs:
-        Contents: |     
+        Contents: |
          src/**/appsettings.Project.json
         TargetFolder: '$(build.artifactstagingdirectory)/tests/'
         flattenFolders: false
@@ -60,7 +60,7 @@ jobs:
     - task: CopyFiles@2
       displayName: 'Copy Check-TestResults.ps1 to: $(build.artifactstagingdirectory)/publish'
       inputs:
-        Contents: |     
+        Contents: |
          src/**/Check-TestResults.ps1
         TargetFolder: '$(build.artifactstagingdirectory)/publish'
         OverWrite: true
@@ -94,7 +94,6 @@ jobs:
       inputs:
         pathtoPublish: '$(build.artifactstagingdirectory)/publish'
 
-    # Optional: Only if you need a second artifact named Recruit (delete if not needed)
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact - Recruit'
       inputs:

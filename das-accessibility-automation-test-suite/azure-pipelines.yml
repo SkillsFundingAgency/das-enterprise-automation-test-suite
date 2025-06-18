@@ -35,44 +35,6 @@ stages:
     jobs:
       - template: pipeline-templates/job/code-build.yml
 
-  - stage: Deploy_TEST
-    dependsOn: Build
-    displayName: Deploy to TEST
-    condition: and(succeeded(), eq(variables.Deploy, 'true'))
-    variables:
-      - group: "TEST DevTest Shared Resources"
-      - group: "TEST Automation Suite Variables"
-      - group: "DevTest Management Resources"
-    jobs:
-      - template: pipeline-templates/job/deploy.yml
-        parameters:
-          Environment: TEST
-          ServiceConnection: SFA-DAS-DevTest-ARM
-
-  - stage: Deploy_TEST2
-    dependsOn: Build
-    displayName: Deploy to TEST2
-    variables:
-      - group: "TEST2 DevTest Shared Resources"
-      - group: "DevTest Management Resources"
-    jobs:
-      - template: pipeline-templates/job/deploy.yml
-        parameters:
-          Environment: TEST2
-          ServiceConnection: SFA-DAS-DevTest-ARM
-
-  - stage: Deploy_DEMO
-    dependsOn: Build
-    displayName: Deploy to DEMO
-    variables:
-      - group: "DevTest Management Resources"
-      - group: "DEMO DevTest Shared Resources"
-    jobs:
-      - template: pipeline-templates/job/deploy.yml
-        parameters:
-          Environment: DEMO
-          ServiceConnection: SFA-DAS-DevTest-ARM
-
   - stage: Deploy_PP
     dependsOn: Build
     displayName: Deploy to PP
