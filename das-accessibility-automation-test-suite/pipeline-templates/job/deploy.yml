@@ -19,31 +19,23 @@ jobs:
           inputs:
             BrowserStackServiceEndPoint: 'AS-Browserstack'
 
-        - task: DownloadBuildArtifacts@0
-          displayName: 'Download build artifacts'
-          inputs:
-            buildType: 'current'
-            downloadType: 'single'
-            artifactName: 'drop'
-            downloadPath: '$(Pipeline.Workspace)'
-
         - task: ExtractFiles@1
           displayName: 'Extract files'
           inputs:
-            archiveFilePatterns: 'drop/src/tests.zip'
-            destinationFolder: '$(Pipeline.Workspace)/extracted-tests'
+            archiveFilePatterns: '**/tests.zip'
+            destinationFolder: '$(Pipeline.Workspace)/drop/tests'
 
         - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
           displayName: 'Tokenization: Transform file *.json'
           inputs:
-            SourcePath: '$(Pipeline.Workspace)/extracted-tests'
+            SourcePath: '$(Pipeline.Workspace)/drop/tests'
             TargetFileNames: '*.json'
 
         - task: AzurePowerShell@5
           displayName: "Get Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
+            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
             ScriptArguments: '-WhatsMyIpUrl "https://ifconfig.me/ip"'
             azurePowerShellVersion: LatestVersion
 
@@ -51,7 +43,7 @@ jobs:
           displayName: "Whitelist agent's IP address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
+            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
             ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
 
@@ -60,7 +52,7 @@ jobs:
           inputs:
             command: test
             projects: |
-              $(Pipeline.Workspace)/extracted-tests/**/*.dll
+              $(Pipeline.Workspace)/drop/tests/**/*.dll
             arguments: '--filter Category=$(TestCategory)'
             testRunTitle: 'Accessibility test $(DATE_TIME)'
 
@@ -68,7 +60,7 @@ jobs:
           displayName: "SQL - Remove Whitelisted Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
+            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
             ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
           condition: succeededOrFailed()

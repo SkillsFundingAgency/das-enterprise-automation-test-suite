@@ -93,9 +93,3 @@ jobs:
       displayName: 'Publish Artifact'
       inputs:
         pathtoPublish: '$(build.artifactstagingdirectory)/publish'
-
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact - Recruit'
-      inputs:
-        pathtoPublish: '$(build.artifactstagingdirectory)/publish'
-        artifactName: Recruit
