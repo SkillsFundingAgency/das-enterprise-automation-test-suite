@@ -19,26 +19,27 @@ jobs:
           inputs:
             BrowserStackServiceEndPoint: 'AS-Browserstack'
 
-
         - task: DownloadBuildArtifacts@0
           displayName: 'Download build artifacts'
           inputs:
             buildType: 'current'
             downloadType: 'single'
             artifactName: 'drop'
-            downloadPath: '$(Pipeline.Workspace)'
+            downloadPath: '$(System.DefaultWorkingDirectory)'
 
+        - script: dir $(System.DefaultWorkingDirectory)\drop
+          displayName: 'List drop folder contents'
 
         - task: ExtractFiles@1
           displayName: 'Extract files'
           inputs:
             archiveFilePatterns: 'drop/tests.zip'
-            destinationFolder: '$(Pipeline.Workspace)/drop/tests'
+            destinationFolder: '$(System.DefaultWorkingDirectory)/drop/tests'
 
         - task: TotalALM.totalalm-tokenization.tokenization-build-task.Tokenization@2
           displayName: 'Tokenization: Transform file *.json'
           inputs:
-            SourcePath: '$(Pipeline.Workspace)/drop/tests'
+            SourcePath: '$(System.DefaultWorkingDirectory)/drop/tests'
             TargetFileNames: '*.json'
 
         - task: AzurePowerShell@5
@@ -62,7 +63,7 @@ jobs:
           inputs:
             command: test
             projects: |
-              $(Pipeline.Workspace)/drop/tests/**/*.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/*.dll
             arguments: '--filter Category=$(TestCategory)'
             testRunTitle: 'Accessibility test $(DATE_TIME)'
 
