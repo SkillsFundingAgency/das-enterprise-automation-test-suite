@@ -10,60 +10,14 @@ jobs:
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
       inputs:
-        projects: |
-          src/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.csproj
-          src/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.csproj
-          src/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.csproj
-          src/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.csproj
-          src/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.csproj
-          src/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.csproj
-          src/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.csproj
-          src/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.csproj
-          src/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.csproj
-          src/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.csproj
-          src/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.csproj
-          src/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.csproj
-          src/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.csproj
-          src/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.csproj
-          src/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.csproj
-          src/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.csproj
-          src/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.csproj
-          src/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.csproj
-          src/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.csproj
-          src/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.csproj
-          src/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.csproj
-          src/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.csproj
-          src/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.csproj
+        projects: 'das-accessibility-automation-test-suite/src/**/*.csproj'
         arguments: '--configuration $(buildConfiguration)'
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet pack'
       inputs:
         command: 'pack'
-        projects: |
-          src/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.csproj
-          src/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.csproj
-          src/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.csproj
-          src/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.csproj
-          src/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.csproj
-          src/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.csproj
-          src/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.csproj
-          src/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.csproj
-          src/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.csproj
-          src/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.csproj
-          src/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.csproj
-          src/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.csproj
-          src/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.csproj
-          src/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.csproj
-          src/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.csproj
-          src/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.csproj
-          src/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.csproj
-          src/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.csproj
-          src/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.csproj
-          src/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.csproj
-          src/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.csproj
-          src/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.csproj
-          src/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.csproj
+        projects: 'das-accessibility-automation-test-suite/src/**/*.csproj'
         packDirectory: '$(build.artifactstagingdirectory)/publish'
         arguments: '--configuration $(buildConfiguration) --no-restore'
 
@@ -73,43 +27,20 @@ jobs:
         command: publish
         publishWebProjects: false
         zipAfterPublish: false
-        projects: |
-          src/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.csproj
-          src/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.csproj
-          src/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.csproj
-          src/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.csproj
-          src/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.csproj
-          src/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.csproj
-          src/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.csproj
-          src/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.csproj
-          src/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.csproj
-          src/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.csproj
-          src/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.csproj
-          src/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.csproj
-          src/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.csproj
-          src/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.csproj
-          src/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.csproj
-          src/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.csproj
-          src/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.csproj
-          src/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.csproj
-          src/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.csproj
-          src/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.csproj
-          src/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.csproj
-          src/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.csproj
-          src/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.csproj
+        projects: 'das-accessibility-automation-test-suite/src/**/*Tests.csproj'
         arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)/tests --no-restore --no-build'
 
     - task: CopyFiles@2
       displayName: 'Copy config and support files'
       inputs:
         Contents: |
-          src/**/*.sql
-          src/**/html2canvas.js
-          src/**/appsettings.*.json
-          src/**/browserstack.yml
-          src/**/*.runsettings
-          src/**/Check-TestResults.ps1
-          src/**/UpdateNoofTestWorkers.ps1
+          das-accessibility-automation-test-suite/src/**/*.sql
+          das-accessibility-automation-test-suite/src/**/html2canvas.js
+          das-accessibility-automation-test-suite/src/**/appsettings.*.json
+          das-accessibility-automation-test-suite/src/**/browserstack.yml
+          das-accessibility-automation-test-suite/src/**/*.runsettings
+          das-accessibility-automation-test-suite/src/**/Check-TestResults.ps1
+          das-accessibility-automation-test-suite/src/**/UpdateNoofTestWorkers.ps1
         TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
         flattenFolders: true
         OverWrite: true
