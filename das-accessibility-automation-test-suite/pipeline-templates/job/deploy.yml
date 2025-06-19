@@ -60,7 +60,7 @@ jobs:
             ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
 
-        # 👉 Local .NET Test Run (ALL TEST DLLs LISTED)
+        # 👇 Local .NET Test Run (ALL TEST DLLs LISTED)
         - task: DotNetCoreCLI@2
           displayName: 'Run ALL Accessibility Tests (Local Agent)'
           inputs:
@@ -92,8 +92,12 @@ jobs:
             arguments: '--filter Category=$(TestCategory)'
             testRunTitle: 'Local Accessibility test $(DATE_TIME)'
 
+        # 👇 Install browserstack-sdk as a dotnet local tool (uses dotnet-tools.json from repo)
+        - script: dotnet tool restore
+          displayName: 'Restore .NET Tools'
 
-        - script: npx browserstack-sdk --config browserstack.yml
+        # 👇 Run BrowserStack SDK tests (this picks up browserstack.yml automatically)
+        - script: dotnet browserstack-sdk --config browserstack.yml
           displayName: 'Run BrowserStack SDK'
           workingDirectory: $(Build.SourcesDirectory)
           env:
