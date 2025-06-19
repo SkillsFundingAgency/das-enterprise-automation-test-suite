@@ -31,6 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             var providerAddApprenticeDetailsPage = CurrentCohortDetails();
 
             return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
+                .SelectAddManually()
                 .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .SelectRegularDeliveryModelAndContinue()
                 .SubmitValidApprenticeDetails()
@@ -69,7 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             {
                 _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
 
-                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice().ProviderSelectsAStandard().SubmitValidApprenticeDetails();
+                providerApproveApprenticeDetailsPage = providerApproveApprenticeDetailsPage.SelectAddAnApprentice().SelectAddManually().ProviderSelectsAStandard().SubmitValidApprenticeDetails();
             }
 
             return providerApproveApprenticeDetailsPage;
