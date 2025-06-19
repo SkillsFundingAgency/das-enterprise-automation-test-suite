@@ -8,7 +8,7 @@ jobs:
 - deployment: Deploy_AutomationTests
   displayName: 'Deploy Automation Tests to ${{ parameters.Environment }}'
   pool:
-    name: DAS - Continuous Deployment Agents
+    vmImage: 'windows-latest'
   environment: ${{ parameters.Environment }}
   strategy:
     runOnce:
@@ -28,9 +28,6 @@ jobs:
             artifactName: 'drop'
             downloadPath: '$(System.DefaultWorkingDirectory)'
 
-        - script: dir $(System.DefaultWorkingDirectory) /S
-          displayName: 'List ALL contents in System.DefaultWorkingDirectory (recursive)'
-
         - task: ExtractFiles@1
           displayName: 'Extract files'
           inputs:
@@ -42,6 +39,9 @@ jobs:
           inputs:
             SourcePath: '$(System.DefaultWorkingDirectory)/drop/tests'
             TargetFileNames: '*.json'
+
+        - script: dir $(System.DefaultWorkingDirectory) /S
+          displayName: 'List ALL contents in System.DefaultWorkingDirectory (recursive)'
 
         - task: AzurePowerShell@5
           displayName: "Get Agent's IP Address"
