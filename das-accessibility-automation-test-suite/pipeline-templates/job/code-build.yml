@@ -2,35 +2,11 @@ jobs:
 - job: CodeBuild
   pool:
     name: DAS - Continuous Integration Agents
+    workspace:
+      clean: all
   variables:
     - group: BUILD Management Resources
-  workspace:
-    clean: all
   steps:
-    # DEBUG DIRECTORY TREE
-    - script: |
-        echo "==== DEBUG: $(Build.SourcesDirectory) (Top Level) ===="
-        dir "$(Build.SourcesDirectory)"
-        echo ""
-        echo "==== DEBUG: $(Build.SourcesDirectory)\das-platform-automation ===="
-        dir "$(Build.SourcesDirectory)\das-platform-automation"
-        echo ""
-        echo "==== DEBUG: $(Build.SourcesDirectory)\das-platform-automation\Infrastructure-Scripts ===="
-        dir "$(Build.SourcesDirectory)\das-platform-automation\Infrastructure-Scripts"
-        echo ""
-        echo "==== DEBUG: $(System.DefaultWorkingDirectory) (Top Level) ===="
-        dir "$(System.DefaultWorkingDirectory)"
-        echo ""
-        echo "==== DEBUG: $(System.DefaultWorkingDirectory)\das-platform-automation ===="
-        dir "$(System.DefaultWorkingDirectory)\das-platform-automation"
-        echo ""
-        echo "==== DEBUG: $(System.DefaultWorkingDirectory)\das-platform-automation\Infrastructure-Scripts ===="
-        dir "$(System.DefaultWorkingDirectory)\das-platform-automation\Infrastructure-Scripts"
-        echo ""
-        echo "==== DEBUG: $(Build.ArtifactStagingDirectory) (Top Level) ===="
-        dir "$(Build.ArtifactStagingDirectory)"
-      displayName: "DEBUG: List All Relevant Directories At Start"
-
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
       inputs:
@@ -58,16 +34,16 @@ jobs:
       displayName: 'Copy plain files to: $(build.artifactstagingdirectory)/tests/files'
       inputs:
         Contents: |
-         src/**/*.sql
-         src/**/html2canvas.js
-         src/**/appsettings.Config.json
-         src/**/appsettings.AdminConfig.json
-         src/**/appsettings.ProviderConfig.json
-         src/**/appsettings.TimeOutConfig.json
-         src/**/appsettings.TestExecution.json
-         src/**/appsettings.NServiceBusConfig.json
-         src/**/appsettings.BrowserStack.json
-         src/**/appsettings.ApiFramework.json
+          src/**/*.sql
+          src/**/html2canvas.js
+          src/**/appsettings.Config.json
+          src/**/appsettings.AdminConfig.json
+          src/**/appsettings.ProviderConfig.json
+          src/**/appsettings.TimeOutConfig.json
+          src/**/appsettings.TestExecution.json
+          src/**/appsettings.NServiceBusConfig.json
+          src/**/appsettings.BrowserStack.json
+          src/**/appsettings.ApiFramework.json
         TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
         flattenFolders: true
         OverWrite: true
@@ -76,7 +52,7 @@ jobs:
       displayName: 'Copy project json files to: $(build.artifactstagingdirectory)/tests/'
       inputs:
         Contents: |
-         src/**/appsettings.Project.json
+          src/**/appsettings.Project.json
         TargetFolder: '$(build.artifactstagingdirectory)/tests/'
         flattenFolders: false
         OverWrite: true
@@ -85,7 +61,7 @@ jobs:
       displayName: 'Copy Check-TestResults.ps1 to: $(build.artifactstagingdirectory)/publish'
       inputs:
         Contents: |
-         src/**/Check-TestResults.ps1
+          src/**/Check-TestResults.ps1
         TargetFolder: '$(build.artifactstagingdirectory)/publish'
         OverWrite: true
 
@@ -93,7 +69,7 @@ jobs:
       displayName: 'Copy UpdateNoofTestWorkers.ps1 to: $(build.artifactstagingdirectory)/publish'
       inputs:
         Contents: |
-         src/**/UpdateNoofTestWorkers.ps1
+          src/**/UpdateNoofTestWorkers.ps1
         TargetFolder: '$(build.artifactstagingdirectory)/publish'
         OverWrite: true
 
