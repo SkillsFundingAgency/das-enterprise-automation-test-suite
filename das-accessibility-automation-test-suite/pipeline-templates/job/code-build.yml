@@ -7,6 +7,30 @@ jobs:
   workspace:
     clean: all
   steps:
+    # DEBUG DIRECTORY TREE
+    - script: |
+        echo "==== DEBUG: $(Build.SourcesDirectory) (Top Level) ===="
+        dir "$(Build.SourcesDirectory)"
+        echo ""
+        echo "==== DEBUG: $(Build.SourcesDirectory)\das-platform-automation ===="
+        dir "$(Build.SourcesDirectory)\das-platform-automation"
+        echo ""
+        echo "==== DEBUG: $(Build.SourcesDirectory)\das-platform-automation\Infrastructure-Scripts ===="
+        dir "$(Build.SourcesDirectory)\das-platform-automation\Infrastructure-Scripts"
+        echo ""
+        echo "==== DEBUG: $(System.DefaultWorkingDirectory) (Top Level) ===="
+        dir "$(System.DefaultWorkingDirectory)"
+        echo ""
+        echo "==== DEBUG: $(System.DefaultWorkingDirectory)\das-platform-automation ===="
+        dir "$(System.DefaultWorkingDirectory)\das-platform-automation"
+        echo ""
+        echo "==== DEBUG: $(System.DefaultWorkingDirectory)\das-platform-automation\Infrastructure-Scripts ===="
+        dir "$(System.DefaultWorkingDirectory)\das-platform-automation\Infrastructure-Scripts"
+        echo ""
+        echo "==== DEBUG: $(Build.ArtifactStagingDirectory) (Top Level) ===="
+        dir "$(Build.ArtifactStagingDirectory)"
+      displayName: "DEBUG: List All Relevant Directories At Start"
+
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
       inputs:
