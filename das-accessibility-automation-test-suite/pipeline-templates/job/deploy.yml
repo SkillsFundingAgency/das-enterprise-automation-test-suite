@@ -46,23 +46,16 @@ jobs:
           displayName: "Get Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptType: 'InlineScript'
-            Inline: |
-              $ip = & "$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1" -WhatsMyIpUrl "https://ifconfig.me/ip"
-              Write-Host "Agent public IP: $ip"
-              Write-Host "##vso[task.setvariable variable=IPAddress]$ip"
+            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
+            ScriptArguments: '-WhatsMyIpUrl "https://ifconfig.me/ip"'
             azurePowerShellVersion: LatestVersion
-
-        # Debug step (optional, but helps confirm variable is set)
-        - script: echo "The pipeline IP variable is: $(IPAddress)"
-          displayName: "Debug: Show IPAddress variable"
 
         - task: AzurePowerShell@5
           displayName: "Whitelist agent's IP address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
-            ScriptArguments: "-Name \"$(Release.DefinitionName)\" -IPAddress \"$(IPAddress)\" -ResourceNamePattern \"$(SharedSQLServerName)\""
+            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
+            ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
 
         - task: DotNetCoreCLI@2
@@ -78,8 +71,8 @@ jobs:
           displayName: "SQL - Remove Whitelisted Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
-            ScriptArguments: "-Name \"$(Release.DefinitionName)\" -IPAddress \"$(IPAddress)\" -ResourceNamePattern \"$(SharedSQLServerName)\""
+            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
+            ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
           condition: succeededOrFailed()
 
