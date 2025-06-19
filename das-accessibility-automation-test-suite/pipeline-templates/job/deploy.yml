@@ -15,6 +15,7 @@ jobs:
       deploy:
         steps:
         - checkout: das-platform-automation
+
         - task: browserstackcom.browserstack-vsts-extension.browserstack-config-task.BrowserStackConfig@0
           displayName: 'BrowserStack - Configuration'
           inputs:
@@ -59,36 +60,47 @@ jobs:
             ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
 
+        # 👉 Local .NET Test Run (ALL TEST DLLs LISTED)
         - task: DotNetCoreCLI@2
-          displayName: 'Run Browserstack accessibility tests'
+          displayName: 'Run ALL Accessibility Tests (Local Agent)'
           inputs:
             command: test
             projects: |
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.dll
-               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.dll
+              $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.dll
             arguments: '--filter Category=$(TestCategory)'
-            testRunTitle: 'Accessibility test $(DATE_TIME)'
+            testRunTitle: 'Local Accessibility test $(DATE_TIME)'
+
+
+        - script: npx browserstack-sdk --config browserstack.yml
+          displayName: 'Run BrowserStack SDK'
+          workingDirectory: $(Build.SourcesDirectory)
+          env:
+            BROWSERSTACK_USERNAME: $(BROWSERSTACK_USERNAME)
+            BROWSERSTACK_ACCESS_KEY: $(BROWSERSTACK_ACCESS_KEY)
+            BROWSERSTACK_BUILD_NAME: $(BROWSERSTACK_BUILD_NAME)
+            BROWSERSTACK_BUILD_IDENTIFIER: $(BROWSERSTACK_BUILD_IDENTIFIER)
 
         - task: AzurePowerShell@5
           displayName: "SQL - Remove Whitelisted Agent's IP Address"

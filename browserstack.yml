@@ -3,8 +3,8 @@ auth:
   access_key: "${BROWSERSTACK_ACCESS_KEY}"
 
 project_name: "ApprenticeshipService"
-build_name: "Approvals"
-build_identifier: "${DATE_TIME}"
+build_name: "${BROWSERSTACK_BUILD_NAME}"
+build_identifier: "${BROWSERSTACK_BUILD_IDENTIFIER}"
 
 run_settings:
   csharp_project_path: "src/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.csproj"
