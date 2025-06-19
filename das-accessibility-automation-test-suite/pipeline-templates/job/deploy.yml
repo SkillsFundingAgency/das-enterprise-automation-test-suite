@@ -42,7 +42,6 @@ jobs:
             SourcePath: '$(System.DefaultWorkingDirectory)/drop/tests'
             TargetFileNames: '*.json'
 
-        # --- HERE IS THE INLINE SCRIPT WRAPPER THAT CAPTURES THE IP AND SETS THE PIPELINE VARIABLE ---
         - task: AzurePowerShell@5
           displayName: "Get Agent's IP Address"
           inputs:
@@ -54,7 +53,7 @@ jobs:
               Write-Host "##vso[task.setvariable variable=IPAddress]$ip"
             azurePowerShellVersion: LatestVersion
 
-        # (Optional) Debug step to make sure variable is set
+        # Debug step (optional, but helps confirm variable is set)
         - script: echo "The pipeline IP variable is: $(IPAddress)"
           displayName: "Debug: Show IPAddress variable"
 
@@ -63,7 +62,7 @@ jobs:
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
             ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
-            ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            ScriptArguments: "-Name \"$(Release.DefinitionName)\" -IPAddress \"$(IPAddress)\" -ResourceNamePattern \"$(SharedSQLServerName)\""
             azurePowerShellVersion: LatestVersion
 
         - task: DotNetCoreCLI@2
@@ -80,7 +79,7 @@ jobs:
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
             ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
-            ScriptArguments: '-Name $(Release.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            ScriptArguments: "-Name \"$(Release.DefinitionName)\" -IPAddress \"$(IPAddress)\" -ResourceNamePattern \"$(SharedSQLServerName)\""
             azurePowerShellVersion: LatestVersion
           condition: succeededOrFailed()
 
