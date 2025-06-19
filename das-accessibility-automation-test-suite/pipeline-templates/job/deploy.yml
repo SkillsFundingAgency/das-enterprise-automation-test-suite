@@ -43,20 +43,18 @@ jobs:
             TargetFileNames: '*.json'
 
         - task: AzurePowerShell@5
-          displayName: "Get and Set Agent's IP Address"
+          displayName: "Get Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptType: 'InlineScript'
-            Inline: |
-              $ip = & 'das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1' -WhatsMyIpUrl "https://ifconfig.me/ip"
-              Write-Host "##vso[task.setvariable variable=IPAddress]$ip"
+            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
+            ScriptArguments: '-WhatsMyIpUrl "https://ifconfig.me/ip"'
             azurePowerShellVersion: LatestVersion
 
         - task: AzurePowerShell@5
           displayName: "Whitelist agent's IP address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
+            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Add-AzSqlIpException.ps1'
             ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
 
@@ -73,7 +71,7 @@ jobs:
           displayName: "SQL - Remove Whitelisted Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
+            ScriptPath: '$(System.DefaultWorkingDirectory)/das-platform-automation/Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
             ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
           condition: succeededOrFailed()
