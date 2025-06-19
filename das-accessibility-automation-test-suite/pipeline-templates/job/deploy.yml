@@ -64,7 +64,29 @@ jobs:
           inputs:
             command: test
             projects: |
-              $(System.DefaultWorkingDirectory)/drop/tests/**/*.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ApprenticeAmbassadorNetwork.UITests/SFA.DAS.ApprenticeAmbassadorNetwork.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ApprenticeCommitments.UITests/SFA.DAS.ApprenticeCommitments.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Approvals.UITests/SFA.DAS.Approvals.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Campaigns.UITests/SFA.DAS.Campaigns.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EarlyConnectForms.UITests/SFA.DAS.EarlyConnectForms.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EmployerFinance.UITests/SFA.DAS.EmployerFinance.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EmployerProviderRelationships.UITests/SFA.DAS.EmployerProviderRelationships.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.EPAO.UITests/SFA.DAS.EPAO.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FAA.UITests/SFA.DAS.FAA.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FAT-V2.UITests/SFA.DAS.FAT-V2.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FindEPAO.UITests/SFA.DAS.FindEPAO.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.FlexiPayments.E2ETests/SFA.DAS.FlexiPayments.E2ETests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.ManagingStandards.UITests/SFA.DAS.ManagingStandards.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-Employer.UITests/SFA.DAS.RAA-V2-Employer.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-Provider.UITests/SFA.DAS.RAA-V2-Provider.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RAA-V2-QA.UITests/SFA.DAS.RAA-V2-QA.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RequestApprenticeshipTraining.UITests/SFA.DAS.RequestApprenticeshipTraining.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Registration.UITests/SFA.DAS.Registration.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Roatp.UITests/SFA.DAS.Roatp.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.RoatpAdmin.UITests/SFA.DAS.RoatpAdmin.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.SupportConsole.UITests/SFA.DAS.SupportConsole.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.Transfers.UITests/SFA.DAS.Transfers.UITests.dll
+               $(System.DefaultWorkingDirectory)/drop/tests/**/SFA.DAS.TransferMatching.UITests/SFA.DAS.TransferMatching.UITests.dll
             arguments: '--filter Category=$(TestCategory)'
             testRunTitle: 'Accessibility test $(DATE_TIME)'
 
