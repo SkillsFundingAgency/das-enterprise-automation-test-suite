@@ -43,11 +43,13 @@ jobs:
             TargetFileNames: '*.json'
 
         - task: AzurePowerShell@5
-          displayName: "Get Agent's IP Address"
+          displayName: "Get and Set Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: 'das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1'
-            ScriptArguments: '-WhatsMyIpUrl "https://ifconfig.me/ip"'
+            ScriptType: 'InlineScript'
+            Inline: |
+              $ip = & 'das-platform-automation/Infrastructure-Scripts/Get-MyIpAddress.ps1' -WhatsMyIpUrl "https://ifconfig.me/ip"
+              Write-Host "##vso[task.setvariable variable=IPAddress]$ip"
             azurePowerShellVersion: LatestVersion
 
         - task: AzurePowerShell@5
