@@ -1,0 +1,16 @@
+userName: ${BROWSERSTACK_USERNAME}
+accessKey: ${BROWSERSTACK_ACCESS_KEY}
+buildName: "SDK-Build-${BUILD_NUMBER}"
+projectName: "MySolution"
+platforms:
+  - os: Windows
+    osVersion: 10
+    browserName: Chrome
+    browserVersion: latest
+  - os: OS X
+    osVersion: Ventura
+    browserName: Safari
+    browserVersion: latest
+parallels: 2
+source: azure-pipelines
+browserstackLocal: false

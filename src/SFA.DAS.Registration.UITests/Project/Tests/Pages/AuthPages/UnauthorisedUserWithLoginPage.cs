@@ -1,8 +1,0 @@
-﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.AuthPages;
-
-public class UnauthorisedUserWithLoginPage(ScenarioContext context, string url) : UnauthorisedAccessBasePage(context, url)
-{
-    protected override string PageTitle => "S2";
-
-    protected override List<string> ExpectedPageTitles => [SignInPageTitle, PageNotFoundPageTitle, AccessDeniedPageTitle];
-}

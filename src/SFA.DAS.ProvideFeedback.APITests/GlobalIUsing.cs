@@ -1,9 +1,0 @@
-global using SFA.DAS.FrameworkHelpers;
-global using TechTalk.SpecFlow;
-global using NUnit.Framework;
-global using RestSharp;
-global using SFA.DAS.API.Framework;
-global using SFA.DAS.ProvideFeedback.APITests.Project.Tests.Responses;
-global using System.Net;
-global using SFA.DAS.API.Framework.Configs;
-global using SFA.DAS.API.Framework.RestClients;
