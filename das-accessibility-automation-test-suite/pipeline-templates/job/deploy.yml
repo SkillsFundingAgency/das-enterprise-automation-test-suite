@@ -55,16 +55,24 @@ jobs:
           displayName: "Get Agent's IP Address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: 'Infrastructure-Scripts/Get-MyIpAddress.ps1'
-            ScriptArguments: '-WhatsMyIpUrl "https://ifconfig.me/ip"'
+            ScriptType: 'InlineScript'
+            Inline: |
+              $script = Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter Get-MyIpAddress.ps1 | Select-Object -First 1
+              if (-not $script) { throw "Could not find Get-MyIpAddress.ps1 anywhere!" }
+              Write-Host "Found script at $($script.FullName)"
+              & $script.FullName -WhatsMyIpUrl "https://ifconfig.me/ip"
             azurePowerShellVersion: LatestVersion
 
         - task: AzurePowerShell@5
           displayName: "Whitelist agent's IP address"
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: 'Infrastructure-Scripts/Add-AzSqlIpException.ps1'
-            ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            ScriptType: 'InlineScript'
+            Inline: |
+              $script = Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter Add-AzSqlIpException.ps1 | Select-Object -First 1
+              if (-not $script) { throw "Could not find Add-AzSqlIpException.ps1 anywhere!" }
+              Write-Host "Found script at $($script.FullName)"
+              & $script.FullName -Name "$(System.DefinitionName)" -IPAddress "$(IPAddress)" -ResourceNamePattern "$(SharedSQLServerName)"
             azurePowerShellVersion: LatestVersion
 
         - task: DotNetCoreCLI@2
@@ -117,12 +125,16 @@ jobs:
 
         - task: AzurePowerShell@5
           displayName: "SQL - Remove Whitelisted Agent's IP Address"
+          condition: succeededOrFailed()
           inputs:
             azureSubscription: ${{ parameters.ServiceConnection }}
-            ScriptPath: 'Infrastructure-Scripts/Remove-AzSqlIpException.ps1'
-            ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
+            ScriptType: 'InlineScript'
+            Inline: |
+              $script = Get-ChildItem -Path "$(Build.SourcesDirectory)" -Recurse -Filter Remove-AzSqlIpException.ps1 | Select-Object -First 1
+              if (-not $script) { throw "Could not find Remove-AzSqlIpException.ps1 anywhere!" }
+              Write-Host "Found script at $($script.FullName)"
+              & $script.FullName -Name "$(System.DefinitionName)" -IPAddress "$(IPAddress)" -ResourceNamePattern "$(SharedSQLServerName)"
             azurePowerShellVersion: LatestVersion
-          condition: succeededOrFailed()
 
         - task: browserstackcom.browserstack-vsts-extension.reports-task.BrowserStackResults@1
           displayName: 'BrowserStack - Results'
