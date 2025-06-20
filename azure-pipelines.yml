@@ -1,8 +1,8 @@
-trigger:
-  batch: true
-  branches:
-    include:
-      - "*"
+# trigger:
+#   batch: true
+#   branches:
+#     include:
+#       - "*"
 
 workspace:
     clean: all
