@@ -108,11 +108,11 @@ jobs:
 
         - script: |
             echo Listing $(Build.SourcesDirectory) contents
-            dir $(Build.SourcesDirectory)
-            echo Listing .config subfolder contents
-            dir $(Build.SourcesDirectory)\.config
-            dotnet tool restore --tool-manifest $(Build.SourcesDirectory)\.config\dotnet-tools.json
-          displayName: 'Restore .NET Tools'
+            dir "$(Build.SourcesDirectory)"
+            echo Listing .config subfolder contents (inside das-enterprise-automation-test-suite)
+            dir "$(Build.SourcesDirectory)\das-enterprise-automation-test-suite\.config"
+            dotnet tool restore --tool-manifest "$(Build.SourcesDirectory)/das-enterprise-automation-test-suite/.config/dotnet-tools.json"
+          displayName: 'Restore .NET Tools (from root .config)'
 
         - script: dotnet browserstack-sdk --config browserstack.yml
           displayName: 'Run BrowserStack SDK'
