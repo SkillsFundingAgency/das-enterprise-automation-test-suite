@@ -114,7 +114,7 @@ jobs:
             dotnet tool restore --tool-manifest "$(Build.SourcesDirectory)/das-enterprise-automation-test-suite/.config/dotnet-tools.json"
           displayName: 'Restore .NET Tools (from root .config)'
 
-        - script: dotnet browserstack-sdk --config browserstack.yml
+        - script: dotnet tool run browserstack-sdk -- --config browserstack.yml
           displayName: 'Run BrowserStack SDK'
           workingDirectory: $(Build.SourcesDirectory)/das-enterprise-automation-test-suite
           env:
