@@ -14,7 +14,11 @@ jobs:
     runOnce:
       deploy:
         steps:
+        - checkout: self
+          displayName: 'Checkout current branch'
+
         - checkout: das-platform-automation
+          displayName: 'Checkout das-platform-automation templates'
 
         - task: browserstackcom.browserstack-vsts-extension.browserstack-config-task.BrowserStackConfig@0
           displayName: 'BrowserStack - Configuration'
