@@ -116,7 +116,7 @@ jobs:
 
         - script: dotnet browserstack-sdk --config browserstack.yml
           displayName: 'Run BrowserStack SDK'
-          workingDirectory: $(Build.SourcesDirectory)
+          workingDirectory: $(Build.SourcesDirectory)/das-enterprise-automation-test-suite
           env:
             BROWSERSTACK_USERNAME: $(BROWSERSTACK_USERNAME)
             BROWSERSTACK_ACCESS_KEY: $(BROWSERSTACK_ACCESS_KEY)
