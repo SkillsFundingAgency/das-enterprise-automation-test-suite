@@ -44,6 +44,9 @@ jobs:
         - script: dir $(System.DefaultWorkingDirectory) /S
           displayName: 'List ALL contents in System.DefaultWorkingDirectory (recursive)'
 
+        - script: dir $(Build.SourcesDirectory) /S
+          displayName: 'List ALL contents in Build.SourcesDirectory (recursive)'
+
         - task: AzurePowerShell@5
           displayName: "Get Agent's IP Address"
           inputs:
@@ -59,7 +62,6 @@ jobs:
             ScriptPath: 'Infrastructure-Scripts/Add-AzSqlIpException.ps1'
             ScriptArguments: '-Name $(System.DefinitionName) -IPAddress $(IPAddress) -ResourceNamePattern $(SharedSQLServerName)'
             azurePowerShellVersion: LatestVersion
-
 
         - task: DotNetCoreCLI@2
           displayName: 'Run ALL Accessibility Tests (Local Agent)'
@@ -92,7 +94,12 @@ jobs:
             arguments: '--filter Category=$(TestCategory)'
             testRunTitle: 'Local Accessibility test $(DATE_TIME)'
 
-        - script: dotnet tool restore
+        - script: |
+            echo Listing $(Build.SourcesDirectory) contents
+            dir $(Build.SourcesDirectory)
+            echo Listing .config subfolder contents
+            dir $(Build.SourcesDirectory)\.config
+            dotnet tool restore --tool-manifest $(Build.SourcesDirectory)\.config\dotnet-tools.json
           displayName: 'Restore .NET Tools'
 
         - script: dotnet browserstack-sdk --config browserstack.yml
