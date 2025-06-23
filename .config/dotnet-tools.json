@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "browserstack.sdk": {
-      "version": "1.27.0",
+      "version": "1.26.0",
       "commands": [ "browserstack-sdk" ]
     }
   }
