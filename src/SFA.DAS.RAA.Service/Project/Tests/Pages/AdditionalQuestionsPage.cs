@@ -15,7 +15,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             "What interests you about this apprenticeship?"
         };
 
-        private static By PageTextSelector => By.CssSelector(".govuk-grid-column-two-thirds");
+        private static By PageTextSelector => By.CssSelector("main .govuk-grid-column-two-thirds");
         private static By AdditionalQuestion1Selector => By.Id("AdditionalQuestion1");
         private static By AdditionalQuestion2Selector => By.Id("AdditionalQuestion2");
 
