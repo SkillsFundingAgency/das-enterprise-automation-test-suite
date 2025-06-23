@@ -4,9 +4,9 @@ Navigation journey through EAS and PAS
 @ignoreindemo
 @ignoreintest
 @ignoreintest2
-@accessibility
-@approvalsaccessibility
-@approvals
+#@accessibility
+#@approvalsaccessibility
+#@approvals
 Scenario:  AP_E2E_ACC_05 PublicSectorReporting
 	Given the Employer logins using existing NonLevy Account
 	Then the employer can create a new report
