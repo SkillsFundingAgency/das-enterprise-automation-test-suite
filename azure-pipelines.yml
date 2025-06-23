@@ -4,7 +4,7 @@ trigger:
       - "*"
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2022' # Use 'windows-2022' for maximum .NET stability; you can switch back if needed
 
 variables:
   BUILD_NUMBER: $(Build.BuildId)
@@ -12,31 +12,40 @@ variables:
 steps:
 - checkout: self
 
-# 👇 THIS MUST BE FIRST, before ANY dotnet script runs!
+# 1️⃣ Install .NET SDK first
 - task: UseDotNet@2
   displayName: 'Install .NET'
   inputs:
-    version: '8.x'
+    version: '8.0.x'
 
-# Now global tool install is safe!
+# 2️⃣ Debug: Make sure .NET CLI is available
+- script: |
+    echo "PATH is:"
+    echo %PATH%
+    where dotnet
+    dotnet --info
+  displayName: 'Debug .NET in PATH'
+
+# 3️⃣ Install BrowserStack SDK as a global tool
 - script: dotnet tool install -g browserstack-sdk --version 1.18.1
   displayName: 'Install BrowserStack SDK Globally'
 
+# 4️⃣ Add .NET global tools directory to PATH
 - script: echo "##vso[task.prependpath]C:\Users\VssAdministrator\.dotnet\tools"
   displayName: 'Add .NET tools to PATH'
 
-- script: dotnet --info
-  displayName: 'Show .NET Info'
-
+# 5️⃣ Build your solution
 - script: dotnet build MySolution.sln --configuration Release
   displayName: 'Build All Projects'
   workingDirectory: src
 
+# 6️⃣ Configure BrowserStack (service connection, if needed)
 - task: BrowserStackConfig@0
   displayName: 'BrowserStack - Config'
   inputs:
     BrowserStackServiceEndPoint: 'AS-Browserstack'
 
+# 7️⃣ Run BrowserStack SDK to execute your tests
 - script: dotnet browserstack-sdk --config ../browserstack.yml --project SeleniumTests/SeleniumTests.csproj
   displayName: 'Run BrowserStack Tests via SDK'
   workingDirectory: src
@@ -45,6 +54,7 @@ steps:
     BROWSERSTACK_ACCESS_KEY: $(BROWSERSTACK_ACCESS_KEY)
     BUILD_NUMBER: $(Build.BuildId)
 
+# 8️⃣ Publish test results artifacts
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
   inputs:
