@@ -21,7 +21,7 @@ steps:
   displayName: 'Restore .NET Tools'
   workingDirectory: .
 
-- script: dotnet build MySolution.sln --configuration Release
+- script: dotnet build src/MySolution.sln --configuration Release
   displayName: 'Build All Projects'
 
 - task: BrowserStackConfig@0
