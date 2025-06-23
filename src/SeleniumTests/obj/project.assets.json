@@ -4094,7 +4094,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "BrowserStack.TestAdapter >= 0.1.7",
+      "BrowserStack.TestAdapter >= 0.2.0",
       "Microsoft.NET.Test.Sdk >= 17.9.0",
       "NUnit >= 4.0.1",
       "NUnit3TestAdapter >= 4.5.0",
@@ -4154,7 +4154,7 @@
         "dependencies": {
           "BrowserStack.TestAdapter": {
             "target": "Package",
-            "version": "[0.1.7, )"
+            "version": "[0.2.0, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
@@ -4192,17 +4192,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "SeleniumTests depends on BrowserStack.TestAdapter (>= 0.1.7) but BrowserStack.TestAdapter 0.1.7 was not found. BrowserStack.TestAdapter 0.2.0 was resolved instead.",
-      "libraryId": "BrowserStack.TestAdapter",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

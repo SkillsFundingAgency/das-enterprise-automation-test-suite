@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nNk9OH/0Fbo=",
+  "dgSpecHash": "9Gik9DQllLc=",
   "success": true,
   "projectFilePath": "C:\\das-enterprise-automation-test-suite\\src\\SeleniumTests\\SeleniumTests.csproj",
   "expectedPackageFiles": [
@@ -55,16 +55,5 @@
     "C:\\Users\\furqa\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\furqa\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "SeleniumTests depends on BrowserStack.TestAdapter (>= 0.1.7) but BrowserStack.TestAdapter 0.1.7 was not found. BrowserStack.TestAdapter 0.2.0 was resolved instead.",
-      "libraryId": "BrowserStack.TestAdapter",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }
