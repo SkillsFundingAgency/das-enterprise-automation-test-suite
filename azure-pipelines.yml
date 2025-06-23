@@ -20,9 +20,6 @@ steps:
 - script: dotnet tool install -g browserstack-sdk --version 1.18.1
   displayName: 'Install BrowserStack SDK Globally'
 
-- script: echo "##vso[task.prependpath]C:\Users\VssAdministrator\.dotnet\tools"
-  displayName: 'Add dotnet tools to PATH'
-
 - script: dotnet build MySolution.sln --configuration Release
   displayName: 'Build All Projects'
   workingDirectory: src
