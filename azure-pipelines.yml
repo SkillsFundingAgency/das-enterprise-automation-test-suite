@@ -43,4 +43,3 @@ steps:
   inputs:
     PathtoPublish: 'SeleniumTests/TestResults'
     ArtifactName: 'TestResults'
-  workingDirectory: src
