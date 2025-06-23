@@ -23,7 +23,6 @@ steps:
 
 - script: dotnet build MySolution.sln --configuration Release
   displayName: 'Build All Projects'
-  workingDirectory: .
 
 - task: BrowserStackConfig@0
   displayName: 'BrowserStack - Config'
