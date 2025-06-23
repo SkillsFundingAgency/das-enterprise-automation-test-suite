@@ -21,8 +21,9 @@ steps:
   displayName: 'Restore .NET Tools'
   workingDirectory: .
 
-- script: dotnet build src/MySolution.sln --configuration Release
+- script: dotnet build MySolution.sln --configuration Release
   displayName: 'Build All Projects'
+  workingDirectory: .
 
 - task: BrowserStackConfig@0
   displayName: 'BrowserStack - Config'
@@ -31,6 +32,7 @@ steps:
 
 - script: dotnet browserstack-sdk --config browserstack.yml
   displayName: 'Run BrowserStack Tests via SDK'
+  workingDirectory: .
   env:
     BROWSERSTACK_USERNAME: $(BROWSERSTACK_USERNAME)
     BROWSERSTACK_ACCESS_KEY: $(BROWSERSTACK_ACCESS_KEY)
@@ -39,5 +41,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
   inputs:
-    PathtoPublish: 'src/SeleniumTests/TestResults'
+    PathtoPublish: 'SeleniumTests/TestResults'
     ArtifactName: 'TestResults'
+  workingDirectory: .
