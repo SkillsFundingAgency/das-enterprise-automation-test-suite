@@ -21,6 +21,9 @@ steps:
   displayName: 'Restore .NET Tools'
   workingDirectory: .
 
+- script: dir /s /b
+  displayName: 'Show directory structure (dir /s /b)'
+
 - script: dotnet build src/MySolution.sln --configuration Release
   displayName: 'Build All Projects'
 
