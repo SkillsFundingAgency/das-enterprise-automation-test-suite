@@ -51,6 +51,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BrowserStack.TestAdapter": {
+              "target": "Package",
+              "version": "[0.1.7, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.9.0, )"

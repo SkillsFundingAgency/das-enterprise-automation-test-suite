@@ -21,6 +21,10 @@ steps:
   displayName: 'Restore .NET Tools'
   workingDirectory: src
 
+- script: dir /s /b
+  displayName: 'Show directory structure'
+  workingDirectory: src
+
 - script: dotnet build MySolution.sln --configuration Release
   displayName: 'Build All Projects'
   workingDirectory: src
@@ -30,7 +34,7 @@ steps:
   inputs:
     BrowserStackServiceEndPoint: 'AS-Browserstack'
 
-- script: dotnet browserstack-sdk --config ../browserstack.yml
+- script: dotnet browserstack-sdk --config ../browserstack.yml --project SeleniumTests/SeleniumTests.csproj
   displayName: 'Run BrowserStack Tests via SDK'
   workingDirectory: src
   env:
