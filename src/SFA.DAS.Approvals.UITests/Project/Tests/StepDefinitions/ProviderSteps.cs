@@ -139,6 +139,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()
+                .SelectAddManually()
                 .ProviderSelectsAStandard()
                 .SubmitValidApprenticeDetails()
                 .SubmitApprove();
