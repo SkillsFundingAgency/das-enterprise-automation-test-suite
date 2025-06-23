@@ -14,8 +14,8 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Selenium.Support" Version="4.25.0" />
-		<PackageReference Include="Selenium.WebDriver" Version="4.25.0" />
+		<PackageReference Include="Selenium.Support" Version="4.26.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.26.0" />
 		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0">
 			<PrivateAssets>all</PrivateAssets>
