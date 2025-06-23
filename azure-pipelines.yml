@@ -27,7 +27,7 @@ steps:
 - task: BrowserStackConfig@0
   displayName: 'BrowserStack - Config'
   inputs:
-    BrowserStackServiceEndPoint: 'browserstack-connection'
+    BrowserStackServiceEndPoint: 'AS-Browserstack'
 
 - script: dotnet browserstack-sdk --config browserstack.yml
   displayName: 'Run BrowserStack Tests via SDK'
