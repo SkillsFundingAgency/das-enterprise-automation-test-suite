@@ -19,8 +19,8 @@
         private static string Abouttheemployer => "4. About the employer";
         private string Abouttheemployer_1 => isRaaEmployer ? "Name of employer on advert" : "Name of employer on vacancy";
 
-        private static string Application => "5. Application";
-        private static string Application_1 => "Questions for applicants";
+        private static string Application => "5. Application questions";
+        private static string Application_1 => "Application questions on Find an apprenticeship";
 
         private string Checkandsubmityouradvert => isRaaEmployer ? "6. Check and submit your advert" : "6. Check and submit your vacancy";
         private string Checkandsubmityouradvert_1 => isRaaEmployer ? "Check your answers and submit your advert" : "Check your answers and submit your vacancy";
