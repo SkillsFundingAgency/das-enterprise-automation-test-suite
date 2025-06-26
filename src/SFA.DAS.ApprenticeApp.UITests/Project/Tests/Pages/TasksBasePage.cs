@@ -33,7 +33,6 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By DonePanel => By.CssSelector("div.app-tabs__panel#tasks-done");
         private static By ToDoPanel => By.CssSelector("div.app-tabs__panel#tasks-todo");
         protected override string PageTitle => "Tasks";
-        private object TaskList;
 
 
         public TasksBasePage ClickToDoTab()
