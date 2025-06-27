@@ -11,6 +11,8 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
 
         protected static string InProgress => "In progress";
 
+        protected static string NotRequired => "Not required";
+
         public bool optionalFields;
 
         public CreateAdvertVacancyBaseStepsHelper() => optionalFields = false;
@@ -62,11 +64,18 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
 
             createAdvertPage.VerifyAbouttheemployerSectionStatus(Completed);
 
+            if(isApplicationMethodFAA)
+            {
             createAdvertPage.VerifyApplicationSectionStatus(NotStarted);
 
             createAdvertPage = Application(createAdvertPage, enterQuestion1, enterQuestion2);
 
             createAdvertPage.VerifyApplicationSectionStatus(Completed);
+            }
+            else
+            {
+                createAdvertPage.VerifyApplicationSectionStatus(NotRequired);
+            }
 
             createAdvertPage.VerifyCheckandsubmityouradvertSectionStatus(InProgress);
 

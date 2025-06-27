@@ -1,6 +1,9 @@
 ﻿using NUnit.Framework;
 using SFA.DAS.FrameworkHelpers;
+using SFA.DAS.Login.Service.Project.Helpers;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.RAA.DataGenerator.Project;
 using SFA.DAS.Registration.UITests.Project;
 using TechTalk.SpecFlow;
@@ -13,8 +16,9 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext objectContext;
         private readonly MailosaurApiHelper mailosaurApiHelper;
-        private readonly string employerEmail;
+        protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         private readonly string providerEmail;
+        private readonly string applicantEmail;
 
         public ProviderEmailNotificationsSteps(ScenarioContext context)
         {
@@ -23,24 +27,47 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
             mailosaurApiHelper = context.Get<MailosaurApiHelper>();
             var providerConfig = context.Get<dynamic>("providerconfigkey");
             providerEmail = providerConfig.Username;
+            vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
+            applicantEmail = context.GetUser<FAAApplyUser>().Username;
         }
 
-        [Then(@"the provider receives '(.*)' email notification")]
-        public void ThenTheEmployerReceivesEmailNotification(string notificationType)
+        [Then(@"the '(.*)' receives '(.*)' email notification")]
+        public void ThenTheEmployerReceivesEmailNotification(string userType, string notificationType)
         {
             string emailText = null;
             string subject = null;
+            string userEmail = null;
 
-            switch (notificationType)
+            switch (notificationType, userType)
             {
-                case "new application":
+                case ("new application", "provider"):
                     emailText = "There has been 1 new application";
                     subject = $"You have a new application for VAC{objectContext.GetVacancyReference()}";
+                    userEmail = providerEmail;
                     break;
 
-                case "rejected vacancy":
+                case ("rejected vacancy", "provider"):
                     emailText = "The apprenticeship advert needs some changes";
                     subject = $"Rejected: Updates needed to your apprenticeship advert (VAC{objectContext.GetVacancyReference()})";
+                    userEmail = providerEmail;
+                    break;
+
+                case ("new application", "applicant"):
+                    emailText = "We’ve received your application for:";
+                    subject = $"Application submitted: {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
+                    userEmail = applicantEmail;
+                    break;
+
+                case ("successful application", "applicant"):
+                    emailText = "Congratulations, you’ve been offered an apprenticeship:";
+                    subject = $"Successful application: {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
+                    userEmail = applicantEmail;
+                    break;
+
+                case ("unsuccessful application", "applicant"):
+                    emailText = "An application you’ve made has been unsuccessful:";
+                    subject = $"Unsuccessful application: read your feedback for {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
+                    userEmail = applicantEmail;
                     break;
 
                 default:
@@ -48,7 +75,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
                     break;
             }
 
-            var emailMessage = mailosaurApiHelper.GetEmailBody(providerEmail, subject, emailText);
+            var emailMessage = mailosaurApiHelper.GetEmailBody(userEmail, subject, emailText);
             StringAssert.Contains(emailText, emailMessage.Text.Body);
         }
     }
