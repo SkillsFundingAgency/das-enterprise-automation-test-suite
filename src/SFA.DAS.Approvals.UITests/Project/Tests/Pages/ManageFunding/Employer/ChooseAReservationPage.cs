@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private static By CreateANewReservationRadioButton => By.CssSelector(".govuk-label--s");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
-        private static By ChooseCourseReservation => By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
+        private static By ChooseCourseReservation => By.Name("SelectedReservationId");     //By.XPath("(//div[@class='govuk-radios']//div[@class='govuk-radios__item'])[1]");
 
         public ChooseAReservationPage ChooseCreateANewReservationRadioButton()
         {
