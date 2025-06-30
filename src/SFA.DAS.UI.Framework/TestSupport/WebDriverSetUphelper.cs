@@ -106,7 +106,7 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
 
         chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
 
-        chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
+        //chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
 
         chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.notifications", 1);
 
