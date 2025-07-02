@@ -35,7 +35,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                  .YesWillTrainingStartInSixMonths()
                  .YesSetupForExistingEmployee()
                  .YesContinueToReserveFunding()
-                 .ClickReserveFundingButton());
+                 .ClickReserveFundingButton())
+                .SaveReservationId();
 
             return VerifyContinueOnHomePagePanel(reservedPage);
         }
@@ -91,17 +92,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
-            doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
+            return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
                 .ClickYesRadioButton()
                 .EnterSelectForACourseAndSubmit()
                 .ClickSaveAndContinueButton()
                 .ClickMonthRadioButton()
                 .ClickSaveAndContinueButton()
                 .ClickYesReserveFundingNowRadioButton()
-                .ClickConfirmButton()
-                .SetCurrentReservationId();
-
-            return new SuccessfullyReservedFundingPage(_context);
+                .ClickConfirmButton();
         }
 
         public ManageFundingHomePage DeleteAllUnusedFunding()
