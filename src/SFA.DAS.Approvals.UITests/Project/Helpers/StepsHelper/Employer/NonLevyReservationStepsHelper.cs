@@ -56,8 +56,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public DynamicHomePages NonLevyEmployerAddsTwoReservations()
         {
-            ManageFundingEmployerStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding()).SaveReservationId().GoToDynamicHomePage();
-            ManageFundingEmployerStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding()).SaveReservationId(true).GoToDynamicHomePage();
+            new ManageFundingEmployerStepsHelper(_context).CreateReservation(_employerReservationStepsHelper.GoToReserveFunding()).SaveReservationId().GoToDynamicHomePage();
+            new ManageFundingEmployerStepsHelper(_context).CreateReservation(_employerReservationStepsHelper.GoToReserveFunding()).SaveReservationId(true).GoToDynamicHomePage();
             return new DynamicHomePages(_context);
         }
 
@@ -82,7 +82,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         private StartAddingApprenticesPage NonLevyEmployerAddsProviderDetails()
         {
-            return ManageFundingEmployerStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding())
+            return new ManageFundingEmployerStepsHelper(_context).CreateReservation(_employerReservationStepsHelper.GoToReserveFunding())
                 .AddApprentice()
                 .StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()
