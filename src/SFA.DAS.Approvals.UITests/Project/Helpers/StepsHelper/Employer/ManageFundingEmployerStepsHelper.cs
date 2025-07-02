@@ -89,16 +89,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .VerifyProblem("You must select a start date");
         }
 
-        public static SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+        public SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
-            return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
+            doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
                 .ClickYesRadioButton()
                 .EnterSelectForACourseAndSubmit()
                 .ClickSaveAndContinueButton()
                 .ClickMonthRadioButton()
                 .ClickSaveAndContinueButton()
                 .ClickYesReserveFundingNowRadioButton()
-                .ClickConfirmButton();
+                .ClickConfirmButton()
+                .SetCurrentReservationId();
+
+            return new SuccessfullyReservedFundingPage(_context);
         }
 
         public ManageFundingHomePage DeleteAllUnusedFunding()
