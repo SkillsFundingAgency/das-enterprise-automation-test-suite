@@ -44,8 +44,8 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.StepDefinitions
         [Then(@"the user selects an EPAO from the list")]
         public void WhenTheUserSelectsAnEPAOFromTheList() => _ePAOOrganisationDetailsPage = _ePAOOrganisationsPage.SelectFirstEPAOOrganisationFromList();
 
-        [Then(@"the user is able to contact ESFA")]
-        public void ThenTheUserIsAbleToContactESFA() => Assert.IsTrue(_zeroAssessmentOrganisationsPage.IsContactESFAButtonDisplayed());
+        [Then(@"the user is able to contact us")]
+        public void ThenTheUserIsAbleToContactESFA() => Assert.IsTrue(_zeroAssessmentOrganisationsPage.IsContactUsButtonDisplayed());
 
         [Then(@"the user is able to click back to homepage")]
         public void ThenTheUserIsAbleToClickBackToHomepage() => _ePAOOrganisationsPage.NavigateBackFromEPAOOrgansationPageToDetailsPage()
