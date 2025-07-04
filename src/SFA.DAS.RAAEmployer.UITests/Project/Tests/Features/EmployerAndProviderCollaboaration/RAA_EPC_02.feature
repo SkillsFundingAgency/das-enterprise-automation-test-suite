@@ -3,6 +3,7 @@
 @raa
 @raa-epc
 @regression
+@raaemployer
 Scenario: RAA_P_EPC_02 - Employer and Provider Collaboration Both Yes Permissions
 Given the Employer grants permission to the provider to create advert with review option set as Yes
 When the Provider submits a vacancy to the employer for review
