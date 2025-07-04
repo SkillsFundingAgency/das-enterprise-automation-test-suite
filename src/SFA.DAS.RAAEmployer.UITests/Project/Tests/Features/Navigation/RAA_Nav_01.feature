@@ -2,6 +2,7 @@
 
 @regression
 @raa
+@raaemployer
 Scenario: RAA_E_Nav_01_Navigate to EAS sub sites from Recruit Page
 	When the Employer navigates to 'Recruit' Page
 	Then the employer can navigate to home page
