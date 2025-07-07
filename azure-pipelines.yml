@@ -59,7 +59,6 @@ steps:
      src/**/appsettings.TimeOutConfig.json
      src/**/appsettings.TestExecution.json
      src/**/appsettings.NServiceBusConfig.json
-     src/**/appsettings.BrowserStack.json
      src/**/appsettings.ApiFramework.json
     TargetFolder: '$(build.artifactstagingdirectory)/tests/files'
     flattenFolders: true
@@ -110,3 +109,7 @@ steps:
   displayName: 'Publish Artifact'
   inputs:
     pathtoPublish: '$(build.artifactstagingdirectory)/publish'
+    
+    env:
+    BROWSERSTACK_USERNAME: $(BROWSERSTACK_USERNAME)
+    BROWSERSTACK_ACCESS_KEY: $(BROWSERSTACK_ACCESS_KEY)
