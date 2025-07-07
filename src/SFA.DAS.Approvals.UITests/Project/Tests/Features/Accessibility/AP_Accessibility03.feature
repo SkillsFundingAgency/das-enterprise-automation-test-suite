@@ -1,10 +1,11 @@
 ﻿Feature: AP_E2E_ACC_Accessibility03
 Navigation journey through EAS and PAS 
 
+@accessibility
+@approvalsaccessibility
 @non-levy
 @reservefunds
 @reservation
-@accessibility
 @approvals
 Scenario: AP_E2E_ACC_03 Non Levy Employer sends an approved cohort then provider approves the cohort
 	Given the Employer logins using existing NonLevy Account

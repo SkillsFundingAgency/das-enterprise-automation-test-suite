@@ -42,16 +42,8 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
             _ when browser.IsEdge() => EdgeDriver(),
             _ when browser.IsZap() => InitialiseZapProxyChrome(),
             _ when browser.IsChromeHeadless() => ChromeDriver(["--headless"]),
-            _ when browser.IsCloudExecution() => SetUpBrowserStack(),
             _ => throw new Exception("Driver name - " + browser + " does not match OR this framework does not support the webDriver specified")
         };
-    }
-
-    private IWebDriver SetUpBrowserStack()
-    {
-        _frameworkConfig.BrowserStackSetting.Name = context.ScenarioInfo.Title;
-
-        return BrowserStackSetup.Init(_frameworkConfig.BrowserStackSetting);
     }
 
     private ChromeDriver InitialiseZapProxyChrome()
@@ -114,7 +106,7 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
 
         chromeOptions.UnhandledPromptBehavior = UnhandledPromptBehavior.Accept;
 
-        chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
+        //chromeOptions.PageLoadStrategy = PageLoadStrategy.None;
 
         chromeOptions.AddUserProfilePreference("profile.default_content_setting_values.notifications", 1);
 

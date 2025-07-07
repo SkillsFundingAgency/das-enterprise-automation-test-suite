@@ -3,6 +3,7 @@ Navigation journey through EAS and PAS
 
 
 @accessibility
+@approvalsaccessibility
 @approvals
 @addnonlevyfunds
 Scenario: AP_E2E_ACC_06_Verify adding a Team member as viewer
