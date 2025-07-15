@@ -50,6 +50,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.Pages
 
         private void PerformVacancyWithdrawalActions()
         {
+            if (IsFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
             SelectRadioOptionByForAttribute("WithdrawApplication");
             Continue();
         }

@@ -18,6 +18,7 @@ Scenario Outline: RAA_API_02_Emp_Createvacancy_Created
 	| 004        | Created        | singleLocationAnonymous.json    |
 	| 005        | Created        | multipleLocationsAnonymous.json |
 	| 006        | Created        | nationwideAnonymous.json        |
+	| 007        | Created        | foundation.json					|
 
 @api
 @regression

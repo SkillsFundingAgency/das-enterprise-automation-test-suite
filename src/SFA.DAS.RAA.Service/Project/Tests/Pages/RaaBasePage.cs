@@ -37,6 +37,14 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
             if (verifypage) VerifyPage();
         }
+        protected bool IsFoundationAdvert => context.ContainsKey("isFoundationAdvert") && (bool)context["isFoundationAdvert"];
+        private static By FoundationTag => By.CssSelector(".govuk-tag--pink");
+        public void CheckFoundationTag()
+        {
+            var expectedFoundationTag = "Foundation";
+            var actualFoundationTag = pageInteractionHelper.GetText(FoundationTag).Trim();
+            pageInteractionHelper.VerifyText(actualFoundationTag, expectedFoundationTag);
+        }
 
         protected virtual void SaveAndContinue() => formCompletionHelper.ClickButtonByText(SaveAndContinueButton, "Save and continue");
 

@@ -25,6 +25,7 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
     private static string ApplicationQuestions => "Application questions";
 
     private static string ApplicationQuestionsFirstQuestion => "What are your skills and strengths";
+    private static string ApplicationQuestionsFirstQuestionFoundations => "What interests you about this apprenticeship";
     private static string ApplicationQuestions_1 => "What are your skills and strengths?";
     private static string ApplicationQuestions_2 => "What interests you about this apprenticeship?";
 

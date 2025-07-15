@@ -17,6 +17,10 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 
         public new Reviewer_VacancyPreviewPage VerifyEmployerName()
         {
+            if (IsFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
             base.VerifyEmployerName();
             return this;
         }

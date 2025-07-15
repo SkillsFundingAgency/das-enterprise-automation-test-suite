@@ -26,8 +26,10 @@ namespace SFA.DAS.RAA.DataGenerator
             VacancyBriefOverview = RandomAlphabeticString(50);
             TrainingDetails = RandomAlphabeticString(28);
             WorkkingWeek = RandomAlphabeticString(15);
-            VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
-            VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
+            //VacancyClosing = DateTime.Today.AddMonths(2).AddDays(3);
+            VacancyClosing = new DateTime(2025, 7, 23);
+            //VacancyStart = VacancyClosing.AddMonths(1).AddDays(1);
+            VacancyStart = new DateTime(2025, 8, 1);
             EditedVacancyClosing = VacancyStart.AddDays(14);
             EditedVacancyStart = EditedVacancyClosing.AddDays(14);
             DesiredQualificationsSubject = RandomAlphabeticString(8);
@@ -41,6 +43,8 @@ namespace SFA.DAS.RAA.DataGenerator
         public string VacancyTitle => $"{_vacancyTitleDatahelper.VacancyTitle} apprenticeship";
 
         public static string TrainingTitle => "Abattoir Worker, Level 2 (GCSE)";
+
+        public static string FoundationTrainingTitle => "Building service engineering foundation apprenticeship, Level 2 (GCSE)";
 
         public static string EmployerAddress => AvailableAddress.RandomOrDefault();
 
