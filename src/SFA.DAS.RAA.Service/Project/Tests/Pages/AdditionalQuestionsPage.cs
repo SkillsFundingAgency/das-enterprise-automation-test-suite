@@ -2,6 +2,7 @@
 using TechTalk.SpecFlow;
 using SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
@@ -15,13 +16,18 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             "What interests you about this apprenticeship?"
         };
 
+        private readonly List<string> FoundationsMandatoryQuestions = new()
+        {
+            "What interests you about this apprenticeship?"
+        };
+
         private static By PageTextSelector => By.CssSelector("main .govuk-grid-column-two-thirds");
         private static By AdditionalQuestion1Selector => By.Id("AdditionalQuestion1");
         private static By AdditionalQuestion2Selector => By.Id("AdditionalQuestion2");
 
-        public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants(bool enterQuestion1 = true, bool enterQuestion2 = true)
+        public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants(bool isFoundationAdvert, bool enterQuestion1 = true, bool enterQuestion2 = true)
         {
-            CheckMandatoryQuestions();
+            CheckMandatoryQuestions(isFoundationAdvert);
 
             EnterAdditionalQuestions(enterQuestion1, enterQuestion2);
 
@@ -52,10 +58,11 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             }
         }
 
-        private void CheckMandatoryQuestions()
+        private void CheckMandatoryQuestions(bool isFoundationAdvert)
         {
             var pageText = pageInteractionHelper.GetText(PageTextSelector);
-            foreach (var question in MandatoryQuestions)
+            var questionsToCheck = isFoundationAdvert ? FoundationsMandatoryQuestions : MandatoryQuestions;
+            foreach (var question in questionsToCheck)
             {
                 pageInteractionHelper.VerifyText(pageText, question);
             }

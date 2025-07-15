@@ -59,6 +59,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public ConfirmApplicantSucessfulPage MakeApplicantSucessful()
         {
+            if(IsFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
             Outcomesuccessful();
             return new ConfirmApplicantSucessfulPage(context);
         }
@@ -72,6 +76,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public ProviderAreYouSureSuccessfulPage ProviderMakeApplicantSucessful()
         {
+            if (IsFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
             Outcomesuccessful();
             return new ProviderAreYouSureSuccessfulPage(context);
         }

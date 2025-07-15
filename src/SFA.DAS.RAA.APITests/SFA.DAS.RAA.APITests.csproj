@@ -39,6 +39,9 @@
     <None Update="Project\Tests\Payload\nationwideAnonymous.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Project\Tests\Payload\foundation.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
 	<None Update="Project\Tests\Payload\singleLocation.json">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>

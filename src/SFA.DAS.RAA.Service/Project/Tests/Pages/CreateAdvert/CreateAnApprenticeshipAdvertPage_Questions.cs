@@ -15,6 +15,7 @@
         private string Employmentdetails_1 => isRaaEmployer ? "Closing and start dates" : "Closing and start dates";
         private string Skillsandqualifications => "3. Requirements and prospects";
         private static string Skillsandqualifications_1 => "Skills";
+        private static string FutureProspects_1 => "Future prospects";
 
         private static string Abouttheemployer => "4. About the employer";
         private string Abouttheemployer_1 => isRaaEmployer ? "Name of employer on advert" : "Name of employer on vacancy";

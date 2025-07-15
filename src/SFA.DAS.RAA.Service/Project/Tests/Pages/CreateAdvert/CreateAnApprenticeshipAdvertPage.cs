@@ -36,6 +36,12 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             return new DesiredSkillsPage(context);
         }
 
+        public FutureProspectsPage FutureProspects()
+        {
+            NavigateToTask(Skillsandqualifications, FutureProspects_1);
+            return new FutureProspectsPage(context);
+        }
+
         public ImportantDatesPage ImportantDates()
         {
             NavigateToTask(Employmentdetails, Employmentdetails_1);

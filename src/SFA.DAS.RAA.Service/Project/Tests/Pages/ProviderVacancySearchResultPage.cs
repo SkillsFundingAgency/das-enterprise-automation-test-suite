@@ -24,6 +24,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             }
 
             formCompletionHelper.Click(By.Id($"application-id-{applicationid}"));
+            if(IsFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
 
             return new ManageApplicantPage(context);
         }
