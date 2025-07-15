@@ -71,15 +71,33 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
         return new(context);
     }
 
+    public WhatInterestsYouAboutTThisApprenticeshipPage Access_Section3_2Interests_Foundations()
+    {
+        NavigateToTask(ApplicationQuestionsFirstQuestionFoundations, ApplicationQuestions_2);
+        return new(context);
+    }
+
     public AdditionQuestion1Page Access_Section3_3AdditionalQuestion1()
     {
         NavigateToTask(ApplicationQuestionsFirstQuestion, advertDataHelper.AdditionalQuestion1);
         return new(context);
     }
 
+    public AdditionQuestion1Page Access_Section3_3AdditionalQuestion1_Foundations()
+    {
+        NavigateToTask(ApplicationQuestionsFirstQuestionFoundations, advertDataHelper.AdditionalQuestion1);
+        return new(context);
+    }
+
     public AdditionQuestion2Page Access_Section3_4AdditionalQuestion2()
     {
         NavigateToTask(ApplicationQuestionsFirstQuestion, advertDataHelper.AdditionalQuestion2);
+        return new(context);
+    }
+
+    public AdditionQuestion2Page Access_Section3_4AdditionalQuestion2_Foundations()
+    {
+        NavigateToTask(ApplicationQuestionsFirstQuestionFoundations, advertDataHelper.AdditionalQuestion2);
         return new(context);
     }
 
@@ -142,16 +160,28 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
 
     public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_1() => Verify_Section3(ApplicationQuestions_1, "Complete");
     public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_2() => Verify_Section3(ApplicationQuestions_2, "Complete");
+    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_2_Foundations() => Verify_Section3_Foundations(ApplicationQuestions_2, "Complete");
     public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_3()
     {
         var additionalQuestion1Title = new FAA_ApplicationOverviewPage(context);
         return Verify_Section3(additionalQuestion1Title.GetAdditionalQuestion1TitleText(), "Complete");
+    }
+    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_3_Foundations()
+    {
+        var additionalQuestion1Title = new FAA_ApplicationOverviewPage(context);
+        return Verify_Section3_Foundations(additionalQuestion1Title.GetAdditionalQuestion1TitleText(), "Complete");
     }
 
     public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_4()
     {
         var additionalQuestion2Title = new FAA_ApplicationOverviewPage(context);
         return Verify_Section3(additionalQuestion2Title.GetAdditionalQuestion2TitleText(), "Complete");
+    }
+
+    public FAA_ApplicationOverviewPage VerifyApplicationsQuestions_4_Foundations()
+    {
+        var additionalQuestion2Title = new FAA_ApplicationOverviewPage(context);
+        return Verify_Section3_Foundations(additionalQuestion2Title.GetAdditionalQuestion2TitleText(), "Complete");
     }
 
     public FAA_ApplicationOverviewPage VerifyInterviewAadjustments_1() => Verify_Section4(InterviewAdjustments_1, "Complete");
@@ -163,6 +193,7 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
     private FAA_ApplicationOverviewPage Verify_Section2(string taskName, string status) => VerifySections(WorkHistoryFirstQuestion, taskName, status);
 
     private FAA_ApplicationOverviewPage Verify_Section3(string taskName, string status) => VerifySections(ApplicationQuestionsFirstQuestion, taskName, status);
+    private FAA_ApplicationOverviewPage Verify_Section3_Foundations(string taskName, string status) => VerifySections(ApplicationQuestionsFirstQuestionFoundations, taskName, status);
 
     private FAA_ApplicationOverviewPage Verify_Section4(string taskName, string status) => VerifySections(InterviewAdjustmentsFirstQuestion, taskName, status);
 

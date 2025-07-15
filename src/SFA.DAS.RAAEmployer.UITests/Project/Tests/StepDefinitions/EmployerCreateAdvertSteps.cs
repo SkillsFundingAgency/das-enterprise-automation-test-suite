@@ -45,8 +45,22 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         [Given(@"the Employer creates an advert by using a registered name")]
         public void TheEmployerCreatesAnanAdvertByUsingARegisteredName() => _employerCreateVacancyStepsHelper.CreateANewAdvert();
 
+        [Given(@"the Employer creates a foundation advert by using a registered name")]
+        public void TheEmployerCreatesAfoundationAdvertByUsingARegisteredName()
+        {
+            context["isFoundationAdvert"] = true;
+            _employerCreateVacancyStepsHelper.CreateANewAdvert();
+        }
+
         [Given(@"the Employer creates an advert by using a trading name")]
         public void TheEmployerCreatesAnAdvertByUsingATradingName() => _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.ExistingTradingName);
+
+        [Given(@"the Employer creates a foundation advert by using a trading name")]
+        public void TheEmployerCreatesAFoundationAdvertByUsingATradingName()
+        {
+            context["isFoundationAdvert"] = true;
+            _employerCreateVacancyStepsHelper.CreateANewAdvert(RAAConst.ExistingTradingName);
+        }
 
         [Given(@"the Employer creates an advert with ""(.*)"" work location")]
         public void GivenTheEmployerCreatesAnAdvertWithWorkLocation(string locationType) => _employerCreateVacancyStepsHelper.CreateANewAdvert(locationType, locationType);

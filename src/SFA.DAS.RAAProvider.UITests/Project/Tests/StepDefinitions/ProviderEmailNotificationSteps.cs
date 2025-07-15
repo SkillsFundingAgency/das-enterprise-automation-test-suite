@@ -19,6 +19,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         private readonly string providerEmail;
         private readonly string applicantEmail;
+        private readonly string foundationApplicantEmail;
+        protected bool isFoundationAdvert;
 
         public ProviderEmailNotificationsSteps(ScenarioContext context)
         {
@@ -29,6 +31,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
             providerEmail = providerConfig.Username;
             vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             applicantEmail = context.GetUser<FAAApplyUser>().Username;
+            foundationApplicantEmail = context.GetUser<FAAFoundationUser>().Username;
+            isFoundationAdvert = context.ContainsKey("isFoundationAdvert") && (bool) context["isFoundationAdvert"];
         }
 
         [Then(@"the '(.*)' receives '(.*)' email notification")]
@@ -55,19 +59,19 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
                 case ("new application", "applicant"):
                     emailText = "We’ve received your application for:";
                     subject = $"Application submitted: {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
-                    userEmail = applicantEmail;
+                    userEmail = isFoundationAdvert ? foundationApplicantEmail : applicantEmail;
                     break;
 
                 case ("successful application", "applicant"):
                     emailText = "Congratulations, you’ve been offered an apprenticeship:";
                     subject = $"Successful application: {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
-                    userEmail = applicantEmail;
+                    userEmail = isFoundationAdvert ? foundationApplicantEmail : applicantEmail;
                     break;
 
                 case ("unsuccessful application", "applicant"):
                     emailText = "An application you’ve made has been unsuccessful:";
                     subject = $"Unsuccessful application: read your feedback for {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
-                    userEmail = applicantEmail;
+                    userEmail = isFoundationAdvert ? foundationApplicantEmail : applicantEmail;
                     break;
 
                 default:
