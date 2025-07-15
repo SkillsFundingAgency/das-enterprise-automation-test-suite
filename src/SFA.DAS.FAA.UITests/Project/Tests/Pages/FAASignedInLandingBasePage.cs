@@ -19,7 +19,7 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
     private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
     private static By FirstApplicationDisplayed => By.CssSelector("[id^='VAC'][id$='-vacancy-title']");
-
+    private static By FoundationText => By.CssSelector(".faa-foundation-inset-text");
     public FAA_ApplicationsPage GoToApplications()
     {
         formCompletionHelper.Click(ApplicationsHeader);
@@ -39,6 +39,12 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         SearchUsingVacancyTitle();
 
         GoToVacancyInFAA();
+
+        if(IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+            CheckFoundationText();
+        }
 
         return new FAA_ApprenticeSummaryPage(context);
     }
@@ -98,5 +104,13 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         formCompletionHelper.ClickLinkByText("Browse by your interests instead");
 
         return new FAABrowseByInterestsPage(context);
+    }
+
+    private void CheckFoundationText()
+    {
+        var expectedFoundationText = pageInteractionHelper.GetText(FoundationText).Trim();
+        var actualFoundationText = "Foundation apprenticeships help young people get into an industry. You do not need any specific grades or qualifications to apply.";
+
+        pageInteractionHelper.VerifyText(expectedFoundationText, actualFoundationText);
     }
 }

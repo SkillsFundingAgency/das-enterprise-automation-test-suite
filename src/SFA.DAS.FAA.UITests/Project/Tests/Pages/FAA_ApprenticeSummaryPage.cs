@@ -38,6 +38,10 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
     public FAA_ApplicationOverviewPage Apply()
     {
         formCompletionHelper.Click(ApplyButton);
+        if(IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+        }
         return new FAA_ApplicationOverviewPage(context);
     }
 
