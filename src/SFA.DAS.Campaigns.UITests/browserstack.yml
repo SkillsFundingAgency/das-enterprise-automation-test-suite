@@ -1,7 +1,7 @@
-userName: gabrielpeterthom_ubAsv1
-accessKey: sZpPBSSmmXnyqW8aRmTK
+userName: 
+accessKey: 
 projectName: "ApprenticeshipService"
-buildName: "Approvals"
+buildName: "Apprenticeship website"
 buildIdentifier: ${DATE_TIME}
 platforms:
   - os: Windows
@@ -11,8 +11,8 @@ platforms:
     accessibility: true
 accessibilityOptions:
   wcagVersion: wcag22aa
-  includeTagsInTestingScope: ''
-  excludeTagsInTestingScope: ''
+  includeTagsInTestingScope: 
+  excludeTagsInTestingScope: 
 logLevel: debug
 browserstackAutomation: true
 testObservability: true
