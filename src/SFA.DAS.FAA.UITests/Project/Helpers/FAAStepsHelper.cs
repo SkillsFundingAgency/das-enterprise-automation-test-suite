@@ -147,33 +147,6 @@ public class FAAStepsHelper(ScenarioContext context)
 
         applicationFormPage = applicationFormPage.Access_Section2_2VolunteeringAndWorkExperience().SelectSectionCompleted().VerifyWorkHistory_2();
 
-        //if(IsFoundationAdvert)
-        //{
-        //    applicationFormPage = applicationFormPage.Access_Section3_2Interests_Foundations().SelectSectionCompleted().VerifyApplicationsQuestions_2();
-        //}
-        //else
-        //{
-        //    applicationFormPage = applicationFormPage.Access_Section3_1SkillsAndStrengths().SelectSectionCompleted().VerifyApplicationsQuestions_1();
-        //    applicationFormPage = applicationFormPage.Access_Section3_2Interests().SelectSectionCompleted().VerifyApplicationsQuestions_2();
-        //}
-
-
-        //switch (numberOfQuestions)
-        //{
-        //    case "first":
-        //        applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
-        //        break;
-
-        //    case "second":
-        //        applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
-        //        break;
-
-        //    case "both":
-        //        applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
-        //        applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
-        //        break;
-        //}
-
         var interestsSection = IsFoundationAdvert
             ? applicationFormPage.Access_Section3_2Interests_Foundations().SelectSectionCompleted().VerifyApplicationsQuestions_2_Foundations()
             : applicationFormPage.Access_Section3_1SkillsAndStrengths().SelectSectionCompleted().VerifyApplicationsQuestions_1()
