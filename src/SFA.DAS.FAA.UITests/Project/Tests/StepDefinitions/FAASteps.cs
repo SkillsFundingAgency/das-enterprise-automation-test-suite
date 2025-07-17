@@ -33,6 +33,4 @@ public class FAASteps(ScenarioContext context)
     {
         new SettingPage(context).DeleteMyAccount().ContinueToDeleteMyAccounWithApplication().WithdrawBeforeDeletingMyAccount().ConfirmDeleteMyAccount().VerifyNotification();
     }
-
-
 }
