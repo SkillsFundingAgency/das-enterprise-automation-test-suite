@@ -99,7 +99,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                         .SelectViewCurrentCohortDetails()
-                                                        .SelectAddAnApprenticeGoesToAccessDenied()
+                                                        .SelectAddAnotherApprenticeLink()
+                                                        .SelectAddManuallyGoesToAccessDenied()
                                                         .GoBackToTheServiceHomePage();
         }
 
@@ -117,7 +118,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             new ProviderApprenticeRequestsPage(context, true).GoToCohortsToReviewPage()
                                                      .SelectViewCurrentCohortDetails()
-                                                     .SelectAddAnApprentice();
+                                                     .SelectAddAnApprentice()
+                                                     .SelectAddManually();
         }
 
         [Then(@"the user can bulk upload apprentices")]

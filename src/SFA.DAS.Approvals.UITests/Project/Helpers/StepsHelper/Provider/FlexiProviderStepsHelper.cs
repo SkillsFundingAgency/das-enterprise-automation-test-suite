@@ -44,6 +44,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             var providerAddApprenticeDetailsPage = _providerCommonStepsHelper.CurrentCohortDetails();
 
             return providerAddApprenticeDetailsPage.SelectAddAnApprentice()
+                .SelectAddManually()
                 .SelectsAStandardAndNavigatesToSelectDeliveryModelPage()
                 .ProviderSelectFlexiJobAgencyDeliveryModelAndContinue();
         }

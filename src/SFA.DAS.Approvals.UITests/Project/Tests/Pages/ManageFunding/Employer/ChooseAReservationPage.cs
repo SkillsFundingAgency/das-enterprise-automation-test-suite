@@ -28,9 +28,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public AddTrainingProviderDetailsPage SelectAReservation()
         {
-            formCompletionHelper.Click(ChooseCourseReservation);
-            Continue();
-            return new AddTrainingProviderDetailsPage(context);
+            if (objectContext.GetReservationId() != null)
+            {
+                return ChooseReservationFromContext();
+            }
+            else
+            {
+                formCompletionHelper.Click(ChooseCourseReservation);
+                Continue();
+                return new AddTrainingProviderDetailsPage(context);
+            }
+            
         }
 
         public AddTrainingProviderDetailsPage ChooseReservationFromContext()

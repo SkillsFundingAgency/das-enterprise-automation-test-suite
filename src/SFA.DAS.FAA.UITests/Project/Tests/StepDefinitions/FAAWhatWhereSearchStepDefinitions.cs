@@ -30,5 +30,10 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions
         {
             new FAASearchResultPage(_context).ClickSignout();
         }
+        [Then("the user is able to view NHS job displayed")]
+        public void ThenTheUserIsAbleToViewNHSJobDisplayed()
+        {
+            new FAASearchResultPage(_context).GoToNHSJobDetailsPageAndVerifyJobDisplayed();
+        }
     }
 }

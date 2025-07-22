@@ -3,6 +3,7 @@
 @raa
 @regression
 @faa
+@raaprovider
 Scenario: RAA_P_FAA_01 - Submit An Application And Withdraw Application
 	Given the Provider creates a vacancy by using a registered name
 	And the Reviewer Approves the vacancy

@@ -8,10 +8,10 @@ namespace SFA.DAS.FindEPAO.UITests.Project.Tests.Pages
         protected override string PageTitle => "0 end-point assessment organisations";
 
         #region Locators
-        private static By ContactESFAButton => By.LinkText("Contact ESFA");
+        private static By ContactUsButton => By.LinkText("Contact us");
         #endregion
 
-        public bool IsContactESFAButtonDisplayed() => pageInteractionHelper.IsElementDisplayed(ContactESFAButton);
+        public bool IsContactUsButtonDisplayed() => pageInteractionHelper.IsElementDisplayed(ContactUsButton);
 
     }
 }

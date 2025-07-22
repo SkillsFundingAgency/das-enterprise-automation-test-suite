@@ -5,7 +5,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 {
     public abstract class ProviderMakeApplicationsUnsuccessfulBasePage : RaaBasePage
     {
-        protected override string PageTitle => $"Make application unsuccessful";
+        protected override string PageTitle => $"Make multiple applications unsuccessful";
         protected override string AccessibilityPageTitle => "Make application unsuccessful";
         private static By ConfirmButton => By.CssSelector("#provider-applications-to-unsuccessful-confirm");
 

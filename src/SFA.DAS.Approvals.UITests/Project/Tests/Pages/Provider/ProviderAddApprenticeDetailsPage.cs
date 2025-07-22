@@ -69,13 +69,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(AddButton);
 
+            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
+
             var page = new ProviderRPLPage(context);
 
             if (tags.IsAddRplDetails()) page.SelectYesAndContinue().EnterRPLDataAndContinue();
 
             else page.SelectNoAndContinue();
 
-            if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
         }
 
         private void SubmitValidPersonalDetails()

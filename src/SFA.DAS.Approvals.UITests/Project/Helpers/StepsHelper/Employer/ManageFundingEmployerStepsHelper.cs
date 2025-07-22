@@ -35,7 +35,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                  .YesWillTrainingStartInSixMonths()
                  .YesSetupForExistingEmployee()
                  .YesContinueToReserveFunding()
-                 .ClickReserveFundingButton());
+                 .ClickReserveFundingButton())
+                .SaveReservationId();
 
             return VerifyContinueOnHomePagePanel(reservedPage);
         }

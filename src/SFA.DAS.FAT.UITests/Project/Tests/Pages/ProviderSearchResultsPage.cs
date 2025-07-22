@@ -13,7 +13,7 @@ public class ProviderSearchResultsPage(ScenarioContext context) : FATBasePage(co
 
     protected override bool TakeFullScreenShot => false;
 
-    protected override By PageHeader => By.ClassName("govuk-caption-xl");
+    protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
     private static By AskIfTrainingProvidersCanRunThisCourseLink => By.LinkText("Ask if training providers can run this course");
 
