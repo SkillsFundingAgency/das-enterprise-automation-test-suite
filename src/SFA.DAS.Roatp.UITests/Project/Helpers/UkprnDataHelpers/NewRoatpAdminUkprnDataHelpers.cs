@@ -114,8 +114,8 @@
             _data.Add("rpadoutcome01",
             [
                    new(emailkey, "sudhakar.chinoor+rpadoutcome01@digital.education.gov.uk"),
-                new(providernamekey, "FYLO LTD."),
-                new(ukprnkey, "10067908"),
+                new(providernamekey, "THE PEOPLE SKILLS BUSINESS LIMITED"),
+                new(ukprnkey, "10067910"),
             ]);//rpe2e01, rpadgw01, rpadas01, rpadmod01
             _data.Add("rpadoutcomeappeals01",
             [
