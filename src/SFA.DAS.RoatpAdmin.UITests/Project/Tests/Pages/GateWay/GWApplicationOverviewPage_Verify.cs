@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
+﻿using System;
+using SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply;
 
 namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 {
@@ -77,8 +78,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.GateWay
 
         private GWApplicationOverviewPage VerifySections(string sectionName, string taskName, string status, int index = 0)
         {
+            if (!string.IsNullOrWhiteSpace(status) && status.Trim().Equals("not required", StringComparison.OrdinalIgnoreCase))
+            {
+                status = "Not required"; // Match exactly what the web page shows
+            }
+
             VerifySectionTaskStatus(sectionName, taskName, status, index, null);
             return new GWApplicationOverviewPage(context);
         }
+
+
+
     }
 }
