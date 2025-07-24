@@ -31,6 +31,7 @@ public class ApprenticeFeedbackSqlHelper(ObjectContext objectContext, DbConfig c
         DELETE FROM ProviderAttribute WHERE ApprenticeFeedbackResultId IN (SELECT Id FROM ApprenticeFeedbackResult WHERE ApprenticeFeedbackTargetId IN (SELECT Id FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn}));
         DELETE FROM ApprenticeFeedbackResult WHERE ApprenticeFeedbackTargetId IN (SELECT Id FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn});
         DELETE FROM FeedbackTransactionClick WHERE ApprenticeFeedbackTargetId IN (SELECT Id FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn});
+        DELETE FROM FeedbackTransaction WHERE ApprenticeFeedbackTargetId IN (SELECT Id FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn});
         DELETE FROM ApprenticeFeedbackTarget WHERE Ukprn = {ukprn};
         ";
 
