@@ -1,4 +1,7 @@
-﻿Feature: AP_LS_01_EditCohort
+﻿# ToBeMigrated to PlayWright (to be deleted/commented) when add apprentice option is taken off from Employer side
+#
+#
+Feature: AP_LS_01_EditCohort
 
 @approvals
 @regression
