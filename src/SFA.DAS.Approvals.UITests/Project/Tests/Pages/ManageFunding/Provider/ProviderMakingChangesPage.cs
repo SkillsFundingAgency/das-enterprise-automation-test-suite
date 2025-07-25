@@ -25,11 +25,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new ProviderSelectStandardPage(context);
         }
 
-        internal ProviderAddApprenticeDetailsHow GoToAddApprenticeDetailsHowPage()
+        internal ProviderSelectLearnerFromILRPage GoToAddApprenticeDetailsHowPage()
         {
             SelectRadioOptionByForAttribute("WhatsNext-add");
             formCompletionHelper.ClickElement(ContinueButtonTo);
-            return new ProviderAddApprenticeDetailsHow(context);
+            return new ProviderSelectLearnerFromILRPage(context);
         }
 
         public new ProviderMakingChangesPage VerifySucessMessage()

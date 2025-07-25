@@ -1,4 +1,7 @@
-﻿@approvals
+﻿# ToBeMigrated: this scenario will be deleted once 'Add apprentice details' option is removed from Employer side
+#
+#
+@approvals
 Feature: AP_NL_E2E_02_NonLevyE2EJourneyTwo
 
 @regression

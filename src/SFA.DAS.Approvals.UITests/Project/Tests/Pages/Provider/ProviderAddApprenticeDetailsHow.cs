@@ -10,11 +10,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected override string PageTitle => "Add apprentice details";
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        internal ProviderSelectApprenticeFromILRPage SelectApprenticeFromILR()
+        internal ProviderSelectLearnerFromILRPage SelectApprenticeFromILR()
         {
             SelectRadioOptionByForAttribute("confirm-ILR");
             Continue();
-            return new ProviderSelectApprenticeFromILRPage(context);
+            return new ProviderSelectLearnerFromILRPage(context);
         }
 
         internal ProviderSelectStandardPage SelectAddManually()

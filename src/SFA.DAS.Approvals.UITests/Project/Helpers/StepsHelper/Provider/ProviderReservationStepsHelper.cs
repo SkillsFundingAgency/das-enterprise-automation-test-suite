@@ -45,12 +45,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderAddApprenticeDetailsPage ProviderMakeReservation(ProviderLoginUser login)
         {
-            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToAddApprenticeDetailsHowPage().SelectAddManually().ProviderSelectsAStandard();
+            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToAddApprenticeDetailsHowPage().SelectFirstLearner();
         }
 
         public ProviderAddApprenticeDetailsPage ProviderAccountOwnerUserMakeReservation(ProviderAccountOwnerUser login)
         {
-            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToAddApprenticeDetailsHowPage().SelectAddManually().ProviderSelectsAStandard();
+            return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToAddApprenticeDetailsHowPage().SelectFirstLearner();
         }
 
         public ProviderApprenticeshipTrainingPage StartCreateReservationAndGoToStartTrainingPage(ApprovalsProviderHomePage approvalsProviderHomePage)
