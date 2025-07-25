@@ -38,6 +38,8 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
 
     private static string DisabilityConfidenceFirstQuestion => "Interview under the Disability Confident Scheme";
     private static string DisabilityConfidence_1 => "Interview under the Disability Confident Scheme";
+    private static string LocationsFirstQuestion => "Where do you want to apply for?";
+    private static string Locations_1 => "Where do you want to apply for?";
 
     #endregion
 }

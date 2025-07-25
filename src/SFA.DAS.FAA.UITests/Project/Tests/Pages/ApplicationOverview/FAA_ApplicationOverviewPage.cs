@@ -3,6 +3,7 @@ using SFA.DAS.FAA.UITests.Project.Tests.Pages.ApplicationQuestions;
 using SFA.DAS.FAA.UITests.Project.Tests.Pages.DisabilityConfident;
 using SFA.DAS.FAA.UITests.Project.Tests.Pages.EducationHistory;
 using SFA.DAS.FAA.UITests.Project.Tests.Pages.InterviewSupport;
+using SFA.DAS.FAA.UITests.Project.Tests.Pages.Locations;
 using SFA.DAS.FAA.UITests.Project.Tests.Pages.WorkHistory;
 using SFA.DAS.UI.FrameworkHelpers;
 
@@ -101,6 +102,12 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
         return new(context);
     }
 
+    public WhereDoYouWantToApplyForPage Access_Section6_1Locations()
+    {
+        NavigateToTask(LocationsFirstQuestion, Locations_1);
+        return new(context);
+    }
+
     #endregion
 
     public CheckYourApplicationBeforeSubmittingPage PreviewApplication()
@@ -149,6 +156,7 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
 
     public FAA_ApplicationOverviewPage VerifyInterviewAadjustments_1() => Verify_Section4(InterviewAdjustments_1, "Complete");
     public FAA_ApplicationOverviewPage VerifyDisabilityConfidence_1() => Verify_Section5(DisabilityConfidence_1, "Complete");
+    public FAA_ApplicationOverviewPage VerifyLocations_1() => Verify_Section6(Locations_1, "Complete");
 
     private FAA_ApplicationOverviewPage Verify_Section1(string taskName, string status) => VerifySections(EducationHistoryFirstQuestion, taskName, status);
 
@@ -159,6 +167,7 @@ public partial class FAA_ApplicationOverviewPage : FAABasePage
     private FAA_ApplicationOverviewPage Verify_Section4(string taskName, string status) => VerifySections(InterviewAdjustmentsFirstQuestion, taskName, status);
 
     private FAA_ApplicationOverviewPage Verify_Section5(string taskName, string status) => VerifySections(DisabilityConfidenceFirstQuestion, taskName, status);
+    private FAA_ApplicationOverviewPage Verify_Section6(string taskName, string status) => VerifySections(LocationsFirstQuestion, taskName, status);
 
     private FAA_ApplicationOverviewPage VerifySections(string sectionName, string taskName, string status, int index = 0)
     {
