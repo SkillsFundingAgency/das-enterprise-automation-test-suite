@@ -1,4 +1,7 @@
-﻿Feature: AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules
+﻿# ToBeMigrated to PlayWright in the future
+#
+#
+Feature: AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules
 
 @approvals
 @regression

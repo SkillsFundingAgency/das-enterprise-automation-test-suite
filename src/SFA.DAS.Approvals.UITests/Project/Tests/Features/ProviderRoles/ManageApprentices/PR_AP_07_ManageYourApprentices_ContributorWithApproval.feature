@@ -1,4 +1,7 @@
-﻿Feature: PR_AP_07_ManageYourApprentices_ContributorWithApproval
+﻿# ToBeMigrated to PlayWright under APPMAN-1767
+#
+#
+Feature: PR_AP_07_ManageYourApprentices_ContributorWithApproval
 
 @approvals
 @regression

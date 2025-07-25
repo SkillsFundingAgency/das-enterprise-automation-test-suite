@@ -1,4 +1,7 @@
-﻿@approvals
+﻿# ToBeMigrated to PlayWright under APPMAN-1762
+#
+#
+@approvals
 Feature: AP_E2E_EUA_02_ExistingUserAccount
 
 @regression
