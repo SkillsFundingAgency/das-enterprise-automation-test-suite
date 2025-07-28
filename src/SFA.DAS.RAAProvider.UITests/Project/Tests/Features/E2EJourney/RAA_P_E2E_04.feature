@@ -8,5 +8,5 @@
 Scenario: RAA_P_E2E_04 - Create vacancy by entering data for Optional fields, Approve, Apply and mark Application as Interviewing with Employer
     Given the Provider creates a vacancy with "multiple" work locations by entering all the Optional fields and "both" additional questions
 	And the Reviewer Approves the vacancy
-	When the Applicant can apply for a Vacancy in FAA
+	When the Applicant can apply for a Vacancy with multiple locations in FAA
 	Then Provider can make the application interviewing with Employer
