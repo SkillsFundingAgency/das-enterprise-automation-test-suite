@@ -115,8 +115,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             moderationApplicationsPage.VerifyOutcomeStatus("Pass");
         }
 
-        [Then(@"the (PASS) status overall application is marked as Successful")]
-        public void ThenThePASSStatusOverallApplicationIsMarkedAsSuccessful(string expectedStatus)
+        [Then(@"the (Pass) status overall application is marked as Successful")]
+        public void ThenThePassStatusOverallApplicationIsMarkedAsSuccessful(string expectedStatus)
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
 
@@ -124,8 +124,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
                 .SelectYesAskAndContinueOutcomePage().GoToRoATPAssessorApplicationsPage();
         }
 
-        [Then(@"the (FAIL) status overall application is marked as UnSuccessful")]
-        public void ThenTheFAILStatusOverallApplicationIsMarkedAsUnSuccessful(string expectedStatus)
+        [Then(@"the (Fail) status overall application is marked as UnSuccessful")]
+        public void ThenTheFailStatusOverallApplicationIsMarkedAsUnSuccessful(string expectedStatus)
         {
             var staffDashboardPage = GoToRoatpAdminStaffDashBoardPage("OversightAdmin");
 
