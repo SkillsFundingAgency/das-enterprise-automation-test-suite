@@ -1,5 +1,6 @@
 ﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages;
 using SFA.DAS.Login.Service.Project;
+using SFA.DAS.UI.FrameworkHelpers;
 
 namespace SFA.DAS.FAA.UITests.Project.Helpers;
 
@@ -106,7 +107,7 @@ public class FAAStepsHelper(ScenarioContext context)
         return applicationFormPage;
     }
 
-    public FAA_ApplicationOverviewPage ApplyForAVacancy(string numberOfQuestions, object user)
+    public FAA_ApplicationOverviewPage ApplyForAVacancy(string numberOfQuestions, object user, bool multipleLocations)
     {
         FAA_ApplicationOverviewPage applicationFormPage;
 
@@ -153,6 +154,13 @@ public class FAAStepsHelper(ScenarioContext context)
         applicationFormPage = applicationFormPage.Access_Section4_1Adjustment().SelectYesAndContinue().SelectSectionCompleted().VerifyInterviewAadjustments_1();
 
         applicationFormPage = applicationFormPage.Access_Section5_1DisabilityConfidence().SelectSectionCompleted().VerifyDisabilityConfidence_1();
+
+        bool multipleLocationsFlag = context.ContainsKey("multipleLocations") && (bool)context["multipleLocations"];
+
+        if (multipleLocations || multipleLocationsFlag)
+        {
+            applicationFormPage = applicationFormPage.Access_Section6_1Locations().SelectLocationsAndContinue().SelectSectionCompleted().VerifyLocations_1();
+        }
 
         return applicationFormPage;
     }
