@@ -4,7 +4,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages.Moderator.S3_PlanningAp
 {
     public class OffTheJobTrainingPage(ScenarioContext context) : ModeratorBasePage(context)
     {
-        protected override string PageTitle => "Methods used to deliver 20% off the job training";
+        protected override string PageTitle => "Methods used to deliver the minimum required off the job training";
 
         public OffTheJobTrainingRelevantToApprenticeshipBeingDeliveredPage SelectPassAndContinueInOffTheJobTrainingPage()
         {
