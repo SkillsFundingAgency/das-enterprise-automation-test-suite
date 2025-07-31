@@ -5,7 +5,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.PlanningApprentic
 {
     public class OfftheJobTrainingIsRelevantPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "How will your organisation ensure 20% off the job training is relevant to the specific apprenticeship being delivered?";
+        protected override string PageTitle => "How will your organisation ensure the minimum required off the job training is relevant to the specific apprenticeship being delivered?";
 
         protected override By PageHeader => By.CssSelector(".govuk-label-wrapper");
 
