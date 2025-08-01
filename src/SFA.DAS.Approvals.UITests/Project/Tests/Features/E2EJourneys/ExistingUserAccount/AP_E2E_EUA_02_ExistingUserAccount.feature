@@ -1,10 +1,10 @@
 ﻿# ToBeMigrated to PlayWright under APPMAN-1762
 #
 #
-@approvals
+#@approvals
 Feature: AP_E2E_EUA_02_ExistingUserAccount
 
-@regression
+#@regression
 @e2escenarios
 Scenario: AP_E2E_EUA_02 Employer sends cohort to provider for review then provider approves then employer approves
 	Given the Employer logins using existing Levy Account

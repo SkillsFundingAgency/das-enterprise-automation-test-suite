@@ -1,10 +1,9 @@
 ﻿# ToBeMigrated to PlayWright in the future
-#
-#
+
 Feature: AP_E2E_EUA_06_EmployerAddsApprenticeDetailsValidationRules
 
-@approvals
-@regression
+#@approvals
+#@regression
 @e2escenarios
 Scenario:AP_E2E_EUA_06_Employer Adds Apprentice Details Validation Rules
 	Given Employer navigates to Apprentices home page

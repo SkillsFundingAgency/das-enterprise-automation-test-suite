@@ -1,6 +1,5 @@
 ﻿# ToBeMigrated to PlayWright under APPMAN-1767
-#
-#
+
 Feature: PR_AP_05_ManageYourApprentices_AccountOwner
 
 @approvals

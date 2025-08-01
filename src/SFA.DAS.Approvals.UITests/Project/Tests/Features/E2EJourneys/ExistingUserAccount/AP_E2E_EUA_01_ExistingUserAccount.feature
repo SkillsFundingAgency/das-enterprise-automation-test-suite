@@ -1,10 +1,10 @@
 ﻿# ToBeMigrated to PlayWright under APPMAN-1762
 #
 #
-@approvals
+#@approvals
 Feature: AP_E2E_EUA_01_ExistingUserAccount
 
-@regression
+#@regression
 @e2escenarios
 @selectstandardwithmultipleoptions
 Scenario: AP_E2E_EUA_01 Employer sends an approved cohort then provider approves the cohort

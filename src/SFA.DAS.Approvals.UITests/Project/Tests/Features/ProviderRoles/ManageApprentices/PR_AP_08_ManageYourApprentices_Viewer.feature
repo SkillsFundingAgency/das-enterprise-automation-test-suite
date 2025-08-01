@@ -1,6 +1,6 @@
 ﻿# ToBeMigrated to PlayWright under APPMAN-1767
-#
-#
+
+
 Feature: PR_AP_08_ManageYourApprentices_Viewer
 
 @approvals

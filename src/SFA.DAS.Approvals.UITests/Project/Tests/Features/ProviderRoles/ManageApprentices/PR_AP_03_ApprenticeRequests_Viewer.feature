@@ -1,6 +1,6 @@
 ﻿# ToBeMigrated to PlayWright under APPMAN-1767
-#
-#
+
+
 Feature: PR_AP_03_ApprenticeRequests_Viewer
 
 @approvals
