@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.FAA.UITests.Project.Tests.Pages.Delete;
+
+namespace SFA.DAS.FAA.UITests.Project.Tests.Pages;
 
 public class FAASearchResultPage(ScenarioContext context) : FAASignedInLandingBasePage(context)
 {
@@ -9,7 +11,8 @@ public class FAASearchResultPage(ScenarioContext context) : FAASignedInLandingBa
     private static By SavedVacancyNavBarLink => By.LinkText("Saved vacancies");
     private static By ApplyNow => By.CssSelector(".das-button--inline-link");
     private static By FirstApplicationDisplayed => By.CssSelector("[id^='VAC'][id$='-vacancy-title']");
-    private static By SingoutLink => By.LinkText("Sign out");
+    private static By SignoutLink => By.LinkText("Sign out");
+    private static By ClickFirstNHSLinkInResult => By.CssSelector("[id$='-vacancy-title']:first-of-type");
 
 
     public void VerifySuccessfulResults()
@@ -19,7 +22,7 @@ public class FAASearchResultPage(ScenarioContext context) : FAASignedInLandingBa
 
     public void ClickSignout()
     {
-        formCompletionHelper.Click(SingoutLink);
+        formCompletionHelper.Click(SignoutLink);
     }
     public FAA_ApplicationOverviewPage SaveFromSearchResultsAndApplyForVacancy()
     {
@@ -41,5 +44,12 @@ public class FAASearchResultPage(ScenarioContext context) : FAASignedInLandingBa
         formCompletionHelper.Click(FirstApplicationDisplayed);
 
         return new FAA_ApprenticeSummaryPage(context);
+    }
+
+    public NHSJobsDetailsPage GoToNHSJobDetailsPageAndVerifyJobDisplayed()
+    {
+        formCompletionHelper.Click(ClickFirstNHSLinkInResult);
+
+        return new NHSJobsDetailsPage(context);
     }
 }

@@ -41,8 +41,8 @@
             _data.Add("rpexistingprovider03",
              [
                     new(emailkey, "sudhakar.chinoor+supporting@digital.education.gov.uk"),
-                 new(providernamekey, "COLEMAN TRAINING & CONSULTANCY"),
-                 new(ukprnkey, "10083833"),
+                 new(providernamekey, "POWERIT"),
+                 new(ukprnkey, "10083938"),
              ]);
             _data.Add("rpexistingprovider04",
               [

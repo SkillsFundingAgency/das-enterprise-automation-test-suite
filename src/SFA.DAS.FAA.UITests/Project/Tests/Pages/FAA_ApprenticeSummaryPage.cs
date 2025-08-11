@@ -28,7 +28,7 @@ public class FAA_ApprenticeSummaryPage(ScenarioContext context) : FAABasePage(co
 
     private static By ViewSubmittedApplicationLink => By.CssSelector("a[href*='Submitted']");
 
-    private static By SaveVacancyLink => By.XPath("//span[normalize-space()='Save vacancy']");
+    private static By SaveVacancyLink => By.XPath("//span[normalize-space()='Save']");
 
     private static By SavedVacanciesNavBar => By.XPath("//a[normalize-space()='Saved vacancies']");
     private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
