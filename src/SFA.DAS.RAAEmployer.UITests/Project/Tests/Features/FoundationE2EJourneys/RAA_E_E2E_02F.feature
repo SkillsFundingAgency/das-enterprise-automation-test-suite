@@ -1,11 +1,11 @@
-﻿Feature: RAA_E_E2E_06
+﻿Feature: RAA_E_E2E_02F
 
 @raa
 @raaemployer
 @raae2e
 @raaemployere2e
 @regression
-Scenario: RAA_E_E2E_06 - Create a foundation advert with trading name, Approve, Apply, make Application Unsuccessful and receive email notification
+Scenario: RAA_E_E2E_02F - Create a foundation advert with trading name, Approve, Apply, make Application Unsuccessful and receive email notification
 	Given the Employer creates a foundation advert by using a trading name
 	And the Reviewer Approves the vacancy
 	When the Applicant can apply for a foundation vacancy in FAA

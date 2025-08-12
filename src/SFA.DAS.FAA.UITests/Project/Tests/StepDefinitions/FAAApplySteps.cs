@@ -28,15 +28,15 @@ public class FAAApplySteps(ScenarioContext context)
     public void TheApplicantCanApplyForAFoundationVacancyInFAA()
     {
         var user = context.GetUser<FAAFoundationUser>();
-        _faaStepsHelper.ApplyForAVacancy("both", user).PreviewApplication().SubmitApplication();
+        _faaStepsHelper.ApplyForAVacancy("both", user, false).PreviewApplication().SubmitApplication();
     }
 
-    [When(@"the Applicant can apply for a foundation vacancy in FAA")]
-    [Then(@"the Applicant can apply for a foundation vacancy in FAA")]
-    public void TheApplicantCanApplyForAFoundationVacancyInFAA()
+    [When(@"the ineligible applicant can not apply for a foundation vacancy in FAA")]
+    [Then(@"the ineligible applicant can not apply for a foundation vacancy in FAA")]
+    public void TheIneligibleApplicantCanNotApplyForAFoundationVacancyInFAA()
     {
-        var user = context.GetUser<FAAFoundationUser>();
-        _faaStepsHelper.ApplyForAVacancy("both", user).PreviewApplication().SubmitApplication();
+        var user = context.GetUser<FAAApplyUser>();
+        _faaStepsHelper.IneligibleUserApplyForAVacancy(user);
     }
 
     [When("the apprentice has submitted their first application")]

@@ -190,6 +190,23 @@ public class FAAStepsHelper(ScenarioContext context)
         return applicationFormPage;
     }
 
+    public FAA_ApprenticeSummaryPage IneligibleUserApplyForAVacancy(object user)
+    {
+        FAA_ApprenticeSummaryPage applicationFormPage;
+
+        switch (user)
+        {
+            case FAAApplyUser faaUser:
+                applicationFormPage = GoToFAAHomePageAndCheckForIneligibleText(faaUser);
+                break;
+            default:
+                throw new ArgumentException("Unsupported user type", nameof(user));
+        }
+
+
+        return applicationFormPage;
+    }
+
     public FAA_ApplicationOverviewPage ApplyForAVacancyWithNewAccount(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
         var applicationFormPage = GoToFAASearchResultsPageToSelectAVacancyAndApply();
@@ -320,6 +337,8 @@ public class FAAStepsHelper(ScenarioContext context)
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAApplyUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAApplySecondUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAFoundationUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
+    private FAA_ApprenticeSummaryPage GoToFAAHomePageAndCheckForIneligibleText(FAAApplyUser user) => GoToFAAHomePage(user).SearchByReferenceNumberAndCheckForIneligibleText();
+
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {
