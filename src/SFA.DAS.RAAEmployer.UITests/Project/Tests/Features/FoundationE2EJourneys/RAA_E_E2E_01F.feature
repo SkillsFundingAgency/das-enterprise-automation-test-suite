@@ -1,11 +1,11 @@
-﻿Feature: RAA_E_E2E_05
+﻿Feature: RAA_E_E2E_01F
 
 @raa
 @raaemployer
 @raae2e
 @raaemployere2e
 @regression
-Scenario: RAA_E_E2E_05 - Create a foundation advert with registered name, Approve, Apply, receive email notifications and make Application Successful
+Scenario: RAA_E_E2E_01F - Create a foundation advert with registered name, Approve, Apply, receive email notifications and make Application Successful
 	Given the Employer creates a foundation advert by using a registered name
 	And the Reviewer Approves the vacancy
 	When the Applicant can apply for a foundation vacancy in FAA
