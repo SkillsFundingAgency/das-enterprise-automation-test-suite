@@ -61,7 +61,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         {
             return createAdvertPage
             .EnterAdditionalQuestionsForApplicants()
-            .CompleteAllAdditionalQuestionsForApplicants(enterQuestion1, enterQuestion2);
+            .CompleteAllAdditionalQuestionsForApplicants(IsFoundationAdvert, enterQuestion1, enterQuestion2);
         }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)

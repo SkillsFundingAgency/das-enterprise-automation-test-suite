@@ -25,7 +25,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         private static By AdditionalQuestion1Selector => By.Id("AdditionalQuestion1");
         private static By AdditionalQuestion2Selector => By.Id("AdditionalQuestion2");
 
-        public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants(bool isFoundationAdvert, bool enterQuestion1 = true, bool enterQuestion2 = true)
+        public CreateAnApprenticeshipAdvertOrVacancyPage CompleteAllAdditionalQuestionsForApplicants(bool isFoundationAdvert, bool enterQuestion1, bool enterQuestion2)
         {
             CheckMandatoryQuestions(isFoundationAdvert);
 
@@ -36,7 +36,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }
 
-        public CheckYourAnswersPage UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage(bool enterQuestion1 = true, bool enterQuestion2 = true)
+        public CheckYourAnswersPage UpdateAllAdditionalQuestionsAndGoToCheckYourAnswersPage(bool enterQuestion1, bool enterQuestion2)
         {
             EnterAdditionalQuestions(enterQuestion1, enterQuestion2);
 
