@@ -74,6 +74,12 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
                     userEmail = isFoundationAdvert ? foundationApplicantEmail : applicantEmail;
                     break;
 
+                case ("withdrawn application", "applicant"):
+                    emailText = "You’ve withdrawn your application for";
+                    subject = $"Application withdrawn: {vacancyTitleDataHelper.VacancyTitle}";
+                    userEmail = isFoundationAdvert ? foundationApplicantEmail : applicantEmail;
+                    break;
+
                 default:
                     Assert.Fail($"Unknown notification type: {notificationType}");
                     break;
