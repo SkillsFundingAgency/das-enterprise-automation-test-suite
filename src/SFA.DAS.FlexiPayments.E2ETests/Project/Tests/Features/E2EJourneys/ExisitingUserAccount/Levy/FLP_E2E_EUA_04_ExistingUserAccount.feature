@@ -1,6 +1,5 @@
 ﻿Feature: FLP_E2E_EUA_04_ExistingUserAccount
 
-@regression
 @e2escenarios
 @flexi-payments
 Scenario: FLP_E2E_EUA_04 Provider sends cohort to employer for review then employer approves then provider approves
