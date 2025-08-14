@@ -3,9 +3,7 @@
 The purpose of the below testa is to successfully raise a Change of Start Date request initiated by a training provider 
 for a learner opted in the pilot. 
 
-@regression
 @flexi-manage-coc
-@flexi-payments
 Scenario: FLP_CoC_04 Change Of Start Date Journey - Happy Path
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
