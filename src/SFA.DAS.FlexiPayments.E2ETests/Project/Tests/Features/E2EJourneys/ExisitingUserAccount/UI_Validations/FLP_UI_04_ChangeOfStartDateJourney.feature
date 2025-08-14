@@ -4,7 +4,6 @@ The purpose of this test is to validate the UI journey (input fields + validatio
 Change of Start Date initiated by Training Provider. The employer used in this test will be a non-levy employer.
 
 @flexi-manage-coc
-@flexi-payments
 Scenario: FLP_UI_04_01 Change Of Start Date Journey
 	Given NonLevy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
@@ -26,7 +25,6 @@ Scenario: FLP_UI_04_01 Change Of Start Date Journey
 
 
 @flexi-manage-coc
-@flexi-payments
 Scenario: FLP_UI_04_02 Prevent Change Of Start Date after qualifying period
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str                    | duration_in_months | agreed_price | pilot_status |

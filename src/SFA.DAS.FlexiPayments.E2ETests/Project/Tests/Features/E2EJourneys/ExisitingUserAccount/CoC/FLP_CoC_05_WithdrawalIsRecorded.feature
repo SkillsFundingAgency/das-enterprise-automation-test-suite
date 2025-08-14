@@ -3,7 +3,6 @@
 A short summary of the feature
 
 @flexi-manage-coc
-@flexi-payments
 Scenario: FLP_CoC_05_01 Withdrawal Is Recorded - Learner Opted Out of Beta
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |
@@ -15,7 +14,6 @@ Scenario: FLP_CoC_05_01 Withdrawal Is Recorded - Learner Opted Out of Beta
 
 
 @flexi-manage-coc
-@flexi-payments
 Scenario: FLP_CoC_05_02 Withdrawal Is Recorded - WithdrawDuringLearning
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str              | duration_in_months | agreed_price | pilot_status |

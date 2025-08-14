@@ -5,7 +5,6 @@ Provider payment status functionality. The employer will Withhold the payment an
 Activate it allowing for the validation checks to be completed.
 
 @flexi-manage-coc
-@flexi-payments
 Scenario: FLP_UI_05 Provider payment status journey
 	Given NonLevy Employer and Pilot provider have a fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str     | duration_in_months | agreed_price | pilot_status |

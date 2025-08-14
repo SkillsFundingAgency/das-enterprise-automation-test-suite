@@ -1,7 +1,5 @@
 ﻿Feature: FLP_Access_01_PerformAccessibilityTesting
 
-
-@flexi-payments
 Scenario: FLP_Access_01 Perform Accessibility Testing on Flexi-payment screens
 	Given fully approved apprentices with the below data
 		| ULN_Key | training_code | date_of_birth | start_date_str    | duration_in_months | agreed_price | pilot_status |
