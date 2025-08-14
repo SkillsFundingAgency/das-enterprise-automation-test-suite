@@ -1,7 +1,6 @@
 ﻿Feature: FLP_Access_01_PerformAccessibilityTesting
 
-@accessibility
-@regression
+
 @flexi-payments
 Scenario: FLP_Access_01 Perform Accessibility Testing on Flexi-payment screens
 	Given fully approved apprentices with the below data

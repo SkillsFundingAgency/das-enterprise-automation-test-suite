@@ -3,7 +3,6 @@
 The purpose of the below testa is to successfully raise a Change of Start Date request initiated by a training provider 
 for a learner opted in the pilot. 
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_04 Change Of Start Date Journey - Happy Path

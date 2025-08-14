@@ -2,7 +2,6 @@
 
 A short summary of the feature
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_05_01 Withdrawal Is Recorded - Learner Opted Out of Beta
@@ -15,8 +14,6 @@ Scenario: FLP_CoC_05_01 Withdrawal Is Recorded - Learner Opted Out of Beta
 	And the approval of the apprenticeship is maintained but it is removed from private beta
 
 
-
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_05_02 Withdrawal Is Recorded - WithdrawDuringLearning

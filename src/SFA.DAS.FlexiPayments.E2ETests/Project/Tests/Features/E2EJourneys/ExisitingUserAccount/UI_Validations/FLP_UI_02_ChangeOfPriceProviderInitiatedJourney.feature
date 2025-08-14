@@ -3,7 +3,6 @@
 The purpose of this test is to validate the UI journey (input fields + validation errors) for a training provider while 
 raise a Change of Price request for a learner opted in the pilot. 
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_UI_02 Change Of Price Provider Initiated Journey

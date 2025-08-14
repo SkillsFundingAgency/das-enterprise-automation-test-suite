@@ -7,7 +7,6 @@ First test validates that Learner Status is "In learning" when the apprenticeshi
 start date is in the past. The second test, validates Learner status is "Waiting to start"
 when start date is in future.
 
-@regression
 @flexi-payments
 Scenario: FLP_UI_06 Learner Status journey - In Learning
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data
@@ -19,7 +18,6 @@ Scenario: FLP_UI_06 Learner Status journey - In Learning
 	And Employer can see a Learner Status row with InLearning status for the Apprentice
 
 
-@regression
 @flexi-payments
 Scenario: FLP_UI_06 Learner Status journey - Waiting To Start
 	Given Levy Employer and Pilot provider have a fully approved apprentices with the below data

@@ -3,7 +3,6 @@
 The purpose of the below testa is to successfully raise a Change of Price request initiated by a training provider 
 for a learner opted in the pilot. 
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_02_1 Provider Initiated Change Of Price Request - Total Price Increased
@@ -21,7 +20,6 @@ Scenario: FLP_CoC_02_1 Provider Initiated Change Of Price Request - Total Price 
 	And validate earnings instalments are updated to reflect the new agreed price of 15000
 	And validate the approved Change of Price values have been updated in the Apprenticeship table of Commitment db
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_02_2 Provider Initiated Change Of Price Request - Auto-Approve - Total Price Decreased
@@ -33,7 +31,6 @@ Scenario: FLP_CoC_02_2 Provider Initiated Change Of Price Request - Auto-Approve
 	And Provider creates a Change of Price request where Training Price for the apprenticeship is reduced by 500
 	Then the approved Change of Price request is saved in the PriceHistory table
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_02_3 Provider Initiated Change Of Price Request - Auto-Approve - Total Price remains the same

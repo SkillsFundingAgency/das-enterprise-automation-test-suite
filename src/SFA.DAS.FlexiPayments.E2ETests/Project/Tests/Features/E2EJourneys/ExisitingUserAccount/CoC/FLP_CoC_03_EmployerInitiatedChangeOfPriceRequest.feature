@@ -3,7 +3,6 @@
 The purpose of this test is to successfully raise a Change of Price request initiated by Employer
 for a learner opted in the pilot. 
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_03 Employer Initiated Change Of Price Request

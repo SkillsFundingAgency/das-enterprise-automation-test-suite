@@ -1,6 +1,5 @@
 ﻿Feature: FLP_AIER_01_ValidateEarnings
 
-@regression
 @flexi-payments
 Scenario: FLP_AIER_01 Validate Apps indicative earnings report
 

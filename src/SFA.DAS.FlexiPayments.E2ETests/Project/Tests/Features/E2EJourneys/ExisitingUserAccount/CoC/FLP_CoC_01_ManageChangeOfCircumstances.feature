@@ -3,7 +3,6 @@
 The purpose of this test is to validate Employer and Training providers are not able to access Change of Circumstances functionality 
 for learners opted in the pilot. They should be able to make changes to aproved learns that are opted out of the pilot, though
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_CoC_01 Employer and Provider cannot edit an approved pilot learner but can edit a non-pilot user

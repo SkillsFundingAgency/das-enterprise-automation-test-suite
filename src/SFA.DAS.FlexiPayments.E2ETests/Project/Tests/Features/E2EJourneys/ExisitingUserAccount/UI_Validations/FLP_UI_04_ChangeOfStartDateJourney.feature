@@ -3,7 +3,6 @@
 The purpose of this test is to validate the UI journey (input fields + validation errors) for 
 Change of Start Date initiated by Training Provider. The employer used in this test will be a non-levy employer.
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_UI_04_01 Change Of Start Date Journey
@@ -26,7 +25,6 @@ Scenario: FLP_UI_04_01 Change Of Start Date Journey
 	And Employer is able to successfully reject the Change of Start Date request
 
 
-@regression
 @flexi-manage-coc
 @flexi-payments
 Scenario: FLP_UI_04_02 Prevent Change Of Start Date after qualifying period
