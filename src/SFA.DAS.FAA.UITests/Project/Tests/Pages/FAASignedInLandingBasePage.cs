@@ -123,17 +123,17 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
     private void CheckFoundationText()
     {
-        var expectedFoundationText = pageInteractionHelper.GetText(FoundationText).Trim();
-        var actualFoundationText = "Foundation apprenticeships are introductory courses that help young people get started in an industry. You do not need to have any specific qualifications or experience to apply.\r\nAnyone between 16 and 21 can start a foundation apprenticeship.\r\nIf you're between 22 and 24, you can start if you:\r\nhave an EHC plan\r\nare in care or have been in care\r\nare in prison or have been in prison";
+        var actualFoundationText = pageInteractionHelper.GetText(FoundationText).Trim();
+        var expectedFoundationText = "Foundation apprenticeships are introductory courses that help young people get started in an industry. You do not need to have any specific qualifications or experience to apply.\r\nAnyone between 16 and 21 can start a foundation apprenticeship.\r\nIf you're between 22 and 24, you can start if you:\r\nhave an EHC plan\r\nare in care or have been in care\r\nare in prison or have been in prison";
 
-        pageInteractionHelper.VerifyText(expectedFoundationText, actualFoundationText);
+        pageInteractionHelper.VerifyText(actualFoundationText, expectedFoundationText);
     }
 
     private void CheckIneligibleFoundationText()
     {
-        var expectedFoundationText = pageInteractionHelper.GetText(FoundationText).Trim();
-        var actualFoundationText = "You cannot apply for a foundation apprenticeship if you’re 25 or over.\r\nFoundation apprenticeships are introductory courses that help young people get started in an industry.\r\nAbout foundation apprenticeships (opens in new tab).";
+        var actualFoundationText = pageInteractionHelper.GetText(FoundationText).Trim();
+        var expectedFoundationText = "You cannot apply for a foundation apprenticeship if you’re 25 or over.\r\nFoundation apprenticeships are introductory courses that help young people get started in an industry.\r\nAbout foundation apprenticeships (opens in new tab).";
 
-        pageInteractionHelper.VerifyText(expectedFoundationText, actualFoundationText);
+        pageInteractionHelper.VerifyText(actualFoundationText, expectedFoundationText);
     }
 }
