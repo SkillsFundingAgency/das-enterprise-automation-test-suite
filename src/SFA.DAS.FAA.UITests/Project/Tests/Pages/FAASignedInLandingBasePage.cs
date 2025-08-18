@@ -19,7 +19,7 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
     private static By SavedVacancyLink => By.CssSelector(".govuk-link.govuk-link--no-visited-state");
     private static By FirstApplicationDisplayed => By.CssSelector("[id^='VAC'][id$='-vacancy-title']");
-
+    private static By FoundationText => By.CssSelector(".faa-foundation-inset-text");
     public FAA_ApplicationsPage GoToApplications()
     {
         formCompletionHelper.Click(ApplicationsHeader);
@@ -39,6 +39,27 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         SearchUsingVacancyTitle();
 
         GoToVacancyInFAA();
+
+        if(IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+            CheckFoundationText();
+        }
+
+        return new FAA_ApprenticeSummaryPage(context);
+    }
+
+    public FAA_ApprenticeSummaryPage SearchByReferenceNumberAndCheckForIneligibleText()
+    {
+        SearchUsingVacancyTitle();
+
+        GoToVacancyInFAA();
+
+        if (IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+            CheckIneligibleFoundationText();
+        }
 
         return new FAA_ApprenticeSummaryPage(context);
     }
@@ -98,5 +119,21 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
         formCompletionHelper.ClickLinkByText("Browse by your interests instead");
 
         return new FAABrowseByInterestsPage(context);
+    }
+
+    private void CheckFoundationText()
+    {
+        var actualFoundationText = pageInteractionHelper.GetText(FoundationText).Trim();
+        var expectedFoundationText = "Foundation apprenticeships are introductory courses that help young people get started in an industry. You do not need to have any specific qualifications or experience to apply.\r\nAnyone between 16 and 21 can start a foundation apprenticeship.\r\nIf you're between 22 and 24, you can start if you:\r\nhave an EHC plan\r\nare in care or have been in care\r\nare in prison or have been in prison";
+
+        pageInteractionHelper.VerifyText(actualFoundationText, expectedFoundationText);
+    }
+
+    private void CheckIneligibleFoundationText()
+    {
+        var actualFoundationText = pageInteractionHelper.GetText(FoundationText).Trim();
+        var expectedFoundationText = "You cannot apply for a foundation apprenticeship if you’re 25 or over.\r\nFoundation apprenticeships are introductory courses that help young people get started in an industry.\r\nAbout foundation apprenticeships (opens in new tab).";
+
+        pageInteractionHelper.VerifyText(actualFoundationText, expectedFoundationText);
     }
 }

@@ -12,8 +12,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         protected override string PageTitle => "Your vacancies";
 
         private static By Applications => By.CssSelector("a.govuk-link[href*='applications']");
+        private static By ApplicantStatus => By.CssSelector("td[data-label='Status']");
 
-       
+
+
         public ManageApplicantPage NavigateToManageApplicant(string applicationid = null)
         {
             GoToVacancyManageApplicantsPage(applicationid);
@@ -24,8 +26,19 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             }
 
             formCompletionHelper.Click(By.Id($"application-id-{applicationid}"));
+            if(IsFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
 
             return new ManageApplicantPage(context);
+        }
+
+        public void CheckApplicantStatus(string status, string applicationid = null)
+        {
+            GoToVacancyManageApplicantsPage(applicationid);
+
+            pageInteractionHelper.CheckText(ApplicantStatus, status);
         }
 
         private string GetApplicationIdFromManageApplicantsPage()

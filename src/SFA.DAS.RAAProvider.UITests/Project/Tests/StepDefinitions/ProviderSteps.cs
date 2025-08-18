@@ -14,6 +14,9 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can make the application successful")]
         public void ThenProviderCanMakeTheApplicationSuccessful() => _providerStepsHelper.ApplicantSucessful();
 
+        [Then(@"Provider can see the withdrawn application")]
+        public void ThenProviderCanSeeTheWithdrawnApplication() => _providerStepsHelper.ApplicantWithdrawn();
+
         [Then(@"Provider can share multiple applications")]
         public void ThenProviderCanShareMultipleApplications() => _providerStepsHelper.ShareMutipleApplicants();
 

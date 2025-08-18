@@ -5,6 +5,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
     public class CheckYourAnswersPage(ScenarioContext context) : RaaBasePage(context)
     {
+        bool isFoundationAdvert = context.ContainsKey("isFoundationAdvert") && (bool)context["isFoundationAdvert"];
         protected override string PageTitle => isRaaEmployer ? "Check your answers" : "Check your answers before submitting your vacancy";
 
         private static By BackToTaskSelector => By.CssSelector("[data-automation='link-back']");
@@ -33,6 +34,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         public VacancyReferencePage SubmitAdvert()
         {
+            if (IsFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
             Continue();
             return new VacancyReferencePage(context);
         }

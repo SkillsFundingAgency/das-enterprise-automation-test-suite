@@ -9,6 +9,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
     public class ProviderCreateVacancyStepsHelper(ScenarioContext context, bool newTab) : CreateAdvertVacancyBaseStepsHelper()
     {
         private bool _isMultiOrg;
+        protected bool IsFoundationAdvert => context.ContainsKey("isFoundationAdvert") && (bool)context["isFoundationAdvert"];
 
         private string _hashedid = string.Empty;
         private readonly RecruitmentProviderHomePageStepsHelper _recruitmentProviderHomePageStepsHelper = new(context);
@@ -60,18 +61,28 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         {
             return createAdvertPage
             .EnterAdditionalQuestionsForApplicants()
-            .CompleteAllAdditionalQuestionsForApplicants(enterQuestion1, enterQuestion2);
+            .CompleteAllAdditionalQuestionsForApplicants(IsFoundationAdvert, enterQuestion1, enterQuestion2);
         }
 
-        protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
-            createAdvertPage
-            .Skills()
-            .SelectSkillAndGoToQualificationsPage()
-            .SelectYesToAddQualification()
-            .EnterQualifications()
-            .ConfirmQualificationsAndGoToFutureProspectsPage()
-            .EnterFutureProspect()
-            .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
+        protected override CreateAnApprenticeshipAdvertOrVacancyPage SkillsAndQualifications(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage)
+        {
+            var page = IsFoundationAdvert
+                ? createAdvertPage
+                .FutureProspects()
+                .EnterFutureProspect()
+                .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields)
+
+                : createAdvertPage
+                .Skills()
+                .SelectSkillAndGoToQualificationsPage()
+                .SelectYesToAddQualification()
+                .EnterQualifications()
+                .ConfirmQualificationsAndGoToFutureProspectsPage()
+                .EnterFutureProspect()
+                .EnterThingsToConsiderAndReturnToCreateAdvert(optionalFields);
+
+            return page;
+        }
 
         protected override CreateAnApprenticeshipAdvertOrVacancyPage EmploymentDetails(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, string locationType, string wageType)
         {
@@ -128,11 +139,11 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         }
 
         private static CreateAnApprenticeshipAdvertOrVacancyPage FirstAdvertSummary(CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage) =>
-            AdvertSummary(NavigateToAdvertTitle(createAdvertPage).EnterVacancyTitleForTheFirstAdvert().SelectYes());
+            AdvertSummary(NavigateToAdvertTitle(createAdvertPage).EnterVacancyTitleForTheFirstAdvert().SelectYes(), false);
 
-        private static CreateAnApprenticeshipAdvertOrVacancyPage AdvertSummary(ApprenticeshipTrainingPage page) =>
+        private static CreateAnApprenticeshipAdvertOrVacancyPage AdvertSummary(ApprenticeshipTrainingPage page, bool isFoundationAdvert) =>
         page.EnterTrainingTitle()
-            .ConfirmTrainingproviderAndContinue()
+            .ConfirmTrainingproviderAndContinue(isFoundationAdvert)
             .SelectTrainingProvider()
             .ConfirmProviderAndContinueToSummaryPage()
             .EnterShortDescription()

@@ -6,6 +6,7 @@ namespace SFA.DAS.FAA.UITests.Project.Helpers;
 
 public class FAAStepsHelper(ScenarioContext context)
 {
+    protected bool IsFoundationAdvert => context.ContainsKey("isFoundationAdvert") && (bool)context["isFoundationAdvert"];
     public FAASignedInLandingBasePage GoToFAAHomePage()
     {
         context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
@@ -30,6 +31,18 @@ public class FAAStepsHelper(ScenarioContext context)
     }
 
     public FAASignedInLandingBasePage GoToFAAHomePage(FAAApplySecondUser user)
+    {
+        context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
+
+        if (new CheckFAASignedOutLandingPage(context).IsPageDisplayed())
+        {
+            new FAASignedOutLandingpage(context).GoToSignInPage().SubmitValidUserDetails(user).Continue();
+        }
+
+        return new FAASignedInLandingBasePage(context);
+    }
+
+    public FAASignedInLandingBasePage GoToFAAHomePage(FAAFoundationUser user)
     {
         context.Get<TabHelper>().GoToUrl(UrlConfig.FAA_AppSearch);
 
@@ -119,6 +132,9 @@ public class FAAStepsHelper(ScenarioContext context)
             case FAAApplySecondUser faaUser2:
                 applicationFormPage = GoToFAAHomePageAndApply(faaUser2);
                 break;
+            case FAAFoundationUser faaUser3:
+                applicationFormPage = GoToFAAHomePageAndApply(faaUser3);
+                break;
             default:
                 throw new ArgumentException("Unsupported user type", nameof(user));
         } 
@@ -131,23 +147,32 @@ public class FAAStepsHelper(ScenarioContext context)
 
         applicationFormPage = applicationFormPage.Access_Section2_2VolunteeringAndWorkExperience().SelectSectionCompleted().VerifyWorkHistory_2();
 
-        applicationFormPage = applicationFormPage.Access_Section3_1SkillsAndStrengths().SelectSectionCompleted().VerifyApplicationsQuestions_1();
+        var interestsSection = IsFoundationAdvert
+            ? applicationFormPage.Access_Section3_2Interests_Foundations().SelectSectionCompleted().VerifyApplicationsQuestions_2_Foundations()
+            : applicationFormPage.Access_Section3_1SkillsAndStrengths().SelectSectionCompleted().VerifyApplicationsQuestions_1()
+                .Access_Section3_2Interests().SelectSectionCompleted().VerifyApplicationsQuestions_2();
 
-        applicationFormPage = applicationFormPage.Access_Section3_2Interests().SelectSectionCompleted().VerifyApplicationsQuestions_2();
+        applicationFormPage = interestsSection;
+
+        Func<FAA_ApplicationOverviewPage, FAA_ApplicationOverviewPage> additionalQuestion1 = IsFoundationAdvert
+            ? page => page.Access_Section3_3AdditionalQuestion1_Foundations().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3_Foundations()
+            : page => page.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
+
+        Func<FAA_ApplicationOverviewPage, FAA_ApplicationOverviewPage> additionalQuestion2 = IsFoundationAdvert
+            ? page => page.Access_Section3_4AdditionalQuestion2_Foundations().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4_Foundations()
+            : page => page.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
 
         switch (numberOfQuestions)
         {
             case "first":
-                applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
+                applicationFormPage = additionalQuestion1(applicationFormPage);
                 break;
-
             case "second":
-                applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
+                applicationFormPage = additionalQuestion2(applicationFormPage);
                 break;
-
             case "both":
-                applicationFormPage = applicationFormPage.Access_Section3_3AdditionalQuestion1().SelectYesAndCompleteSection().VerifyApplicationsQuestions_3();
-                applicationFormPage = applicationFormPage.Access_Section3_4AdditionalQuestion2().SelectYesAndCompleteSection().VerifyApplicationsQuestions_4();
+                applicationFormPage = additionalQuestion1(applicationFormPage);
+                applicationFormPage = additionalQuestion2(applicationFormPage);
                 break;
         }
 
@@ -161,6 +186,23 @@ public class FAAStepsHelper(ScenarioContext context)
         {
             applicationFormPage = applicationFormPage.Access_Section6_1Locations().SelectLocationsAndContinue().SelectSectionCompleted().VerifyLocations_1();
         }
+
+        return applicationFormPage;
+    }
+
+    public FAA_ApprenticeSummaryPage IneligibleUserApplyForAVacancy(object user)
+    {
+        FAA_ApprenticeSummaryPage applicationFormPage;
+
+        switch (user)
+        {
+            case FAAApplyUser faaUser:
+                applicationFormPage = GoToFAAHomePageAndCheckForIneligibleText(faaUser);
+                break;
+            default:
+                throw new ArgumentException("Unsupported user type", nameof(user));
+        }
+
 
         return applicationFormPage;
     }
@@ -294,6 +336,9 @@ public class FAAStepsHelper(ScenarioContext context)
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply() => GoToFAAHomePage().SearchByReferenceNumber().Apply();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAApplyUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
     private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAApplySecondUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
+    private FAA_ApplicationOverviewPage GoToFAAHomePageAndApply(FAAFoundationUser user) => GoToFAAHomePage(user).SearchByReferenceNumber().Apply();
+    private FAA_ApprenticeSummaryPage GoToFAAHomePageAndCheckForIneligibleText(FAAApplyUser user) => GoToFAAHomePage(user).SearchByReferenceNumberAndCheckForIneligibleText();
+
 
     public FAA_ApplicationOverviewPage ApplyForFirstVacancy(bool qualificationdetails, bool trainingCourse, bool job, bool workExperience, bool interviewSupport, bool disabilityConfident)
     {

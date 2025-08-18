@@ -16,6 +16,8 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
             => providerVacancySearchResultPage.NavigateToManageApplicant().MarkApplicantInterviewWithEmployer();     
         public static void ApplicantSucessful(ProviderVacancySearchResultPage providerVacancySearchResultPage)
             => providerVacancySearchResultPage.NavigateToManageApplicant().ProviderMakeApplicantSucessful().ConfirmSuccessful();
+        public static void ApplicantWithdrawn(ProviderVacancySearchResultPage providerVacancySearchResultPage)
+            => providerVacancySearchResultPage.CheckApplicantStatus("Withdrawn");
         public static void MultiShareApplicants(ProviderVacancySearchResultPage providerVacancySearchResultPage)
            => providerVacancySearchResultPage.NavigateToManageApplicants().ProviderShareApplicantsWithEmployer().ConfirmMultipleApplicationsSharing();
         public static void ApplicantShared(ProviderVacancySearchResultPage providerVacancySearchResultPage)
@@ -33,6 +35,8 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantUnsucessful().NotifyApplicant();
         public static void ApplicantSucessful(EmployerVacancySearchResultPage employerVacancySearchResultPage)
             => employerVacancySearchResultPage.NavigateToManageApplicant().MakeApplicantSucessful().NotifyApplicant();
+        public static void ApplicantWithdrawn(EmployerVacancySearchResultPage employerVacancySearchResultPage)
+            => employerVacancySearchResultPage.CheckApplicantStatus("Withdrawn");
         public static void VerifyWageType(EmployerVacancySearchResultPage employerVacancySearchResultPage, string wageType)
             => employerVacancySearchResultPage.NavigateToViewAdvertPage().VerifyEmployerWageType(wageType);
 
