@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
@@ -12,11 +13,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
         private static By CreateANewReservationButton => By.CssSelector(".govuk-label--s");
         private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        public ProviderApprenticeshipTrainingPage CreateANewReservation()
+        public ProviderSelectStandardPage CreateANewReservation()
         {
             formCompletionHelper.SelectRadioOptionByForAttribute(CreateANewReservationButton, "CreateNew");
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new ProviderApprenticeshipTrainingPage(context);
+            return new ProviderSelectStandardPage(context);
         }
     }
 }
