@@ -22,11 +22,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             {
                 _replaceApprenticeDatahelper.ReplaceApprenticeDataInContext(i);
 
-                var page = providerApproveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().SelectAddManuallyViaCreateNewReservation().CreateANewReservation();
-
-                var page1 = VerifySuccessMessage(page);
-
-                providerApproveApprenticeDetailsPage = page1.GoToSelectStandardPage().ProviderSelectsAStandard().SubmitValidApprenticeDetails();
+                providerApproveApprenticeDetailsPage
+                    .SelectAddAnApprenticeUsingReservation()
+                    .SelectAddManuallyViaCreateNewReservation()
+                    .CreateANewReservation()
+                    .ProviderSelectsAStandard()
+                    .SubmitValidApprenticeDetails();
 
             }
 
