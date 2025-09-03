@@ -1,7 +1,7 @@
 ﻿Feature: PR_AP_06_ManageYourApprentices_Contributor 
 
-@approvals
-@regression
+//@approvals - This test case has now been migrated to Playwright solution
+//@regression
 @Approvalproviderrole
 @pasproviderrole
 Scenario: PR_AP_06_Provider Roles Contributor Manage your Apprentices

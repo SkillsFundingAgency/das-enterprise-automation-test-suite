@@ -1,7 +1,7 @@
 ﻿Feature: PR_AP_08_ManageYourApprentices_Viewer
 
-@approvals
-@regression
+//@approvals - This test case has now been migrated to Playwright solution
+//@regression
 @Approvalproviderrole
 @pasproviderrole
 Scenario Outline: PR_AP_08_Provider Roles Viewer  Manage your Apprentices

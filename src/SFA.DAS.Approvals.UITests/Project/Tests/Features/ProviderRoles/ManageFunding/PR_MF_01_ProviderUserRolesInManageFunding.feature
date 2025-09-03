@@ -1,7 +1,7 @@
 ﻿Feature: PR_MF_01_ProviderUserRolesInManageFunding
 
-@approvals
-@regression
+//@approvals		This test case has now been migrated to Playwright solution
+//@regression
 @pasproviderrole
 Scenario: PR_MF_01_ProviderUserRolesInManageFunding
 	Given Provider Account Owner can make a reservation
