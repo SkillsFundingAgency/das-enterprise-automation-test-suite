@@ -1,8 +1,7 @@
 ﻿Feature: PR_AP_02_ApprenticeRequests_Contributor
 
-@approvals
-@regression
-@Approvalproviderrole
+//@regression - This test case has now been migrated to Playwright solution
+//@Approvalproviderrole
 @pasproviderrole
 Scenario: PR_AP_02_Provider Roles Contributor Apprentice Requests
 Given the provider logs in as a Contributor
