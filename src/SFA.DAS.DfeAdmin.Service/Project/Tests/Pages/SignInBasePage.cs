@@ -132,7 +132,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
             Continue();
         }
 
-        if (username.StartsWith("mfa"))
+        if (EnvironmentConfig.IsPPEnvironment)
         {
             lock (_mfaObject)
             {
