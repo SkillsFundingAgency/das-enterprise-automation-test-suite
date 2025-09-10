@@ -32,7 +32,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     public List<string> GetDfeMfaCodes(string email, string subject, string emailText)
     {
-        var checkemaildateTime = DateTime.Now.AddMinutes(-2);
+        var checkemaildateTime = DateTime.Now.AddMinutes(-5);
 
         SetDebugInformation($"Check list of email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {checkemaildateTime:HH:mm:ss}");
 
