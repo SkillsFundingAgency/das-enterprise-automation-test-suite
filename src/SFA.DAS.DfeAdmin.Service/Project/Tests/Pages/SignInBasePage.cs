@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
+using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using System.Threading;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
@@ -10,8 +12,19 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
     static readonly List<string> usedCodes = [];
 
-    private class EnterPasswordMFAPage(ScenarioContext context) : IdamsLoginBasePage(context)
+    private abstract class DfeMFaBasePage : VerifyBasePage
     {
+        public DfeMFaBasePage(ScenarioContext context) : base(context)
+        {
+            context.Get<RetryAssertHelper>().RetryOnDfeSignMFAPages(()=> 
+            {
+                VerifyPage();
+            });
+        }
+    }
+
+    private class EnterPasswordMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
+    {    
         protected override By PageHeader => By.CssSelector("div[id='loginHeader']");
 
         protected override string PageTitle => "Enter password";
@@ -28,7 +41,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         }
     }
 
-    private class VeifyYourIdentityMFAPage(ScenarioContext context) : IdamsLoginBasePage(context)
+    private class VeifyYourIdentityMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
     {
         protected override By PageHeader => By.CssSelector("div[id='pageContent']");
 
@@ -42,7 +55,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         }
     }
 
-    private class EmailAuthCodeMFAPage(ScenarioContext context) : IdamsLoginBasePage(context)
+    private class EmailAuthCodeMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
     {
         protected override By PageHeader => By.CssSelector("div[id='pageContent']");
 
@@ -81,11 +94,22 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         }
     }
 
-    private class StaySignedInMFAPage(ScenarioContext context) : IdamsLoginBasePage(context)
+    private class CheckStaySignedInMFAPage(ScenarioContext context) : CheckPageTitleShorterTimeOut(context)
     {
-        protected override By PageHeader => By.CssSelector("div.text-title[role='heading']");
+        protected override string PageTitle => StaySignedInMFAPage.StaySignedInMFAPageTitle;
 
-        protected override string PageTitle => "Stay signed in?";
+        protected override By Identifier => StaySignedInMFAPage.StaySignedInMFAPageIdentifier;
+    }
+
+    private class StaySignedInMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
+    {
+        public static string StaySignedInMFAPageTitle => "Stay signed in?";
+
+        public static By StaySignedInMFAPageIdentifier => By.CssSelector("div.text-title[role='heading']");
+
+        protected override By PageHeader => StaySignedInMFAPageIdentifier;
+
+        protected override string PageTitle => StaySignedInMFAPageTitle;
 
         private static By MFAStaySignInYesButton => By.CssSelector("input[type='submit'][value='Yes']");
 
@@ -132,7 +156,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
             Continue();
         }
 
-        if (username.StartsWith("mfa"))
+        if (EnvironmentConfig.IsPPEnvironment)
         {
             lock (_mfaObject)
             {
@@ -144,7 +168,10 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
                 new EmailAuthCodeMFAPage(context).SubmitValidAuthCode(username);
 
-                new StaySignedInMFAPage(context).SubmitYes();
+                if (new CheckStaySignedInMFAPage(context).IsPageDisplayed())
+                {
+                    new StaySignedInMFAPage(context).SubmitYes();
+                }                   
             }
         }
         else
