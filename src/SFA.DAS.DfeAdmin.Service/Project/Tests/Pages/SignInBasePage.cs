@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using System.Threading;
@@ -15,7 +16,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     {
         public DfeMFaBasePage(ScenarioContext context) : base(context)
         {
-            context.Get<RetryAssertHelper>().RetryOnDfeSignMFAPages(() =>
+            context.Get<RetryAssertHelper>().RetryOnDfeSignMFAPages(()=> 
             {
                 VerifyPage();
             });
@@ -23,7 +24,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     }
 
     private class EnterPasswordMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
-    {
+    {    
         protected override By PageHeader => By.CssSelector("div[id='loginHeader']");
 
         protected override string PageTitle => "Enter password";
@@ -70,7 +71,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         {
             context.Get<RetryAssertHelper>().RetryOnDfeSignMFAAuthCode(() =>
             {
-                var codes = context.Get<MailosaurApiHelper>().GetDfeMfaCodes(email, "Your DfE Sign-in (TEST) account verification code", "Account verification code:");
+                var codes = context.Get<MailosaurApiHelper>().GetCodes(email, "Your DfE Sign-in (TEST) account verification code", "Account verification code:");
 
                 SetDebugInformation($"Used codes are ({usedCodes.Select(x => $"'{x}'").ToString(",")})");
 
@@ -170,7 +171,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
                 if (new CheckStaySignedInMFAPage(context).IsPageDisplayed())
                 {
                     new StaySignedInMFAPage(context).SubmitYes();
-                }
+                }                   
             }
         }
         else
