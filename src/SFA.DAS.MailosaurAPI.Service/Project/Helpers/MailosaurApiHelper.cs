@@ -30,9 +30,11 @@ public class MailosaurApiHelper(ScenarioContext context)
         return link.Href;
     }
 
-    public List<string> GetCodes(string email, string subject, string emailText)
+    public List<string> GetDfeMfaCodes(string email, string subject, string emailText)
     {
-        SetDebugInformation($"Check list of email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {dateTime:HH:mm:ss}");
+        var checkemaildateTime = DateTime.Now.AddMinutes(-2);
+
+        SetDebugInformation($"Check list of email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {checkemaildateTime:HH:mm:ss}");
 
         var mailosaurAPIUser = GetMailosaurAPIUser(email);
 
@@ -46,7 +48,7 @@ public class MailosaurApiHelper(ScenarioContext context)
             Match = SearchMatchOperator.ANY
         };
 
-        var messagelistresult = mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: DateTime.Now.AddMinutes(-5), errorOnTimeout: false).Result;
+        var messagelistresult = mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: checkemaildateTime, errorOnTimeout: false).Result;
 
         var messageItems = messagelistresult.Items;
 
