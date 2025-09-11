@@ -32,7 +32,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
     public List<string> GetDfeMfaCodes(string email, string subject, string emailText)
     {
-        var checkemaildateTime = DateTime.Now.AddMinutes(-5);
+        var checkemaildateTime = DateTime.Now.AddMinutes(-2);
 
         SetDebugInformation($"Check list of email received to '{email}' using subject '{subject}' and contains text '{emailText}' after {checkemaildateTime:HH:mm:ss}");
 
@@ -45,7 +45,7 @@ public class MailosaurApiHelper(ScenarioContext context)
             SentTo = email,
             Subject = subject,
             Body = emailText,
-            Match = SearchMatchOperator.ANY
+            Match = SearchMatchOperator.ALL
         };
 
         var messagelistresult = mailosaur.Messages.SearchAsync(mailosaurAPIUser.ServerId, criteria, timeout: 20000, receivedAfter: checkemaildateTime, errorOnTimeout: false).Result;
@@ -60,11 +60,14 @@ public class MailosaurApiHelper(ScenarioContext context)
         {
             var message = mailosaur.Messages.GetByIdAsync(messageSummary.Id).Result;
 
-            SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss} with body {Environment.NewLine}{message.Text.Body}");
+            if (message.Text.Body.ContainsCompareCaseInsensitive(emailText))
+            {
+                SetDebugInformation($"Message found with ID '{message?.Id}' at {message?.Received:HH:mm:ss} with body {Environment.NewLine}{message.Text.Body}");
 
-            var code = message.Html.Codes[0].Value;
+                var code = message.Html.Codes[0].Value;
 
-            codes.Add(code);
+                codes.Add(code);
+            }          
         }
 
         return codes;
