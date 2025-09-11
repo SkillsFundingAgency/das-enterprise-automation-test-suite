@@ -1,5 +1,6 @@
 ﻿using Mailosaur;
 using Mailosaur.Models;
+using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ public class MailosaurApiHelper(ScenarioContext context)
 
         var criteria = new SearchCriteria()
         {
+            SentFrom = context.Get<ConfigSection>().GetConfigSection<string>("DfeMfaEmailSentFrom"),
             SentTo = email,
             Subject = subject,
             Body = emailText,
