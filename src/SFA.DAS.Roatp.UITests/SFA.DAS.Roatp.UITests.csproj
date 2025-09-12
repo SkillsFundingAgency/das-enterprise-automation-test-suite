@@ -30,6 +30,7 @@
     <ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 	<ProjectReference Include="..\SFA.DAS.RoatpAdmin.Service\SFA.DAS.RoatpAdmin.Service.csproj" />
 	<ProjectReference Include="..\SFA.DAS.DfeAdmin.Service\SFA.DAS.DfeAdmin.Service.csproj" />
+	<ProjectReference Include="..\SFA.DAS.MailosaurAPI.Service\SFA.DAS.MailosaurAPI.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
