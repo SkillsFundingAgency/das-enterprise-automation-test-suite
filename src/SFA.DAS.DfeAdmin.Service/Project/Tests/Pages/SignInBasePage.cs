@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.DfeSignPages;
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using System.Threading;
+using static SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.SignInBasePage;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
@@ -12,22 +12,26 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
     static readonly List<string> usedCodes = [];
 
-    private abstract class DfeMFaBasePage : VerifyBasePage
+    public abstract class DfeMFaBasePage : VerifyBasePage
     {
         public DfeMFaBasePage(ScenarioContext context) : base(context)
         {
-            context.Get<RetryAssertHelper>().RetryOnDfeSignMFAPages(()=> 
+            context.Get<RetryAssertHelper>().RetryOnDfeSignMFAPages(() =>
             {
                 VerifyPage();
             });
         }
     }
 
-    private class EnterPasswordMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
-    {    
-        protected override By PageHeader => By.CssSelector("div[id='loginHeader']");
+    public class EnterPasswordMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
+    {
+        public static string EnterPasswordMFAPageIdentifierCss => "div[id='loginHeader']";
 
-        protected override string PageTitle => "Enter password";
+        public static string EnterPasswordMFAPageTitle => "Enter password";
+
+        protected override By PageHeader => By.CssSelector(EnterPasswordMFAPageIdentifierCss);
+
+        protected override string PageTitle => EnterPasswordMFAPageTitle;
 
         private static By PasswordField => By.CssSelector("input[name=passwd][type=password]");
 
@@ -120,11 +124,15 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     }
 
 
-    private class EnterPasswordPage(ScenarioContext context) : IdamsLoginBasePage(context)
+    public class EnterPasswordPage(ScenarioContext context) : IdamsLoginBasePage(context)
     {
-        protected override string PageTitle => "Enter your password";
+        public static string EnterPasswordPageTitle => "Enter your password";
 
-        private static By PasswordField => By.Id("password");
+        public static string EnterPasswordPageIdentifierCss => "#password";
+
+        protected override string PageTitle => EnterPasswordPageTitle;
+
+        private static By PasswordField => By.CssSelector(EnterPasswordPageIdentifierCss);
 
         public void SubmitValidPassword(string password)
         {
@@ -149,19 +157,14 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
     public void SubmitValidLoginDetails(string username, string password)
     {
-        void EnterUserName()
-        {
-            formCompletionHelper.EnterText(UsernameField, username);
+        formCompletionHelper.EnterText(UsernameField, username);
+        
+        Continue();
 
-            Continue();
-        }
-
-        if (EnvironmentConfig.IsPPEnvironment)
+        if (new CheckEnterPasswordMFAOrStandardPage(context).IsEnterPasswordMFADisplayed())
         {
             lock (_mfaObject)
             {
-                EnterUserName();
-
                 new EnterPasswordMFAPage(context).SubmitValidPassword(password);
 
                 new VeifyYourIdentityMFAPage(context).SubmitEmailCode();
@@ -171,13 +174,11 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
                 if (new CheckStaySignedInMFAPage(context).IsPageDisplayed())
                 {
                     new StaySignedInMFAPage(context).SubmitYes();
-                }                   
+                }
             }
         }
         else
         {
-            EnterUserName();
-
             new EnterPasswordPage(context).SubmitValidPassword(password);
 
             ClickSignInButton();
@@ -186,4 +187,13 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     }
 
     protected virtual void ClickSignInButton() => formCompletionHelper.ClickElement(SignInButton);
+}
+
+public class CheckEnterPasswordMFAOrStandardPage(ScenarioContext context) : CheckMultipleHomePage(context)
+{
+    public override string[] PageIdentifierCss => [EnterPasswordMFAPage.EnterPasswordMFAPageIdentifierCss, EnterPasswordPage.EnterPasswordPageIdentifierCss];
+
+    public override string[] PageTitles => [EnterPasswordMFAPage.EnterPasswordMFAPageTitle, EnterPasswordPage.EnterPasswordPageTitle];
+
+    public bool IsEnterPasswordMFADisplayed() => ActualDisplayedPage(EnterPasswordMFAPage.EnterPasswordMFAPageTitle);
 }
