@@ -161,7 +161,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         
         Continue();
 
-        if (new CheckEnterPasswordMFAOrStandardPage(context).IsEnterPasswordMFADisplayed())
+        if (EnvironmentConfig.IsPPEnvironment && new CheckEnterPasswordMFAOrStandardPage(context).IsEnterPasswordMFADisplayed())
         {
             lock (_mfaObject)
             {
