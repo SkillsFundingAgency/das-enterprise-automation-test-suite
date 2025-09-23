@@ -26,6 +26,13 @@ internal static class SetProviderCredsHelper
 
         var providerName = dfeProviderDetailsList.FirstOrDefault(x => x.Ukprn == t.Ukprn);
 
+        if (EnvironmentConfig.IsPPEnvironment)
+        {
+            provider.Username = $"{provider.UsernamePrefix}{t.Ukprn}@{provider.Domain}";
+
+            provider.Password = $"{provider.PasswordPrefix}{t.Ukprn}";
+        }       
+
         t.Username = provider.Username;
 
         t.Password = provider.Password;
