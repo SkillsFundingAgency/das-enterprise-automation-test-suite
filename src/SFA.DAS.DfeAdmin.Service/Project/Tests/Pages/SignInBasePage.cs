@@ -2,7 +2,7 @@
 using SFA.DAS.MailosaurAPI.Service.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport.CheckPage;
 using System.Threading;
-using static SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.SignInBasePage;
+//using static SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.SignInBasePage;
 
 namespace SFA.DAS.DfeAdmin.Service.Project.Tests.Pages;
 
@@ -161,7 +161,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         
         Continue();
 
-        if (EnvironmentConfig.IsPPEnvironment && new CheckEnterPasswordMFAOrStandardPage(context).IsEnterPasswordMFADisplayed())
+        if (EnvironmentConfig.IsPPEnvironment)// && new CheckEnterPasswordMFAOrStandardPage(context).IsEnterPasswordMFADisplayed())
         {
             lock (_mfaObject)
             {
@@ -189,11 +189,13 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     protected virtual void ClickSignInButton() => formCompletionHelper.ClickElement(SignInButton);
 }
 
-public class CheckEnterPasswordMFAOrStandardPage(ScenarioContext context) : CheckMultipleHomePage(context)
-{
-    public override string[] PageIdentifierCss => [EnterPasswordMFAPage.EnterPasswordMFAPageIdentifierCss, EnterPasswordPage.EnterPasswordPageIdentifierCss];
+// 24/09/2025 - PLEASE DO NOT REMOVE COMMENTED CODE
 
-    public override string[] PageTitles => [EnterPasswordMFAPage.EnterPasswordMFAPageTitle, EnterPasswordPage.EnterPasswordPageTitle];
+//public class CheckEnterPasswordMFAOrStandardPage(ScenarioContext context) : CheckMultipleHomePage(context)
+//{
+//    public override string[] PageIdentifierCss => [EnterPasswordMFAPage.EnterPasswordMFAPageIdentifierCss, EnterPasswordPage.EnterPasswordPageIdentifierCss];
 
-    public bool IsEnterPasswordMFADisplayed() => ActualDisplayedPage(EnterPasswordMFAPage.EnterPasswordMFAPageTitle);
-}
+//    public override string[] PageTitles => [EnterPasswordMFAPage.EnterPasswordMFAPageTitle, EnterPasswordPage.EnterPasswordPageTitle];
+
+//    public bool IsEnterPasswordMFADisplayed() => ActualDisplayedPage(EnterPasswordMFAPage.EnterPasswordMFAPageTitle);
+//}
