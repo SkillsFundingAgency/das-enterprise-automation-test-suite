@@ -180,11 +180,28 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         }
 
-        public bool IsTaskAdded(string Title)
+        public bool IsTaskAdded(string title)
         {
-            var taskTitles = pageInteractionHelper.FindElements(TaskTitle);
-            return taskTitles.Any(task => task.Text.Contains(Title));
-            
+            title = title?.Trim();
+
+            var timeoutSeconds = 10;
+            var startTime = DateTime.Now;
+            while ((DateTime.Now - startTime).TotalSeconds < timeoutSeconds)
+            {
+                var taskTitles = pageInteractionHelper.FindElements(TaskTitle);
+                foreach (var task in taskTitles)
+                {
+                    var taskText = task.Text.Trim();
+                    Console.WriteLine($"Found task title: '{taskText}'");
+
+                    if (taskText.Contains(title, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return true;
+                    }
+                }
+                System.Threading.Thread.Sleep(500);
+            }
+            return false;
         }
 
         internal string GenerateTaskName()

@@ -16,6 +16,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         {
             toDoTaskName = tasksBasePage.GenerateTaskName();
             tasksBasePage.AddTask(true, toDoTaskName, DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy"), "12:00p", "KSB", "1", "Assignment", "Status", "Note");
+            tasksBasePage.Refresh();
         }
 
         [When("the apprentice has clicked on the done tasks tab")]
