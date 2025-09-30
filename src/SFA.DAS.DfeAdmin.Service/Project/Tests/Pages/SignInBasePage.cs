@@ -36,7 +36,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         private static By PasswordField => By.CssSelector("input[name=passwd][type=password]");
 
-        private static By MFASignInButton => By.CssSelector("input[type='submit'][value='Sign in']");
+        private static By MFASignInButton => By.CssSelector("[type='submit'][aria-label='Sign in']");
 
         public void SubmitValidPassword(string password)
         {
