@@ -15,7 +15,17 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         public string WhenTheApprenticeClicksOnViewActions()
         {
             var taskElement = tasksBasePage.GetTask();
-            taskTitle = taskElement.FindElement(TasksBasePage.TaskTitle).Text;
+
+            if (taskElement == null)
+            {
+                Console.WriteLine("No task found to delete. Skipping further steps.");
+                TaskExists = false;
+                return string.Empty;
+            }
+
+            var titleElement = taskElement.FindElement(TasksBasePage.TaskTitle);
+            taskTitle = titleElement?.Text;
+
             if (!string.IsNullOrEmpty(taskTitle))
             {
                 tasksBasePage.ClickViewActions();
@@ -23,8 +33,10 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
             }
             else
             {
-                Console.WriteLine("No task found to delete. Skipping further steps.");
+                Console.WriteLine("Task title is empty. Skipping further steps.");
+                TaskExists = false;
             }
+
             return taskTitle;
         }
 

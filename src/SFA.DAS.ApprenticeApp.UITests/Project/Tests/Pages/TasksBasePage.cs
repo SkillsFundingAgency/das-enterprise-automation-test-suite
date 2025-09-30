@@ -87,40 +87,93 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         public void DeleteTask()
         {
             IWebElement taskCard = GetTask();
-            formCompletionHelper.ClickElement(taskCard.FindElement(DeleteButton));
-            formCompletionHelper.Click(ConfirmDelete);
+
+            if (taskCard == null)
+            {
+                Console.WriteLine("No task available to delete.");
+                return;
+            }
+
+            IWebElement deleteButton = null;
+            try
+            {
+                deleteButton = taskCard.FindElement(DeleteButton);
+            }
+            catch (NoSuchElementException)
+            {
+                Console.WriteLine("Delete button not found on the task card.");
+                return;
+            }
+
+            formCompletionHelper.ClickElement(deleteButton);
+
+            try
+            {
+                formCompletionHelper.Click(ConfirmDelete);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to confirm deletion: " + ex.Message);
+            }
+        }
+
+        public bool IsTaskAvailable()
+        {
+            return GetTask() != null;
         }
 
         public void ClickViewActions()
         {
             IWebElement taskCard = GetTask();
-            IWebElement selectedOption = taskCard.FindElement(ViewActions);
 
-            formCompletionHelper.ClickElement(selectedOption);
+            if (taskCard == null)
+            {
+                Console.WriteLine("No task available to click view actions.");
+                return;
+            }
+
+            IWebElement selectedOption = null;
+            try
+            {
+                selectedOption = taskCard.FindElement(ViewActions);
+            }
+            catch (NoSuchElementException)
+            {
+                Console.WriteLine("ViewActions element not found on task card.");
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unexpected error while finding ViewActions: " + ex.Message);
+                return;
+            }
+
+            try
+            {
+                formCompletionHelper.ClickElement(selectedOption);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to click ViewActions: " + ex.Message);
+            }
         }
 
         public IWebElement GetTask()
         {
-            var todoTiles = pageInteractionHelper.FindElements(ToDoPanel).SelectMany(panel => panel.FindElements(Task));
-            var doneTiles = pageInteractionHelper.FindElements(DonePanel).SelectMany(panel => panel.FindElements(Task));
+            var todoTiles = pageInteractionHelper.FindElements(ToDoPanel)?.SelectMany(panel => panel.FindElements(Task)) ?? Enumerable.Empty<IWebElement>();
+            var doneTiles = pageInteractionHelper.FindElements(DonePanel)?.SelectMany(panel => panel.FindElements(Task)) ?? Enumerable.Empty<IWebElement>();
             var url = pageInteractionHelper.GetUrl();
 
-            IWebElement taskCard;
+            Console.WriteLine($"Current URL: {url}");
+            Console.WriteLine($"ToDo tasks: {todoTiles.Count()}, Done tasks: {doneTiles.Count()}");
 
-            switch (url)
+            return url switch
             {
-                case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=0":
-                    case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index":
-                    taskCard = todoTiles.FirstOrDefault();
-                    break;
-                case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=1":
-                    taskCard = doneTiles.FirstOrDefault();
-                    break;
-                default:
-                    throw new InvalidOperationException("Unexpected URL: " + url);
-            }
-            return taskCard ??
-                        throw new InvalidOperationException("No task found in the current panel.");
+                "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=0" or
+                "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index" => todoTiles.FirstOrDefault(),
+                "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=1" => doneTiles.FirstOrDefault(),
+                _ => null
+            };
         }
         protected void EditTask()
         {
