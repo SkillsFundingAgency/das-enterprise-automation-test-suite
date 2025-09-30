@@ -24,7 +24,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     {
         public EnterPasswordMFAPage(ScenarioContext context) : base(context)
         {
-            VerifyPage(pageInteractionHelper.RefreshPage);
+            VerifyPage(PasswordField, pageInteractionHelper.RefreshPage);
         }
         public static string EnterPasswordMFAPageIdentifierCss => "div[id='loginHeader']";
 
