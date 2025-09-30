@@ -17,13 +17,15 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         public DfeMFaBasePage(ScenarioContext context) : base(context)
         {
             pageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([10, 10, 15, 20, 30]));
-
-            VerifyPage();
         }
     }
 
-    public class EnterPasswordMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
+    public class EnterPasswordMFAPage : DfeMFaBasePage
     {
+        public EnterPasswordMFAPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage(PasswordField, pageInteractionHelper.RefreshPage);
+        }
         public static string EnterPasswordMFAPageIdentifierCss => "div[id='loginHeader']";
 
         public static string EnterPasswordMFAPageTitle => "Enter password";
@@ -34,7 +36,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         private static By PasswordField => By.CssSelector("input[name=passwd][type=password]");
 
-        private static By MFASignInButton => By.CssSelector("input[type='submit'][value='Sign in']");
+        private static By MFASignInButton => By.CssSelector("[type='submit'][aria-label='Sign in']");
 
         public void SubmitValidPassword(string password)
         {
@@ -44,8 +46,13 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         }
     }
 
-    private class VeifyYourIdentityMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
+    private class VeifyYourIdentityMFAPage : DfeMFaBasePage
     {
+
+        public VeifyYourIdentityMFAPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
+        }
         protected override By PageHeader => By.CssSelector("div[id='pageContent']");
 
         protected override string PageTitle => "Verify your identity";
@@ -58,8 +65,13 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         }
     }
 
-    private class EmailAuthCodeMFAPage(ScenarioContext context) : DfeMFaBasePage(context)
+    private class EmailAuthCodeMFAPage : DfeMFaBasePage
     {
+        public EmailAuthCodeMFAPage(ScenarioContext context) : base(context)
+        {
+            VerifyPage();
+        }
+
         protected override By PageHeader => By.CssSelector("div[id='pageContent']");
 
         protected override string PageTitle => "Enter code";
@@ -157,7 +169,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     public void SubmitValidLoginDetails(string username, string password)
     {
         formCompletionHelper.EnterText(UsernameField, username);
-        
+
         Continue();
 
         if (EnvironmentConfig.IsPPEnvironment)// && new CheckEnterPasswordMFAOrStandardPage(context).IsEnterPasswordMFADisplayed())
