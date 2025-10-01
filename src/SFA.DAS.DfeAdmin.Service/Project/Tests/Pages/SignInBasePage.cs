@@ -16,7 +16,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     {
         public DfeMFaBasePage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([10, 10, 15, 20, 30]));
+            pageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([5, 5, 5, 5, 5]));
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         {
             formCompletionHelper.EnterText(PasswordField, password);
 
-            formCompletionHelper.ClickElement(MFASignInButton);
+            formCompletionHelper.RetryClickOnException(() => pageInteractionHelper.FindElement(MFASignInButton));
         }
     }
 
