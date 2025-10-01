@@ -16,7 +16,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
     {
         public DfeMFaBasePage(ScenarioContext context) : base(context)
         {
-            pageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([10, 10, 15, 20, 30]));
+            pageInteractionHelper.UpdateTimeSpans(RetryTimeOut.GetTimeSpan([5, 5, 5, 5, 5]));
         }
     }
 
@@ -36,13 +36,16 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         private static By PasswordField => By.CssSelector("input[name=passwd][type=password]");
 
-        private static By MFASignInButton => By.CssSelector("[type='submit'][aria-label='Sign in']");
+        private static By MFASignInButton => By.CssSelector("button[type='submit']");
 
         public void SubmitValidPassword(string password)
         {
-            formCompletionHelper.EnterText(PasswordField, password);
+            formCompletionHelper.ClickElement(() => 
+            {
+                formCompletionHelper.EnterText(PasswordField, password);
 
-            formCompletionHelper.ClickElement(MFASignInButton);
+                return pageInteractionHelper.FindElement(MFASignInButton); 
+            }, pageInteractionHelper.RefreshPage);
         }
     }
 
