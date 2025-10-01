@@ -40,9 +40,12 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         public void SubmitValidPassword(string password)
         {
-            formCompletionHelper.EnterText(PasswordField, password);
+            formCompletionHelper.ClickElement(() => 
+            {
+                formCompletionHelper.EnterText(PasswordField, password);
 
-            formCompletionHelper.RetryClickOnException(() => pageInteractionHelper.FindElement(MFASignInButton));
+                return pageInteractionHelper.FindElement(MFASignInButton); 
+            }, pageInteractionHelper.RefreshPage);
         }
     }
 
