@@ -1,4 +1,6 @@
-﻿using SFA.DAS.RAAProvider.UITests.Project.Helpers;
+﻿using SFA.DAS.RAA.Service.Project.Tests.Pages;
+using SFA.DAS.RAAProvider.UITests.Project.Helpers;
+using SFA.DAS.RAAProvider.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 
@@ -44,5 +46,9 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
 
         [Then("the Provider can navigate to change your sign in details settings page")]
         public void ThenTheProviderCanNavigateToChangeYourSignInDetailsSettingsPage() => _recruitmentProviderHomePageStepsHelper.GoToChangeYourSignInDetailsPage();
+
+        [Then(@"the provider sets the email preferences")]
+        public void ThenTheProviderSetsTheEmailPreferences() =>
+            new ManageYourRecruitmentEmailsPage(context).SelectAndSaveEmailPreferences().VerifyEmailSettingsConfirmationBanner();
     }
 }

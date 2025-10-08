@@ -20,6 +20,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can share multiple applications")]
         public void ThenProviderCanShareMultipleApplications() => _providerStepsHelper.ShareMutipleApplicants();
 
+        [When(@"Provider can make the application shared")]
         [Then(@"Provider can make the application shared")]
         public void ThenProviderCanMakeTheApplicationShared() => _providerStepsHelper.ApplicantShared();
 
