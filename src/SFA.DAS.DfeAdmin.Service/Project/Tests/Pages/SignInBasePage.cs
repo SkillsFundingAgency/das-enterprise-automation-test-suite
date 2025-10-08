@@ -36,7 +36,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         private static By PasswordField => By.CssSelector("input[name=passwd][type=password]");
 
-        private static By MFASignInButton => By.CssSelector("button[type='submit']");
+        private static By MFASignInButton => By.CssSelector("[type='submit']");
 
         public void SubmitValidPassword(string password)
         {
@@ -60,7 +60,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         protected override string PageTitle => "Verify your identity";
 
-        private static By MFAEmailCodeButton => By.CssSelector("button[data-testid='Email'][type='button']");
+        private static By MFAEmailCodeButton => By.CssSelector("[data-testid='Email'][type='button']");
 
         public void SubmitEmailCode()
         {
@@ -83,7 +83,7 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
 
         private static By CodeError => By.CssSelector("div[id='undefinedError'][role='alert']");
 
-        private static By MFAEmailCodeVerifyButton => By.CssSelector("button[type='submit'][id='oneTimeCodePrimaryButton']");
+        private static By MFAEmailCodeVerifyButton => By.CssSelector("[type='submit'][aria-label='Verify']");
 
         public void SubmitValidAuthCode(string email)
         {
