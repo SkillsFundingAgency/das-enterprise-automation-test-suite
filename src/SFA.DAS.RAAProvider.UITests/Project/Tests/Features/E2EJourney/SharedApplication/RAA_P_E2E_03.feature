@@ -9,6 +9,7 @@ As a provider want to be be able to select single applicant, share with employer
 Scenario: RAA_P_E2E_S01 - Create vacancy with registered name, Approve, Apply, share single Application and make it successful
 	Given the Provider creates a vacancy by using a registered name
 	And the Reviewer Approves the vacancy
+	Then the 'provider' receives 'approved vacancy' email notification
 	When the Applicant can apply for a Vacancy in FAA
 	Then Provider can make the application shared
 	Then Provider can make the application successful

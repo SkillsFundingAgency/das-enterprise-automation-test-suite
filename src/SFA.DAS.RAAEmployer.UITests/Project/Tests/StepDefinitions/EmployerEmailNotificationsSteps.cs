@@ -53,8 +53,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     break;
 
                 case ("rejected advert", "employer"):
-                    emailText = "The apprenticeship advert needs some changes";
-                    subject = $"Rejected: Updates needed to your apprenticeship advert (VAC{objectContext.GetVacancyReference()})";
+                    emailText = "DfE has rejected this advert. We’ve left a comment to explain why.";
+                    subject = $"Rejected by DfE: make changes to {vacancyTitleDataHelper.VacancyTitle}";
                     userEmail = employerEmail;
                     break;
 
@@ -68,6 +68,24 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     emailText = "Your advert needs to be reviewed";
                     subject = $"Review your advert (VAC{objectContext.GetVacancyReference()})";
                     userEmail = employerEmail;
+                    break;
+
+                case ("approved advert", "employer"):
+                    emailText = "DfE has approved this advert. It’s now live on Find an apprenticeship.";
+                    subject = $"Approved by DfE: {vacancyTitleDataHelper.VacancyTitle} apprenticeship is now live on Find an apprenticeship";
+                    userEmail = employerEmail;
+                    break;
+
+                case ("employer approved vacancy", "provider"):
+                    emailText = "The employer has approved this vacancy. It’ll now be sent to DfE – you’ll get an email after we’ve reviewed it.";
+                    subject = $"Approved by employer: {vacancyTitleDataHelper.VacancyTitle} apprenticeship now sent to DfE";
+                    userEmail = providerEmail;
+                    break;
+
+                case ("employer rejected vacancy", "provider"):
+                    emailText = "This vacancy has been reviewed and was rejected";
+                    subject = $"Rejected: Updates needed to your vacancy (VAC{objectContext.GetVacancyReference()})";
+                    userEmail = providerEmail;
                     break;
 
                 case ("new application", "applicant"):
@@ -92,6 +110,18 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     emailText = "You’ve withdrawn your application for:";
                     subject = $"Application withdrawn: {vacancyTitleDataHelper.VacancyTitle}";
                     userEmail = isFoundationAdvert ? foundationApplicantEmail : applicantEmail;
+                    break;
+
+                case ("shared application", "employer"):
+                    emailText = $"has sent you a new application to review for {vacancyTitleDataHelper.VacancyTitle}";
+                    subject = "New apprenticeship application to review";
+                    userEmail = employerEmail;
+                    break;
+
+                case ("employer listed you as training provider", "provider"):
+                    emailText = $"An employer’s listed you as the training provider on this vacancy. Contact the employer if you were not expecting this.";
+                    subject = "An employer’s listed you as the training provider on a vacancy";
+                    userEmail = providerEmail;
                     break;
 
                 default:
