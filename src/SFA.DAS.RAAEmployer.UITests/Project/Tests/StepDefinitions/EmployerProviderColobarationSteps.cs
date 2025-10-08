@@ -93,6 +93,10 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             ConfirmationMessage(vacancyReferencePage, "Vacancy resubmitted to employer");
         }
 
+        [When(@"Provider can make the application shared")]
+        [Then(@"Provider can make the application shared")]
+        public void ThenProviderCanMakeTheApplicationShared() => _providerStepsHelper.ApplicantShared();
+
         [When(@"the Employer approves the advert")]
         public void WhenTheEmployerApprovesTheAdvert()
         {

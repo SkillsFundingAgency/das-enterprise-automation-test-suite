@@ -40,6 +40,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         public void ThenTheEmployerNavigatesToAdvertsPage() => _keyforAPIPage.ClickAdvertsLink();
 
         [Then(@"the employer selects the 'Manage your emails' link")]
+        [When(@"the employer selects the 'Manage your emails' link")]
         public void ThenTheEmployerSelectsTheManageYourEmailsLink() => new YourApprenticeshipAdvertsHomePage(context).ClickMangeYourEmailsLink();
       
         [Given(@"the employer selects the developer get started page")]

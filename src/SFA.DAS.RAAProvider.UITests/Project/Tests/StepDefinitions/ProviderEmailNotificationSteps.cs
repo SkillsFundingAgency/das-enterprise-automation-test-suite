@@ -51,8 +51,14 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
                     break;
 
                 case ("rejected vacancy", "provider"):
-                    emailText = "DfE has rejected this vacancy. We’ve left a comment to explain why.";
-                    subject = $"Rejected by DfE: make changes to {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
+                    emailText = "DfE has rejected this advert. We’ve left a comment to explain why.";
+                    subject = $"Rejected by DfE: make changes to {vacancyTitleDataHelper.VacancyTitle}";
+                    userEmail = providerEmail;
+                    break;
+
+                case ("approved vacancy", "provider"):
+                    emailText = "DfE has approved this vacancy. It’s now live on Find an apprenticeship.";
+                    subject = $"Approved by DfE: {vacancyTitleDataHelper.VacancyTitle} apprenticeship is now live on Find an apprenticeship";
                     userEmail = providerEmail;
                     break;
 
