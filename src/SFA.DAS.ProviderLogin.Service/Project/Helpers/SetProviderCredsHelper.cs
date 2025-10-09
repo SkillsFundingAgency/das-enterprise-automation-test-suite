@@ -28,9 +28,12 @@ internal static class SetProviderCredsHelper
 
         if (EnvironmentConfig.IsPPEnvironment)
         {
-            provider.Username = $"{provider.UsernamePrefix}{t.Ukprn}@{provider.Domain}";
+            if (string.IsNullOrEmpty(provider.Username) && string.IsNullOrEmpty(provider.Password))
+            {
+                provider.Username = $"{provider.UsernamePrefix}{t.Ukprn}@{provider.Domain}";
 
-            provider.Password = $"{provider.PasswordPrefix}{t.Ukprn}";
+                provider.Password = $"{provider.PasswordPrefix}{t.Ukprn}";
+            }
         }       
 
         t.Username = provider.Username;
