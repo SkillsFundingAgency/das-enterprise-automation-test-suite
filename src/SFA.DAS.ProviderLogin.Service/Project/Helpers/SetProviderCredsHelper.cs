@@ -22,25 +22,35 @@ internal static class SetProviderCredsHelper
             throw new Exception($"Ukprn '{t.Ukprn}' is not found in list of dfeproviders {message}");
         }
 
+        var dfeprovider = new DfeProviderUser();
+
         var provider = dfeProviderList.Single(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn));
 
         var providerName = dfeProviderDetailsList.FirstOrDefault(x => x.Ukprn == t.Ukprn);
 
+        dfeprovider.Username = provider.Username;
+
+        dfeprovider.Password = provider.Password;
+
+        dfeprovider.Ukprn = providerName.Ukprn;
+
+        dfeprovider.Name = providerName?.Name.Trim();
+
         if (EnvironmentConfig.IsPPEnvironment)
         {
-            if (string.IsNullOrEmpty(provider.Username) && string.IsNullOrEmpty(provider.Password))
+            if (string.IsNullOrEmpty(dfeprovider.Username) && string.IsNullOrEmpty(dfeprovider.Password))
             {
-                provider.Username = $"{provider.UsernamePrefix}{t.Ukprn}@{provider.Domain}";
+                dfeprovider.Username = $"{provider.UsernamePrefix}{t.Ukprn}@{provider.Domain}";
 
-                provider.Password = $"{provider.PasswordPrefix}{t.Ukprn}";
+                dfeprovider.Password = $"{provider.PasswordPrefix}{t.Ukprn}";
             }
         }       
 
-        t.Username = provider.Username;
+        t.Username = dfeprovider.Username;
 
-        t.Password = provider.Password;
+        t.Password = dfeprovider.Password;
 
-        t.Name = providerName?.Name.Trim();
+        t.Name = dfeprovider.Name;
 
         return t;
     }
