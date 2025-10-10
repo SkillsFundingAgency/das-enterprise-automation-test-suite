@@ -13,10 +13,10 @@ Then the 'provider' receives 'employer rejected vacancy' email notification
 And the Provider should see the advert with status: 'Rejected by employer'
 When Provider re-submits the advert
 And the Employer approves the advert
-#Then the 'provider' receives 'employer approved vacancy' email notification
+Then the 'provider' receives 'employer approved vacancy' email notification
 And the Reviewer Approves the vacancy
 Then the Provider should see the advert with status: 'Live'
 When the Applicant can apply for a Vacancy in FAA
-#Then the 'employer' receives 'shared application' email notification
+Then the 'employer' receives 'shared application' email notification
 And Provider can make the application shared
 #And Employer can mark the application as interviewing 
