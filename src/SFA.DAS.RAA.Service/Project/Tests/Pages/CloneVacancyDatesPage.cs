@@ -14,7 +14,23 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         {
             SelectRadioOptionByForAttribute("change-dates-yes");
             Continue();
+            StoreMultipleLocationsFlag();
             return new ConfimCloneVacancyDatePage(context);
+        }
+
+        public void StoreMultipleLocationsFlag()
+        {
+            var dtElements = pageInteractionHelper.FindElements(By.CssSelector("dt.app-summary-list__key"));
+            bool multipleLocations = false;
+            foreach (var dt in dtElements)
+            {
+                if (dt.Text.Trim() == "Locations")
+                {
+                    multipleLocations = true;
+                    break;
+                }
+            }
+            context["multipleLocations"] = multipleLocations;
         }
     }
 }

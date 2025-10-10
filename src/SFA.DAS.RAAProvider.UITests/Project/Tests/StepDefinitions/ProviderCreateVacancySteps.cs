@@ -18,6 +18,13 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
         [Given(@"the Provider creates a vacancy by using a registered name")]
         public void GivenTheProviderCreatesAVacancyByUsingARegisteredName() => CreateANewVacancy();
 
+        [Given(@"the Provider creates a foundation vacancy by using a registered name")]
+        public void GivenTheProviderCreatesAFoundationVacancyByUsingARegisteredName()
+        {
+            context["isFoundationAdvert"] = true;
+            CreateANewVacancy();
+        }
+
         [Given(@"the Provider creates a vacancy with ""(.*)"" work locations by entering all the Optional fields and ""(.*)"" additional questions")]
         public void GivenTheProviderCreatesAVacancyWithWorkLocationsByEnteringAllTheOptionalFields(string locationType, string additionalQuestions)
         {

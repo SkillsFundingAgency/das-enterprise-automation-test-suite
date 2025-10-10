@@ -20,6 +20,9 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can make the application unsuccessful")]
         public void ThenEmployerCanMakeTheApplicationUnsuccessful() => _employerStepsHelper.ApplicantUnsucessful();
 
+        [Then(@"Employer can see the withdrawn application")]
+        public void ThenEmployerCanSeeTheWithdrawnApplication() => _employerStepsHelper.ApplicantWithdrawn();
+
         [Then(@"the Employer can close the vacancy")]
         public void ThenTheEmployerCanCloseTheVacancy() => _employerStepsHelper.CloseVacancy();
 

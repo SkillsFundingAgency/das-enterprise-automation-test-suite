@@ -9,11 +9,17 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         protected override string PageTitle => "Confirm apprenticeship training";
 
         protected override By ContinueButton => By.CssSelector("[data-automation='btn-continue']");
+        private static By FoundationCardBlockElement => By.CssSelector(".govuk-caption-m");
+        private static String ExpectedFoundationApprenticeshipText => "Foundation apprenticeship";
 
         public ConfirmApprenticeshipTrainingPage(ScenarioContext context, Action retryAction) : base(context, false) => VerifyPage(retryAction);
 
-        public EnterTheNameOfTheTrainingProviderPage ConfirmTrainingproviderAndContinue()
+        public EnterTheNameOfTheTrainingProviderPage ConfirmTrainingproviderAndContinue(bool isFoundationAdvert)
         {
+            if (isFoundationAdvert)
+            {
+                CheckFoundationTag();
+            }
             Continue();
             return new EnterTheNameOfTheTrainingProviderPage(context);
         }

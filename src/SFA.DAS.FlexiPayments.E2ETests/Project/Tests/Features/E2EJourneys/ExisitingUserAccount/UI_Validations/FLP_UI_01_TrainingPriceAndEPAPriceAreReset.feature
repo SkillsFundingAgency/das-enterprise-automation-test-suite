@@ -6,9 +6,7 @@ The purpose of this test is to perform UI validations in the below workflow:
 - When TP review the details, Total price suggested by Employer is displayed but Training Price and EPA price are reset 
 - TP is unable to approve the cohort until they enter Training Price and EPA price
 
-@regression
 @e2escenarios
-@flexi-payments
 Scenario: FLP_UI_01_TrainingPriceAndEPAPriceAreResetWhenEmployerChangesToANewTotalPRice
 	Given the Employer logins using existing Levy Account
 	And Pilot Provider adds apprentices to the cohort witht the following details

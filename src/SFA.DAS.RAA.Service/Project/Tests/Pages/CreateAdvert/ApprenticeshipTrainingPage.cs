@@ -14,17 +14,16 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
         public ConfirmApprenticeshipTrainingPage EnterTrainingTitle()
         {
-            EnterTrainingTitleAction();
+            var trainingTitle = IsFoundationAdvert ? RAADataHelper.FoundationTrainingTitle : RAADataHelper.TrainingTitle;
+            EnterTrainingTitleAction(trainingTitle);
 
-            return new ConfirmApprenticeshipTrainingPage(context, EnterTrainingTitleAction);
+            return new ConfirmApprenticeshipTrainingPage(context, () => EnterTrainingTitleAction(trainingTitle));
         }
 
-        private void EnterTrainingTitleAction()
+        private void EnterTrainingTitleAction(string trainingTitle)
         {
-            formCompletionHelper.EnterText(ProgrammeId, RAADataHelper.TrainingTitle);
-
+            formCompletionHelper.EnterText(ProgrammeId, trainingTitle);
             formCompletionHelper.Click(PageHeader);
-
             formCompletionHelper.ClickElement(() => pageInteractionHelper.FindElement(ContinueButton));
         }
     }

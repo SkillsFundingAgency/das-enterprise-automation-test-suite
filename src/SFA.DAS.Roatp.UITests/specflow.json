@@ -10,7 +10,8 @@
     { "assembly": "SFA.DAS.ConfigurationBuilder" },
     { "assembly": "SFA.DAS.TestDataExport" },
     { "assembly": "SFA.DAS.RoatpAdmin.Service" },
-    { "assembly": "SFA.DAS.DfeAdmin.Service" }
+    { "assembly": "SFA.DAS.DfeAdmin.Service" },
+    { "assembly": "SFA.DAS.MailosaurAPI.Service" }
   ],
   "generator": {
     "allowRowTests": false,

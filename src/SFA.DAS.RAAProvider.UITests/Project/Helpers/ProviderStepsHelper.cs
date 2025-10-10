@@ -12,6 +12,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         internal void ViewReferVacancy() => GoToRecruitmentHomePage().SearchReferAdvertTitle();
         internal void ApplicantReview() => StepsHelper.ApplicantInReview(SearchVacancyByVacancyReference());
         internal void ApplicantSucessful() => StepsHelper.ApplicantSucessful(SearchVacancyByVacancyReference());
+        internal void ApplicantWithdrawn() => StepsHelper.ApplicantWithdrawn(SearchVacancyByVacancyReference());
         internal void ShareMutipleApplicants() => StepsHelper.MultiShareApplicants(SearchVacancyByVacancyReference());
 
         internal void ApplicantShared() => StepsHelper.ApplicantShared(SearchVacancyByVacancyReference());

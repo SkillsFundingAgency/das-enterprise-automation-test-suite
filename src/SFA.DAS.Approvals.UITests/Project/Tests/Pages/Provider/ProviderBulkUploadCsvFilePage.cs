@@ -49,7 +49,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             for (int i = 0; i < numberOfApprenticesWithoutCohortRef; i++)
             {
-                _apprenticeList.Add(SetApprenticeDetailsForLegalEntity(i + 1 * 17, "", email, name));
+                _apprenticeList.Add(SetApprenticeDetailsForLegalEntity((i + 1) * 17, "", email, name));
             }
 
             return this;

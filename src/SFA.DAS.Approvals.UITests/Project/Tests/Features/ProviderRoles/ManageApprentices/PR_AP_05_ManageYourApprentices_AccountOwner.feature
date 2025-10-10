@@ -1,7 +1,7 @@
 ﻿Feature: PR_AP_05_ManageYourApprentices_AccountOwner
 
-@approvals
-@regression
+//@approvals - This test case has now been migrated to Playwright solution
+//@regression
 @Approvalproviderrole
 @pasproviderrole
 Scenario: PR_AP_05_Provider Roles Account Owner Manage your apprentices 

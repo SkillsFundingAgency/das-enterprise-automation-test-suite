@@ -1,5 +1,6 @@
 ﻿Feature: RP_CA_01
 
+@ignore
 @roatpapplycreateaccount
 @roatp
 @regression

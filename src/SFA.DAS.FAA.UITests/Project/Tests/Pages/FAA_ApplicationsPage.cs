@@ -16,25 +16,38 @@ public class FAA_ApplicationsPage(ScenarioContext context) : FAABasePage(context
     public FAA_SuccessfulApplicationPage OpenSuccessfulApplicationPage()
     {
         formCompletionHelper.Click(SuccessfulLink);
-
+        if(IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+        }
         return new(context);
     }
 
     public FAA_UnSuccessfulApplicationPage OpenUnSuccessfulApplicationPage()
     {
         formCompletionHelper.Click(UnsuccessfulLink);
-
+        if (IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+        }
         return new(context);
     }
     public FAA_SubmittedApplicationPage OpenSubmittedlApplicationPage()
     {
         formCompletionHelper.Click(SubmittedlLink);
-
+        if (IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+        }
         return new(context);
     }
 
     public void ViewApplication()
     {
         pageInteractionHelper.FindElements(SearchResultItem).Single(x => x.Text.ContainsCompareCaseInsensitive(vacancyTitleDataHelper.VacancyTitle)).FindElement(ViewApplicationLink).Click();
+        if (IsFoundationAdvert)
+        {
+            CheckFoundationTag();
+        }
     }
 }

@@ -9,10 +9,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
         public (string isPilot, string startDate, string endDate, string agreedPrice, string FundingType, string FundingBandMax) GetEarningsApprenticeshipDetails(string uln)
         {
             string query = $" SELECT ep.FundingPlatform, eppr.StartDate, eppr.EndDate, eppr.TotalPrice, ep.FundingType, eppr.FundingBandMaximum " +
-                $" FROM [dbo].[Apprenticeship] app " +
-                $" JOIN [dbo].[Episode] ep on app.[Key] = ep.ApprenticeshipKey " +
+                $" FROM [dbo].[Learning] lrn " +
+                $" JOIN [dbo].[Episode] ep on lrn.[Key] = ep.LearningKey " +
                 $" JOIN [dbo].[EpisodePrice] eppr on ep.[Key] = eppr.[EpisodeKey] " +
-                $" WHERE app.uln = '{uln}'";
+                $" WHERE lrn.uln = '{uln}'";
 
             waitForResults = true;
 
@@ -24,7 +24,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
         public (string TrainingPrice, string AssessmentPrice, string TotalPrice, string EffectiveFromDate, string reason, string status) GetChangeOfPriceRequestData(string uln)
         {
             string query = $"Select top (1) TrainingPrice, AssessmentPrice, TotalPrice, EffectiveFromDate, ChangeReason, PriceChangeRequestStatus from PriceHistory " +
-                $" where ApprenticeshipKey in (select [Key] from [dbo].[Apprenticeship] " +
+                $" where LearningKey in (select [Key] from [dbo].[Learning] " +
                 $" where ULN in ('{uln}')) order by CreatedDate desc";
 
             waitForResults = true;
@@ -38,7 +38,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
         {
             string query = $"SELECT top (1) st.ActualStartDate, st.Reason, st.RequestStatus " +
                 $" FROM [dbo].[StartDateChange] st " +
-                $" JOIN [dbo].[Apprenticeship] apprn ON st.ApprenticeshipKey = apprn.[Key] " +
+                $" JOIN [dbo].[Learning] lrn ON st.LearningKey = lrn.[Key] " +
                 $" WHERE Uln = '{uln}' order by CreatedDate desc";
 
             waitForResults = true;
@@ -51,10 +51,10 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
         public (string StartDate, string EndDate) GetApprenticeshipTrainingDates(string uln)
         {
             string query = $"SELECT eppr.StartDate, eppr.EndDate " +
-                $" FROM [dbo].[Apprenticeship] app " +
-                $" JOIN [dbo].[Episode] ep on app.[Key] = ep.ApprenticeshipKey " +
+                $" FROM [dbo].[Learning] lrn " +
+                $" JOIN [dbo].[Episode] ep on lrn.[Key] = ep.LearningKey " +
                 $" JOIN [dbo].[EpisodePrice] eppr on ep.[Key] = eppr.[EpisodeKey] " +
-                $" WHERE app.uln = '{uln}'";
+                $" WHERE lrn.uln = '{uln}'";
 
             waitForResults = true;
 
@@ -66,7 +66,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
         public bool GetProviderPaymentStatus(string uln)
         {
             string query = $"SELECT top (1) Unfrozen FROM [dbo].[FreezeRequest] fr " +
-                $" JOIN [dbo].[Apprenticeship] apprn ON fr.ApprenticeshipKey = apprn.[Key] " +
+                $" JOIN [dbo].[Learning] lrn ON fr.LearningKey = lrn.[Key] " +
                 $" WHERE Uln = '{uln}' order by FrozenDateTime desc";
 
             waitForResults = true;
@@ -80,9 +80,9 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Helpers.SqlDbHelpers
         {
             string query = $" select ep.LearningStatus, wr.Reason, wr.LastDayOfLearning " +
                 $" from WithdrawalRequest wr " +
-                $" join Episode ep on ep.ApprenticeshipKey = wr.ApprenticeshipKey " +
-                $" where ep.ApprenticeshipKey in (select [key] from [dbo].[Apprenticeship] app" +
-                $" where app.Uln = '{uln}')";
+                $" join Episode ep on ep.LearningKey = wr.LearningKey " +
+                $" where ep.LearningKey in (select [key] from [dbo].[Learning] lrn" +
+                $" where lrn.Uln = '{uln}')";
 
             waitForResults = true;
 

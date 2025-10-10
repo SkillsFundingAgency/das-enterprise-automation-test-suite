@@ -1,7 +1,7 @@
 ﻿Feature: PR_AP_01_ApprenticeRequests_AccountOwner
 
-@approvals
-@regression
+//@approvals - This test case has now been migrated to Playwright solution
+//@regression
 @Approvalproviderrole
 @pasproviderrole
 Scenario: PR_AP_01_Provider Roles Account Owner Apprentice Requests

@@ -13,6 +13,6 @@ Scenario: RP_FullEndToEnd_02_EmployerRoute_Charity_Complete_Apply_Gateway_Financ
 	And the Financial user assess the application by confirming Finance outcome as inadequate
 	And the Asssesssors assess the application and marks the application as Ready for Moderation
 	Then the Moderation user assess the application and marks outcomes as Fail
-	And the FAIL status overall application is marked as UnSuccessful
-    Then Verify the application is transitioned to Oversight Outcome tab with UNSUCCESSFUL status
+	And the Fail status overall application is marked as UnSuccessful
+    Then Verify the application is transitioned to Oversight Outcome tab with Unsuccessful status
     And verify the Application unsuccessful page is displayed 

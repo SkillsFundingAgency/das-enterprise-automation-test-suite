@@ -34,6 +34,8 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         SetDebugInformation($"Refreshed page...");
     }
 
+    public void UpdateTimeSpans(TimeSpan[] timeSpan) => retryHelper.UpdateTimeSpans(timeSpan);
+
     public string GetUrl() => webDriver.Url;
 
     public void InvokeAction(Action action, Action retryAction = null) => retryHelper.RetryOnWebDriverException(action, retryAction);

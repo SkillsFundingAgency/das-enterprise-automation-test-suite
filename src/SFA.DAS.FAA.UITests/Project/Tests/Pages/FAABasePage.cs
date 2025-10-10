@@ -26,6 +26,15 @@ public abstract class FAABasePage : VerifyBasePage
         if (verifyPage) VerifyPage();
     }
 
+    protected bool IsFoundationAdvert => context.ContainsKey("isFoundationAdvert") && (bool)context["isFoundationAdvert"];
+    private static By FoundationTag => By.CssSelector(".govuk-tag--pink");
+    public void CheckFoundationTag()
+    {
+        var expectedFoundationTag = "Foundation";
+        var actualFoundationTag = pageInteractionHelper.GetText(FoundationTag).Trim();
+        pageInteractionHelper.VerifyText(actualFoundationTag, expectedFoundationTag);
+    }
+
     public FAA_ApplicationOverviewPage SelectSectionCompleted()
     {
         SelectRadioOptionByForAttribute("IsSectionCompleted");
