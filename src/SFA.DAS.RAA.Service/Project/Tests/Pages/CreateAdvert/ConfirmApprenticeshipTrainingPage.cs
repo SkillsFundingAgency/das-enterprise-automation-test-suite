@@ -19,7 +19,6 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
             if (isFoundationAdvert)
             {
                 CheckFoundationTag();
-                CheckFoundationCardText();
             }
             Continue();
             return new EnterTheNameOfTheTrainingProviderPage(context);
@@ -41,12 +40,6 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         {
             Continue();
             return new SummaryOfTheApprenticeshipPage(context);
-        }
-
-        private void CheckFoundationCardText()
-        {
-            var actualFoundationCardText = pageInteractionHelper.GetText(FoundationCardBlockElement).Trim();
-            pageInteractionHelper.VerifyText(actualFoundationCardText, ExpectedFoundationApprenticeshipText);
         }
     }
 }

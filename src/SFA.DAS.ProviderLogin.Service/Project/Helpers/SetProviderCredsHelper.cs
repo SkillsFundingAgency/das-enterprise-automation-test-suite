@@ -22,15 +22,35 @@ internal static class SetProviderCredsHelper
             throw new Exception($"Ukprn '{t.Ukprn}' is not found in list of dfeproviders {message}");
         }
 
+        var dfeprovider = new DfeProviderUser();
+
         var provider = dfeProviderList.Single(x => x.Listofukprn.Select(y => y.ToString()).Contains(t.Ukprn));
 
         var providerName = dfeProviderDetailsList.FirstOrDefault(x => x.Ukprn == t.Ukprn);
 
-        t.Username = provider.Username;
+        dfeprovider.Username = provider.Username;
 
-        t.Password = provider.Password;
+        dfeprovider.Password = provider.Password;
 
-        t.Name = providerName?.Name.Trim();
+        dfeprovider.Ukprn = providerName.Ukprn;
+
+        dfeprovider.Name = providerName?.Name.Trim();
+
+        if (EnvironmentConfig.IsPPEnvironment)
+        {
+            if (string.IsNullOrEmpty(dfeprovider.Username) && string.IsNullOrEmpty(dfeprovider.Password))
+            {
+                dfeprovider.Username = $"{provider.UsernamePrefix}{t.Ukprn}@{provider.Domain}";
+
+                dfeprovider.Password = $"{provider.PasswordPrefix}{t.Ukprn}";
+            }
+        }       
+
+        t.Username = dfeprovider.Username;
+
+        t.Password = dfeprovider.Password;
+
+        t.Name = dfeprovider.Name;
 
         return t;
     }

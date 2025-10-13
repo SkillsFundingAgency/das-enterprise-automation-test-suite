@@ -1,5 +1,4 @@
-﻿using Polly;
-using SFA.DAS.ConfigurationBuilder;
+﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.Login.Service.Project;

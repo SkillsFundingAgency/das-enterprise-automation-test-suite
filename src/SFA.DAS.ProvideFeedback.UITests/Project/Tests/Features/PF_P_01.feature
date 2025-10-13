@@ -6,6 +6,7 @@ As a Provider, I want to be able to login to view feedback left by Apprentices a
 @regression
 @apprenticefeedback
 @donotexecuteinparallel
+@providerviewfeedback
 Scenario: PF_P_01 Provider logs in to view feedback from apprentices when the minimum number of reviews has not been reached
 Given the provider has been rated by apprentices as follows
 	| AcademicYear | Rating    |
@@ -21,6 +22,7 @@ Then they see the following text: "You'll see apprentice reviews after at least 
 @regression
 @apprenticefeedback
 @donotexecuteinparallel
+@providerviewfeedback
 Scenario: PF_P_02 Provider logs in to view feedback from apprentices
 Given the provider has been rated by apprentices as follows
 	| AcademicYear | Rating    |
@@ -42,10 +44,12 @@ Then their apprentice feedback score for that year is 'Excellent'
 When they select the apprentice feedback tab for the previous academic year
 Then their apprentice feedback score for that year is 'Good'
 
+
 @providefeedback
 @regression
-@apprenticefeedback
+@employerfeedback
 @donotexecuteinparallel
+@providerviewfeedback
 Scenario: PF_P_03 Provider logs in to view feedback from employers when the minimum number of reviews has not been reached
 Given the provider has been rated by employers as follows
 	| AcademicYear | Rating    |
@@ -53,10 +57,12 @@ When The provider logs in to the provider portal
 And the provider opts to view their feedback
 Then they see the following text: "There are no employer reviews for this period of time."
 
+
 @providefeedback
 @regression
-@apprenticefeedback
+@employerfeedback
 @donotexecuteinparallel
+@providerviewfeedback
 Scenario: PF_P_04 Provider logs in to view feedback from employers
 Given the provider has been rated by employers as follows
 	| AcademicYear | Rating    |
