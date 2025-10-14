@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 {
     public class PostGraduateTeachingApprenticeshipPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Is the postgraduate teaching apprenticeship the only apprenticeship your organisation intends to deliver?";
+        protected override string PageTitle => "Is the postgraduate and/or undergraduate teaching apprenticeships the only apprenticeship programmes your organisation intends to deliver?";
 
         public PostGraduateTeachingApprenticeshipPage(ScenarioContext context) : base(context) => VerifyPage();
 
