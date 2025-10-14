@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.FinancialEvidence
 {
     public class UploadManagementAccountsCoveringThreeMonths : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Upload your organisation's management accounts covering at least 3 months within the last 12 months";
+        protected override string PageTitle => "Upload your organisation’s management accounts showing between 6 to 12 months of actual trading activity";
 
         public UploadManagementAccountsCoveringThreeMonths(ScenarioContext context) : base(context) => VerifyPage();
 
