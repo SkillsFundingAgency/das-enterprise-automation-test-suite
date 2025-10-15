@@ -17,25 +17,25 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public GatewayLandingPage AccessGatewayApplications()
         {
-            formCompletionHelper.ClickLinkByText("Access the gateway");
+            formCompletionHelper.ClickLinkByText("Go to RoATP gateway applications");
             return new GatewayLandingPage(context);
         }
 
         public FinancialLandingPage AccessFinancialApplications()
         {
-            formCompletionHelper.ClickLinkByText("Manage financial applications");
+            formCompletionHelper.ClickLinkByText("Go to RoATP financial applications");
             return new FinancialLandingPage(context);
         }
 
         public RoatpAssessorApplicationsHomePage AccessAssessorAndModerationApplications()
         {
-            formCompletionHelper.ClickLinkByText("Manage applications");
+            formCompletionHelper.ClickLinkByText("Go to RoATP assessor applications");
             return new RoatpAssessorApplicationsHomePage(context);
         }
 
         public OversightLandingPage AccessOversightApplications()
         {
-            formCompletionHelper.ClickLinkByText("Decide on application outcomes");
+            formCompletionHelper.ClickLinkByText("Go to RoATP application outcomes");
             return new OversightLandingPage(context);
         }
 
@@ -47,7 +47,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public StaffDashboardPage DownloadTrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText("Download training provider data");
+            formCompletionHelper.ClickLinkByText("Download list of apprenticeship training providers");
             return new StaffDashboardPage(context);
         }
 
