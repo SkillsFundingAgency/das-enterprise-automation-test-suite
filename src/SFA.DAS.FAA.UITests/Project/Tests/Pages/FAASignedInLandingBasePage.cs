@@ -6,9 +6,9 @@ public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage
 
     protected override string PageTitle => "Sign out";
 
-    private static By SearchHeader => By.CssSelector("[id='service-header__nav'] a[href='/apprenticeships']");
+    private static By SearchHeader => By.CssSelector("[id='faa-navigation'] a[href='/apprenticeships']");
 
-    private static By ApplicationsHeader => By.CssSelector("[id='service-header__nav'] a[href='/applications']");
+    private static By ApplicationsHeader => By.CssSelector("[id='faa-navigation'] a[href='/applications']");
 
     private static By What => By.CssSelector("[id='WhatSearchTerm']");
 

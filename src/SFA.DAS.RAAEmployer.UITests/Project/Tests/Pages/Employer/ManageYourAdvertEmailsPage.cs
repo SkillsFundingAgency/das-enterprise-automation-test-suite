@@ -5,6 +5,6 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
 {
     public class ManageYourAdvertEmailsPage(ScenarioContext context) : RegistrationBasePage(context)
     {
-        protected override string PageTitle => "Manage your emails";
+        protected override string PageTitle => "Manage your advert notifications";
     }
 }
