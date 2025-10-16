@@ -258,14 +258,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
 
         public string GetOldestEditableCohortReference(int ukprn, int EmployerAccountId)
         {
-            string query = $@"SELECT top (1) Reference
-                                  FROM [dbo].[Commitment]
-                                  Where ProviderId = {ukprn}
-                                  And EmployerAccountId = {EmployerAccountId}
-                                  AND IsDeleted = 0
-                                  And WithParty = 2
-                                  AND ChangeOfPartyRequestId is null
-                                  Order by CreatedOn ASC";
+            string query = $@"SELECT top (1) c.Reference
+                                FROM [dbo].[Commitment] c
+                                INNER JOIN [dbo].[Apprenticeship] a
+                                ON c.Id = a.CommitmentId
+                                Where c.ProviderId = 10000028
+                                And c.EmployerAccountId = 327655
+                                AND c.IsDeleted = 0
+                                And c.WithParty = 2
+                                AND c.ChangeOfPartyRequestId is null
+                                AND a.LearnerDataId is null
+                                Order by c.CreatedOn ASC";
 
             return GetDataAsObject(query);
         }
