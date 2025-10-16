@@ -11,9 +11,9 @@ public class FAASignedOutLandingpage(ScenarioContext context) : FAABasePage(cont
 
     public static string FAASignedOutPageTitle => "Sign in or create an account";
 
-    public static By FAASignedOutPageHeader => By.CssSelector(".one-login-header__nav__link");
+    public static By FAASignedOutPageHeader => By.CssSelector(".rebranded-one-login-header__nav__link");
 
-    private static By SignIn => By.CssSelector("a[href*='signin?']");
+    private static By SignIn => By.CssSelector("a[href*='signin']");
 
     private static By AcceptAdditionalCookies => By.CssSelector("button[onclick='acceptCookies(true);']");
 

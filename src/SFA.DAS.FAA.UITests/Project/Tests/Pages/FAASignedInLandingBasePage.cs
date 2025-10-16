@@ -2,7 +2,7 @@
 
 public class FAASignedInLandingBasePage(ScenarioContext context, bool verifyPage = true) : FAABasePage(context, verifyPage)
 {
-    protected override By PageHeader => By.CssSelector(".one-login-header");
+    protected override By PageHeader => By.CssSelector(".rebranded-one-login-header");
 
     protected override string PageTitle => "Sign out";
 
