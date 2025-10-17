@@ -262,8 +262,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
                                 FROM [dbo].[Commitment] c
                                 INNER JOIN [dbo].[Apprenticeship] a
                                 ON c.Id = a.CommitmentId
-                                Where c.ProviderId = 10000028
-                                And c.EmployerAccountId = 327655
+                                Where c.ProviderId = {ukprn}
+                                And c.EmployerAccountId = {EmployerAccountId}
                                 AND c.IsDeleted = 0
                                 And c.WithParty = 2
                                 AND c.ChangeOfPartyRequestId is null
