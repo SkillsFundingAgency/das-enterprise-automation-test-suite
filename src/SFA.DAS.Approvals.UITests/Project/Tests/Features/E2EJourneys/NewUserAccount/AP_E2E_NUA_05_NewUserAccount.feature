@@ -1,9 +1,9 @@
-﻿@approvals
+﻿#@approvals - This test case has now been migrated to Playwright solution
 Feature: AP_E2E_NUA_05_NewUserAccount
 
-@regression
+#@regression
 @addlevyfunds
-@e2escenarios
+#@e2escenarios
 @addrpldetails
 Scenario: AP_E2E_NUA_05 Create Employer Rpl Whitelisted Provider sends cohort to employer for review then employer approves then provider approves
 	And The User creates LevyEmployer account and sign an agreement
