@@ -35,12 +35,8 @@
 		<ProjectReference Include="..\SFA.DAS.UI.Framework\SFA.DAS.UI.Framework.csproj" />
 		<ProjectReference Include="..\SFA.DAS.Registration.UITests\SFA.DAS.Registration.UITests.csproj" />
 	</ItemGroup>
-	
-  <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
-  </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
