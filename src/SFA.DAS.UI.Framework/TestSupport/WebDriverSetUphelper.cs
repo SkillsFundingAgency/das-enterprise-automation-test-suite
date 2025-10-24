@@ -61,8 +61,7 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
         var proxy = new Proxy
         {
             HttpProxy = PROXY,
-            SslProxy = PROXY,
-            FtpProxy = PROXY
+            SslProxy = PROXY
         };
         chromeOptions.Proxy = proxy;
 
