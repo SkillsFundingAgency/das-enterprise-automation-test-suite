@@ -47,7 +47,11 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         {
             if (TaskExists)
             {
-                Assert.IsFalse(tasksBasePage.IsTaskAdded(taskTitle), "The task was not removed from the list");
+                //Assert.IsFalse(tasksBasePage.IsTaskAdded(taskTitle), "The task was not removed from the list");
+                
+                bool isRemoved = tasksBasePage.IsTaskRemoved(taskTitle);
+
+                Assert.IsTrue(isRemoved, $"The task '{taskTitle}' was not removed from the list within 5 seconds.");
             }
             else
             {
