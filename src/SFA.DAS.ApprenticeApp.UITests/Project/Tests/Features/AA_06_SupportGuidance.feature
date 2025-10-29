@@ -1,4 +1,4 @@
-﻿Feature: AA_07_Support and Guidance
+﻿Feature: AA_06_Support and Guidance
 
 Support and guidance articles are displayed
 

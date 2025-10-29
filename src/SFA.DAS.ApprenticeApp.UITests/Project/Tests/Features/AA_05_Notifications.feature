@@ -1,4 +1,4 @@
-﻿Feature: AA_06_Notifications
+﻿Feature: AA_05_Notifications
 
 Notifications are displayed
 

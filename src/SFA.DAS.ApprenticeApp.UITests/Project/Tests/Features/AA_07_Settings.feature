@@ -1,4 +1,4 @@
-﻿Feature: AA_08_Settings
+﻿Feature: AA_07_Settings
 
 Settings are displayed
 
