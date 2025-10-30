@@ -21,15 +21,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         private static By ProviderContactDetails => By.CssSelector("a[data-automation='link-provider-contact-details']");
         private static By Submit => By.CssSelector(".govuk-button[data-automation='submit-button']");
         private static By ReturnToDashboardLink => By.CssSelector("a[data-automation='dashboard-link']");
-        private static By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
         private static By ChangeApplicationProcess => By.CssSelector("a[data-automation='link-application-link']");
         private static By ApplicationWebAddress => By.Id("ApplicationUrl");
-
-        public DeleteVacancyQuestionPage DeleteVacancy()
-        {
-            formCompletionHelper.Click(DeleteVacancyButton);
-            return new DeleteVacancyQuestionPage(context);
-        }
 
         public EmployerVacancySearchResultPage ReturnToDashboard()
         {
