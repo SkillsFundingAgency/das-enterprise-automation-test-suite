@@ -13,6 +13,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         private static By ChangeAdditionalQuestion => By.CssSelector("a[data-automation='change-additional-question-1']");
+        private static By DeleteVacancyButton => By.CssSelector("a[data-automation='delete-button']");
 
         public PreviewYourAdvertOrVacancyPage PreviewAdvert()
         {
@@ -48,5 +49,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 
             return new (context);
         }
-}
+        public DeleteVacancyQuestionPage DeleteVacancy()
+        {
+            formCompletionHelper.Click(DeleteVacancyButton);
+            return new DeleteVacancyQuestionPage(context);
+        }
+    }
 }
