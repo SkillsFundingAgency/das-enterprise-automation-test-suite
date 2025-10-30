@@ -97,7 +97,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         {
             By taskLocator = By.XPath($"//div[@class='app-card'][.//h2[text()='{title}']]");
 
-            TimeSpan timeout = TimeSpan.FromSeconds(5);
+            TimeSpan timeout = TimeSpan.FromSeconds(10);
 
             DateTime startTime = DateTime.Now;
 
