@@ -28,7 +28,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By CategoryAssignment => By.XPath("//input[@id='category_1']");
         private static By CategoryCollapseButton => By.XPath("//button[@aria-controls='app-collapse-task-cat']");
         private static By NoteTextArea => By.Id("note");
-        private static By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
+        private static By AddTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
         private static By Task => By.CssSelector("div.app-card");
         public static By TaskTitle => By.CssSelector("h2.app-card__heading");
         private static By ViewActions => By.CssSelector("button.app-dropdown__toggle[aria-expanded='false']");
@@ -74,7 +74,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CategoryCollapseButton);
             //formCompletionHelper.Click(CategoryAssignment);
             formCompletionHelper.EnterText(NoteTextArea, note);
-            formCompletionHelper.Click(SaveTaskButton);
+            formCompletionHelper.Click(AddTaskButton);
             return new TasksBasePage(context);
 
         }
@@ -95,22 +95,9 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         public bool IsTaskRemoved(string title)
         {
-            By taskLocator = By.XPath($"//div[@class='app-card'][.//h2[text()='{title}']]");
-
-            TimeSpan timeout = TimeSpan.FromSeconds(10);
-
-            DateTime startTime = DateTime.Now;
-
-            while (DateTime.Now - startTime < timeout)
-            {
-                if (!pageInteractionHelper.IsElementPresent(taskLocator))
-                {
-                    return true;
-                }
-                Thread.Sleep(250);
-                return false;
-            }
-            return !pageInteractionHelper.IsElementPresent(taskLocator);
+            var taskLocator = By.XPath($"//div[@class='app-card'][.//h2[text()='{title}']]");
+            bool isRemoved = !pageInteractionHelper.IsElementPresent(taskLocator);
+            return isRemoved;
         }
 
         public void DeleteTask()
