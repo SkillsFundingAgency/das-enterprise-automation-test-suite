@@ -11,7 +11,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
     {
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_ApprenticeAccountsApiBaseUrl;
 
-        protected override string AppServiceName => config.config.ApprenticeAccountsAppServiceName;
+        protected override string AppServiceName => ReplaceEnvironmentName(config.config.ApprenticeAccountsAppServiceName);
 
         public RestResponse CreateApprentice(Apprentice payload, HttpStatusCode expectedResponse)
         {

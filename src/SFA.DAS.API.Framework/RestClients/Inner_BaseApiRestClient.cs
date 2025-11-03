@@ -8,6 +8,8 @@ public abstract class Inner_BaseApiRestClient(ObjectContext objectContext, Inner
 
     protected abstract string AppServiceName { get; }
 
+    protected static string ReplaceEnvironmentName(string x) => EnvironmentConfig.ReplaceEnvironmentName(x);
+
     protected override void AddResource(string resource) => restRequest.Resource = resource;
 
     protected override void AddAuthHeaders()
