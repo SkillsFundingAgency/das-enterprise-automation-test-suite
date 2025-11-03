@@ -11,6 +11,7 @@ public class Inner_ApiAuthUsingMI(Inner_ApiFrameworkConfig config) : IInner_ApiG
         if (string.IsNullOrEmpty(AccessToken) || (DateTime.Now > AcquiredTime.AddMinutes(50)))
         {
             AccessToken = AzureTokenService.GetAppServiceAuthToken(config.GetResource(appServiceName), config.config.TenantId);
+
             AcquiredTime = DateTime.Now;
         }
 

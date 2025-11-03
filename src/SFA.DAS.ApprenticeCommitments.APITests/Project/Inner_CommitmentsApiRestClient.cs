@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project
     {
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_CommitmentsApiBaseUrl;
 
-        protected override string AppServiceName => ReplaceEnvironmentName(config.config.CommitmentsAppServiceName);
+        protected override string AppServiceName => config.config.CommitmentsAppServiceName;
 
         public void GetApprenticeship(long app, HttpStatusCode expectedResponse) => Execute(Method.Get, $"/api/apprenticeships/{app}", string.Empty, expectedResponse);
     }

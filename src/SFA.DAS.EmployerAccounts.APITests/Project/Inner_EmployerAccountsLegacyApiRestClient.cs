@@ -10,7 +10,7 @@ namespace SFA.DAS.EmployerAccounts.APITests.Project
     {
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_EmployerAccountsLegacyApiBaseUrl;
 
-        protected override string AppServiceName => ReplaceEnvironmentName(config.config.EmployerAccountsLegacyAppServiceName);
+        protected override string AppServiceName => config.config.EmployerAccountsLegacyAppServiceName;
 
         public void ExecuteEndpoint(string endpoint, HttpStatusCode expectedResponse)
         {
