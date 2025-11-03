@@ -1,6 +1,10 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
@@ -24,11 +28,13 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By CategoryAssignment => By.XPath("//input[@id='category_1']");
         private static By CategoryCollapseButton => By.XPath("//button[@aria-controls='app-collapse-task-cat']");
         private static By NoteTextArea => By.Id("note");
-        private static By SaveTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
+        private static By AddTaskButton => By.CssSelector("a.app-overlay-header__link.add-task");
         private static By Task => By.CssSelector("div.app-card");
         public static By TaskTitle => By.CssSelector("h2.app-card__heading");
         private static By ViewActions => By.CssSelector("button.app-dropdown__toggle[aria-expanded='false']");
         private static By DeleteButton => By.CssSelector("[class='app-dropdown__menu-link delete-task']");
+        private static By EditButton => By.CssSelector(".app-dropdown__menu-link.edit-btn");
+        private static By SaveButton => By.CssSelector(".app-overlay-header__link.add-task");
         private static By ConfirmDelete => By.CssSelector("[class='app-button app-button--warning']");
         private static By DonePanel => By.CssSelector("div.app-tabs__panel#tasks-done");
         private static By ToDoPanel => By.CssSelector("div.app-tabs__panel#tasks-todo");
@@ -60,14 +66,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             }
             else
             {
-                if (pageInteractionHelper.IsElementPresent(AddToDoTaskButtonInitial))
-                {
-                    formCompletionHelper.Click(AddDoneTaskButtonInitial);
-                }
-                else
-                {
-                    formCompletionHelper.Click(AddDoneTaskButton);
-                }
+                formCompletionHelper.Click(AddDoneTaskButton);
             }
             formCompletionHelper.EnterText(TaskTitleInput, title);
             formCompletionHelper.EnterText(DateInput, date);
@@ -75,15 +74,32 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             formCompletionHelper.Click(CategoryCollapseButton);
             //formCompletionHelper.Click(CategoryAssignment);
             formCompletionHelper.EnterText(NoteTextArea, note);
-            formCompletionHelper.Click(SaveTaskButton);
+            formCompletionHelper.Click(AddTaskButton);
             return new TasksBasePage(context);
 
         }
+
+        public void WaitForNewAddToDoTaskButton()
+        {
+            pageInteractionHelper.WaitForElementToBeClickable(AddToDoTaskButton);
+        }
+        public void WaitForNewAddDoneTaskButton()
+        {
+            pageInteractionHelper.WaitForElementToBeClickable(AddDoneTaskButton);
+        }
+
         public void DeleteAllTasks()
         {
             
         }
-       
+
+        public bool IsTaskRemoved(string title)
+        {
+            var taskLocator = By.XPath($"//div[@class='app-card'][.//h2[text()='{title}']]");
+            bool isRemoved = !pageInteractionHelper.IsElementPresent(taskLocator);
+            return isRemoved;
+        }
+
         public void DeleteTask()
         {
             IWebElement taskCard = GetTask();
@@ -104,27 +120,31 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             var todoTiles = pageInteractionHelper.FindElements(ToDoPanel).SelectMany(panel => panel.FindElements(Task));
             var doneTiles = pageInteractionHelper.FindElements(DonePanel).SelectMany(panel => panel.FindElements(Task));
             var url = pageInteractionHelper.GetUrl();
-
-            IWebElement taskCard;
-
-            switch (url)
+            IWebElement taskCard = url switch
             {
-                case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=0":
-                    case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index":
-                    taskCard = todoTiles.FirstOrDefault();
-                    break;
-                case "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=1":
-                    taskCard = doneTiles.FirstOrDefault();
-                    break;
-                default:
-                    throw new InvalidOperationException("Unexpected URL: " + url);
-            }
+                "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=0" or "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index" => todoTiles.FirstOrDefault(),
+                "https://pp-apprentice-app.apprenticeships.education.gov.uk/Tasks/Index?status=1" => doneTiles.FirstOrDefault(),
+                _ => throw new InvalidOperationException("Unexpected URL: " + url),
+            };
             return taskCard ??
                         throw new InvalidOperationException("No task found in the current panel.");
         }
-        protected void EditTask()
+        public void ClickEditButton()
         {
-
+            IWebElement taskCard = GetTask();
+            formCompletionHelper.ClickElement(taskCard.FindElement(EditButton));
+            taskCard.FindElement(EditButton).Click();
+        }
+        public string SetTaskTitle(string taskName)
+        {
+            IWebElement titleField = pageInteractionHelper.FindElement(TaskTitleInput);
+            titleField.Clear();
+            titleField.SendKeys(taskName);
+            return taskName;
+        }
+        public void ClickSaveButton()
+        {
+            pageInteractionHelper.FindElement(SaveButton).Click();
         }
 
         public bool IsTaskAdded(string Title)
@@ -134,7 +154,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             
         }
 
-        internal string GenerateTaskName()
+        internal static string GenerateTaskName()
         {
             return $"Task {DateTime.Now:yyyyMMddHHmmss}";
         }
