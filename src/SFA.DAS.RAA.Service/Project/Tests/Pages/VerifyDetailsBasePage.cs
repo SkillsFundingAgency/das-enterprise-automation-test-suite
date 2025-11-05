@@ -1,4 +1,8 @@
 ﻿using OpenQA.Selenium;
+using SFA.DAS.ConfigurationBuilder;
+using SFA.DAS.DfeAdmin.Service.Project.Helpers.DfeSign.User;
+using SFA.DAS.DfeAdmin.Service.Project.Tests.Pages.LandingPage;
+using SFA.DAS.Login.Service.Project;
 using SFA.DAS.RAA.DataGenerator.Project;
 using TechTalk.SpecFlow;
 
@@ -21,6 +25,16 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         protected void VerifyDisabilityConfident() => VerifyElement(DisabilityConfident);
 
-        public void RAAQASignOut() => formCompletionHelper.ClickElement(By.CssSelector("#navigation a[data-automation='sign-out']"));
+        public void RAAQASignOut()
+        {
+            formCompletionHelper.ClickElement(By.CssSelector("#navigation a[data-automation='sign-out']"));
+            if (EnvironmentConfig.IsPPEnvironment && !(new CheckASVacancyQaLandingPage(context).IsPageDisplayed()))
+            {
+                var userName = context.GetUser<VacancyQaUser>().Username;
+                var accountRowXPath = $"//div[contains(concat(' ', normalize-space(@class), ' '), ' table-row ')][.//small[normalize-space(text())='{userName}']]";
+
+                formCompletionHelper.ClickElement(By.XPath(accountRowXPath));
+            }
+        }
     }
 }
