@@ -5,17 +5,27 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class AddATaskStepDefinitions(ScenarioContext context)
+    public class AddATaskStepDefinitions
     {
-        private readonly TasksBasePage tasksBasePage = new(context);
+        private readonly TasksBasePage tasksBasePage;
         private string toDoTaskName;
         private string doneTaskName;
+
+        public AddATaskStepDefinitions(ScenarioContext context)
+        {
+            this.tasksBasePage = new TasksBasePage(context);
+        }
 
         [When("the apprentice adds a new to do task")]
         public void WhenTheApprenticeAddsANewTask()
         {
-            toDoTaskName = tasksBasePage.GenerateTaskName();
+            tasksBasePage.WaitForNewAddToDoTaskButton();
+
+            toDoTaskName = TasksBasePage.GenerateTaskName();
+
             tasksBasePage.AddTask(true, toDoTaskName, DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy"), "12:00p", "KSB", "1", "Assignment", "Status", "Note");
+
+            tasksBasePage.Refresh();
         }
 
         [When("the apprentice has clicked on the done tasks tab")]
@@ -23,14 +33,16 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         {
             tasksBasePage.ClickDoneTab();
 
+            tasksBasePage.WaitForNewAddDoneTaskButton();
         }
 
         [When("the apprentice adds a new done task")]
         public void WhenTheApprenticeAddsANewDoneTask()
         {
-            doneTaskName = tasksBasePage.GenerateTaskName();
+            doneTaskName = TasksBasePage.GenerateTaskName();
+
             tasksBasePage.AddTask(false, doneTaskName, DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy"), "12:00p", "KSB", "1", "Assignment", "Status", "Note");
-            //Work around for the issue where the task added is not displayed sometimes
+
             tasksBasePage.Refresh();
         }
 
