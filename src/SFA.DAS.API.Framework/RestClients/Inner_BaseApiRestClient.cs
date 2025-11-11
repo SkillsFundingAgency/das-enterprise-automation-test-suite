@@ -26,7 +26,7 @@ public abstract class Inner_BaseApiRestClient(ObjectContext objectContext, Inner
         return new OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, tokenType);
     }
 
-    private (string tokenType, string accessToken) GetAADAuthToken() => new Inner_ApiAuthUsingMI(config).GetAuthToken(AppServiceName);
+    private (string tokenType, string accessToken) GetAADAuthToken() => new Inner_ApiAuthUsingMI(config).GetAuthToken(EnvironmentConfig.ReplaceEnvironmentName(AppServiceName));
 
     private (string tokenType, string accessToken) GetOAuthToken() => new Inner_ApiAuthUsingOAuth(config, objectContext).GetAuthToken(AppServiceName);
 }
