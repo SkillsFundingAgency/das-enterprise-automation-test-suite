@@ -24,10 +24,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(context);
         }
 
-        public ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage ClickSaveAndContinueButton()
+        public ConfirmYourReservationPage ClickSaveAndContinueButton()
         {
             Continue();
-            return new ApprenticeshipFundingIsAvailableToTrainAndAssessYourApprenticePage(context);
+            return new ConfirmYourReservationPage(context);
         }
 
         public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickSaveAndContinueButtonAndExpectProblem()
