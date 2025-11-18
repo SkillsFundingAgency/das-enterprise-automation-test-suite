@@ -79,7 +79,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage
                 .ClickMonthRadioButton()
                 .ClickSaveAndContinueButton()
-                .ClickYesReserveFundingNowRadioButton()
                 .ClickConfirmButton();
         }
 
@@ -98,7 +97,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .ClickSaveAndContinueButton()
                 .ClickMonthRadioButton()
                 .ClickSaveAndContinueButton()
-                .ClickYesReserveFundingNowRadioButton()
                 .ClickConfirmButton();
         }
 
