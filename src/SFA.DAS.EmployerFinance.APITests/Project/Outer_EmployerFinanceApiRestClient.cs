@@ -25,11 +25,6 @@ namespace SFA.DAS.EmployerFinance.APITests.Project
             return Execute($"/Pledges?accountId={accountId}", expectedResponse);
         }
 
-        public RestResponse GetProjections(long accountId, HttpStatusCode expectedResponse)
-        {
-            return Execute($"/Projections/{accountId}", expectedResponse);
-        }
-
         public RestResponse GetTrainingCoursesFrameworks(HttpStatusCode expectedResponse)
         {
             return Execute($"/TrainingCourses/frameworks", expectedResponse);

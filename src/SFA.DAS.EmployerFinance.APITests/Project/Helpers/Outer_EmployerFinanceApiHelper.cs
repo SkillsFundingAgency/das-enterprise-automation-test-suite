@@ -39,10 +39,6 @@ namespace SFA.DAS.EmployerFinance.APITests.Project.Helpers
         {
             return _outerEmployerFinanceApiRestClient.GetPledges(accountId, HttpStatusCode.OK);
         }
-        public RestResponse GetProjections(long accountId)
-        {
-            return _outerEmployerFinanceApiRestClient.GetProjections(accountId, HttpStatusCode.OK);
-        }
 
         public RestResponse GetTrainingCoursesFrameworks()
         {
