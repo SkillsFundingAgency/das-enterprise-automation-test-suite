@@ -8,13 +8,14 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
     {
         protected override string PageTitle => "Summary of the apprenticeship";
 
-        private static By ShortDescSelector => By.CssSelector("textarea#ShortDescription");
+        private static By ShortDescIframe => By.Id("ShortDescription_ifr");
+        private static By IframeBody => By.CssSelector(".mce-content-body");
 
         protected override By ContinueButton => By.CssSelector(".govuk-button.save-button");
 
         public WhatWillTheApprenticeDoAtWorkPage EnterShortDescription()
         {
-            formCompletionHelper.EnterText(ShortDescSelector, RAA.DataGenerator.RAADataHelper.RandomAlphabeticString(60));
+            javaScriptHelper.SwitchFrameAndEnterText(ShortDescIframe, IframeBody, RAA.DataGenerator.RAADataHelper.RandomAlphabeticString(60));
             Continue();
             return new WhatWillTheApprenticeDoAtWorkPage(context);
         }
