@@ -10,7 +10,7 @@ namespace SFA.DAS.EmployerFinance.APITests.Project
     {
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_EmployerFinanceApiBaseUrl;
 
-        protected override string AppServiceName => config.config.EmployerFinanceAppServiceName;
+        protected override string AppServiceName => $"{config.config.EmployerFinanceAppServiceName}-ar";
 
         public void ExecuteEndpoint(string endpoint, HttpStatusCode expectedResponse)
         {
