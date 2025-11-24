@@ -7,13 +7,13 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
     public class ExtraInformationAboutPayPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Extra information about pay";
+        private static By WageInfoIframe => By.Id("WageAdditionalInformation_ifr");
+        private static By IframeBody => By.CssSelector(".mce-content-body");
 
-        private static By ExtraPayInformation => By.CssSelector("#WageAdditionalInformation");
 
         public SubmitNoOfPositionsPage SubmitExtraInformationAboutPay()
         {
-            formCompletionHelper.EnterText(ExtraPayInformation, rAADataHelper.OptionalMessage);
-
+            javaScriptHelper.SwitchFrameAndEnterText(WageInfoIframe, IframeBody, rAADataHelper.OptionalMessage);
             Continue();
 
             return new SubmitNoOfPositionsPage(context);

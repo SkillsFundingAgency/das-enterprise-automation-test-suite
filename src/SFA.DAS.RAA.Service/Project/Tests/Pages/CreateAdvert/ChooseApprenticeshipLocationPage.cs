@@ -1,10 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
-using System;
-using System.Linq;
 using TechTalk.SpecFlow;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
 {
@@ -23,6 +24,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         private static By NationalLocationTextBox => By.Id("AdditionalInformation");
         private static By NationalLocationsPageSubHeading => By.CssSelector(".govuk-heading-m label");
         private static By MultipleLocationsPageSubHeading => By.CssSelector(".govuk-heading-l");
+        private static By AcrossEnglandInfoIframe => By.Id("AdditionalInformation_ifr");
+        private static By IframeBody => By.CssSelector(".mce-content-body");
 
         public CreateAnApprenticeshipAdvertOrVacancyPage ChooseAddressAndGoToCreateApprenticeshipPage(string locationType)
         {
@@ -125,8 +128,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
             var subHeadingText = pageInteractionHelper.GetText(NationalLocationsPageSubHeading).Trim();
             Assert.AreEqual(NationalLocationsSubHeading, subHeadingText);
 
-            formCompletionHelper.Click(NationalLocationTextBox);
-            formCompletionHelper.EnterText(NationalLocationTextBox, RandomDataGenerator.GenerateRandomAlphabeticString(100));
+            javaScriptHelper.SwitchFrameAndEnterText(AcrossEnglandInfoIframe, IframeBody, RandomDataGenerator.GenerateRandomAlphabeticString(100));
         }
 
         public ImportantDatesPage ChooseAddress(bool isEmployerAddress)

@@ -6,19 +6,19 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
     public class ThingsToConsiderPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => isRaaEmployer ? "Other requirements" : "Other requirements";
-
-        private static By ThingsToConsider => By.CssSelector("#ThingsToConsider");
+        private static By ThingsToConsiderIframe => By.Id("ThingsToConsider_ifr");
+        private static By IframeBody => By.CssSelector(".mce-content-body");
 
         public PreviewYourAdvertOrVacancyPage EnterThingsToConsider()
         {
-            formCompletionHelper.EnterText(ThingsToConsider, rAADataHelper.OptionalMessage);
+            javaScriptHelper.SwitchFrameAndEnterText(ThingsToConsiderIframe, IframeBody, rAADataHelper.OptionalMessage);
             Continue();
             return new PreviewYourAdvertOrVacancyPage(context);
         }
 
         public CreateAnApprenticeshipAdvertOrVacancyPage EnterThingsToConsiderAndReturnToCreateAdvert(bool optionalFields)
         {
-            if (optionalFields) formCompletionHelper.EnterText(ThingsToConsider, rAADataHelper.OptionalMessage);
+            if (optionalFields) javaScriptHelper.SwitchFrameAndEnterText(ThingsToConsiderIframe, IframeBody, rAADataHelper.OptionalMessage);
             Continue();
             return new CreateAnApprenticeshipAdvertOrVacancyPage(context);
         }

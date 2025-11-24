@@ -16,6 +16,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         private static By EmployerWebsiteUrl => By.CssSelector("#EmployerWebsiteUrl");
 
         private static By IsDisabilityConfident => By.CssSelector("#IsDisabilityConfident");
+        private static By EmployerDescriptionIframe => By.Id("EmployerDescription_ifr");
+        private static By IframeBody => By.CssSelector(".mce-content-body");
 
         public PreviewYourAdvertOrVacancyPage EnterEmployerDescription()
         {
@@ -51,7 +53,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages.CreateAdvert
         }
         public ContactDetailsPage EnterEmployerDescriptionAndGoToContactDetailsPage(bool _, bool optionalFields)
         {
-            formCompletionHelper.EnterText(EmployerDescription, rAADataHelper.EmployerDescription);
+            javaScriptHelper.SwitchFrameAndEnterText(EmployerDescriptionIframe, IframeBody, rAADataHelper.EmployerDescription);
             if (optionalFields)
             {
                 formCompletionHelper.EnterText(EmployerWebsiteUrl, rAADataHelper.EmployerWebsiteUrl);
