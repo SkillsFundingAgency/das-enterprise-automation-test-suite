@@ -47,14 +47,14 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             switch (notificationType, userType)
             {
                 case ("new application", "employer"):
-                    emailText = "There has been 1 new application";
-                    subject = $"You have a new application for VAC{objectContext.GetVacancyReference()}";
+                    emailText = "Your advert has received a new application";
+                    subject = $"New application for {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
                     userEmail = employerEmail;
                     break;
 
                 case ("rejected advert", "employer"):
-                    emailText = "The apprenticeship advert needs some changes";
-                    subject = $"Rejected: Updates needed to your apprenticeship advert (VAC{objectContext.GetVacancyReference()})";
+                    emailText = "DfE has rejected this advert. We’ve left a comment to explain why.";
+                    subject = $"Rejected by DfE: make changes to {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
                     userEmail = employerEmail;
                     break;
 
@@ -65,8 +65,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     break;
 
                 case ("employer review", "employer"):
-                    emailText = "Your advert needs to be reviewed";
-                    subject = $"Review your advert (VAC{objectContext.GetVacancyReference()})";
+                    emailText = "New apprenticeship advert to review";
+                    subject = $"{objectContext.GetEmployerName()} has sent you this advert";
                     userEmail = employerEmail;
                     break;
 
