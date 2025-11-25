@@ -23,7 +23,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
         public void ThenANegativeMatchHomePageIsShownForEnteringInvalidIdentityData()
         {
             var (page, name) = _createMyApprenticeshipAccountPage.EnterInValidApprenticeDetails();
-            _apprenticeHomePagNegativeMatch = page.AcceptTermsAndConditionForNegativeMatch();
+            _apprenticeHomePagNegativeMatch = page.AcceptTermsAndConditionToNegativeMatch();
             _name = name;
         }
 

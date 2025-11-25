@@ -75,7 +75,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
             _objectContext.SetTrainingName(trainingName);
             _objectContext.SetTrainingStartDate(trainingStartDate);
 
-            return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndConditionForPositiveMatch(true);
+            return CreateAccountAndGetToCreateMyApprenticeshipAccountPage().ConfirmIdentityAndGoToTermsOfUsePage().AcceptTermsAndConditionToPositiveMatch(true);
         }
 
         private StartPage OpenInvitation(string registrationId)

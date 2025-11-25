@@ -23,7 +23,8 @@ public class ProviderHomePage : InterimProviderBasePage
 
     protected static By ViewEmployersAndManagePermissionsLink => By.LinkText("View employers and manage permissions");
 
-    protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+    //protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+    protected static By ProviderManageYourApprenticesLink => By.CssSelector("a.govuk-service-navigation__link[href*='/apprentices']");
 
     protected static By ProviderRecruitApprenticesLink => By.LinkText("Recruit apprentices");
 

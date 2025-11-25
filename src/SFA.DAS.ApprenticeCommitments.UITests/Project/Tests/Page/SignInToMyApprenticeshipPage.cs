@@ -18,7 +18,13 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage CocSignInToApprenticePortal()
         {
             SignIn();
+
+            var termsPage = new TermsOfUsePage(context);
+            termsPage.AcceptTerms();
+
             return new ApprenticeOverviewPage(context);
+
+
         }
 
         private void SignIn()

@@ -372,4 +372,18 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
 
         retryHelper.RetryOnWebDriverException(() => func(element), retryAction);
     }
+
+    public void TickCheckbox(By locator)
+    {
+        var checkbox = FindElement(locator);
+        if (!checkbox.Selected)
+        {
+            checkbox.Click();
+            SetDebugInformation($"Ticked checkbox: {locator}");
+        }
+        else
+        {
+            SetDebugInformation($"Checkbox already selected: {locator}");
+        }
+    }
 }
