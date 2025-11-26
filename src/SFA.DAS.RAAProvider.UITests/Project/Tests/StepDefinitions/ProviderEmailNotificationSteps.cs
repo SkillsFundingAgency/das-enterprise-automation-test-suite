@@ -45,14 +45,14 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
             switch (notificationType, userType)
             {
                 case ("new application", "provider"):
-                    emailText = "There has been 1 new application";
-                    subject = $"You have a new application for VAC{objectContext.GetVacancyReference()}";
+                    emailText = "Your vacancy has received a new application";
+                    subject = $"New application for {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
                     userEmail = providerEmail;
                     break;
 
                 case ("rejected vacancy", "provider"):
-                    emailText = "The apprenticeship advert needs some changes";
-                    subject = $"Rejected: Updates needed to your apprenticeship advert (VAC{objectContext.GetVacancyReference()})";
+                    emailText = "DfE has rejected this vacancy. We’ve left a comment to explain why.";
+                    subject = $"Rejected by DfE: make changes to {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
                     userEmail = providerEmail;
                     break;
 

@@ -6,13 +6,20 @@ namespace SFA.DAS.FAA.UITests.Project.Tests.StepDefinitions;
 public class FAAApplySteps(ScenarioContext context)
 {
     private readonly FAAStepsHelper _faaStepsHelper = new(context);
+    protected bool IsFoundationAdvert => context.ContainsKey("isFoundationAdvert") && (bool)context["isFoundationAdvert"];
 
     [When(@"the Applicant can apply for a Vacancy in FAA")]
     [Then(@"the Applicant can apply for a Vacancy in FAA")]
     public void TheApplicantCanApplyForAVacancyInFAA()
     {
         var user = context.GetUser<FAAApplyUser>();
-        _faaStepsHelper.ApplyForAVacancy("both", user, false).PreviewApplication().SubmitApplication();
+        var foundationUser = context.GetUser<FAAFoundationUser>();
+
+        (IsFoundationAdvert
+            ? _faaStepsHelper.ApplyForAVacancy("both", foundationUser, false)
+            : _faaStepsHelper.ApplyForAVacancy("both", user, false))
+            .PreviewApplication()
+            .SubmitApplication();
     }
 
     [When(@"the Applicant can apply for a Vacancy with multiple locations in FAA")]
