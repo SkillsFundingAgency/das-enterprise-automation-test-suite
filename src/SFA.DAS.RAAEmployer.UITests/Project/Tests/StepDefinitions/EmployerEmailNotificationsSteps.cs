@@ -19,6 +19,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         private readonly string employerEmail;
         private readonly string providerEmail;
+        private readonly string providerName;
         private readonly string applicantEmail;
         private readonly string foundationApplicantEmail;
         protected bool isFoundationAdvert;
@@ -31,6 +32,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             employerEmail = objectContext.GetRegisteredEmail();
             var providerConfig = context.Get<dynamic>("providerconfigkey");
             providerEmail = providerConfig.Username;
+            providerName = providerConfig.Name;
             vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             applicantEmail = context.GetUser<FAAApplyUser>().Username;
             foundationApplicantEmail = context.GetUser<FAAFoundationUser>().Username;
@@ -65,8 +67,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     break;
 
                 case ("employer review", "employer"):
-                    emailText = "New apprenticeship advert to review";
-                    subject = $"{objectContext.GetEmployerName()} has sent you this advert";
+                    emailText = $"{providerName} has sent you this advert"; 
+                    subject = "New apprenticeship advert to review";
                     userEmail = employerEmail;
                     break;
 
