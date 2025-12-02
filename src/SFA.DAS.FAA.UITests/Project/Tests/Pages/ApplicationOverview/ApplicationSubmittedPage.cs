@@ -11,7 +11,7 @@ public class ApplicationSubmittedPage(ScenarioContext context) : FAABasePage(con
     public void ClickSignOut()
     {
         formCompletionHelper.Click(SignoutLink);
-      
+        pageInteractionHelper.WaitforURLToChange("apprenticeshipsearch");
     }
 }
 

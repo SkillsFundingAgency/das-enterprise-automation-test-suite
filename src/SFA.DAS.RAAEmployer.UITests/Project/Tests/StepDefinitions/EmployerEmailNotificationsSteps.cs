@@ -19,6 +19,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         protected readonly VacancyTitleDatahelper vacancyTitleDataHelper;
         private readonly string employerEmail;
         private readonly string providerEmail;
+        private readonly string providerName;
         private readonly string applicantEmail;
         private readonly string foundationApplicantEmail;
         protected bool isFoundationAdvert;
@@ -31,6 +32,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             employerEmail = objectContext.GetRegisteredEmail();
             var providerConfig = context.Get<dynamic>("providerconfigkey");
             providerEmail = providerConfig.Username;
+            providerName = providerConfig.Name;
             vacancyTitleDataHelper = context.Get<VacancyTitleDatahelper>();
             applicantEmail = context.GetUser<FAAApplyUser>().Username;
             foundationApplicantEmail = context.GetUser<FAAFoundationUser>().Username;
@@ -47,14 +49,14 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             switch (notificationType, userType)
             {
                 case ("new application", "employer"):
-                    emailText = "There has been 1 new application";
-                    subject = $"You have a new application for VAC{objectContext.GetVacancyReference()}";
+                    emailText = "Your advert has received a new application";
+                    subject = $"New application for {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
                     userEmail = employerEmail;
                     break;
 
                 case ("rejected advert", "employer"):
-                    emailText = "The apprenticeship advert needs some changes";
-                    subject = $"Rejected: Updates needed to your apprenticeship advert (VAC{objectContext.GetVacancyReference()})";
+                    emailText = "DfE has rejected this advert. We’ve left a comment to explain why.";
+                    subject = $"Rejected by DfE: make changes to {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
                     userEmail = employerEmail;
                     break;
 
@@ -65,8 +67,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
                     break;
 
                 case ("employer review", "employer"):
-                    emailText = "Your advert needs to be reviewed";
-                    subject = $"Review your advert (VAC{objectContext.GetVacancyReference()})";
+                    emailText = $"{providerName} has sent you this advert"; 
+                    subject = "New apprenticeship advert to review";
                     userEmail = employerEmail;
                     break;
 

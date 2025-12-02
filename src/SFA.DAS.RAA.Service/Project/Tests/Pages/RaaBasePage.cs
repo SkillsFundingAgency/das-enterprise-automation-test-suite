@@ -1,8 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Linq;
+using OpenQA.Selenium;
 using SFA.DAS.FrameworkHelpers;
 using SFA.DAS.RAA.DataGenerator;
 using SFA.DAS.UI.Framework.TestSupport;
-using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAA.Service.Project.Tests.Pages
@@ -44,6 +45,29 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
             var expectedFoundationTag = "Foundation";
             var actualFoundationTag = pageInteractionHelper.GetText(FoundationTag).Trim();
             pageInteractionHelper.VerifyText(actualFoundationTag, expectedFoundationTag);
+        }
+
+        public bool FoundationTagIsPresent()
+        {
+            const string expectedFoundationTag = "Foundation";
+
+            var elements = pageInteractionHelper.FindElements(FoundationTag);
+            if (elements == null || elements.Count == 0)
+                return false;
+
+            try
+            {
+                var actualFoundationTag = pageInteractionHelper.GetText(FoundationTag)?.Trim() ?? string.Empty;
+                return string.Equals(actualFoundationTag, expectedFoundationTag, StringComparison.OrdinalIgnoreCase);
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+            catch (StaleElementReferenceException)
+            {
+                return false;
+            }
         }
 
         protected virtual void SaveAndContinue() => formCompletionHelper.ClickButtonByText(SaveAndContinueButton, "Save and continue");
