@@ -19,6 +19,8 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 
         private static By ReviewLink => By.LinkText("Review");
 
+        private static By ReportsLink => By.LinkText("Reports");
+
         public Reviewer_AnyVacancyPreviewPage ReviewNextVacancy()
         {
             formCompletionHelper.Click(ReviewVacancyButton);
@@ -31,6 +33,12 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
             formCompletionHelper.Click(SearchVacancy);
             formCompletionHelper.Click(ReviewLink);
             return new Reviewer_VacancyPreviewPage(context);
+        }
+
+        public ReportsDashboardQAPage NavigateToReports()
+        {
+            formCompletionHelper.Click(ReportsLink);
+            return new ReportsDashboardQAPage(context);
         }
     }
 }

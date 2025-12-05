@@ -55,6 +55,7 @@
     <Folder Include="Project\Tests\Features\ChangeVacancyStatus\" />
     <Folder Include="Project\Tests\Features\Navigation\" />
     <Folder Include="Project\Tests\Features\CloneVacancy\" />
+    <Folder Include="Project\Tests\Features\Reports\" />
   </ItemGroup>
 
 </Project>
