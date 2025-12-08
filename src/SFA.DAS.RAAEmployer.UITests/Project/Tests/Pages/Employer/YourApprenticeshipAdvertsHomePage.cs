@@ -77,10 +77,10 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
 
         
 
-        public ManageYourEmailsPage ClickMangeYourEmailsLink()
+        public ManageYourEmailsEmployerPage ClickMangeYourEmailsLink()
         {
             formCompletionHelper.Click(ManageYourEmailsLink);
-            return new ManageYourEmailsPage(context);
+            return new ManageYourEmailsEmployerPage(context);
         }
     }
 }

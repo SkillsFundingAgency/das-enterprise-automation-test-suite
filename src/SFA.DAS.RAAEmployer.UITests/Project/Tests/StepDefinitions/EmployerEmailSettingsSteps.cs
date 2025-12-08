@@ -1,8 +1,5 @@
-﻿using System;
-using SFA.DAS.RAA.Service.Project.Tests.Pages;
-using SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer;
+﻿using SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer;
 using TechTalk.SpecFlow;
-using ManageYourEmailsPage = SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer.ManageYourEmailsPage;
 
 namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
 {
@@ -13,7 +10,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer sets the email preferences")]
         public void ThenTheEmployerSetsTheEmailPreferences()
         {
-            new ManageYourEmailsPage(context).SelectAndSaveEmailPreferences().VerifyEmailSettingsConfirmationBanner();
+            new ManageYourEmailsEmployerPage(context).SelectAndSaveEmailPreferences().VerifyEmailSettingsConfirmationBanner();
         }
     }
 }

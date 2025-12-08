@@ -1,19 +1,16 @@
-﻿
-using Azure.Core;
-using HtmlAgilityPack;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SFA.DAS.RAA.Service.Project.Tests.Pages;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
 {
-    public class ManageYourEmailsPage(ScenarioContext context) : RaaBasePage(context)
+    public class ManageYourEmailsEmployerPage(ScenarioContext context) : RaaBasePage(context)
     {
         protected override string PageTitle => "Manage your advert notifications";
         private static By NotificationBannerTitleLocator => By.CssSelector(".govuk-notification-banner__title");
         private static By NotificationBannerHeadingLocator => By.CssSelector(".govuk-notification-banner__heading");
 
-        public ManageYourEmailsPage SelectAndSaveEmailPreferences()
+        public ManageYourEmailsEmployerPage SelectAndSaveEmailPreferences()
         {
             SelectRadioOptionByForAttribute("approved-rejected-mine");
             SelectRadioOptionByForAttribute("applications-mine");
@@ -23,7 +20,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
             return this;
         }
 
-        public ManageYourEmailsPage VerifyEmailSettingsConfirmationBanner()
+        public ManageYourEmailsEmployerPage VerifyEmailSettingsConfirmationBanner()
         {
             var ExpectedBannerTitle = "Success";
             var ExpectedBannerHeading = "Advert notification settings saved.";

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 
