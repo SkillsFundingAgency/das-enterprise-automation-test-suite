@@ -9,6 +9,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
     {
         protected override string PageTitle => "Confirm my apprenticeship details";
         private static string PageTitleAfterConfirmation => "Your apprenticeship details";
+        protected static By UserNameHeader => By.CssSelector(".das-header__user-name");
         private static By SectionStatus(string sectionName) => By.XPath($"//p[contains(text(),'{sectionName}')]/following-sibling::strong");
         private static By AllSectionsConfirmedSuccessTickIcon => By.XPath("//span[@class='app-notification-banner__icon das-text--success-icon']");
         private static By AppreticeshipConfirmBannerText => By.XPath("//div[contains(@class,'app-notification-banner')]/div");
@@ -18,19 +19,27 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By OverviewPageWarningText => By.CssSelector(".govuk-warning-text__text");
         private static By OverviewPageTopSubTextAfterWarning => By.XPath("(//h1//following-sibling::p)[2]");
 
-        public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true) : base(context, verifypage)
-        {
-            VerifyPage(TopBlueBannerHeader, $"Welcome, {objectContext.GetFirstName()} {objectContext.GetLastName()}");
+        private new readonly ApprenticeObjectContext objectContext;
 
+        public ApprenticeOverviewPage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true, bool verifyfooterlinks = true) : base(context, verifypage, verifyserviceheader, verifyfooterlinks)
+        {
+
+            this.objectContext = context.Get<ApprenticeObjectContext>();
+
+            if (verifyserviceheader)
+            {
+                VerifyPage(UserNameHeader, objectContext.GetExpectedUserName());
+            }
             if (verifypage)
+
                 MultipleVerifyPage(
-            [
-                () => VerifyPage(HelpTopNavigationLink),
-                () => VerifyPage(OverviewPageSubTextBelowPageTitle, OverviewPageHelper.OverviewPageTopSubText1),
-                () => VerifyPage(OverviewPageWarningIcon),
-                () => VerifyPage(OverviewPageWarningText, OverviewPageHelper.OverviewPageTopSubText2),
-                () => VerifyPage(OverviewPageTopSubTextAfterWarning, OverviewPageHelper.OverviewPageTopSubText3)
-            ]);
+                [
+                    () => VerifyPage(HelpTopNavigationLink),
+                    () => VerifyPage(OverviewPageSubTextBelowPageTitle, OverviewPageHelper.OverviewPageTopSubText1),
+                    () => VerifyPage(OverviewPageWarningIcon),
+                    () => VerifyPage(OverviewPageWarningText, OverviewPageHelper.OverviewPageTopSubText2),
+                    () => VerifyPage(OverviewPageTopSubTextAfterWarning, OverviewPageHelper.OverviewPageTopSubText3)
+                ]);
         }
 
         public ConfirmYourEmployerPage GoToConfirmYourEmployerPage()

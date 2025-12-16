@@ -19,12 +19,15 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         {
             SignIn();
 
-            var termsPage = new TermsOfUsePage(context);
-            termsPage.AcceptTerms();
+            if (PageInteractionHelper.IsUrlOnTermsOfUsePage())
+            {
+                var termsPage = new TermsOfUsePage(context);
+                termsPage.AcceptTermsAndConditionToPositiveMatch(false);
+            }
 
-            return new ApprenticeOverviewPage(context);
-
-
+            var overviewPage = new FullyConfirmedOverviewPage(context, verifypage: false);
+            overviewPage.ClickConfirmMyDetailsTab();
+            return (ApprenticeOverviewPage)overviewPage;
         }
 
         private void SignIn()

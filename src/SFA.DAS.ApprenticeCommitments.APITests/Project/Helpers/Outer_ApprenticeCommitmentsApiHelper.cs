@@ -43,6 +43,8 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers
         protected RestResponse CreateApprovalsCreatedEvent()
         {
             var (email, accountid, apprenticeshipid, _, _, _, orgname, legalEntityId, providerId, startDate, _, _) = GetEmployerData();
+            
+            _objectContext.SetApprenticeEmail(email);
 
             var createApprenticeship = new ApprovalsCreated
             {

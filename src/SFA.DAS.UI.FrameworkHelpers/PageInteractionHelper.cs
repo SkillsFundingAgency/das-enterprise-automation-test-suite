@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using System.Collections.Generic;
@@ -32,6 +34,15 @@ public class PageInteractionHelper(IWebDriver webDriver, ObjectContext objectCon
         webDriver.Navigate().Refresh();
 
         SetDebugInformation($"Refreshed page...");
+    }
+    public void WaitForElementToAppear(By locator, int timeoutInSeconds = 15)
+    {
+        WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(timeoutInSeconds));
+        wait.Until(ExpectedConditions.ElementIsVisible(locator));
+    }
+    public bool IsUrlOnTermsOfUsePage()
+    {
+        return webDriver.Url.Contains("/TermsOfUse");
     }
 
     public void UpdateTimeSpans(TimeSpan[] timeSpan) => retryHelper.UpdateTimeSpans(timeSpan);

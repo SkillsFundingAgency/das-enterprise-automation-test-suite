@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.20.*" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="143.0.7499.4200" />
 		<PackageReference Include="SFA.DAS.Payments.ProviderPayments.Messages" Version="2.0.2" />
 		<PackageReference Include="NUnit3TestAdapter" Version="5.2.0">
 			<PrivateAssets>all</PrivateAssets>

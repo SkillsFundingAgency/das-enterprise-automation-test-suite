@@ -21,9 +21,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By HelpAndSupportDashboardLink => By.CssSelector(".govuk-heading-m a[href='/HelpAndSupport']");
         private static By CmadDashboardText => By.XPath("(//ul[@class='dashboard-nav dashboard-li']/li/h2/following-sibling::p)[1]");
         private static By CurrentApprenticeshipStatusSelector => By.CssSelector("#dashboard-section strong.govuk-tag--yellow");
+        public static By WelcomeHeadingLocator => By.XPath("//h1[contains(@class, 'govuk-heading-l') and contains(., 'Welcome,')]");
+        protected static new By TopBlueBannerHeader => WelcomeHeadingLocator;
 
-        public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmMyApprenticeLink = true) : base(context)
+        public ApprenticeHomePage(ScenarioContext context, bool verifyConfirmMyApprenticeLink = true) : base(context, verifypage: false)
         {
+            PageInteractionHelper.WaitForElementToAppear(TopBlueBannerHeader, 30);
             VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
 
             if (verifyConfirmMyApprenticeLink)

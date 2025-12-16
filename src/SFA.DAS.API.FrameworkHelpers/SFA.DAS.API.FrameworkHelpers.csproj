@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="RestSharp" Version="112.1.0" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="143.0.7499.4200" />
 	</ItemGroup>
 
 	<ItemGroup>

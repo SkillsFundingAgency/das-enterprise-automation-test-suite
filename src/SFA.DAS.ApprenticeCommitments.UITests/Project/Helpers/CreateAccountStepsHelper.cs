@@ -15,7 +15,8 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
     public class CreateAccountStepsHelper(ScenarioContext context)
     {
         private readonly ScenarioContext _context = context;
-        protected readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        //protected readonly ObjectContext _objectContext = context.Get<ObjectContext>();
+        protected readonly ApprenticeObjectContext _objectContext = context.Get<ApprenticeObjectContext>();
         protected readonly RetryAssertHelper _assertHelper = context.Get<RetryAssertHelper>();
         protected readonly ApprenticeLoginSqlDbHelper _apprenticeLoginSqlDbHelper = context.Get<ApprenticeLoginSqlDbHelper>();
         private readonly ApprenticeCommitmentsSqlDbHelper _aComtSqlDbHelper = context.Get<ApprenticeCommitmentsSqlDbHelper>();
@@ -70,8 +71,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Helpers
 
         public ApprenticeHomePage ConfirmIdentityAndGoToApprenticeHomePage()
         {
-            var (trainingName, trainingStartDate) = _commitmentsSqlHelper.GetTrainingNameAndStartDate(_objectContext.GetApprenticeEmail());
-
+            // Use the existing GetTrainingNameAndStartDate method, which returns (string fullName, string trainingName, string traningDate)
+            var (fullName, trainingName, trainingStartDate) = _commitmentsSqlHelper.GetTrainingNameAndStartDate(_objectContext.GetApprenticeEmail());
+            _objectContext.SetExpectedUserName(fullName);
             _objectContext.SetTrainingName(trainingName);
             _objectContext.SetTrainingStartDate(trainingStartDate);
 

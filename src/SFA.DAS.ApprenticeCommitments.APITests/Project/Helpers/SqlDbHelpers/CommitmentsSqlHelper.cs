@@ -5,11 +5,15 @@ namespace SFA.DAS.ApprenticeCommitments.APITests.Project.Helpers.SqlDbHelpers
 {
     public class CommitmentsSqlHelper(ObjectContext objectContext, DbConfig dbConfig) : SqlDbHelper(objectContext, dbConfig.CommitmentsDbConnectionString)
     {
-        public (string trainingName, string traningDate) GetTrainingNameAndStartDate(string email)
+        public (string fullName, string trainingName, string traningDate) GetTrainingNameAndStartDate(string email)
         {
-            var query = $"SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '{email}'";
+            //var query = $"SELECT TrainingName, StartDate From Apprenticeship WHERE Email = '{email}'";
+            var query = $"SELECT FirstName, LastName, TrainingName, StartDate From Apprenticeship WHERE Email = '{email}'";
             var data = GetData(query);
-            return (data[0], data[1]);
+            //return (data[0], data[1]);
+            var fullName = $"{data[0]} {data[1]}";
+
+            return (fullName, data[2], data[3]);
         }
 
         public void UpdateEmailForApprenticeshipRecord(string email, long apprenticeshipid) => ExecuteSqlCommand($"UPDATE [Apprenticeship] SET Email = '{email}' WHERE Id = {apprenticeshipid}");

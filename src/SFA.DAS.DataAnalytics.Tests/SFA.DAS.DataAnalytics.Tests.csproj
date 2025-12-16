@@ -14,6 +14,7 @@
 		</Compile>
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="143.0.7499.4200" />
 		<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="5.2.0">
 			<PrivateAssets>all</PrivateAssets>

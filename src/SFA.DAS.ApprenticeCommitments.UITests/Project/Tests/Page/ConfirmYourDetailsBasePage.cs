@@ -18,8 +18,14 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         protected By ProviderHelpSectionText => By.XPath($"//div[contains(text(),\"{objectContext.GetProviderName()} is your training provider's legal name registered with Companies House.\")]");
         private static By ChangeMyAnswerLink => By.XPath("//a[text()='I want to change my answer']");
 
-        public ConfirmYourDetailsBasePage(ScenarioContext context) : base(context, false) => VerifyPage(TopBlueBannerHeader, $"{objectContext.GetFirstName()} {objectContext.GetLastName()}");
+        public ConfirmYourDetailsBasePage(ScenarioContext context, bool verifypage, bool verifyserviceheader, bool verifyfooterlinks) : base(context, verifypage, verifyserviceheader, verifyfooterlinks)
+        {
 
+        }
+        public ConfirmYourDetailsBasePage(ScenarioContext context) : this(context, verifypage: true, verifyserviceheader: true, verifyfooterlinks: true)
+        {
+        
+        }
         public ApprenticeOverviewPage SelectYesAndContinueToOverviewPage()
         {
             SelectYesRadioOption();

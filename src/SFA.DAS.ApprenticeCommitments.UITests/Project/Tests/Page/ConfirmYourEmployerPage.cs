@@ -10,7 +10,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         protected override By ContinueButton => By.CssSelector("#employer-provider-confirm");
 
-        public ConfirmYourEmployerPage(ScenarioContext context) : base(context)
+        public ConfirmYourEmployerPage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true, bool verifyfooterlinks = true) : base(context, verifypage, verifyserviceheader: false, verifyfooterlinks)
         {
             MultipleVerifyPage(
             [
