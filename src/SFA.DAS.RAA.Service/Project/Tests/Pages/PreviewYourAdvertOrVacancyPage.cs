@@ -27,6 +27,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public DeleteVacancyQuestionPage DeleteVacancy()
         {
+            formCompletionHelper.ClickLinkByText("Return to previous page to submit");
             formCompletionHelper.Click(DeleteVacancyButton);
             return new DeleteVacancyQuestionPage(context);
         }

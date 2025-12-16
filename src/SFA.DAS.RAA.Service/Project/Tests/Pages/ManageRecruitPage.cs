@@ -17,6 +17,10 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         public CloneVacancyDatesPage CloneVacancy()
         {
+            if(FoundationTagIsPresent())
+            {
+                context["isFoundationAdvert"] = true;
+            }
             formCompletionHelper.ClickLinkByText("Clone vacancy");
             return new CloneVacancyDatesPage(context);
         }
