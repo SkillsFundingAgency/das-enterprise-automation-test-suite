@@ -1,11 +1,12 @@
-﻿Feature: AP_PSR_01_CreateAndAmendReport
-
-@approvals
-@regression
-@ignoreindemo
-@ignoreintest
-@ignoreintest2
-Scenario: AP_PSR_01_CreateAndAmendReport
-	Given the Employer logins using existing NonLevy Account
-	Then the employer can create a new report
-	And then employer can edit a submitted report
+﻿#### This feature/service has now been decomissiod in prod: https://skillsfundingagency.atlassian.net/browse/APPMAN-1726
+#Feature: AP_PSR_01_CreateAndAmendReport
+#
+#@approvals
+#@regression
+#@ignoreindemo
+#@ignoreintest
+#@ignoreintest2
+#Scenario: AP_PSR_01_CreateAndAmendReport
+#	Given the Employer logins using existing NonLevy Account
+#	Then the employer can create a new report
+#	And then employer can edit a submitted report
