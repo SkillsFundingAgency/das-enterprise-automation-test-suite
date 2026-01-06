@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 
@@ -21,7 +22,9 @@ public class RoatpV2SqlDataHelper(ObjectContext objectContext, DbConfig dbConfig
 
         if (data.IsNoDataFound()) throw new System.Exception($"No rows found for query {query}");
 
-        return data.ListOfArrayToList(0);
+        var filteredData = data.Where(arr => arr.All(s => int.TryParse(s, out _))).ToList();
+
+        return filteredData.ListOfArrayToList(0);
     }
 
     private static string ProviderCourseQuery(string ukprn) => $"SELECT LarsCode FROM [dbo].[ProviderCourse] WHERE ProviderId = (SELECT id FROM [Provider] WHERE ukprn = {ukprn})";
