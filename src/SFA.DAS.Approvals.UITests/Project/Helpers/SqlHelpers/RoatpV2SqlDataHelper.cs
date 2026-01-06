@@ -10,21 +10,25 @@ public class RoatpV2SqlDataHelper(ObjectContext objectContext, DbConfig dbConfig
     internal List<string> GetPortableFlexiJobLarsCode(string ukprn) => GetCourses($"select pc.LarsCode from ProviderCourse pc Join [Provider] p on pc.ProviderId = p.id where HasPortableFlexiJobOption = 1 and ukprn = '{ukprn}' order by NEWID();");
 
     internal List<string> GetCoursesthatProviderDeosNotOffer(string ukprn) => GetCourses($"SELECT LarsCode FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
+    
     public List<string> GetCourseTitlesthatProviderDeosNotOffer(string ukprn) => GetCourses($"SELECT Title FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
 
     public string GetTitlethatProviderDeosNotOffer(string ukprn) => GetDataAsString($"SELECT top 1 Title FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
 
     internal List<string> GetCoursesThatProviderDeosOffer(string ukprn) => GetCourses($"{ProviderCourseQuery(ukprn)} order by NEWID();");
 
-    private List<string> GetCourses(string query)
+    private List<string> GetCourses(string query )
     {
         var data = GetMultipleData(query);
 
         if (data.IsNoDataFound()) throw new System.Exception($"No rows found for query {query}");
 
-        var filteredData = data.Where(arr => arr.All(s => int.TryParse(s, out _))).ToList();
+        if (!query.ToLower().Contains("title from"))
+        {
+            data = data.Where(arr => arr.All(s => int.TryParse(s, out _))).ToList();
+        }        
 
-        return filteredData.ListOfArrayToList(0);
+        return data.ListOfArrayToList(0);
     }
 
     private static string ProviderCourseQuery(string ukprn) => $"SELECT LarsCode FROM [dbo].[ProviderCourse] WHERE ProviderId = (SELECT id FROM [Provider] WHERE ukprn = {ukprn})";
