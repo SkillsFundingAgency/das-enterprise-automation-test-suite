@@ -6,7 +6,7 @@ public class HomePage : InterimHomeBasePage
 
     protected static By FindApprenticeshipLink => By.LinkText("Find apprenticeship training and manage requests");
     protected static By StartNowButton => By.LinkText("Start now");
-    protected static By YourFundingReservationsLink => By.LinkText("Your funding reservations");
+    protected static By YourFundingReservationsLink => By.LinkText("Funding reservations");
     protected static By YourTransfersLink => By.LinkText("Your transfers");
     private static By SucessSummary => By.CssSelector(".das-notification");
     private static By AcceptYourAgreementLink => By.LinkText("Accept your agreement");

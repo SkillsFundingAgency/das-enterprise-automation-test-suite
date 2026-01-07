@@ -8,7 +8,7 @@ public class InterimManageFundingHomePage(ScenarioContext context, bool navigate
 
     protected override string Linktext => Link;
 
-    private static string Link => "Your funding reservations";
+    private static string Link => "Funding reservations";
 
     private static Action OpenYourFundingReservations(ScenarioContext context, bool navigate)
     {

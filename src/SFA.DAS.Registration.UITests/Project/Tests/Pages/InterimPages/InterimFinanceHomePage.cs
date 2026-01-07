@@ -2,7 +2,7 @@
 
 public class InterimFinanceHomePage(ScenarioContext context, bool navigate, bool gotourl) : InterimEmployerBasePage(context, navigate, gotourl)
 {
-    protected override string PageTitle => "Finance";
+    protected override string PageTitle => "Funding and payments";
 
     protected override string Linktext => "Finance";
 
