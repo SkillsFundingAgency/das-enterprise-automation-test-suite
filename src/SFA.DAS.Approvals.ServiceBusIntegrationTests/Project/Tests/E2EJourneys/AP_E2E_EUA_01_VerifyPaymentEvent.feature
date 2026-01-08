@@ -1,8 +1,8 @@
-﻿@approvals
+﻿#@approvals - This test case has now been migrated to Playwright solution
 Feature: AP_E2E_EUA_01_VerifyPaymentEvent
 
-@regression
-@e2escenarios
+#@regression
+#@e2escenarios
 @onemonthbeforecurrentacademicyearstartdate
 @paymentCompletion
 Scenario: AP_E2E_EUA_01_Verify Payment Completion event marks the apprenticeship as Complete
