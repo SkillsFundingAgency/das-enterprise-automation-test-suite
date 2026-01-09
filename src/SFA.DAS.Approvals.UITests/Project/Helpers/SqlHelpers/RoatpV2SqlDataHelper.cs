@@ -1,6 +1,7 @@
 ﻿using SFA.DAS.ConfigurationBuilder;
 using SFA.DAS.FrameworkHelpers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 
@@ -9,17 +10,23 @@ public class RoatpV2SqlDataHelper(ObjectContext objectContext, DbConfig dbConfig
     internal List<string> GetPortableFlexiJobLarsCode(string ukprn) => GetCourses($"select pc.LarsCode from ProviderCourse pc Join [Provider] p on pc.ProviderId = p.id where HasPortableFlexiJobOption = 1 and ukprn = '{ukprn}' order by NEWID();");
 
     internal List<string> GetCoursesthatProviderDeosNotOffer(string ukprn) => GetCourses($"SELECT LarsCode FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
+    
     public List<string> GetCourseTitlesthatProviderDeosNotOffer(string ukprn) => GetCourses($"SELECT Title FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
 
     public string GetTitlethatProviderDeosNotOffer(string ukprn) => GetDataAsString($"SELECT top 1 Title FROM [dbo].[Standard] WHERE LarsCode NOT IN ({ProviderCourseQuery(ukprn)}) order by NEWID();");
 
     internal List<string> GetCoursesThatProviderDeosOffer(string ukprn) => GetCourses($"{ProviderCourseQuery(ukprn)} order by NEWID();");
 
-    private List<string> GetCourses(string query)
+    private List<string> GetCourses(string query )
     {
         var data = GetMultipleData(query);
 
         if (data.IsNoDataFound()) throw new System.Exception($"No rows found for query {query}");
+
+        if (!query.ToLower().Contains("title from"))
+        {
+            data = data.Where(arr => arr.All(s => int.TryParse(s, out _))).ToList();
+        }        
 
         return data.ListOfArrayToList(0);
     }
