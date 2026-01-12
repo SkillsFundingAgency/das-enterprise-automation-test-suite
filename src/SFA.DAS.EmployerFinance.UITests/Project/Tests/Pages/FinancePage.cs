@@ -7,7 +7,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.Pages
 {
     public class FinancePage : HomePage
     {
-        protected override string PageTitle => "Finance";
+        protected override string PageTitle => "Funding and payments";
 
         #region Locators
         private static By ViewTransactionsLink() => By.LinkText("View transactions");
