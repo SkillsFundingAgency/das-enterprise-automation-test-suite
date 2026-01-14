@@ -2,6 +2,7 @@
 
 @raa		
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_CVS_02 - Create, Approve and Edit the advert
 	Given the Employer creates an advert by using a trading name

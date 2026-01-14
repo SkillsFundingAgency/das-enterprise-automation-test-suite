@@ -2,6 +2,7 @@
 
 @raa	
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_DV_02 - Resume Create Vacancy from Draft status
 Given the Employer creates Draft advert

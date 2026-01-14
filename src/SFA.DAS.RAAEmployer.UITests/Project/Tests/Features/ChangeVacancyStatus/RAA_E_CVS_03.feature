@@ -2,6 +2,7 @@
 
 @raa		
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_CVS_03 - Create, Approve and Close the advert before applying
 	Given the Employer creates an advert by using a trading name

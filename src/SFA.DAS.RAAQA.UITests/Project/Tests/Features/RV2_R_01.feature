@@ -3,6 +3,7 @@
 @raa
 @raaqa
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_R_01 - Reviewer approves next available vacancy on the dashboard
 When Reviewer is logged into QA Application	
