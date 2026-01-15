@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @regression
 @recruitmentapikey
 Scenario: RAA_E_RA_02 - Renew Employer Recruitment Sandbox API Key

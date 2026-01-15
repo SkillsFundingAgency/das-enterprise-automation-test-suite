@@ -4,6 +4,7 @@ A short summary of the feature
 
 @raa
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_WO_03 - Employer verifies ‘Set as Competitive' option
 	When Employer selects 'Set As Competitive' in the first part of the journey

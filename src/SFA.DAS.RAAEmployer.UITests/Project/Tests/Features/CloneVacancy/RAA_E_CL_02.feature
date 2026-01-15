@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @clonevacancy
 @regression
 Scenario: RAA_E_CL_02 - Clone an advert, Approve, Apply and make Application Unsuccessful

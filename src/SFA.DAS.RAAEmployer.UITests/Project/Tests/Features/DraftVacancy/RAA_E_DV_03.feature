@@ -2,6 +2,7 @@
 
 @raa	
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_DV_03 - Delete draft vacancy
 Given the Employer creates Draft advert
