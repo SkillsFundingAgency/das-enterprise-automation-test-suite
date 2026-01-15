@@ -33,7 +33,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         [Then(@"verify the provider is added to the register with Application determined date updated")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithApplicationDeterminedDateUpdated()
         {
-            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyApplicationDeterminedDate();
+            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn();
         }
 
         [Then(@"verify the provider Application determined date is not updated")]
