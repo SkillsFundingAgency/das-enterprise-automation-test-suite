@@ -6,7 +6,7 @@ public class FAABrowseByInterestsPage(ScenarioContext context) : FAASignedInLand
 {
     protected override By PageHeader => By.Id("SelectedRouteIds");
 
-    protected override string PageTitle => "Browse by your interests";
+    protected override string PageTitle => "What interests you?";
 
     public FAAWhatIsYourLocationPage SelectCategoriesCheckBoxes()
     {
