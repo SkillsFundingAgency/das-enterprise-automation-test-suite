@@ -2,7 +2,7 @@
 
 public class SearchPage : RoatpAdminBasePage
 {
-    protected override string PageTitle => "Search for an apprenticeship training provider";
+    protected override string PageTitle => "Search for a training provider";
 
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 

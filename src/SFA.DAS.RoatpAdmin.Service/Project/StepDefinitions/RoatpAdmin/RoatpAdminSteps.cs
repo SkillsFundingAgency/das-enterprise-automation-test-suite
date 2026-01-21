@@ -8,23 +8,10 @@ public class RoatpAdminSteps(ScenarioContext context)
     private ResultsFoundPage _resultsFoundPage;
     private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper = new(context);
 
-    [When(@"the admin searches for a provider by partial provider name")]
-    public void WhenTheAdminSearchesForAProviderByPartialProviderName() => _resultsFoundPage = _resultsFoundPage.GoToSearchPage().SearchTrainingProvider("PEOPLE");
-
-    [Then(@"the admin should be taken to multiple results found page")]
-    public void ThenTheAdminShouldBeTakenToMultipleResultsFoundPage() => _resultsFoundPage.VerifyMultipleMatchingResults();
 
     [When(@"the admin searches for a provider by provider name")]
-    public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage().SearchForTrainingProvider().SearchTrainingProviderByName();
+    public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage().GoTOMiniDashBoardPage().SearchForTrainingProvider();
 
-    [When(@"the admin searches for a provider by ukprn")]
-    public void WhenTheAdminSearchesForAProviderByUkprn() => _resultsFoundPage = _resultsFoundPage.GoToSearchPage().SearchTrainingProviderByUkprn();
-
-    [Then(@"the admin should be taken to one provider name result found page")]
-    public void ThenTheAdminShouldBeTakenToOneProviderNameResultFoundPage() => _resultsFoundPage.VerifyOneProviderNameResultFound();
-
-    [Then(@"the admin should be taken to one provider ukprn result found page")]
-    public void ThenTheAdminShouldBeTakenToOneProviderUkprnResultFoundPage() => _resultsFoundPage.VerifyOneProviderUkprnResultFound();
 
     [Then(@"the admin can acess all the Update links")]
     public void ThenTheAdminCanAcessAllTheUpdateLinks()

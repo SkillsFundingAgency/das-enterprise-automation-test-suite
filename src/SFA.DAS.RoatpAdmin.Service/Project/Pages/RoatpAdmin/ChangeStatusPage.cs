@@ -2,13 +2,13 @@
 
 public class ChangeStatusPage(ScenarioContext context) : ChangeBasePage(context)
 {
-    protected override string PageTitle => $"Change status for {objectContext.GetProviderName()}";
+    protected override string PageTitle => "Update the status for this provider";
 
-    protected override string AccessibilityPageTitle => "Change status for provider";
+    protected override string AccessibilityPageTitle => "update provider status";
 
-    private static By ActiveStatus => By.CssSelector("label[for='status-1']");
+    private static By ActiveStatus => By.Id("OrganisationStatusId-1");
 
-    private static By ActiveButNoApprenticeStatus => By.CssSelector("label[for='status-1']");
+    private static By ActiveButNoApprenticeStatus => By.Id("OrganisationStatusId-2");
 
     protected override By ContinueButton => By.CssSelector(".govuk-button[value='Change']");
 

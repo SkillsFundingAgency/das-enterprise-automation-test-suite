@@ -17,32 +17,32 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public GatewayLandingPage AccessGatewayApplications()
         {
-            formCompletionHelper.ClickLinkByText("Go to RoATP gateway applications");
+            formCompletionHelper.ClickLinkByText("Access the gateway");
             return new GatewayLandingPage(context);
         }
 
         public FinancialLandingPage AccessFinancialApplications()
         {
-            formCompletionHelper.ClickLinkByText("Go to RoATP financial applications");
+            formCompletionHelper.ClickLinkByText("Complete financial health assessment");
             return new FinancialLandingPage(context);
         }
 
         public RoatpAssessorApplicationsHomePage AccessAssessorAndModerationApplications()
         {
-            formCompletionHelper.ClickLinkByText("Go to RoATP assessor applications");
+            formCompletionHelper.ClickLinkByText("Review readiness and quality");
             return new RoatpAssessorApplicationsHomePage(context);
         }
 
         public OversightLandingPage AccessOversightApplications()
         {
-            formCompletionHelper.ClickLinkByText("Go to RoATP application outcomes");
+            formCompletionHelper.ClickLinkByText("Decide on application outcomes");
             return new OversightLandingPage(context);
         }
 
-        public SearchPage SearchForATrainingProvider()
+        public MiniDashboardPage SearchForATrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
-            return new SearchPage(context);
+            formCompletionHelper.ClickLinkByText("Add or search for a provider");
+            return new MiniDashboardPage(context);
         }
 
         public StaffDashboardPage DownloadTrainingProvider()
@@ -55,12 +55,6 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
         {
             formCompletionHelper.ClickLinkByText("Download application data");
             return new RoatpApplicationReportPage(context);
-        }
-
-        public AllowListPage Add_UKPRN_Allowlist()
-        {
-            formCompletionHelper.ClickLinkByText("Add UKPRNs to the allow list");
-            return new AllowListPage(context);
         }
     }
 }
