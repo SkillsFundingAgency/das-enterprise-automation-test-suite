@@ -39,7 +39,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             return new OversightLandingPage(context);
         }
 
-        public MiniDashboardPage SearchForATrainingProvider()
+        public MiniDashboardPage AccessAddAndSearchForATrainingProvider()
         {
             formCompletionHelper.ClickLinkByText("Add or search for a provider");
             return new MiniDashboardPage(context);

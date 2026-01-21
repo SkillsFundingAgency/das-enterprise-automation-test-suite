@@ -151,18 +151,16 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithStatusOfOnboarding()
         {
             var resultPage = new StaffDashboardPage(context, true)
+                .AccessAddAndSearchForATrainingProvider()
                 .SearchForATrainingProvider()
-                .SearchTrainingProviderByUkprn();
-
-            resultPage.VerifyOneProviderUkprnResultFound();
-
-            resultPage.VerifyProviderStatusAsOnBoarding();
+                .SearchTrainingProviderByUkprn()
+                .VerifyProviderStatusAsOnBoarding();
         }
 
         [Then(@"verify the provider is not added to the register")]
         public void ThenVerifyTheProviderIsNotAddedToTheRegister()
         {
-            new StaffDashboardPage(context, true).SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyNoProviderUkprnResultFound();
+            new StaffDashboardPage(context, true).AccessAddAndSearchForATrainingProvider().SearchForATrainingProvider().SearchTrainingProviderByName_NoResults();
         }
 
         private void SelectApplication(string expectedStatus)

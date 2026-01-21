@@ -65,13 +65,14 @@ public class RoatpAdminSteps(ScenarioContext context)
     }
 
     [Then(@"Organisation is successfully Added to the Register")]
-    public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _resultsFoundPage = _searchPage.SearchTrainingProviderByName();
+    public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _resultsFoundPage = _roatpAdminMiniHomePage.SearchForTrainingProvider()
+        .SearchTrainingProviderByName();
 
     [Then(@"the provider status should be set to On-Boarding")]
-    public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _resultsFoundPage.VerifyProvideType("On-boarding");
+    public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _resultsFoundPage.VerifyProviderStatusAsOnBoarding();
     //_roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding();
 
     [Then(@"the provider status should be set to Active")]
-    public void ThenTheProviderStatusShouldBeSetToActive() => _resultsFoundPage.VerifyProvideType("Active");
+    public void ThenTheProviderStatusShouldBeSetToActive() => _resultsFoundPage.VerifyProviderStatusAsActive();
     //_roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsActive();
 }

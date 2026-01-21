@@ -2,9 +2,9 @@
 
 public class OfferApprenticeshipsUnitsPage(ScenarioContext context) : ChangeBasePage(context)
 {
-    protected override string PageTitle => $"Change company number for {objectContext.GetProviderName()}";
+    protected override string PageTitle => "Do they offer apprenticeship units?";
 
-    protected override string AccessibilityPageTitle => "Change company number for provider";
+    protected override string AccessibilityPageTitle => "Do they offer apprenticeship units?";
 
     public ResultsFoundPage ConfirmOfferApprenticeshipsUnits_NO()
     {

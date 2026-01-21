@@ -10,6 +10,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private StaffDashboardPage _staffDashboardPage;
+        private MiniDashboardPage _miniDashboardPage;
         private readonly NewRoatpAdminStepsHelper _roatpAdminStepsHelper;
 
         public NewRoatpAdminSteps(ScenarioContext context)
@@ -33,7 +34,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         [Then(@"verify the provider is added to the register with Application determined date updated")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithApplicationDeterminedDateUpdated()
         {
-            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn();
+            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyApplicationDeterminedDate();
         }
 
         [Then(@"verify the provider Application determined date is not updated")]
@@ -53,11 +54,11 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 
         private ChangeStatusPage InitatesAnApplication(string providerType)
         {
-            var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
-
-            searchPage = searchPage.VerifyNewProviderHasBeenAdded();
-
-            return searchPage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding().ClickChangeStatusLink();
+            var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType)
+                .SearchForTrainingProvider()
+                .SearchTrainingProviderByName()
+                .ClickChangeStatusLink();
+            return null;
         }
 
         private static void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();

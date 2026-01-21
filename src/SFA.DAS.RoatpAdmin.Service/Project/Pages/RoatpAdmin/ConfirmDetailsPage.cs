@@ -4,7 +4,7 @@ public class ConfirmDetailsPage(ScenarioContext context) : RoatpAdminBasePage(co
 {
     protected override string PageTitle => "Confirm details";
 
-    protected override By ContinueButton => By.CssSelector(".govuk-button[value='Confirm and add organisation']");
+    protected override By ContinueButton => By.Id("confirm");
 
     public SuccessPage ConfirmOrganisationsDetails()
     {

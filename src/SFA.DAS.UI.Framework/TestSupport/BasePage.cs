@@ -10,7 +10,7 @@ public abstract class BasePage(ScenarioContext context) : InitialiseBasePage(con
     protected static string PageHeaderSelector => ".govuk-heading-xl, .heading-xlarge, .govuk-heading-l, .govuk-panel__title, .govuk-fieldset__heading, .govuk-label--l";
     protected virtual By PageHeader => By.CssSelector(PageHeaderSelector);
     protected virtual By PageCaptionXl => By.CssSelector(".govuk-caption-xl");
-    protected virtual By ContinueButton => By.CssSelector(".govuk-button");
+    protected virtual By ContinueButton => By.CssSelector(".govuk-button, #continue, #Continue, #Confirm");
     protected virtual By BackLink => By.CssSelector(".govuk-back-link, .back-link");
     protected virtual By RadioLabels => By.CssSelector(".govuk-radios__label");
     protected virtual By CheckBoxLabels => By.CssSelector(".govuk-checkboxes__label");

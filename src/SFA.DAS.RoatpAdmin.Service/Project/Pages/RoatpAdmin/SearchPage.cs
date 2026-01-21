@@ -1,4 +1,6 @@
-﻿namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
+﻿using System;
+
+namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
 public class SearchPage : RoatpAdminBasePage
 {
@@ -22,12 +24,34 @@ public class SearchPage : RoatpAdminBasePage
 
     public ResultsFoundPage SearchTrainingProviderByUkprn() => SearchTrainingProvider(objectContext.GetUkprn());
 
+    public void SearchTrainingProviderByName_NoResults() => SearchTrainingProvider(objectContext.GetUkprn());
+
     public ResultsFoundPage SearchTrainingProvider(string text)
     {
         formCompletionHelper.EnterText(ProviderSearch, text);
+
+        // Wait for autocomplete to expand
+        pageInteractionHelper.WaitForElementToChange(
+            ProviderSearch,
+            "aria-expanded",
+            "true");
+
+        // Wait for options to be present
+        pageInteractionHelper.WaitForElementToBeDisplayed(
+            By.CssSelector(".autocomplete__option"));
+
+        var option = pageInteractionHelper
+            .FindElements(By.CssSelector(".autocomplete__option"))
+            .First(o => o.Text.Contains(text, StringComparison.OrdinalIgnoreCase));
+
+        option.Click();
+
         Continue();
         return new ResultsFoundPage(context);
     }
+
+
+
     public RoatpAdminHomePage ReturnToDahsboard()
     {
         formCompletionHelper.ClickLinkByText("Dashboard");

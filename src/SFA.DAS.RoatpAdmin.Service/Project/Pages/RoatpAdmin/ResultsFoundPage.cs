@@ -73,10 +73,10 @@ public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(cont
         return new ChangeOrganisationTypePage(context);
     }
 
-    public OfferApprenticeshipPage ClickChangeOfferApprenticeshipUnitLink()
+    public OfferApprenticeshipsUnitsPage ClickChangeOfferApprenticeshipUnitLink()
     {
         formCompletionHelper.ClickElement(ApprenticeshipUnitsChange);
-        return new OfferApprenticeshipPage(context);
+        return new OfferApprenticeshipsUnitsPage(context);
     }
 
     //public ChangeCompanyNumberPage ClickChangeCompanyNumberLink()

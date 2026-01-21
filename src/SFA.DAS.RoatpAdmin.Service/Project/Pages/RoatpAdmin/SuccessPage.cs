@@ -4,11 +4,9 @@ public class SuccessPage : RoatpAdminBasePage
 {
     protected override string PageTitle => "New training provider added";
 
-    protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
+    protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
-    private static By Confirmation => By.CssSelector(".govuk-panel--confirmation");
-
-    private static By ProviderSearch => By.Id("SearchTerm");
+    private static By Confirmation => By.CssSelector(".govuk-body");
 
     public SuccessPage(ScenarioContext context) : base(context) => VerifyPage();
 

@@ -4,7 +4,7 @@ public class OrganisationUkprnPage(ScenarioContext context) : RoatpAdminBasePage
 {
     protected override string PageTitle => "What is the organisation's UKPRN?";
 
-    private static By UkprnField => By.Id("UKPRN");
+    private static By UkprnField => By.Id("Ukprn");
 
     public OrganisationsDetailsPage EnterUkprn()
     {

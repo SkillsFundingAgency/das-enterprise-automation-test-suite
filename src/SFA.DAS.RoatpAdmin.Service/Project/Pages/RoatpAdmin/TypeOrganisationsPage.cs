@@ -2,11 +2,11 @@
 
 public class TypeOrganisationsPage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
-    protected override string PageTitle => $"Choose a type of organisation for {objectContext.GetProviderName()}";
+    protected override string PageTitle => $"Choose the type of organisation for {objectContext.GetProviderName()}";
 
-    protected override string AccessibilityPageTitle => "Choose a type of organisation for provider";
+    protected override string AccessibilityPageTitle => "Choose the type of organisation for provider";
 
-    protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
+    protected override By ContinueButton => By.Id("continue");
 
     public ConfirmDetailsPage SubmitOrganisationType()
     {

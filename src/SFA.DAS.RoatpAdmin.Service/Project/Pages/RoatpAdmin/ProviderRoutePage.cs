@@ -2,12 +2,12 @@
 
 public class ProviderRoutePage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
-    protected override string PageTitle => $"Choose a provider route for {objectContext.GetProviderName()}";
+    protected override string PageTitle => "What provider route are they using?";
 
-    protected override string AccessibilityPageTitle => "Change a provider route for provider";
+    protected override string AccessibilityPageTitle => "What provider route are they using?";
 
 
-    protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
+    protected override By ContinueButton => By.Id("continue");
 
     public void SubmitProviderType(string providerType)
     {
