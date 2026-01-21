@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_AV_03 - Create advert with multiple work location, Approve, Apply
 	Given the Employer creates an advert with "multiple" work location

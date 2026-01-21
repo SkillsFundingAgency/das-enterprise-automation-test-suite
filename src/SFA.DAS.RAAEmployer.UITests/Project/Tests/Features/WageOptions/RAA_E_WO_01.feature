@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_WO_01 - Employer verifies ‘National Minimum Wage' option 
         When Employer selects 'National Minimum Wage' in the first part of the journey

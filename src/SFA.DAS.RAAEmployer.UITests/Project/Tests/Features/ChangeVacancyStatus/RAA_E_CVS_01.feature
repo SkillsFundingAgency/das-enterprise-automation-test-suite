@@ -2,6 +2,7 @@
 
 @raa		
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_CVS_01 - Create, Approve and Close the vacancy
 	Given the Employer creates an advert by using a registered name

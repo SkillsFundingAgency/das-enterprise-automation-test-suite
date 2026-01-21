@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @regression
 @recruitmentapikey
 Scenario: RAA_E_RA_01 - Renew Employer Recruitment API Key

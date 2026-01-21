@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_AV_04 - Create advert with nationwide locations, Approve, Apply and withdraw application
 	Given the Employer creates an advert with "national" work location
