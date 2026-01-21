@@ -5,34 +5,29 @@ public class RoatpAdminSteps(ScenarioContext context)
 {
     private RoatpAdminHomePage _roatpAdminHomePage;
     private SearchPage _searchPage;
+    private SuccessPage _successPage;
+    private RoatpAdminMiniHomePage _roatpAdminMiniHomePage;
     private ResultsFoundPage _resultsFoundPage;
     private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper = new(context);
 
 
     [When(@"the admin searches for a provider by provider name")]
-    public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage = _roatpAdminStepsHelper.GoToRoatpAdminHomePage().GoTOMiniDashBoardPage().SearchForTrainingProvider();
+    public void WhenTheAdminSearchesForAProviderByProviderName() => _resultsFoundPage =
+        _roatpAdminStepsHelper.GoToRoatpAdminHomePage().
+        GoTOMiniDashBoardPage().
+        SearchForTrainingProvider().SearchTrainingProviderByName();
 
 
     [Then(@"the admin can acess all the Update links")]
     public void ThenTheAdminCanAcessAllTheUpdateLinks()
     {
-        _resultsFoundPage = _resultsFoundPage.ClickChangeLegalNameLink()
-        .ClickBackLink()
-        .ClickChangeUkprnLink()
-        .ClickBackLink()
-        .ClickChangeStatusLink()
+        _resultsFoundPage = _resultsFoundPage.ClickChangeStatusLink()
         .ClickBackLink()
         .ClickChangeProviderTypeLink()
         .ClickBackLink()
         .ClickChangeOrganisationTypeLink()
         .ClickBackLink()
-        .ClickChangeTradingNameLink()
-        .ClickBackLink()
-        .ClickChangeCompanyNumberLink()
-        .ClickBackLink()
-        .ClickChangeCharityNumberLink()
-        .ClickBackLink()
-        .ClickChangeApplicationDateDeterminedLink()
+        .ClickChangeOfferApprenticeshipUnitLink()
         .ClickBackLink();
     }
 
@@ -40,14 +35,13 @@ public class RoatpAdminSteps(ScenarioContext context)
     public void ThenTheAdminCanDownloadListOfTrainingProviders() => _roatpAdminStepsHelper.GoToRoatpAdminHomePage().DownloadRegister();
 
     [Given(@"the admin initates an application as (Main provider|Employer provider|Supporting provider)")]
-    public void GivenTheAdminInitatesAnApplication(string providerType) => _searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
+    public void GivenTheAdminInitatesAnApplication(string providerType) => _roatpAdminMiniHomePage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
 
     [Given(@"the Provider is added to the register as (Main provider|Employer provider|Supporting provider)")]
     public void GivenTheProviderIsAddedToTheRegisterAsSupportingProvider(string providerType)
     {
-        _searchPage = _roatpAdminStepsHelper.
-            InitatesAnApplication(providerType)
-            .VerifyNewProviderHasBeenAdded();
+        _roatpAdminMiniHomePage = _roatpAdminStepsHelper.
+            InitatesAnApplication(providerType);
     }
 
     [When(@"the admin update the provider details")]
@@ -71,11 +65,13 @@ public class RoatpAdminSteps(ScenarioContext context)
     }
 
     [Then(@"Organisation is successfully Added to the Register")]
-    public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _roatpAdminHomePage = _searchPage.VerifyNewProviderHasBeenAdded().ReturnToDahsboard();
+    public void ThenOrganisationIsSuccessfullyAddedToTheRegister() => _resultsFoundPage = _searchPage.SearchTrainingProviderByName();
 
     [Then(@"the provider status should be set to On-Boarding")]
-    public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding();
+    public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _resultsFoundPage.VerifyProvideType("On-boarding");
+    //_roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding();
 
     [Then(@"the provider status should be set to Active")]
-    public void ThenTheProviderStatusShouldBeSetToActive() => _roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsActive();
+    public void ThenTheProviderStatusShouldBeSetToActive() => _resultsFoundPage.VerifyProvideType("Active");
+    //_roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsActive();
 }

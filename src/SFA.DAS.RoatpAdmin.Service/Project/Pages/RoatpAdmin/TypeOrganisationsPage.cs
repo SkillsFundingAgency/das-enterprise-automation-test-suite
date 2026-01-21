@@ -8,10 +8,11 @@ public class TypeOrganisationsPage(ScenarioContext context) : RoatpAdminBasePage
 
     protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
-    public ApplicationDateDeterminedPage SubmitOrganisationType()
+    public ConfirmDetailsPage SubmitOrganisationType()
     {
         formCompletionHelper.ClickElement(() => RandomDataGenerator.GetRandomElementFromListOfElements(pageInteractionHelper.FindElements(RadioInputs)));
         Continue();
-        return new ApplicationDateDeterminedPage(context);
+        return new ConfirmDetailsPage(context);
     }
+
 }

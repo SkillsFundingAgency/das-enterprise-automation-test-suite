@@ -9,10 +9,9 @@ public class ProviderRoutePage(ScenarioContext context) : RoatpAdminBasePage(con
 
     protected override By ContinueButton => By.CssSelector(".govuk-button[value='Continue']");
 
-    public TypeOrganisationsPage SubmitProviderType(string providerType)
+    public void SubmitProviderType(string providerType)
     {
         SelectRadioOptionByText(providerType);
         Continue();
-        return new TypeOrganisationsPage(context);
     }
 }

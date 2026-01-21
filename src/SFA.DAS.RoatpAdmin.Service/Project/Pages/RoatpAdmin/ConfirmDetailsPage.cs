@@ -6,9 +6,9 @@ public class ConfirmDetailsPage(ScenarioContext context) : RoatpAdminBasePage(co
 
     protected override By ContinueButton => By.CssSelector(".govuk-button[value='Confirm and add organisation']");
 
-    public SearchPage ConfirmOrganisationsDetails()
+    public SuccessPage ConfirmOrganisationsDetails()
     {
         Continue();
-        return new SearchPage(context);
+        return new SuccessPage(context);
     }
 }

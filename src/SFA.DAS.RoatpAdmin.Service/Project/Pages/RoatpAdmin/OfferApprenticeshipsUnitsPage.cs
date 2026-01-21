@@ -12,5 +12,11 @@ public class OfferApprenticeshipsUnitsPage(ScenarioContext context) : ChangeBase
         Continue();
         return new ResultsFoundPage(context);
     }
+    public TypeOrganisationsPage ConfirmOfferApprenticeshipsUnits_NO_AddJourney()
+    {
+        SelectRadioOptionByText("No");
+        Continue();
+        return new TypeOrganisationsPage(context);
+    }
 }
-}
+
