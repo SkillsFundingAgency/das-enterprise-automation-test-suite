@@ -16,8 +16,6 @@ public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(cont
 
     private static By ApplicationDeterminedDate => By.XPath("(//td[@class='govuk-table__cell  govuk-!-width-two-thirds'])[2]");
 
-    private static By RefineSearch => By.LinkText("Refine search");
-
     private static string MainAndEmployerStatus => "On-boarding";
 
     private static string SupportingStatus => "Active";
@@ -42,19 +40,6 @@ public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(cont
         formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("/providers"));
         return new SearchPage(context);
     }
-
-    //public ChangeLegalNamePage ClickChangeLegalNameLink()
-    //{
-    //    formCompletionHelper.ClickElement(() => 
-    //    return new ChangeLegalNamePage(context);
-    //}
-
-    //public ChangeUkprnPage ClickChangeUkprnLink()
-    //{
-    //    formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-ukprn"));
-    //    return new ChangeUkprnPage(context);
-    //}
-
     public ChangeStatusPage ClickChangeStatusLink()
     {
         formCompletionHelper.ClickElement(StatusChange);
@@ -78,32 +63,6 @@ public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(cont
         formCompletionHelper.ClickElement(ApprenticeshipUnitsChange);
         return new OfferApprenticeshipsUnitsPage(context);
     }
-
-    //public ChangeCompanyNumberPage ClickChangeCompanyNumberLink()
-    //{
-    //    formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-company-number"));
-    //    return new ChangeCompanyNumberPage(context);
-    //}
-
-    //public ChangeCharityRegistrationNumberPage ClickChangeCharityNumberLink()
-    //{
-    //    formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-charity-registration-number"));
-    //    return new ChangeCharityRegistrationNumberPage(context);
-    //}
-
-    //public ChangeApplicationDateDeterminedPage ClickChangeApplicationDateDeterminedLink()
-    //{
-    //    formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-application-date-determined"));
-    //    return new ChangeApplicationDateDeterminedPage(context);
-    //}
-
-    //public bool VerifyMultipleMatchingResults() => VerifyElement(RefineSearch);
-
-    //public void VerifyOneProviderNameResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"1 result found for '{objectContext.GetProviderName()}'");
-
-    //public void VerifyOneProviderUkprnResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"1 result found for '{objectContext.GetUkprn()}'");
-
-    //public void VerifyNoProviderUkprnResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"No results found for '{objectContext.GetUkprn()}'");
 
     public ResultsFoundPage VerifyProviderStatusAsOnBoarding()
     {

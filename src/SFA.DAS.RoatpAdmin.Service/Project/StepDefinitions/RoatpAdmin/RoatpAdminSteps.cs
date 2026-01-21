@@ -3,9 +3,6 @@
 [Binding]
 public class RoatpAdminSteps(ScenarioContext context)
 {
-    private RoatpAdminHomePage _roatpAdminHomePage;
-    private SearchPage _searchPage;
-    private SuccessPage _successPage;
     private RoatpAdminMiniHomePage _roatpAdminMiniHomePage;
     private ResultsFoundPage _resultsFoundPage;
     private readonly OldRoatpAdminStepsHelper _roatpAdminStepsHelper = new(context);
@@ -70,9 +67,7 @@ public class RoatpAdminSteps(ScenarioContext context)
 
     [Then(@"the provider status should be set to On-Boarding")]
     public void ThenTheProviderStatusShouldBeSetToOn_Boarding() => _resultsFoundPage.VerifyProviderStatusAsOnBoarding();
-    //_roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding();
 
     [Then(@"the provider status should be set to Active")]
     public void ThenTheProviderStatusShouldBeSetToActive() => _resultsFoundPage.VerifyProviderStatusAsActive();
-    //_roatpAdminHomePage.SearchForTrainingProvider().SearchTrainingProviderByName().VerifyProviderStatusAsActive();
 }
