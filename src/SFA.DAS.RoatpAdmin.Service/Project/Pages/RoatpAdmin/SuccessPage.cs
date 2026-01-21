@@ -2,7 +2,7 @@
 
 public class SuccessPage : RoatpAdminBasePage
 {
-    protected override string PageTitle => "New training provider added";
+    protected override string PageTitle => "";
 
     protected override By PageHeader => By.CssSelector(".govuk-panel__title");
 
@@ -13,6 +13,11 @@ public class SuccessPage : RoatpAdminBasePage
     public SuccessPage VerifyNewProviderHasBeenAdded()
     {
         pageInteractionHelper.VerifyText(Confirmation, $"{objectContext.GetProviderName()} to APAR.");
+        return this;
+    }
+    public SuccessPage VerifyProviderStatusUpdated()
+    {
+        pageInteractionHelper.VerifyText(Confirmation, "You have successfully updated the status");
         return this;
     }
 

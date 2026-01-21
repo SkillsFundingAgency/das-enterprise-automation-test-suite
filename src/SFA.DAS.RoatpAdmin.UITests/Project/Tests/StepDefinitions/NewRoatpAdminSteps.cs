@@ -22,13 +22,15 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         [Given(@"the (Main provider|Employer provider) is already on the RoATP register as Active")]
         public void TheProviderIsAlreadyOnTheRoATPRegisterAsActive(string providerType)
         {
-            VerifyProviderStatusAsActive(InitatesAnApplication(providerType).ChangeStatusToActive());
+            var successPage = InitatesAnApplication(providerType).ChangeStatusToActive();
+            VerifyProviderStatusAsActive(successPage);
         }
 
         [Given(@"the (Main provider) is already on the RoATP register as Active But No Apprentice")]
         public void TheProviderIsAlreadyOnTheRoATPRegisterAsActiveButNoApprentice(string providerType)
         {
-            VerifyProviderStatusAsActive(InitatesAnApplication(providerType).ChangeStatusToActiveButNoApprentice());
+            var successPage = InitatesAnApplication(providerType).ChangeStatusToActiveButNoApprentice();
+            VerifyProviderStatusAsActive(successPage);
         }
 
         [Then(@"verify the provider is added to the register with Application determined date updated")]
@@ -58,9 +60,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
                 .SearchForTrainingProvider()
                 .SearchTrainingProviderByName()
                 .ClickChangeStatusLink();
-            return null;
+            return searchPage;
         }
 
-        private static void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();
+        private static void VerifyProviderStatusAsActive(SuccessPage successPage) => successPage.VerifyProviderStatusUpdated();
     }
 }

@@ -7,6 +7,8 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Helpers
 {
     public class NewRoatpAdminStepsHelper(ScenarioContext context) : RoatpAdminStepsHelper(context)
     {
-        public SearchPage SearchForATrainingProvider() => new StaffDashboardPage(context, true).AccessAddAndSearchForATrainingProvider();
+        public SearchPage SearchForATrainingProvider() => new StaffDashboardPage(context, true)
+            .AccessAddAndSearchForATrainingProvider()
+            .SearchForATrainingProvider();
     }
 }

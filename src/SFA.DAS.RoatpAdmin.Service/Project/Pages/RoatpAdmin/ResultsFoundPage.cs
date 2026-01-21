@@ -14,7 +14,7 @@ public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(cont
 
     private static By OrganisationType => By.XPath("(//td[@class='govuk-table__cell'])[3]");
 
-    private static By ApplicationDeterminedDate => By.XPath("(//td[@class='govuk-table__cell  govuk-!-width-two-thirds'])[1]");
+    private static By ApplicationDeterminedDate => By.XPath("(//td[@class='govuk-table__cell  govuk-!-width-two-thirds'])[2]");
 
     private static By RefineSearch => By.LinkText("Refine search");
 
