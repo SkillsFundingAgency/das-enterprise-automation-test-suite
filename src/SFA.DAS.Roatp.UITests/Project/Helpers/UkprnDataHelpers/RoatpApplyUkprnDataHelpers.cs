@@ -91,7 +91,7 @@
             _data.Add("rps107",
                 [
                     new(emailkey, "sudhakar.chinoor+D7@digital.education.gov.uk"),
-                    new(ukprnkey, "10025449"),
+                    new(ukprnkey, "10000972"),
                 ]);
             _data.Add("rps108",
                 [

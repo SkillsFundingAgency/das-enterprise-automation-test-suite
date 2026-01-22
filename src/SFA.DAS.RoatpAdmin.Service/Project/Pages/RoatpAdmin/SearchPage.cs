@@ -22,7 +22,7 @@ public class SearchPage : RoatpAdminBasePage
 
     public ResultsFoundPage SearchTrainingProviderByName() => SearchTrainingProvider(objectContext.GetProviderName());
 
-    public ResultsFoundPage SearchTrainingProviderByUkprn() => SearchTrainingProvider(objectContext.GetUkprn());
+    public ResultsFoundPage SearchTrainingProviderByUkprn() => SearchTrainingProvider(objectContext.GetProviderName());
 
     public void SearchTrainingProviderByName_NoResults() => SearchTrainingProvider(objectContext.GetUkprn());
     public ResultsFoundPage SearchTrainingProvider(string text)

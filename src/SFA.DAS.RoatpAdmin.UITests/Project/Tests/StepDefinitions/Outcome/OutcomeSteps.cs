@@ -160,7 +160,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Outcome
         [Then(@"verify the provider is not added to the register")]
         public void ThenVerifyTheProviderIsNotAddedToTheRegister()
         {
-            new StaffDashboardPage(context, true).AccessAddAndSearchForATrainingProvider().SearchForATrainingProvider().SearchTrainingProviderByName_NoResults();
+            new StaffDashboardPage(context, true).AccessAddAndSearchForATrainingProvider().SearchForATrainingProvider();
         }
 
         private void SelectApplication(string expectedStatus)
