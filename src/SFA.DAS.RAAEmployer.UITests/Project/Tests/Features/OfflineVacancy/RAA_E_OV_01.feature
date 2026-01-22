@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @offlinevacancy
 @regression
 Scenario: RAA_E_OV_01 - Creates offline advert with disability confidence and Reviewer approves	

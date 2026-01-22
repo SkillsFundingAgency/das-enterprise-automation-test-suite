@@ -1,7 +1,7 @@
 ﻿Feature: AP_NL_E2E_04_NonLevyE2EMaxReservationsLimitReached
 
-@approvals
-@regression
+#@approvals - This test case has now been migrated to Playwright solution
+#@regression
 @non-levy
 @reservation
 Scenario: AP_NL_E2E_04 Block users to add apprentice when max reservation limit is reached

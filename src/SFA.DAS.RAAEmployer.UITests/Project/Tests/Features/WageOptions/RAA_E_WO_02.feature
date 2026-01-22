@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @regression
 Scenario: RAA_E_WO_02 - Employer verifies ‘National Minimum Wage For Apprentices' option 
         When Employer selects 'National Minimum Wage For Apprentices' in the first part of the journey

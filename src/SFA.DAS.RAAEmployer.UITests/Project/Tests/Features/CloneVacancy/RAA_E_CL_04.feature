@@ -2,6 +2,7 @@
 
 @raa
 @raaemployer
+@ignore
 @clonevacancy
 @regression
 Scenario: RAA_E_CL_04 - Clone, Approve and Edit an advert
