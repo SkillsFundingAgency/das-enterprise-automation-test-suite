@@ -2,7 +2,6 @@
 
 @raa
 @raaemployer
-@ignore
 @regression
 Scenario: RAA_E_AV_01 - Create anonymous advert, Approve, Apply
 	Given the Employer creates an anonymous advert
