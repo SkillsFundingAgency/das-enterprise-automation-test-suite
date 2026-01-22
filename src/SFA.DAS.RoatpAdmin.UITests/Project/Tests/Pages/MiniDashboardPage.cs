@@ -28,7 +28,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public AllowListPage Add_UKPRN_Allowlist()
         {
-            formCompletionHelper.ClickLinkByText("Add UKPRNs to the allow list");
+            formCompletionHelper.ClickLinkByText("Add a UKPRN to the allow list");
             return new AllowListPage(context);
         }
     }
