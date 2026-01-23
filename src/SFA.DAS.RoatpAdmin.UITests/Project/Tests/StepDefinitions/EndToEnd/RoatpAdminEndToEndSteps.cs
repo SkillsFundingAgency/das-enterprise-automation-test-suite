@@ -158,12 +158,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.EndToEnd
             new OversightLandingPage(_context).VerifyOverallOutcomeStatus(expectedStatus);
 
             var resultPage = new StaffDashboardPage(_context, true)
+                .AccessAddAndSearchForATrainingProvider()
                 .SearchForATrainingProvider()
-                .SearchTrainingProviderByUkprn();
-
-            resultPage.VerifyOneProviderUkprnResultFound();
-
-            resultPage.VerifyProviderStatusAsOnBoarding();
+                .SearchTrainingProviderByUkprn().VerifyProviderStatusAsOnBoarding();
 
         }
 

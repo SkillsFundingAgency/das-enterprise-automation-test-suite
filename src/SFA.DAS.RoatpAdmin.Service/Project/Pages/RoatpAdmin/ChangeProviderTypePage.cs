@@ -2,9 +2,9 @@
 
 public class ChangeProviderTypePage(ScenarioContext context) : ChangeBasePage(context)
 {
-    protected override string PageTitle => $"Change provider type for {objectContext.GetProviderName()}";
+    protected override string PageTitle => "What provider route are they using?";
 
-    protected override string AccessibilityPageTitle => "Change provider type for provider";
+    protected override string AccessibilityPageTitle => "update provider route";
 
     public ResultsFoundPage ConfirmNewProviderTypeAsEmloyer()
     {

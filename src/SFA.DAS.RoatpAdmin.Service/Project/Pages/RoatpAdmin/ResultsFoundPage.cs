@@ -4,25 +4,28 @@ namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
 public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
-    protected override string PageTitle => $"found for";
+    protected override string PageTitle => $"Details for";
 
-    private static By OnBoardingStatus => By.XPath("//span[text()='On-boarding']");
+    private static By OnBoardingStatus => By.XPath("//strong[text()='On-boarding']");
 
-    private static By ActiveStatus => By.XPath("//span[text()='Active']");
+    private static By ActiveStatus => By.XPath("//strong[text()='Active']");
 
-    private static By ProviderType => By.XPath("(//dd[@class='govuk-summary-list__value'])[4]");
+    private static By ProviderType => By.XPath("(//td[@class='govuk-table__cell'])[1]");
 
-    private static By OrganisationType => By.XPath("(//dd[@class='govuk-summary-list__value'])[5]");
+    private static By OrganisationType => By.XPath("(//td[@class='govuk-table__cell'])[3]");
 
-    private static By ApplicationDeterminedDate => By.XPath("(//dd[@class='govuk-summary-list__value'])[11]");
+    private static By ApplicationDeterminedDate => By.XPath("(//td[@class='govuk-table__cell  govuk-!-width-two-thirds'])[2]");
 
-    private static By RefineSearch => By.LinkText("Refine search");
+    private static string MainAndEmployerStatus => "On-boarding";
 
-    private static string MainAndEmployerStatus => "ON-BOARDING";
-
-    private static string SupportingStatus => "ACTIVE";
+    private static string SupportingStatus => "Active";
 
     private static string ApplicationDetermineDate => "30 Nov 1980";
+
+    private static By StatusChange => By.XPath("(//a[@class='govuk-link'])[1]");
+    private static By ProviderTypeChange => By.XPath("(//a[@class='govuk-link'])[2]");
+    private static By OrganisationTypeChange => By.XPath("(//a[@class='govuk-link'])[3]");
+    private static By ApprenticeshipUnitsChange => By.XPath("(//a[@class='govuk-link'])[4]");
 
     public void VerifyProvideType(string providerType) => pageInteractionHelper.VerifyText(ProviderType, providerType);
 
@@ -30,75 +33,36 @@ public class ResultsFoundPage(ScenarioContext context) : RoatpAdminBasePage(cont
 
     public void VerifyApplicationDeterminedDate() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, DateTime.Now.ToString("dd MMM yyyy"));
 
-    public void VerifyApplicationDeterminedDateNotUpdated() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, ApplicationDetermineDate);
+    public void VerifyApplicationDeterminedDateNotUpdated() => pageInteractionHelper.VerifyText(ApplicationDeterminedDate, DateTime.Now.ToString("dd MMM yyyy"));
 
     public SearchPage GoToSearchPage()
     {
-        Back();
+        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("/providers"));
         return new SearchPage(context);
     }
-
-    public ChangeLegalNamePage ClickChangeLegalNameLink()
-    {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-legal-name"));
-        return new ChangeLegalNamePage(context);
-    }
-
-    public ChangeUkprnPage ClickChangeUkprnLink()
-    {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-ukprn"));
-        return new ChangeUkprnPage(context);
-    }
-
     public ChangeStatusPage ClickChangeStatusLink()
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-status"));
+        formCompletionHelper.ClickElement(StatusChange);
         return new ChangeStatusPage(context);
     }
 
     public ChangeProviderTypePage ClickChangeProviderTypeLink()
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-provider-type"));
+        formCompletionHelper.ClickElement(ProviderTypeChange);
         return new ChangeProviderTypePage(context);
     }
 
     public ChangeOrganisationTypePage ClickChangeOrganisationTypeLink()
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-organisation-type"));
+        formCompletionHelper.ClickElement(OrganisationTypeChange);
         return new ChangeOrganisationTypePage(context);
     }
 
-    public ChangeTradingNamePage ClickChangeTradingNameLink()
+    public OfferApprenticeshipsUnitsPage ClickChangeOfferApprenticeshipUnitLink()
     {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-trading-name"));
-        return new ChangeTradingNamePage(context);
+        formCompletionHelper.ClickElement(ApprenticeshipUnitsChange);
+        return new OfferApprenticeshipsUnitsPage(context);
     }
-
-    public ChangeCompanyNumberPage ClickChangeCompanyNumberLink()
-    {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-company-number"));
-        return new ChangeCompanyNumberPage(context);
-    }
-
-    public ChangeCharityRegistrationNumberPage ClickChangeCharityNumberLink()
-    {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-charity-registration-number"));
-        return new ChangeCharityRegistrationNumberPage(context);
-    }
-
-    public ChangeApplicationDateDeterminedPage ClickChangeApplicationDateDeterminedLink()
-    {
-        formCompletionHelper.ClickElement(() => pageInteractionHelper.GetLinkByHref("change-application-date-determined"));
-        return new ChangeApplicationDateDeterminedPage(context);
-    }
-
-    public bool VerifyMultipleMatchingResults() => VerifyElement(RefineSearch);
-
-    public void VerifyOneProviderNameResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"1 result found for '{objectContext.GetProviderName()}'");
-
-    public void VerifyOneProviderUkprnResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"1 result found for '{objectContext.GetUkprn()}'");
-
-    public void VerifyNoProviderUkprnResultFound() => pageInteractionHelper.VerifyText(PageHeader, $"No results found for '{objectContext.GetUkprn()}'");
 
     public ResultsFoundPage VerifyProviderStatusAsOnBoarding()
     {

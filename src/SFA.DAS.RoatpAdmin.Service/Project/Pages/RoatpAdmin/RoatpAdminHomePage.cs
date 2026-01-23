@@ -5,22 +5,15 @@ public class RoatpAdminHomePage(ScenarioContext context) : RoatpAdminBasePage(co
     protected override string PageTitle => "Staff dashboard";
 
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
-
-    public OrganisationUkprnPage AddANewTrainingProvider()
-    {
-        formCompletionHelper.ClickLinkByText("Add a new apprenticeship training provider");
-        return new OrganisationUkprnPage(context);
-    }
-
     public RoatpAdminHomePage DownloadRegister()
     {
         formCompletionHelper.ClickLinkByText("Download list of apprenticeship training providers");
         return new RoatpAdminHomePage(context);
     }
 
-    public SearchPage SearchForTrainingProvider()
+    public RoatpAdminMiniHomePage GoTOMiniDashBoardPage()
     {
-        formCompletionHelper.ClickLinkByText("Search for an apprenticeship training provider");
-        return new SearchPage(context);
+        formCompletionHelper.ClickLinkByText("Add or search for a provider");
+        return new RoatpAdminMiniHomePage(context);
     }
 }

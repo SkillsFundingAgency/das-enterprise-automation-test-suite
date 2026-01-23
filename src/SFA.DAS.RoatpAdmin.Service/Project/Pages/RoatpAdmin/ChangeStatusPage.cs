@@ -2,24 +2,24 @@
 
 public class ChangeStatusPage(ScenarioContext context) : ChangeBasePage(context)
 {
-    protected override string PageTitle => $"Change status for {objectContext.GetProviderName()}";
+    protected override string PageTitle => "Update the status for this provider";
 
-    protected override string AccessibilityPageTitle => "Change status for provider";
+    protected override string AccessibilityPageTitle => "update provider status";
 
-    private static By ActiveStatus => By.CssSelector("label[for='status-1']");
+    private static By ActiveStatus => By.CssSelector("label[for='OrganisationStatusId-1']");
 
-    private static By ActiveButNoApprenticeStatus => By.CssSelector("label[for='status-1']");
+    private static By ActiveButNoApprenticeStatus => By.CssSelector("label[for='OrganisationStatusId-2']");
 
-    protected override By ContinueButton => By.CssSelector(".govuk-button[value='Change']");
+    protected override By ContinueButton => By.Id("continue");
 
-    public ResultsFoundPage ChangeStatusToActive() => ChangeStatus(ActiveStatus);
+    public SuccessPage ChangeStatusToActive() => ChangeStatus(ActiveStatus);
 
-    public ResultsFoundPage ChangeStatusToActiveButNoApprentice() => ChangeStatus(ActiveButNoApprenticeStatus);
+    public SuccessPage ChangeStatusToActiveButNoApprentice() => ChangeStatus(ActiveButNoApprenticeStatus);
 
-    private ResultsFoundPage ChangeStatus(By by)
+    private SuccessPage ChangeStatus(By by)
     {
         formCompletionHelper.ClickElement(by);
         Continue();
-        return new ResultsFoundPage(context);
+        return new SuccessPage(context);
     }
 }

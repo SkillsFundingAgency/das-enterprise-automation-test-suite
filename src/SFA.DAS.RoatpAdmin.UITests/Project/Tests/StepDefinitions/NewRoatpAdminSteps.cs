@@ -10,6 +10,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
     {
         private readonly ScenarioContext _context;
         private StaffDashboardPage _staffDashboardPage;
+        private MiniDashboardPage _miniDashboardPage;
         private readonly NewRoatpAdminStepsHelper _roatpAdminStepsHelper;
 
         public NewRoatpAdminSteps(ScenarioContext context)
@@ -21,25 +22,27 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
         [Given(@"the (Main provider|Employer provider) is already on the RoATP register as Active")]
         public void TheProviderIsAlreadyOnTheRoATPRegisterAsActive(string providerType)
         {
-            VerifyProviderStatusAsActive(InitatesAnApplication(providerType).ChangeStatusToActive());
+            var successPage = InitatesAnApplication(providerType).ChangeStatusToActive();
+            VerifyProviderStatusAsActive(successPage);
         }
 
         [Given(@"the (Main provider) is already on the RoATP register as Active But No Apprentice")]
         public void TheProviderIsAlreadyOnTheRoATPRegisterAsActiveButNoApprentice(string providerType)
         {
-            VerifyProviderStatusAsActive(InitatesAnApplication(providerType).ChangeStatusToActiveButNoApprentice());
+            var successPage = InitatesAnApplication(providerType).ChangeStatusToActiveButNoApprentice();
+            VerifyProviderStatusAsActive(successPage);
         }
 
         [Then(@"verify the provider is added to the register with Application determined date updated")]
         public void ThenVerifyTheProviderIsAddedToTheRegisterWithApplicationDeterminedDateUpdated()
         {
-            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyApplicationDeterminedDate();
+            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByName().VerifyApplicationDeterminedDate();
         }
 
         [Then(@"verify the provider Application determined date is not updated")]
         public void ThenVerifyTheProviderApplicationDeterminedDateIsNotUpdated()
         {
-            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByUkprn().VerifyApplicationDeterminedDateNotUpdated();
+            _roatpAdminStepsHelper.SearchForATrainingProvider().SearchTrainingProviderByName().VerifyApplicationDeterminedDateNotUpdated();
         }
 
         [Then(@"the admin can download list of apprenticeship training providers")]
@@ -53,13 +56,13 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions
 
         private ChangeStatusPage InitatesAnApplication(string providerType)
         {
-            var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType);
-
-            searchPage = searchPage.VerifyNewProviderHasBeenAdded();
-
-            return searchPage.SearchTrainingProviderByName().VerifyProviderStatusAsOnBoarding().ClickChangeStatusLink();
+            var searchPage = _roatpAdminStepsHelper.InitatesAnApplication(providerType)
+                .SearchForTrainingProvider()
+                .SearchTrainingProviderByName()
+                .ClickChangeStatusLink();
+            return searchPage;
         }
 
-        private static void VerifyProviderStatusAsActive(ResultsFoundPage resultsFoundPage) => resultsFoundPage.VerifyProviderStatusAsActive();
+        private static void VerifyProviderStatusAsActive(SuccessPage successPage) => successPage.VerifyProviderStatusUpdated();
     }
 }
