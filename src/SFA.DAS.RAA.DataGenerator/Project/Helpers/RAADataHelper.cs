@@ -108,7 +108,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         public static string RandomQuestionString(int length) => $"{RandomDataGenerator.GenerateRandomAlphabeticString(length)}?";
 
-        private static string WebsiteUrl(string url) => $"www.{url}.com";
+        private static string WebsiteUrl(string url) => $"https://www.gov.uk/apply-apprenticeship";
 
         private static List<string> AvailableProviders => ["BALTIC TRAINING SERVICES LIMITED (10019026)"];
 
