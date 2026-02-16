@@ -8,7 +8,7 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.Pages.Employer
 {
     public class YourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate = false, bool gotourl = false) : InterimYourApprenticeshipAdvertsHomePage(context, navigate, gotourl)
     {
-        protected override string PageTitle => "Your apprenticeship adverts";
+        protected override string PageTitle => "Recruitment dashboard";
 
         #region Helpers and Context
         private readonly SearchVacancyPageHelper _searchVacancyPageHelper = new(context);

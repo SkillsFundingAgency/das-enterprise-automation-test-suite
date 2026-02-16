@@ -7,7 +7,7 @@ public class InterimCreateAnAdvertHomePage(ScenarioContext context) : InterimYou
 
 public class InterimYourApprenticeshipAdvertsHomePage(ScenarioContext context, bool navigate, bool gotourl) : InterimEmployerBasePage(context, navigate, gotourl)
 {
-    protected override string PageTitle => "Your apprenticeship adverts";
+    protected override string PageTitle => "Recruitment dashboard";
 
     protected override string Linktext => "Adverts";
 
