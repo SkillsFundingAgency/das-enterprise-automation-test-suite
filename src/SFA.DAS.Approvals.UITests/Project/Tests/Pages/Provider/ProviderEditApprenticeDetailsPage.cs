@@ -66,7 +66,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
 
             if (IsRplPageShown) new ProviderRPLPage(context).SelectNoAndContinue();
-
+ 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
@@ -128,7 +128,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.ClickElement(SaveButton);
 
-            new ProviderRPLPage(context).SelectNoAndContinue();
+            //new ProviderRPLPage(context).SelectNoAndContinue();
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).ContinueWithAlreadySelectedStandardOption();
 
@@ -148,7 +148,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             formCompletionHelper.ClickElement(SaveButton);
 
-            new ProviderRPLPage(context).SelectNoAndContinue();
+            //new ProviderRPLPage(context).SelectNoAndContinue();
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
@@ -194,7 +194,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             formCompletionHelper.ClickElement(SaveButton);
 
-            if (IsRplPageShown) new ProviderRPLPage(context).SelectNoAndContinue();
+            //if (IsRplPageShown) new ProviderRPLPage(context).SelectNoAndContinue();
 
             return new ProviderApproveApprenticeDetailsPage(context);
         }
