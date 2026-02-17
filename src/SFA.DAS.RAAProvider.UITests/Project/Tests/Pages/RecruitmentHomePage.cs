@@ -83,7 +83,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
         }
         public ManageYourRecruitmentEmailsPage GoToManageYourRecruitmentEmailsPage()
         {
-            formCompletionHelper.ClickLinkByText("Manage your recruitment emails");
+            formCompletionHelper.ClickLinkByText("Manage recruitment emails");
             return new ManageYourRecruitmentEmailsPage(context);
         }
 
