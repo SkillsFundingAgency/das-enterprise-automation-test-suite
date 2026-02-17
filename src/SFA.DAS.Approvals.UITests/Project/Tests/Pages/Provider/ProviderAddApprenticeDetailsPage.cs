@@ -71,11 +71,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
 
-            //var page = new ProviderRPLPage(context);
+            var page = new ProviderRPLPage(context);
 
-            //if (tags.IsAddRplDetails()) page.SelectYesAndContinue().EnterRPLDataAndContinue();
+            if (tags.IsAddRplDetails()) page.SelectYesAndContinue().EnterRPLDataAndContinue();
 
-            //else page.SelectNoAndContinue();
+            else page.SelectNoAndContinue();
 
         }
 
