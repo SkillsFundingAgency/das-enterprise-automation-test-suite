@@ -18,11 +18,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        protected override string AccessibilityPageTitle => "Employer approve apprentice details";
+        protected override string AccessibilityPageTitle => "Check apprentice details";
 
         public ApproveApprenticeDetailsPage(ScenarioContext context, string pageTitle) : base(context, (x) => pageTitle) { }
 
-        public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details") { }
+        public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => "") { }
 
         public EditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {
