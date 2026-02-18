@@ -2,7 +2,6 @@
 
 
 @raa
-@regression
 @faa
 @faaapplytestdataprep
 Scenario: FAA_e2e_accessibility
