@@ -5,7 +5,8 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProvideViewApprenticesDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "View apprentice details" : $"View {x} apprentices' details")
+    // public class ProvideViewApprenticesDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "View apprentice details" : $"View {x} apprentices' details")
+    public class ProvideViewApprenticesDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "View apprentice details")
     {
         private static By ViewApprenticeLink => By.PartialLinkText("View");
 
