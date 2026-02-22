@@ -18,7 +18,7 @@ public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHo
     private static By Feedback => By.LinkText("Feedback");
     private static By Privacy => By.LinkText("Privacy");
     private static By Cookies => By.LinkText("Cookies");
-    private static By BuiltBy => By.LinkText("Education and Skills Funding Agency");
+    private static By BuiltBy => By.LinkText("Department for Education");
     private static By CrownCopyright => By.LinkText("© Crown copyright");
     private static By CookiesAcceptButton => By.Id("btn-cookie-accept");
     private static By CookiesSettingsButton => By.Id("btn-cookie-settings");

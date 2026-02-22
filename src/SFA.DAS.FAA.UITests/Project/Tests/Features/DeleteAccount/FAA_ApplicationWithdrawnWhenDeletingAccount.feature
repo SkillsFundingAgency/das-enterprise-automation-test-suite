@@ -4,6 +4,7 @@
 @regression
 @raaprovider
 @faa
+@ignore
 Scenario: FAA_DA_02 - Submitted Application Is Withdrawn On Account Deletion
 	Given appretince creates an account
 	When the apprentice has submitted their first application

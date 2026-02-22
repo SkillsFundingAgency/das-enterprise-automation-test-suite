@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By PageHeader => PanelTitle;
 
-        private static By ClickDynamicHomeLink => By.XPath("//a[text()='Home']");
+        private static By ClickDynamicHomeLink => By.CssSelector(".mu-home");
 
         public DynamicHomePages ClickHome()
         {
