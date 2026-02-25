@@ -22,6 +22,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ApproveApprenticeDetailsPage(ScenarioContext context, string pageTitle) : base(context, (x) => pageTitle) { }
 
+        // The count on the scrrens are about to introduce in next following sprints so commented to reuse this 
+        //public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Check apprentice details" : $"Check {x} apprentices' details") { }
+
         public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => "") { }
 
         public EditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
