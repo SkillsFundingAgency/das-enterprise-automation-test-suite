@@ -111,7 +111,6 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
             (CreateAnApprenticeshipAdvertOrVacancyPage createAdvertPage, bool isMultiOrg) =
                 new RecruitmentProviderHomePageStepsHelper(context)
                 .GoToRecruitmentProviderHomePage(newTab)
-                .GoToViewAllVacancyPage()
                 .CreateVacancy()
                 .StartNow()
                 .SelectEmployer(_hashedid);

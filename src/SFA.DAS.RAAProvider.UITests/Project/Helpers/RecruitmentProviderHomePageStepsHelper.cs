@@ -65,5 +65,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
             var recruitmentHomePage = GoToRecruitmentProviderHomePage(newTab);
             return recruitmentHomePage.GoToChangeYourSignInDetailsPage();
         }
+
+       
     }
 }
