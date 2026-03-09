@@ -13,7 +13,7 @@ public class HomePage : InterimHomeBasePage
     private static By ContinueTo => By.LinkText("Continue");
     private static By SetUpAnApprenticeshipSectionHeader => By.Id("set-up-an-apprenticeship");
     protected static By FinancesSectionHeading => By.XPath("//h2[text()='Finances']");
-    protected static By YourFinancesLink => By.LinkText("Your finances");
+    protected static By YourFinancesLink => By.LinkText("Funding and payments");
     protected static By AANLink => By.LinkText("Join the Apprentice Ambassador Network");
     private static By TransferRequestViewDetailsLink => By.XPath("//li[contains(span, 'Transfer request received')]/span/a[text()='View details']");
     private static By TransferConnectionRequestViewDetailsLink => By.XPath("//li[contains(span, 'connection requests to review')]/span/a[text()='View details']");
