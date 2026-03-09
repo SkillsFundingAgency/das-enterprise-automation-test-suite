@@ -4,7 +4,7 @@ namespace SFA.DAS.Live.SmokeTests.Project.Tests.Pages;
 
 public class LiveHomePage(ScenarioContext context) : HomePage(context)
 {
-    private static By HeaderSelector => By.CssSelector(".govuk-header__container a[href*='www.gov.uk']");
+    private static By HeaderSelector => By.CssSelector(".rebranded-one-login-header__link.rebranded-one-login-header__link--homepage");
 
     private static By LauncherIframe => By.CssSelector("iframe[id='launcher']");
 
