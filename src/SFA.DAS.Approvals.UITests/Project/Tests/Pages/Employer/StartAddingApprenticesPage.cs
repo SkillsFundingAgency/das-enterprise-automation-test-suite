@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class StartAddingApprenticesPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Start adding apprentices";
+        protected override string PageTitle => "How would you like to add learners?";
         protected override bool TakeFullScreenShot => false;
         protected override By ContinueButton => By.Id("continue-button");
         private static By MessageBox => By.Name("message");
@@ -29,13 +29,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private StartAddingApprenticesPage EmployerAgreesToAdds()
         {
-            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I will add apprentices");
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Add them myself");
             return this;
         }
 
         private StartAddingApprenticesPage EmployerSendsToProviderToAdd()
         {
-            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "I would like my training provider to add apprentices");
+            formCompletionHelper.SelectRadioOptionByText(RadioLabels, "Send a request to my training provider");
             return this;
         }
 
