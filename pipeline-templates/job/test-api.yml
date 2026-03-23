@@ -9,6 +9,7 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   environment: TEST_SUITE
+  timeoutInMinutes: 90
   strategy:
     runOnce:
       deploy:
