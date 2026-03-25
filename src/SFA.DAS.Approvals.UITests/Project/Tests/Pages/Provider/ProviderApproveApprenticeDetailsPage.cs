@@ -8,7 +8,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Approve apprentice details" : $"Approve {x} apprentices' details")
+    // The count on the scrrens are about to introduce in next following sprints so commented to reuse this 
+    //public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Check apprentice details" : $"Check {x} apprentices' details")
+    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "Check apprentice details")
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
@@ -26,9 +28,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private static By InsertText => By.CssSelector(".govuk-inset-text");
 
+        private static By RplConfirmationCheckbox => By.XPath("//input[@id='rplVerified']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        protected override string AccessibilityPageTitle => "Provider approve apprentice details";
+        protected override string AccessibilityPageTitle => "Provider check apprentice details";
 
         internal ProviderAddApprenticeDetailsHow SelectAddAnApprenticeUsingReservation()
         {
@@ -167,10 +170,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private void SelectOption(string option, bool sendMessageToEmployer = true)
         {
+            formCompletionHelper.SelectCheckbox(RplConfirmationCheckbox);
+
             formCompletionHelper.SelectRadioOptionByForAttribute(RadioLabels, option);
 
             if (sendMessageToEmployer) formCompletionHelper.EnterText(MessageBox, apprenticeDataHelper.MessageToEmployer);
-
+           
             Continue();
         }
 
