@@ -9,7 +9,7 @@ namespace SFA.DAS.Courses.APITests.Project
     {
         protected override string ApiBaseUrl => UrlConfig.InnerApiUrlConfig.Inner_CoursesApiBaseUrl;
 
-        protected override string AppServiceName => $"{config.config.CoursesAppServiceName}-ar";
+        protected override string AppServiceName => $"{config.config.CoursesAppServiceName}";
 
         public void PerformHeathCheck(string endpoint, HttpStatusCode expectedResponse)
         {
