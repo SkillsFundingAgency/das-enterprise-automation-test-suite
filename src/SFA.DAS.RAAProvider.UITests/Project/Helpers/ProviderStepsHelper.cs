@@ -15,7 +15,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
         internal void ApplicantWithdrawn() => StepsHelper.ApplicantWithdrawn(SearchVacancyByVacancyReference());
         internal void ShareMutipleApplicants() => StepsHelper.MultiShareApplicants(SearchVacancyByVacancyReference());
 
-        internal void ApplicantShared() => StepsHelper.ApplicantShared(SearchVacancyByVacancyReference());
+        public void ApplicantShared() => StepsHelper.ApplicantShared(SearchVacancyByVacancyReference());
 
         internal void ApplicantUnsucessful() => StepsHelper.ApplicantUnsucessful(SearchVacancyByVacancyReference());
         internal void MutipleApplicantsUnsucessful() => StepsHelper.MultiApplicantsUnsucessful(SearchVacancyByVacancyReference());

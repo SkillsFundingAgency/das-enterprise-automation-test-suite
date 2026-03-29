@@ -30,5 +30,8 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
 
         public ApiListPage VerifyDisplayApiText() =>
             new ApiListPage(context).VerifyDisplayAdvertApiText();
+
+        public ReportsDashboardPage GenerateReports() =>
+                        GoToRecruitmentHomePage(false).NavigateToReports().ClickCreateNewReportLink().SelectTimePeriodAndContinue().VerifyCSVDownloadLink();
     }
 }

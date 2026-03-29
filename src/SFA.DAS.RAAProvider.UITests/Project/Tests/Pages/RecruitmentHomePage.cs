@@ -25,8 +25,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
         private static By ApprenticeRequestsLink => By.XPath("//a[normalize-space()=‘Apprentice requests’]");
         private static By ManageFundingLink => By.XPath("//a[normalize-space()=‘Manage funding’]");
         private static By MoreLink => By.LinkText("More");
-
-
+        private static By ReportsLink => By.LinkText("Reports");
 
         public ViewAllVacancyPage GoToViewAllVacancyPage()
         {
@@ -39,6 +38,13 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
             formCompletionHelper.Click(RecruitmentAPIsLink);
 
             return new GetStartedWithRecruitmentAPIsPage(context);
+        }
+
+        public ReportsDashboardPage NavigateToReports()
+        {
+            formCompletionHelper.Click(ReportsLink);
+
+            return new ReportsDashboardPage(context);
         }
 
         public ProviderVacancySearchResultPage GoToYourAdvertFromDraftAdverts()

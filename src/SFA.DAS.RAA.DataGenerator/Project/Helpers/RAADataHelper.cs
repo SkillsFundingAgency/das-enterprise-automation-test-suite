@@ -110,7 +110,7 @@ namespace SFA.DAS.RAA.DataGenerator
 
         private static string WebsiteUrl(string url) => $"https://www.gov.uk/apply-apprenticeship";
 
-        private static List<string> AvailableProviders => ["BALTIC TRAINING SERVICES LIMITED (10019026)"];
+        private static List<string> AvailableProviders => ["SMART TRAINING AND RECRUITMENT LIMITED (10005927)"];
 
         private static List<string> AvailableAddress => ["SW1H 9NA", "SW1A 2AA", "SE1 8UG", "E14 4PU", "SW1A 1AA", "SW1P 3BT"];
     }

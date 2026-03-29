@@ -27,5 +27,8 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.StepDefinitions
 
         [Then(@"the Reviewer verifies disability confident and approves the vacancy")]
         public void ThenTheReviewerVerifiesDisabilityConfidentAndApprovesTheVacancy() => _reviewerStepsHelper.VerifyDisabilityConfidenceAndApprove(false);
+
+        [Then(@"the Reviewer is able to generate reports")]
+        public void ThenTheReviewerIsAbleToGenerateReports() => reviewer_HomePage.NavigateToReports().ClickCreateNewReportLinkQA().ChooseTimePeriodAndContinue().VerifyCSVDownloadLinkQA();
     }
 }

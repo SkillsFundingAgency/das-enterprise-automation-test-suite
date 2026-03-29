@@ -56,6 +56,12 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.StepDefinitions
                     userEmail = providerEmail;
                     break;
 
+                case ("approved vacancy", "provider"):
+                    emailText = "DfE has approved this vacancy. It’s now live on Find an apprenticeship.";
+                    subject = $"Approved by DfE: {vacancyTitleDataHelper.VacancyTitle} apprenticeship is now live on Find an apprenticeship";
+                    userEmail = providerEmail;
+                    break;
+
                 case ("new application", "applicant"):
                     emailText = "We’ve received your application for:";
                     subject = $"Application submitted: {vacancyTitleDataHelper.VacancyTitle} apprenticeship";
