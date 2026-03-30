@@ -21,8 +21,7 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         protected void DraftVacancy()
         {
-            formCompletionHelper.SelectFromDropDownByValue(Filter, "Draft");
-            pageInteractionHelper.WaitforURLToChange($"Filter=Draft");
+            pageInteractionHelper.WaitforURLToChange($"/vacancies/draft/");
             formCompletionHelper.EnterText(SearchInput, vacancyTitleDataHelper.VacancyTitle);
             formCompletionHelper.Click(SearchButton);
             tableRowHelper.SelectRowFromTable("Edit and submit", vacancyTitleDataHelper.VacancyTitle);

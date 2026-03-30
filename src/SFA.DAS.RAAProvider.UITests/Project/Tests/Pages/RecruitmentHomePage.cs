@@ -17,7 +17,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
         private readonly SearchVacancyPageHelper _searchVacancyPageHelper = new(context);
         #endregion
 
-        private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/?filter=All']");
+        private By ViewAllVacancy => By.CssSelector($"a[href='/{ukprn}/vacancies/all/']");
         private static By RecruitmentAPIsLink => By.LinkText("Recruitment APIs");
         protected static By ReferredVacancyActionSelector => By.CssSelector("[id^='task-list']");
         private static By VacancyNotificationLink => By.LinkText("Notification settings");
@@ -25,8 +25,13 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
         private static By ApprenticeRequestsLink => By.XPath("//a[normalize-space()=‘Apprentice requests’]");
         private static By ManageFundingLink => By.XPath("//a[normalize-space()=‘Manage funding’]");
         private static By MoreLink => By.LinkText("More");
+        private static By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
 
-
+        public CreateAVacancyPage CreateVacancy()
+        {
+            formCompletionHelper.Click(CreateVacancyLink);
+            return new CreateAVacancyPage(context);
+        }
 
         public ViewAllVacancyPage GoToViewAllVacancyPage()
         {
@@ -41,10 +46,10 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
             return new GetStartedWithRecruitmentAPIsPage(context);
         }
 
-        public ProviderVacancySearchResultPage GoToYourAdvertFromDraftAdverts()
+        public ProviderDraftVacanciesListPage GoToYourAdvertFromDraftAdverts()
         {
             formCompletionHelper.ClickLinkByText("Draft vacancies");
-            return new ProviderVacancySearchResultPage(context);
+            return new ProviderDraftVacanciesListPage(context);
         }
 
         public ProviderVacancySearchResultPage SearchVacancyByVacancyReference() => _searchVacancyPageHelper.SearchVacancyByVacancyReference();

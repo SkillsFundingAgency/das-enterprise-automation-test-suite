@@ -112,6 +112,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
                 new RecruitmentProviderHomePageStepsHelper(context)
                 .GoToRecruitmentProviderHomePage(newTab)
                 .GoToViewAllVacancyPage()
+                .ReturnToDashboard()
                 .CreateVacancy()
                 .StartNow()
                 .SelectEmployer(_hashedid);

@@ -6,18 +6,14 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 {
     public class ViewAllVacancyPage(ScenarioContext context) : RaaBasePage(context, true)
     {
-        protected override string PageTitle => "Your vacancies";
+        protected override string PageTitle => "All vacancies";
+        private static By ReturnToDashboardLink => By.CssSelector(".govuk-back-link");
 
-        private static By CreateVacancyLink => By.CssSelector("a[data-automation='create-vacancy']");
-        private static By SearchBox => By.CssSelector("div.das-autocomplete-wrap");
-
-        public CreateAVacancyPage CreateVacancy()
+        public RecruitmentHomePage ReturnToDashboard()
         {
-            if (pageInteractionHelper.IsElementDisplayed(SearchBox))
-            {
-                formCompletionHelper.Click(CreateVacancyLink);
-            }
-            return new CreateAVacancyPage(context);
+            formCompletionHelper.Click(ReturnToDashboardLink);
+            return new RecruitmentHomePage(context);
         }
+
     }
 }
