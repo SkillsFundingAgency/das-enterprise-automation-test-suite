@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class StopApprenticeshipPage(ScenarioContext context) : ChangeApprenticeStatus(context)
     {
-        protected override string PageTitle => "Confirm apprenticeship stop";
+        protected override string PageTitle => "Confirm training stop";
 
         protected override bool TakeFullScreenShot => false;
 

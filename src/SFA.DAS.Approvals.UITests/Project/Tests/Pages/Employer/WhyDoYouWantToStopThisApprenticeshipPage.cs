@@ -6,18 +6,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public enum StopApprentice
     {
-        [ToString("Apprentice left my employment")]
+        [ToString("learner left my employment")]
         LeftEmployer = 0,
         [ToString("Change to training provider")]
         ChangeTrainingProvider = 1,
-        [ToString("Apprentice has withdrawn from training")]
+        [ToString("Learner has withdrawn from training")]
         Withdrawn = 2
     }
 
 
     public class WhyDoYouWantToStopThisApprenticeshipPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Why do you want to stop this apprenticeship?";
+        protected override string PageTitle => "Why do you want to stop this training?";
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
         public ThisApprenticeshipTrainingStopPage SelectedReasonToStop(StopApprentice reason)
