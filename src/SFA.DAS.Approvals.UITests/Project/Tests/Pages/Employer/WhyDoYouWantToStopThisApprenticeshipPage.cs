@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public enum StopApprentice
     {
-        [ToString("learner left my employment")]
+        [ToString("Learner left my employment")]
         LeftEmployer = 0,
         [ToString("Change to training provider")]
         ChangeTrainingProvider = 1,
