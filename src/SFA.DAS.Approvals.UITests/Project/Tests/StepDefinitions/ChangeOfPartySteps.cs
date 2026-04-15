@@ -224,9 +224,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"stop apprentice record during CoP journey")]
         public void ThenStopApprenticeRecordDuringCoPJourney()
         {
-            string firstWarning = "You need to stop the training record with the current training provider before you can change training providers.";
+            string firstWarning = "You need to stop the learner record with the current training provider before you can change training providers.";
             string secondWarning = "This training record cannot be restarted once stopped";
-            string finalMessage = $"We've stopped {_dataHelper.ApprenticeFullName}'s training record with their current training provider.";
+            string finalMessage = $"We've stopped {_dataHelper.ApprenticeFullName}'s learner record with their current training provider.";
 
             new ApprenticeDetailsPage(_context)
                               .ClickOnChangeOfProviderLink()
