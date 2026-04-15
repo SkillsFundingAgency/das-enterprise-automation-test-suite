@@ -4,35 +4,34 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ManageYourApprenticesPage : ApprovalsApprenticeBasePage
+    public class ManageYourLearnersPage : ApprovalsApprenticeBasePage
     {
-        private readonly ScenarioContext _context;
         private readonly ManageYourApprenticePageHelper manageYourApprenticePageHelper;
 
-        public ManageYourApprenticesPage(ScenarioContext context) : base(context)
+        public ManageYourLearnersPage(ScenarioContext context) : base(context)
         {
-            _context = context;
             manageYourApprenticePageHelper = new ManageYourApprenticePageHelper(context);
         }
-
-        protected override string PageTitle => "Manage your apprentices";
+        protected override string PageTitle => "Manage your";
 
         protected override bool TakeFullScreenShot => false;
 
         private static By ApplyFilter => By.CssSelector("#main-content .govuk-button");
 
+        
+
         public ApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
         {
             manageYourApprenticePageHelper.SelectViewLiveApprenticeDetails(apprenticeDataHelper.ApprenticeFullName);
 
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
 
         public FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
         {
             DoesApprenticeExists(apprenticeName);
 
-            return new FilteredManageYourApprenticesPage(_context);
+            return new FilteredManageYourApprenticesPage(context);
         }
 
         public void VerifyApprenticeExists() => DoesApprenticeExists(editedApprenticeDataHelper.ApprenticeEditedFullName);
@@ -43,7 +42,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             formCompletionHelper.ClickElement(ApplyFilter);
 
-            return new ManageYourLearnersPage(_context);
+            return new ManageYourLearnersPage(context);
         }
 
         internal ApprenticeDetailsPage SelectApprentices(string status)
@@ -52,14 +51,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             tableRowHelper.SelectRowFromTable(apprenticeDataHelper.ApprenticeFullName, status);
 
-            return new ApprenticeDetailsPage(_context);
+            return new ApprenticeDetailsPage(context);
         }
 
         internal ManageYourLearnersPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
         {
             manageYourApprenticePageHelper.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
 
-            return new ManageYourLearnersPage(_context);
+            return new ManageYourLearnersPage(context);
         }
 
         public bool DownloadFilteredDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadFilteredDataLinkIsDisplayed();

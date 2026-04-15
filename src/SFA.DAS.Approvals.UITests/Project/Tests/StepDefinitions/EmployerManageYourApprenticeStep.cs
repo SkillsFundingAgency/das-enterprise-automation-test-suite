@@ -9,16 +9,24 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 {
     [Binding]
-    public class EmployerManageYourApprenticeStep(ScenarioContext context)
+    public class EmployerManageYourApprenticeStep
     {
-        private readonly EmployerPortalLoginHelper _loginHelper = new(context);
+        private readonly ScenarioContext _context;
+        private readonly EmployerPortalLoginHelper _loginHelper;
         private ManageYourLearnersPage _manageYourApprenticesPage;
-        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
+        private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
+
+        public EmployerManageYourApprenticeStep(ScenarioContext context)
+        {
+            _context = context;
+            _loginHelper = new EmployerPortalLoginHelper(context);
+            _apprenticeHomePageStepsHelper = new ApprenticeHomePageStepsHelper(context);
+        }
 
         [Given(@"An employer has navigated to Manage your apprentice page")]
         public void AnEmployerHasNavigatedToManageYourApprenticePage()
         {
-            _loginHelper.Login(context.GetUser<LevyUser>(), true);
+            _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
             _manageYourApprenticesPage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
         }
