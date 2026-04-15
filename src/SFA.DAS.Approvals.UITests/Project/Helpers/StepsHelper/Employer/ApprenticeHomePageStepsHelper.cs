@@ -3,7 +3,7 @@ using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using TechTalk.SpecFlow;
-using ManageYourApprenticesPage = SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer.ManageYourApprenticesPage;
+using ManageYourLearnersPage = SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer.ManageYourLearnersPage;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
 
-        public ManageYourApprenticesPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
+        public ManageYourLearnersPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
           
         public AddAnApprenitcePage GoToAddAnApprenticePage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickAddAnApprentice();
 
