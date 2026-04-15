@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ManageYourApprenticesPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
+    public class ManageYourLearnersPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
     {
-        protected override string PageTitle => "Manage your apprentices";
+        protected override string PageTitle => "Manage your learners";
 
         protected override bool TakeFullScreenShot => false;
 
@@ -30,13 +30,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void VerifyApprenticeExists() => DoesApprenticeExists(editedApprenticeDataHelper.ApprenticeEditedFullName);
 
-        public ManageYourApprenticesPage Filter(string dropDownSelector, string filterText)
+        public ManageYourLearnersPage Filter(string dropDownSelector, string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(By.Id(dropDownSelector), filterText);
 
             formCompletionHelper.ClickElement(ApplyFilter);
 
-            return new ManageYourApprenticesPage(context);
+            return new ManageYourLearnersPage(context);
         }
 
         internal ApprenticeDetailsPage SelectApprentices(string status)
@@ -48,11 +48,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(context);
         }
 
-        internal ManageYourApprenticesPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
+        internal ManageYourLearnersPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
         {
             manageYourApprenticePageHelper.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
 
-            return new ManageYourApprenticesPage(context);
+            return new ManageYourLearnersPage(context);
         }
 
         public bool DownloadFilteredDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadFilteredDataLinkIsDisplayed();
