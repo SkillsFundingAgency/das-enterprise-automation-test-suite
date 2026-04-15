@@ -1,10 +1,11 @@
-﻿using OpenQA.Selenium;
+﻿using DnsClient;
+using OpenQA.Selenium;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class StopApprenticeshipPage(ScenarioContext context) : ChangeApprenticeStatus(context)
+    public class ConfirmTrainingStopPage(ScenarioContext context) : ChangeApprenticeStatus(context)
     {
         protected override string PageTitle => "Confirm training stop";
 
@@ -25,13 +26,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeshipRecordStoppedPage(context);
         }
 
-        public StopApprenticeshipPage SelectYesandConfirmForANonStartedApprentice()
+        public ConfirmTrainingStopPage SelectYesandConfirmForANonStartedApprentice()
         {
             ConfirmChangesAndContinue();
-            return new StopApprenticeshipPage(context);
+            return new ConfirmTrainingStopPage(context);
         }
 
-        private StopApprenticeshipPage ConfirmChangesAndContinue()
+        private ConfirmTrainingStopPage ConfirmChangesAndContinue()
         {
             base.SelectYesAndConfirm();
             return this;
