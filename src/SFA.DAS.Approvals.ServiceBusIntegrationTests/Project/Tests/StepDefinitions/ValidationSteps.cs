@@ -20,7 +20,7 @@ namespace SFA.DAS.Approvals.ServiceBusIntegrationTests.Project.Tests.StepDefinit
         {
             string expectedCompletionDate = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year;
 
-            ApprenticeDetailsPage apprenticeDetailsPage = new ManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails();
+            ApprenticeDetailsPage apprenticeDetailsPage = new ManageYourLearnersPage(context).SelectViewCurrentApprenticeDetails();
 
             apprenticeDetailsPage.VerifyApprenticeshipStatus("Completed");
 

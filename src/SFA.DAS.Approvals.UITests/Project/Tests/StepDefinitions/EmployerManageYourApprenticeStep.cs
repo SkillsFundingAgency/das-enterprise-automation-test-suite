@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class EmployerManageYourApprenticeStep(ScenarioContext context)
     {
         private readonly EmployerPortalLoginHelper _loginHelper = new(context);
-        private ManageYourApprenticesPage _manageYourApprenticesPage;
+        private ManageYourLearnersPage _manageYourApprenticesPage;
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
 
         [Given(@"An employer has navigated to Manage your apprentice page")]
