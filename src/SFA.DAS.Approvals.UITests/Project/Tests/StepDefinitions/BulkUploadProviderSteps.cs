@@ -164,7 +164,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             string expectedStatus1 = "LIVE";
             string expectedStatus2 = "WAITING TO START";
 
-            ProviderManageYourApprenticesPage providerManageYourApprenticesPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage();
+            ProviderManageYourLearnersPage providerManageYourApprenticesPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage();
 
             foreach (var apprentice in apprenticeList)
             {

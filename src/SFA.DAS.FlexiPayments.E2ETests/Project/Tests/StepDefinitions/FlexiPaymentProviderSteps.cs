@@ -8,7 +8,7 @@ using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
-using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageYourApprenticesPage;
+using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageYourLearnersPage;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 {
@@ -122,7 +122,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             SetApprenticeDetailsInContext(learnerNumber);
 
-            new ProviderManageYourApprenticesPage(context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
+            new ProviderManageYourLearnersPage(context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
         }
 
         [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]

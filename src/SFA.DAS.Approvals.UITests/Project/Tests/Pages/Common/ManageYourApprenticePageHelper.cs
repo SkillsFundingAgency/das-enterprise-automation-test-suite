@@ -94,7 +94,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             Assert.That(filteredApprenticesOnPage.Count, Is.EqualTo(apprenticeCountinCsv), $"Downloaded '{downloadedFileName}' csv count mismatch");
         }
 
-        private FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
+        private FilteredManageYourLearnersPage SearchForApprentice(string apprenticeName)
         {
             // Search bar will not be displayed if there are less than 10 apprentice in the table
             if (pageInteractionHelper.IsElementDisplayed(ApprenticeSearchField))
@@ -104,7 +104,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
                 formCompletionHelper.ClickElement(SearchButton);
             }
 
-            return new FilteredManageYourApprenticesPage(context);
+            return new FilteredManageYourLearnersPage(context);
         }
 
     }
