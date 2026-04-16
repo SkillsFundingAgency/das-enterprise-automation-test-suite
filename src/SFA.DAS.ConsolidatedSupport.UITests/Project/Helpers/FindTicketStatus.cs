@@ -9,5 +9,6 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
         public static bool IsOnHold(this string status) => status.CompareToIgnoreCase("On-Hold");
         public static bool IsPending(this string status) => status.CompareToIgnoreCase("Pending");
         public static bool IsSolved(this string status) => status.CompareToIgnoreCase("Solved");
+        public static bool IsIgnored(this string status) => status.CompareToIgnoreCase("Ignored");
     }
 }

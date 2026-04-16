@@ -16,6 +16,7 @@ namespace SFA.DAS.ConsolidatedSupport.UITests.Project.Helpers
             Subject = $"Zendesk UI Testing {CanBeDeleted} {Guid.NewGuid()}_{_suffix}";
 
             CommentBody = $"{CanBeDeleted} created on {_suffix}";
+            LoggingHelper.LogInfo($"Subject: {Subject}");
         }
 
         private static readonly string Comment = $" {CanBeDeleted}, Comment - Submit as";
