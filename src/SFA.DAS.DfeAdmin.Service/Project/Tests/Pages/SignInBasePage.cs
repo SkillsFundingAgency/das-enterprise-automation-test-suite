@@ -89,7 +89,19 @@ public abstract class SignInBasePage(ScenarioContext context) : IdamsLoginBasePa
         {
             context.Get<RetryAssertHelper>().RetryOnDfeSignMFAAuthCode(() =>
             {
-                var codes = context.Get<MailosaurApiHelper>().GetDfeMfaCodes(email, "Your DfE Sign-in (PREPROD) account verification code", "Account verification code:");
+                MailosaurApiHelper mailosaurHelper;
+
+                try
+                {
+                    mailosaurHelper = context.Get<MailosaurApiHelper>();
+                }
+                catch (KeyNotFoundException)
+                {
+                    mailosaurHelper = new MailosaurApiHelper(context);
+                    context.Set(mailosaurHelper);
+                }
+
+                var codes = mailosaurHelper.GetDfeMfaCodes(email, "Your DfE Sign-in (PREPROD) account verification code", "Account verification code:");
 
                 SetDebugInformation($"Used codes are ({usedCodes.Select(x => $"'{x}'").ToString(",")})");
 

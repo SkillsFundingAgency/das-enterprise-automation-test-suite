@@ -15,6 +15,8 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
 
         private static By RejectedReason => By.CssSelector("textarea#RejectedReason");
 
+        private static By SignoutButton => By.CssSelector("a[href=\"/signout/\"]");
+
         public AreYouSureYouWantToSubmitPage SubmitAdvert()
         {
             SelectRadioOptionByText("Submit advert to DfE for checking and publication");
@@ -39,6 +41,11 @@ namespace SFA.DAS.RAA.Service.Project.Tests.Pages
         {
             formCompletionHelper.Click(ResubmitVacancyToEmployerButton);
             return new VacancyReferencePage(context);
+        }
+
+        public void ClickSigoutButton()
+        {
+            formCompletionHelper.Click(SignoutButton);
         }
 
         public string GetNotificationBanner() => pageInteractionHelper.GetText(NotificationBanner);

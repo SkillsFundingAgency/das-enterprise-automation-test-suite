@@ -91,6 +91,8 @@ namespace SFA.DAS.RAAEmployer.UITests.Project.Tests.StepDefinitions
             var vacancyReferencePage = page.ResubmitVacancyToEmployer();
 
             ConfirmationMessage(vacancyReferencePage, "Vacancy resubmitted to employer");
+
+            page.ClickSigoutButton();
         }
 
         [When(@"the Employer approves the advert")]
