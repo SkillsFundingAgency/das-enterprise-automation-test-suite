@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ThisApprenticeshipTrainingStopPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "When did this training stop?";
+        protected override string PageTitle => "When did this apprenticeship training stop?";
 
         protected override bool TakeFullScreenShot => false;
 
