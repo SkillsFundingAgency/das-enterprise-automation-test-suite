@@ -22,10 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected static By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
         protected static By TermsOfUseFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Terms of use']");
 
-        public ProviderManageYourApprenticesPage GoToProviderManageYourApprenticePage()
+        public ProviderManageYourLearnerPage GoToProviderManageYourApprenticePage()
         {
             formCompletionHelper.ClickElement(ProviderManageYourApprenticesLink);
-            return new ProviderManageYourApprenticesPage(context);
+            return new ProviderManageYourLearnerPage(context);
         }
 
         public ProviderNotificationSettingsPage GoToProviderNotificationSettingsPage()
