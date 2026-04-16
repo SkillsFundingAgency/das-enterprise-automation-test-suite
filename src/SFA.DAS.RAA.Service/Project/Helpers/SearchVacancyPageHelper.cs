@@ -27,7 +27,7 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
         public ManageRecruitPage SelectLiveVacancy()
         {
             _formCompletionHelper.ClickLinkByText("Live vacancies");
-            _pageInteractionHelper.WaitforURLToChange($"filter=Live");
+            _pageInteractionHelper.WaitforURLToChange($"/vacancies/live/");
             _formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(ProviderManage)));
             return new ManageRecruitPage(context);
         }
@@ -35,7 +35,7 @@ namespace SFA.DAS.RAA.Service.Project.Helpers
         public ManageRecruitPage SelectLiveAdvert()
         {
             _formCompletionHelper.ClickLinkByText("Live adverts");
-            _pageInteractionHelper.WaitforURLToChange($"filter=Live");
+            _pageInteractionHelper.WaitforURLToChange($"/vacancies/live");
             _formCompletionHelper.ClickElement(RandomDataGenerator.GetRandomElementFromListOfElements(_pageInteractionHelper.FindElements(Manage)));
             return new ManageRecruitPage(context);
         }
