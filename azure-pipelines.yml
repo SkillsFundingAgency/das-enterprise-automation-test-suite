@@ -11,6 +11,7 @@ workspace:
 
 variables:
   buildConfiguration: 'release'
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 resources:
   repositories:
@@ -31,6 +32,7 @@ steps:
   inputs:
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
+  condition: eq(variables.isMaster, true)
 
 - task: DotNetCoreCLI@2
   displayName: dotnet unit test
