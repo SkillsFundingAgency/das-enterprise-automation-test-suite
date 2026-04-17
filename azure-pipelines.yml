@@ -2,7 +2,9 @@ trigger:
   batch: true
   branches:
     include:
-      - "*"
+      - master
+    
+pr: none
 
 workspace:
     clean: all

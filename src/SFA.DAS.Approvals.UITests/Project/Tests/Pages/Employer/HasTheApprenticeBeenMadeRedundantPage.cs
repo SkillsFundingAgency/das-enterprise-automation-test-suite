@@ -20,13 +20,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.Id("submit");
 
-        public StopApprenticeshipPage ClickARadioButtonAndContinue()
+        public ConfirmTrainingStopPage ClickARadioButtonAndContinue()
         {
             List<string> RadioButtonList = ["Yes", "No"];
             _dataHelper.MadeRedundant = RadioButtonList[new Random().Next(RadioButtonList.Count)];
             formCompletionHelper.SelectRadioOptionByText(_dataHelper.MadeRedundant);
             Continue();
-            return new StopApprenticeshipPage(context);
+            return new ConfirmTrainingStopPage(context);
         }
     }
 }

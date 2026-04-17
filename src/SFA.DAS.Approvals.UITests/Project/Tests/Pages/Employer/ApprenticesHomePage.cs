@@ -43,10 +43,10 @@ public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHo
         return new ApprenticeRequestsPage(context);
     }
 
-    public ManageYourApprenticesPage ClickManageYourApprenticesLink()
+    public ManageYourLearnersPage ClickManageYourApprenticesLink()
     {
         formCompletionHelper.ClickElement(ManageYourApprenticesLink);
-        return new ManageYourApprenticesPage(context);
+        return new ManageYourLearnersPage(context);
     }
 
     internal InterimFinanceHomePage GoToFinancePage() => new(context, true);

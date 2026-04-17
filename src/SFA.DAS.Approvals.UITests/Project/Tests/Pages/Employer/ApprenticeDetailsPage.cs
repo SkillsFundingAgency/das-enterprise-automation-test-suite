@@ -30,7 +30,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By OverlappingTrainingDateRequestLink => By.CssSelector("#overlapping-trainingDate-requests-link");
         private static By ChangePriceLink => By.Id("linkChangeApprenticeshipPrice");
         private static By ChangeOptionLink => By.Id("change-option-link");
-        private static By ChangeVersionLink => By.XPath("/html/body/div[2]/main/div/div/table[3]/tbody/tr[2]/td[2]/a");
+        private static By ChangeVersionLink => By.XPath("/html/body/div[2]/main/div/div/table[3]/tbody/tr[3]/td[2]/a");
         private static By PriceChangePendingBanner => By.Id("price-change-pending-banner");
         private static By StartDateChangePendingBanner => By.Id("start-date-change-pending-banner");
         private static By ViewPendingStartDateChangeLinkBanner => By.Id("linkViewPendingStartDateBanner");
