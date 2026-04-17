@@ -175,7 +175,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed(), "Validate that CoE link is not available for the old provider after successful CoP");
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => new ProviderManageYourApprenticesPage(_context, true).SelectViewCurrentApprenticeDetails();
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => new ProviderManageYourLearnersPage(_context, true).SelectViewCurrentApprenticeDetails();
 
         private static void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {

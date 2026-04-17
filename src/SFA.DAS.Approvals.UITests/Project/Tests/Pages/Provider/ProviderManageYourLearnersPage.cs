@@ -7,9 +7,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderManageYourApprenticesPage : Navigate
+    public class ProviderManageYourLearnersPage : Navigate
     {
-        protected override string PageTitle => "Manage your apprentices";
+        protected override string PageTitle => "Manage your learners";
 
         protected override string Linktext => "Manage your apprentices";
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
 
-        public ProviderManageYourApprenticesPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public ProviderManageYourLearnersPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
 
@@ -38,11 +38,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         private bool DoesApprenticeExists(string name) => manageYourApprenticePageHelper.DoesApprenticeExists(name);
 
-        public FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
+        public FilteredManageYourLearnersPage SearchForApprentice(string apprenticeName)
         {
             DoesApprenticeExists(apprenticeName);
 
-            return new FilteredManageYourApprenticesPage(context);
+            return new FilteredManageYourLearnersPage(context);
         }
 
         public ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails()
@@ -52,7 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeDetailsPage(context);
         }
 
-        public ProviderManageYourApprenticesPage FilterPagination(string filterText)
+        public ProviderManageYourLearnersPage FilterPagination(string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
 
@@ -65,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        public ProviderManageYourApprenticesPage Filter(string dropDownSelector, string filterText)
+        public ProviderManageYourLearnersPage Filter(string dropDownSelector, string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(By.Id(dropDownSelector), filterText);
 
@@ -74,11 +74,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        internal ProviderManageYourApprenticesPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
+        internal ProviderManageYourLearnersPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
         {
             manageYourApprenticePageHelper.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
 
-            return new ProviderManageYourApprenticesPage(context);
+            return new ProviderManageYourLearnersPage(context);
         }
 
         public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount();

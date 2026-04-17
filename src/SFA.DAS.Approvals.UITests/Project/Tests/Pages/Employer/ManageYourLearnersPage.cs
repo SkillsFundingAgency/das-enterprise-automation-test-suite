@@ -21,11 +21,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ApprenticeDetailsPage(context);
         }
 
-        public FilteredManageYourApprenticesPage SearchForApprentice(string apprenticeName)
+        public FilteredManageYourLearnersPage SearchForApprentice(string apprenticeName)
         {
             DoesApprenticeExists(apprenticeName);
 
-            return new FilteredManageYourApprenticesPage(context);
+            return new FilteredManageYourLearnersPage(context);
         }
 
         public void VerifyApprenticeExists() => DoesApprenticeExists(editedApprenticeDataHelper.ApprenticeEditedFullName);
