@@ -159,10 +159,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderAccessDeniedPage(context);
         }
 
-        public ProviderFundingForNonLevyEmployersPage GoToManageYourFunding()
+        public ProviderYourFundingReservationPage GoToManageYourFunding()
         {
             formCompletionHelper.ClickElement(ManageYourFundingLink);
-            return new ProviderFundingForNonLevyEmployersPage(context);
+            return new ProviderYourFundingReservationPage(context);
         }
 
         public ProviderApprenticeRequestsPage GoToApprenticeRequestsPage()

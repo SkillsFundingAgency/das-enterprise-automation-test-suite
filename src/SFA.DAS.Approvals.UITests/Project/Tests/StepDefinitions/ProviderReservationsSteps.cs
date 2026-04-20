@@ -1,4 +1,5 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+﻿using Polly;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
@@ -27,9 +28,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderAccountOwnerUser _accountOwnerUserLogin;
         private ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage;
         private ProviderApproveApprenticeDetailsPage _providerApproveApprenticeDetailsPage;
-        private ProviderFundingForNonLevyEmployersPage _poviderFundingForNonLevyEmployersPage;
+        private ProviderYourFundingReservationPage _poviderFundingForNonLevyEmployersPage;
         private ApprovalsProviderHomePage _approvalsProviderHomePage;
         private ProviderConfirmEmployerPage _providerConfirmEmployerPage;
+        
 
         public ProviderReservationsSteps(ScenarioContext context)
         {

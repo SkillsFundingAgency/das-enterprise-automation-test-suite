@@ -116,10 +116,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
-        public ProviderFundingForNonLevyEmployersPage NavigateBrowserBackToProviderFundingForNonLevyEmployersPage()
+        public ProviderYourFundingReservationPage NavigateBrowserBackToProviderFundingForNonLevyEmployersPage()
         {
             tabHelper.NavigateBrowserBack();
-            return new ProviderFundingForNonLevyEmployersPage(context);
+            return new ProviderYourFundingReservationPage(context);
         }
 
         private new void EnterApprenticeMandatoryValidDetails()

@@ -17,11 +17,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
             return new ReservationSuccessfullyDeletedPage(context);
         }
 
-        internal ProviderFundingForNonLevyEmployersPage NoGoBackToManageReservations()
+        internal ProviderYourFundingReservationPage NoGoBackToManageReservations()
         {
             SelectRadioOptionByForAttribute("Delete-no");
             Continue();
-            return new ProviderFundingForNonLevyEmployersPage(context);
+            return new ProviderYourFundingReservationPage(context);
         }
     }
 }

@@ -18,9 +18,9 @@ public class ProviderAccessDeniedPage : ApprovalsBasePage
         return new ApprovalsProviderHomePage(context);
     }
     
-    public ProviderFundingForNonLevyEmployersPage NavigateBrowserBackToProviderFundingForNonLevyEmployersPage()
+    public ProviderYourFundingReservationPage NavigateBrowserBackToProviderFundingForNonLevyEmployersPage()
     {
         tabHelper.NavigateBrowserBack();
-        return new ProviderFundingForNonLevyEmployersPage(context);
+        return new ProviderYourFundingReservationPage(context);
     }
 }
