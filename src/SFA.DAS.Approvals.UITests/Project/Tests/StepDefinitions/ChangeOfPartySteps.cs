@@ -225,7 +225,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenStopApprenticeRecordDuringCoPJourney()
         {
             string firstWarning = "You need to stop the learner record with the current training provider before you can change training providers.";
-            string secondWarning = "Warning\nThis learner record cannot be restarted once stopped.";
+            string secondWarning = "Warning\r\nThis learner record cannot be restarted once stopped.";
             string finalMessage = $"We've stopped {_dataHelper.ApprenticeFullName}'s learner record with their current training provider.";
 
             new ApprenticeDetailsPage(_context)
