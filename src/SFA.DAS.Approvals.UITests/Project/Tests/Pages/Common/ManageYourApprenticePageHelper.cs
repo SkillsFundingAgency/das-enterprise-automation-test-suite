@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         internal void DoesDownloadFileExistAndValidateRowCount()
         {
-            var downloadedFileName = FileHelper.GetDownloadedFileName("Manageyourapprentices", "csv");
+            var downloadedFileName = FileHelper.GetDownloadedFileName("Manageyourlearners", "csv");
 
             Assert.IsNotEmpty(downloadedFileName);
 
