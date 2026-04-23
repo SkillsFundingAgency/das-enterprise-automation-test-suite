@@ -27,8 +27,26 @@ namespace SFA.DAS.RAAQA.UITests.Project.Tests.Pages.Reviewer
 
         public Reviewer_VacancyPreviewPage ReviewVacancy()
         {
-            formCompletionHelper.EnterText(SearchTerm, objectContext.GetVacancyReference());
-            formCompletionHelper.Click(SearchVacancy);
+            var reviewLocatorPresent =
+                (pageInteractionHelper.FindElements(ReviewLink).Count > 0
+                && pageInteractionHelper.IsElementDisplayed(ReviewLink)
+                && pageInteractionHelper.IsElementPresent(ReviewLink));
+
+            if (!reviewLocatorPresent)
+            {
+                int attempts = 0;
+                const int maxAttempts = 15;
+                do
+                {
+                    formCompletionHelper.EnterText(SearchTerm, objectContext.GetVacancyReference());
+                    formCompletionHelper.Click(SearchVacancy);
+                    attempts++;
+                } while (((pageInteractionHelper.FindElements(ReviewLink).Count) == 0 
+                || !(pageInteractionHelper.IsElementDisplayed(ReviewLink) 
+                && pageInteractionHelper.IsElementPresent(ReviewLink))) 
+                && attempts < maxAttempts);
+            }
+
             formCompletionHelper.Click(ReviewLink);
             return new Reviewer_VacancyPreviewPage(context);
         }
