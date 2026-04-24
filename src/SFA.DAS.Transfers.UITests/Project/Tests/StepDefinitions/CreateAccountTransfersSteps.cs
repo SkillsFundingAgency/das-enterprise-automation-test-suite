@@ -160,7 +160,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(GetAccountDetails(receiver).orgName);
 
-            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
+            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage();
 
             manageYourApprenticePage.VerifyApprenticeExists();
         }

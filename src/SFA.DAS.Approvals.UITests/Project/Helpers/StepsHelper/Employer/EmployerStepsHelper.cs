@@ -60,7 +60,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .ValidateRedundancyStatusAndStopDate();
         }
 
-        public ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage(openInNewTab).SelectViewCurrentApprenticeDetails();
+        public ApprenticeDetailsPage ViewCurrentApprenticeDetails(bool openInNewTab = true) => _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage(openInNewTab).SelectViewCurrentApprenticeDetails();
 
         public EditApprenticeDetailsPage EditApprenticeDetailsPagePostApproval(bool openInNewTab = true) => ViewCurrentApprenticeDetails(openInNewTab).ClickEditApprenticeDetailsLink();
 
@@ -135,14 +135,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         {
             var name = _dataHelper.ApprenticeFullName;
 
-            var actualStatus = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage().SearchForApprentice(name).GetStatus(name);
+            var actualStatus = _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage().SearchForApprentice(name).GetStatus(name);
 
             Assert.AreEqual(actualStatus.ToUpper(), expectedStatus.ToUpper(), "Validate status on Manage Your Apprentices page");
         }
 
         public ChangeOfTrainingProviderRequestedPage StartChangeofNewTrainingProvider()
         {
-            return _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage()
+            return _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage()
                   .SelectViewCurrentApprenticeDetails()
                   .ClickOnChangeOfProviderLink()
                   .ClickOnContinueButton()

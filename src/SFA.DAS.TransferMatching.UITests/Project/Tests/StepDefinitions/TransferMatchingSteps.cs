@@ -787,7 +787,7 @@ public class TransferMatchingSteps
     {
         UpdateOrganisationName(_receiver);
 
-        var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
+        var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage();
 
         manageYourApprenticePage.VerifyApprenticeExists();
     }
