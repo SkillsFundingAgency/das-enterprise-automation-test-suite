@@ -106,13 +106,13 @@ public class HomePage : InterimHomeBasePage
         VerifyElement(cohortsToReviewMessage);
     }
 
-    public ManageYourApprenticesPage ClickViewChangesForApprenticeChangesToReview(int numberOfChanges)
+    public ManageYourLearnersPage ClickViewChangesForApprenticeChangesToReview(int numberOfChanges)
     {
         var linkText = numberOfChanges == 1 ? "change" : "changes";
         var apprenticeChangeToReviewLink = By.XPath($"//a[contains(., 'View') and contains(., 'apprentice') and contains(., '{linkText}')]");
 
         formCompletionHelper.Click(apprenticeChangeToReviewLink);
-        return new ManageYourApprenticesPage(context);
+        return new ManageYourLearnersPage(context);
     }
 
     public ApprenticeRequestsPage ClickViewApprenticeRequestsForApprenticeRequestsToReview(int numberOfChanges)

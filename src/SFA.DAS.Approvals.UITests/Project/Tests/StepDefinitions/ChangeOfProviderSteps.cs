@@ -94,7 +94,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer can only edit start date, end date and Price on the new record")]
         public void ThenEmployerCanOnlyEditStartDateEndDateAndPriceOnTheNewRecord()
         {
-            var editApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage()
+            var editApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage()
                 .SelectApprentices("Live")
                 .ClickEditApprenticeDetailsLink();
 
@@ -148,7 +148,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenPreventEmployerFromRequestingCoPOnTheOriginalApprenticeship()
         {
             bool IsChangeOfProviderLinkDisplayed
-                = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage()
+                = _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage()
                 .SelectApprentices("Stopped")
                 .IsChangeOfProviderLinkDisplayed();
 

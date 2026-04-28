@@ -103,7 +103,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"a new live apprenticeship record is created")]
-        public void ThenANewLiveApprenticeshipRecordIsCreated() => _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage().VerifyApprenticeExists();
+        public void ThenANewLiveApprenticeshipRecordIsCreated() => _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage().VerifyApprenticeExists();
 
         [When(@"new employer rejects the cohort")]
         public void WhenNewEmployerRejectsTheCohort()
@@ -149,7 +149,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             bool IsChangeOfProviderLinkDisplayed
                = _apprenticeHomePageStepsHelper
-               .GoToManageYourApprenticesPage()
+               .GoToManageYourLearnersPage()
                .SelectViewCurrentApprenticeDetails()
                .IsChangeOfProviderLinkDisplayed();
 

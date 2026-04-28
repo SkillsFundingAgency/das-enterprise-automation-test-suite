@@ -289,10 +289,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [Then(@"Employer selects to edit the active apprentice")]
-        public void ThenEmployerSelectsToEditTheActiveApprentice() => _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        public void ThenEmployerSelectsToEditTheActiveApprentice() => _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage().SelectViewCurrentApprenticeDetails();
 
         [When(@"Employer selects to edit the active apprentice")]
-        public void WhenEmployerSelectsToEditTheActiveApprentice() => _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage().SelectViewCurrentApprenticeDetails();
+        public void WhenEmployerSelectsToEditTheActiveApprentice() => _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage().SelectViewCurrentApprenticeDetails();
 
         [Then(@"overlapping training date request banner is displayed")]
         public void ThenOverlappingTrainingDateRequestBannerIsDisplayed()
@@ -355,7 +355,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenEmployerSelectsToStopTheActiveApprentice()
         {
             var apprenticeDetailsPage = _homePageStepsHelper
-                .GoToManageYourApprenticesPage()
+                .GoToManageYourLearnersPage()
                 .SelectViewCurrentApprenticeDetails();
             EmployerStepsHelper.StopApprenticeThisMonth(apprenticeDetailsPage, StopApprentice.LeftEmployer);
         }
@@ -385,7 +385,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenEmployerSelectsToRejectTheOverlappingTrainingDateRequest()
         {
             var apprenticeDetailsPage = _homePageStepsHelper
-               .GoToManageYourApprenticesPage()
+               .GoToManageYourLearnersPage()
                .SelectViewCurrentApprenticeDetails();
             apprenticeDetailsPage
                 .ClickOnChangeOfOverlappingTrainingDateRequestLink()
@@ -419,7 +419,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
             var apprenticeDetailsPage = _homePageStepsHelper
-                .GoToManageYourApprenticesPage()
+                .GoToManageYourLearnersPage()
                 .SelectViewCurrentApprenticeDetails();
             apprenticeDetailsPage
                 .ClickOnChangeOfOverlappingTrainingDateRequestLink()
@@ -440,7 +440,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             var threeMonthOldStartDate = DateTime.UtcNow.AddMonths(-3);
             var apprenticeDetailsPage = _homePageStepsHelper
-                .GoToManageYourApprenticesPage()
+                .GoToManageYourLearnersPage()
                 .SelectViewCurrentApprenticeDetails();
 
             apprenticeDetailsPage

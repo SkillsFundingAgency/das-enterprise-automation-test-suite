@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
 
-        public ManageYourLearnersPage GoToManageYourApprenticesPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
+        public ManageYourLearnersPage GoToManageYourLearnersPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourApprenticesLink();
           
         public AddAnApprenitcePage GoToAddAnApprenticePage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickAddAnApprentice();
 

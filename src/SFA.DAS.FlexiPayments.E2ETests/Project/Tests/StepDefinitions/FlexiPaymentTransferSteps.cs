@@ -113,7 +113,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             UpdateOrganisationName(_receiver);
 
-            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourApprenticesPage();
+            var manageYourApprenticePage = _apprenticeHomePageStepsHelper.GoToManageYourLearnersPage();
 
             manageYourApprenticePage.VerifyApprenticeExists();
         }

@@ -140,7 +140,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void WhenTheEmployerAcceptsTheseChanges()
         {
             _apprenticeHomePageStepsHelper
-                .GoToManageYourApprenticesPage()
+                .GoToManageYourLearnersPage()
                     .SelectViewCurrentApprenticeDetails()
                     .ClickReviewChanges()
                     .SelectApproveChangesAndSubmit();
