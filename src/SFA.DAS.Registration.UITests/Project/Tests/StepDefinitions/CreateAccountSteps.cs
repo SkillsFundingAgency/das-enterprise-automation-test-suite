@@ -170,7 +170,7 @@ public class CreateAccountSteps
     [When(@"Signs the Agreement from Account HomePage Panel")]
     public void WhenSignsTheAgreementFromAccountHomePagePanel() => AccountCreationStepsHelper.SignAgreementFromHomePage(_homePage).ClickOnViewYourAccountButton();
 
-    [Then(@"'Start adding apprentices now' task link is displayed under Tasks pane")]
+    [Then(@"'Start adding learners now' task link is displayed under Tasks pane")]
     public void ThenTaskLinkIsDisplayedUnderTasksPane() => new TasksHomePage(_context).VerifyStartAddingApprenticesNowTaskLink();
 
     [Then(@"'These details are already in use' page is displayed when Another Employer tries to register the account with the same Aorn and Paye details")]
