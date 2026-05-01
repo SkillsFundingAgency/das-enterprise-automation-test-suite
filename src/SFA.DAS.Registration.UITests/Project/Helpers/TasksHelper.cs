@@ -46,7 +46,7 @@ public class TasksHelper(ScenarioContext context)
 
     public static HomePage ClickViewApprenticeRequestsLink(HomePage homePage, int numberOfChanges)
     {
-        return homePage.ClickViewApprenticeRequestsForApprenticeRequestsToReview(numberOfChanges)
+        return homePage.ClickViewLearnerRequestsForLearnerRequestsToReview(numberOfChanges)
             .GoToHomePage();
     }
 

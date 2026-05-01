@@ -65,7 +65,7 @@ public class TasksSteps
     public void ThenDisplayApprenticeChangesToReview()
     {
         var tasks = GetTaskQueryResult();
-        _homePage.VerifyApprenticeChangeToReviewMessageShown(tasks.NumberOfApprenticesToReview);
+        _homePage.VerifyLearnerChangeToReviewMessageShown(tasks.NumberOfApprenticesToReview);
     }
 
     [Then("View changes link should navigate user to Manage your apprentices page")]
@@ -88,7 +88,7 @@ public class TasksSteps
     public void ThenDisplayTaskXApprenticeRequestsReadyForReview()
     {
         var tasks = GetTaskQueryResult();
-        _homePage.VerifyApprenticeRequestsReadyToReviewMessageShown(tasks.NumberOfCohortsReadyToReview);
+        _homePage.VerifyLearnerRequestsReadyToReviewMessageShown(tasks.NumberOfCohortsReadyToReview);
     }
 
     [Then("'View apprentice requests' link should navigate user to 'Apprentice Requests' page")]

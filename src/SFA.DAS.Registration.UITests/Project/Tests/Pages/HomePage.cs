@@ -62,18 +62,18 @@ public class HomePage : InterimHomeBasePage
         VerifyElement(levyDeclarationDue);
     }
 
-    public void VerifyApprenticeChangeToReviewMessageShown(int numberOfChanges)
+    public void VerifyLearnerChangeToReviewMessageShown(int numberOfChanges)
     {
-        var messageText = numberOfChanges == 1 ? "1 apprentice change to review" : $"{numberOfChanges} apprentice changes to review";
+        var messageText = numberOfChanges == 1 ? "1 learner change to review" : $"{numberOfChanges} learner changes to review";
         var xpath = $"//span[contains(text(), '{messageText}')]";
-        var apprenticeChangeToReviewMessage = By.XPath(xpath);
+        var learnerChangeToReviewMessage = By.XPath(xpath);
 
-        VerifyElement(apprenticeChangeToReviewMessage);
+        VerifyElement(learnerChangeToReviewMessage);
     }
 
-    public void VerifyApprenticeRequestsReadyToReviewMessageShown(int numberOfChanges)
+    public void VerifyLearnerRequestsReadyToReviewMessageShown(int numberOfChanges)
     {
-        var messageText = numberOfChanges == 1 ? "1 apprentice request ready for review" : $"{numberOfChanges} apprentice requests ready for review";
+        var messageText = numberOfChanges == 1 ? "1 learner request ready for review" : $"{numberOfChanges} learner requests ready for review";
         var xpath = $"//span[contains(text(), '{messageText}')]";
         var apprenticeRequestsToReviewMessage = By.XPath(xpath);
 
@@ -115,9 +115,9 @@ public class HomePage : InterimHomeBasePage
         return new ManageYourLearnersPage(context);
     }
 
-    public ApprenticeRequestsPage ClickViewApprenticeRequestsForApprenticeRequestsToReview(int numberOfChanges)
+    public ApprenticeRequestsPage ClickViewLearnerRequestsForLearnerRequestsToReview(int numberOfChanges)
     {
-        var linkText = numberOfChanges == 1 ? "View apprentice request" : "View apprentice requests";
+        var linkText = numberOfChanges == 1 ? "View learner request" : "View learner requests";
         var cohortsToApproveLink = By.LinkText(linkText);
 
         formCompletionHelper.Click(cohortsToApproveLink);
