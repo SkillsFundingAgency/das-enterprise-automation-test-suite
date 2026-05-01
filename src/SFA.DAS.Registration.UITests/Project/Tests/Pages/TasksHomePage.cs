@@ -12,7 +12,7 @@ public partial class TasksHomePage : HomePage
 
     private static By TaskListSelector => By.CssSelector("li");
 
-    private static By StartAddingApprenticesNowTaskLink => By.PartialLinkText("Start adding apprentices now");
+    private static By StartAddingApprenticesNowTaskLink => By.PartialLinkText("Start adding learners now");
 
     protected override By PageHeader => By.CssSelector(".govuk-tabs");
 
