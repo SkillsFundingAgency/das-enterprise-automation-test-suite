@@ -58,9 +58,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
 
         internal bool DownloadFilteredDataLinkIsDisplayed() => pageInteractionHelper.IsElementDisplayed(DownloadFilteredDataLink);
 
-        internal void DoesDownloadFileExistAndValidateRowCount()
+        internal void DoesDownloadFileExistAndValidateRowCount(string fileName)
         {
-            var downloadedFileName = FileHelper.GetDownloadedFileName("Manageyourlearners", "csv");
+            var downloadedFileName = FileHelper.GetDownloadedFileName(fileName, "csv");
 
             Assert.IsNotEmpty(downloadedFileName);
 
