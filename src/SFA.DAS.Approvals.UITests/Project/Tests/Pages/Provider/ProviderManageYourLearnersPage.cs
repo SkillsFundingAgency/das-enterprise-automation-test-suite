@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderManageYourLearnersPage(context);
         }
 
-        public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount();
+        public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount("Manageyourapprentices");
 
         public bool DownloadAllDataLinkIsDisplayed() => manageYourApprenticePageHelper.DownloadAllDataLinkIsDisplayed();
 

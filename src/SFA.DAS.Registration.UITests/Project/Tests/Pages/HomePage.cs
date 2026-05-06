@@ -4,7 +4,7 @@ public class HomePage : InterimHomeBasePage
 {
     #region Locators
 
-    protected static By FindApprenticeshipLink => By.LinkText("Find apprenticeship training and manage requests");
+    protected static By FindApprenticeshipLink => By.LinkText("Find training and manage requests");
     protected static By StartNowButton => By.LinkText("Start now");
     protected static By YourFundingReservationsLink => By.LinkText("Funding reservations");
     protected static By YourTransfersLink => By.LinkText("Transfers");
