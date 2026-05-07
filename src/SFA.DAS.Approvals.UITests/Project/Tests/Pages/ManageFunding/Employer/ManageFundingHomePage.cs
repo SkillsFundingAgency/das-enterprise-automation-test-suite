@@ -10,13 +10,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private static By ReserveMoreFundingLink => By.LinkText("Reserve more funding");
         private static By DeleteLink => By.LinkText("Delete");
 
-        public ReserveFundingToTrainAndAssessAnApprenticePage ClickReserveFundingButton()
+        public ReserveFundingPage ClickReserveFundingButton()
         {
             if (pageInteractionHelper.IsElementPresent(ReserveFundingLink)) formCompletionHelper.ClickElement(ReserveFundingLink);
 
             if (pageInteractionHelper.IsElementPresent(ReserveMoreFundingLink)) formCompletionHelper.ClickElement(ReserveMoreFundingLink);
 
-            return new ReserveFundingToTrainAndAssessAnApprenticePage(context);
+            return new ReserveFundingPage(context);
         }
 
         public DeleteReservationPage DeleteUnusedFunding()
@@ -27,11 +27,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         public bool CheckIfDeleteLinkIsPresent() => pageInteractionHelper.IsElementPresent(DeleteLink);
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickReserveMoreFundingLink()
+        public DoYouKnowWhichTrainingCourseYourLearnerWillTakePage ClickReserveMoreFundingLink()
         {
             ClickReserveFundingButton();
             formCompletionHelper.ClickElement(ReserveFundingLink);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
+            return new DoYouKnowWhichTrainingCourseYourLearnerWillTakePage(context);
         }
 
         internal InterimFinanceHomePage GoToFinancePage() => new(context, true);

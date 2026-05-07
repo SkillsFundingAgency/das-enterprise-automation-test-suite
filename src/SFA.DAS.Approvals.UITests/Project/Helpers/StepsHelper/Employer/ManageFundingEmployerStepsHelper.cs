@@ -15,7 +15,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private readonly ObjectContext _objectContext;
         private readonly ReservationsSqlDataHelper _reservationsSqlDataHelper;
 
-        private WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage;
+        private WhenWillTheTrainingStartPage _whenWillTheApprenticeStartTheirApprenticeshipTrainingPage;
 
         public ManageFundingEmployerStepsHelper(ScenarioContext context)
         {
@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _reservationsSqlDataHelper = new ReservationsSqlDataHelper(_objectContext, context.Get<DbConfig>());
         }
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage GoToReserveFunding() => GoToManageFundingHomePage().ClickReserveMoreFundingLink();
+        public DoYouKnowWhichTrainingCourseYourLearnerWillTakePage GoToReserveFunding() => GoToManageFundingHomePage().ClickReserveMoreFundingLink();
 
         public DynamicHomePages CreateReservationViaDynamicHomePageTriageJourney()
         {
@@ -89,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .VerifyProblem("You must select a start date");
         }
 
-        public static SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
+        public static SuccessfullyReservedFundingPage CreateReservation(DoYouKnowWhichTrainingCourseYourLearnerWillTakePage doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage)
         {
             return doYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage
                 .ClickYesRadioButton()
