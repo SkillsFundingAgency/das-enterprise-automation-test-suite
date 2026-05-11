@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         protected override bool TakeFullScreenShot => false;
 
-        private static By ConfirmButton => By.XPath("//button[contains(text(),'Confirm')]");
+        private static By ConfirmButton => By.XPath("//button[contains(text(),'like to reserve funding')]");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
         public SuccessfullyReservedFundingPage ClickConfirmButton()
