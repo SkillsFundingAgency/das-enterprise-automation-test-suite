@@ -4,7 +4,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Tests.Pages.RoatpApply.YourOrganisation_
 {
     public class GradeInOfstedInspectionPage : RoatpApplyBasePage
     {
-        protected override string PageTitle => "Did your organisation get a grade for apprenticeships in this full Ofsted inspection?";
+        protected override string PageTitle => "Did your organisation get a separate grade for Apprenticeships in this Ofsted inspection?";
 
         public GradeInOfstedInspectionPage(ScenarioContext context) : base(context) => VerifyPage();
 
