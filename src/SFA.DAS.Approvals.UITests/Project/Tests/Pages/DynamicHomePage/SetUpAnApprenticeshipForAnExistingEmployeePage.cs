@@ -11,10 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 
         private static By ClickReserveFunding => By.Id("reserve-funding");
 
-        public ReserveFundingToTrainAndAssessAnApprenticePage YesContinueToReserveFunding()
+        public ReserveFundingPage YesContinueToReserveFunding()
         {
             formCompletionHelper.Click(ClickReserveFunding);
-            return new ReserveFundingToTrainAndAssessAnApprenticePage(context);
+            return new ReserveFundingPage(context);
         }
     }
 }
