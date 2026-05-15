@@ -67,7 +67,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApproveApprenticeDetailsPage EmployerReviewCohort(bool validateMaxFundingBand = false)
         {
             var employerReviewYourCohortPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickApprenticeRequestsLink()
+                .ClickLearnerRequestsLink()
                 .GoToReadyToReview()
                 .SelectViewCurrentCohortDetails();
 
@@ -81,7 +81,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApproveApprenticeDetailsPage EmployerReviewsTopCohortInReadyToReview()
         {
             var employerReviewYourCohortPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickApprenticeRequestsLink()
+                .ClickLearnerRequestsLink()
                 .GoToReadyToReview()
                 .SelectSingleReadyForReviewRequestInTable();
 
@@ -217,7 +217,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public AddApprenticeDetailsPage AddsPortableFlexiJobCourseAndDeliveryModelForPilotProvider()
         {
-            return new ApprenticesHomePage(context).ClickAddAnApprentice()
+            return new LearnerHomePage(context).ClickAddALearnerLink()
                 .StartNowToAddTrainingProvider()
                 .EnterUkprnForPortableFlexiJobPilotProvider()
                 .ConfirmProviderDetailsAreCorrect()
@@ -233,13 +233,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _cohortReferenceHelper.SetCohortReference(cohortReference);
         }
 
-        public ApprenticeRequestsPage GoToApprenticeRequestsPage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickApprenticeRequestsLink();
-        public AddAnApprenitcePage GoToAddAnApprenticePage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickAddAnApprentice();
+        public ApprenticeRequestsPage GoToApprenticeRequestsPage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickLearnerRequestsLink();
+        public AddAnApprenitcePage GoToAddAnApprenticePage() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage(true).ClickAddALearnerLink();
 
         public void EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable()
         {
             var employerEditTrainingDetailsPage = _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickApprenticeRequestsLink()
+                .ClickLearnerRequestsLink()
                 .GoToReadyToReview()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprenticeLink();
@@ -251,7 +251,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public NotificationSentToTrainingProviderPage EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PreApproval()
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                  .ClickApprenticeRequestsLink()
+                  .ClickLearnerRequestsLink()
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
                   .SelectEditApprenticeLink()
@@ -265,7 +265,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApprenticeDetailsPage EmployerChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval()
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                  .ClickManageYourApprenticesLink()
+                  .ClickManageYourLearnersLink()
                   .SelectViewCurrentApprenticeDetails()
                   .ClickEditApprenticeDetailsLink()
                   .ClickEditDeliveryModelLink()
@@ -283,7 +283,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApprenticeDetailsApprovedPage ValidateFlexiJobContentAndApproveCohort()
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                  .ClickApprenticeRequestsLink()
+                  .ClickLearnerRequestsLink()
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
                   .ValidateFlexiJobTagAndApprove();
@@ -292,7 +292,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public EditApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickManageYourApprenticesLink()
+                .ClickManageYourLearnersLink()
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateDeliveryModelDisplayed(deliveryModel)
                 .ClickEditApprenticeDetailsLink()
@@ -302,7 +302,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                .ClickManageYourApprenticesLink()
+                .ClickManageYourLearnersLink()
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateDeliveryModelNotDisplayed();
         }
@@ -312,7 +312,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApprenticeRequestsPage DeleteCurrentCohort()
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                  .ClickApprenticeRequestsLink()
+                  .ClickLearnerRequestsLink()
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
                   .SelectDeleteThisGroup()
@@ -322,7 +322,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApproveApprenticeDetailsPage ValidateEmployerCanNoLongerApproveCohort()
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                  .ClickApprenticeRequestsLink()
+                  .ClickLearnerRequestsLink()
                   .GoToReadyToReview()
                   .SelectViewCurrentCohortDetails()
                   .ValidateEmployerCannotApproveCohort();
@@ -341,7 +341,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         public ApprenticeDetailsPage EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval()
         {
             return _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage()
-                  .ClickManageYourApprenticesLink()
+                  .ClickManageYourLearnersLink()
                   .SelectViewCurrentApprenticeDetails()
                   .ClickEditApprenticeDetailsLink()
                   .ClickEditDeliveryModelLink()
