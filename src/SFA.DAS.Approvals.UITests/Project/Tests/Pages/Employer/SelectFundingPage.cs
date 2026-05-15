@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By PageHeader => By.ClassName("govuk-heading-l");
         protected override By ContinueButton => By.Id("submit-funding-type");
 
-        public AddTrainingProviderDetailsPage SelectReservedFundingFromContext(bool isSecondReservation = false)
+        public ChooseYourMainTrainingProviderPage SelectReservedFundingFromContext(bool isSecondReservation = false)
         {
             SelectRadioOptionByForAttribute("FundingType-2");
             Continue();
@@ -22,10 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             {
                 new ChooseAReservationPage(context).ChooseReservationFromContext();
             }
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
-        public AddTrainingProviderDetailsPage SelectFundingType(FundingType fundingType)
+        public ChooseYourMainTrainingProviderPage SelectFundingType(FundingType fundingType)
         {
             switch (fundingType)
             {
@@ -56,7 +56,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             if (fundingType == FundingType.TransferFunds) { new SelectTransferFundsPage(context).SelectTransferAndContinueToSelectProvider(); }
 
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
 

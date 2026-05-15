@@ -26,7 +26,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new EmployerSelectStandardPage(context);
         }
 
-        public AddTrainingProviderDetailsPage SelectAReservation()
+        public ChooseYourMainTrainingProviderPage SelectAReservation()
         {
             if (objectContext.GetReservationId() != null)
             {
@@ -36,19 +36,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             {
                 formCompletionHelper.Click(ChooseCourseReservation);
                 Continue();
-                return new AddTrainingProviderDetailsPage(context);
+                return new ChooseYourMainTrainingProviderPage(context);
             }
             
         }
 
-        public AddTrainingProviderDetailsPage ChooseReservationFromContext()
+        public ChooseYourMainTrainingProviderPage ChooseReservationFromContext()
         {
             var reservationId = objectContext.GetReservationId();
             var chooseReservationById = By.Id($"SelectedReservationId-{reservationId}");
 
             formCompletionHelper.SelectRadioOptionByLocator(chooseReservationById);
             Continue();
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
         public AddApprenticeDetailsPage ChooseSecondReservationFromContext()

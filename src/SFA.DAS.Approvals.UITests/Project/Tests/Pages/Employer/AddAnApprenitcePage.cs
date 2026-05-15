@@ -11,10 +11,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By StartNowButton => By.CssSelector(".govuk-button--start");
 
-        public AddTrainingProviderDetailsPage StartNowToAddTrainingProvider()
+        public ChooseYourMainTrainingProviderPage StartNowToAddTrainingProvider()
         {
             StartNow();
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
         public DoYouWantToUseTransferFundsPage StartNowToCreateApprenticeViaTransfersFunds()

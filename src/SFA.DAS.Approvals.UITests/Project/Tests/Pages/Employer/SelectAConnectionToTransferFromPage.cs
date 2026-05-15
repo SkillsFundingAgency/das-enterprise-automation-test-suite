@@ -14,11 +14,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         protected override By ContinueButton => By.Id("submit-transfer-connection");
         private static By TransferConnectionRadioOption => By.ClassName("govuk-radios__label");
 
-        public AddTrainingProviderDetailsPage SelectTransferSenderAndContinue()
+        public ChooseYourMainTrainingProviderPage SelectTransferSenderAndContinue()
         {
             formCompletionHelper.Click(TransferConnectionRadioOption);
             Continue();
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
     }

@@ -11,10 +11,10 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private static By StartNowButton => By.LinkText("Start now");
 
-        public AddTrainingProviderDetailsPage ClickOnStartNowButton()
+        public ChooseYourMainTrainingProviderPage ClickOnStartNowButton()
         {
             formCompletionHelper.Click(StartNowButton);
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
     }
 }
