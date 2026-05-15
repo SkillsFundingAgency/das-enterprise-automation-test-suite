@@ -7,9 +7,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderApprenticeshipTrainingPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ProviderWhatIsTheTrainingCoursePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Apprenticeship training";
+        protected override string PageTitle => "What is the training course?";
 
         private static By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
 
@@ -19,13 +19,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
 
-        public ProviderApprenticeshipTrainingPage AddTrainingCourse()
+        public ProviderWhatIsTheTrainingCoursePage AddTrainingCourse()
         {
             formCompletionHelper.EnterText(CourseSearch, "Software Developer - Level 4");
             return this;
         }
 
-        public ProviderApprenticeshipTrainingPage SelectDate()
+        public ProviderWhatIsTheTrainingCoursePage SelectDate()
         {
             var option = pageInteractionHelper.FindElements(RadioLabels).LastOrDefault();
             formCompletionHelper.ClickElement(option);
@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new ProviderConfirmYourReservationPage(context);
         }
 
-        public ProviderApprenticeshipTrainingPage ClickSaveAndContinueButtonAndExpectProblem()
+        public ProviderWhatIsTheTrainingCoursePage ClickSaveAndContinueButtonAndExpectProblem()
         {
             formCompletionHelper.ClickElement(SaveAndContinueButton);
             return this;

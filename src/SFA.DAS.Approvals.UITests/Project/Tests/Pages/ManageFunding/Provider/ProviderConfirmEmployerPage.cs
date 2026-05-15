@@ -12,11 +12,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        internal ProviderApprenticeshipTrainingPage ConfirmNonLevyEmployer()
+        internal ProviderWhatIsTheTrainingCoursePage ConfirmNonLevyEmployer()
         {
             SelectRadioOptionByForAttribute("confirm-yes");
             formCompletionHelper.ClickElement(SaveAndContinueButton);
-            return new ProviderApprenticeshipTrainingPage(context);
+            return new ProviderWhatIsTheTrainingCoursePage(context);
         }
 
         internal ProviderSelectStandardPage ConfirmEmployer()

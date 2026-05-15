@@ -12,7 +12,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         private readonly ReplaceApprenticeDatahelper _replaceApprenticeDatahelper = new(context);
 
-        private ProviderApprenticeshipTrainingPage _providerApprenticeshipTrainingPage;
+        private ProviderWhatIsTheTrainingCoursePage _providerApprenticeshipTrainingPage;
 
         public ProviderApproveApprenticeDetailsPage AddApprentice(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage, int numberOfApprentices)
         {
@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return VerifySuccessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));
         }
 
-        private static ProviderMakingChangesPage VerifySuccessMessage(ProviderApprenticeshipTrainingPage page)
+        private static ProviderMakingChangesPage VerifySuccessMessage(ProviderWhatIsTheTrainingCoursePage page)
         {
             return page.AddTrainingCourse().SelectDate().ClickSaveAndContinueButton().ConfirmReserveFunding().VerifySucessMessage();
         }
@@ -54,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return ProviderMakeReservation(_providerCommonStepsHelper.GoToProviderHomePage(login, false)).GoToAddApprenticeDetailsHowPage().SelectAddManually().ProviderSelectsAStandard();
         }
 
-        public ProviderApprenticeshipTrainingPage StartCreateReservationAndGoToStartTrainingPage(ApprovalsProviderHomePage approvalsProviderHomePage)
+        public ProviderWhatIsTheTrainingCoursePage StartCreateReservationAndGoToStartTrainingPage(ApprovalsProviderHomePage approvalsProviderHomePage)
         {
             return _providerApprenticeshipTrainingPage = approvalsProviderHomePage
                    .GoToProviderGetFunding()
