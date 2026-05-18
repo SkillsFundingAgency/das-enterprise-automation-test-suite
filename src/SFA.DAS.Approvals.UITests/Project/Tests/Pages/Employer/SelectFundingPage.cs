@@ -54,7 +54,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             if (fundingType == FundingType.ReservedFunds) { new ChooseAReservationPage(context).SelectAReservation(); }
 
-            if (fundingType == FundingType.TransferFunds) { new SelectTransferFundsPage(context).SelectTransferAndContinueToSelectProvider(); }
+            if (fundingType == FundingType.TransferFunds) { new ChooseTransferFundsPage(context).SelectTransferAndContinueToSelectProvider(); }
 
             return new ChooseYourMainTrainingProviderPage(context);
         }

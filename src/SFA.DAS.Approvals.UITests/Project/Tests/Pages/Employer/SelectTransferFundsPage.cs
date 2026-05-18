@@ -2,9 +2,9 @@
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
-public class SelectTransferFundsPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
+public class ChooseTransferFundsPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
 {
-    protected override string PageTitle => "Select transfer funds";
+    protected override string PageTitle => "Choose transfer funds";
     private static By SelectContinueButton => By.Id("submit-levytransfer-connection");
 
     public ChooseYourMainTrainingProviderPage SelectTransferAndContinueToSelectProvider()
