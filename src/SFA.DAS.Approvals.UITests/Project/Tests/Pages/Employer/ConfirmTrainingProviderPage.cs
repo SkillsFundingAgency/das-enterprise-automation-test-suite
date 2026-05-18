@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ChooseYourMainTrainingProviderPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ConfirmTrainingProviderPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override string PageTitle => "Choose your main training provide";
 
