@@ -8,6 +8,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
 public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePage(context, false)
 {
+    // Approvals employer home was renamed from Apprentices to Learners.
+    protected override string PageTitle => "Learners";
+
+    // Top nav still uses Apprentices in this journey for Navigate base link selection.
+    protected override string Linktext => "Apprentices";
+
     private static By AddALearnerLink => By.LinkText("Add a Learner or send a learner request");
     private static By LearnerRequestsLink => By.LinkText("Review learner requests");
     private static By ManageLearnersLink => By.LinkText("Manage your Learners");
