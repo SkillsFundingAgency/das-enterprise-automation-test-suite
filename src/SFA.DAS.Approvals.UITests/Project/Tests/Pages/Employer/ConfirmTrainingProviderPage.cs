@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ConfirmTrainingProviderPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ChooseYourMainTrainingProviderPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Confirm training provider";
+        protected override string PageTitle => "Choose your main training provide";
 
         protected override bool TakeFullScreenShot => false;
 

@@ -17,18 +17,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By UkprnField => By.CssSelector(".govuk-input");
 
-        public ConfirmTrainingProviderPage SubmitValidUkprn()
+        public ChooseYourMainTrainingProvidePage SubmitValidUkprn()
         {
             EnterUkprn();
             Continue();
-            return new ConfirmTrainingProviderPage(context);
+            return new ChooseYourMainTrainingProvidePage(context);
         }
 
-        public ConfirmTrainingProviderPage EnterUkprnForPortableFlexiJobPilotProvider()
+        public ChooseYourMainTrainingProvidePage EnterUkprnForPortableFlexiJobPilotProvider()
         {
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(UKProviderReferenceNumberText, portableFlexiJobProviderConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             Continue();
-            return new ConfirmTrainingProviderPage(context);
+            return new ChooseYourMainTrainingProvidePage(context);
         }
 
         private ChooseYourMainTrainingProviderPage EnterUkprn()
