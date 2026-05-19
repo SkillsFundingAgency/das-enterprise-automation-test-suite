@@ -4,9 +4,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class SelectFundingPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
+    public class ChooseFundingPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
     {
-        protected override string PageTitle => "Select funding";
+        protected override string PageTitle => "Choose funding";
         protected override By PageHeader => By.ClassName("govuk-heading-l");
         protected override By ContinueButton => By.Id("submit-funding-type");
 

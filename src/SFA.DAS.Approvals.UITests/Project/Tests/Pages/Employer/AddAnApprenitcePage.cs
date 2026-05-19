@@ -23,10 +23,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new DoYouWantToUseTransferFundsPage(context);
         }
 
-        public SelectFundingPage StartNowToSelectFunding()
+        public ChooseFundingPage StartNowToSelectFunding()
         {
             StartNow();
-            return new SelectFundingPage(context);
+            return new ChooseFundingPage(context);
         }
 
         public YouCannotCreateAnotherFundingReservationPage NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
