@@ -5,9 +5,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderAddApprenticeDetailsHow(ScenarioContext context) : ApprovalsBasePage(context)
+    public class HowDoYouWantToAddLearnerDetails(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Add apprentice details";
+        protected override string PageTitle => "How do you want to add learner details?";
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         internal ProviderSelectApprenticeFromILRPage SelectApprenticeFromILR()
