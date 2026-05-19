@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class ChooseAReservationPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Choose a Reservation";
+        protected override string PageTitle => "Choose a reservation";
 
         protected override bool TakeFullScreenShot => false;
 
