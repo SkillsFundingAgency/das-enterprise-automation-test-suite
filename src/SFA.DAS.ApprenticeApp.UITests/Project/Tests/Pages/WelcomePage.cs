@@ -5,7 +5,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 {
     public class WelcomePage(ScenarioContext context) : AppBasePage(context)
     {
-        protected static By startNow = By.CssSelector("a.govuk-button--start");
+        protected static By startNow = By.CssSelector("a.app-onboarding__skip");
         protected override string PageTitle => "Welcome to the Your Apprenticeship app";
         public TasksBasePage StartNow()
         {

@@ -6,13 +6,13 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
 {
     public class AppStepsHelper(ScenarioContext context) : AppBasePage(context)
     {
-        private static By TasksNavLink => By.CssSelector("a.app-navigation__link[href='/Tasks/Index");
+        private static By TasksNavLink => By.CssSelector("a.govuk-service-navigation__link[href='/Tasks/Index']");
         private static By ToDoTabNavLink => By.CssSelector("a.app-tabs__tab.todo[href=\"#tasks-todo\"][role=\"tab\"][aria-selected=\"false\"]");
         private static By DoneTabNavLink => By.CssSelector("a.app-tabs__tab.done[href=\"#tasks-done\"][role=\"tab\"][aria-selected=\"false\"]");
-        private static By KsbNavLink => By.CssSelector("a.app-navigation__link[href='/Ksb/Index']");
-        private static By SupportNavLink => By.CssSelector("a.app-navigation__link[href='/Support/Index']");
-        private static By NotificationsNavLink => By.CssSelector("a.app-navigation__link[href='/Notifications/Index']");
-        private static By AccountNavLink => By.CssSelector("a.app-navigation__link[href='/Account/YourAccount']");
+        private static By KsbNavLink => By.CssSelector("a[href='/Ksb/Index']");
+        private static By SupportNavLink => By.CssSelector("a[href='/Support/Index']");
+        private static By NotificationsNavLink => By.CssSelector("a[href='/Notifications/Index']");
+        private static By AccountNavLink => By.CssSelector("a[href*='/Account/YourAccount']");
         private static By YourProfileLink => By.CssSelector("a.app-stack__link[href='/Profile/Index']");
         private static By SettingsLink => By.CssSelector("a.app-stack__link[href='/Settings/Index']");
 
@@ -23,9 +23,15 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
         public WelcomePage GoToWelcomePage() => new StubSignInPage(context).SignIn();
         public TasksBasePage GoToTasksPage() => new WelcomePage(context).StartNow();
 
-        public TasksBasePage NavigateToToDoTab()
+        public TasksBasePage NavigateToTasksPage()
         {
             formCompletionHelper.Click(TasksNavLink);
+            return new TasksBasePage(context);
+        }
+
+        public TasksBasePage NavigateToToDoTab()
+        {
+            formCompletionHelper.Click(ToDoTabNavLink);
             return new TasksBasePage(context);
         }
 

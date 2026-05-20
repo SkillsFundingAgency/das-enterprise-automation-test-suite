@@ -19,7 +19,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         [Then("the KSBs are displayed")]
         public void ThenTheKSBsAreDisplayed()
         {
-            Assert.AreEqual("Your knowledge, skills and behaviours (KSBs)", ksbPage.KsbPageTitle());
+            Assert.AreEqual("Knowledge, skills and behaviours (KSBs)", ksbPage.KsbPageTitle());
         }
     }
 }
