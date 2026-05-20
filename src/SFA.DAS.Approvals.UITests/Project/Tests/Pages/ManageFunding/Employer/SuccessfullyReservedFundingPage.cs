@@ -8,7 +8,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class SuccessfullyReservedFundingPage(ScenarioContext context) : ReservationIdBasePage(context)
     {
-        protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
+        protected override string PageTitle => "You have reserved funding for training";
         protected override By ContinueButton => By.CssSelector("main button");
 
         private static By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
