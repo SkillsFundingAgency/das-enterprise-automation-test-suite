@@ -13,8 +13,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         private static By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
 
-        private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Continue')]");
-
         private static By ReservationStartFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
 
         private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
@@ -35,13 +33,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         public ProviderConfirmYourReservationPage ClickSaveAndContinueButton()
         {
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            Continue();
             return new ProviderConfirmYourReservationPage(context);
         }
 
         public ProviderApprenticeshipTrainingPage ClickSaveAndContinueButtonAndExpectProblem()
         {
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            Continue();
             return this;
         }
 
