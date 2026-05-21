@@ -15,18 +15,16 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         protected override string PageTitle => "Tasks";
 
-        // Filter / Sort Overlays
+        // Filters
         protected static By SortByDropdown => By.CssSelector("span.app-dropdown__toggle-sort-value#sortby");
         protected static By TaskFilters => By.CssSelector("a[href='#filter'][data-module='app-overlay'].app-icon-action");
 
         // Tabs
         private static By ToDoTab => By.CssSelector("a.app-tabs__tab.todo");
         private static By DoneTab => By.CssSelector("a.app-tabs__tab.done");
-
-        // Unified Add Task Action Trigger (Matches new GOV.UK markup across both tabs)
         private static By AddTaskButton => By.CssSelector("a.govuk-button.app-fab[href='/Tasks/Add']");
 
-        // Task Form Field Inputs
+        // Task Inputs
         private static By TaskTitleInput => By.CssSelector("input#title, input[id*='Title']");
         private static By DateDayInput => By.CssSelector("input[id$='day'], input[id*='date-day']");
         private static By DateMonthInput => By.CssSelector("input[id$='month'], input[id*='date-month']");
@@ -41,7 +39,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
         private static By DeleteButton => By.CssSelector("a[href*='/Tasks/ConfirmDelete/']");
         private static By ConfirmDelete => By.CssSelector("button.govuk-button--warning");
 
-        // Task Cards Display Interactivity
+        // Task Cards Display Interactions
         public static By TaskTitle => By.CssSelector("h2.app-card__heading");
         public static By TaskCardHeader(string taskTitle) => By.XPath($"//h2[@class='app-card__heading'][normalize-space()='{taskTitle}']");
         public static By TaskCardAnchor(string taskTitle) => By.XPath($"//a[contains(@class, 'app-card')][.//h2[normalize-space()='{taskTitle}']]");
@@ -104,7 +102,6 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         public TasksBasePage AddTask(bool isToDo, string title, string date, string time, string ksb, string ksbId, string categoryValue, string status, string note)
         {
-            // Both paths safely click the same unified button element now
             pageInteractionHelper.WaitForElementToBeClickable(AddTaskButton);
             formCompletionHelper.Click(AddTaskButton);
 
@@ -134,7 +131,6 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             pageInteractionHelper.WaitForElementToBeClickable(SaveAndContinueButton);
             formCompletionHelper.Click(SaveAndContinueButton);
 
-            // Safe Native URL Change Polling Synchronizer
             int maxWaitSeconds = 10;
             int elapsedSeconds = 0;
             while (elapsedSeconds < maxWaitSeconds)
@@ -153,10 +149,29 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
         public string OpenTaskByTitle(string generatedTaskTitle)
         {
-            var titleElement = pageInteractionHelper.FindElement(TaskCardHeader(generatedTaskTitle));
+            var cardHeaderLocator = TaskCardHeader(generatedTaskTitle);
+            var cardAnchorLocator = TaskCardAnchor(generatedTaskTitle);
+
+            int maxWaitSeconds = 15;
+            int elapsed = 0;
+            while (elapsed < maxWaitSeconds)
+            {
+                if (pageInteractionHelper.IsElementPresent(cardHeaderLocator))
+                {
+                    break;
+                }
+
+                Thread.Sleep(1000);
+                Refresh();
+                elapsed++;
+            }
+
+            pageInteractionHelper.WaitForElementToBeClickable(cardAnchorLocator);
+
+            var titleElement = pageInteractionHelper.FindElement(cardHeaderLocator);
             string actualTitleText = titleElement.Text;
 
-            formCompletionHelper.Click(TaskCardAnchor(generatedTaskTitle));
+            formCompletionHelper.Click(cardAnchorLocator);
             return actualTitleText;
         }
 
