@@ -8,38 +8,27 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
     public class SuccessfullyReservedFundingPage(ScenarioContext context) : ReservationIdBasePage(context)
     {
-        protected override string PageTitle => "You have successfully reserved funding for apprenticeship training";
-        protected override By ContinueButton => By.CssSelector("main button");
-
-        private static By AddApprenticeRadioButton => By.CssSelector("label[for=WhatsNext-add]");
+        protected override string PageTitle => "You have reserved funding for training";
+        private static By GoToHomePageLink => By.XPath("//a[contains(text(),'Go to homepage')]");
+        private static By AddLearnerLink => By.XPath("//a[contains(text(),'Add learner')]");
 
         public DynamicHomePages GoToDynamicHomePage()
         {
-            SelectRadioOptionByForAttribute("WhatsNext-home");
-            formCompletionHelper.ClickElement(ContinueButton);
+            formCompletionHelper.ClickElement(GoToHomePageLink);
             return new DynamicHomePages(context);
         }
 
-        internal AddAnApprenitcePage AddApprentice()
+        internal AddAnApprenitcePage AddLearner()
         {
-            ChooseToAddApprenticeRadioButton();
-            Continue();
+            formCompletionHelper.ClickElement(AddLearnerLink);
             return new AddAnApprenitcePage(context);
         }
 
-        internal EmployerSelectStandardPage AddAnotherApprentice()
-        {
-            ChooseToAddApprenticeRadioButton();
-            Continue();
-            return new EmployerSelectStandardPage(context);
-        }
 
         internal SuccessfullyReservedFundingPage SaveReservationId(bool isSecondReservation = false)
         {
             SetCurrentReservationId(isSecondReservation);
             return new SuccessfullyReservedFundingPage(context);
         }
-
-        private void ChooseToAddApprenticeRadioButton() => formCompletionHelper.ClickElement(AddApprenticeRadioButton);
     }
 }
