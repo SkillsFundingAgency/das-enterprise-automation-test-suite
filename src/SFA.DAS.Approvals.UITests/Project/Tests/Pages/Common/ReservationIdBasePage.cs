@@ -11,7 +11,7 @@ public abstract class ReservationIdBasePage : ApprovalsBasePage
 
     public void VerifySucessMessage()
     {
-        var expected = "You have reserved funding for training";
+        var expected = "You have successfully reserved funding for apprenticeship training";
 
         var actual = pageInteractionHelper.GetText(MessageLocator);
 
