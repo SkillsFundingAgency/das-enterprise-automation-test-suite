@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
+using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
@@ -25,7 +27,25 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Helpers
 
         public TasksBasePage NavigateToTasksPage()
         {
+            pageInteractionHelper.WaitForElementToBeClickable(TasksNavLink);
+
             formCompletionHelper.Click(TasksNavLink);
+
+            int maxWaitSeconds = 15;
+            int elapsedSeconds = 0;
+            while (elapsedSeconds < maxWaitSeconds)
+            {
+                string currentUrl = pageInteractionHelper.GetUrl();
+                if (currentUrl.Contains("/Tasks/Index") || currentUrl.EndsWith("/Tasks"))
+                {
+                    break;
+                }
+                Thread.Sleep(1000);
+                elapsedSeconds++;
+            }
+
+            pageInteractionHelper.WaitForPageToLoad();
+
             return new TasksBasePage(context);
         }
 
