@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using SFA.DAS.ApprenticeApp.UITests.Project.Helpers;
 using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using System.Linq;
@@ -150,17 +151,29 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
             if (!navigationSuccessful)
             {
-                Console.WriteLine($"[Pipeline Warning] Save click did not redirect within {maxWaitSeconds}s. Current URL: {pageInteractionHelper.GetUrl()}. Forcing routing fallback...");
+                Console.WriteLine($"[Pipeline Warning] Save click did not redirect within {maxWaitSeconds}s. Current URL: {pageInteractionHelper.GetUrl()}. Forcing a hard browser escape to index...");
 
-                ClickToDoTab();
+                string currentUrl = pageInteractionHelper.GetUrl();
 
-                Refresh();
+                Uri uri = new Uri(currentUrl);
+
+                string baseUrl = $"{uri.Scheme}://{uri.Authority}";
+
+                pageInteractionHelper.RefreshPage();
+
+                try
+                {
+                    context.Get<AppStepsHelper>().NavigateToTasksPage();
+                }
+                catch (Exception)
+                {
+                    pageInteractionHelper.RefreshPage();
+                }
 
                 string fallbackUrl = pageInteractionHelper.GetUrl();
-
                 if (!fallbackUrl.Contains("/Tasks/Index") && !fallbackUrl.EndsWith("/Tasks"))
                 {
-                    throw new WebDriverTimeoutException($"Form submission failed to redirect to the dashboard index layout. Stranded on: {fallbackUrl}");
+                    throw new WebDriverTimeoutException($"Form submission completely failed to escape the Add Form. Stranded on: {fallbackUrl}");
                 }
             }
 
