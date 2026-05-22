@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
-    public class ProviderMakingChangesPage(ScenarioContext context) : ReservationIdBasePage(context)
+    public class YouHaveReservedFundingforTrainingPage(ScenarioContext context) : ReservationIdBasePage(context)
     {
         protected override string PageTitle => "You have reserved funding for training";
 
@@ -32,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return new ProviderAddApprenticeDetailsHow(context);
         }
 
-        public new ProviderMakingChangesPage VerifySucessMessage()
+        public new YouHaveReservedFundingforTrainingPage VerifySucessMessage()
         {
             base.VerifySucessMessage();
             return this;
