@@ -71,7 +71,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             Assert.That(formCompletionHelper.GetAllDropDownValue(TrainingCourseContainer).Any(x => x == courseDetails.Course.larsCode), Is.False, $"{courseDetails.Course.larsCode}, {courseDetails.Course.title} is available for the provider");
         }
 
-        private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.That(GetAllTrainingCourses().All(x => x.Contains("(Framework)")), Is.False);
+        private void AssertStandardAndFrameworkCoursesAreSelectable() => Assert.That(GetAllTrainingCourses().All(x => !x.Contains("(Framework)") && !x.Contains("(Apprenticeship unit)")), Is.True);
 
         private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseContainer);
     }
