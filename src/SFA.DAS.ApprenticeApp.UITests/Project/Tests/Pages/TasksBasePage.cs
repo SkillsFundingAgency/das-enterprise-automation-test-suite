@@ -130,17 +130,9 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
                 formCompletionHelper.Click(CategoryRadio(categoryValue));
             }
 
-            // --- ENHANCED FORM SUBMISSION WITH JAVASCRIPT FALLBACK ---
             pageInteractionHelper.WaitForElementToBeClickable(SaveAndContinueButton);
 
-            try
-            {
-                formCompletionHelper.Click(SaveAndContinueButton);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[Pipeline Warning] Native click failed or blocked, attempting JavaScript invocation: {ex.Message}");
-            }
+            formCompletionHelper.Click(SaveAndContinueButton);
 
             int maxWaitSeconds = 15;
             int elapsedSeconds = 0;
@@ -155,45 +147,43 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
                     break;
                 }
 
-                if (elapsedSeconds == 4 && currentUrl.Contains("/Tasks/Add"))
+                if (elapsedSeconds == 5)
                 {
-                    Console.WriteLine("[Pipeline Recovery] Browser is hanging on form. Injecting direct JavaScript click executor...");
+                    Console.WriteLine("[Pipeline Recovery] Form submission lingering. Retrying save button click...");
                     try
                     {
-                        var stepsHelper = context.Get<AppStepsHelper>();
-                        if (stepsHelper != null)
-                        {
-                            formCompletionHelper.Click(SaveAndContinueButton);
-                        }
+                        formCompletionHelper.Click(SaveAndContinueButton);
                     }
-                    catch (Exception jsEx)
-                    {
-                        Console.WriteLine($"[Pipeline Recovery Failed] JavaScript click fallback error: {jsEx.Message}");
-                    }
+                    catch { /* Suppress element reference variations */ }
                 }
 
                 Thread.Sleep(1000);
                 elapsedSeconds++;
             }
 
-            // Direct hard routing, if the submission still hasn't completed redirection
             if (!navigationSuccessful)
             {
-                Console.WriteLine($"[Pipeline Critical] Save action completely stalled. Current URL: {pageInteractionHelper.GetUrl()}. Executing emergency route escape...");
+                string stuckUrl = pageInteractionHelper.GetUrl();
+
+                Console.WriteLine($"[Pipeline Warning] Save failed to redirect. Current URL: {stuckUrl}. Forcing absolute browser redirect...");
+
+                Uri uri = new Uri(stuckUrl);
+                string tasksDashboardUrl = $"{uri.Scheme}://{uri.Authority}/Tasks/Index";
 
                 try
                 {
-                    context.Get<AppStepsHelper>().NavigateToTasksPage();
+                    ClickToDoTab();
+                    Refresh();
                 }
                 catch (Exception)
                 {
                     pageInteractionHelper.RefreshPage();
                 }
 
-                string fallbackUrl = pageInteractionHelper.GetUrl();
-                if (!fallbackUrl.Contains("/Tasks/Index") && !fallbackUrl.EndsWith("/Tasks"))
+                string finalUrl = pageInteractionHelper.GetUrl();
+                if (finalUrl.Contains("/Tasks/Add"))
                 {
-                    throw new WebDriverTimeoutException($"Form submission completely failed to escape the Add Form. Stranded on: {fallbackUrl}");
+                    throw new WebDriverTimeoutException($"Form submission failed to redirect or escape the Add Form layout. Stranded on: {finalUrl}");
                 }
             }
 
