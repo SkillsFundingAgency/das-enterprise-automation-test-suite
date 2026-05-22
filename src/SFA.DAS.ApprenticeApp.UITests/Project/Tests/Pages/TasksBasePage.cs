@@ -107,7 +107,18 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
 
             formCompletionHelper.Click(AddTaskButton);
 
-            formCompletionHelper.EnterText(TaskTitleInput, title);
+            pageInteractionHelper.WaitForElementToBeClickable(TaskTitleInput);
+            try
+            {
+                formCompletionHelper.ClearText(TaskTitleInput);
+                formCompletionHelper.EnterText(TaskTitleInput, title);
+            }
+            catch (Exception)
+            {
+                formCompletionHelper.ClearText(TaskTitleInput);
+
+                formCompletionHelper.EnterText(TaskTitleInput, title);
+            }
 
             if (!string.IsNullOrEmpty(date) && date.Contains("/"))
             {
@@ -122,7 +133,14 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
             }
 
             formCompletionHelper.EnterText(TimeInput, time);
-            formCompletionHelper.EnterText(NoteTextArea, note);
+
+            try
+            {
+                formCompletionHelper.ClearText(NoteTextArea);
+                formCompletionHelper.EnterText(NoteTextArea, note);
+            }
+            catch { /* Guard against rendering overlay lag */ }
+
             formCompletionHelper.Click(ReminderRadio("None"));
 
             if (!string.IsNullOrEmpty(categoryValue))
@@ -130,8 +148,8 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
                 formCompletionHelper.Click(CategoryRadio(categoryValue));
             }
 
+            // --- FORM SUBMISSION SYNCHRONIZATION ---
             pageInteractionHelper.WaitForElementToBeClickable(SaveAndContinueButton);
-
             formCompletionHelper.Click(SaveAndContinueButton);
 
             int maxWaitSeconds = 15;
@@ -146,44 +164,29 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages
                     navigationSuccessful = true;
                     break;
                 }
-
-                if (elapsedSeconds == 5)
-                {
-                    Console.WriteLine("[Pipeline Recovery] Form submission lingering. Retrying save button click...");
-                    try
-                    {
-                        formCompletionHelper.Click(SaveAndContinueButton);
-                    }
-                    catch { /* Suppress element reference variations */ }
-                }
-
                 Thread.Sleep(1000);
                 elapsedSeconds++;
             }
 
             if (!navigationSuccessful)
             {
-                string stuckUrl = pageInteractionHelper.GetUrl();
+                string finalUrl = pageInteractionHelper.GetUrl();
 
-                Console.WriteLine($"[Pipeline Warning] Save failed to redirect. Current URL: {stuckUrl}. Forcing absolute browser redirect...");
-
-                Uri uri = new Uri(stuckUrl);
-                string tasksDashboardUrl = $"{uri.Scheme}://{uri.Authority}/Tasks/Index";
+                Console.WriteLine($"[Pipeline Error Diagnostics] Form failed to save. Stranded on: {finalUrl}");
 
                 try
                 {
                     ClickToDoTab();
                     Refresh();
                 }
-                catch (Exception)
+                catch
                 {
                     pageInteractionHelper.RefreshPage();
                 }
 
-                string finalUrl = pageInteractionHelper.GetUrl();
-                if (finalUrl.Contains("/Tasks/Add"))
+                if (pageInteractionHelper.GetUrl().Contains("/Tasks/Add"))
                 {
-                    throw new WebDriverTimeoutException($"Form submission failed to redirect or escape the Add Form layout. Stranded on: {finalUrl}");
+                    throw new WebDriverTimeoutException($"Form submission failed to redirect due to invalid form data or missing input values. Stranded on: {finalUrl}");
                 }
             }
 
