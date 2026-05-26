@@ -5,10 +5,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages
 {
     public abstract class ApprovalsApprenticeBasePage(ScenarioContext context, bool verifypage = true) : ApprovalsBasePage(context, verifypage)
     {
-        public ApprenticesHomePage GoBackToApprenticesHomePage()
+        public LearnerHomePage GoBackToApprenticesHomePage()
         {
             formCompletionHelper.Click(BackLink);
-            return new ApprenticesHomePage(context);
+            return new LearnerHomePage(context);
         }
     }
 }

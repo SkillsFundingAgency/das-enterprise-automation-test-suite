@@ -6,11 +6,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
     public class ConfirmProviderDetailsHelper(ScenarioContext context)
     {
-        public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(bool isTransferReceiverEmployer, Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> func)
+        public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(bool isTransferReceiverEmployer, Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> func)
         {
-            var addAnApprenticePage = new ApprenticesHomePage(context).ClickAddAnApprentice();
+            var addAnApprenticePage = new LearnerHomePage(context).ClickAddALearnerLink();
 
-            AddTrainingProviderDetailsPage addTrainingProviderDetailsPage;
+            ChooseYourMainTrainingProviderPage addTrainingProviderDetailsPage;
             /*if (isTransferReceiverEmployer)
             {
                 addTrainingProviderDetailsPage = addAnApprenticePage.StartNowToSelectFunding().SelectFundingType(FundingType.CurrentLevyFunds);

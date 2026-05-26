@@ -36,7 +36,7 @@ public class DeleteCohortViaEmployerPortalTestDataSteps
     {
         _employerPortalLoginHelper.Login(levyUser, true);
 
-        var employerApprenticeRequestsPage = new ApprenticesHomePage(_context).ClickApprenticeRequestsLink();
+        var employerApprenticeRequestsPage = new LearnerHomePage(_context).ClickLearnerRequestsLink();
 
         var apprenticeRequestsSubPage = func(employerApprenticeRequestsPage);
 

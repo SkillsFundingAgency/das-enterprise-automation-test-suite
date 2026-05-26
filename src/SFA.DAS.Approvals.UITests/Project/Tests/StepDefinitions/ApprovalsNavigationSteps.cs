@@ -7,7 +7,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     [Binding, Scope(Tag = "approvalsnavigation")]
     public class ApprovalsNavigationSteps(ScenarioContext context)
     {
-        private ApprenticesHomePage _apprenticesHomePage;
+        private LearnerHomePage _apprenticesHomePage;
 
         [When(@"the Employer navigates to 'Apprentice' Page")]
         public void WhenTheEmployerNavigatesToPage() => GoToApprenticesHomePage();
@@ -59,13 +59,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                     _apprenticesHomePage.ClickReportPublicSectorApprenticeshipTargetLink();
                     break;
                 case "Manage your apprentices":
-                    _apprenticesHomePage.ClickManageYourApprenticesLink();
+                    _apprenticesHomePage.ClickManageYourLearnersLink();
                     break;
                 case "Apprentice requests":
-                    _apprenticesHomePage.ClickApprenticeRequestsLink();
+                    _apprenticesHomePage.ClickLearnerRequestsLink();
                     break;
                 case "Add an apprentice":
-                    _apprenticesHomePage.ClickAddAnApprentice();
+                    _apprenticesHomePage.ClickAddALearnerLink();
                     break;
                 case "Accessibility statement":
                     _apprenticesHomePage.ClickAccessibilityStatement();
@@ -75,7 +75,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        private ApprenticesHomePage GoToApprenticesHomePage() => new(context);
+        private LearnerHomePage GoToApprenticesHomePage() => new(context);
 
         private InterimApprenticesHomePage GoToInterimApprenticesHomePage() => new(context, true);
     }
