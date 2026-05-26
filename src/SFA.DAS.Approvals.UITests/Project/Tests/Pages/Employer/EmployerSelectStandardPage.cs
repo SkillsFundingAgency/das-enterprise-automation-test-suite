@@ -69,7 +69,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
         {
             var x = GetAllTrainingCourses();
-            Assert.That(GetAllTrainingCourses().All(x => !x.Contains("(Framework)")), Is.True);
+            Assert.That(GetAllTrainingCourses().All(x => !x.Contains("(Framework)") && !x.Contains("(Apprenticeship unit)")), Is.True);
             Continue();
             return new AddApprenticeDetailsPage(context);
         }
