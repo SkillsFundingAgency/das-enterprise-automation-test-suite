@@ -16,13 +16,11 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         {
             string updatedName = TasksBasePage.GenerateTaskName();
 
-            tasksBasePage.ClickEditButton();
-
             tasksBasePage.SetTaskTitle(updatedName);
 
-            scenarioContext.Add("UpdatedTaskName", updatedName);
+            scenarioContext["UpdatedTaskName"] = updatedName;
 
-            tasksBasePage.ClickSaveButton();
+            tasksBasePage.ClickSaveAndContinue();
         }
     }
 }

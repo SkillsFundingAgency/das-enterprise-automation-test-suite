@@ -25,7 +25,7 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         [Then("the profile page is displayed")]
         public void ThenTheProfilePageIsDisplayed()
         {
-            Assert.AreEqual("Your profile", yourProfilePage.YourProfilePageTitle());
+            Assert.AreEqual("Your apprenticeship details", yourProfilePage.YourProfilePageTitle());
         }
     }
 }

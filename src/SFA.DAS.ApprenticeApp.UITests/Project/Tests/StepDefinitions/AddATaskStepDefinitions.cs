@@ -1,4 +1,6 @@
-﻿using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
+﻿using SFA.DAS.ApprenticeApp.UITests.Project.Helpers;
+using SFA.DAS.ApprenticeApp.UITests.Project.Tests.Pages;
+using SFA.DAS.UI.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,22 +10,30 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
     public class AddATaskStepDefinitions
     {
         private readonly TasksBasePage tasksBasePage;
+        private readonly AppStepsHelper appStepsHelper;
+        private readonly ScenarioContext context;
         private string toDoTaskName;
         private string doneTaskName;
 
         public AddATaskStepDefinitions(ScenarioContext context)
         {
             this.tasksBasePage = new TasksBasePage(context);
+            this.appStepsHelper = new AppStepsHelper(context);
+            this.context = context;
         }
 
         [When("the apprentice adds a new to do task")]
         public void WhenTheApprenticeAddsANewTask()
         {
+            appStepsHelper.NavigateToTasksPage();
+            tasksBasePage.Refresh();
+
             tasksBasePage.WaitForNewAddToDoTaskButton();
 
             toDoTaskName = TasksBasePage.GenerateTaskName();
+            context["CurrentTaskName"] = toDoTaskName;
 
-            tasksBasePage.AddTask(true, toDoTaskName, DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy"), "12:00p", "KSB", "1", "Assignment", "Status", "Note");
+            tasksBasePage.AddTask(true, toDoTaskName, DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy"), "12:00", "KSB", "1", "Assignment", "Status", "Note");
 
             tasksBasePage.Refresh();
         }
@@ -31,6 +41,10 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         [When("the apprentice has clicked on the done tasks tab")]
         public void WhenTheApprenticeUserIsOnTheDoneTasksPage()
         {
+            appStepsHelper.NavigateToTasksPage();
+
+            tasksBasePage.Refresh();
+
             tasksBasePage.ClickDoneTab();
 
             tasksBasePage.WaitForNewAddDoneTaskButton();
@@ -39,9 +53,15 @@ namespace SFA.DAS.ApprenticeApp.UITests.Project.Tests.StepDefinitions
         [When("the apprentice adds a new done task")]
         public void WhenTheApprenticeAddsANewDoneTask()
         {
-            doneTaskName = TasksBasePage.GenerateTaskName();
+            appStepsHelper.NavigateToTasksPage();
+            tasksBasePage.Refresh();
 
-            tasksBasePage.AddTask(false, doneTaskName, DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy"), "12:00p", "KSB", "1", "Assignment", "Status", "Note");
+            appStepsHelper.NavigateToDoneTab();
+
+            doneTaskName = TasksBasePage.GenerateTaskName();
+            context["CurrentTaskName"] = doneTaskName;
+
+            tasksBasePage.AddTask(false, doneTaskName, DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy"), "12:00", "KSB", "1", "Assignment", "Status", "Note");
 
             tasksBasePage.Refresh();
         }
