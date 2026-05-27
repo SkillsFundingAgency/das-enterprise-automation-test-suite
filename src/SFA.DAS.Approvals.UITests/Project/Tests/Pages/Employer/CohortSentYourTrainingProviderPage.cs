@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected override string PageTitle => "Request sent to training provider";
         protected override bool TakeFullScreenShot => false;
-        private static By MessageForTrainingProvider => By.CssSelector(".govuk-summary-list__row:nth-child(3) > .govuk-summary-list__value");
+        private static By MessageForTrainingProvider => By.CssSelector(".govuk-summary-list__row:nth-child(4) > .govuk-summary-list__value");
 
         public CohortSentYourTrainingProviderPage VerifyMessageForTrainingProvider(string expectedText)
         {

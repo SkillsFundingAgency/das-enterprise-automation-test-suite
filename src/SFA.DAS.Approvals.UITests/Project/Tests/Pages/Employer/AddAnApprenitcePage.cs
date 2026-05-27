@@ -5,7 +5,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class AddAnApprenitcePage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
     {
-        protected override string PageTitle => "Add an apprentice";
+        protected override string PageTitle => "Add a learner or send a learner request";
 
         protected override bool TakeFullScreenShot => false;
 
