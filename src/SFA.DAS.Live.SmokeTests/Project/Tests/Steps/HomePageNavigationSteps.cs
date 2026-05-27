@@ -20,7 +20,7 @@ public class HomePageNavigationSteps(ScenarioContext context)
     [Then(@"Apprentices link should direct user to Apprentices page")]
     public void ApprenticesLinkShouldDirectUserToApprenticesPage()
     {
-       new ApprenticesHomePage(context).GoToHomePage();
+       new LearnerHomePage(context).GoToHomePage();
     }
 
     [Then(@"Your apprenticeship adverts link should direct user to Create an advert page")]

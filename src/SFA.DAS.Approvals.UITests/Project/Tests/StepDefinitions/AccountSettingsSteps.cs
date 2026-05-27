@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _loginHelper.Login(_context.GetUser<LevyUser>(), true);
 
-            _ = new ApprenticesHomePage(_context);
+            _ = new LearnerHomePage(_context);
         }
 
         [Given(@"Provider navigates to notification settings page")]

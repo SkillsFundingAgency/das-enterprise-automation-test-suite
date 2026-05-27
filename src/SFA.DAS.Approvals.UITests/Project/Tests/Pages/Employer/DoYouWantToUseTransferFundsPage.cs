@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By CohortFundingOptions => By.CssSelector(".govuk-radios__item");
         protected override By ContinueButton => By.Id("submit-transfer-connection");
 
-        public AddTrainingProviderDetailsPage SelectYesIWantToUseTransferFunds()
+        public ChooseYourMainTrainingProviderPage SelectYesIWantToUseTransferFunds()
         {
             string yesOption = "Yes, I will use transfer funds";
 
@@ -18,15 +18,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return GoToAddTrainingProviderDetailsPage(yesOption);
         }
 
-        public AddTrainingProviderDetailsPage SelectNoIDontWantToUseTransferFunds() => GoToAddTrainingProviderDetailsPage($"No, I don't want to use transfer funds");
+        public ChooseYourMainTrainingProviderPage SelectNoIDontWantToUseTransferFunds() => GoToAddTrainingProviderDetailsPage($"No, I don't want to use transfer funds");
 
-        private AddTrainingProviderDetailsPage GoToAddTrainingProviderDetailsPage(string option)
+        private ChooseYourMainTrainingProviderPage GoToAddTrainingProviderDetailsPage(string option)
         {
             formCompletionHelper.SelectRadioOptionByText(CohortFundingOptions, option);
 
             Continue();
 
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
     }
 }

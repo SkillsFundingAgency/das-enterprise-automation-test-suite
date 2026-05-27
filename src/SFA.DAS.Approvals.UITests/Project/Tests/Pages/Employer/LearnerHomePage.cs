@@ -6,11 +6,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
-public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHomePage(context, false)
+public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePage(context, false)
 {
-    private static By AddAnApprenticeLink => By.LinkText("Add an apprentice");
-    private static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
-    private static By ManageYourApprenticesLink => By.LinkText("Manage your apprentices");
+    // Approvals employer home was renamed from Apprentices to Learners.
+    protected override string PageTitle => "Learners";
+
+    // Top nav still uses Apprentices in this journey for Navigate base link selection.
+    protected override string Linktext => "Apprentices";
+
+    private static By AddALearnerLink => By.LinkText("Add a Learner or send a learner request");
+    private static By LearnerRequestsLink => By.LinkText("Review learner requests");
+    private static By ManageLearnersLink => By.LinkText("Manage your Learners");
     private static By SetPaymentOrder => By.LinkText("Set payment order");
     private static By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
     private static By Help => By.LinkText("Help");
@@ -25,9 +31,9 @@ public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHo
     private static By ZenHelpWidgetScript1 => By.Id("ze-snippet");
     private static By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-    public AddAnApprenitcePage ClickAddAnApprentice()
+    public AddAnApprenitcePage ClickAddALearnerLink()
     {
-        formCompletionHelper.ClickElement(AddAnApprenticeLink);
+        formCompletionHelper.ClickElement(AddALearnerLink);
         return new AddAnApprenitcePage(context);
     }
 
@@ -37,15 +43,15 @@ public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHo
         return new AccessibilityStatementPage(context);
     }
 
-    public ApprenticeRequestsPage ClickApprenticeRequestsLink()
+    public ApprenticeRequestsPage ClickLearnerRequestsLink()
     {
-        formCompletionHelper.ClickElement(ApprenticeRequestsLink);
+        formCompletionHelper.ClickElement(LearnerRequestsLink);
         return new ApprenticeRequestsPage(context);
     }
 
-    public ManageYourLearnersPage ClickManageYourApprenticesLink()
+    public ManageYourLearnersPage ClickManageYourLearnersLink()
     {
-        formCompletionHelper.ClickElement(ManageYourApprenticesLink);
+        formCompletionHelper.ClickElement(ManageLearnersLink);
         return new ManageYourLearnersPage(context);
     }
 
@@ -63,7 +69,7 @@ public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHo
         return new ReportPublicSectorApprenticeshipTargetPage(context);
     }
 
-    public ApprenticesHomePage ValidateFooter()
+    public LearnerHomePage ValidateFooter()
     {
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Help), "Validate Help link on the footer of the page");
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(Feedback), "Validate Feedback link on the footer of the page");
@@ -76,14 +82,14 @@ public class ApprenticesHomePage(ScenarioContext context) : InterimApprenticesHo
         return this;
     }
 
-    public ApprenticesHomePage ValidateCookiesBanner()
+    public LearnerHomePage ValidateCookiesBanner()
     {
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookiesAcceptButton), "Validate accept cookies button on cookies banner");
         Assert.IsTrue(pageInteractionHelper.IsElementDisplayed(CookiesSettingsButton), "Validate cookie settings button on cookies banner");
         return this;
     }
 
-    public ApprenticesHomePage ValidateHelpWidget()
+    public LearnerHomePage ValidateHelpWidget()
     {
         Assert.IsTrue(pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript1), "Validate help widget button in the bottom right");
         Assert.IsTrue(pageInteractionHelper.IsElementPresent(ZenHelpWidgetScript2), "Validate help widget button in the bottom right");
