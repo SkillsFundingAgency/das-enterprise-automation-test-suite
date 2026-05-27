@@ -6,10 +6,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
     public class ApprovalsDynamicHomePage(ScenarioContext context) : HomePage(context)
     {
-        public ReserveFundingToTrainAndAssessAnApprenticePage StartNowToReserveFunding()
+        public ReserveFundingPage StartNowToReserveFunding()
         {
             formCompletionHelper.ClickElement(StartNowButton);
-            return new ReserveFundingToTrainAndAssessAnApprenticePage(context);
+            return new ReserveFundingPage(context);
         }
     }
 }

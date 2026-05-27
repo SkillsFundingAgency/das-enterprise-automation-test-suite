@@ -9,11 +9,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 {
     public class ProviderApprenticeshipTrainingPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Apprenticeship training";
+        protected override string PageTitle => "What is the training course?";
 
         private static By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
-
-        private static By SaveAndContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
         private static By ReservationStartFromDate => By.CssSelector(".govuk-inset-text p:nth-child(2)");
 
@@ -35,13 +33,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
 
         public ProviderConfirmYourReservationPage ClickSaveAndContinueButton()
         {
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            Continue();
             return new ProviderConfirmYourReservationPage(context);
         }
 
         public ProviderApprenticeshipTrainingPage ClickSaveAndContinueButtonAndExpectProblem()
         {
-            formCompletionHelper.ClickElement(SaveAndContinueButton);
+            Continue();
             return this;
         }
 

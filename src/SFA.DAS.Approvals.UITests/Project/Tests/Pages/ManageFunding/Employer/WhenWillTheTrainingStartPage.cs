@@ -6,9 +6,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class WhenWillTheTrainingStartPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "When will the apprentice start their apprenticeship training?";
+        protected override string PageTitle => "When will the training start?";
 
         protected override bool TakeFullScreenShot => false;
 
@@ -18,19 +18,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 
         private static By ErrorSummary => By.CssSelector(".govuk-error-summary__list li a[href^='#StartDate-']");
 
-        public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickMonthRadioButton()
+        public WhenWillTheTrainingStartPage ClickMonthRadioButton()
         {
             formCompletionHelper.ClickElement(RadioLabels);
-            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(context);
+            return new WhenWillTheTrainingStartPage(context);
         }
 
-        public ConfirmYourReservationPage ClickSaveAndContinueButton()
+        public CheckDetailsAndReserveFundingPage ClickSaveAndContinueButton()
         {
             Continue();
-            return new ConfirmYourReservationPage(context);
+            return new CheckDetailsAndReserveFundingPage(context);
         }
 
-        public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickSaveAndContinueButtonAndExpectProblem()
+        public WhenWillTheTrainingStartPage ClickSaveAndContinueButtonAndExpectProblem()
         {
             Continue();
             return this;

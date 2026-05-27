@@ -83,7 +83,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
         private StartAddingApprenticesPage NonLevyEmployerAddsProviderDetails()
         {
             return ManageFundingEmployerStepsHelper.CreateReservation(_employerReservationStepsHelper.GoToReserveFunding())
-                .AddApprentice()
+                .AddLearner()
                 .StartNowToAddTrainingProvider()
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect();

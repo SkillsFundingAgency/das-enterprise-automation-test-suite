@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
 {
-    public class DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class DoYouKnowWhichTrainingCourseYourLearnerWillTakePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Do you know which apprenticeship training your apprentice will take?";
+        protected override string PageTitle => "Do you know which training course your learner will take?";
 
         protected override bool TakeFullScreenShot => false;
 
@@ -15,23 +15,23 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
         private static By StandardCourseOption => By.Id("SelectedCourseId__option--0");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage ClickYesRadioButton()
+        public DoYouKnowWhichTrainingCourseYourLearnerWillTakePage ClickYesRadioButton()
         {
             formCompletionHelper.ClickElement(YesRadioButton);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
+            return new DoYouKnowWhichTrainingCourseYourLearnerWillTakePage(context);
         }
 
-        public DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage EnterSelectForACourseAndSubmit()
+        public DoYouKnowWhichTrainingCourseYourLearnerWillTakePage EnterSelectForACourseAndSubmit()
         {
             formCompletionHelper.EnterText(TrainingCourseContainer, apprenticeCourseDataHelper.CourseDetails.Course.title);
             formCompletionHelper.ClickElement(StandardCourseOption);
-            return new DoYouKnowWhichApprenticeshipTrainingYourApprenticeWillTakePage(context);
+            return new DoYouKnowWhichTrainingCourseYourLearnerWillTakePage(context);
         }
 
-        public WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage ClickSaveAndContinueButton()
+        public WhenWillTheTrainingStartPage ClickSaveAndContinueButton()
         {
             Continue();
-            return new WhenWillTheApprenticeStartTheirApprenticeshipTrainingPage(context);
+            return new WhenWillTheTrainingStartPage(context);
         }
     }
 }
