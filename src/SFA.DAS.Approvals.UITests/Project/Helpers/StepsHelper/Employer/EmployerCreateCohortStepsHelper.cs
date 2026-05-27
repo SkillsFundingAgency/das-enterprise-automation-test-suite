@@ -88,7 +88,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return _confirmProviderDetailsHelper
                .ConfirmProviderDetailsAreCorrect(true, AddTrainingProviderDetailsViaDirectTransfersRouteFunc())
                .EmployerSendsToProviderToAddApprentices()
-               .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+               .VerifyMessageForTrainingProviderNew(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
         }
 
         private CohortSentYourTrainingProviderPage EmployerCreateCohortsViaReserveNewFundsOption()
@@ -100,7 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerSendsToProviderToAddApprentices()
-                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+                .VerifyMessageForTrainingProviderNew(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
 
         }
 
