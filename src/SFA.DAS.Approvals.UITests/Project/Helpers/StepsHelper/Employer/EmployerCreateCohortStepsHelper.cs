@@ -88,19 +88,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return _confirmProviderDetailsHelper
                .ConfirmProviderDetailsAreCorrect(true, AddTrainingProviderDetailsViaDirectTransfersRouteFunc())
                .EmployerSendsToProviderToAddApprentices()
-               .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+               .VerifyMessageForTrainingProviderNew(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
         }
 
         private CohortSentYourTrainingProviderPage EmployerCreateCohortsViaReserveNewFundsOption()
         {
-            return new ApprenticesHomePage(context)
-                .ClickAddAnApprentice()
+            return new LearnerHomePage(context)
+                .ClickAddALearnerLink()
                 .StartNowToSelectFunding()
                 .SelectFundingType(FundingType.ReserveNewFunds)
                 .SubmitValidUkprn()
                 .ConfirmProviderDetailsAreCorrect()
                 .EmployerSendsToProviderToAddApprentices()
-                .VerifyMessageForTrainingProvider(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
+                .VerifyMessageForTrainingProviderNew(context.GetValue<ApprenticeDataHelper>().MessageToProvider);
 
         }
 
@@ -109,9 +109,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             new AddAnApprenitcePage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
         }
 
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsFuncWithoutSelectFundingOption() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsViaCreateReservationsRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaReserveNewFundsFunc();
-        protected virtual Func<AddAnApprenitcePage, AddTrainingProviderDetailsPage> AddTrainingProviderDetailsViaDirectTransfersRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingDirectTransfersFunc();
+        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
+        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFuncWithoutSelectFundingOption() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
+        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsViaCreateReservationsRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaReserveNewFundsFunc();
+        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsViaDirectTransfersRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingDirectTransfersFunc();
     }
 }

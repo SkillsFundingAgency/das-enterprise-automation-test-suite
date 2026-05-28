@@ -3,10 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddTrainingProviderDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ChooseYourMainTrainingProviderPage(ScenarioContext context) : ApprovalsBasePage(context, false)
     {
-        protected override string PageTitle => "Select your training provider";
-        protected override By PageHeader => By.ClassName("govuk-heading-l");
+        // Page heading now includes the provider name dynamically; verify via presence of the UKPRN input instead.
+        protected override string PageTitle => string.Empty;
+        protected override By PageHeader => By.Id("Ukprn");
 
         protected override bool TakeFullScreenShot => false;
         private static By UKProviderReferenceNumberText => By.Id("Ukprn");
@@ -31,7 +32,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ConfirmTrainingProviderPage(context);
         }
 
-        private AddTrainingProviderDetailsPage EnterUkprn()
+        private ChooseYourMainTrainingProviderPage EnterUkprn()
         {
             formCompletionHelper.ClickElement(() => { formCompletionHelper.EnterText(UKProviderReferenceNumberText, providerConfig.Ukprn); return pageInteractionHelper.FindElement(FirstOption); });
             return this;

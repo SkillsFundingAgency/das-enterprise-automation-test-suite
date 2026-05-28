@@ -4,13 +4,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class SelectFundingPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
+    public class ChooseFundingPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
     {
-        protected override string PageTitle => "Select funding";
+        protected override string PageTitle => "Choose funding";
         protected override By PageHeader => By.ClassName("govuk-heading-l");
         protected override By ContinueButton => By.Id("submit-funding-type");
 
-        public AddTrainingProviderDetailsPage SelectReservedFundingFromContext(bool isSecondReservation = false)
+        public ChooseYourMainTrainingProviderPage SelectReservedFundingFromContext(bool isSecondReservation = false)
         {
             SelectRadioOptionByForAttribute("FundingType-2");
             Continue();
@@ -22,10 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             {
                 new ChooseAReservationPage(context).ChooseReservationFromContext();
             }
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
-        public AddTrainingProviderDetailsPage SelectFundingType(FundingType fundingType)
+        public ChooseYourMainTrainingProviderPage SelectFundingType(FundingType fundingType)
         {
             switch (fundingType)
             {
@@ -50,13 +50,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             Continue();
 
-            if (fundingType == FundingType.DirectTransferFundsFromConnection) { new SelectAConnectionToTransferFromPage(context).SelectTransferSenderAndContinue(); }
+            if (fundingType == FundingType.DirectTransferFundsFromConnection) { new ChooseAConnectionToTransferFromPage(context).SelectTransferSenderAndContinue(); }
 
             if (fundingType == FundingType.ReservedFunds) { new ChooseAReservationPage(context).SelectAReservation(); }
 
-            if (fundingType == FundingType.TransferFunds) { new SelectTransferFundsPage(context).SelectTransferAndContinueToSelectProvider(); }
+            if (fundingType == FundingType.TransferFunds) { new ChooseTransferFundsPage(context).SelectTransferAndContinueToSelectProvider(); }
 
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
 

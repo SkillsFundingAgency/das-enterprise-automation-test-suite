@@ -249,7 +249,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ANewLiveApprenticeRecordIsCreated() => _employerStepsHelper.ValidateStatusOnManageYourApprenticesPage("Live");
 
         [Then(@"the user can add an apprentices")]
-        public void ThenTheUserCanAddAnApprentices() => new ApprenticesHomePage(context).ClickAddAnApprentice();
+        public void ThenTheUserCanAddAnApprentices() => new LearnerHomePage(context).ClickAddALearnerLink();
 
         [Then(@"employer validates apprentice is Flexi-job and can edit Delivery Model")]
         public void ThenEmployerValidatesApprenticeIsFlexi_JobAndCanEditDeliveryModel() => _employerStepsHelper.EmployerValidateApprenticeIsFlexiJobAndDeliveryModelEditable();

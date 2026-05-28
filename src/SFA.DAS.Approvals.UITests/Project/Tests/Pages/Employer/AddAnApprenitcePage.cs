@@ -5,16 +5,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class AddAnApprenitcePage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
     {
-        protected override string PageTitle => "Add an apprentice";
+        protected override string PageTitle => "Add a learner or send a learner request";
 
         protected override bool TakeFullScreenShot => false;
 
         private static By StartNowButton => By.CssSelector(".govuk-button--start");
 
-        public AddTrainingProviderDetailsPage StartNowToAddTrainingProvider()
+        public ChooseYourMainTrainingProviderPage StartNowToAddTrainingProvider()
         {
             StartNow();
-            return new AddTrainingProviderDetailsPage(context);
+            return new ChooseYourMainTrainingProviderPage(context);
         }
 
         public DoYouWantToUseTransferFundsPage StartNowToCreateApprenticeViaTransfersFunds()
@@ -23,10 +23,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new DoYouWantToUseTransferFundsPage(context);
         }
 
-        public SelectFundingPage StartNowToSelectFunding()
+        public ChooseFundingPage StartNowToSelectFunding()
         {
             StartNow();
-            return new SelectFundingPage(context);
+            return new ChooseFundingPage(context);
         }
 
         public YouCannotCreateAnotherFundingReservationPage NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
