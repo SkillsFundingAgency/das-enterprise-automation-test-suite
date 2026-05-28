@@ -33,17 +33,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override string AccessibilityPageTitle => "Provider check apprentice details";
 
-        internal HowDoYouWantToAddLearnerDetails SelectAddAnApprenticeUsingReservation()
+        internal ProviderAddApprenticeDetailsHow SelectAddAnApprenticeUsingReservation()
         {
             AddAnApprentice();
-            return new HowDoYouWantToAddLearnerDetails(context);
+            return new ProviderAddApprenticeDetailsHow(context);
         }
 
-        internal HowDoYouWantToAddLearnerDetails SelectAddAnApprentice()
+        internal ProviderAddApprenticeDetailsHow SelectAddAnApprentice()
         {
             AddAnApprentice();
 
-            return new HowDoYouWantToAddLearnerDetails(context);
+            return new ProviderAddApprenticeDetailsHow(context);
         }
 
         internal SimplifiedPaymentsPilotPage SelectAddAnApprenticeForFlexiPaymentsProvider()
@@ -110,10 +110,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderAccessDeniedPage(context);
         }
 
-        internal HowDoYouWantToAddLearnerDetails SelectAddAnotherApprenticeLink()
+        internal ProviderAddApprenticeDetailsHow SelectAddAnotherApprenticeLink()
         {
             formCompletionHelper.ClickElement(AddAnApprenticeButton);
-            return new HowDoYouWantToAddLearnerDetails(context);
+            return new ProviderAddApprenticeDetailsHow(context);
         }
 
         public ProviderAccessDeniedPage SelectDeleteCohortGoesToAccessDenied()
