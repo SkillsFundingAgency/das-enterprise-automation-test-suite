@@ -4,5 +4,5 @@ public class InterimApprenticesHomePage(ScenarioContext context, bool gotourl) :
 {
     protected override string PageTitle => "Learners";
 
-    protected override string Linktext => "Apprentices";
+    protected override string Linktext => "Learners";
 }
