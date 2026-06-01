@@ -12,7 +12,7 @@ public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePa
     protected override string PageTitle => "Learners";
 
     // Top nav still uses Apprentices in this journey for Navigate base link selection.
-    protected override string Linktext => "Learners";
+    protected override string Linktext => "Apprentices";
 
     private static By AddALearnerLink => By.LinkText("Add a Learner or send a learner request");
     private static By LearnerRequestsLink => By.LinkText("Review learner requests");
