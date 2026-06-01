@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddAnApprenitcePage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
+    public class AddOrSendLearnerRequestPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
     {
         protected override string PageTitle => "Add a learner or send a learner request";
 

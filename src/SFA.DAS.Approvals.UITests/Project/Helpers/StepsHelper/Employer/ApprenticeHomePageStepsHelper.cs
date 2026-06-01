@@ -18,15 +18,16 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _homePageStepsHelper = new EmployerHomePageStepsHelper(_context);
         }
 
-        public ManageYourLearnersPage GoToManageYourLearnersPage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickManageYourLearnersLink();
+        public ManageYourLearnersPage GoToManageYourLearnersPage(bool openInNewTab = true) => GoToEmployerLearnersHomePage(openInNewTab).ClickManageYourLearnersLink();
           
-        public AddAnApprenitcePage GoToAddAnApprenticePage(bool openInNewTab = true) => GoToEmployerApprenticesHomePage(openInNewTab).ClickAddALearnerLink();
+        public AddOrSendLearnerRequestPage GoToAddLearnerPage(bool openInNewTab = true) => GoToEmployerLearnersHomePage(openInNewTab).ClickAddALearnerLink();
 
         public HomePage GotoEmployerHomePage(bool openInNewTab = true) => _homePageStepsHelper.GotoEmployerHomePage(openInNewTab);
 
-        public LearnerHomePage GoToEmployerApprenticesHomePage(bool openInNewTab = true)
+        public LearnerHomePage GoToEmployerLearnersHomePage(bool openInNewTab = true)
         {
             GotoEmployerHomePage(openInNewTab);
+            GoToManageYourLearnersPage(false);
 
             return new LearnerHomePage(_context);
         }

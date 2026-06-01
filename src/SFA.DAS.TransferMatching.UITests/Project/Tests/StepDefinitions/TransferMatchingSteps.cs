@@ -449,7 +449,7 @@ public class TransferMatchingSteps
     [Then(@"the non levy employer can add apprentice to the pledgeApplication via 'Add an apprentice' route")]
     public void ThenTheNonLevyEmployerCanAddApprenticeToThePledgeApplicationViaAddAnApprenticeRoute()
     {
-        var apprenticeDetailsApprovedPage = _apprenticeHomePageStepsHelper.GoToAddAnApprenticePage()
+        var apprenticeDetailsApprovedPage = _apprenticeHomePageStepsHelper.GoToAddLearnerPage()
             .StartNowToSelectFunding()
             .SelectFundingType(FundingType.TransferFunds)
             .SubmitValidUkprn()

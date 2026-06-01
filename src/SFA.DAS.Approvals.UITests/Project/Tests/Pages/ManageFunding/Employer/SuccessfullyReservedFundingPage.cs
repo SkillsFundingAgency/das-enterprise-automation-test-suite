@@ -18,10 +18,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Employer
             return new DynamicHomePages(context);
         }
 
-        internal AddAnApprenitcePage AddLearner()
+        internal AddOrSendLearnerRequestPage AddLearner()
         {
             formCompletionHelper.ClickElement(AddLearnerLink);
-            return new AddAnApprenitcePage(context);
+            return new AddOrSendLearnerRequestPage(context);
         }
 
 

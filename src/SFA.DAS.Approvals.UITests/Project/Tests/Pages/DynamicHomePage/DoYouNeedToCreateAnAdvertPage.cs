@@ -7,11 +7,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.DynamicHomePage
 {
     public class DoYouNeedToCreateAnAdvertPage(ScenarioContext context) : DoYouNeedToCreateAnAdvertBasePage(context)
     {
-        public AddAnApprenitcePage ClickNoRadioButtonTakesToAddAnApprentices()
+        public AddOrSendLearnerRequestPage ClickNoRadioButtonTakesToAddAnApprentices()
         {
             formCompletionHelper.ClickElement(NoRadioButtonOption);
             Continue();
-            return new AddAnApprenitcePage(context);
+            return new AddOrSendLearnerRequestPage(context);
         }
     }
 }

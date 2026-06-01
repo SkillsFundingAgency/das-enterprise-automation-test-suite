@@ -36,7 +36,7 @@ namespace SFA.DAS.EmployerFinance.UITests.Project.Tests.StepDefinitions
         {
             _ = new InterimFinanceHomePage(context, true);
 
-            _ = new InterimApprenticesHomePage(context, false);
+            _ = new InterimLearnersHomePage(context, false);
         }
 
         [Then(@"the employer can navigate to your team page")]

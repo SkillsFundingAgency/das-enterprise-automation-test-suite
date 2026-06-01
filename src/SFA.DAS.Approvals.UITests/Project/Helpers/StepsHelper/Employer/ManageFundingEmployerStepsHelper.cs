@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public static DynamicHomePages VerifyContinueOnHomePagePanel(SuccessfullyReservedFundingPage successfullyReservedFundingPage) => successfullyReservedFundingPage.GoToDynamicHomePage().VerifyReserveFundingPanel();
 
-        public AddAnApprenitcePage GoToAddAnApprentices()
+        public AddOrSendLearnerRequestPage GoToAddAnApprentices()
         {
             GoToDynamicHomePage().ContinueToCreateAdvert();
 

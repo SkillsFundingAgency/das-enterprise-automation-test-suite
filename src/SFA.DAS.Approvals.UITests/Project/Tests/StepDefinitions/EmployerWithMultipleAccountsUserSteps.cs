@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployer2LogIns()
         {
             _objectContext.UpdateOrganisationName(_employerWithMultipleAccountsUser.SecondOrganisationName);
-            _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage();
+            _apprenticeHomePageStepsHelper.GoToEmployerLearnersHomePage();
         }
 
         [Given(@"the Employer3 logins")]
@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenEmployer3LogIns()
         {
             _objectContext.UpdateOrganisationName(_employerWithMultipleAccountsUser.ThirdOrganisationName);
-            _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage();
+            _apprenticeHomePageStepsHelper.GoToEmployerLearnersHomePage();
         }
     }
 }

@@ -106,12 +106,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public void NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage()
         {
-            new AddAnApprenitcePage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
+            new AddOrSendLearnerRequestPage(context).NonLevyEmployerTriesToAddApprenticeButHitsReservationShutterPage();
         }
 
-        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
-        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFuncWithoutSelectFundingOption() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
-        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsViaCreateReservationsRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaReserveNewFundsFunc();
-        protected virtual Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsViaDirectTransfersRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingDirectTransfersFunc();
+        protected virtual Func<AddOrSendLearnerRequestPage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
+        protected virtual Func<AddOrSendLearnerRequestPage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFuncWithoutSelectFundingOption() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsFunc();
+        protected virtual Func<AddOrSendLearnerRequestPage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsViaCreateReservationsRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaReserveNewFundsFunc();
+        protected virtual Func<AddOrSendLearnerRequestPage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsViaDirectTransfersRouteFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsUsingDirectTransfersFunc();
     }
 }

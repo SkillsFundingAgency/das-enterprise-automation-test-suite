@@ -6,13 +6,13 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
-public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePage(context, false)
+public class LearnerHomePage(ScenarioContext context) : InterimLearnersHomePage(context, false)
 {
     // Approvals employer home was renamed from Apprentices to Learners.
     protected override string PageTitle => "Learners";
 
     // Top nav still uses Apprentices in this journey for Navigate base link selection.
-    protected override string Linktext => "Learners";
+    protected override string Linktext => "Apprentices";
 
     private static By AddALearnerLink => By.LinkText("Add a Learner or send a learner request");
     private static By LearnerRequestsLink => By.LinkText("Review learner requests");
@@ -31,10 +31,10 @@ public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePa
     private static By ZenHelpWidgetScript1 => By.Id("ze-snippet");
     private static By ZenHelpWidgetScript2 => By.Id("co-snippet");
 
-    public AddAnApprenitcePage ClickAddALearnerLink()
+    public AddOrSendLearnerRequestPage ClickAddALearnerLink()
     {
         formCompletionHelper.ClickElement(AddALearnerLink);
-        return new AddAnApprenitcePage(context);
+        return new AddOrSendLearnerRequestPage(context);
     }
 
     public AccessibilityStatementPage ClickAccessibilityStatement()

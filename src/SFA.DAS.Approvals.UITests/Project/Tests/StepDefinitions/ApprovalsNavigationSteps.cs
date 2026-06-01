@@ -77,6 +77,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private LearnerHomePage GoToApprenticesHomePage() => new(context);
 
-        private InterimApprenticesHomePage GoToInterimApprenticesHomePage() => new(context, true);
+        private InterimLearnersHomePage GoToInterimApprenticesHomePage() => new(context, true);
     }
 }

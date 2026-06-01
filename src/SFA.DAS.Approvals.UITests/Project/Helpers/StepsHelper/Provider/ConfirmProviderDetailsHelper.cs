@@ -6,7 +6,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
     public class ConfirmProviderDetailsHelper(ScenarioContext context)
     {
-        public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(bool isTransferReceiverEmployer, Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> func)
+        public StartAddingApprenticesPage ConfirmProviderDetailsAreCorrect(bool isTransferReceiverEmployer, Func<AddOrSendLearnerRequestPage, ChooseYourMainTrainingProviderPage> func)
         {
             var addAnApprenticePage = new LearnerHomePage(context).ClickAddALearnerLink();
 

@@ -11,7 +11,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
         private readonly EmployerStepsHelper _employerStepsHelper = new(context);
 
-        public ApproveApprenticeDetailsPage OpenRejectedCohort() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage().ClickLearnerRequestsLink().GoToReadyToReview().SelectViewCurrentCohortDetails();
+        public ApproveApprenticeDetailsPage OpenRejectedCohort() => _apprenticeHomePageStepsHelper.GoToEmployerLearnersHomePage().ClickLearnerRequestsLink().GoToReadyToReview().SelectViewCurrentCohortDetails();
 
         public void RejectTransfersRequest() => OpenTransferRequestDetailsPage().RejectTransferRequest();
 
@@ -21,11 +21,11 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
 
         public void ValidateReadyToReviewCohortStatus(string status) => GoToApprenticeRequestsPage().GoToReadyToReview().SelectViewCurrentCohortDetails().ValidateCohortStatus(status);
 
-        protected override Func<AddAnApprenitcePage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
+        protected override Func<AddOrSendLearnerRequestPage, ChooseYourMainTrainingProviderPage> AddTrainingProviderDetailsFunc() => AddTrainingProviderStepsHelper.AddTrainingProviderDetailsViaCurrentLevyFundsFunc();
 
         private TransferRequestDetailsPage OpenTransferRequestDetailsPage()
         {
-            _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage();
+            _apprenticeHomePageStepsHelper.GoToEmployerLearnersHomePage();
 
             return new FinancePage(context, true)
                 .OpenTransfers()
