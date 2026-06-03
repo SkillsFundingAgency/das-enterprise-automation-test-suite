@@ -33,10 +33,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
             return this;
         }
 
-        public ProviderConfirmYourReservationPage ClickSaveAndContinueButton()
+        public ProviderCheckAndConfirmYourReservationPage ClickSaveAndContinueButton()
         {
             formCompletionHelper.ClickElement(ContinueBtn);
-            return new ProviderConfirmYourReservationPage(context);
+            return new ProviderCheckAndConfirmYourReservationPage(context);
         }
 
         public ProviderApprenticeshipTrainingPage ClickSaveAndContinueButtonAndExpectProblem()
