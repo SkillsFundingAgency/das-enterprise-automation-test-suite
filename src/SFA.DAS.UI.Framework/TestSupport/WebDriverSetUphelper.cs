@@ -96,11 +96,31 @@ public class WebDriverSetupHelper(ScenarioContext context) : WebdriverAddCapabil
 
     private ChromeDriver ChromeDriver(List<string> arguments)
     {
-        var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), AddArguments(arguments), TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+        var chromeOptions = AddArguments(arguments);
 
-        AddChromeCapabilities(webdriver);
+        try
+        {
+            var webdriver = new ChromeDriver(_objectContext.GetChromeDriverLocation(), chromeOptions, TimeSpan.FromMinutes(_frameworkConfig.TimeOutConfig.CommandTimeout));
+            AddChromeCapabilities(webdriver);
+            return webdriver;
+        }
+        catch (InvalidOperationException ex) when (IsChromeDriverVersionMismatch(ex))
+        {
+            // Fallback to Selenium Manager when local ChromeDriver is out of sync with installed Chrome.
+            var webdriver = new ChromeDriver(chromeOptions);
+            AddChromeCapabilities(webdriver);
+            return webdriver;
+        }
+    }
 
-        return webdriver;
+    private static bool IsChromeDriverVersionMismatch(InvalidOperationException exception)
+    {
+        var message = exception.Message ?? string.Empty;
+
+        return message.Contains("Chrome version", StringComparison.OrdinalIgnoreCase)
+               || message.Contains("only supports Chrome version", StringComparison.OrdinalIgnoreCase)
+               || message.Contains("Current browser version is", StringComparison.OrdinalIgnoreCase)
+               || message.Contains("session not created", StringComparison.OrdinalIgnoreCase);
     }
 
     private ChromeOptions AddArguments(List<string> arguments)

@@ -10,6 +10,7 @@ Screenshots
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*.lscache
 
 # Build results
 [Dd]ebug/
