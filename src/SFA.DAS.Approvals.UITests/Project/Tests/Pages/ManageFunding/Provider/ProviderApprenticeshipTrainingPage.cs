@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
     {
         protected override string PageTitle => "What is the training course?";
 
-        protected override By ContinueButton => By.XPath("//button[contains(text(),'Confirm')]");
+        protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
         private static By CourseSearch => By.CssSelector("#course-search, #SelectedCourseId");
 
