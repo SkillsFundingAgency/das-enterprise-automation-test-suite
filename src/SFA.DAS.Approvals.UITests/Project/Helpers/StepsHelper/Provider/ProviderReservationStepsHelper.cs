@@ -34,12 +34,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return _providerCommonStepsHelper.SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
         }
 
-        public ProviderMakingChangesPage ProviderMakeReservation(ApprovalsProviderHomePage approvalsProviderHomePage)
+        public YouHaveReservedFundingForTrainingPage ProviderMakeReservation(ApprovalsProviderHomePage approvalsProviderHomePage)
         {           
             return VerifySuccessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));
         }
 
-        private static ProviderMakingChangesPage VerifySuccessMessage(ProviderApprenticeshipTrainingPage page)
+        private static YouHaveReservedFundingForTrainingPage VerifySuccessMessage(ProviderApprenticeshipTrainingPage page)
         {
             return page.AddTrainingCourse().SelectDate().ClickSaveAndContinueButton().ConfirmReserveFunding().VerifySucessMessage();
         }
