@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider
        
         public ProviderApprenticeshipTrainingPage AddTrainingCourse()
         {
-            formCompletionHelper.EnterText(CourseSearch, "Software Developer - Level 4");
+            formCompletionHelper.EnterText(CourseSearch, "Software Developer, Level 4");
             return this;
         }
 
