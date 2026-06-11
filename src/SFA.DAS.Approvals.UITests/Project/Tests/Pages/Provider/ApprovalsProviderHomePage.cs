@@ -80,10 +80,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderTermsOfUsePage(context);
         }
 
-        public ProviderAddApprenticeDetailsEntryMothod GotoSelectJourneyPage()
+        public HowDoYouWantToAddLearnerDetailsEntryMothod GotoSelectJourneyPage()
         {
             AddNewApprentices();
-            return new ProviderAddApprenticeDetailsEntryMothod(context);
+            return new HowDoYouWantToAddLearnerDetailsEntryMothod(context);
         }
 
         public ProviderAccessDeniedPage GotoSelectJourneyPageGoesToAccessDenied()

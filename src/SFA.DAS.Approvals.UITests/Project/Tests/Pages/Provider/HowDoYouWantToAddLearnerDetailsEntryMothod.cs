@@ -4,16 +4,16 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderAddApprenticeDetailsEntryMothod(ScenarioContext context) : ApprovalsBasePage(context)
+    public class HowDoYouWantToAddLearnerDetailsEntryMothod(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Add apprentice details";
+        protected override string PageTitle => "How do you want to add learner details?";
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        internal ProviderAddApprenticeDetailsViaSelectJourneyPage SelectAddManually()
+        internal DoYouWantToCreateANewCohortPage SelectAddManually()
         {
             SelectRadioOptionByForAttribute("confirm-Manual");
             Continue();
-            return new ProviderAddApprenticeDetailsViaSelectJourneyPage(context);
+            return new DoYouWantToCreateANewCohortPage(context);
         }
 
         internal ProviderBeforeYouStartBulkUploadPage SelectBulkUpload()

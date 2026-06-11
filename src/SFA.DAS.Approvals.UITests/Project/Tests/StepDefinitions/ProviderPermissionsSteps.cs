@@ -59,7 +59,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider can Create Cohort")]
         public void ThenProviderCanCreateCohort()
         {
-            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage =
+            DoYouWantToCreateANewCohortPage providerAddApprenticeDetailsViaSelectJourneyPage =
                _providerCommonStepsHelper
                .GoToProviderHomePage(_providerLoginUser)
                .GotoSelectJourneyPage()
@@ -74,7 +74,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider cannot Create Cohort")]
         public void ThenProviderCannotCreateCohort()
         {
-            ProviderAddApprenticeDetailsViaSelectJourneyPage providerAddApprenticeDetailsViaSelectJourneyPage =
+            DoYouWantToCreateANewCohortPage providerAddApprenticeDetailsViaSelectJourneyPage =
                   _providerCommonStepsHelper
                   .GoToProviderHomePage(_providerLoginUser)
                   .GotoSelectJourneyPage()
