@@ -11,8 +11,8 @@
             _data.Add("rpchangeukprn01",
                 [
                     new(emailkey, "sudhakar.chinoor+ChangeUKPRNJourney@digital.education.gov.uk"),
-                    new(ukprnkey, "10084176"),
-                    new(newukprnkey, "10084177")
+                    new(ukprnkey, "10006754"),
+                    new(newukprnkey, "10007780")
                 ]);
         }
     }

@@ -11,8 +11,8 @@
             _data.Add("rpendtoend01apply",
             [
                     new(emailkey, "sudhakar.chinoor+NewDemo@digital.education.gov.uk"),
-                new(providernamekey, "SIMPLY CREATING CHANGE LTD"),
-                new(ukprnkey, "10082167"),
+                new(providernamekey, "SKILLS OFFICE NETWORK LTD"),
+                new(ukprnkey, "10082140"),
             ]);
             _data.Add("rpip01",
             [
@@ -29,8 +29,8 @@
             _data.Add("rpexistingprovider01",
                [
                     new(emailkey, "sudhakar.chinoor+roatp2@digital.education.gov.uk"),
-                   new(providernamekey, "CHRYSALIS NOT FOR PROFIT LIMITED"),
-                   new(ukprnkey, "10047121"),
+                   new(providernamekey, "BRITISH PEST CONTROL ASSOCIATION"),
+                   new(ukprnkey, "10000927"),
                ]);
             _data.Add("rpexistingprovider02",
                [
@@ -53,8 +53,8 @@
             _data.Add("rpexistingprovider05",
              [
                     new(emailkey, "umakanth.gangaraju+FHAExempt@digital.education.gov.uk"),
-                 new(providernamekey, "TALENTINO LIMITED"),
-                 new(ukprnkey, "10046095"),
+                 new(providernamekey, "BRITISH PARACHUTE SCHOOLS LIMITED"),
+                 new(ukprnkey, "10000926"),
              ]);
             _data.Add("rpexistingprovider06",
             [
