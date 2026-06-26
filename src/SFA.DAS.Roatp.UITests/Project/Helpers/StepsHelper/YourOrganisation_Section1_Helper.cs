@@ -472,8 +472,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
         private static ApplicationOverviewPage CompleteYourOrganisationSection_2(IcoRegistrationNumberPage icoRegistrationNumberPage)
         {
             return icoRegistrationNumberPage
-                .EnterIcoRegistrationNumberAndContinue()
-                .EneterWebsiteAndContinue()
+                .EnterIcoRegistrationNumber_WebsiteAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted);
         }
 
