@@ -16,7 +16,7 @@
             _data.Add("rpse02",
                [
                     new(emailkey, "umakanth.gangaraju+SE2@digital.education.gov.uk"),
-                   new(ukprnkey, "10004081"),
+                   new(ukprnkey, "10004036"),
                ]);
             _data.Add("rpuhp01",
                [
@@ -51,7 +51,7 @@
             _data.Add("rpe2e08",
             [
                     new(emailkey, "sudhakar.chinoor+MainNew@digital.education.gov.uk"),
-                new(ukprnkey, "10000939"),
+                new(ukprnkey, "10000947"),
             ]);
             _data.Add("rpe2e09",
            [
@@ -116,7 +116,7 @@
             _data.Add("rpcr01",
               [
                     new(emailkey, "sudhakar.chinoor+CR01@digital.education.gov.uk"),
-                  new(ukprnkey, "10000930"),
+                  new(ukprnkey, "10003714"),
               ]);
         }
     }
