@@ -57,8 +57,7 @@ namespace SFA.DAS.Roatp.UITests.Project.Helpers.StepsHelper
                 .AccessYourOrganisationSectionForOrgTypeCompany()
                 .ClickContinueParentCompanyOption()
                 .ClickContinueForParentCompanyDetails()
-                .ClickContinueForIcoRegistrationNumber()
-                .ClickContinueForWebsiteEntered()
+                .EnterIcoRegistrationNumber_WebsiteAndContinue()
                 .VerifyOrganisationInformation(StatusHelper.StatusCompleted)
                 .VerifyTellUsWhosInControlStatus(StatusHelper.StatusCompleted);
         }
