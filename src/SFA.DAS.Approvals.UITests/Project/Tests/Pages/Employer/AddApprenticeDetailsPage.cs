@@ -18,7 +18,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
 
-        protected override string PageTitle => "Add apprentice details";
+        protected override string PageTitle => "Add learner details";
 
         public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool checkStartDateNotEmpty, bool checkMaxFundingBand = false)
         {

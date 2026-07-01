@@ -58,13 +58,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
                 case "Report public sector apprenticeship target":
                     _apprenticesHomePage.ClickReportPublicSectorApprenticeshipTargetLink();
                     break;
-                case "Manage your apprentices":
+                case "Manage your learners":
                     _apprenticesHomePage.ClickManageYourLearnersLink();
                     break;
-                case "Apprentice requests":
+                case "Review learner requests":
                     _apprenticesHomePage.ClickLearnerRequestsLink();
                     break;
-                case "Add an apprentice":
+                case "Add a learner or send a learner request":
                     _apprenticesHomePage.ClickAddALearnerLink();
                     break;
                 case "Accessibility statement":

@@ -104,7 +104,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
         }
         public ManageYourApprenticePage NavigateToManageYourApprenticesPage()
         {
-            formCompletionHelper.ClickLinkByText("Manage your apprentices");
+            formCompletionHelper.ClickLinkByText("Manage your learners");
             return new ManageYourApprenticePage(context);
         }
         public OrganisationsAndAgreementsPage NavigateToOrganisationsAndAgreementsPage()

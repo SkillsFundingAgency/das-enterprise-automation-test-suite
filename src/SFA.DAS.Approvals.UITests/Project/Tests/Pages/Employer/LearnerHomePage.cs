@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Linq;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages;
 using SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 using TechTalk.SpecFlow;
@@ -33,7 +34,7 @@ public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePa
 
     public AddAnApprenitcePage ClickAddALearnerLink()
     {
-        formCompletionHelper.ClickElement(AddALearnerLink);
+        formCompletionHelper.ClickElement(pageInteractionHelper.GetLinks("Add a learner or send a learner request").First());
         return new AddAnApprenitcePage(context);
     }
 
