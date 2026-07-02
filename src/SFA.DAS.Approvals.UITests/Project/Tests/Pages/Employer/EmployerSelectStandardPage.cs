@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerSelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "What is the apprenticeship course?";
+        protected override string PageTitle => "What is the training course?";
         protected override By PageHeader => By.ClassName("govuk-heading-l");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");

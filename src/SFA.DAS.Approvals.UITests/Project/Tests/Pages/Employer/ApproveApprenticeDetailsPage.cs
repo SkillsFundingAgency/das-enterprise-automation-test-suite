@@ -13,12 +13,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By ApproveMessage => By.CssSelector("#approve-details");
         private static By ReviewMessage => By.CssSelector("#send-details");
         private static By SaveSubmit => By.CssSelector("#main-content .govuk-button");
-        private static By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
+        private static By AddAnotherApprenticeLink => By.LinkText("Add another learner");
         private static By CohortStatus => By.Id("cohortStatus");
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        protected override string AccessibilityPageTitle => "Check apprentice details";
+        protected override string AccessibilityPageTitle => "Check and approve learner details";
 
         public ApproveApprenticeDetailsPage(ScenarioContext context, string pageTitle) : base(context, (x) => pageTitle) { }
 
@@ -87,12 +87,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ConfirmCohortDeletionPage(context);
         }
 
-        private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another apprentice");
+        private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another learner");
 
         public ApproveApprenticeDetailsPage IsAddApprenticeLinkDisplayed()
         {
             if (pageInteractionHelper.IsElementDisplayed(AddAnotherApprenticeLink))
-                throw new Exception("Link is still available to add another apprentice record");
+                throw new Exception("Link is still available to add another learner record");
             else
                 return this;
         }

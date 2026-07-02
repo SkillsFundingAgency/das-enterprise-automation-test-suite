@@ -14,9 +14,9 @@ public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePa
     // Top nav still uses Apprentices in this journey for Navigate base link selection.
     protected override string Linktext => "Apprentices";
 
-    private static By AddALearnerLink => By.LinkText("Add a Learner or send a learner request");
+    private static By AddALearnerLink => By.LinkText("Add a learner or send a learner request");
     private static By LearnerRequestsLink => By.LinkText("Review learner requests");
-    private static By ManageLearnersLink => By.LinkText("Manage your Learners");
+    private static By ManageLearnersLink => By.LinkText("Manage your learners");
     private static By SetPaymentOrder => By.LinkText("Set payment order");
     private static By ReportPublicSectorApprenticeshipTarget => By.LinkText("Report public sector apprenticeship target");
     private static By Help => By.LinkText("Help");

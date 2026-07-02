@@ -9,14 +9,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     {
         protected static By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
 
-        protected override string AccessibilityPageTitle => "Employer view apprentice details";
+        protected override string AccessibilityPageTitle => "Employer view learner details";
 
         protected override string PageTitle
         {
             get
             {
                 int noOfApprentice = pageInteractionHelper.FindElements(ViewApprenticeLink).Count;
-                return noOfApprentice < 2 ? "View apprentice details" : $"View {noOfApprentice} apprentices' details";
+                return noOfApprentice < 2 ? "View learner details" : $"View {noOfApprentice} learners' details";
             }
         }
 
