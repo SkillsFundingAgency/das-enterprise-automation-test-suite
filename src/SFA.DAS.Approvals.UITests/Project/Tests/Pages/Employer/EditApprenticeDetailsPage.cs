@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EditApprenticeDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "Edit learner details";
+        protected override string PageTitle => "Edit apprentice details";
 
         #region Helpers and Context
         #endregion
