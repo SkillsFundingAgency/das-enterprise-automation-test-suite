@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EditApprenticeDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "Edit apprentice details";
+        protected override string PageTitle => "Edit learner details";
 
         #region Helpers and Context
         #endregion
@@ -21,6 +21,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By EditEmployerReference => By.Id("Reference");
         private static By SaveButton => By.XPath("//button[text()='Save and continue']");
         private static By DeleteButton => By.LinkText("Delete");
+        private static By FirstNameField => By.Name("FirstName");
+        private static By LastNameField => By.Name("LastName");
         private static By InputBox(string identifier) => By.CssSelector(identifier);
         private By EditDeliveryModelLink => GetEditDeliveryModelLink();
         private By DeliveryModelValue => GetDeliveryModelValue();
@@ -41,8 +43,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
         {
+            var learnerName = GetCurrentLearnerName();
             base.formCompletionHelper.ClickElement(DeleteButton);
-            return new ConfirmApprenticeDeletionPage(context);
+            return new ConfirmApprenticeDeletionPage(context, learnerName);
+        }
+
+        private string GetCurrentLearnerName()
+        {
+            var firstName = pageInteractionHelper.FindElement(FirstNameField)?.GetAttribute("value")?.Trim();
+            var lastName = pageInteractionHelper.FindElement(LastNameField)?.GetAttribute("value")?.Trim();
+
+            return $"{firstName} {lastName}".Trim();
         }
 
         public ConfirmChangesPage EditCourse(string larsCode)

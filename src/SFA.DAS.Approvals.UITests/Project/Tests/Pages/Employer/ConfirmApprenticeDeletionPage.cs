@@ -3,9 +3,14 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ConfirmApprenticeDeletionPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ConfirmApprenticeDeletionPage(ScenarioContext context, string learnerName = null) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Delete the apprentice";
+        private readonly string _learnerName = learnerName;
+
+        protected override string PageTitle =>
+            string.IsNullOrWhiteSpace(_learnerName)
+                ? "Are you sure you want to delete the record for"
+                : $"Are you sure you want to delete the record for {_learnerName}?";
         protected override By ContinueButton => By.Id("continue-button");
 
         internal ApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
