@@ -9,7 +9,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EditApprenticeDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "Edit learner details";
+        private const string EditLearnerDetailsTitle = "Edit learner details";
+        private const string EditApprenticeDetailsTitle = "Edit apprentice details";
+
+        protected override string PageTitle => ResolvePageTitle();
+
+        private string ResolvePageTitle()
+        {
+            var (isEditApprenticeDetailsPage, _) = pageInteractionHelper.CheckText(PageHeader, EditApprenticeDetailsTitle);
+
+            return isEditApprenticeDetailsPage ? EditApprenticeDetailsTitle : EditLearnerDetailsTitle;
+        }
 
         #region Helpers and Context
         #endregion
