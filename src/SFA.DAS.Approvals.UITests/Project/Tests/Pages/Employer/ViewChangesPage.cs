@@ -17,10 +17,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By ContinueUndoChangesSelector => By.CssSelector("#continue-button");
 
-        public ViewApprenticePage ClickProviderReviewingTheRequestLink()
+        public ViewLearnerPage ClickProviderReviewingTheRequestLink()
         {
             formCompletionHelper.ClickElement(ProviderReviewingTheRequestLink);
-            return new ViewApprenticePage(context);
+            return new ViewLearnerPage(context);
         }
 
         public ApproveLearnerDetailsPage ClickReviewTheApprenticeDetailsToUpdateLink()

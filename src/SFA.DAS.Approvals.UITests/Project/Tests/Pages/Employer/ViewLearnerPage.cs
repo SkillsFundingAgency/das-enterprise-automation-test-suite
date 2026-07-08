@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ViewApprenticePage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ViewLearnerPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .govuk-heading-l");
         protected override string PageTitle
