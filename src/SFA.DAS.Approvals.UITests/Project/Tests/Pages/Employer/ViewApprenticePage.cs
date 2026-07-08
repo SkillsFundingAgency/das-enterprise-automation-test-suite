@@ -6,7 +6,17 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
     public class ViewApprenticePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-xl, .govuk-heading-l");
-        protected override string PageTitle => "View apprentice details";
+        protected override string PageTitle
+        {
+            get
+            {
+                const string viewApprenticeDetailsTitle = "View apprentice details";
+                const string viewLearnerDetailsTitle = "View learner details";
+
+                var (isViewApprenticeDetailsPage, _) = pageInteractionHelper.CheckText(PageHeader, viewApprenticeDetailsTitle);
+                return isViewApprenticeDetailsPage ? viewApprenticeDetailsTitle : viewLearnerDetailsTitle;
+            }
+        }
 
         private static By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
 
