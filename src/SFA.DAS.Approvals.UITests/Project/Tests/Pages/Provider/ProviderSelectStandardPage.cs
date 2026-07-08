@@ -35,11 +35,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeDetailsPage(context);
         }
 
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse(string LarsCode)
+        public EditLearnerDetailsPage EmployerSelectsAnotherCourse(string LarsCode)
         {
             SelectStandardAndContinue(LarsCode);
 
-            return new EditApprenticeDetailsPage(context);
+            return new EditLearnerDetailsPage(context);
         }        
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()

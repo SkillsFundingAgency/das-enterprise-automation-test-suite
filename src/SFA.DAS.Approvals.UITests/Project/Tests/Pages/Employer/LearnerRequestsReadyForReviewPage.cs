@@ -3,24 +3,24 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeRequestsReadyForReviewPage(ScenarioContext context) : ApprenticeRequestsSubPage(context)
+    public class LearnerRequestsReadyForReviewPage(ScenarioContext context) : ApprenticeRequestsSubPage(context)
     {
         protected override string PageTitle => "Learner requests";
 
         protected override bool TakeFullScreenShot => false;
 
-        public ApproveApprenticeDetailsPage SelectViewCurrentCohortDetails()
+        public ApproveLearnerDetailsPage SelectViewCurrentCohortDetails()
         {
             SelectCurrentCohortDetailsFromTable();
 
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
         
-        public ApproveApprenticeDetailsPage SelectSingleReadyForReviewRequestInTable()
+        public ApproveLearnerDetailsPage SelectSingleReadyForReviewRequestInTable()
         {
             SelectSingleRequestInTable();
 
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
     }
 }

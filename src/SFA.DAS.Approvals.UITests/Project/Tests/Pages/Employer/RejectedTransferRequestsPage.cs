@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By CohortInfoRow => By.CssSelector("tbody tr");
         private static By CohortEditLink => By.LinkText("Edit");
 
-        public ApproveApprenticeDetailsPage OpenRejectedCohort()
+        public ApproveLearnerDetailsPage OpenRejectedCohort()
         {
             var cohortRows = pageInteractionHelper.FindElements(CohortInfoRow);
             var cohortEditLinks = pageInteractionHelper.FindElements(CohortEditLink);
@@ -25,7 +25,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 }
                 i++;
             }
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
     }
 }

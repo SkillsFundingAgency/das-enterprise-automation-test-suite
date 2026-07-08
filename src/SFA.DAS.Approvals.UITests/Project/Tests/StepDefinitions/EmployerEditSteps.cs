@@ -15,6 +15,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"the employer will no longer be able to change the email address")]
         public void ThenTheEmployerWillNoLongerBeAbleToChangeTheEmailAddress() => EditApprenticeDetailsPagePostApproval().VerifyReadOnlyEmail();
 
-        private EditApprenticeDetailsPage EditApprenticeDetailsPagePostApproval() => _employerStepsHelper.EditApprenticeDetailsPagePostApproval();
+        private EditLearnerDetailsPage EditApprenticeDetailsPagePostApproval() => _employerStepsHelper.EditApprenticeDetailsPagePostApproval();
     }
 }

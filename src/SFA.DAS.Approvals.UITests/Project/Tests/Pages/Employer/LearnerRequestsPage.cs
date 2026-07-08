@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeRequestsPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
+    public class LearnerRequestsPage(ScenarioContext context) : ApprovalsApprenticeBasePage(context)
     {
         protected override string PageTitle => "Learner requests";
 
@@ -17,13 +17,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By NumberOfDrafts => By.CssSelector("a[id='Draft'] span[class*='das-tabs-boxes__figure']");
         private static By NumberOfWithTransferSendingEmployers => By.CssSelector("a[id='WithTransferSender'] span[class*='das-tabs-boxes__figure']");
 
-        public ApprenticeRequestsReadyForReviewPage GoToReadyToReview() => AssertPage<ApprenticeRequestsReadyForReviewPage>(NumberOfReadyForReview, "requests to review", () => new(context));
+        public LearnerRequestsReadyForReviewPage GoToReadyToReview() => AssertPage<LearnerRequestsReadyForReviewPage>(NumberOfReadyForReview, "requests to review", () => new(context));
 
-        public ApprenticeRequestsWithTrainingProvidersPage GoToWithTrainingProviders() => AssertPage<ApprenticeRequestsWithTrainingProvidersPage>(NumberOfWithTrainingProviders, "with training providers", () => new(context));
+        public LearnerRequestsWithTrainingProvidersPage GoToWithTrainingProviders() => AssertPage<LearnerRequestsWithTrainingProvidersPage>(NumberOfWithTrainingProviders, "with training providers", () => new(context));
 
-        public ApprenticeRequestDraftsPage GoToDrafts() => AssertPage<ApprenticeRequestDraftsPage>(NumberOfDrafts, "drafts", () => new(context));
+        public LearnerRequestDraftsPage GoToDrafts() => AssertPage<LearnerRequestDraftsPage>(NumberOfDrafts, "drafts", () => new(context));
 
-        public ApprenticeRequestsWithTransferSendingEmployersPage GoToWithTransferSendingEmployers() => AssertPage<ApprenticeRequestsWithTransferSendingEmployersPage>(NumberOfWithTransferSendingEmployers, "with transfer sending employers", () => new(context));
+        public LearnerRequestsWithTransferSendingEmployersPage GoToWithTransferSendingEmployers() => AssertPage<LearnerRequestsWithTransferSendingEmployersPage>(NumberOfWithTransferSendingEmployers, "with transfer sending employers", () => new(context));
 
         private T AssertPage<T>(By by, string columnName, Func<T> returnfunc)
         {

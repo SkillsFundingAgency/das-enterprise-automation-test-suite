@@ -3,7 +3,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ConfirmApprenticeDeletionPage(ScenarioContext context, string learnerName = null) : ApprovalsBasePage(context)
+    public class ConfirmLearnerDeletionPage(ScenarioContext context, string learnerName = null) : ApprovalsBasePage(context)
     {
         private readonly string _learnerName = learnerName;
 
@@ -13,11 +13,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 : $"Are you sure you want to delete the record for {_learnerName}?";
         protected override By ContinueButton => By.Id("continue-button");
 
-        internal ApproveApprenticeDetailsPage ConfirmDeleteAndSubmit()
+        internal ApproveLearnerDetailsPage ConfirmDeleteAndSubmit()
         {
             SelectRadioOptionByForAttribute("confirmDelete-true");
             Continue();
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
     }
 }

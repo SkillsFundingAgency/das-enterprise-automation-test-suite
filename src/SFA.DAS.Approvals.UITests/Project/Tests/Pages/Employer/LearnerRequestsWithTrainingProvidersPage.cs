@@ -3,17 +3,17 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApprenticeRequestsWithTrainingProvidersPage(ScenarioContext context) : ApprenticeRequestsSubPage(context)
+    public class LearnerRequestsWithTrainingProvidersPage(ScenarioContext context) : ApprenticeRequestsSubPage(context)
     {
         protected override string PageTitle => "Learner requests";
 
         protected override bool TakeFullScreenShot => false;
 
-        public ViewApprenticeDetailsPage SelectViewCurrentCohortDetails()
+        public ViewLearnerDetailsPage SelectViewCurrentCohortDetails()
         {
             SelectCurrentCohortDetailsFromTable();
 
-            return new ViewApprenticeDetailsPage(context);
+            return new ViewLearnerDetailsPage(context);
         }
     }
 }

@@ -43,10 +43,10 @@ public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePa
         return new AccessibilityStatementPage(context);
     }
 
-    public ApprenticeRequestsPage ClickLearnerRequestsLink()
+    public LearnerRequestsPage ClickLearnerRequestsLink()
     {
         formCompletionHelper.ClickElement(LearnerRequestsLink);
-        return new ApprenticeRequestsPage(context);
+        return new LearnerRequestsPage(context);
     }
 
     public ManageYourLearnersPage ClickManageYourLearnersLink()

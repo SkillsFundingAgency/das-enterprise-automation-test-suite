@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ViewApprenticeDetailsPage(ScenarioContext context) : CohortReferenceBasePage(context)
+    public class ViewLearnerDetailsPage(ScenarioContext context) : CohortReferenceBasePage(context)
     {
         private const string ViewApprenticeDetailsTitle = "View apprentice details";
         private const string ViewLearnerDetailsTitle = "View learner details";

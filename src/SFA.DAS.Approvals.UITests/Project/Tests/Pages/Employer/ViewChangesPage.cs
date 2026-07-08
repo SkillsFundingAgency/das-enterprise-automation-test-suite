@@ -23,10 +23,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ViewApprenticePage(context);
         }
 
-        public ApproveApprenticeDetailsPage ClickReviewTheApprenticeDetailsToUpdateLink()
+        public ApproveLearnerDetailsPage ClickReviewTheApprenticeDetailsToUpdateLink()
         {
             formCompletionHelper.ClickElement(ReviewRequestedChangesLink);
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
 
         public ApprenticeDetailsPage UndoChanges()
