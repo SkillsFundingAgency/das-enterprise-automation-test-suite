@@ -20,11 +20,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly CohortReferenceHelper _cohortReferenceHelper = new(context);
         #endregion
 
-        private ApprenticeRequestsPage _apprenticeRequestsPage;
-        private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
-        private ViewApprenticeDetailsPage _viewApprenticeDetailsPage;
+        private LearnerRequestsPage _apprenticeRequestsPage;
+        private ApproveLearnerDetailsPage _approveApprenticeDetailsPage;
+        private ViewLearnerDetailsPage _viewApprenticeDetailsPage;
         private ApprenticeDetailsPage _apprenticeDetailsPage;
-        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+        private AddLearnerDetailsPage _addApprenticeDetailsPage;
 
         [StepArgumentTransformation(@"(does ?.*)")]
         public bool DoesToBool(string value) => value == "does";
@@ -308,7 +308,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the employer edits apprentice delivery model to Flexi in Post Approvals and Submits changes")]
         public void WhenTheEmployerEditsApprenticeDeliveryModelToFlexiInPostApprovalsAndSubmitsChanges() => _employerStepsHelper.EmployerChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval();
 
-        private ApprenticeRequestsPage GoToApprenticeRequestsPage()
+        private LearnerRequestsPage GoToApprenticeRequestsPage()
         {
             if (!(_apprenticeRequestsPage?.IsPageCurrent.Item1 ?? false))
             {
@@ -318,7 +318,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             return _apprenticeRequestsPage;
         }
 
-        private ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool condition)
+        private ApproveLearnerDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool condition)
             => _approveApprenticeDetailsPage = _nonLevyReservationStepsHelper.NonLevyEmployerAddsApprenticesUsingReservations(numberOfApprentices, condition);
 
         private void NonLevyEmployerAddsTwoReservations()

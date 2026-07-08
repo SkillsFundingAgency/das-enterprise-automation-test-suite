@@ -9,10 +9,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By ContinueBtn => By.XPath("//*[@id='selectDeliveryModel']/button");
 
-        public EditApprenticeDetailsPage ConfirmDeliveryModelChangeToRegular()
+        public EditLearnerDetailsPage ConfirmDeliveryModelChangeToRegular()
         {
             formCompletionHelper.ClickElement(ContinueBtn);
-            return new EditApprenticeDetailsPage(context);
+            return new EditLearnerDetailsPage(context);
         }
     }
 }

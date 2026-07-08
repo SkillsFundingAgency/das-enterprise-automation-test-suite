@@ -7,9 +7,19 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class EditApprenticeDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
+    public class EditLearnerDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "Edit apprentice details";
+        private const string EditLearnerDetailsTitle = "Edit learner details";
+        private const string EditApprenticeDetailsTitle = "Edit apprentice details";
+
+        protected override string PageTitle => ResolvePageTitle();
+
+        private string ResolvePageTitle()
+        {
+            var (isEditApprenticeDetailsPage, _) = pageInteractionHelper.CheckText(PageHeader, EditApprenticeDetailsTitle);
+
+            return isEditApprenticeDetailsPage ? EditApprenticeDetailsTitle : EditLearnerDetailsTitle;
+        }
 
         #region Helpers and Context
         #endregion
@@ -19,16 +29,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By EditDateOfBirthYear => By.Id("BirthYear");
         private static By EditTrainingCost => By.Id("Cost");
         private static By EditEmployerReference => By.Id("Reference");
-        private static By SaveButton => By.XPath("//button[text()='Save']");
+        private static By SaveButton => By.XPath("//button[text()='Save and continue']");
         private static By DeleteButton => By.LinkText("Delete");
+        private static By FirstNameField => By.Name("FirstName");
+        private static By LastNameField => By.Name("LastName");
         private static By InputBox(string identifier) => By.CssSelector(identifier);
         private By EditDeliveryModelLink => GetEditDeliveryModelLink();
         private By DeliveryModelValue => GetDeliveryModelValue();
 
-        public ApproveApprenticeDetailsPage EditApprenticePreApprovalAndSubmit()
+        public ApproveLearnerDetailsPage EditApprenticePreApprovalAndSubmit()
         {
             EditApprenticeNameDobAndReference(editedApprenticeDataHelper.EmployerReference);
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
 
         public ConfirmChangesPage EditCourseDates()
@@ -39,10 +51,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        public ConfirmApprenticeDeletionPage SelectDeleteApprentice()
+        public ConfirmLearnerDeletionPage SelectDeleteApprentice()
         {
+            var learnerName = GetCurrentLearnerName();
             base.formCompletionHelper.ClickElement(DeleteButton);
-            return new ConfirmApprenticeDeletionPage(context);
+            return new ConfirmLearnerDeletionPage(context, learnerName);
+        }
+
+        private string GetCurrentLearnerName()
+        {
+            var firstName = pageInteractionHelper.FindElement(FirstNameField)?.GetAttribute("value")?.Trim();
+            var lastName = pageInteractionHelper.FindElement(LastNameField)?.GetAttribute("value")?.Trim();
+
+            return $"{firstName} {lastName}".Trim();
         }
 
         public ConfirmChangesPage EditCourse(string larsCode)
@@ -66,7 +87,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
-        public AfterEditApproveApprenticeDetailsPage ContinueToAddValidApprenticeDetails()
+        public AfterEditApproveLearnerDetailsPage ContinueToAddValidApprenticeDetails()
         {
             AddValidEmail();
 
@@ -79,7 +100,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingCost);
             formCompletionHelper.EnterText(EditEmployerReference, apprenticeDataHelper.EmployerReference);
             formCompletionHelper.ClickElement(SaveButton);
-            return new AfterEditApproveApprenticeDetailsPage(context);
+            return new AfterEditApproveLearnerDetailsPage(context);
         }
 
         public ConfirmChangesPage ContinueToAddValidEmailDetails()
@@ -98,14 +119,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             ];
         }
 
-        private EditApprenticeDetailsPage AddValidStartDate()
+        private EditLearnerDetailsPage AddValidStartDate()
         {
             formCompletionHelper.EnterText(StartDateMonth, apprenticeCourseDataHelper.CourseStartDate.Month);
             formCompletionHelper.EnterText(StartDateYear, apprenticeCourseDataHelper.CourseStartDate.Year);
             return this;
         }
 
-        private EditApprenticeDetailsPage AddValidEndDate()
+        private EditLearnerDetailsPage AddValidEndDate()
         {
             formCompletionHelper.EnterText(EndDateMonth, apprenticeCourseDataHelper.CourseEndDate.Month);
             formCompletionHelper.EnterText(EndDateYear, apprenticeCourseDataHelper.CourseEndDate.Year);
@@ -126,7 +147,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ConfirmChangesPage(context);
         }
 
-        public EditApprenticeDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
+        public EditLearnerDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
         {
             string expected = deliveryModel;
             string actual = GetDeliveryModel();
@@ -136,7 +157,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public string GetDeliveryModel() => pageInteractionHelper.GetText(DeliveryModelValue);
 
-        public EditApprenticeDetailsPage ValidateDeliveryModelNotDisplayed()
+        public EditLearnerDetailsPage ValidateDeliveryModelNotDisplayed()
         {
             string actual = GetDeliveryModel();
             if (actual.Contains("Regular") || actual.Contains("Flexi-job agency") || actual.Contains("Portable flexi-job"))
@@ -163,29 +184,29 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ConfirmApprenticeshipDeliveryModelPage(context);
         }
 
-        public ApproveApprenticeDetailsPage SaveEditedTrainingDetails()
+        public ApproveLearnerDetailsPage SaveEditedTrainingDetails()
         {
             formCompletionHelper.ClickElement(SaveButton);
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
 
-        public EditApprenticeDetailsPage ValidateTrainingCourseNotEditable()
+        public EditLearnerDetailsPage ValidateTrainingCourseNotEditable()
         {
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(TrainingCourseEditLink), "Change Training Course Link is displayed");
             return this;
         }
 
-        public EditApprenticeDetailsPage ValidateMaxFundingBandForEditApprentice()
+        public EditLearnerDetailsPage ValidateMaxFundingBandForEditApprentice()
         {
             ValidateMaxFundingBand();
             return this;
         }
 
-        public ApproveApprenticeDetailsPage UpdateTotalApprenticeshipPrice()
+        public ApproveLearnerDetailsPage UpdateTotalApprenticeshipPrice()
         {
             formCompletionHelper.EnterText(EditTrainingCost, apprenticeDataHelper.TrainingPrice + 500);
             formCompletionHelper.ClickElement(SaveButton);
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
 
         private By GetEditDeliveryModelLink()

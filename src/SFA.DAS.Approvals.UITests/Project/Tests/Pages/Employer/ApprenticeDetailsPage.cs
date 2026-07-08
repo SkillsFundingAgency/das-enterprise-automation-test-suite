@@ -61,10 +61,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
-        public EditApprenticeDetailsPage ClickEditApprenticeDetailsLink()
+        public EditLearnerDetailsPage ClickEditApprenticeDetailsLink()
         {
             formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
-            return new EditApprenticeDetailsPage(context);
+            return new EditLearnerDetailsPage(context);
         }
 
         public ReviewChangesPage ClickReviewChanges()

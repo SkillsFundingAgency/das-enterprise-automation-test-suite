@@ -15,8 +15,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ScenarioContext _context;
         private readonly ObjectContext _objectContext;
         private readonly EmployerStepsHelper _employerStepsHelper;
-        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
-        private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
+        private AddLearnerDetailsPage _addApprenticeDetailsPage;
+        private ApproveLearnerDetailsPage _approveApprenticeDetailsPage;
         private readonly FlexiJobUser _fjaaEmployerLevyUser;
         private readonly MultipleAccountsLoginHelper _multipleAccountsLoginHelper;
         private readonly CohortReferenceHelper _cohortReferenceHelper;

@@ -5,10 +5,10 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class YouCantApproveThisApprenticeRequestUntilPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class YouCantApproveThisLearnerRequestUntilPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
         protected override By PageHeader => By.CssSelector(".govuk-notification-banner__heading");
-        protected override string PageTitle => "You can't approve this apprentice request until:";
+        protected override string PageTitle => "You can't approve this request until:";
 
         protected virtual By Reference => By.CssSelector("dd.das-definition-list__definition:nth-child(4)");
 

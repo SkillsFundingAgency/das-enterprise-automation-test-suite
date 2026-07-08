@@ -10,39 +10,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class EmployerSelectStandardPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
-        protected override string PageTitle => "What is the apprenticeship course?";
+        protected override string PageTitle => "What is the training course?";
         protected override By PageHeader => By.ClassName("govuk-heading-l");
         protected override By ContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By TrainingCourseContainer => By.CssSelector("#CourseCode");
         private static By TrainingCourseList => By.CssSelector("#CourseCode-select");
         private static By FirstOption => By.CssSelector("#CourseCode__option--0");
 
-        public AddApprenticeDetailsPage EmployerSelectsAStandard()
+        public AddLearnerDetailsPage EmployerSelectsAStandard()
         {
             SelectStandardAndContinue();
 
-            return new AddApprenticeDetailsPage(context);
+            return new AddLearnerDetailsPage(context);
         }
 
-        public AddApprenticeDetailsPage VerifyCourseIsPrePopulated()
+        public AddLearnerDetailsPage VerifyCourseIsPrePopulated()
         {
             pageInteractionHelper.FindElement(FirstOption);
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new AddLearnerDetailsPage(context);
         }
 
         public SelectDeliveryModelPage SelectsAStandardAndNavigatesToSelectDeliveryModelPage() => NavigatesToSelectDeliveryModelPage();
 
-        public AddApprenticeDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
+        public AddLearnerDetailsPage ConfirmOnlyStandardCoursesAreSelectable() => AssertOnlyStandardCoursesAreSelectable();
 
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse(string CourseTitle)
+        public EditLearnerDetailsPage EmployerSelectsAnotherCourse(string CourseTitle)
         {
             SelectStandardAndContinue(CourseTitle);
 
-            return new EditApprenticeDetailsPage(context);
+            return new EditLearnerDetailsPage(context);
         }
 
-        public EditApprenticeDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseDetails.Course.title);
+        public EditLearnerDetailsPage EmployerSelectsAnotherCourse() => EmployerSelectsAnotherCourse(apprenticeCourseDataHelper.OtherCourseDetails.Course.title);
 
         private SelectDeliveryModelPage NavigatesToSelectDeliveryModelPage()
         {
@@ -66,12 +66,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             Continue();
         }
 
-        private AddApprenticeDetailsPage AssertOnlyStandardCoursesAreSelectable()
+        private AddLearnerDetailsPage AssertOnlyStandardCoursesAreSelectable()
         {
             var x = GetAllTrainingCourses();
             Assert.That(GetAllTrainingCourses().All(x => !x.Contains("(Framework)") && !x.Contains("(Apprenticeship unit)")), Is.True);
             Continue();
-            return new AddApprenticeDetailsPage(context);
+            return new AddLearnerDetailsPage(context);
         }
 
         private List<string> GetAllTrainingCourses() => formCompletionHelper.GetAllDropDownOptions(TrainingCourseList);

@@ -10,10 +10,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By ViewApprenticeLink => By.CssSelector("a.govuk-link.edit-apprentice");
 
-        public ViewApprenticeDetailsPage ClickViewApprenticeLink()
+        public ViewLearnerDetailsPage ClickViewApprenticeLink()
         {
             formCompletionHelper.ClickElement(ViewApprenticeLink);
-            return new ViewApprenticeDetailsPage(context);
+            return new ViewLearnerDetailsPage(context);
         }
     }
 }

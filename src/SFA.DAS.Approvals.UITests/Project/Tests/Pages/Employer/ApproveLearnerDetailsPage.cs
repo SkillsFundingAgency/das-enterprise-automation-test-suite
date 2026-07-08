@@ -6,32 +6,32 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class ApproveApprenticeDetailsPage : ReviewYourCohort
+    public class ApproveLearnerDetailsPage : ReviewYourCohort
     {
         protected override By PageHeader => By.CssSelector(".govuk-heading-l, .govuk-heading-xl");
 
         private static By ApproveMessage => By.CssSelector("#approve-details");
         private static By ReviewMessage => By.CssSelector("#send-details");
         private static By SaveSubmit => By.CssSelector("#main-content .govuk-button");
-        private static By AddAnotherApprenticeLink => By.LinkText("Add another apprentice");
+        private static By AddAnotherApprenticeLink => By.LinkText("Add another learner");
         private static By CohortStatus => By.Id("cohortStatus");
         private static By NotificationBannerHeading => By.XPath("//p[@class='govuk-notification-banner__heading']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        protected override string AccessibilityPageTitle => "Check apprentice details";
+        protected override string AccessibilityPageTitle => "Check and approve learner details";
 
-        public ApproveApprenticeDetailsPage(ScenarioContext context, string pageTitle) : base(context, (x) => pageTitle) { }
+        public ApproveLearnerDetailsPage(ScenarioContext context, string pageTitle) : base(context, (x) => pageTitle) { }
 
         // The count on the scrrens are about to introduce in next following sprints so commented to reuse this 
         //public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => x < 2 ? "Check apprentice details" : $"Check {x} apprentices' details") { }
 
-        public ApproveApprenticeDetailsPage(ScenarioContext context) : base(context, (x) => "") { }
+        public ApproveLearnerDetailsPage(ScenarioContext context) : base(context, (x) => "") { }
 
-        public EditApprenticeDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
+        public EditLearnerDetailsPage SelectEditApprentice(int apprenticeNumber = 0)
         {
             var editApprenticeLinks = TotalNoOfEditableApprentices();
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            return new EditApprenticeDetailsPage(context);
+            return new EditLearnerDetailsPage(context);
         }
 
         public EmployerSelectStandardPage SelectAddAnotherApprentice()
@@ -52,10 +52,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ChooseAReservationPage(context);
         }
 
-        public ApprenticeRequestsPage SaveAndExit()
+        public LearnerRequestsPage SaveAndExit()
         {
             formCompletionHelper.ClickLinkByText("Save and exit");
-            return new ApprenticeRequestsPage(context);
+            return new LearnerRequestsPage(context);
         }
 
         public ApprenticeDetailsApprovedAndSentToTrainingProviderPage EmployerFirstApproveAndNotifyTrainingProvider()
@@ -87,26 +87,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return new ConfirmCohortDeletionPage(context);
         }
 
-        private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another apprentice");
+        private void AddAnApprentice() => formCompletionHelper.ClickLinkByText("Add another learner");
 
-        public ApproveApprenticeDetailsPage IsAddApprenticeLinkDisplayed()
+        public ApproveLearnerDetailsPage IsAddApprenticeLinkDisplayed()
         {
             if (pageInteractionHelper.IsElementDisplayed(AddAnotherApprenticeLink))
-                throw new Exception("Link is still available to add another apprentice record");
+                throw new Exception("Link is still available to add another learner record");
             else
                 return this;
         }
 
-        public EditApprenticeDetailsPage SelectEditApprenticeLink(int apprenticeNumber = 0)
+        public EditLearnerDetailsPage SelectEditApprenticeLink(int apprenticeNumber = 0)
         {
             var editApprenticeLinks = TotalNoOfEditableApprentices();
             formCompletionHelper.ClickElement(editApprenticeLinks[apprenticeNumber]);
-            return new EditApprenticeDetailsPage(context);
+            return new EditLearnerDetailsPage(context);
         }
 
         public string GetBannerHeading() => pageInteractionHelper.GetText(NotificationBannerHeading);
 
-        public ApproveApprenticeDetailsPage ValidateEmployerCannotApproveCohort()
+        public ApproveLearnerDetailsPage ValidateEmployerCannotApproveCohort()
         {
             string bannerHeading = "You are no longer on the Register of Flexi-Job Apprenticeship Agencies";
 

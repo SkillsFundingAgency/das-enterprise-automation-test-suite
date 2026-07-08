@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 {
     public class NonLevyReservationStepsHelper
     {
-        private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
+        private ApproveLearnerDetailsPage _approveApprenticeDetailsPage;
         private readonly ManageFundingEmployerStepsHelper _employerReservationStepsHelper;
         private readonly ScenarioContext _context;
 
@@ -25,12 +25,12 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             _replaceApprenticeDatahelper = new ReplaceApprenticeDatahelper(context);
         }
 
-        public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool shouldConfirmOnlyStandardCoursesSelectable)
+        public ApproveLearnerDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)> listOfApprentice, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
             int noOfApprentice = listOfApprentice.Count;
             bool checkStartDateNotEmpty;
 
-            AddApprenticeDetailsPage addApprenticeDetailsPage;
+            AddLearnerDetailsPage addApprenticeDetailsPage;
 
             for (int i = 0; i < noOfApprentice; i++)
             {
@@ -61,19 +61,19 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
             return new DynamicHomePages(_context);
         }
 
-        public ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool shouldConfirmOnlyStandardCoursesSelectable)
+        public ApproveLearnerDetailsPage NonLevyEmployerAddsApprenticesUsingReservations(int numberOfApprentices, bool shouldConfirmOnlyStandardCoursesSelectable)
         {
             var listOfApprentice = _context.Get<List<(ApprenticeDataHelper, ApprenticeCourseDataHelper)>>().Take(numberOfApprentices).ToList();
 
             return NonLevyEmployerAddsApprenticesUsingReservations(listOfApprentice.Take(numberOfApprentices).ToList(), shouldConfirmOnlyStandardCoursesSelectable);
         }
 
-        private static AddApprenticeDetailsPage AddAnotherApprentice(ApproveApprenticeDetailsPage approveApprenticeDetailsPage)
+        private static AddLearnerDetailsPage AddAnotherApprentice(ApproveLearnerDetailsPage approveApprenticeDetailsPage)
         {
             return approveApprenticeDetailsPage.SelectAddAnApprenticeUsingReservation().ChooseCreateANewReservationRadioButton().ClickSaveAndContinueButton().EmployerSelectsAStandard();
         }
 
-        private static ApproveApprenticeDetailsPage NonLevyEmployerAddsApprenticeDetails(AddApprenticeDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable, bool checkStartDateNotEmpty)
+        private static ApproveLearnerDetailsPage NonLevyEmployerAddsApprenticeDetails(AddLearnerDetailsPage addApprenticeDetailsPage, bool shouldConfirmOnlyStandardCoursesSelectable, bool checkStartDateNotEmpty)
         {
             if (shouldConfirmOnlyStandardCoursesSelectable) addApprenticeDetailsPage.EmployerClickEditCourseLink().ConfirmOnlyStandardCoursesAreSelectable();
 
@@ -89,7 +89,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                 .ConfirmProviderDetailsAreCorrect();
         }
 
-        private ApproveApprenticeDetailsPage SetApprenticeDetails(int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(_approveApprenticeDetailsPage, numberOfApprentices);
+        private ApproveLearnerDetailsPage SetApprenticeDetails(int numberOfApprentices) => _setApprenticeDetailsHelper.SetApprenticeDetails(_approveApprenticeDetailsPage, numberOfApprentices);
 
     }
 }

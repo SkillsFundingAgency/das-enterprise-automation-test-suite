@@ -11,7 +11,7 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper = new(context);
         private readonly EmployerStepsHelper _employerStepsHelper = new(context);
 
-        public ApproveApprenticeDetailsPage OpenRejectedCohort() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage().ClickLearnerRequestsLink().GoToReadyToReview().SelectViewCurrentCohortDetails();
+        public ApproveLearnerDetailsPage OpenRejectedCohort() => _apprenticeHomePageStepsHelper.GoToEmployerApprenticesHomePage().ClickLearnerRequestsLink().GoToReadyToReview().SelectViewCurrentCohortDetails();
 
         public void RejectTransfersRequest() => OpenTransferRequestDetailsPage().RejectTransferRequest();
 
@@ -32,6 +32,6 @@ namespace SFA.DAS.Transfers.UITests.Project.Helpers
                 .OpenPendingCohortRequestAsFundingEmployer();
         }
 
-        private ApprenticeRequestsPage GoToApprenticeRequestsPage() => _employerStepsHelper.GoToApprenticeRequestsPage();
+        private LearnerRequestsPage GoToApprenticeRequestsPage() => _employerStepsHelper.GoToApprenticeRequestsPage();
     }
 }

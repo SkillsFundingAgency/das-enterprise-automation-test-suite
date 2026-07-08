@@ -20,8 +20,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
         #endregion
 
-        private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
-        private AddApprenticeDetailsPage _addApprenticeDetailsPage;
+        private ApproveLearnerDetailsPage _approveApprenticeDetailsPage;
+        private AddLearnerDetailsPage _addApprenticeDetailsPage;
 
         [Given(@"an Employer initiates a portable flexi-job apprenticeship creation")]
         public void AnEmployerInitiatesAPortableFlexi_JobApprenticeshipCreation()

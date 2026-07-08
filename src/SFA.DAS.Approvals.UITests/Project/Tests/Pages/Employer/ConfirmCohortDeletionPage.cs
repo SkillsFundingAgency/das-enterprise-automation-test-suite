@@ -5,14 +5,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class ConfirmCohortDeletionPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Confirm deletion";
+        protected override string PageTitle => "Confirm group deletion";
         protected override By ContinueButton => By.Id("continue-button");
 
-        public ApprenticeRequestsPage ConfirmDeleteAndSubmit()
+        public LearnerRequestsPage ConfirmDeleteAndSubmit()
         {
             SelectRadioOptionByForAttribute("confirm-yes");
             Continue();
-            return new ApprenticeRequestsPage(context);
+            return new LearnerRequestsPage(context);
         }
     }
 }

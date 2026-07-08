@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ApprenticeHomePageStepsHelper _apprenticeHomePageStepsHelper;
         private readonly EmployerCreateCohortStepsHelper _employerCreateCohortStepsHelper;
 
-        private ApproveApprenticeDetailsPage _approveApprenticeDetailsPage;
+        private ApproveLearnerDetailsPage _approveApprenticeDetailsPage;
 
         public EmployerWithMaxReservationLimitSteps(ScenarioContext context)
         {

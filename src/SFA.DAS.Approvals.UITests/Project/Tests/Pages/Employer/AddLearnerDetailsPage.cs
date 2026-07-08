@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
-    public class AddApprenticeDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
+    public class AddLearnerDetailsPage(ScenarioContext context) : AddAndEditApprenticeDetailsBasePage(context)
     {
         private static By SaveAndContinueButton => By.CssSelector("#main-content .govuk-button");
         private static By DeliveryModelLabel => By.Id("delivery-model-label");
@@ -18,9 +18,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         private static By EditDeliverModelLink => By.Id("change-delivery-model-link");
 
-        protected override string PageTitle => "Add apprentice details";
+        protected override string PageTitle => "Add learner details";
 
-        public ApproveApprenticeDetailsPage SubmitValidApprenticeDetails(bool checkStartDateNotEmpty, bool checkMaxFundingBand = false)
+        public ApproveLearnerDetailsPage SubmitValidApprenticeDetails(bool checkStartDateNotEmpty, bool checkMaxFundingBand = false)
         {
             if (checkMaxFundingBand)
             {
@@ -29,7 +29,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             SubmitValidPersonalDetails();
             SubmitValidTrainingDetails(checkStartDateNotEmpty);
 
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
 
         public void SubmitValidPersonalDetails()
@@ -58,13 +58,13 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             if (IsSelectStandardWithMultipleOptions()) new SelectAStandardOptionpage(context).SelectAStandardOption();
         }
 
-        public YouCantApproveThisApprenticeRequestUntilPage DraftDynamicHomePageAddValidApprenticeDetails()
+        public YouCantApproveThisLearnerRequestUntilPage DraftDynamicHomePageAddValidApprenticeDetails()
         {
             EnterApprenticeMandatoryValidDetails();
 
             SaveAndContinue();
 
-            return new YouCantApproveThisApprenticeRequestUntilPage(context);
+            return new YouCantApproveThisLearnerRequestUntilPage(context);
         }
 
         public void ValidateRegularContent() => DeliveryModelAssertions("Regular");
@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         public void ValidatePortableFlexiJobContent() => DeliveryModelAssertions("Portable flexi-job");
 
-        internal AddApprenticeDetailsPage SubmitInvalidDetailsAndCheckValidation(MappedApprenticeDetails apprenticeDetails)
+        internal AddLearnerDetailsPage SubmitInvalidDetailsAndCheckValidation(MappedApprenticeDetails apprenticeDetails)
         {
             EnterApprenticeName(apprenticeDetails.FirstName, apprenticeDetails.LastName);
             EnterApprenticeEmail(apprenticeDetails.EmailAddress);
@@ -84,15 +84,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
             SaveAndContinue();
 
-            return new AddApprenticeDetailsPage(context);
+            return new AddLearnerDetailsPage(context);
         }
 
-        internal AddApprenticeDetailsPage ValidateExpectedError(MappedApprenticeDetails apprenticeDetails)
+        internal AddLearnerDetailsPage ValidateExpectedError(MappedApprenticeDetails apprenticeDetails)
         {
             VerifyPage(ErrorSummaryTitle, "There is a problem");
             VerifyPage(ErrorSummaryText, apprenticeDetails.ErrorMessage);
 
-            return new AddApprenticeDetailsPage(context);
+            return new AddLearnerDetailsPage(context);
         }
 
         private void DeliveryModelAssertions(string delModelType)

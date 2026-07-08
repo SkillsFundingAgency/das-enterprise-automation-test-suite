@@ -11,26 +11,26 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper
         private readonly ObjectContext _objectContext = context.Get<ObjectContext>();
         private readonly ReviewYourCohortStepsHelper _reviewYourCohortStepsHelper = new(context.Get<RetryAssertHelper>());
 
-        internal ApproveApprenticeDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort, int numberOfApprentices)
+        internal ApproveLearnerDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort, int numberOfApprentices)
         {
             SetNoOfApprentices(_reviewYourCohortStepsHelper.NoOfApprentice(reviewYourCohort, numberOfApprentices));
 
             return SetApprenticeTotalCost(reviewYourCohort);
         }
 
-        internal ApproveApprenticeDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort)
+        internal ApproveLearnerDetailsPage SetApprenticeDetails(ReviewYourCohort reviewYourCohort)
         {
             SetNoOfApprentices(ReviewYourCohortStepsHelper.GetNoOfApprentice(reviewYourCohort));
 
             return SetApprenticeTotalCost(reviewYourCohort);
         }
 
-        internal ApproveApprenticeDetailsPage SetApprenticeTotalCost(ReviewYourCohort reviewYourCohort)
+        internal ApproveLearnerDetailsPage SetApprenticeTotalCost(ReviewYourCohort reviewYourCohort)
         {
             _objectContext.SetApprenticeTotalCost(_reviewYourCohortStepsHelper.ApprenticeTotalCost(reviewYourCohort));
 
             //returning new instance to capture screen shot
-            return new ApproveApprenticeDetailsPage(context);
+            return new ApproveLearnerDetailsPage(context);
         }
 
         private void SetNoOfApprentices(int value) => _objectContext.SetNoOfApprentices(value);

@@ -32,7 +32,7 @@ public class DeleteCohortViaEmployerPortalTestDataSteps
     [Then(@"A list of cohorts in draft can be deleted using key '([^']*)'")]
     public void AListOfCohortsInDraftCanBeDeletedUsingKey(string key) => DeleteCohort((x) => x.GoToDrafts(), key);
 
-    private void DeleteCohort(Func<ApprenticeRequestsPage, ApprenticeRequestsSubPage> func, string key)
+    private void DeleteCohort(Func<LearnerRequestsPage, ApprenticeRequestsSubPage> func, string key)
     {
         _employerPortalLoginHelper.Login(levyUser, true);
 
@@ -52,7 +52,7 @@ public class DeleteCohortViaEmployerPortalTestDataSteps
 
             if (apprenticeRequestsSubPage.ViewDraftOrReadyToReviewCohortDetails(refKey))
             {
-                employerApprenticeRequestsPage = new ApproveApprenticeDetailsPage(_context, "Approve").SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
+                employerApprenticeRequestsPage = new ApproveLearnerDetailsPage(_context, "Approve").SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
 
                 apprenticeRequestsSubPage = func(employerApprenticeRequestsPage);
 
