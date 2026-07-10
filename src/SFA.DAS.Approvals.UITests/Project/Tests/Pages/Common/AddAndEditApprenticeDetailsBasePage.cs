@@ -243,7 +243,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Common
         private By GetFormSubmitButton()
         {
             return pageInteractionHelper.GetUrl().Contains("eas")
-                ? By.XPath("//button[text()='Save']")
+                ? By.XPath("//button[text()='Save and continue']")
                 : By.XPath("//button[text()='Add']");
         }
 
