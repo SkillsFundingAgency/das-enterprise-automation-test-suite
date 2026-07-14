@@ -1,4 +1,6 @@
-﻿using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.ManageFunding.Provider;
 using SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider;
 using SFA.DAS.FrameworkHelpers;
@@ -7,6 +9,7 @@ using SFA.DAS.Login.Service.Project.Helpers;
 using SFA.DAS.ProviderLogin.Service.Project;
 using SFA.DAS.Registration.UITests.Project.Helpers;
 using SFA.DAS.UI.Framework.TestSupport;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
@@ -75,6 +78,39 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             if (ableOrNotAble == "able") _providerReservationStepsHelper.CompleteCreateReservationFromStartTrainingPage();
             else if (ableOrNotAble == "not able") _providerReservationStepsHelper.VerifyCreateReservationCannotBeCompleted();
         }
+
+        [When(@"The Provider creates a reservation for a course")]
+        public void CreateReservationAndAddCourse()
+        {
+            _providerAddApprenticeDetailsPage = _providerReservationStepsHelper.ProviderMakeReservation(_login);
+        }
+
+        [When(@"Provider try to use the reservation to add an apprentice with start date outside the reservation window")]
+        public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove()
+        {
+            _providerReservationStepsHelper.AddApprenticeWithOutOfCourseDate(_providerAddApprenticeDetailsPage);
+        }
+
+        [Then(@"Provider is stopped with an error message")]
+        public void ProviderShowsErrorMsg()
+        {
+            var ErrMsg = "Training start date must be between the funding reservation dates";
+            new ProviderAddApprenticeDetailsPage(_context).VerifyStartDateErrorMessage(ErrMsg);
+        }
+
+        
+        [When(@"Provider use valid start date that aligns with reservation window to add 2 apprentices")]
+        public void WhenProviderUsesValidStartDateToAddTwoApprentices()
+        {
+            _providerReservationStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 2);
+        }
+
+        [Then(@"Provider can approve the cohort and send it to the Employer")]
+        public void ThenProviderCanApproveTheCohortAndSendItToTheEmployer()
+        {
+            new ProviderApproveApprenticeDetailsPage(_context).SubmitApprove();
+        }
+
 
         [When(@"Provider creates a reservation and adds (.*) apprentices and approves the cohort and sends to Employer to approve")]
         public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove(int numberOfApprentices)
