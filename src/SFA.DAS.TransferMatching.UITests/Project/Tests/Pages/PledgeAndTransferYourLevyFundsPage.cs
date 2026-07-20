@@ -13,7 +13,7 @@ public class PledgeAndTransferYourLevyFundsPage(ScenarioContext context) : Trans
     private static By Feedback => By.LinkText("Feedback");
     private static By Privacy => By.LinkText("Privacy");
     private static By Cookies => By.LinkText("Cookies");
-    private static By BuiltBy => By.LinkText("Education and Skills Funding Agency");
+    private static By BuiltBy => By.LinkText("Department for Education");
     private static By CrownCopyright => By.LinkText("© Crown copyright");
     private static By ZenHelpWidgetScript => By.Id("ze-snippet");
     private static By StartCreatePledgesSelector => By.CssSelector("[href*='/pledges/create?']");
