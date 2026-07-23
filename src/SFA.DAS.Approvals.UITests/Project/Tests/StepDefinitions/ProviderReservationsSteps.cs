@@ -61,6 +61,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider with create reservation permission logs in")]
         public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_login, true);
 
+        [Given(@"The Provider creates a reservation for a course")]
         [When(@"the Provider creates a reservation")]
         public void WhenThenProviderCreatesAReservation() => _providerReservationStepsHelper.StartCreateReservationAndGoToStartTrainingPage(_approvalsProviderHomePage);
 
@@ -79,12 +80,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             else if (ableOrNotAble == "not able") _providerReservationStepsHelper.VerifyCreateReservationCannotBeCompleted();
         }
 
-        [When(@"The Provider creates a reservation for a course")]
-        public void CreateReservationAndAddCourse()
-        {
-            _providerAddApprenticeDetailsPage = _providerReservationStepsHelper.ProviderMakeReservation(_login);
-        }
-
         [When(@"Provider try to use the reservation to add an apprentice with start date outside the reservation window")]
         public void WhenProviderCreatesAReservationAndAddsApprenticeSAndApprovesTheCohortAndSendsToEmployerToApprove()
         {
@@ -99,12 +94,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         
-        [When(@"Provider use valid start date that aligns with reservation window to add 2 apprentices")]
-        public void WhenProviderUsesValidStartDateToAddTwoApprentices()
-        {
-            _providerReservationStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, 2);
-        }
-
         [Then(@"Provider can approve the cohort and send it to the Employer")]
         public void ThenProviderCanApproveTheCohortAndSendItToTheEmployer()
         {

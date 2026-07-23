@@ -11,20 +11,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Save and continue')]");
 
-        public PauseApprenticePage SelectPauseAndContinue()
-        {
-            formCompletionHelper.SelectRadioOptionByText("Pause this apprenticeship");
-            Continue();
-            return new PauseApprenticePage(context);
-        }
-
-        public ResumeApprenticePage SelectResumeAndContinue()
-        {
-            formCompletionHelper.SelectRadioOptionByText("Resume this apprenticeship");
-            Continue();
-            return new ResumeApprenticePage(context);
-        }
-
         internal WhyDoYouWantToStopThisApprenticeshipPage SelectStopAndContinueForAStartedApprentice()
         {
             formCompletionHelper.SelectRadioOptionByText("Stop this apprenticeship");
