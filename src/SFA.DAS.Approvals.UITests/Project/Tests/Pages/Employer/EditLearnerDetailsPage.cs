@@ -87,6 +87,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
             return ConfirmChangesPage();
         }
 
+        public ConfirmChangesPage EditApprenticeStartDateOutsideOfReservation()
+        {
+            var startDate = apprenticeCourseDataHelper.CourseStartDate.AddMonths(-3);
+            EnterStartDate(startDate);
+
+            return ConfirmChangesPage();
+        }
+
         public AfterEditApproveLearnerDetailsPage ContinueToAddValidApprenticeDetails()
         {
             AddValidEmail();

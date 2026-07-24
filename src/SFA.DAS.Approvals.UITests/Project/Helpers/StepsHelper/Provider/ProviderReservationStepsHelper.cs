@@ -34,6 +34,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
             return _providerCommonStepsHelper.SetApprenticeDetails(providerApproveApprenticeDetailsPage, numberOfApprentices);
         }
 
+         public void AddApprenticeWithOutOfCourseDate(ProviderAddApprenticeDetailsPage _providerAddApprenticeDetailsPage)
+        {
+             _providerAddApprenticeDetailsPage.AddApprenticeDetailsOutsideReservationWindow();
+        }
+
         public YouHaveReservedFundingforTrainingPage ProviderMakeReservation(ApprovalsProviderHomePage approvalsProviderHomePage)
         {           
             return VerifySuccessMessage(StartCreateReservationAndGoToStartTrainingPage(approvalsProviderHomePage));

@@ -13,6 +13,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Add apprentice details";
         protected override By PageHeader => By.CssSelector(".govuk-fieldset__heading, .govuk-heading-xl");
+        protected static By StartDateErrorMsg => By.Id("error-message-StartDate");
         protected static By ErrorSummaryText => By.CssSelector(".govuk-error-summary__list a");
         protected static By ErrorSummaryTitle => By.Id("error-summary-title");
         private static By AddButton => By.XPath("//button[contains(text(),'Add')]");
@@ -55,6 +56,15 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApproveApprenticeDetailsPage(context);
         }
 
+        internal void AddApprenticeDetailsOutsideReservationWindow()
+        {
+            EnterUln();
+            EnterApprenticeMandatoryValidDetails();
+            EnterDob();
+
+            AddResevationDatesForTrainingDetails();
+        }
+
         private void SubmitValidTrainingDetails()
         {
             EnterTrainingStartDate(apprenticeCourseDataHelper.CourseStartDate);
@@ -77,6 +87,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
             else page.SelectNoAndContinue();
 
+        }
+
+        private void AddResevationDatesForTrainingDetails()
+        {
+            // Start and end dates are set to be outside the reservation window 
+            var courseStartDate = apprenticeCourseDataHelper.CourseStartDate.AddMonths(-3);
+            var courseEndDate = apprenticeCourseDataHelper.CourseStartDate.AddMonths(-2);
+
+            EnterTrainingStartDate(courseStartDate);
+
+            if (!loginCredentialsHelper.IsLevy && !objectContext.IsProviderMakesReservationForNonLevyEmployers() && !isFlexiPaymentPilotLearner) EnterStartDate(DateTime.Now);
+
+            EnterEndDate(courseEndDate);
+
+            if (isFlexiPaymentPilotLearner) AddPlannedEndDateDay(courseEndDate);
+
+            EnterTrainingCostAndEmpReference(isFlexiPaymentPilotLearner);
+
+            formCompletionHelper.ClickElement(AddButton);
         }
 
         private void SubmitValidPersonalDetails()
@@ -146,6 +175,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         }
 
         public void ValidateFlexiJobContent() => DeliveryModelAssertions("Flexi-job agency");
+
+        public void VerifyStartDateErrorMessage(string erroMessage)
+        {
+            StringAssert.Contains(erroMessage, pageInteractionHelper.GetText(StartDateErrorMsg));
+        }
 
         private void DeliveryModelAssertions(string delModelType)
         {

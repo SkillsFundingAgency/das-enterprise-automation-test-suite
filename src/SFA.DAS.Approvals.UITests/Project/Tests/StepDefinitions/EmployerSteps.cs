@@ -29,26 +29,25 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [StepArgumentTransformation(@"(does ?.*)")]
         public bool DoesToBool(string value) => value == "does";
 
-        [Then(@"Employer is able to Pause the apprentice")]
-        public void ThenEmployerIsAbleToPauseTheApprentice()
+        [Then("Employer is able to Pause\\/Freeze payments for that apprentice")]
+        public void ThenEmployerIsAbleToPauseFreezePaymentsForThatApprentice()
         {
             _apprenticeDetailsPage = _employerStepsHelper
                 .ViewCurrentApprenticeDetails()
-                .ClickEditStatusLink()
-                .SelectPauseAndContinue()
-                .SelectYesAndConfirm()
-                .ValidateFlashMessage("Apprenticeship paused");
+                .ClickLinkToPausePayments()
+                .SelectPausePaymentsAndConfirm()
+                .GoBackToLearnerDetailsPage();
         }
 
-        [Then(@"Employer is able to Resume the apprentice")]
-        public void ThenEmployerIsAbleToResumeTheApprentice()
+        [Then("Employer is able to UnPause\\/UnFreeze payments for that apprentice")]
+        public void ThenEmployerIsAbleToUnPauseUnFreezePaymentsForThatApprentice()
         {
             _apprenticeDetailsPage = _apprenticeDetailsPage
-                .ClickEditStatusLink()
-                .SelectResumeAndContinue()
-                .SelectYesAndConfirm()
-                 .ValidateFlashMessage("Apprenticeship resumed");
+                .ClickLinkToResumePayments()
+                .SelectResumePymtAndConfirm()
+                .GoBackToLearnerDetailsPage();
         }
+
 
         [Then(@"Employer is able to Stop the apprentice")]
         public void ThenEmployerIsAbleToStopTheApprentice()

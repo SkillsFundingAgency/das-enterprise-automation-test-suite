@@ -58,6 +58,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
         private static By LearnerStatusRowHeading => By.XPath("//th[text()='Learner Status']");
         private static By LearnerStatusValue => By.XPath("//th[text()='Learner Status']/parent::tr/td/strong");
         private static By ChangeProviderPaymentStatusLink => By.Id("linkChangePaymentStatus");
+        private static By ChangePaymentStatusLink => By.Id("change-payments-link");
 
         public bool CanEditApprenticeDetails() => pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink);
 
@@ -91,6 +92,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
                 throw new Exception("Change request was not approved");
             else
                 return true;
+        }
+
+        public PausePymtToYourProviderPage ClickLinkToPausePayments()
+        {
+            formCompletionHelper.ClickElement(ChangePaymentStatusLink);
+            return new PausePymtToYourProviderPage(context);
+        }
+
+        public ResumePymtToTrainingProviderPage ClickLinkToResumePayments()
+        {
+            formCompletionHelper.ClickElement(ChangePaymentStatusLink);
+            return new ResumePymtToTrainingProviderPage(context);
         }
 
         public void VerifyApprenticeshipStatus(string status) => VerifyPageAfterRefresh(ApprenticeshipStatus, status);
