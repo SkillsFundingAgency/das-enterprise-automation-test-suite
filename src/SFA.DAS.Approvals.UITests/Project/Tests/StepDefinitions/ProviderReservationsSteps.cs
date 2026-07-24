@@ -61,7 +61,6 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [When(@"the Provider with create reservation permission logs in")]
         public void GivenTheProviderWithCreateReservationPermissionLogsIn() => _approvalsProviderHomePage = _providerCommonStepsHelper.GoToProviderHomePage(_login, true);
 
-        [Given(@"The Provider creates a reservation for a course")]
         [When(@"the Provider creates a reservation")]
         public void WhenThenProviderCreatesAReservation() => _providerReservationStepsHelper.StartCreateReservationAndGoToStartTrainingPage(_approvalsProviderHomePage);
 
@@ -109,6 +108,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerReservationStepsHelper.AddApprentice(_providerAddApprenticeDetailsPage, numberOfApprentices).SubmitApprove();
         }
 
+        [Given("The Provider creates a reservation for a course")]
         [Then(@"Provider can make a reservation")]
         public void ThenProviderCanMakeAReservation() => ProviderMakeReservation();
 
