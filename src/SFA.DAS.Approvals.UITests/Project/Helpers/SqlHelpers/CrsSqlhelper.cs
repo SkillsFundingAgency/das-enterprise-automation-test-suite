@@ -20,11 +20,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers
         private static string MultipleVersionsPredicate => " AND [IfateReferenceNumber] in ( Select StandardBase from StandardsWithMultipleVersions) " +
             $"AND VersionEarliestStartDate > DATEADD(month, 2, CONVERT(datetime, '{RecognisePriorLearningBecomesRequiredOn.Year}-{RecognisePriorLearningBecomesRequiredOn.Month}-{RecognisePriorLearningBecomesRequiredOn.Day}'))  ";
 
-        public static string GetSqlQueryWithMultipleOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {MultipleOptionPredicate}");
+        public static string GetSqlQueryWithMultipleOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode.Select(x => $"'{x}'"))}) and {MultipleOptionPredicate}");
         
-        public static string GetSqlQueryWithMultipleOptionsAndVersions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {MultipleOptionPredicate}", true);
+        public static string GetSqlQueryWithMultipleOptionsAndVersions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(MultipleOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode.Select(x => $"'{x}'"))}) and {MultipleOptionPredicate}", true);
 
-        public static string GetSqlQueryWithNoOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(NoOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode)}) and {NoOptionPredicate}");
+        public static string GetSqlQueryWithNoOptions(List<string> larsCode) => larsCode.IsNoDataFound() ? GetSqlQuery(NoOptionPredicate) : GetSqlQuery($" s.LarsCode in ({string.Join(',', larsCode.Select(x => $"'{x}'"))}) and {NoOptionPredicate}");
 
         public List<List<CourseDetails>> GetApprenticeCourse(List<string> sqlQuery)
         {
