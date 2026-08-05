@@ -10,7 +10,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     // The count on the scrrens are about to introduce in next following sprints so commented to reuse this 
     //public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Check apprentice details" : $"Check {x} apprentices' details")
-    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "Check learner details")
+    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "Check apprentice details")
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
