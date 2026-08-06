@@ -1,6 +1,6 @@
 ﻿namespace SFA.DAS.Registration.UITests.Project.Tests.Pages.InterimPages;
 
-public class InterimApprenticesAccessDeniedPage(ScenarioContext context) : InterimApprenticesHomePage(context, false)
+public class InterimApprenticesAccessDeniedPage(ScenarioContext context) : InterLearnersHomePage(context, false)
 {
     protected override string PageTitle => "Access denied";
 

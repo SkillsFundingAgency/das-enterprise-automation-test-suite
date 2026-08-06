@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer;
 
-public class LearnerHomePage(ScenarioContext context) : InterimApprenticesHomePage(context, false)
+public class LearnerHomePage(ScenarioContext context) : InterLearnersHomePage(context, false)
 {
     // Approvals employer home was renamed from Apprentices to Learners.
     protected override string PageTitle => "Learners";

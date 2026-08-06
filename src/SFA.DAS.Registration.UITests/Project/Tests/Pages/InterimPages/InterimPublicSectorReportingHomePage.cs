@@ -14,7 +14,7 @@ public class InterimPublicSectorReportingHomePage(ScenarioContext context, bool 
         {
             return () =>
             {
-                _ = new InterimApprenticesHomePage(context, false);
+                _ = new InterLearnersHomePage(context, false);
 
                 var helper = context.Get<FormCompletionHelper>();
 
