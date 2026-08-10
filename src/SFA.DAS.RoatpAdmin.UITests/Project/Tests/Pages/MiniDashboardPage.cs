@@ -8,7 +8,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 {
     public class MiniDashboardPage : RoatpNewAdminBasePage
     {
-        protected override string PageTitle => "Manage training provider information";
+        protected override string PageTitle => "Manage training provider information and restricted courses";
 
         public MiniDashboardPage(ScenarioContext context, bool navigate = false) : base(context, !navigate)
         {
@@ -17,7 +17,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public SearchPage SearchForATrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText("Search for a training provider");
+            formCompletionHelper.ClickLinkByText("Manage training provider information and delivery");
             return new SearchPage(context);
         }
         public RoatpApplicationReportPage AddNewTrainingProvider()
