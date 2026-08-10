@@ -4,7 +4,7 @@ namespace SFA.DAS.RoatpAdmin.Service.Project.Pages.RoatpAdmin;
 
 public class SearchPage : RoatpAdminBasePage
 {
-    protected override string PageTitle => "Search for a training provider";
+    protected override string PageTitle => "Manage training provider information and delivery";
 
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 

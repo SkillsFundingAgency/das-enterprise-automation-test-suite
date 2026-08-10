@@ -2,7 +2,7 @@
 
 public class RoatpAdminMiniHomePage(ScenarioContext context) : RoatpAdminBasePage(context)
 {
-    protected override string PageTitle => "Manage training provider information";
+    protected override string PageTitle => "Manage training provider information and restricted courses";
 
     protected override By PageHeader => By.CssSelector(".govuk-heading-xl");
 
@@ -20,7 +20,7 @@ public class RoatpAdminMiniHomePage(ScenarioContext context) : RoatpAdminBasePag
 
     public SearchPage SearchForTrainingProvider()
     {
-        formCompletionHelper.ClickLinkByText("Search for a training provider");
+        formCompletionHelper.ClickLinkByText("Manage training provider information and delivery");
         return new SearchPage(context);
     }
 }
