@@ -81,7 +81,7 @@ public class ExistingAccountSteps
     [Then(@"the user can not add an apprentices")]
     public void ThenTheUserCanNotAddAnApprentices()
     {
-        InterimApprenticesAccessDeniedPage _interimApprenticesAccessDeniedPage = new(_context);
+        InterimLearnersAccessDeniedPage _interimApprenticesAccessDeniedPage = new(_context);
         _interimApprenticesAccessDeniedPage.GoBackToTheEASServiceHomePage();
         _homePage = new HomePage(_context, true);
     }
