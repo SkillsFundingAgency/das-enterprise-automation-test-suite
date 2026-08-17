@@ -9,8 +9,8 @@ Scenario:AP_E2E_EUA_06_Employer Adds Apprentice Details Validation Rules
 	Then Employer can an apprentice details from table below
  | Category					| ULN		| LastName 	 | FirstName  | DateOfBirth | EmailAddress	| StartDate   | EndDate		| TotalPrice | ErrorMessage |
  | EmailAddress 			| valid		| valid      | valid      | valid       | X@Y			| valid		  | valid		| valid      | Please enter a valid email address | 
- | DateOfBirth < 15 		| valid		| valid      | valid      | 2021-05-09  | valid			| valid		  | valid		| valid      | The apprentice must be at least 15 years old at the start of their training |  
- | DateOfBirth > 115		| valid		| valid      | valid      | 1904-05-01  | valid			| valid		  | valid		| valid      | The apprentice must be 114 years or under at the start of their training |
+ | DateOfBirth < 15 		| valid		| valid      | valid      | 2021-05-09  | valid			| valid		  | valid		| valid      | The learner must be at least 15 years old at the start of their training |  
+ | DateOfBirth > 115		| valid		| valid      | valid      | 1904-05-01  | valid			| valid		  | valid		| valid      | The learner must be 114 years or under at the start of their training |
  | StartDate 			    | valid		| valid      | valid      | valid       | valid			| 2017-03-03  | valid		| valid      | The start date must not be earlier than May 2017 |  
  | EndDate 			        | valid		| valid      | valid      | valid       | valid			| 2025-03-03  | 2025-02-01  | valid      | The end date must not be on or before the start date | 
  | TotalPriceWithPence		| valid		| valid      | valid      | valid       | valid			| valid		  | valid		| 19.23      | The value '19.23' is not valid for Total agreed apprenticeship price (excluding VAT). |
