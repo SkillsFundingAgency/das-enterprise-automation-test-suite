@@ -5,7 +5,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 {
     public class ManageYourApprenticePage(ScenarioContext context) : RaaBasePage(context)
     {
-        protected override string PageTitle => "Manage your apprentices";
+        protected override string PageTitle => "Manage your learners";
 
     }
 }

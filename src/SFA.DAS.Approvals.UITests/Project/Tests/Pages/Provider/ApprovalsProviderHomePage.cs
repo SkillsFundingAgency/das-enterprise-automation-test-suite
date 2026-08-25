@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : ProviderHomePage(context, navigate)
     {
-        protected static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
+        protected static By ApprenticeRequestsLink => By.LinkText("Learner requests");
         protected static By OrganisationsAndAgreementsLink => By.LinkText("View employers and manage permissions");
         protected static By DfeResearchPageTitle => By.ClassName("QuestionText");
         protected static By MoreNavigationLink => By.XPath("//a[@class='das-navigation__priority-button' and text()='More']");

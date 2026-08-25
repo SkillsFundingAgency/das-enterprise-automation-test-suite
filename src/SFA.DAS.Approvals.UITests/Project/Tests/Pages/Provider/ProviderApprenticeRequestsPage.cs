@@ -9,7 +9,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Apprentice requests";
 
-        protected override string Linktext => "Apprentice requests";
+        protected override string Linktext => "Learner requests";
 
         private static By NumberOfCohortsForReview => By.CssSelector("#Review span.das-tabs-boxes__figure");
         private static By NumberOfCohortsWithEmployers => By.CssSelector("#WithEmployer span.das-tabs-boxes__figure");
