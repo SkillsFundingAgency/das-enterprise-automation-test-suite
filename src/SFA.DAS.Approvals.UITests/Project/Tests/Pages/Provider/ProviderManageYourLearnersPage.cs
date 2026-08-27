@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
     {
         protected override string PageTitle => "Manage your learners";
 
-        protected override string Linktext => "Manage your learners";
+        protected override string Linktext => "Manage learners";
 
         protected override bool TakeFullScreenShot => false;
 
