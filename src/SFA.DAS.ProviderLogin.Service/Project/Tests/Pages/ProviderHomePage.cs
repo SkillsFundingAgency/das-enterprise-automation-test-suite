@@ -23,7 +23,7 @@ public class ProviderHomePage : InterimProviderBasePage
 
     protected static By ViewEmployersAndManagePermissionsLink => By.LinkText("View employers and manage permissions");
 
-    protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage your learners");
+    protected static By ProviderManageYourApprenticesLink => By.LinkText("Manage learners");
 
     protected static By ProviderRecruitApprenticesLink => By.LinkText("Recruit apprentices");
 
