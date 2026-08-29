@@ -15,6 +15,12 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Hooks
 
             context.Get<ObjectContext>().SetApprenticePassword(config.AC_AccountPassword);
 
+            if (!context.ContainsKey(typeof(ApprenticeObjectContext).ToString()))
+            {
+                var apprenticeObjectContext = new ApprenticeObjectContext(context);
+                context.Set(apprenticeObjectContext);
+            }
+
         }
     }
 }

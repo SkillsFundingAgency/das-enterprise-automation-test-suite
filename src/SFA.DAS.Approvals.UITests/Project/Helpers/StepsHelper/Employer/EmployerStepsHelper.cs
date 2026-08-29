@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using SFA.DAS.ApprenticeCommitments.APITests.Project;
 using SFA.DAS.Approvals.UITests.Project.Helpers.DataHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.SqlHelpers;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
@@ -96,7 +97,18 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
 
         public string EmployerApproveAndSendToProvider() => EmployerApproveAndSendToProvider(1);
 
-        public string EmployerApproveAndSendToProvider(int numberOfApprentices) => EmployerApproveAndSendToProvider(EmployerAddApprentice(numberOfApprentices));
+        public string EmployerApproveAndSendToProvider(int numberOfApprentices)
+        {
+            var approveApprenticeDetailsPage = EmployerAddApprentice(numberOfApprentices);
+
+            string cohortReference = EmployerApproveAndSendToProvider(approveApprenticeDetailsPage);
+
+            string generatedEmail = GetGeneratedApprenticeEmail();
+
+            _objectContext.SetApprenticeEmail(generatedEmail);
+
+            return cohortReference;
+        }
 
         public static string EmployerApproveAndSendToProvider(ApproveLearnerDetailsPage employerReviewYourCohortPage)
         {
@@ -348,6 +360,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer
                   .EmployerEditDeliveryModelToFlexiAndContinue()
                   .ClickUpdateDetailsButtonAfterChange()
                   .AcceptChangesAndSubmit();
+        }
+
+        public string GetGeneratedApprenticeEmail()
+        {
+            return _dataHelper.ApprenticeEmail;
         }
     }
 }

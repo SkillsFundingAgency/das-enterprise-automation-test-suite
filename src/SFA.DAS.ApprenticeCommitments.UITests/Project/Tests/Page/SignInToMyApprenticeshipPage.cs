@@ -18,7 +18,16 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         public ApprenticeOverviewPage CocSignInToApprenticePortal()
         {
             SignIn();
-            return new ApprenticeOverviewPage(context);
+
+            if (PageInteractionHelper.IsUrlOnTermsOfUsePage())
+            {
+                var termsPage = new TermsOfUsePage(context);
+                termsPage.AcceptTermsAndConditionToPositiveMatch(false);
+            }
+
+            var overviewPage = new FullyConfirmedOverviewPage(context, verifypage: false);
+            overviewPage.ClickConfirmMyDetailsTab();
+            return (ApprenticeOverviewPage)overviewPage;
         }
 
         private void SignIn()

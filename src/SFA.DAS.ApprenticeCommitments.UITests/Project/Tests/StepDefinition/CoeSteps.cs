@@ -1,4 +1,5 @@
-﻿using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
+﻿using SFA.DAS.ApprenticeCommitments.APITests.Project;
+using SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Employer;
 using SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider;
@@ -46,7 +47,17 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
             _cohortReferenceHelper.SetCohortReference(cohortReference);
 
             _providerApproveStepsHelper.EditAndApprove();
+
+            var email = _employerStepsHelper.GetGeneratedApprenticeEmail();
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                context["ApprenticeEmail"] = email;
+                _objectContext.SetApprenticeEmail(email);
+            }
+
             createAccountStepsHelper.CreateAccountViaUIAndConfirmApprenticeshipViaDb().SignOutFromTheService();
+
             _employerStepsHelper.StopApprenticeThisMonth(StopApprentice.LeftEmployer);
             _providerStepsHelper.StartChangeOfEmployerJourney();
             _cohortReferenceHelper.UpdateCohortReference();

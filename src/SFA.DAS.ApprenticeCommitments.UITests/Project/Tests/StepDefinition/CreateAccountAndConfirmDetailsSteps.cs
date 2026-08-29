@@ -17,7 +17,7 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.StepDefinition
 
         [Given(@"an apprentice has created and validated the account")]
         public void GivenAnApprenticeHasCreatedAndValidatedTheAccount()
-            => createAccountStepsHelper.CreateAccountViaApi().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
+            =>  createAccountStepsHelper.CreateAccountViaApi().NavigateToOverviewPageFromTopNavigationLink().VerifyDaysToConfirmWarning();
 
         [Then(@"the apprentice is able to navigate to the Help and Support from Home and Fully confirmed page")]
         public void ThenTheApprenticeIsAbleToNavigateToTheHelpAndSupportFromHomeAndFullyConfirmedPage()

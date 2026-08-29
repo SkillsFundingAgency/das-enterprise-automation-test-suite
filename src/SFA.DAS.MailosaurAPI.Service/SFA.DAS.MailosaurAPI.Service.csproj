@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Mailosaur" Version="8.11.*" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="143.0.7499.4200" />
 	</ItemGroup>
 
 	<ItemGroup>

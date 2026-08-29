@@ -1,27 +1,27 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SFA.DAS.UI.FrameworkHelpers;
 using TechTalk.SpecFlow;
 
 namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 {
     public abstract class ApprenticeCommitmentsBasePage : TopBannerSettingsPage
     {
-        protected virtual By ServiceHeader => By.CssSelector(".govuk-header__service-name");
+        protected virtual By ServiceHeader => By.CssSelector(".govuk-service-navigation__service-name");
         protected static By NotificationBanner => By.CssSelector(".govuk-notification-banner");
         protected static By ConfirmingEntityNamePageHeader => By.CssSelector("main div .govuk-heading-m");
-        protected static By TopBlueBannerHeader => By.CssSelector(".app-user-header__name");
+        protected static By TopBlueBannerHeader => By.LinkText("Sign out");
         protected static By SubmitButton => By.CssSelector("button.govuk-button[type='submit']");
-        protected override By ContinueButton => By.XPath("//button[text()='Continue']");
+        protected override By ContinueButton => By.CssSelector("button.govuk-button");
         protected static By ConfirmButton => By.Id("employer-provider-confirm");
         protected static string ServiceName => "My apprenticeship";
         protected static By HomeTopNavigationLink => By.XPath("//a[text()='Home']");
-        protected static By CMADTopNavigationLink => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'Confirm my apprenticeship details')]");
+        protected static By CMADTopNavigationLink => By.XPath("//a[contains(@class, 'govuk-service-navigation__link') and normalize-space(.)='Confirm my apprenticeship details']");
         protected static By CMADTopNavigationLinkAfterFullyConfirmed => By.XPath("//a[@class='app-navigation__link']/text[contains(text(),'My apprenticeship details')]");
         protected static By HelpTopNavigationLink => By.XPath("//a[@class='app-navigation__link' and text()='Help and support']");
-        private static By FeedbackLinkOnBetaBanner => By.XPath("//div[contains(@class,'govuk-phase-banner')]/p/span/a[text()='feedback']");
-        private static By PrivacyFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Privacy']");
-        private static By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
-        private static By TermsOfUseFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Terms of use']");
+        protected static By PrivacyFooterLink => By.XPath("//a[contains(@class, 'govuk-footer__link') and normalize-space(text())='Privacy']");
+        protected static By CookiesFooterLink => By.XPath("//a[contains(@class, 'govuk-footer__link') and normalize-space(text())='Cookies']");
+        protected static By TermsOfUseFooterLink => By.XPath("//a[contains(@class, 'govuk-footer__link') and normalize-space(text())='Terms of use']");
         private static string SignOutLinkText => "Sign out";
         protected static By Password => By.CssSelector("#Password");
         protected static By ErrorSummaryTitle => By.Id("error-summary-title");
@@ -37,20 +37,21 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
         private static By NotificationBannerContent => By.CssSelector(".govuk-notification-banner__content");
         private static By NotificationInsetText => By.CssSelector(".govuk-inset-text");
 
-        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true) : base(context)
+        public ApprenticeCommitmentsBasePage(ScenarioContext context, bool verifypage = true, bool verifyserviceheader = true, bool verifyfooterlinks = true) : base(context)
         {
-            bool verifyPage(bool verify) { if (verify) return VerifyPage(); else return true; }
+            PageInteractionHelper = context.Get<PageInteractionHelper>();
 
             bool verifyServiceHeader(bool verify) { if (verify) return VerifyPage(ServiceHeader, ServiceName); else return true; }
 
+            bool verifyFooterLinks(bool verify) { if (verify) { VerifyFooterLinks(); return true; } else return true; }
+
             MultipleVerifyPage(
             [
-                () => verifyPage(verifypage),
-                () => VerifyPage(FeedbackLinkOnBetaBanner),
                 () => verifyServiceHeader(verifyserviceheader),
-                () => { VerifyFooterLinks(); return true; }
+                () => verifyFooterLinks(verifyfooterlinks)
             ]);
         }
+        protected PageInteractionHelper PageInteractionHelper { get; }
 
         protected void VerifyNotificationBannerHeader(string expected) => VerifyNotification(NotificationBannerHeader, expected);
 
@@ -98,9 +99,9 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
 
         private void VerifyFooterLinks()
         {
-            VerifyElement(PrivacyFooterLink);
-            VerifyElement(CookiesFooterLink);
-            VerifyElement(TermsOfUseFooterLink);
+            VerifyElement(PrivacyFooterLink, "Privacy");
+            VerifyElement(CookiesFooterLink, "Cookies");
+            VerifyElement(TermsOfUseFooterLink, "Terms of use");
         }
 
         public SignedOutPage SignOutFromTheService()
@@ -127,7 +128,6 @@ namespace SFA.DAS.ApprenticeCommitments.UITests.Project.Tests.Page
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(CMADTopNavigationLink), "CMAD Top navigation link is present and it should not be on this page");
             Assert.IsFalse(pageInteractionHelper.IsElementDisplayed(HelpTopNavigationLink), "Help Top navigation link is present and it should not be on this page");
         }
-
         protected override void Continue() => formCompletionHelper.Click(ContinueButton);
     }
 }
