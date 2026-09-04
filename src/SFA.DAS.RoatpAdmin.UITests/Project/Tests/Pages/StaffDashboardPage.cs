@@ -39,9 +39,9 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
             return new OversightLandingPage(context);
         }
 
-        public MiniDashboardPage AccessAddAndSearchForATrainingProvider()
+        public MiniDashboardPage AccessMangeTrainingProvidersAndRestrictedCourses()
         {
-            formCompletionHelper.ClickLinkByText("Add or search for a provider");
+            formCompletionHelper.ClickLinkByText("Manage training providers and restricted courses");
             return new MiniDashboardPage(context);
         }
 
