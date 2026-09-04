@@ -13,7 +13,7 @@ public class RoatpAdminHomePage(ScenarioContext context) : RoatpAdminBasePage(co
 
     public RoatpAdminMiniHomePage GoTOMiniDashBoardPage()
     {
-        formCompletionHelper.ClickLinkByText("Add or search for a provider");
+        formCompletionHelper.ClickLinkByText("Manage training providers and restricted courses");
         return new RoatpAdminMiniHomePage(context);
     }
 }

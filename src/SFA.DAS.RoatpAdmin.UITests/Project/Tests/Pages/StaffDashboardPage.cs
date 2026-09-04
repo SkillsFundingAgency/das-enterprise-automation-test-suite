@@ -41,7 +41,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.Pages
 
         public MiniDashboardPage AccessAddAndSearchForATrainingProvider()
         {
-            formCompletionHelper.ClickLinkByText("Add or search for a provider");
+            formCompletionHelper.ClickLinkByText("Manage training providers and restricted courses");
             return new MiniDashboardPage(context);
         }
 
