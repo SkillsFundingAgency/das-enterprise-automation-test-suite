@@ -102,10 +102,10 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Manage funding");
             return new ManageFundingPage(context);
         }
-        public ManageYourApprenticePage NavigateToManageYourApprenticesPage()
+        public ManageLearnersPage NavigateToManageYourApprenticesPage()
         {
             formCompletionHelper.ClickLinkByText("Manage learners");
-            return new ManageYourApprenticePage(context);
+            return new ManageLearnersPage(context);
         }
         public OrganisationsAndAgreementsPage NavigateToOrganisationsAndAgreementsPage()
         {
