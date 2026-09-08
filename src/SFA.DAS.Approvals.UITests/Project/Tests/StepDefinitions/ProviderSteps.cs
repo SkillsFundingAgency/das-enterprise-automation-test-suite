@@ -73,7 +73,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerCommonStepsHelper.GoToProviderHomePage();
 
-            new ProviderApprenticeRequestsPage(context, true).GoToCohortsWithEmployers().SelectViewCurrentCohortDetails();
+            new ProviderLearnerRequestsPage(context, true).GoToCohortsWithEmployers().SelectViewCurrentCohortDetails();
         }
 
         [Then(@"Provider is able to view all apprentice details when the cohort with employer")]

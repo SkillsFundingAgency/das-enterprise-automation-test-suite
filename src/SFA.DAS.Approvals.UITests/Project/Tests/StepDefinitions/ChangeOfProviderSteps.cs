@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, false);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .IsAddApprenticeLinkDisplayed()
@@ -55,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, false);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
@@ -106,7 +106,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
@@ -133,7 +133,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .IsAddApprenticeLinkDisplayed()

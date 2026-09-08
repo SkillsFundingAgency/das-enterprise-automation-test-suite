@@ -11,11 +11,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 
-        public ProviderApprenticeRequestsPage ConfirmDeleteAndSubmit()
+        public ProviderLearnerRequestsPage ConfirmDeleteAndSubmit()
         {
             javaScriptHelper.ClickElement(ConfirmDeleteOptions);
             Continue();
-            return new ProviderApprenticeRequestsPage(context);
+            return new ProviderLearnerRequestsPage(context);
         }
 
         public bool IsDeleteOptionDisplayed() => pageInteractionHelper.IsElementDisplayed(ConfirmDeleteOptions);

@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderApprenticeRequestsPage : Navigate
+    public class ProviderLearnerRequestsPage : Navigate
     {
         protected override string PageTitle => "Apprentice requests";
 
@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By NumberOfDraftCohorts => By.CssSelector("#Draft span.das-tabs-boxes__figure");
         private static By NumberOfCohortsWithTransferSendingEmployers => By.CssSelector("#WithTransferSender span.das-tabs-boxes__figure");
 
-        public ProviderApprenticeRequestsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
+        public ProviderLearnerRequestsPage(ScenarioContext context, bool navigate = false) : base(context, navigate) => VerifyPage();
 
         public ProviderApprenticeRequestsReadyForReviewPage GoToCohortsToReviewPage()
         {

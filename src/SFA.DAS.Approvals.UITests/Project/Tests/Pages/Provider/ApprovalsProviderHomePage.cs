@@ -165,10 +165,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderFundingForNonLevyEmployersPage(context);
         }
 
-        public ProviderApprenticeRequestsPage GoToApprenticeRequestsPage()
+        public ProviderLearnerRequestsPage GoToApprenticeRequestsPage()
         {
             formCompletionHelper.ClickElement(ApprenticeRequestsLink);
-            return new ProviderApprenticeRequestsPage(context);
+            return new ProviderLearnerRequestsPage(context);
         }
 
         public ProviderAccessDeniedPage AddNewApprenticesGoesToAccessDenied()

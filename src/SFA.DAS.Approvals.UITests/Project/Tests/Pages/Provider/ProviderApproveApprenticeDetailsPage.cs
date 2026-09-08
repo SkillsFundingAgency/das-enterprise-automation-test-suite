@@ -158,10 +158,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderCohortSentForReviewPage(context);
         }
 
-        public ProviderApprenticeRequestsPage SubmitSaveButDontSendToEmployer()
+        public ProviderLearnerRequestsPage SubmitSaveButDontSendToEmployer()
         {
             formCompletionHelper.ClickElement(SaveAndExitCohort);
-            return new ProviderApprenticeRequestsPage(context);
+            return new ProviderLearnerRequestsPage(context);
         }
 
         public string GetFlashMessage() => pageInteractionHelper.GetTextFromElementsGroup(FlashMessage);

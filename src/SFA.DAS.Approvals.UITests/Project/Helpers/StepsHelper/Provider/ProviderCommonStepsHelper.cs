@@ -51,7 +51,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 
         public ProviderApproveApprenticeDetailsPage CurrentCohortDetails() => CurrentCohortDetails(GoToProviderHomePage());
 
-        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails(ApprovalsProviderHomePage _) => new ProviderApprenticeRequestsPage(_context, true).GoToCohortsToReviewPage().SelectViewCurrentCohortDetails();
+        public ProviderApproveApprenticeDetailsPage CurrentCohortDetails(ApprovalsProviderHomePage _) => new ProviderLearnerRequestsPage(_context, true).GoToCohortsToReviewPage().SelectViewCurrentCohortDetails();
 
         public ProviderApprenticeDetailsPage CurrentApprenticeDetails() => GoToProviderHomePage().GoToProviderManageLearnersPage().SelectViewCurrentApprenticeDetails();
 
