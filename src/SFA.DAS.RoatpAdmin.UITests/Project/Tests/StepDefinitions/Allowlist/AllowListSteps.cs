@@ -10,7 +10,7 @@ namespace SFA.DAS.RoatpAdmin.UITests.Project.Tests.StepDefinitions.Allowlist
 
         [When(@"the admin access the Allowlist")]
         public void WhenTheAdminAccessTheAllowlist() => _allowListPage = new StaffDashboardPage(context)
-            .AccessAddAndSearchForATrainingProvider()
+            .AccessMangeTrainingProvidersAndRestrictedCourses()
             .Add_UKPRN_Allowlist();
 
         [Then(@"the admin is able to add a ukprn to Allow list")]
