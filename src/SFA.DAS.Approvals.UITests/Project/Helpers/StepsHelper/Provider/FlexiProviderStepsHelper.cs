@@ -72,7 +72,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
         public ProviderApprenticeDetailsPage ProviderChangeDeliveryModelToRegularAndSendsBackToProvider_PostApproval()
         {
             return GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
+                .GoToProviderManageLearnersPage()
                 .SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeLink()
                 .ClickEditDeliveryModel()
@@ -84,7 +84,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
         public ProviderApprenticeDetailsPage ValidateDeliveryModelDisplayedInDMSections(string deliveryModel)
         {
             return GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
+                .GoToProviderManageLearnersPage()
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateDeliveryModelDisplayed(deliveryModel);
         }
@@ -92,7 +92,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
         public ProviderApprenticeDetailsPage ProviderChangeDeliveryModelToFlexiAndSendsBackToProvider_PostApproval()
         {
             return GoToProviderHomePage()
-                .GoToProviderManageYourApprenticePage()
+                .GoToProviderManageLearnersPage()
                 .SelectViewCurrentApprenticeDetails()
                 .ClickEditApprenticeLink()
                 .ClickEditDeliveryModel()

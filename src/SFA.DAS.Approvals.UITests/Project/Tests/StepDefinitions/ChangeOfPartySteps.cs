@@ -274,7 +274,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => _providerCommonStepsHelper
                                 .GoToProviderHomePage()
-                                .GoToProviderManageYourApprenticePage()
+                                .GoToProviderManageLearnersPage()
                                 .SelectViewCurrentApprenticeDetails();
 
         private void EmployerAndProviderApprove(bool IsChangeOfEmployer)

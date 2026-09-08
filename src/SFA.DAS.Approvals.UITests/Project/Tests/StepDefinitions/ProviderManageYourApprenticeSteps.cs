@@ -9,20 +9,20 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
     public class ProviderSelectsFilterAndPaginationOnManageYourApprenticePageSteps(ScenarioContext context)
     {
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
-        private ProviderManageYourLearnersPage _providerManageYourApprenticesPage;
+        private ProviderManageLearnersPage _providerManageYourApprenticesPage;
 
         [Given(@"A Provider has navigated to Manage your apprentice page")]
         public void GivenAProviderHasNavigatedToManageYourApprenticePage()
         {
-            _providerManageYourApprenticesPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage();
+            _providerManageYourApprenticesPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageLearnersPage();
         }
 
         [When(@"the provider filters by '(.*)'")]
-        public void WhenTheProviderFiltersBy(string filterselection) => new ProviderManageYourLearnersPage(context).FilterPagination(filterselection);
+        public void WhenTheProviderFiltersBy(string filterselection) => new ProviderManageLearnersPage(context).FilterPagination(filterselection);
 
         [Then(@"the provider is presented with first page with no filters applied")]
         [Then(@"the user can download csv file")]
-        public void ThenTheProviderIsPresentedWithFirstPagewithNoFiltersApplied() => Assert.IsTrue(new ProviderManageYourLearnersPage(context).DownloadAllDataLinkIsDisplayed(), "Download all data");
+        public void ThenTheProviderIsPresentedWithFirstPagewithNoFiltersApplied() => Assert.IsTrue(new ProviderManageLearnersPage(context).DownloadAllDataLinkIsDisplayed(), "Download all data");
 
         [Then("Provider is able to download the results in a csv file")]
         public void ThenProviderCanDownloadResultsInCSVFile()
