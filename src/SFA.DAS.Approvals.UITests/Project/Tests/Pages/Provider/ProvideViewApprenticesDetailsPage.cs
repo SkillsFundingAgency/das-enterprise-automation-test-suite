@@ -7,11 +7,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     // The count on the scrrens are about to introduce in next following sprints so commented to reuse this 
     // public class ProvideViewApprenticesDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "View apprentice details" : $"View {x} apprentices' details")
-    public class ProvideViewApprenticesDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "View apprentice details")
+    public class ProvideViewApprenticesDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "View learner details")
     {
         private static By ViewApprenticeLink => By.PartialLinkText("View");
 
-        protected override string AccessibilityPageTitle => "Provider view apprentice details";
+        protected override string AccessibilityPageTitle => "Provider view learner details";
 
         internal ProviderViewApprenticeDetailsPage SelectViewApprentice(int apprenticeNumber = 0)
         {
