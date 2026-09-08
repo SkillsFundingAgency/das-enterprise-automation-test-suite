@@ -9,8 +9,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     // The count on the scrrens are about to introduce in next following sprints so commented to reuse this 
-    //public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Check apprentice details" : $"Check {x} apprentices' details")
-    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "Check apprentice details")
+    //public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Check learner details" : $"Check {x} apprentices' details")
+    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "Check learner details")
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By RplConfirmationCheckbox => By.XPath("//input[@id='rplVerified']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        protected override string AccessibilityPageTitle => "Provider check apprentice details";
+        protected override string AccessibilityPageTitle => "Provider check learner details";
 
         internal ProviderHowDoYouWantToAddLearnerDetailsAddAnother SelectAddAnApprenticeUsingReservation()
         {
