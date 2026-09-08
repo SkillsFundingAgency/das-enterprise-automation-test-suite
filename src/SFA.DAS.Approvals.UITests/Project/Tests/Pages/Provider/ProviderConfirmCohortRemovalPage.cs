@@ -3,11 +3,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderConfirmCohortDeletionPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ProviderConfirmCohortRemovalPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Confirm cohort deletion";
+        protected override string PageTitle => "Confirm cohort removal";
 
-        private static By ConfirmDeleteOptions => By.XPath("//label[contains(text(),'Yes, delete cohort')]");
+        private static By ConfirmDeleteOptions => By.XPath("//label[contains(text(),'Yes, remove cohort')]");
 
         protected override By ContinueButton => By.XPath("//button[contains(text(),'Continue')]");
 

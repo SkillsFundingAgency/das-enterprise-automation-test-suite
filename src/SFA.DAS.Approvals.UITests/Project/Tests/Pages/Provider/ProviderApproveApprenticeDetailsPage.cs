@@ -68,10 +68,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
 
-        public ProviderConfirmCohortDeletionPage SelectDeleteCohort()
+        public ProviderConfirmCohortRemovalPage SelectDeleteCohort()
         {
             formCompletionHelper.ClickElement(DeleteThisCohortLink);
-            return new ProviderConfirmCohortDeletionPage(context);
+            return new ProviderConfirmCohortRemovalPage(context);
         }
 
         public ProviderBulkUploadApprenticesPage SelectBulkUploadApprentices()

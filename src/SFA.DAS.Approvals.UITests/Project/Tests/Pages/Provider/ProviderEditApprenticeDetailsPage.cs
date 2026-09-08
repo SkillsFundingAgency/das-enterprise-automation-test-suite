@@ -105,10 +105,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        public ProviderConfirmApprenticeDeletionPage DeleteApprentice()
+        public ProviderConfirmLearnerRemovalPage DeleteApprentice()
         {
             formCompletionHelper.ClickElement(DeleteButton);
-            return new ProviderConfirmApprenticeDeletionPage(context);
+            return new ProviderConfirmLearnerRemovalPage(context);
         }
 
         public ProviderEditApprenticeDetailsPage ValidateEditableTextBoxes(int numberOfExpectedTextBoxes)
