@@ -21,7 +21,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                                           .ConfirmDeleteAndSubmit()
                                           .GetFlashMessage();
 
-                Assert.IsTrue(flashMessage == "Apprentice record deleted", "validate 'Apprentice record deleted' flash message is displayed");
+                Assert.IsTrue(flashMessage == "Learner record removed", "validate 'Learner record removed' flash message is displayed");
             }
 
             return providerApproveApprenticeDetailsPage;
