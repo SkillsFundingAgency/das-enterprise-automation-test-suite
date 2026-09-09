@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
         private readonly ProviderApproveStepsHelper _providerApproveStepsHelper = new(context);
         private readonly ProviderEditStepsHelper _providerEditStepsHelper = new(context);
-        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper = new(context);
+        private readonly ProviderRemovalStepsHelper _providerDeleteStepsHelper = new(context);
         private readonly CommitmentsSqlDataHelper _commitmentsSqlDataHelper = new(context.Get<ObjectContext>(), context.Get<DbConfig>());
         private readonly ProviderConfig _providerConfig = context.GetProviderConfig<ProviderConfig>();
         #endregion
@@ -98,10 +98,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditAllDetailsOfApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider is able to delete all apprentices before approval")]
-        public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerDeleteStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerDeleteStepsHelper.RemoveLearner(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider is able to delete the cohort before approval")]
-        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => ProviderDeleteStepsHelper.DeleteCohort(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => ProviderRemovalStepsHelper.RemoveCohort(_providerApproveApprenticeDetailsPage);
 
         [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");
@@ -135,7 +135,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             if (existingapprentices > 0)
             {
                 context.Get<ObjectContext>().SetNoOfApprentices(Convert.ToInt32(existingapprentices));
-                _providerDeleteStepsHelper.DeleteApprentice(providerApproveApprenticeDetailsPage);
+                _providerDeleteStepsHelper.RemoveLearner(providerApproveApprenticeDetailsPage);
             }
 
             providerApproveApprenticeDetailsPage.SelectAddAnApprentice()

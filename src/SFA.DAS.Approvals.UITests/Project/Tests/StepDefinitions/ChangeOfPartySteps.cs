@@ -24,7 +24,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ApprenticeDataHelper _dataHelper;
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
-        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
+        private readonly ProviderRemovalStepsHelper _providerDeleteStepsHelper;
         private readonly ProviderApproveStepsHelper _providerApproveStepsHelper;
         private readonly EmployerStepsHelper _employerStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _dataHelper = context.Get<ApprenticeDataHelper>();
             _providerStepsHelper = new ProviderStepsHelper(context);
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(context);
-            _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(context);
+            _providerDeleteStepsHelper = new ProviderRemovalStepsHelper(context);
             _employerStepsHelper = new EmployerStepsHelper(context);
             _loginHelper = new EmployerPortalLoginHelper(context);
             _changeOfEmployerLevyUser = context.GetUser<EmployerWithMultipleAccountsUser>();
@@ -127,7 +127,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         [When(@"Provider deletes the Cohort")]
-        public void WhenProviderDeletesTheCohort() => _providerDeleteStepsHelper.DeleteCohort();
+        public void WhenProviderDeletesTheCohort() => _providerDeleteStepsHelper.RemoveCohort();
 
         [Then(@"provider can change employer again")]
         public void ThenProviderCanChangeEmployerAgain() => _providerStepsHelper.StartChangeOfEmployerJourney();
