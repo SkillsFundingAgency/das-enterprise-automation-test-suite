@@ -138,7 +138,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Employer is able to view saved cohort from Draft")]
         public void ThenEmployerIsAbleToViewSavedCohortFromDraft() => _apprenticeRequestsPage.GoToDrafts().SelectViewCurrentCohortDetails();
 
-        [Then(@"Employer is able to delete all apprentices before approval")]
+        [Then(@"Employer is able to remove all learners before approval")]
         public void EmployerIsAbleToDeleteAllApprenticesBeforeApproval()
         {
             int totalApprentices = _approveApprenticeDetailsPage.TotalNoOfApprentices();
@@ -151,8 +151,8 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             }
         }
 
-        [Then(@"Employer is able to delete the cohort before approval")]
-        public void ThenEmployerIsAbleToDeleteTheCohortBeforeApproval() => _approveApprenticeDetailsPage.SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
+        [Then(@"Employer is able to remove the cohort before approval")]
+        public void ThenEmployerIsAbleToRemoveTheCohortBeforeApproval() => _approveApprenticeDetailsPage.SelectDeleteThisGroup().ConfirmDeleteAndSubmit();
 
         [Given(@"the Employer approves cohort with (\d) apprentices and sends to provider")]
         [When(@"the Employer approves (\d) cohort and sends to provider")]

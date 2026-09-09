@@ -97,11 +97,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"Provider is able to edit all apprentices before approval")]
         public void ThenProviderIsAbleToEditAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditAllDetailsOfApprentice(_providerApproveApprenticeDetailsPage);
 
-        [Then(@"Provider is able to delete all apprentices before approval")]
-        public void ThenProviderIsAbleToDeleteAllApprenticesBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerDeleteStepsHelper.RemoveLearner(_providerApproveApprenticeDetailsPage);
+        [Then(@"Provider is able to remove all learners before approval")]
+        public void ThenProviderIsAbleToRemoveAllLearnersBeforeApproval() => _providerApproveApprenticeDetailsPage = _providerDeleteStepsHelper.RemoveLearner(_providerApproveApprenticeDetailsPage);
 
-        [Then(@"Provider is able to delete the cohort before approval")]
-        public void ThenProviderIsAbleToDeleteTheCohortBeforeApproval() => ProviderRemovalStepsHelper.RemoveCohort(_providerApproveApprenticeDetailsPage);
+        [Then(@"Provider is able to remove the cohort before approval")]
+        public void ThenProviderIsAbleToRemoveTheCohortBeforeApproval() => ProviderRemovalStepsHelper.RemoveCohort(_providerApproveApprenticeDetailsPage);
 
         [Given(@"the Provider has some apprentices in ready to review and draft status")]
         public void GivenTheProviderHasSomeApprenticesInReadyToReviewAndDraftStatus() => Assert.IsNotNull(GetProvidersDraftAndReadyForReviewCohortsCount(), $"No cohorts found in 'Draft' or 'Ready to review' status for the UKPRN: [{_providerConfig.Ukprn}]!");

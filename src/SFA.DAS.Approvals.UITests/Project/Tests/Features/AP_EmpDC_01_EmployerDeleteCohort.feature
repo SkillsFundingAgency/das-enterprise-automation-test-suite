@@ -8,5 +8,5 @@ Scenario: AP_EmpDC_01 Employer view edit and delete apprentices and cohort
 	And Employer adds 2 apprentices to a new cohort
 	Then Employer is able to view saved cohort from Draft
 	And Employer is able to edit all apprentices before approval
-	And Employer is able to delete all apprentices before approval
-	And Employer is able to delete the cohort before approval
+	And Employer is able to remove all learners before approval
+	And Employer is able to remove the cohort before approval
