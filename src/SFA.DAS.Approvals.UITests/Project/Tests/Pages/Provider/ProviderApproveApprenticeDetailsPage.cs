@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static new By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
-        private static By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
+        private static By RemoveThisCohortLink => By.PartialLinkText("Remove this cohort");
         private static By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
         private static By MessageBox => By.Name("sendmessage");
         private static By SaveAndExitCohort => By.Id("save-and-exit-cohort");
@@ -70,7 +70,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderConfirmCohortRemovalPage SelectDeleteCohort()
         {
-            formCompletionHelper.ClickElement(DeleteThisCohortLink);
+            formCompletionHelper.ClickElement(RemoveThisCohortLink);
             return new ProviderConfirmCohortRemovalPage(context);
         }
 
@@ -118,7 +118,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAccessDeniedPage SelectDeleteCohortGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(DeleteThisCohortLink);
+            formCompletionHelper.ClickElement(RemoveThisCohortLink);
             return new ProviderAccessDeniedPage(context);
         }
 
