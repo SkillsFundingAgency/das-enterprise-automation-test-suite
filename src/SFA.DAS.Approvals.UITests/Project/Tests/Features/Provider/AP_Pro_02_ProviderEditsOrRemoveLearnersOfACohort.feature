@@ -1,4 +1,4 @@
-﻿Feature: AP_Pro_02_ProviderEditsOrDeletesApprenticesOfACohort
+﻿Feature: AP_Pro_02_ProviderEditsOrRemoveLearnersOfACohort
 
 @approvals
 @regression

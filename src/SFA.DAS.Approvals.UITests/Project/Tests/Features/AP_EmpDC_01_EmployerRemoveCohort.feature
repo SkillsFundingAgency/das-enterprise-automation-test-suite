@@ -1,4 +1,4 @@
-﻿Feature: AP_EmpDC_01_EmployerDeleteCohort
+﻿Feature: AP_EmpDC_01_EmployerRemoveCohort
 A Levy employer can view, edit and delete all the apprentice and cohort before commitments gets approved by all parties
 
 @approvals

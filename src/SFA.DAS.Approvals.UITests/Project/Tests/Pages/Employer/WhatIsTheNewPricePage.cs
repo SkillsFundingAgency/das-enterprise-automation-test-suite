@@ -5,9 +5,9 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Employer
 {
     public class WhatIsTheNewPricePage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => $"What is the agreed price of the training with {changeOfPartyConfig.NewProviderName}?";
+        protected override string PageTitle => $"What is the agreed price of completing the training with {changeOfPartyConfig.NewProviderName}?";
 
-        protected override string AccessibilityPageTitle => "What is the agreed price of the training with new provider";
+        protected override string AccessibilityPageTitle => "What is the agreed price of completing the training with new provider";
 
         private static By NewPriceInput => By.Id("input-newprice");
         private static By ContinueBtn => By.Id("continue-button");
