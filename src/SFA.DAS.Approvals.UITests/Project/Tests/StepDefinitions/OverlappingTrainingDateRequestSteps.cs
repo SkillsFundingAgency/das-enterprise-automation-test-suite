@@ -404,7 +404,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenticeship(previousApprenticeshipCohortReference);
             _objectContext.UpdateCohortReference(draftApprenticeshipCohortRef);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                .GoToDraftCohorts()
                .SelectViewCurrentCohortDetails()
                .SelectEditApprentice(0)
@@ -456,7 +456,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             var draftApprenticeshipCohortRef = _commitmentsSqlDataHelper.GetCohortReferenceForDraftApprenticeship(previousApprenticeshipCohortReference);
             _cohortReferenceHelper.UpdateCohortReference(draftApprenticeshipCohortRef);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                .GoToDraftCohorts()
                .SelectViewCurrentCohortDetails();
 

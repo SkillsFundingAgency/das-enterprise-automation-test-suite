@@ -11,7 +11,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ApprovalsProviderHomePage(ScenarioContext context, bool navigate = false) : ProviderHomePage(context, navigate)
     {
-        protected static By ApprenticeRequestsLink => By.LinkText("Apprentice requests");
+        protected static By ApprenticeRequestsLink => By.LinkText("Learner requests");
         protected static By OrganisationsAndAgreementsLink => By.LinkText("View employers and manage permissions");
         protected static By DfeResearchPageTitle => By.ClassName("QuestionText");
         protected static By MoreNavigationLink => By.XPath("//a[@class='das-navigation__priority-button' and text()='More']");
@@ -22,10 +22,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         protected static By CookiesFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Cookies']");
         protected static By TermsOfUseFooterLink => By.XPath("//a[@class='govuk-footer__link' and text()='Terms of use']");
 
-        public ProviderManageYourLearnersPage GoToProviderManageYourApprenticePage()
+        public ProviderManageLearnersPage GoToProviderManageLearnersPage()
         {
-            formCompletionHelper.ClickElement(ProviderManageYourApprenticesLink);
-            return new ProviderManageYourLearnersPage(context);
+            formCompletionHelper.ClickElement(ProviderManageLearnersLink);
+            return new ProviderManageLearnersPage(context);
         }
 
         public ProviderNotificationSettingsPage GoToProviderNotificationSettingsPage()
@@ -165,10 +165,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderFundingForNonLevyEmployersPage(context);
         }
 
-        public ProviderApprenticeRequestsPage GoToApprenticeRequestsPage()
+        public ProviderLearnerRequestsPage GoToApprenticeRequestsPage()
         {
             formCompletionHelper.ClickElement(ApprenticeRequestsLink);
-            return new ProviderApprenticeRequestsPage(context);
+            return new ProviderLearnerRequestsPage(context);
         }
 
         public ProviderAccessDeniedPage AddNewApprenticesGoesToAccessDenied()

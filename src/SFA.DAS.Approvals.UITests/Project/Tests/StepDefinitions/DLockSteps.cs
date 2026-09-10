@@ -113,7 +113,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         }
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
-            _providerCommonStepsHelper.GoToProviderHomePage(false).GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+            _providerCommonStepsHelper.GoToProviderHomePage(false).GoToProviderManageLearnersPage().SelectViewCurrentApprenticeDetails();
 
         private Dictionary<string, int?> GetRowCountForMismatch() => SelectViewCurrentApprenticeDetails().ClickViewIlrMismatchDetails().GetRowCountForMismatch();
 

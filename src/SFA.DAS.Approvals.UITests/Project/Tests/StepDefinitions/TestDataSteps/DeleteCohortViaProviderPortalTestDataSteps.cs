@@ -38,7 +38,7 @@ public class DeleteCohortViaProviderPortalTestDataSteps
     [Then(@"A list of cohorts in draft can be deleted")]
     public void AListOfCohortsInDraftCanBeDeleted() => DeleteCohort((x) => x.GoToDraftCohorts(), true);
 
-    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, string key, int set)
+    private void DeleteCohort(Func<ProviderLearnerRequestsPage, ApprenticeRequestsSubPage> func, string key, int set)
     {
         var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
 
@@ -63,7 +63,7 @@ public class DeleteCohortViaProviderPortalTestDataSteps
     }
 
 
-    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, bool isDraft)
+    private void DeleteCohort(Func<ProviderLearnerRequestsPage, ApprenticeRequestsSubPage> func, bool isDraft)
     {
         var providerApprenticeRequestsPage = GoToApprenticeRequestsPage();
 
@@ -78,7 +78,7 @@ public class DeleteCohortViaProviderPortalTestDataSteps
         DeleteCohort(func, providerApprenticeRequestsPage, listOfCohortToDelete);
     }
 
-    private void DeleteCohort(Func<ProviderApprenticeRequestsPage, ApprenticeRequestsSubPage> func, ProviderApprenticeRequestsPage providerApprenticeRequestsPage, List<string> listOfCohortToDelete)
+    private void DeleteCohort(Func<ProviderLearnerRequestsPage, ApprenticeRequestsSubPage> func, ProviderLearnerRequestsPage providerApprenticeRequestsPage, List<string> listOfCohortToDelete)
     {
         var dfeTimeout = SetdfeTimeout();
 
@@ -116,7 +116,7 @@ public class DeleteCohortViaProviderPortalTestDataSteps
         _context.Get<FormCompletionHelper>().SetDebugInformation($"deleted '{count}' cohorts");
     }
 
-    private ProviderApprenticeRequestsPage GoToApprenticeRequestsPage() => new ProviderCommonStepsHelper(_context).GoToProviderHomePage(config, false).GoToApprenticeRequestsPage();
+    private ProviderLearnerRequestsPage GoToApprenticeRequestsPage() => new ProviderCommonStepsHelper(_context).GoToProviderHomePage(config, false).GoToApprenticeRequestsPage();
 
     private DateTime SetdfeTimeout() => DateTime.Now.AddMinutes(config.DfeTimeOut);
 }

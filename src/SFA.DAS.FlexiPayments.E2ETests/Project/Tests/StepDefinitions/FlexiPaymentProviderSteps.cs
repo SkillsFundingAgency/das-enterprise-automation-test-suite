@@ -8,7 +8,7 @@ using SFA.DAS.FlexiPayments.E2ETests.Project.Helpers;
 using SFA.DAS.FrameworkHelpers;
 using System;
 using TechTalk.SpecFlow;
-using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageYourLearnersPage;
+using static SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider.ProviderManageLearnersPage;
 
 namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 {
@@ -75,7 +75,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
 
             SimplifiedPaymentsPilot filterValue = filter == "yes" ? SimplifiedPaymentsPilot.True : filter == "no" ? SimplifiedPaymentsPilot.False : SimplifiedPaymentsPilot.All;
 
-            Assert.IsTrue(_providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
+            Assert.IsTrue(_providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageLearnersPage()
                 .IsPaymentsPilotLearnerDisplayed(filterValue));
         }
 
@@ -84,7 +84,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         [Then(@"Provider searches for the learner on Manage your apprentice page")]
         public void ProviderSearchesLearnerOnManageYourApprenticesPage()
         {
-            _providerApprenticeDetailsPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage()
+            _providerApprenticeDetailsPage = _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageLearnersPage()
                 .SelectViewCurrentApprenticeDetails();
         }
 
@@ -122,7 +122,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         {
             SetApprenticeDetailsInContext(learnerNumber);
 
-            new ProviderManageYourLearnersPage(context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
+            new ProviderManageLearnersPage(context).SelectViewCurrentApprenticeDetails().ValidateProviderEditApprovedApprentice(action == "can");
         }
 
         [When(@"Provider proceeds to create a Change of Price request for flexi payments pilot learner")]
@@ -317,7 +317,7 @@ namespace SFA.DAS.FlexiPayments.E2ETests.Project.Tests.StepDefinitions
         public void ThenValidateProviderCanViewPilotDataLockMessage(string action)
         {
             _providerCommonStepsHelper.GoToProviderHomePage(false)
-                .GoToProviderManageYourApprenticePage()
+                .GoToProviderManageLearnersPage()
                 .SelectViewCurrentApprenticeDetails()
                 .ValidateFlexiPaymentDataLockMessageDisplayed(action == "can");
         }

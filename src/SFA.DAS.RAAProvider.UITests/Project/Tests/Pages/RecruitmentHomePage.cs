@@ -94,7 +94,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
 
         public ApprenticeRequestsPage NavigateToApprenticeRequestsPage()
         {
-            formCompletionHelper.ClickLinkByText("Apprentice requests");
+            formCompletionHelper.ClickLinkByText("Learner requests");
             return new ApprenticeRequestsPage(context);
         }
         public ManageFundingPage NavigateToManageFundingPage()
@@ -102,10 +102,10 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Tests.Pages
             formCompletionHelper.ClickLinkByText("Manage funding");
             return new ManageFundingPage(context);
         }
-        public ManageYourApprenticePage NavigateToManageYourApprenticesPage()
+        public ManageLearnersPage NavigateToManageYourApprenticesPage()
         {
-            formCompletionHelper.ClickLinkByText("Manage your apprentices");
-            return new ManageYourApprenticePage(context);
+            formCompletionHelper.ClickLinkByText("Manage learners");
+            return new ManageLearnersPage(context);
         }
         public OrganisationsAndAgreementsPage NavigateToOrganisationsAndAgreementsPage()
         {

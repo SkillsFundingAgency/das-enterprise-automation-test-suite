@@ -5,11 +5,11 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
 {
-    public class ProviderDeleteStepsHelper(ScenarioContext context)
+    public class ProviderRemovalStepsHelper(ScenarioContext context)
     {
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper = new(context);
 
-        public ProviderApproveApprenticeDetailsPage DeleteApprentice(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
+        public ProviderApproveApprenticeDetailsPage RemoveLearner(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage)
         {
             var totalNoOfApprentices = context.Get<ObjectContext>().GetNoOfApprentices();
 
@@ -21,14 +21,14 @@ namespace SFA.DAS.Approvals.UITests.Project.Helpers.StepsHelper.Provider
                                           .ConfirmDeleteAndSubmit()
                                           .GetFlashMessage();
 
-                Assert.IsTrue(flashMessage == "Apprentice record deleted", "validate 'Apprentice record deleted' flash message is displayed");
+                Assert.IsTrue(flashMessage == "Learner record removed", "validate 'Learner record removed' flash message is displayed");
             }
 
             return providerApproveApprenticeDetailsPage;
         }
 
-        public void DeleteCohort() => DeleteCohort(_providerCommonStepsHelper.CurrentCohortDetails());
+        public void RemoveCohort() => RemoveCohort(_providerCommonStepsHelper.CurrentCohortDetails());
 
-        public static void DeleteCohort(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage) => providerApproveApprenticeDetailsPage.SelectDeleteCohort().ConfirmDeleteAndSubmit();
+        public static void RemoveCohort(ProviderApproveApprenticeDetailsPage providerApproveApprenticeDetailsPage) => providerApproveApprenticeDetailsPage.SelectDeleteCohort().ConfirmDeleteAndSubmit();
     }
 }

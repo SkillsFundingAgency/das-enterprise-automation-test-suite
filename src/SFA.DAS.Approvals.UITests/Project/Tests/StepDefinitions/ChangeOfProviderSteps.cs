@@ -39,7 +39,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, false);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .IsAddApprenticeLinkDisplayed()
@@ -55,7 +55,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, false);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
@@ -106,7 +106,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .SelectEditApprentice()
@@ -133,7 +133,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         {
             _providerHomePageStepsHelper.GoToProviderHomePage(_newProviderLoginDetails, true);
 
-            new ProviderApprenticeRequestsPage(_context, true)
+            new ProviderLearnerRequestsPage(_context, true)
                 .GoToCohortsToReviewPage()
                 .SelectViewCurrentCohortDetails()
                 .IsAddApprenticeLinkDisplayed()
@@ -175,7 +175,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             Assert.IsFalse(SelectViewCurrentApprenticeDetails().IsCoELinkDisplayed(), "Validate that CoE link is not available for the old provider after successful CoP");
         }
 
-        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => new ProviderManageYourLearnersPage(_context, true).SelectViewCurrentApprenticeDetails();
+        private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => new ProviderManageLearnersPage(_context, true).SelectViewCurrentApprenticeDetails();
 
         private static void ValidateBannerWithLinkToNonEditableCohort(ApprenticeDetailsPage apprenticeDetailsPage)
         {

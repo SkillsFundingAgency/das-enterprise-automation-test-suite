@@ -45,7 +45,7 @@ namespace SFA.DAS.RAAProvider.UITests.Project.Helpers
             var recruitmentHomePage = GoToRecruitmentProviderHomePage(newTab);
             return recruitmentHomePage.NavigateToManageFundingPage();
         }
-        public ManageYourApprenticePage GoToManageYourApprenticesPage(bool newTab = false)
+        public ManageLearnersPage GoToManageYourApprenticesPage(bool newTab = false)
         {
             var recruitmentHomePage = GoToRecruitmentProviderHomePage(newTab);
             return recruitmentHomePage.NavigateToManageYourApprenticesPage();

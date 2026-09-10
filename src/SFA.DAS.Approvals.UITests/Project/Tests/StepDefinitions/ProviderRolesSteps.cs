@@ -210,7 +210,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         [Then(@"user can view Manage Your Apprentices page")]
         public void UserCanViewManageYourApprenticesPage()
         {
-            _providerStepsHelper.NavigateToProviderHomePage().GoToProviderManageYourApprenticePage();
+            _providerStepsHelper.NavigateToProviderHomePage().GoToProviderManageLearnersPage();
         }
 
         [Then(@"user can view Recruit Apprentices page")]

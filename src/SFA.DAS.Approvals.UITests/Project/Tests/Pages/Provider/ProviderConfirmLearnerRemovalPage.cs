@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderConfirmApprenticeDeletionPage(ScenarioContext context) : ApprovalsBasePage(context)
+    public class ProviderConfirmLearnerRemovalPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => "Confirm apprentice deletion";
+        protected override string PageTitle => "Confirm learner removal";
 
         private static By ConfirmDeleteOptions => By.Id("confirm-true");
         private static By SaveAndContinueButton => By.Id("saveBtn");

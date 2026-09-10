@@ -22,7 +22,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private readonly ProviderStepsHelper _providerStepsHelper;
         private readonly ProviderCommonStepsHelper _providerCommonStepsHelper;
         private readonly ProviderEditStepsHelper _providerEditStepsHelper;
-        private readonly ProviderDeleteStepsHelper _providerDeleteStepsHelper;
+        private readonly ProviderRemovalStepsHelper _providerDeleteStepsHelper;
         private readonly ProviderReservationStepsHelper _providerReservationStepsHelper;
         private readonly EmployerPortalLoginHelper _loginHelper;
         private readonly ProviderConfig _config;
@@ -43,7 +43,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _providerStepsHelper = new ProviderStepsHelper(_context);
             _providerCommonStepsHelper = new ProviderCommonStepsHelper(_context);
             _providerEditStepsHelper = new ProviderEditStepsHelper(_context);
-            _providerDeleteStepsHelper = new ProviderDeleteStepsHelper(_context);
+            _providerDeleteStepsHelper = new ProviderRemovalStepsHelper(_context);
             _providerReservationStepsHelper = new ProviderReservationStepsHelper(_context);
             _login = new ProviderLoginUser { Username = _config.Username, Password = _config.Password, Ukprn = _config.Ukprn };
             _accountOwnerUserLogin = context.Get<ProviderAccountOwnerUser>();
@@ -126,7 +126,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         public void ThenProviderCanEditAnApprentice() => _providerApproveApprenticeDetailsPage = _providerEditStepsHelper.EditApprentice(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider can delete an apprentice")]
-        public void ThenProviderCanDeleteAnApprentice() => _providerDeleteStepsHelper.DeleteApprentice(_providerApproveApprenticeDetailsPage);
+        public void ThenProviderCanDeleteAnApprentice() => _providerDeleteStepsHelper.RemoveLearner(_providerApproveApprenticeDetailsPage);
 
         [Then(@"Provider can delete the funding")]
         public void ThenProvidercanDeleteTheFunding() => _providerStepsHelper

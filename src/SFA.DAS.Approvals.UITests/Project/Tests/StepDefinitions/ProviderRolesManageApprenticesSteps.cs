@@ -196,7 +196,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
             _dataHelper.ApprenticeLastname = lastname;
         }
 
-        private ProviderManageYourLearnersPage GoToProviderManageYourApprenticePage() => _providerStepsHelper.NavigateToProviderHomePage().GoToProviderManageYourApprenticePage();
+        private ProviderManageLearnersPage GoToProviderManageYourApprenticePage() => _providerStepsHelper.NavigateToProviderHomePage().GoToProviderManageLearnersPage();
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() => GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
     }

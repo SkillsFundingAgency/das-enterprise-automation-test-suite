@@ -7,18 +7,18 @@ using TechTalk.SpecFlow;
 
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
-    public class ProviderManageYourLearnersPage : Navigate
+    public class ProviderManageLearnersPage : Navigate
     {
         protected override string PageTitle => "Manage your learners";
 
-        protected override string Linktext => "Manage your apprentices";
+        protected override string Linktext => "Manage learners";
 
         protected override bool TakeFullScreenShot => false;
 
 
         protected readonly ApprenticeDataHelper apprenticeDataHelper;
 
-        public ProviderManageYourLearnersPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
+        public ProviderManageLearnersPage(ScenarioContext context, bool navigate = false) : base(context, navigate)
         {
             apprenticeDataHelper = context.GetValue<ApprenticeDataHelper>();
 
@@ -52,7 +52,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderApprenticeDetailsPage(context);
         }
 
-        public ProviderManageYourLearnersPage FilterPagination(string filterText)
+        public ProviderManageLearnersPage FilterPagination(string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(SelectFilterDropdown, filterText);
 
@@ -65,7 +65,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        public ProviderManageYourLearnersPage Filter(string dropDownSelector, string filterText)
+        public ProviderManageLearnersPage Filter(string dropDownSelector, string filterText)
         {
             formCompletionHelper.SelectFromDropDownByText(By.Id(dropDownSelector), filterText);
 
@@ -74,11 +74,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return this;
         }
 
-        internal ProviderManageYourLearnersPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
+        internal ProviderManageLearnersPage ClickOnDownloadFilteredDataCSVAndWaitForDownload()
         {
             manageYourApprenticePageHelper.ClickOnDownloadFilteredDataCSVAndWaitForDownload();
 
-            return new ProviderManageYourLearnersPage(context);
+            return new ProviderManageLearnersPage(context);
         }
 
         public void DoesDownloadFileExistAndValidateRowCount() => manageYourApprenticePageHelper.DoesDownloadFileExistAndValidateRowCount("Manageyourapprentices");

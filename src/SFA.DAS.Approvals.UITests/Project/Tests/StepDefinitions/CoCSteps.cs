@@ -192,7 +192,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.StepDefinitions
         private void SetHasHadDataLockSuccessTrue() => _commitmentsDataHelper.SetHasHadDataLockSuccessTrue(_dataHelper.ApprenticeULN);
 
         private ProviderApprenticeDetailsPage SelectViewCurrentApprenticeDetails() =>
-                _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageYourApprenticePage().SelectViewCurrentApprenticeDetails();
+                _providerCommonStepsHelper.GoToProviderHomePage().GoToProviderManageLearnersPage().SelectViewCurrentApprenticeDetails();
 
         private ProviderEditApprenticeCoursePage ProviderEditApprentice() => SelectViewCurrentApprenticeDetails().EditApprentice();
     }

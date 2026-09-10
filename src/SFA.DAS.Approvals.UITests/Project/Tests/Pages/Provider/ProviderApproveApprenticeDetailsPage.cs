@@ -9,8 +9,8 @@ using TechTalk.SpecFlow;
 namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     // The count on the scrrens are about to introduce in next following sprints so commented to reuse this 
-    //public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Check apprentice details" : $"Check {x} apprentices' details")
-    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "Check apprentice details")
+    //public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => x < 2 ? "Check learner details" : $"Check {x} apprentices' details")
+    public class ProviderApproveApprenticeDetailsPage(ScenarioContext context) : ReviewYourCohort(context, (x) => "Check learner details")
     {
         protected override By PageHeader => By.ClassName("govuk-heading-xl");
 
@@ -19,7 +19,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static new By EditApprenticeLink => By.ClassName("edit-apprentice");
         protected override By ContinueButton => By.Id("continue-button");
         protected override By TotalApprentices => By.CssSelector(".providerList tbody tr");
-        private static By DeleteThisCohortLink => By.PartialLinkText("Delete this cohort");
+        private static By RemoveThisCohortLink => By.PartialLinkText("Remove this cohort");
         private static By BulkUploadLink => By.PartialLinkText("Upload apprentice(s) using a CSV file");
         private static By MessageBox => By.Name("sendmessage");
         private static By SaveAndExitCohort => By.Id("save-and-exit-cohort");
@@ -31,7 +31,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By RplConfirmationCheckbox => By.XPath("//input[@id='rplVerified']");
         private static By ApproveRadioButton => By.Id("radio-approve");
 
-        protected override string AccessibilityPageTitle => "Provider check apprentice details";
+        protected override string AccessibilityPageTitle => "Provider check learner details";
 
         internal ProviderHowDoYouWantToAddLearnerDetailsAddAnother SelectAddAnApprenticeUsingReservation()
         {
@@ -68,10 +68,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderEditApprenticeDetailsPage(context, isFlexiPaymentPilotLearner);
         }
 
-        public ProviderConfirmCohortDeletionPage SelectDeleteCohort()
+        public ProviderConfirmCohortRemovalPage SelectDeleteCohort()
         {
-            formCompletionHelper.ClickElement(DeleteThisCohortLink);
-            return new ProviderConfirmCohortDeletionPage(context);
+            formCompletionHelper.ClickElement(RemoveThisCohortLink);
+            return new ProviderConfirmCohortRemovalPage(context);
         }
 
         public ProviderBulkUploadApprenticesPage SelectBulkUploadApprentices()
@@ -118,7 +118,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public ProviderAccessDeniedPage SelectDeleteCohortGoesToAccessDenied()
         {
-            formCompletionHelper.ClickElement(DeleteThisCohortLink);
+            formCompletionHelper.ClickElement(RemoveThisCohortLink);
             return new ProviderAccessDeniedPage(context);
         }
 
@@ -158,10 +158,10 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
             return new ProviderCohortSentForReviewPage(context);
         }
 
-        public ProviderApprenticeRequestsPage SubmitSaveButDontSendToEmployer()
+        public ProviderLearnerRequestsPage SubmitSaveButDontSendToEmployer()
         {
             formCompletionHelper.ClickElement(SaveAndExitCohort);
-            return new ProviderApprenticeRequestsPage(context);
+            return new ProviderLearnerRequestsPage(context);
         }
 
         public string GetFlashMessage() => pageInteractionHelper.GetTextFromElementsGroup(FlashMessage);
