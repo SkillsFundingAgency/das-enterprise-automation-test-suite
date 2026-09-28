@@ -57,7 +57,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             VerifyTrainingCost();
 
-            SelectRadioOptionByText("No, show me apprenticeship training providers");
+            SelectRadioOptionByText("No, show me training providers");
         }
 
         private void VerifyTrainingCost()

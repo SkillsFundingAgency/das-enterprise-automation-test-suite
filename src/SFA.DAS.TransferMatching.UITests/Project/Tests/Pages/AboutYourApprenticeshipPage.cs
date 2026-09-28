@@ -5,7 +5,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class AboutYourApprenticeshipPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
-        protected override string PageTitle => "Provide more detail about your training";
+        protected override string PageTitle => "Provide more details about your training";
 
         protected override By PageHeader => By.ClassName("govuk-label--xl");
 
