@@ -6,7 +6,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class ApprenticeshipTrainingPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
-        protected override string PageTitle => "Apprenticeship training";
+        protected override string PageTitle => "Training details";
 
         private static By JobRoleSelector => By.CssSelector("#SelectedStandardId");
 
