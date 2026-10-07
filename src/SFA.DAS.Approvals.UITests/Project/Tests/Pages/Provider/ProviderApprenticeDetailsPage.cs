@@ -9,11 +9,11 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 {
     public class ProviderApprenticeDetailsPage(ScenarioContext context) : ApprovalsBasePage(context)
     {
-        protected override string PageTitle => apprenticeDataHelper?.ApprenticeFullName;
+        protected override string PageTitle => $"View details for {apprenticeDataHelper?.ApprenticeFullName}";
 
         protected override string AccessibilityPageTitle => "Provider view apprentice full name";
         private static By ReviewChangesLink => By.LinkText("Review changes");
-        private static By EditApprenticeDetailsLink => By.LinkText("Edit apprentice");
+        private static By EditLearnerDetailsLink => By.LinkText("Edit");
         private static By ViewIlrMismatchDetailsLink => By.LinkText("View details");
         private static By ChangeEmployerLink => By.Id("change-employer-link");
         private static By ChangeRequestHeading => By.XPath("//h2[contains(text(),'Changes to this apprenticeship')]");
@@ -153,7 +153,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
 
         public bool IsCoursemismatchLinkDisplayed() => pageInteractionHelper.IsElementDisplayed(TriageLinkRestartLink);
 
-        private void ClickEditApprenticeDetailsLink() => formCompletionHelper.ClickElement(EditApprenticeDetailsLink);
+        private void ClickEditApprenticeDetailsLink() => formCompletionHelper.ClickElement(EditLearnerDetailsLink);
 
         public ProviderApprenticeDetailsPage ValidateDeliveryModelDisplayed(string deliveryModel)
         {
@@ -169,7 +169,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         {
             string message() => isDisplayed ? "is NOT displayed" : "is displayed";
 
-            Assert.That(pageInteractionHelper.IsElementDisplayed(EditApprenticeDetailsLink), Is.EqualTo(isDisplayed), $"Edit Apprentice Details link {message}");
+            Assert.That(pageInteractionHelper.IsElementDisplayed(EditLearnerDetailsLink), Is.EqualTo(isDisplayed), $"Edit Apprentice Details link {message}");
         }
 
         public void ValidateFlexiPaymentDataLockMessageDisplayed(bool isDisplayed)
