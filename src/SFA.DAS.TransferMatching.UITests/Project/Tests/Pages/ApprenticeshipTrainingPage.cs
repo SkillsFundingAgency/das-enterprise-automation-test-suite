@@ -6,7 +6,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class ApprenticeshipTrainingPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
-        protected override string PageTitle => "Apprenticeship training";
+        protected override string PageTitle => "Training details";
 
         private static By JobRoleSelector => By.CssSelector("#SelectedStandardId");
 
@@ -57,7 +57,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
             VerifyTrainingCost();
 
-            SelectRadioOptionByText("No, show me apprenticeship training providers");
+            SelectRadioOptionByText("No, show me training providers");
         }
 
         private void VerifyTrainingCost()
@@ -72,7 +72,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
             }
 
             RetryAction();
-            VerifyElement(PanelEstimateSelector, $"Estimated yearly cost for apprenticeship training:\r\n£{tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail()}", RetryAction);
+            VerifyElement(PanelEstimateSelector, $"Estimated yearly cost for training:\r\n£{tMDataHelper.GetEstimatedCostOfTrainingForApplicationDetail()}", RetryAction);
 
         }
     }

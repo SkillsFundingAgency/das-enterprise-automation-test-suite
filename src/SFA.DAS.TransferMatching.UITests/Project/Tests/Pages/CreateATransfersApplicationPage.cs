@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class CreateATransfersApplicationPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
-        protected override string PageTitle => "Create a transfers application";
+        protected override string PageTitle => "Create a transfer application";
 
         protected override By ContinueButton => By.CssSelector("#opportunity-apply-submit");
 
@@ -51,7 +51,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 
         private static string GetRandomLink(List<string> list) => RandomDataGenerator.GetRandomElementFromListOfElements(list);
 
-        private static List<string> AppTraining => ["Job role", "Number of apprentices", "Start by", "Have you found a training provider?"];
+        private static List<string> AppTraining => ["Job role", "Number of learners", "Start date", "Have you found a training provider?"];
 
         private static List<string> BusinessDetails => ["Sector", "Location"];
 

@@ -26,7 +26,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
                 MultipleVerifyPage(
                 [
                     () => VerifyPage(PageHeader, $"Transfer fund details for opportunity ({pledgeid})"),
-                    () => VerifyPage(DasHighlight, $"A levy-paying business wants to fund apprenticeship training")
+                    () => VerifyPage(DasHighlight, $"A levy-paying business wants to fund training")
                 ]);
             }
             else
@@ -36,7 +36,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
                 MultipleVerifyPage(
                 [
                     () => VerifyPage(PageHeader, $"Transfer fund details for {orgName} ({pledgeid})"),
-                    () => VerifyPage(DasHighlight, $"{orgName} ({pledgeid}) wants to fund apprenticeship training")
+                    () => VerifyPage(DasHighlight, $"{orgName} ({pledgeid}) wants to fund training")
                 ]);
             }
         }

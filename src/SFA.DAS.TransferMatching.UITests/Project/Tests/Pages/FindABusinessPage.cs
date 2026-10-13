@@ -5,7 +5,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class FindABusinessPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
-        protected override string PageTitle => "Find a business to fund apprenticeship training";
+        protected override string PageTitle => "Find a business to fund training";
 
         public static By StartNowSelector => By.LinkText("Start now");
 
