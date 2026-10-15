@@ -302,7 +302,7 @@ public class TransferMatchingSteps
 
         StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
         StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
         StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
         _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
@@ -320,7 +320,7 @@ public class TransferMatchingSteps
 
         StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
         StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
         StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
         _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
@@ -354,7 +354,7 @@ public class TransferMatchingSteps
 
         StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
         StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
         StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
         _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
@@ -370,7 +370,7 @@ public class TransferMatchingSteps
 
         StringAssert.AreEqualIgnoringCase("All of England", page.GetCriteriaValue(CreateATransferPledgePage.LocationLink));
         StringAssert.AreEqualIgnoringCase("All sectors and industries", page.GetCriteriaValue(CreateATransferPledgePage.SectorLink));
-        StringAssert.AreEqualIgnoringCase("All apprenticeship job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
+        StringAssert.AreEqualIgnoringCase("All job roles", page.GetCriteriaValue(CreateATransferPledgePage.TypeOfJobRoleLink));
         StringAssert.AreEqualIgnoringCase("All qualification levels", page.GetCriteriaValue(CreateATransferPledgePage.LevelLink));
 
         _pledgeVerificationPage = page.ContinueToPledgeVerificationPage();
