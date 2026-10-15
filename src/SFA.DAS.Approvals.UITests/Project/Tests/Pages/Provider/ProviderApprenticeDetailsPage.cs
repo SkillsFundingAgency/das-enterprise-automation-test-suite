@@ -16,7 +16,7 @@ namespace SFA.DAS.Approvals.UITests.Project.Tests.Pages.Provider
         private static By EditLearnerDetailsLink => By.LinkText("Edit");
         private static By ViewIlrMismatchDetailsLink => By.LinkText("View details");
         private static By ChangeEmployerLink => By.Id("change-employer-link");
-        private static By ChangeRequestHeading => By.XPath("//h2[contains(text(),'Changes to this apprenticeship')]");
+        private static By ChangeRequestHeading => By.XPath("//h2[contains(text(),'Changes to this training')]");
         private static By ChangeRequestMessage => By.CssSelector("p.govuk-body");
         private static By Name => By.Id("apprentice-name");
         private static By DateOfBirth => By.Id("apprentice-dob");
