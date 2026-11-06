@@ -7,7 +7,7 @@ namespace SFA.DAS.TransferMatching.UITests.Project.Tests.Pages
 {
     public class PledgeVerificationPage(ScenarioContext context) : TransferMatchingBasePage(context)
     {
-        protected override string PageTitle => "Your pledge has been created as pledge";
+        protected override string PageTitle => "Your pledge has been created with reference";
 
         protected override By PageHeader => PanelTitle;
 
