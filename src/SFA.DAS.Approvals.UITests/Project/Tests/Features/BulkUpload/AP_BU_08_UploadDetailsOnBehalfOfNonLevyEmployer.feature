@@ -1,7 +1,7 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_08_UploadDetailsOnBehalfOfNonLevyEmployer
 
-@regression
+#@regression
 @newBUJourney
 Scenario: AP_BU_08_Upload Details On Behalf Of NonLevy Employer
 	Given the Employer logins using existing NonLevy Account

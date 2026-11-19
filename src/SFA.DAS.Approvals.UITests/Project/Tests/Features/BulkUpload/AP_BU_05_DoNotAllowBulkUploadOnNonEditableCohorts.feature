@@ -1,7 +1,7 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_05_DoNotAllowBulkUploadOnNonEditableCohorts
 
-@regression
+#@regression
 @newBUJourney
 Scenario: AP_BU_05_Do Not Allow Bulk Upload On Non Editable Cohorts	
 	Given the provider has a cohort which is with employer

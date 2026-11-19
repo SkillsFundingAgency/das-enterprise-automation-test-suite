@@ -1,7 +1,7 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_02_UploadDetailsOnMultipleCohorts
 
-@regression
+#@regression
 @newBUJourney
 Scenario: AP_BU_02_Upload Details On Multiple Cohorts
 	Given the Employer logins using existing Levy Account
