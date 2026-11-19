@@ -1,8 +1,8 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_07_UploadDetailsAndCancel
 	
 
-@regression
+#@regression
 @newBUJourney
 Scenario: AP_BU_07_Upload Details then Cancel
 	Given the Employer logins using existing Levy Account

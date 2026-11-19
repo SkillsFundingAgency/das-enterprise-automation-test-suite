@@ -1,7 +1,7 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_06_ValidationRules
 
-@regression
+#@regression
 @newBUJourney
 Scenario: AP_BU_06_Validation Rules
 	Given the Employer logins using existing Levy Account

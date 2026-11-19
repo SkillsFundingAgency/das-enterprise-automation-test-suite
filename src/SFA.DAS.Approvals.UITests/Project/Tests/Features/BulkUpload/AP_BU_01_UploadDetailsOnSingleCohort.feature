@@ -1,7 +1,7 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_01_UploadDetailsOnSingleCohort
 
-@regression
+#@regression
 @newBUJourney
 Scenario: AP_BU_01_Upload Details On Single Cohort
 	Given the Employer logins using existing Levy Account

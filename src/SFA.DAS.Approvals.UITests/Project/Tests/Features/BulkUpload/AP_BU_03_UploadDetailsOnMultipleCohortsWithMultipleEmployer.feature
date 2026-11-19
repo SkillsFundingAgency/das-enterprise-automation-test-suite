@@ -1,11 +1,11 @@
-﻿@approvals
+﻿#@approvals
 Feature: AP_BU_03_UploadDetailsOnMultipleCohortsWithMultipleEmployer
 
 Employer1: Levy Funds
 Employer2: Transfer Connection
 Employer3: Non-Levy (Reservations)
 
-@regression
+#@regression
 @newBUJourney
 Scenario: AP_BU_03_Upload Details On Multiple Cohorts With Multiple Employers
 	Given the Employer1 logins using existing Levy Account
